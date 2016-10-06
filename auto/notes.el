@@ -17,13 +17,12 @@
     "lipsum"
     "inputenc"
     "braket"
-    "babel")
+    "babel"
+    "tikz-cd")
    (TeX-add-symbols
-    "endrefs"
     '("Sph" ["argument"] 0)
     '("RN" ["argument"] 0)
     '("quot" 2)
-    '("fig" 3)
     '("lecture" 3)
     "titlepagedecoration"
     "R"
@@ -31,9 +30,7 @@
     "N"
     "Z"
     "im"
-    "printauthor"
-    "beginrefs"
-    "bibentry")
+    "printauthor")
    (LaTeX-add-environments
     "theorem"
     "lemma"
@@ -41,8 +38,10 @@
     "osservation"
     "corollary"
     "definition"
+    "exercise"
     "proof")
    (LaTeX-add-counters
-    "lecnum"))
+    "lecnum"
+    "exercises"))
  :latex)
 

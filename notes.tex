@@ -9,6 +9,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{braket}
 \usepackage[italian]{babel}
+\usepackage{tikz-cd}
 
 \renewcommand\epigraphflush{flushright}
 \renewcommand\epigraphsize{\normalsize}
@@ -100,35 +101,16 @@
    \end{center}
    \markboth{Lezione #1: #2}{Lezione #1: #2}
 }
-%
-% Convention for citations is authors' initials followed by the year.
-% For example, to cite a paper by Leighton and Maggs you would type
-% \cite{LM89}, and to cite a paper by Strassen you would type \cite{S69}.
-% (To avoid bibliography problems, for now we redefine the \cite command.)
-% Also commands that create a suitable format for the reference list.
-\renewcommand{\cite}[1]{[#1]}
-\def\beginrefs{\begin{list}%
-        {[\arabic{equation}]}{\usecounter{equation}
-         \setlength{\leftmargin}{2.0truecm}\setlength{\labelsep}{0.4truecm}%
-         \setlength{\labelwidth}{1.6truecm}}}
-\def\endrefs{\end{list}}
-\def\bibentry#1{\item[\hbox{[#1]}]}
 
-%Use this command for a figure; it puts a figure in wherever you want it.
-%usage: \fig{NUMBER}{SPACE-IN-INCHES}{CAPTION}
-\newcommand{\fig}[3]{
-			\vspace{#2}
-			\begin{center}
-			Figure \thelecnum.#1:~#3
-			\end{center}
-	}
-% Use these for theorems, lemmas, proofs, etc.
+
 \newtheorem{theorem}{Teorema}[lecnum]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Propositione}
 \newtheorem{osservation}[theorem]{Osservazione}
 \newtheorem{corollary}[theorem]{Corollario}
 \newtheorem{definition}[theorem]{Definitione}
+\newcounter{exercises}
+\newtheorem{exercise}[exercises]{Esercizio}
 \newenvironment{proof}{{\bf Dimostrazione:}}{\hfill\rule{2mm}{2mm}}
 
 \newcommand{\R}{\mathcal{R}}
@@ -190,13 +172,28 @@
   \end{itemize}
 \end{definition}
 
+\footnotetext[1]{Si può rilassare questa ipotesi e costruire moduli destri e sinistri.}
+
 \begin{osservation}
-  Se $ \R $ è un campo allora il modulo è uno spazio vettoriale.
+  Se $ \R $ è un campo allora l'$ \R $-modulo è uno spazio vettoriale.
 \end{osservation}
 
-Sia $ \R $ un anello si può definire su questo anello un modulo $ \M $,
-nel caso $ \ker $ sia un campo allora $ \M $ è uno spazio vettoriale,
-se invece $ \R $ è uno $ \Z $-modulo allora $ \M $ è un gruppo abeliano
+\begin{osservation}
+  Ogni gruppo abeliano è uno $ \Z $-modulo in modo univoco.
+\end{osservation}
+
+\begin{definition}
+  Siano $ (X, \cdot) $ e $ (Y, \star) $ due gruppi, un \textbf{omomorfismo} è un'applicazione $ f $
+  tra $ X $ e $ Y $ che preserva la struttura di gruppo, cioè:
+  \[
+    \forall u,v \in X \quad f(u \cdot v) = f(u) \star f(v)
+  \]
+\end{definition}
+
+\begin{osservation}
+  Da questa definizione si trova immediatamente che gli omomorfismi si comportano bene nei
+  confronti dell'inverso, cioè $ \forall v \in X $ vale che $ f(v^{-1}) = {f(v)}^{-1} $.
+\end{osservation}
 
 Voglio studiare gli omomorfismi tra $ \Z $-moduli.
 
@@ -204,7 +201,7 @@ Voglio studiare gli omomorfismi tra $ \Z $-moduli.
   Sia $ \phi: \M \to \N $ un omomorfismo tra gli $ \R $-moduli $ \M $ e $ \N $,
   allora si definisce il \textbf{nucleo} e l'\textbf{immagine}:
   \[
-    \ker (\phi) = \set{ m \in \M | \phi(m) = 0}  \qquad  \im (\phi) = \set{ m \in \M | \phi(m) = 0}
+    \ker (\phi) := \set{ m \in \M | \phi(m) = 0}  \qquad  \im (\phi) := \set{ m \in \M | \phi(m) = 0}
   \]
 \end{definition}
 
@@ -214,10 +211,9 @@ Voglio studiare gli omomorfismi tra $ \Z $-moduli.
 
 Posso fare composizioni di omomorfismi, come:
 \[
-  \begin{aligned}
-    \M_1 & \longrightarrow & \M_2 & \longrightarrow & \M_3 \\
-    & \phi_1 & & \phi_2 &
-  \end{aligned}
+  \begin{tikzcd}
+    \M_1 \arrow{r}{\phi_1} & \M_2 \arrow{r}{\phi_2} & \M_3
+  \end{tikzcd}
 \]
 Se vale $ \phi_2 \circ \phi_1 = 0 $ allora $ \im (\phi_1) \subseteq \ker (\phi_2) $.
 
@@ -226,18 +222,27 @@ Se vale $ \phi_2 \circ \phi_1 = 0 $ allora $ \im (\phi_1) \subseteq \ker (\phi_2
   ma $ \phi_2(u) = \phi_2(\phi_1(v)) = (\phi_2 \circ \phi_1)(v) = 0 $ quindi $ u \in \ker(\phi_2) $.
 \end{proof}
 
+\begin{definition}
+  Siano $ \M $ un $ \R $-modulo e $ \N $ un suo sottomodulo, allora il \textbf{modulo
+  quozionete} di $ \M $ con $ \N $ e definito da:
+  \[
+    \quot{\M}{\N} := \quot{\M}{\sim} \quad \text{dove} \sim \text{ è definita da: } x \sim y \Leftrightarrow x - y \in \N
+  \]
+\end{definition}
+
 Siccome $ \im (\phi) $ è sottomodulo di $ \ker (\phi) $ allora posso prendere
 il quoziente:
 \[
   \quot{\ker (\phi_2)}{\im (\phi_1)}
 \]
 Questo è un sottomodulo.
+
 A questo punto ci sono due possibilità:
-\begin{itemize}
+\begin{enumerate}
 \item $ {\ker (\phi_2)} \slash {\im (\phi_1)} = 0 $, che significa che $ \ker (\phi_2) = \im (\phi_1) $ in quanto non ci sono elementi di $ \ker (\phi_2) $ fuori da $ \im (\phi_1) $.
 \item $ {\ker (\phi_2)} \slash {\im (\phi_1)} \not= 0 $, cioè $ \exists v \in \ker (\phi_2) $
   tale che $ v \not \in \im (\phi_1) $ e quindi $ \im (\phi_1) \subsetneq \ker (\phi_2) $.
-\end{itemize}
+\end{enumerate}
 Nel primo caso si dice che la successione dei moduli $ \M $ e delle
 applicazioni $ \phi $ è \textbf{esatta} in $ \M_2$, nel secondo caso la
 successione è detta \textbf{complesso di moduli}.
@@ -386,6 +391,18 @@ Posso ottenere una $ 0 $-catena prendendo i punti estremi dell'arco.
 Ad esempio per $ k = 2 $ $ \Delta_2 = \set{ (x_1,x_2,x_3) \in \RN{3} | x_1 + x_2 + x_3 = 1, \; 0 \leq x_i \leq 1 \; \forall i} $,
 si definisce la base $ e_0 = (1,0,0) \; e_1 = (0,1,0) \; e_2 = (0,0,1) $, voglio vedere il bordo del triangolo
 come facce.
+[FIGURA, CONSIDERAZIONI]
+
+\begin{exercise}
+  Dimostrare che se $ [\cdot, \cdot] $ indica l'inviluppo convesso allora:
+  \begin{enumerate}
+  \item Per $ j > i $ vale che $ F_i^{\; k+1} \circ F_i^{\; k} = [e_0, \dots, e_i, \dots, e_j, \dots, e_k ] $.
+  \item Per $ j \leq i $ vale che $ F_i^{\; k+1} \circ F_i^{\; k} = [e_0, \dots, e_j, \dots, e_{i+1}, \dots, e_k ] $.
+  \end{enumerate}
+\end{exercise}
+
+Dato un $ k $-simplesso singolare $ \sigma: \Delta_k \to X $ si definisce la mappa $ \sigma^{(i)} = \sigma \circ F_i^{\; k} $.
+
 
 \end{document}
 
