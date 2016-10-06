@@ -1,0 +1,396 @@
+\documentclass{article}
+
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usepackage{epigraph}
+\usepackage{lipsum}
+\usepackage[utf8]{inputenc}
+\usepackage{braket}
+\usepackage[italian]{babel}
+
+\renewcommand\epigraphflush{flushright}
+\renewcommand\epigraphsize{\normalsize}
+\setlength\epigraphwidth{0.7\textwidth}
+
+\definecolor{titlepagecolor}{cmyk}{1,.60,0,.40}
+
+\DeclareFixedFont{\titlefont}{T1}{ppl}{b}{it}{0.5in}
+
+\makeatletter
+\def\printauthor{%
+    {\large \@author}}
+\makeatother
+\author{%
+  Professore: \\
+  \emph{Gilberto Bini} \vspace{10pt}\\
+  Scriba: \\
+  \emph{Gabriele Bozzola}
+    }
+
+\newcommand\titlepagedecoration{%
+\begin{tikzpicture}[remember picture,overlay,shorten >= -10pt]
+
+\coordinate (aux1) at ([yshift=-15pt]current page.north east);
+\coordinate (aux2) at ([yshift=-410pt]current page.north east);
+\coordinate (aux3) at ([xshift=-4.5cm]current page.north east);
+\coordinate (aux4) at ([yshift=-150pt]current page.north east);
+
+\begin{scope}[titlepagecolor!40,line width=12pt,rounded corners=12pt]
+\draw
+  (aux1) -- coordinate (a)
+  ++(225:5) --
+  ++(-45:5.1) coordinate (b);
+\draw[shorten <= -10pt]
+  (aux3) --
+  (a) --
+  (aux1);
+\draw[opacity=0.6,titlepagecolor,shorten <= -10pt]
+  (b) --
+  ++(225:2.2) --
+  ++(-45:2.2);
+\end{scope}
+\draw[titlepagecolor,line width=8pt,rounded corners=8pt,shorten <= -10pt]
+  (aux4) --
+  ++(225:0.8) --
+  ++(-45:0.8);
+\begin{scope}[titlepagecolor!70,line width=6pt,rounded corners=8pt]
+\draw[shorten <= -10pt]
+  (aux2) --
+  ++(225:3) coordinate[pos=0.45] (c) --
+  ++(-45:3.1);
+\draw
+  (aux2) --
+  (c) --
+  ++(135:2.5) --
+  ++(45:2.5) --
+  ++(-45:2.5) coordinate[pos=0.3] (d);
+\draw
+  (d) -- +(45:1);
+\end{scope}
+\end{tikzpicture}%
+}
+
+\newcounter{lecnum}
+\renewcommand{\thepage}{\thelecnum-\arabic{page}}
+\renewcommand{\thesection}{\thelecnum.\arabic{section}}
+\renewcommand{\theequation}{\thelecnum.\arabic{equation}}
+\renewcommand{\thefigure}{\thelecnum.\arabic{figure}}
+\renewcommand{\thetable}{\thelecnum.\arabic{table}}
+
+\newcommand{\lecture}[3]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{lecnum}{#1}
+   \setcounter{page}{1}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to \linewidth { {\bf Topologia Algebrica
+	\hfill 2016/2017} }
+       \vspace{4mm}
+       \hbox to \linewidth  { {\Large \hfill Lezione #1: #2  \hfill} }
+       \vspace{2mm}
+       \hbox { {Agomenti: #3  \hfill} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{Lezione #1: #2}{Lezione #1: #2}
+}
+%
+% Convention for citations is authors' initials followed by the year.
+% For example, to cite a paper by Leighton and Maggs you would type
+% \cite{LM89}, and to cite a paper by Strassen you would type \cite{S69}.
+% (To avoid bibliography problems, for now we redefine the \cite command.)
+% Also commands that create a suitable format for the reference list.
+\renewcommand{\cite}[1]{[#1]}
+\def\beginrefs{\begin{list}%
+        {[\arabic{equation}]}{\usecounter{equation}
+         \setlength{\leftmargin}{2.0truecm}\setlength{\labelsep}{0.4truecm}%
+         \setlength{\labelwidth}{1.6truecm}}}
+\def\endrefs{\end{list}}
+\def\bibentry#1{\item[\hbox{[#1]}]}
+
+%Use this command for a figure; it puts a figure in wherever you want it.
+%usage: \fig{NUMBER}{SPACE-IN-INCHES}{CAPTION}
+\newcommand{\fig}[3]{
+			\vspace{#2}
+			\begin{center}
+			Figure \thelecnum.#1:~#3
+			\end{center}
+	}
+% Use these for theorems, lemmas, proofs, etc.
+\newtheorem{theorem}{Teorema}[lecnum]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Propositione}
+\newtheorem{osservation}[theorem]{Osservazione}
+\newtheorem{corollary}[theorem]{Corollario}
+\newtheorem{definition}[theorem]{Definitione}
+\newenvironment{proof}{{\bf Dimostrazione:}}{\hfill\rule{2mm}{2mm}}
+
+\newcommand{\R}{\mathcal{R}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\im}{\mathrm{Im}}
+\renewcommand{\ker}{\mathrm{Ker}}
+\renewcommand{\phi}{\varphi}
+\newcommand{\RN}[1][]{\mathbb{R}^#1}
+\newcommand{\Sph}[1][]{\mathcal{S}^#1}
+
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+\begin{document}
+
+\begin{titlepage}
+
+\noindent
+\titlefont Topologia Algebrica
+\epigraph{Zitto e studia.}%
+{\textit{Parigi 1905}\\ \textsc{H.\ Poincarè}}
+\null\vfill
+\vspace*{1cm}
+\noindent
+\hfill
+\begin{minipage}{0.35\linewidth}
+    \begin{flushright}
+        \printauthor
+    \end{flushright}
+\end{minipage}
+%
+\begin{minipage}{0.02\linewidth}
+    \rule{1pt}{125pt}
+\end{minipage}
+\titlepagedecoration
+\end{titlepage}
+
+\lecture{1}{29 Settembre}{General introduction. Homology of a complex. Singular homology.}
+
+\section{Introduzione}
+
+\subsection{Richiami di geometria}
+
+\begin{definition}
+  Un \textbf{anello} è un insieme $ \R $ dotato di due operazioni $ + $ e $ \cdot $ tali che
+  $ \R $ sia un gruppo abeliano con l'addizione, sia un monoide con la moltiplicazione
+  (ovvero la moltiplicazione è associativa e possiede un elemento neutro) e goda della
+  proprietà distributiva rispetto all'addizione.
+\end{definition}
+
+\begin{definition}
+  Sia $ \R $ un anello commutativo\footnotemark[1] si definisce l' \textbf{$ \R $-modulo} il gruppo abeliano $ \M $
+  equipaggiato con un'operazione di somma tale che $ \forall v,w \in \M $ e $ \forall a,b \in \R $ vale che:
+  \begin{itemize}
+  \item $ a(v + w) = av + aw $
+  \item $ (a + b)v = av + bv $
+  \item $ (ab)v = a(bv) $
+  \end{itemize}
+\end{definition}
+
+\begin{osservation}
+  Se $ \R $ è un campo allora il modulo è uno spazio vettoriale.
+\end{osservation}
+
+Sia $ \R $ un anello si può definire su questo anello un modulo $ \M $,
+nel caso $ \ker $ sia un campo allora $ \M $ è uno spazio vettoriale,
+se invece $ \R $ è uno $ \Z $-modulo allora $ \M $ è un gruppo abeliano
+
+Voglio studiare gli omomorfismi tra $ \Z $-moduli.
+
+\begin{definition}
+  Sia $ \phi: \M \to \N $ un omomorfismo tra gli $ \R $-moduli $ \M $ e $ \N $,
+  allora si definisce il \textbf{nucleo} e l'\textbf{immagine}:
+  \[
+    \ker (\phi) = \set{ m \in \M | \phi(m) = 0}  \qquad  \im (\phi) = \set{ m \in \M | \phi(m) = 0}
+  \]
+\end{definition}
+
+\begin{osservation}
+  $ \ker (\phi) $ e $ \im (\phi) $ sono $ \R $-sottomoduli.
+\end{osservation}
+
+Posso fare composizioni di omomorfismi, come:
+\[
+  \begin{aligned}
+    \M_1 & \longrightarrow & \M_2 & \longrightarrow & \M_3 \\
+    & \phi_1 & & \phi_2 &
+  \end{aligned}
+\]
+Se vale $ \phi_2 \circ \phi_1 = 0 $ allora $ \im (\phi_1) \subseteq \ker (\phi_2) $.
+
+\begin{proof}
+  Se $ u \in \im {\phi_2} $ allora $ \exists v \in \M_2 $ tale che $ \phi_1(v) = u $,
+  ma $ \phi_2(u) = \phi_2(\phi_1(v)) = (\phi_2 \circ \phi_1)(v) = 0 $ quindi $ u \in \ker(\phi_2) $.
+\end{proof}
+
+Siccome $ \im (\phi) $ è sottomodulo di $ \ker (\phi) $ allora posso prendere
+il quoziente:
+\[
+  \quot{\ker (\phi_2)}{\im (\phi_1)}
+\]
+Questo è un sottomodulo.
+A questo punto ci sono due possibilità:
+\begin{itemize}
+\item $ {\ker (\phi_2)} \slash {\im (\phi_1)} = 0 $, che significa che $ \ker (\phi_2) = \im (\phi_1) $ in quanto non ci sono elementi di $ \ker (\phi_2) $ fuori da $ \im (\phi_1) $.
+\item $ {\ker (\phi_2)} \slash {\im (\phi_1)} \not= 0 $, cioè $ \exists v \in \ker (\phi_2) $
+  tale che $ v \not \in \im (\phi_1) $ e quindi $ \im (\phi_1) \subsetneq \ker (\phi_2) $.
+\end{itemize}
+Nel primo caso si dice che la successione dei moduli $ \M $ e delle
+applicazioni $ \phi $ è \textbf{esatta} in $ \M_2$, nel secondo caso la
+successione è detta \textbf{complesso di moduli}.
+
+Sostanzialmente il modulo quoziente quantifica la non esattazza nel punto $ \M_2 $
+della successione.
+
+\begin{definition}
+  $ H(\M_\bullet) = {\ker (\phi_2)} \slash {\im (\phi_1)} $ è detto \textbf{modulo di omologia}
+  del complesso $ M_\bullet = M_1 \longrightarrow M_2 \longrightarrow M_3 $ con le applicazioni $ \phi_1 $ e $ \phi_2 $.
+\end{definition}
+Per questo  $ H(\M_\bullet) $ quantifica quanto il complesso $ \M_\cdot $ non è esatto.
+
+Questo deriva da un problema topologico concreto.
+
+\subsection{Omomorfismo tra $ \RN{} $ e $ \RN{N} $}
+È noto che $ \RN{} \not \simeq \RN{N} $ per $ n \geq 2 $, infatti basta
+che tolgo un punto a $ \RN{} $ che diventa sconnesso mentre $ \RN{N} $
+rimane connesso anche togliendogli un punto.
+
+Tuttavia vale anche che $ \RN{2} \not \simeq \RN{N} $ per $ n \geq 3 $, infatti:
+
+\begin{proof}
+  Per assurdo $ f : \RN{2} \overset{\to}{\sim} \RN{N} $ è un omomorfismo con
+  $ n \geq 3 $, tolgo un punto da $ \RN{2} $:
+  \[
+    \forall p \in \RN{2} \quad f:\RN{2} \setminus \set{p} \overset{\to}{\sim} \RN{N} \setminus \set{f(p)}
+  \]
+  Ma: $ \RN{2} \setminus \set{p} \simeq \RN{} \times \mathcal{S}^1 $ con la mappa
+  che manda $ \underline{x} \mapsto \left( || \underline{x} ||, \frac{\underline{x}}{|| \underline{x} ||} \right) $. Ma quindi il gruppo fondamentale deve essere isomorfo:
+  $ \pi_1 (\RN{} \times \mathcal{S}^{1}) \simeq \pi_1(\RN{}\times \mathcal{S}^{n-1}) $ ma $ \pi_1 (\RN{}\times \mathcal{S}^{1}) = \Z $ e $ \pi_1(\RN{}\times \mathcal{S}^{n-1}) = \set{1} $ quindi non possono essere isomorfi.
+\end{proof}
+Ho quindi dedotto proprietà geometriche a partire da considerazioni algebriche.
+
+\begin{definition}
+  Si definisce il \textbf{gruppo fondamentale} di uno spazio topologico $ X $
+  connesso per archi attorno al punto $ x_0 \in X $
+  \[
+    \pi_1 (X, x_0) = \quot{\set{ g: \mathcal{S}^1 \to X | g \text{ continua}, g(1) = x_0}}{\sim}
+  \]
+  e $ \sim $ è la relazione di omotopia: $ g_1 \sim g_2 $ se $ \exists G: \mathcal{S}^1 \times I \to X  $ tale che
+  $ G(z,0) = g_1(z), G(z,1) = g_2(z), G(1,t) = x_o $.
+\end{definition}
+
+Ora voglio mostrare per assurdo che non esiste omomorfismo tra $ \RN{3} $ e $ \RN{N} $.
+
+\begin{proof}
+  Come nel caso precedente tolgo $ q $ da $ \RN{3} $ e $ f(q) $ da $ \RN{3} $, quindi ottengo
+  l'omomorfismo tra $ \RN{} \times \Sph{2} \simeq \RN{} \times \Sph{n-1} $, ma i gruppi fondamentali
+  associati sono banali, quindi sono isomorfi, e non è posisbile replicare il ragionamento utilizzato sopra.
+\end{proof}
+
+Poincaré introdusse i gruppi di omotopia superiore.
+
+\begin{definition}
+  Si definiscono i \textbf{gruppi di omotopia superiore} di uno spazio topologico $ X $
+  attorno al punto $ x_0 $ per $ k \geq 2 $:
+  \[
+    \pi_k(X) (X, x_0) = \quot{\set{ g: \Sph{k} \to X | g(p_0) = x_0, p_o \in \Sph{k}}}{\sim}
+  \]
+\end{definition}
+Studiare i gruppi di omotopia superiore è un problema aperto della topologia moderna.
+Tuttavia si sa che:
+\begin{enumerate}
+\item $ \pi_k(\Sph{m}) = 1 \quad \text{per} \quad 1 \leq k < m $
+\item $ \pi_m(\Sph{m}) \simeq \Z \quad \text{per} \quad k = m $
+\item $ \pi_1(\Sph{2}) = 1 $
+\item $ \pi_2(\Sph{2}) \simeq 1 $
+\end{enumerate}
+
+Anche se non so calcolare i gruppi di omotopia superiore non vorrei buttarli via\dots
+
+\subsection{Omologia}
+
+Uso la teoria dell'omologia che mi permette di semplificare i problemi.
+Ci sono varie possibilità:
+\begin{itemize}
+  \item Omologia simpliciale
+  \item Omologia cellulare
+  \item Omologia singolare
+  \item Omologia persistente\footnote{Questa ha numerose applicazioni pratiche.}
+\end{itemize}
+Ma cosa è l'omologia?
+
+\begin{definition}
+  In $ \RN{k+1} $ si definisce il \textbf{simplesso standard} $ \Delta_k $ l'insieme:
+  \[
+    \Delta_k = \set{(x_1,x_2,\dots) \in \RN{k+1} | \forall i \quad 0 \leq x_i \leq 1 \text{ e } \sum_{i=1}^{k+1}x_i = 1}
+  \]
+\end{definition}
+
+\begin{osservation} Alcuni esempi sono:
+  \begin{itemize}
+  \item $ \Delta_0 $ è un punto.
+  \item $ \Delta_1 $ è un segmento omeomorfo a $ [0,1] $.
+    [FIGURA]
+  \end{itemize}
+\end{osservation}
+
+\begin{definition}
+  Dato uno spazio topologico $ X $ si definisce il \textbf{$ k $-simplesso singolare}
+  in $ X $ come un'applicazione continua $ g: \Delta_k \to X $.
+\end{definition}
+Spesso conviene identificare il $ k $-simplesso con la sua immagine in $ X $.
+In quesot modo uno $ 0 $-simplesso è un punto in $ X $, mentre un $ 1 $-simplesso singolare potrebbe essere sia un segmento che un punto (se la mappa è costante). Siccome
+il simplesso deforma è detto singolare.
+
+Voglio costruire un complesso di gruppi abeliani e definire l'omologia singolare come l'omologia di tale complesso.
+
+$ S_\cdot $ è il compesso, cioè: $ \dots \to S_{k+1}(X) \to S_k() \to S_{k-1} \to \dots \to S_0(X) $, dove
+\begin{align*}
+  S_k(X) ={}& \{\text{combinazioni lineari finite a coefficienti interi: } \\
+         & \sum_g n_g g \;|\; n_g \in \Z, g \; k-\text{simplessi singolari di } X \}
+\end{align*}
+$ S_k(X) $ è un gruppo abeliano con l'operazione somma definita naturalmente:
+\[
+  \sum_g n_g g + \sum_h n_h =   \sum_g n_g g + \sum_g n_g^\star = \sum_g (n_g + n_g^\star)g
+\]
+Ad esempio:
+\[
+  (n_1 g_1 + n_2 g_2 + 2 n_3 g_3) + (m_1 g_1 + m_4 g_4) = (n_1 + m_1)g_1 + n_2 g_2 + 2 n_3 g_3 + m_4 g_4
+\]
+Questa è una somma con tutte le giuste proprietà. Lo zero è la catena con tutti i coefficienti nulli,
+mentre l'inverso è la catena con i coefficienti opposti.
+Queste catene sono chiamate $ k $-\textbf{catene singolari}.
+
+Ad esempio:
+Se $ k = 0 $ $ S_0(X) $ sono catene di punti ($ g_0 : \Delta_0 \to X $)
+\[
+  S_0(X) = \set { \sum n_i p_i | n_i \in \Z, \; p_i \in X}
+\]
+Ora devo introdurre le applicazioni tra i vari $ S_k $, queste applicazioni saranno il bordo.
+
+Definisco $ h: \Delta_1 \to X $ in modo tale che $ h(\Delta) = \alpha $ dove $ \alpha $ è un arco, ovvero una funzione
+da un intervallo $ I = [0,1] $ a $ X $ tale che $ \alpha(0) = x_0 $ e $ y_0 $.
+
+[FIGURA]
+
+Posso ottenere una $ 0 $-catena prendendo i punti estremi dell'arco.
+
+\begin{definition}
+  Sia $ \Delta_k $ un $ k $-simplesso standard con $ k \geq 0 $ si definisce l'operatore \textbf{faccia} come
+  la mappa $ F_i^{\;k} $ da $ \Delta_{k-1} $ a $ \Delta_k $ tale che $ F_i^{\;k}(\Delta_{k-1}) $ è una faccia di $ \Delta_k $.
+\end{definition}
+
+Ad esempio per $ k = 2 $ $ \Delta_2 = \set{ (x_1,x_2,x_3) \in \RN{3} | x_1 + x_2 + x_3 = 1, \; 0 \leq x_i \leq 1 \; \forall i} $,
+si definisce la base $ e_0 = (1,0,0) \; e_1 = (0,1,0) \; e_2 = (0,0,1) $, voglio vedere il bordo del triangolo
+come facce.
+
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
