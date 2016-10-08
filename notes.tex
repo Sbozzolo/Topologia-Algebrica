@@ -258,6 +258,16 @@ Per questo  $ H(\M_\bullet) $ quantifica quanto il complesso $ \M_\cdot $ non è
 
 Questo deriva da un problema topologico concreto.
 
+\begin{definition}
+  La coppia $ (X, \mathcal{T}) $ è detta spazio topologico (generalmente si omette la $ \mathcal{T} $)
+  se $ \mathcal{T} $ è una topologia, cioè se è una collezione di insiemi di $ X $ tali che:
+  \begin{enumerate}
+  \item $ \emptyset, X \in \mathcal{T} $
+  \item $ \bigcup_{n \in \mathbb{N}} A_n \in \mathcal{T} $ se $ A_n \in \mathcal{T} \; \forall n \in \mathbb{N} $
+  \item $ A \cap B \in \mathcal{T} $ se $ A,B \in \mathcal{T} $
+  \end{enumerate}
+\end{definition}
+
 \subsection{Omomorfismo tra $ \RN{} $ e $ \RN{N} $}
 È noto che $ \RN{} \not \simeq \RN{N} $ per $ n \geq 2 $, infatti basta
 che tolgo un punto a $ \RN{} $ che diventa sconnesso mentre $ \RN{N} $
@@ -403,6 +413,71 @@ come facce.
 
 Dato un $ k $-simplesso singolare $ \sigma: \Delta_k \to X $ si definisce la mappa $ \sigma^{(i)} = \sigma \circ F_i^{\; k} $.
 
+[FIGURA]
+
+\begin{definition}
+  Si definisce il \textbf{bordo} di un $ k $-simplesso singolare come $ \partial_k \sigma = \sum_{i=0}^{k}(-)^i \sigma^{(i)} $.
+\end{definition}
+
+Per $ k = 1 $ $ \partial_1 \sigma = p_1 - p_0 $ infatti $ \sigma^{0} = \sigma \circ F_0^{\; 1} = \sigma(1) = p_1 $ e $ \sigma^{0} = \sigma \circ F_1^{\; 1} = \sigma(0) = p_0 $.\footnote{Tecnicamente si intende $ p_0 = \partial_1 \sigma^{(0)}(1) $ e $ p_1 = \partial_0 \sigma^{(1)}(1) $.}
+
+Allora definisco $ \partial_k: S_k(X) \to S_{k-1}(X) $ infatti per linearità $ \partial_k \left( \sum_g n_g g\right) = \sum_g n_g \partial_k g $.
+
+Devo mostrare che $ \partial_k $ è un omomorfismo.
+
+\begin{proof}
+  \begin{gather*}
+  \partial_k \left( \sum_g n_g g + \sum_g m_g g\right) = \partial_k \left( \sum_g(m_g + n_g)g \right) = \sum_g (m_g + n_g) \partial_k g = \\
+  = \sum_g n_g \partial_k g + \sum_g m_g \partial_k g = \partial_k \left( \sum_g n_g g\right) + \partial_k \left( \sum_g m_g g \right)
+\end{gather*}
+\end{proof}
+
+Quindi il complesso è costituito da:
+\[
+  \begin{tikzcd}
+   \dots \arrow{r}{\partial_{k+1}} & S_k(X) \arrow{r}{\partial_k} & S_{k-1}(X) \arrow{r}{\partial_{k-1}} & \dots
+  \end{tikzcd}
+\]
+
+Devo verificare che $ \partial_k \circ \partial_{k+1} = $. Spesso come notazione si pone $ \partial^2 = 0 $.
+
+\begin{proof}
+  Se $ \sigma $ è un $ k $-complesso singolare $ \sigma : \Delta_k \to X $:
+  \begin{align*}
+    & \partial_k \circ \partial_{k+1} \sigma = \partial_k \left( \sum_{j=0}^{k+1}(-)^j (\sigma \circ F_j^{\; k+1}) \right) =  \sum_{j=0}^{k+1}(-)^j \partial_k (\sigma \circ F_j^{\; k+1}) &= \\
+                    & = \sum_{j=0}^{k+1} (-)^j \sum_{i=0}^k (-)^i (\sigma \circ F_j^{\; k+1}) \circ F_i^{\; k} = \sum_{j = 0}^{k+1} \sum_{i = 0}^{k} (-)^{j+i} \sigma \circ F_j^{\; k+1} \circ F_{j}^{\; k} &= \\
+                    & = \sum_{0 \leq i < j \leq k + 1} (-)^{i+j} \sigma \circ F_j^{\; k+1} \circ F_i^{\; k} + \sum_{0 \leq j < i \leq k} (-)^{i+j} \sigma \circ F_j^{\; k+1} \circ F_i^k &= \\
+    & = \sum_{0 \leq i < j \leq k + 1} (-)^{i+j} \sigma \circ F_j^{\; k+1} \circ F_i^{\; k} + \sum_{0 \leq j < i \leq k} (-)^{i+j} \sigma \circ F_{i+1}^{\; k+1} \circ F_j^{\; k} & =  \\
+    & = 0
+  \end{align*}
+\end{proof}
+
+\lecture{2}{4 Ottobre}{Banane}
+\lecture{3}{6 Ottobre}{Banane}
+
+\subsection{Richiami sul gruppo fondamentale}
+\begin{definition}
+  Sia $ X $ uno spazio topologico e $ x_0 \in X $ un suo punto, allora la coppia $ (X, x_0) $ è detta spazio topologico puntato.
+\end{definition}
+
+\begin{definition}
+  Sia $ (X, x_0) $ uno spazio topologico puntato e $ f: I \to X $ una mappa continua tale che $ f(0) = f(1) = x_0 \; \forall t \in I $,
+  si dice che una funzione continua $ g $ è \textbf{omotopicamente equivalente} a $ f $ ($ g \sim_H f $) se esiste una funzione
+  continua $ F: I \times I \to X $ tale che;
+  \begin{itemize}
+  \item $ F(0,x) = f(x) \; \forall x \in I $
+  \item $ F(1,x) = g(x) \; \forall x \in I$
+  \item $ F(s,0) = x_0 \; \forall s \in I $
+  \item $ F(s,1) = x_0 \; \forall s \in I $
+  \end{itemize}
+  La relazione $ \sim_H $ è detta relazione di omotopia e si dimostra essere una relazione di equivalenza.
+\end{definition}
+[FIGURA]
+
+Si definisce l'insieme;
+\[
+  \pi_1(X,x_0) = \quot{\set{f:I \to X | f \text{ continua}, f(0) = f(1) = x_0}}{\sim_H}
+\]
 
 \end{document}
 
