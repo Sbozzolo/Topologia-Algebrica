@@ -18,7 +18,8 @@
     "inputenc"
     "braket"
     "babel"
-    "tikz-cd")
+    "tikz-cd"
+    "makeidx")
    (TeX-add-symbols
     '("Sph" ["argument"] 0)
     '("RN" ["argument"] 0)
@@ -40,6 +41,17 @@
     "definition"
     "exercise"
     "proof")
+   (LaTeX-add-index-entries
+    "Anello"
+    "$ \\R $-modulo"
+    "Omomorfismo"
+    "Nucleo"
+    "Immagine"
+    "Modulo quoziente"
+    "Complesso di moduli esatto"
+    "Complesso di moduli"
+    "Modulo di omologia"
+    "Spazio topologico")
    (LaTeX-add-counters
     "lecnum"
     "exercises"))

@@ -10,6 +10,7 @@
 \usepackage{braket}
 \usepackage[italian]{babel}
 \usepackage{tikz-cd}
+\usepackage{makeidx}
 
 \renewcommand\epigraphflush{flushright}
 \renewcommand\epigraphsize{\normalsize}
@@ -74,18 +75,12 @@
 }
 
 \newcounter{lecnum}
-\renewcommand{\thepage}{\thelecnum-\arabic{page}}
-\renewcommand{\thesection}{\thelecnum.\arabic{section}}
-\renewcommand{\theequation}{\thelecnum.\arabic{equation}}
-\renewcommand{\thefigure}{\thelecnum.\arabic{figure}}
-\renewcommand{\thetable}{\thelecnum.\arabic{table}}
 
 \newcommand{\lecture}[3]{
    \pagestyle{myheadings}
    \thispagestyle{plain}
    \newpage
    \setcounter{lecnum}{#1}
-   \setcounter{page}{1}
    \noindent
    \begin{center}
    \framebox{
@@ -101,7 +96,6 @@
    \end{center}
    \markboth{Lezione #1: #2}{Lezione #1: #2}
 }
-
 
 \newtheorem{theorem}{Teorema}[lecnum]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -124,6 +118,8 @@
 \newcommand{\Sph}[1][]{\mathcal{S}^#1}
 
 \newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+\makeindex
 
 \begin{document}
 
@@ -156,15 +152,15 @@
 \subsection{Richiami di geometria}
 
 \begin{definition}
-  Un \textbf{anello} è un insieme $ \R $ dotato di due operazioni $ + $ e $ \cdot $ tali che
+  Un \textbf{anello} \index{Anello} è un insieme $ \R $ dotato di due operazioni $ + $ e $ \cdot $ tali che
   $ \R $ sia un gruppo abeliano con l'addizione, sia un monoide con la moltiplicazione
   (ovvero la moltiplicazione è associativa e possiede un elemento neutro) e goda della
   proprietà distributiva rispetto all'addizione.
 \end{definition}
 
 \begin{definition}
-  Sia $ \R $ un anello commutativo\footnotemark[1] si definisce l' \textbf{$ \R $-modulo} il gruppo abeliano $ \M $
-  equipaggiato con un'operazione di somma tale che $ \forall v,w \in \M $ e $ \forall a,b \in \R $ vale che:
+  Sia $ \R $ un anello commutativo\footnotemark[1] si definisce l' \textbf{$ \R $-modulo} \index{$ \R $-modulo}
+  il gruppo abeliano $ \M $ equipaggiato con un'operazione di somma tale che $ \forall v,w \in \M $ e $ \forall a,b \in \R $ vale che:
   \begin{itemize}
   \item $ a(v + w) = av + aw $
   \item $ (a + b)v = av + bv $
@@ -183,7 +179,7 @@
 \end{osservation}
 
 \begin{definition}
-  Siano $ (X, \cdot) $ e $ (Y, \star) $ due gruppi, un \textbf{omomorfismo} è un'applicazione $ f $
+  Siano $ (X, \cdot) $ e $ (Y, \star) $ due gruppi, un \textbf{omomorfismo} \index{Omomorfismo} è un'applicazione $ f $
   tra $ X $ e $ Y $ che preserva la struttura di gruppo, cioè:
   \[
     \forall u,v \in X \quad f(u \cdot v) = f(u) \star f(v)
@@ -199,7 +195,7 @@ Voglio studiare gli omomorfismi tra $ \Z $-moduli.
 
 \begin{definition}
   Sia $ \phi: \M \to \N $ un omomorfismo tra gli $ \R $-moduli $ \M $ e $ \N $,
-  allora si definisce il \textbf{nucleo} e l'\textbf{immagine}:
+  allora si definisce il \textbf{nucleo} \index{Nucleo} e l'\textbf{immagine} \index{Immagine}:
   \[
     \ker (\phi) := \set{ m \in \M | \phi(m) = 0}  \qquad  \im (\phi) := \set{ m \in \M | \phi(m) = 0}
   \]
@@ -224,7 +220,7 @@ Se vale $ \phi_2 \circ \phi_1 = 0 $ allora $ \im (\phi_1) \subseteq \ker (\phi_2
 
 \begin{definition}
   Siano $ \M $ un $ \R $-modulo e $ \N $ un suo sottomodulo, allora il \textbf{modulo
-  quozionete} di $ \M $ con $ \N $ e definito da:
+  quozionete} \index{Modulo quoziente} di $ \M $ con $ \N $ e definito da:
   \[
     \quot{\M}{\N} := \quot{\M}{\sim} \quad \text{dove} \sim \text{ è definita da: } x \sim y \Leftrightarrow x - y \in \N
   \]
@@ -244,14 +240,14 @@ A questo punto ci sono due possibilità:
   tale che $ v \not \in \im (\phi_1) $ e quindi $ \im (\phi_1) \subsetneq \ker (\phi_2) $.
 \end{enumerate}
 Nel primo caso si dice che la successione dei moduli $ \M $ e delle
-applicazioni $ \phi $ è \textbf{esatta} in $ \M_2$, nel secondo caso la
-successione è detta \textbf{complesso di moduli}.
+applicazioni $ \phi $ è \textbf{esatta} \index{Complesso di moduli esatto} in $ \M_2$, nel secondo caso la
+successione è detta \textbf{complesso di moduli} \index{Complesso di moduli}.
 
 Sostanzialmente il modulo quoziente quantifica la non esattazza nel punto $ \M_2 $
 della successione.
 
 \begin{definition}
-  $ H(\M_\bullet) = {\ker (\phi_2)} \slash {\im (\phi_1)} $ è detto \textbf{modulo di omologia}
+  $ H(\M_\bullet) = {\ker (\phi_2)} \slash {\im (\phi_1)} $ è detto \textbf{modulo di omologia} \index{Modulo di omologia}
   del complesso $ M_\bullet = M_1 \longrightarrow M_2 \longrightarrow M_3 $ con le applicazioni $ \phi_1 $ e $ \phi_2 $.
 \end{definition}
 Per questo  $ H(\M_\bullet) $ quantifica quanto il complesso $ \M_\cdot $ non è esatto.
@@ -259,7 +255,7 @@ Per questo  $ H(\M_\bullet) $ quantifica quanto il complesso $ \M_\cdot $ non è
 Questo deriva da un problema topologico concreto.
 
 \begin{definition}
-  La coppia $ (X, \mathcal{T}) $ è detta spazio topologico (generalmente si omette la $ \mathcal{T} $)
+  La coppia $ (X, \mathcal{T}) $ è detta \textbf{spazio topologico} \index{Spazio topologico} (generalmente si omette la $ \mathcal{T} $)
   se $ \mathcal{T} $ è una topologia, cioè se è una collezione di insiemi di $ X $ tali che:
   \begin{enumerate}
   \item $ \emptyset, X \in \mathcal{T} $
@@ -478,6 +474,8 @@ Si definisce l'insieme;
 \[
   \pi_1(X,x_0) = \quot{\set{f:I \to X | f \text{ continua}, f(0) = f(1) = x_0}}{\sim_H}
 \]
+
+\printindex
 
 \end{document}
 
