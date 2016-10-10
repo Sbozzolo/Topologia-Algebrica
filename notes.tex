@@ -11,6 +11,7 @@
 \usepackage[italian]{babel}
 \usepackage{tikz-cd}
 \usepackage{makeidx}
+\usepackage{tikz}
 
 \renewcommand\epigraphflush{flushright}
 \renewcommand\epigraphsize{\normalsize}
@@ -97,7 +98,7 @@
    \markboth{Lezione #1: #2}{Lezione #1: #2}
 }
 
-\newtheorem{theorem}{Teorema}[lecnum]
+\newtheorem{theorem}{Teorema}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Propositione}
 \newtheorem{osservation}[theorem]{Osservazione}
@@ -116,8 +117,14 @@
 \renewcommand{\phi}{\varphi}
 \newcommand{\RN}[1][]{\mathbb{R}^#1}
 \newcommand{\Sph}[1][]{\mathcal{S}^#1}
+\newcommand{\homoto}{\xrightarrow{\,\smash{\raisebox{-0.65ex}{\ensuremath{\scriptstyle\sim}}}\,}}
+\newcommand{\Ab}[1]{\mathrm{Ab}( #1 )}
+
+\newcommand{\vedi}[1]{\emph{vedi} #1}
 
 \newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+\renewcommand\labelitemi{\tiny$\bullet$}
 
 \makeindex
 
@@ -144,6 +151,8 @@
 \end{minipage}
 \titlepagedecoration
 \end{titlepage}
+
+\tableofcontents
 
 \lecture{1}{29 Settembre}{General introduction. Homology of a complex. Singular homology.}
 
@@ -272,7 +281,7 @@ rimane connesso anche togliendogli un punto.
 Tuttavia vale anche che $ \RN{2} \not \simeq \RN{N} $ per $ n \geq 3 $, infatti:
 
 \begin{proof}
-  Per assurdo $ f : \RN{2} \overset{\to}{\sim} \RN{N} $ è un omomorfismo con
+  Per assurdo $ f : \RN{2} \homoto \RN{N} $ è un omomorfismo con
   $ n \geq 3 $, tolgo un punto da $ \RN{2} $:
   \[
     \forall p \in \RN{2} \quad f:\RN{2} \setminus \set{p} \overset{\to}{\sim} \RN{N} \setminus \set{f(p)}
@@ -344,7 +353,18 @@ Ma cosa è l'omologia?
   \begin{itemize}
   \item $ \Delta_0 $ è un punto.
   \item $ \Delta_1 $ è un segmento omeomorfo a $ [0,1] $.
-    [FIGURA]
+    \begin{figure}[htbp]
+      \centering
+      \begin{tikzpicture}
+        \draw[-Latex] (0,0) -- (3,0);
+        \draw[-Latex] (0,0) -- (0,3);
+        \draw[thick] (0,2) -- (2,0);
+        \node[below] () at (2,0) {1};
+        \node[left] () at (0,2) {1};
+      \end{tikzpicture}
+      \caption{1-Simplesso standard}
+      \label{fig:lez1:1_standard_simplex}
+    \end{figure}
   \end{itemize}
 \end{osservation}
 
@@ -382,10 +402,30 @@ Se $ k = 0 $ $ S_0(X) $ sono catene di punti ($ g_0 : \Delta_0 \to X $)
 \]
 Ora devo introdurre le applicazioni tra i vari $ S_k $, queste applicazioni saranno il bordo.
 
-Definisco $ h: \Delta_1 \to X $ in modo tale che $ h(\Delta) = \alpha $ dove $ \alpha $ è un arco, ovvero una funzione
+Definisco $ h: \Delta_1 \to X $ in modo tale che $ h(\Delta) = \alpha $ dove $ \alpha $ è un \textbf{arco}, \index{Arco} ovvero una funzione
 da un intervallo $ I = [0,1] $ a $ X $ tale che $ \alpha(0) = x_0 $ e $ y_0 $.
 
-[FIGURA]
+\begin{definition}
+  Uno spazio topologico $ X $ si dice \textbf{connesso per archi} \index{Spazio connesso per archi} se $ \forall x, y \in X $ esiste
+  un arco con punto iniziale $ x $ e punto finale $ y $.
+\end{definition}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \draw[-Latex] (0,0) -- (2,0);
+    \draw[-Latex] (0,0) -- (0,2);
+    \draw[thick] (0,1) -- (1,0);
+    \draw plot [smooth cycle] coordinates {(5,2) (6,3) (7,3) (6,0) (4,0)};
+    \node () at (7,1) {$ X $};
+    \draw plot [smooth, tension = 1] coordinates {(6,2) (5,1) (5.5,0.5)};
+    \node[circle] () at (6,2) {\textbullet};
+    \node[circle] () at (5.5,0.5) {\textbullet};
+    \draw[->] (0.75,0.5) -- (4.75,1);
+  \end{tikzpicture}
+  \caption{1-Simplesso singolare}
+  \label{fig:lez1:1_standard_simplex_with_arc}
+\end{figure}
 
 Posso ottenere una $ 0 $-catena prendendo i punti estremi dell'arco.
 
@@ -466,7 +506,7 @@ Devo verificare che $ \partial_k \circ \partial_{k+1} = $. Spesso come notazione
   \item $ F(s,0) = x_0 \; \forall s \in I $
   \item $ F(s,1) = x_0 \; \forall s \in I $
   \end{itemize}
-  La relazione $ \sim_H $ è detta relazione di omotopia e si dimostra essere una relazione di equivalenza.
+  La relazione $ \sim_H $ è detta \textbf{relazione di omotopia} \index{Relazione di omotopia} e si dimostra essere una relazione di equivalenza.
 \end{definition}
 [FIGURA]
 
@@ -475,6 +515,141 @@ Si definisce l'insieme;
   \pi_1(X,x_0) = \quot{\set{f:I \to X | f \text{ continua}, f(0) = f(1) = x_0}}{\sim_H}
 \]
 
+Questo insieme può essere equipaggiato con un'operazione di somma facendolo diventare un gruppo,
+questo è il \textbf{gruppo fondamentale} \index{Gruppo fondamentale}, tale operazione è:
+Siano $ [f], [g] \in \pi_i(X,x_0) $ si definisce $ [f][g] = [f \star g] $, dove l'operazione $ \star $ è
+il \textbf{cammino composto}, o \textbf{giunzione}, \index{Cammino composto}
+\index{Giunzione!\vedi{Cammino composto}} definita da:
+\[
+  (f \star g)(t) =
+  \begin{cases}
+    f(2t) & \text{se } 0 \leq t \leq \frac{1}{2} \\
+    g(2t -1) & \text{se } \frac{1}{2} \leq t \leq 1
+  \end{cases}
+\]
+L'elemento neutro di questa operazione è il cammino costante $ 1 = [C_{x_0}] $ con
+$ C_{x_0}(t) = x_0 \; \forall t $.
+L'inverso di un elemento invece è $ [f]^{-1} = [\bar{f}] $ dove $ \bar{f} $ è il
+cammino percorso in verso opposto, cioè definito da $ \bar{f}(t) = f(1-t) $, in
+questo modo $ \bar{f}(0) = f(1) $ e $ \bar{f}(1) = f(0) $.
+
+Proprietà:
+\begin{itemize}
+\item $ \pi_1(X,x_0) $ è invariante omotopico, cioè se $ X \sim_H Y $, cioè se
+  \[
+    \exists f: X \to Y, g: Y \to X \; | f \circ g \sim_H 1_Y \text{ e }  g \circ f \sim_H 1_X
+  \]
+  allora $ \pi_1(X,x_o) \cong \pi_1(Y,f(x_0)) $. Questo in particolare porta alla seguente
+  utile osservazione:
+  \begin{osservation}
+    Se due spazi topologici puntati hanno gruppi fondamentali non isomorfi allora
+    non possono essere omotopicamente equivalenti.
+  \end{osservation}
+\item Se $ X $ è \textbf{contraibile} \index{Spazio contraibile} (cioè è
+  omotopo ad un punto) allora vale che $ \pi_1(X,x_0) \cong 1 $, cioè il gruppo
+  fondamentale è banale.
+\item Si dimostra che:
+  \begin{proposition}
+    Se uno spazio tologico $ X $ è connesso per archi allora tutti i gruppi fondamentali
+    degli spazi puntati $ (X,x_0) $ sono isomorfi, cioè si può omettere la dipendenza da $ x_0 $.
+  \end{proposition}
+  Questo intuitivamente è vero perchè se gli spazi sono connessi per archi allora esistono cammini
+  che collegano qualunque coppia di punti.
+\end{itemize}
+
+\begin{definition}
+  Uno spazio topologico connesso per archi si dice \textbf{semplicemente connesso} \index{Semplicemente connesso}
+  se il suo gruppo fondamentale è banale.
+\end{definition}
+
+\begin{osservation}
+  Non tutti gli spazi semplicemente connessi sono contraibili, come ad esempio $ \Sph{2} $.
+\end{osservation}
+
+\begin{itemize}
+\item $ \pi_1(\Sph{1}) \cong \Z $, infatti si può costruire la mappa:
+  \begin{align*}
+    \sigma: &\; I \to \Sph{1} \\
+       &\;  t \mapsto \mathrm{e}^{2 \pi i t}
+  \end{align*}
+  Questa è tale che $ \sigma(0) = \sigma(1) = 1 $ quindi $ [\sigma] \in \pi_1(\Sph{1}) $ e $ \pi_1(\Sph{1}) \to \Z $ con $ [\sigma] \mapsto 1 $.
+  Ogni elemento è multiplo di $ \sigma $ e il fattore di proporzionalità conta il numero di avvolgimenti
+  del cammino.
+\item $ \pi_1(X \times Y) \cong \pi_1(X) \times \pi_1(Y) $
+\item Il gruppo fondamentale si calcola o partendo da gruppi omotopi oppure utilizzando il \textbf{teorema di Seifert–van Kampen}, \index{Teorema di Seifert–van Kampen}
+  il quale fornisce un metodo algoritmico per il calcolo.
+\end{itemize}
+
+Ad esempio:
+$ V_0 := \Sph{2} \quad V_g := P_{\frac{4g}{N}} \text{ con } g \in \mathbb{N}, g \geq 1 $ e $ P_{\frac{k}{N}} $ poligono con $ k $ lati e con idenfiticazioni.
+Nel caso $ g = 1 $ si ottiene un toro piatto.
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \draw (0,0) rectangle (3,3);
+    \draw[-Latex] (0,0) -- (0,1.5);
+    \draw[-Latex] (0,3) -- (1.5,3);
+    \draw[-Latex] (3,3) -- (3,1.5);
+    \draw[-Latex] (3,0) -- (1.5,0);
+    \node[left] () at (0,1.5) {$ a $};
+    \node[above] () at (1.5,3) {$ b $};
+    \node[right] () at (3,1.5) {$ a $};
+    \node[below] () at (1.5,0) {$ b $};
+  \end{tikzpicture}
+  \caption{Toro piatto, o anche toro di Clifford}
+  \label{fig:lez3:clifford_torus}
+\end{figure}
+Si usano simboli combinatori per descrivere l'identificazione: si definisce un verso di percorrenza, si assegnano delle lettere a ciascun
+lato e si scrivono in ordine tali lettere, aggiungendo un esponente $ -1 $ quando il verso di percorrenza è opposto. In questo caso quindi
+si ha $ aba^{-1}b^{-1} $.
+
+In genrale si ha $ a_1 b_1 a_1^{-1} b_1^{-1} \dots a_g b_g a_g^{-1} b_g^{-1} $.
+
+Si dimostra che queste sono varietà differenziabili, in particolare per $ g = 1 $ si ha un toro, per $ g = 2 $ un bitoro, \dots. $ g $ è
+detto \textbf{genere} \index{Genere}.
+
+Si trova con il teorema di Seifert-Van Kampen che:
+\[
+  \pi_1(V_g) \cong
+  \begin{cases}
+    1 & \text{se } g = 0 \\
+    \Z \oplus \Z & \text{se } g = 1 \\
+    < a_1 b_1 \dots \Pi_{i=1}^g [a_i,b_i] = 1 > & \text{se } g > 1
+  \end{cases}
+\]
+Dove $ [,] $ è il commutatore, cioè esattamente $ a_1 b_1 a_1^{-1} b_1^{-1} \dots a_g b_g a_g^{-1} b_g^{-1} $.
+Solo per $ g = 0 $ o $ g = 1 $ si ottengono dei gruppi abeliani, ma io vorrei averlo sempre abeliano, quindi lo abelianizzo.
+\[
+  \Ab{\pi_1(X)} = \quot{\pi_1(X)}{[\pi_1(X), \pi_1(X)]} = \quot{\pi_1(X)}{\pi_1'(X)}
+\]
+Chiaramente questo gruppo è abeliano e si calcola facilmente che $ \Ab{\pi_1(V_g)} \cong \Z^{2g} $ per $ g \geq 2 $.
+Si vedono facilmente anche i generatori, ad esempio per un toro sono riportati in figura
+
+\begin{figure}[htbp]
+  \centering
+  \input{images/torus_generators.pdf_tex}
+  \caption{Generatori di un toro}
+  \label{fig:lez3:torus_generators}
+\end{figure}
+
+L'abelianizzato è uno $ \Z $-modulo.
+
+\begin{osservation}
+  Sia $ X $ uno spazio topologico connesso per archi, $ \mathcal{G} $ un gruppo abeliano. Suppongo esista un omomorfismo
+  di gruppi $ \phi: \pi_1(X) \to \mathcal{G} $ allora esiste $ \phi' : \Ab{\pi_1(X)} \to \mathcal{G} $ omomorfismo di gruppi abeliani.
+  \[
+    \begin{tikzcd}
+      \pi_1(X) \arrow{r}{\phi} \arrow{d}{P} & \mathcal{G} \\
+      \Ab{\pi_1(X)} \arrow{ur}{\phi'}
+    \end{tikzcd}
+  \]
+  $ P $ è la proiezione sul quoziente. $ \phi' $ esiste perchè in $ \Ab{\pi_1(X)} $ c'è tutto quello che sta nel nucleo.
+  $ \phi'(a) = \phi'(P(c)) := \phi(c) $.
+  Allora $ \phi'(a) = \phi'(P(d)) = \phi(d) $, devo mostrare che $ \phi(c) = \phi(d) $. Siccome $ \mathcal{G} $ è abeliano.
+\end{osservation}
+
+
+\addcontentsline{toc}{chapter}{Indice analitico}
 \printindex
 
 \end{document}

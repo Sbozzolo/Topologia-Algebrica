@@ -5,6 +5,7 @@
                      '(("inputenc" "utf8") ("babel" "italian")))
    (TeX-run-style-hooks
     "latex2e"
+    "images/torus_generators"
     "article"
     "art10"
     "amsmath"
@@ -24,6 +25,8 @@
     '("Sph" ["argument"] 0)
     '("RN" ["argument"] 0)
     '("quot" 2)
+    '("vedi" 1)
+    '("Ab" 1)
     '("lecture" 3)
     "titlepagedecoration"
     "R"
@@ -31,7 +34,13 @@
     "N"
     "Z"
     "im"
+    "homoto"
     "printauthor")
+   (LaTeX-add-labels
+    "fig:lez1:1_standard_simplex"
+    "fig:lez1:1_standard_simplex_with_arc"
+    "fig:lez3:clifford_torus"
+    "fig:lez3:torus_generators")
    (LaTeX-add-environments
     "theorem"
     "lemma"
@@ -51,7 +60,17 @@
     "Complesso di moduli esatto"
     "Complesso di moduli"
     "Modulo di omologia"
-    "Spazio topologico")
+    "Spazio topologico"
+    "Arco"
+    "Spazio connesso per archi"
+    "Relazione di omotopia"
+    "Gruppo fondamentale"
+    "Cammino composto"
+    "Giunzione!\\vedi{Cammino composto}"
+    "Spazio contraibile"
+    "Semplicemente connesso"
+    "Teorema di Seifert–van Kampen"
+    "Genere")
    (LaTeX-add-counters
     "lecnum"
     "exercises"))
