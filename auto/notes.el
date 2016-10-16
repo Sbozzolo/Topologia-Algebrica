@@ -9,8 +9,8 @@
     "article"
     "art10"
     "amsmath"
-    "amsfonts"
     "amssymb"
+    "amsfonts"
     "graphicx"
     "lmodern"
     "tikz"
@@ -27,18 +27,19 @@
     '("quot" 2)
     '("vedi" 1)
     '("Ab" 1)
+    '("im" 1)
     '("lecture" 3)
     "titlepagedecoration"
     "R"
     "M"
     "N"
     "Z"
-    "im"
     "homoto"
     "printauthor")
    (LaTeX-add-labels
     "fig:lez1:1_standard_simplex"
     "fig:lez1:1_standard_simplex_with_arc"
+    "fig:lez1:standard_simplex_faces"
     "fig:lez3:clifford_torus"
     "fig:lez3:torus_generators")
    (LaTeX-add-environments
@@ -52,6 +53,9 @@
     "proof")
    (LaTeX-add-index-entries
     "Anello"
+    "Anello unitario"
+    "Anello commutativo"
+    "Campo"
     "$ \\R $-modulo"
     "Omomorfismo"
     "Nucleo"
@@ -61,8 +65,13 @@
     "Complesso di moduli"
     "Modulo di omologia"
     "Spazio topologico"
+    "Omeomorfismo"
     "Arco"
     "Spazio connesso per archi"
+    "$ k $-ciclo"
+    "Elementi omologhi"
+    "Grado"
+    "Gruppo derivato"
     "Relazione di omotopia"
     "Gruppo fondamentale"
     "Cammino composto"

@@ -1,6 +1,8 @@
 \documentclass{article}
 
-\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
 \usepackage{graphicx}
 \usepackage{lmodern}
 \usepackage{tikz}
@@ -100,20 +102,20 @@
 
 \newtheorem{theorem}{Teorema}[section]
 \newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{Propositione}
+\newtheorem{proposition}[theorem]{Proposizione}
 \newtheorem{osservation}[theorem]{Osservazione}
 \newtheorem{corollary}[theorem]{Corollario}
 \newtheorem{definition}[theorem]{Definitione}
 \newcounter{exercises}
 \newtheorem{exercise}[exercises]{Esercizio}
-\newenvironment{proof}{{\bf Dimostrazione:}}{\hfill\rule{2mm}{2mm}}
+\newenvironment{proof}{{\bf Dimostrazione:}}{\hfill\rule{2mm}{2mm} \newline}
 
 \newcommand{\R}{\mathcal{R}}
 \newcommand{\M}{\mathcal{M}}
 \newcommand{\N}{\mathcal{N}}
 \newcommand{\Z}{\mathbb{Z}}
-\newcommand{\im}{\mathrm{Im}}
-\renewcommand{\ker}{\mathrm{Ker}}
+\newcommand{\im}[1]{\mathrm{Im}( #1 )}
+\renewcommand{\ker}[1]{\mathrm{Ker}( #1)}
 \renewcommand{\phi}{\varphi}
 \newcommand{\RN}[1][]{\mathbb{R}^#1}
 \newcommand{\Sph}[1][]{\mathcal{S}^#1}
@@ -158,18 +160,31 @@
 
 \section{Introduzione}
 
-\subsection{Richiami di geometria}
+\subsection{Richiami di algebra}
 
 \begin{definition}
   Un \textbf{anello} \index{Anello} è un insieme $ \R $ dotato di due operazioni $ + $ e $ \cdot $ tali che
   $ \R $ sia un gruppo abeliano con l'addizione, sia un monoide con la moltiplicazione
-  (ovvero la moltiplicazione è associativa e possiede un elemento neutro) e goda della
-  proprietà distributiva rispetto all'addizione.
+  (ovvero la moltiplicazione è associativa e possiede un elemento neutro\footnote{La richiesta
+    di esistenza dell'elemento neutro, cioè dell'unità non è comune a tutti gli autori,
+    chi non la richiede chiama anello unitario \index{Anello unitario} la presente
+    definizione di anello.}) e goda della proprietà distributiva rispetto all'addizione.
 \end{definition}
 
 \begin{definition}
-  Sia $ \R $ un anello commutativo\footnotemark[1] si definisce l' \textbf{$ \R $-modulo} \index{$ \R $-modulo}
-  il gruppo abeliano $ \M $ equipaggiato con un'operazione di somma tale che $ \forall v,w \in \M $ e $ \forall a,b \in \R $ vale che:
+  Un anello si dice \textbf{anello commutativo} \index{Anello commutativo} se l'operazione di moltiplicazione
+  è commutativa.
+\end{definition}
+
+\begin{definition}
+  Un \textbf{campo} \index{Campo} è un anello commutativo in cui ogni elemento non nullo ammette
+  un inverso moltiplicativo.
+\end{definition}
+
+\begin{definition}
+  Sia $ \R $ un anello commutativo si definisce l' \textbf{$ \R $-modulo} \index{$ \R $-modulo}
+  un gruppo abeliano $ \M $ equipaggiato con un'operazione di moltiplicazione per uno scalare in $ \R $
+  tale che $ \forall v,w \in \M $ e $ \forall a,b \in \R $ vale che:
   \begin{itemize}
   \item $ a(v + w) = av + aw $
   \item $ (a + b)v = av + bv $
@@ -177,15 +192,32 @@
   \end{itemize}
 \end{definition}
 
-\footnotetext[1]{Si può rilassare questa ipotesi e costruire moduli destri e sinistri.}
-
 \begin{osservation}
   Se $ \R $ è un campo allora l'$ \R $-modulo è uno spazio vettoriale.
 \end{osservation}
+Sostanzialmente la nozione di $ \R $-modulo generalizza agli anelli il concetto di spazio vettoriale sui campi.
 
 \begin{osservation}
-  Ogni gruppo abeliano è uno $ \Z $-modulo in modo univoco.
+  Ogni gruppo abeliano $ \mathcal{G} $ è uno $ \Z $-modulo in modo univoco, cioè $ \mathcal{G} $ è un
+  gruppo abeliano se e solo e è uno $ \Z $-modulo.
 \end{osservation}
+\begin{proof}
+  Sia $ x \in \mathcal{G} $ si definisce l'applicazione di moltiplicazione per un elemento $ n \in \Z $ come
+  \[
+    nx =
+    \begin{cases}
+      \underbrace{ x + x + x + \dots}_{n \text{ volte}} & \text{se } n > 0 \\
+      0 & \text{se } n = 0 \\
+       \underbrace{ x + x + x + \dots}_{|n| \text{ volte}} & \text{se } n < 0 \\
+    \end{cases}
+  \]
+  Si verfica banalmente che questa operazione è ben definita e soddisfta
+  le giuste proprietà perchè la coppia $ (\mathcal{G}, \Z) $ sia uno $ \Z $-modulo.
+  A questo punto non è possibile costruire applicazioni diverse che soddisfino le
+  proprietà richieste infatti utilizzando la struttura di anello di $ \Z $:
+  $ n x = (1 + 1 + 1 + 1 + \dots) x = x + x + x \dots $, quindi quella definita
+  è l'unica possibile.
+\end{proof}
 
 \begin{definition}
   Siano $ (X, \cdot) $ e $ (Y, \star) $ due gruppi, un \textbf{omomorfismo} \index{Omomorfismo} è un'applicazione $ f $
@@ -206,78 +238,144 @@ Voglio studiare gli omomorfismi tra $ \Z $-moduli.
   Sia $ \phi: \M \to \N $ un omomorfismo tra gli $ \R $-moduli $ \M $ e $ \N $,
   allora si definisce il \textbf{nucleo} \index{Nucleo} e l'\textbf{immagine} \index{Immagine}:
   \[
-    \ker (\phi) := \set{ m \in \M | \phi(m) = 0}  \qquad  \im (\phi) := \set{ m \in \M | \phi(m) = 0}
+    \ker {\phi} := \set{ m \in \M | \phi(m) = 0}  \qquad  \im{\phi} := \set{ m \in \M | \phi(m) = 0}
   \]
 \end{definition}
 
 \begin{osservation}
-  $ \ker (\phi) $ e $ \im (\phi) $ sono $ \R $-sottomoduli.
+  $ \ker{\phi} $ e $ \im{\phi} $ sono $ \R $-sottomoduli, cioè sono sottoinsiemi di $ \M $ e $ \N $
+  che posseggono la struttura di $ \R $-modulo.
 \end{osservation}
 
-Posso fare composizioni di omomorfismi, come:
+Se $ M_i $ sono $ \R $-moduli posso fare composizioni di omomorfismi, come:
 \[
   \begin{tikzcd}
     \M_1 \arrow{r}{\phi_1} & \M_2 \arrow{r}{\phi_2} & \M_3
   \end{tikzcd}
+  \text{o equivalentemente}
+  \begin{tikzcd}
+    \M_1 \arrow{r}{\phi_2 \circ \phi_1} & \M_3
+  \end{tikzcd}
 \]
-Se vale $ \phi_2 \circ \phi_1 = 0 $ allora $ \im (\phi_1) \subseteq \ker (\phi_2) $.
-
+\begin{proposition}
+Se vale $ \phi_2 \circ \phi_1 = 0 $ allora $ \im{\phi_1} \subseteq \ker{\phi_2} $.
+\end{proposition}
 \begin{proof}
   Se $ u \in \im {\phi_2} $ allora $ \exists v \in \M_2 $ tale che $ \phi_1(v) = u $,
-  ma $ \phi_2(u) = \phi_2(\phi_1(v)) = (\phi_2 \circ \phi_1)(v) = 0 $ quindi $ u \in \ker(\phi_2) $.
+  ma $ \phi_2(u) = \phi_2(\phi_1(v)) = (\phi_2 \circ \phi_1)(v) = 0 $ per ipotesi, quindi $ u \in \ker{\phi_2} $.
 \end{proof}
+
+Mi interessano questi morfismi perché hanno un preciso significato geometrico che
+sarà chiaro successivamente.
 
 \begin{definition}
   Siano $ \M $ un $ \R $-modulo e $ \N $ un suo sottomodulo, allora il \textbf{modulo
-  quozionete} \index{Modulo quoziente} di $ \M $ con $ \N $ e definito da:
+  quoziente} \index{Modulo quoziente} di $ \M $ con $ \N $ e definito da:
   \[
-    \quot{\M}{\N} := \quot{\M}{\sim} \quad \text{dove} \sim \text{ è definita da: } x \sim y \Leftrightarrow x - y \in \N
+    \quot{\M}{\N} := \quot{\M}{\sim} \quad \text{dove } \sim \text{ è definita da: } x \sim y \Leftrightarrow x - y \in \N
   \]
+  Dove $ \quot{\M}{\sim} $ è l'insieme delle classi di equivalenza di $ \sim $ equipaggiate
+  con operazioni indotte dall'$ \R $-modulo, cioè se $ [u], [w] \in \quot{\M}{\sim} $ e $ a \in \R $:
+  \begin{itemize}
+  \item $ [u] + [w] = [u + w] $
+  \item $ a [u] = [au] $
+  \end{itemize}
+  In questo caso gli elementi di $ \quot{\M}{\N} $ sono le classi di equivalenza
+  $ [m] = \set{ m + n | n \in \N } $.
 \end{definition}
 
-Siccome $ \im (\phi) $ è sottomodulo di $ \ker (\phi) $ allora posso prendere
+Siccome $ \im{\phi} $ è sottomodulo di $ \ker{\phi} $ allora posso prendere
 il quoziente:
 \[
-  \quot{\ker (\phi_2)}{\im (\phi_1)}
+  \quot{\ker{\phi_2}}{\im{\phi_1}}
 \]
-Questo è un sottomodulo.
+Questo è un sottomodulo. Si nota che questo è sensato solo se si impone la condizione
+$ \phi_2 \circ \phi_1 = 0 $, altrimenti non c'è l'inclusione e quindi non è possibile fare l'operazione
+di quoziente.
 
 A questo punto ci sono due possibilità:
 \begin{enumerate}
-\item $ {\ker (\phi_2)} \slash {\im (\phi_1)} = 0 $, che significa che $ \ker (\phi_2) = \im (\phi_1) $ in quanto non ci sono elementi di $ \ker (\phi_2) $ fuori da $ \im (\phi_1) $.
-\item $ {\ker (\phi_2)} \slash {\im (\phi_1)} \not= 0 $, cioè $ \exists v \in \ker (\phi_2) $
-  tale che $ v \not \in \im (\phi_1) $ e quindi $ \im (\phi_1) \subsetneq \ker (\phi_2) $.
+\item $ {\ker {\phi_2}} \slash {\im{\phi_1}} = 0 $, che significa che $ \ker {\phi_2} = \im{\phi_1} $
+  in quanto non ci sono elementi di $ \ker {\phi_2} $ fuori da $ \im{\phi_1} $, dato che l'unica
+  classe di equivalenza presente è $ [0] $ significa che $ \forall m \in \ker{\phi_1} \; \exists n \in \im{\phi_2} $
+  tale che $ m - n = 0 $, cioè $ m $ e $ n $ coincidono e quindi $ \ker {\phi_2} = \im{\phi_1} $.
+\item $ {\ker {\phi_2}} \slash {\im{\phi_1}} \not= 0 $, cioè $ \exists v \in \ker {\phi_2} $
+  tale che $ v \not \in \im {\phi_1} $ e quindi $ \im {\phi_1} \subsetneq \ker (\phi_2) $.
 \end{enumerate}
 Nel primo caso si dice che la successione dei moduli $ \M $ e delle
-applicazioni $ \phi $ è \textbf{esatta} \index{Complesso di moduli esatto} in $ \M_2$, nel secondo caso la
-successione è detta \textbf{complesso di moduli} \index{Complesso di moduli}.
+applicazioni $ \phi $ è \textbf{esatta}\index{Complesso di moduli esatto} in $ \M_2$, nel secondo caso la
+successione è detta \textbf{complesso di moduli}\index{Complesso di moduli}.
 
 Sostanzialmente il modulo quoziente quantifica la non esattazza nel punto $ \M_2 $
 della successione.
 
 \begin{definition}
-  $ H(\M_\bullet) = {\ker (\phi_2)} \slash {\im (\phi_1)} $ è detto \textbf{modulo di omologia} \index{Modulo di omologia}
+  $ H(\M_\bullet) = {\ker {\phi_2}} \slash {\im {\phi_1}} $ è detto \textbf{modulo di omologia} \index{Modulo di omologia}
   del complesso $ M_\bullet = M_1 \longrightarrow M_2 \longrightarrow M_3 $ con le applicazioni $ \phi_1 $ e $ \phi_2 $.
 \end{definition}
-Per questo  $ H(\M_\bullet) $ quantifica quanto il complesso $ \M_\cdot $ non è esatto.
+Per questo  $ H(\M_\bullet) $ quantifica quanto il complesso $ \M_\bullet $ non è esatto.
 
 Questo deriva da un problema topologico concreto.
 
 \begin{definition}
-  La coppia $ (X, \mathcal{T}) $ è detta \textbf{spazio topologico} \index{Spazio topologico} (generalmente si omette la $ \mathcal{T} $)
+  La coppia $ (X, \mathcal{T}) $ è detta \textbf{spazio topologico}\index{Spazio topologico}
+  (generalmente si omette la $ \mathcal{T} $)
   se $ \mathcal{T} $ è una topologia, cioè se è una collezione di insiemi di $ X $ tali che:
   \begin{enumerate}
   \item $ \emptyset, X \in \mathcal{T} $
   \item $ \bigcup_{n \in \mathbb{N}} A_n \in \mathcal{T} $ se $ A_n \in \mathcal{T} \; \forall n \in \mathbb{N} $
   \item $ A \cap B \in \mathcal{T} $ se $ A,B \in \mathcal{T} $
   \end{enumerate}
+  Gli elementi di $ \mathcal{T} $ sono detti aperti.
 \end{definition}
 
-\subsection{Omomorfismo tra $ \RN{} $ e $ \RN{N} $}
-È noto che $ \RN{} \not \simeq \RN{N} $ per $ n \geq 2 $, infatti basta
-che tolgo un punto a $ \RN{} $ che diventa sconnesso mentre $ \RN{N} $
-rimane connesso anche togliendogli un punto.
+\begin{definition}
+  Una mappa tra spazi topologici è detta \textbf{omeomorfismo}\index{Omeomorfismo} se è continua
+  e ammette inverso continuo, cioè se è una mappa uno a uno. Se due spazi sono omeomorfi si utilizza
+  il simbolo $ \simeq $.
+\end{definition}
+Siccome gli omomorfismi sono mappe uno a uno due spazi omeomorfi sono essenzialmente identici. Molti
+degli strumenti sviluppati in questo corso servono a capire se due spazi sono omeomorfi o meno.
 
+\subsection{Omomorfismo tra $ \RN{} $ e $ \RN{N} $}
+
+\begin{definition}
+  Un \textbf{arco}\index{Arco} in uno spazio topologico $ X $ tra i punti $ x_0 \in X $ e $ y_0 \in X $
+  è una funzione continua da $ I = [0,1] $ a $ X $ tale che $ \alpha(0) = x_0 $ e $ \alpha(1) = y_0 $.
+  Si dice che l'arco parte da $ x_0 $ e finisce in $ y_0 $.
+\end{definition}
+
+\begin{definition}
+  Uno spazio topologico $ X $ è \textbf{connesso per archi}\index{Spazio connesso per archi} se per
+  ogni coppia di punto $ x, y \in X $ esiste un arco che parte da $ x $ e termina in $ y $.
+\end{definition}
+
+\begin{proposition}
+  Se $ f:X \to Y $ è una mappa continua suriettiva tra spazi topologici e se $ X $ è connesso per archi
+  allora $ Y $ è connesso per archi. Questo vale in particolare se $ f $ è un omeomorfismo, cioè la
+  connessione per archi è una proprietà invariante per omeomorfismi.
+\end{proposition}
+
+\begin{proof}
+  Siano $ y_0, y_1 $ due punti di $ Y $. La funzione $ f $ è suriettiva, e dunque esistono $ x_0 $ e $ x_1 $ in $ X $
+  tali che $ f(x_0)=y_0 $ e $ f(x_1)=y_1 $. Dato che $ X $ è connesso, esiste un cammino $ \alpha:[0,1] \to X $ tale che $ \alpha(0)=x_0 $
+  e $ \alpha(1)=x_1 $. Ma la composizione di funzioni continue è continua, e quindi il cammino ottenuto componendo $ \alpha $ con $ f $:
+  $ f \circ \alpha : [0,1] \to X \to Y $ è un cammino continuo che parte da $ y_0 $ e arriva a $ y_1 $.
+\end{proof}
+
+Si sa inoltre che:
+\begin{proposition}
+  $ \RN{n} $ è connesso per archi $ \forall n \in \mathbb{N} $.
+\end{proposition}
+
+È noto che $ \RN{} \not \simeq \RN{N} $ per $ n \geq 2 $, infatti basta togliere un punto a $ \RN{} $ che diventa sconnesso per archi
+mentre $ \RN{N} $ rimane connesso per archi anche togliendogli un punto. In questa dimostrazione ho utilizzato
+il seguente risultato fondamentale:
+\begin{proposition}
+  Se $ f: X \to Y $ è omeomorfismo tra spazi topologici allora $ f \rvert_U : U \to f(U) $ è omeomorfismo per ogni $ U \subseteq X $.
+\end{proposition}
+Nel caso considerato $ U = {x_0} $, siccome ho trovato un $ U $ per cui la funzione ristretta non è omeomorfismo $ f $
+non può essere omeomorfismo.
 Tuttavia vale anche che $ \RN{2} \not \simeq \RN{N} $ per $ n \geq 3 $, infatti:
 
 \begin{proof}
@@ -402,8 +500,7 @@ Se $ k = 0 $ $ S_0(X) $ sono catene di punti ($ g_0 : \Delta_0 \to X $)
 \]
 Ora devo introdurre le applicazioni tra i vari $ S_k $, queste applicazioni saranno il bordo.
 
-Definisco $ h: \Delta_1 \to X $ in modo tale che $ h(\Delta) = \alpha $ dove $ \alpha $ è un \textbf{arco}, \index{Arco} ovvero una funzione
-da un intervallo $ I = [0,1] $ a $ X $ tale che $ \alpha(0) = x_0 $ e $ y_0 $.
+Definisco $ h: \Delta_1 \to X $ in modo tale che $ h(\Delta) = \alpha $ dove $ \alpha $ è un \textbf{arco}.
 
 \begin{definition}
   Uno spazio topologico $ X $ si dice \textbf{connesso per archi} \index{Spazio connesso per archi} se $ \forall x, y \in X $ esiste
@@ -437,6 +534,31 @@ Posso ottenere una $ 0 $-catena prendendo i punti estremi dell'arco.
 Ad esempio per $ k = 2 $ $ \Delta_2 = \set{ (x_1,x_2,x_3) \in \RN{3} | x_1 + x_2 + x_3 = 1, \; 0 \leq x_i \leq 1 \; \forall i} $,
 si definisce la base $ e_0 = (1,0,0) \; e_1 = (0,1,0) \; e_2 = (0,0,1) $, voglio vedere il bordo del triangolo
 come facce.
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \draw[-Latex] (0,0) -- (4,0);
+    \draw[-Latex] (0,0) -- (0,4);
+    \draw[-Latex] (0,0) -- (-2,-2);
+    \node[below] () at (2,0) {$ e_1 $};
+    \node[right] () at (0,2) {$ e_2 $};
+    \node[right, below] () at (-1,-1) {$ e_0 $};
+    \draw (-1,-1) -- (2,0);
+    \draw (0,2) -- (2,0);
+    \draw (0,2) -- (-1,-1);
+    \draw (5,0) -- (9,0) -- (7,3) -- cycle;
+    \node[left] () at (5,0) {$ e_0 $};
+    \node[right] () at (9,0) {$ e_2 $};
+    \node[above] () at (7,3) {$ e_1 $};
+    \node[below] () at (7,0) {$ F_2^{(2)}(\Delta_1) $};
+    \node[left] () at (6,2) {$ F_1^{(2)}(\Delta_1) $};
+    \node[right] () at (8,2) {$ F_0^{(2)}(\Delta_1) $};
+  \end{tikzpicture}
+  \caption{Azione dell'operatore faccia}
+  \label{fig:lez1:standard_simplex_faces}
+\end{figure}
+
 [FIGURA, CONSIDERAZIONI]
 
 \begin{exercise}
@@ -489,6 +611,146 @@ Devo verificare che $ \partial_k \circ \partial_{k+1} = $. Spesso come notazione
 \end{proof}
 
 \lecture{2}{4 Ottobre}{Banane}
+
+Sia $ X $ uno spazio topologico, voglio definire l'omologia singolare $ H_k(X) $, cioè il $ k $-esimo gruppo di omologia
+singolare. Costruisco il complesso $ (S_\bullet(X), \partial) $ con:
+\[
+  S_k(X) = \set{ \sum_g n_g g | g \text{ continua, } n_g \in \Z }
+\]
+E $ \partial_k : S_k(X) \to S_{k-1}(X) $ applicazione di bordo con $ \partial_k(g) = \sum_{i=0}^k(-)^ig^{(1)} $ con $ g: \Delta_k \to X $, e poi lo estendo per
+linearità. Si trova che $ g^{(1)} = g \circ F_i^{\; k} $.
+
+Il lemma fondamentale è $ \partial_{k-1} \circ \partial_k = 0 $ quindi $ S_k \overset{\partial_k}{\to} S_{k-1} \overset{\partial_{k-1}}{\to} S_{k-2} $ è un complesso
+e $ \partial_k \circ \partial_{k-1} $ è la mappa dalle catene di $ S_k $ a quelle di $ S_{k-2} $.
+
+$ (S_\bullet(X), \partial) $ è un complesso di gruppi abeliani o $ \Z $- moduli liberi.
+
+Siccome vale $ \partial^2 = 0 $ posso calcolare l'omologia di $ (S_\bullet(X),\partial_\bullet) $:
+\[
+  H_k(S_\bullet(X)) = \quot{\ker{\partial_k}}{\im{\partial_{k+1}}}
+\]
+Vale che $ \ker{\partial_k} = \set{c \in S_K(X) | \partial_k(c) = 0} $, cioè le $ k $-catene con
+bordo nullo, questi sono chiamati $ k $-cicli.
+
+\begin{definition}
+  Sia $ S_\bullet(X) $ un complesso di moduli, gli elementi di $ \ker{\partial} $ sono detti
+  \textbf{$ k $-ciclo}, \index{$ k $-ciclo} i quali sono quindi le $ k $-catene
+  con bordo nullo.
+\end{definition}
+
+Come notazione si pone $ Z_k(X) $ come il gruppo abeliano dei $ k $-cicli: $ Z_k(X)
+= \ker{\partial} $.
+
+Si pone invece $ B_k(X) $ come l'insieme dei bordi, cioè le $ k $-catene singolari
+che sono immagini di $ k+1 $-catene, cioè esplicitamente:
+\[
+  B_k(X) = \set{\eta \in S_k(X) | \exists b \in S_{k+1}(X), \partial b = \eta}
+\]
+
+Per definizione si ha quindi che $ H_k(X) = \quot{Z_k(X)}{B_k(X)} $, cioè il gruppo
+di omotopia è formato dai cicli modulo i bordi.
+
+Esplicitamente gli elementi di $ H_k(X) $ sono classi di equivalenza con rappresentante:
+Sia $ [c] \in H_k(X) $ quindi vale che $ \partial c = 0 $, sia inoltre $ c_1 \in [c] $ allora
+$ c_1 - c \in B_k(X) $ e $ \partial c_1 = 0 $ quindi esiste $ b $ tale che $ c_1 - c = \partial b $.
+
+\begin{definition}
+  Due elementi $ a,b $ si dicono \textbf{omologhi} \index{Elementi omologhi} se differiscono per un bordo.
+  \[
+    a \sim_{hom} b \Leftrightarrow \exists c \; | \; \partial_k c
+  \]
+\end{definition}
+
+\begin{osservation}
+  Vale che $  H_k(X) = 1 \Leftrightarrow B_k(X) = Z_k(X) $, cioè se ogni ciclo è un bordo. In generale si ha che $ B_k(X) \subseteq Z_k(X) $
+  e possono esserci cicli che non sono immagini di bordi.
+\end{osservation}
+
+Scopo del corso è studiare $ H_k(X) $.
+
+\begin{proposition}
+  Sia $ X $ uno spazio topologico connesso per archi, allora $ H_0 \cong \Z $, cioè è uno $ \Z $-modulo libero di rango 1.
+  In effetti $ H_0(X) $ \emph{conta} le componenti connesse per archi e quindi da informazioni di natura geometrica.
+\end{proposition}
+
+\begin{proof}
+  Dalla definizione di gruppo di omologia: $ H_0(X) = \quot{Z_0(X)}{B_0(X)} $.
+  Ma $ Z_0(X) = \set{ c \in S_o(X) | \partial_0 c = 0} $ e $ S_0(X) = \set{ \sum n_i p_i | n_i \in \mathbb{N}, p_i \in X} $.
+  Tecnicamente uno $ 0 $-simplesso è una mappa $ \sigma_0 : \Delta_0 \to X $ tale che manda $ \Delta_0 = 1 $ in $ \sigma_0(1) = p_0 $ e per
+  questo è naturale l'identificazione con i punti dello spazio topologico.
+  Sia $ c \in S_0(X) $ allora $ c = \sum n_i p_i $, e vale che $ \partial_0(c) = \sum n_1 \partial_0 (p) = 0 $, infatti per definizione
+  $ \partial_0 : S_0(X) \to s_{-1}(X) $, ma $ S_{-1}(X) $ in ogni complesso è banale, cioè $ S_{-1}(X) \cong 0 $.
+  Quindi per ora ho che:
+  \[
+    H_0(X) = \quot(S_0(X))(B_0(X))
+  \]
+  Per definizione $ B_0(X) = \set{ x \in S_0(X) | \exists \alpha \in S_1(X), \partial_1(\alpha) = x} $, $ \alpha $ è una catena. Sia $ p_0 \in X $, allora
+  $ q \sim_{hom} p $ se e solo se $ \exists \alpha \in S_1(X) $ tale che $ q - p_0 = \partial_1 \alpha $. Per questo motivo i punti sono tutti omologhi,
+  essendo $ X $ connesso per archi esiste un arco che connette $ q $ e $ p_0 $, infatti per definizione gli archi sono applicaizoni
+  dall'intervallo a $ X $ che hanno come bordo $ q - p_0 $. Esiste quindi un'unica classe di equivalenza.
+
+  \begin{definition}
+    Si definisce inoltre la mappa \textbf{grado} \index{Grado} come l'applicazione che manda una catena in $ S_0(X) $ nella somma
+    dei suoi coefficienti:
+    \begin{align*}
+      \mathrm{deg}: & S_0(X)    & \to & \Z \\
+                    & \sum n_i p_i & \mapsto & \sum n_1
+    \end{align*}
+  \end{definition}
+
+  \begin{proposition}
+    La mappa grado gode di alcune proprietà:
+    \begin{enumerate}
+    \item deg è un omomorfismo di gruppi abeliani
+    \item deg è suriettivo
+    \item $ \ker{\mathrm{deg}} \cong B_0(X) $
+    \end{enumerate}
+    Se dimostro questa proprietà utilizando il primo teorema degli omomorfismi \dots
+
+    Dimostro quindi questa proposizione.
+    \begin{proof}
+      Sia $ c_1 = \sum n_i p_i $ e $ c_2 = \sum m_i q_i $, devo mostrare che $ \mathrm{deg}(c_1 + c_2) = \mathrm{deg}(c_1) + \mathrm{deg}(c_2) $,
+      cioè che $ c_1 + c_2 = \sum n_i p_i + \sum m_i q_i = \sum (n_i + m_i)r_i $ dove $ r_i $ è quello comune tra le catene, oppure è zero se
+      l'elemento è presente in solo uno delle due catene.
+
+      La mappa è suriettiva, basta prendere un punto: $ m \in \Z $ e $ \mathrm{deg}^{-1}(m) = mp $
+
+      Mostro che $ \ker{\mathrm{deg}} = B_0(X) $. Prendo $ c $ tale che $ \mathrm{deg}(c) = 0 $, ma
+      $ c = \sum n_i p_i $ quindi $ \sum n_i = 0 $, allora $ c \in B_0(X) $?
+      Se $ E b \in S_1(X) $ con $ \partial_1 b = c $. Prendo $ p_0 $ e altri punti $ p_1, p_2, p_3, \dots $, ci sono archi
+      $ \lambda_1, \lambda_2, \lambda_3, \dots $ che li uniscono a $ p_0 $.Provo a costruire $ b $ in questo modo. Siano
+      $ \lambda_i : [0,1] \to X $ con $ \lambda_i(0) = p_i $ e $ \lambda_i(1) = p_i $ considero $ c - \partial\left(\sum n_1 \lambda_i \right) =
+      c - \sum n_i \partial \lambda_i = c - \sum n_i (p_i - p_0) = c - \sum n_i p_i = \sum n_i p_0 = 0 $. Siccome per ipotesi $ p_o \in \ker{\mathrm{deg}} $
+      e $ c = \sum n_i p_i $ allora $ c = \partial(\sum n_i \lambda_i) $ quindi $ \sum n_i \lambda_i = b $ da cui $ \ker{\mathrm{deg}} \subseteq B_0(X) $.
+      Mi rimane da mostrare che $ B_0(X) \subseteq \ker{\mathrm{deg}} $, infatti ora mostro che se $ c \in B_0(X) $ allora
+      $ \mathrm{deg}(c) = 0 $.$ c = \partial b $ ma se $ \lambda_i $ sono gli archi $ b = \sum m_i \lambda_i $ quindi  $ \partial b = \sum n_i \partial \lambda_i $
+      ma $ \partial \lambda_i = \lambda_i(1) - \lambda_i(0) $ e l'azione dell'opertaore grado è quella di sommare i coefficienti, quindi
+      \[
+        \mathrm{deg}(c) = \mathrm{deg}(\partial b) = \sum n_i \mathrm{deg}(\partial \lambda_i) = 0
+      \]
+    \end{proof}
+  \end{proposition}
+  Per questo $ H_0 (X) \cong \Z $ generato dalla classe $ [p] \; \forall p \in X $ (con $ X $ connesso per archi).
+\end{proof}
+Se ci sono più componenti connesse per archi posso ripetere il ragionamento senza connettere componenti
+distinte, quindi trovo che:
+\[
+  H_0(X) \cong \Z^{N_c}
+\]
+Dove $ N_c $ è il numero di componenti connesse per archi di $ X $ con $ N_c < + \infty $.
+
+Cosa si può dire invece su $ H_1(X) $?
+
+Sia $ X $ spazio topologico e $ x_0 \in X $, allora alla coppia $ (X, x_0) $ si associa il gruppo fondamentale
+$ \pi_1(X,x_0) $. In generale il gruppo fondamentale non è abeliano, allora conviene studiare la versione abelianizzata:
+$ \Ab{\pi_1(X,x_0)} = \quot{\pi_1(X,x_0)}{\pi_i(X,x_0)'} $ dove $ ' $ indica il \textbf{gruppo derivato}, \index{Gruppo derivato} cioè il gruppo
+generato dai comutatori.
+\[
+  \pi_1(X,x_0)' = [\pi_1(X,x_0), \pi_1(X,x_0)]
+\]
+Se $ X $ è connesso per archi allora $ \Ab{\pi_1(X,x_0)} \cong H_1(X) $, quindi conoscendo il gruppo fondamentale si può calcolare il
+primo gruppo di omologia.
+
 \lecture{3}{6 Ottobre}{Banane}
 
 \subsection{Richiami sul gruppo fondamentale}
@@ -553,7 +815,7 @@ Proprietà:
     Se uno spazio tologico $ X $ è connesso per archi allora tutti i gruppi fondamentali
     degli spazi puntati $ (X,x_0) $ sono isomorfi, cioè si può omettere la dipendenza da $ x_0 $.
   \end{proposition}
-  Questo intuitivamente è vero perchè se gli spazi sono connessi per archi allora esistono cammini
+  Questo intuitivamente è vero perché se gli spazi sono connessi per archi allora esistono cammini
   che collegano qualunque coppia di punti.
 \end{itemize}
 
