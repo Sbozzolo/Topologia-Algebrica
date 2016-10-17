@@ -1,0 +1,108 @@
+\makeatletter
+\usepackage{auxhook}
+\AddLineBeginAux{%
+  \string\providecommand\string\new@aux@symb[3]{}%
+}
+\newcommand*{\symb@list}{}
+\newlength{\symb@maxwidth}
+\newlength{\symb@meaning}
+\newcommand*{\new@aux@symb}[3]{%
+  \g@addto@macro{\symb@list}{\symb@do{#1}{#2}{#3}}%
+  \@newl@bel{SYMB}{#1}{#2}%
+  \begingroup
+    \settowidth{\dimen@}{#2}%
+    \ifdim\dimen@>\symb@maxwidth
+      \global\symb@maxwidth=\dimen@
+    \fi
+  \endgroup
+}
+\newcommand*{\new@symb}[3]{%
+  \@bsphack
+  \if@filesw
+    \protected@write\@auxout{}{%
+      \string\new@aux@symb{#1}{%
+        \detokenize\expandafter{\unexpanded{#2}}%
+      }{%
+        \detokenize\expandafter{\unexpanded{#3}}%
+      }%
+    }%
+  \fi
+  \label{symb:#1}%
+%  \@ifundefined{SYMB@#1}{%
+%    \expandafter\gdef\csname SYMB@#1\endcsname{#2}%
+%  }{}%
+  \@esphack
+}
+\newcommand*{\newmathsymb}[3]{%
+  \new@symb{#1}{\ensuremath{#2}}{#3}%
+}
+\newcommand*{\newtextsymb}{%
+  \@dblarg\symb@newtext
+}
+\def\symb@newtext[#1]#2#3{%
+  \new@symb{#1}{#2}{#3}%
+}
+\newcommand*{\symb}[1]{%
+  \@ifundefined{SYMB@#1}{%
+    \@latex@warning{Symbol `#1' is undefined}%
+    \nfss@text{\textbf{??}}%
+  }{%
+    \csname SYMB@#1\endcsname
+  }%
+}
+% List of symbols
+\newcommand*{\symb@head}[1]{\textbf{\large#1}}
+\newcommand*{\printsymblist}{%
+  \twocolumn[%
+    \section*{%
+      \centering
+      Lista dei simboli e abbreviazioni %
+    }%
+  ]%
+  \thispagestyle{empty}% optional
+  \renewcommand*{\arraystretch}{1.1}%
+  \settowidth{\dimen@}{\symb@head{Symbol}}%
+  \ifdim\dimen@>\symb@maxwidth
+    \global\symb@maxwidth\dimen@
+  \fi
+  \setlength{\symb@meaning}{\linewidth}%
+  \addtolength{\symb@meaning}{-\symb@maxwidth}%
+  \settowidth{\dimen@}{\symb@head{Page}}%
+  \addtolength{\symb@meaning}{-\dimen@}%
+  \addtolength{\symb@meaning}{-4\tabcolsep}%
+  \tablehead{%
+    \symb@head{Simbolo} & \symb@head{Significato} & \symb@head{Pagina}\\[.5ex]%
+  }%
+  \begin{supertabular}{@{}p{\symb@maxwidth}p{\symb@meaning}c@{}}%
+    \symb@list
+  \end{supertabular}%
+  \clearpage
+  \onecolumn
+}
+\newcommand*{\symb@do}[3]{%
+  #2&%
+  \sbox0{%
+    \renewcommand*{\arraystretch}{1}%
+    \begin{tabular}[t]{@{}p{\symb@meaning}@{}}%
+      \raggedright
+      #3%
+    \end{tabular}%
+  }%
+  \sbox2{%
+    \renewcommand*{\arraystretch}{1}%
+    \begin{tabular}[b]{@{}b{\symb@meaning}@{}}%
+      \raggedright
+      #3%
+    \end{tabular}%
+  }%
+  \usebox0 %
+  \xdef\symb@raise{\the\dimexpr\ht0-\ht2}%
+  &\raisebox{\symb@raise}{\pageref{symb:#1}}\tabularnewline
+}
+\makeatother
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "notes"
+%%% End:
