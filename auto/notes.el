@@ -1,18 +1,22 @@
 (TeX-add-style-hook
  "notes"
  (lambda ()
+   (TeX-add-to-alist 'LaTeX-provided-class-options
+                     '(("scrbook" "10pt" "twoside=false" "x11names")))
    (TeX-add-to-alist 'LaTeX-provided-package-options
-                     '(("inputenc" "utf8") ("babel" "italian")))
+                     '(("inputenc" "utf8") ("babel" "italian") ("fontenc" "T1")))
    (TeX-run-style-hooks
     "latex2e"
+    "titlepage"
+    "listofsymb"
     "images/torus_generators"
-    "article"
-    "art10"
+    "scrbook"
+    "scrbook10"
     "amsmath"
     "amssymb"
     "amsfonts"
     "graphicx"
-    "lmodern"
+    "libertine"
     "tikz"
     "epigraph"
     "lipsum"
@@ -20,26 +24,31 @@
     "braket"
     "babel"
     "tikz-cd"
-    "makeidx")
+    "makeidx"
+    "mathtools"
+    "supertabular"
+    "array"
+    "textcomp"
+    "fontenc")
    (TeX-add-symbols
     '("Sph" ["argument"] 0)
+    '("Id" ["argument"] 0)
     '("RN" ["argument"] 0)
     '("quot" 2)
     '("vedi" 1)
     '("Ab" 1)
     '("im" 1)
-    '("lecture" 3)
-    "titlepagedecoration"
     "R"
     "M"
     "N"
     "Z"
     "homoto"
-    "printauthor")
+    "incl")
    (LaTeX-add-labels
     "fig:lez1:1_standard_simplex"
     "fig:lez1:1_standard_simplex_with_arc"
     "fig:lez1:standard_simplex_faces"
+    "fig:lez3:homotopy"
     "fig:lez3:clifford_torus"
     "fig:lez3:torus_generators")
    (LaTeX-add-environments
@@ -65,15 +74,27 @@
     "Complesso di moduli"
     "Modulo di omologia"
     "Spazio topologico"
+    "Topologia"
+    "Insiemi aperti"
+    "Topologia discreta"
+    "Topologia indotta"
+    "Spazio connesso"
+    "Ricoprimento"
+    "Insieme compatto"
     "Omeomorfismo"
     "Arco"
     "Spazio connesso per archi"
+    "Gruppo fondamentale"
+    "Gruppi di omotopia superiore"
+    "Inclusione"
     "$ k $-ciclo"
     "Elementi omologhi"
     "Grado"
     "Gruppo derivato"
+    "Laccio"
+    "Spazio topologico puntato"
     "Relazione di omotopia"
-    "Gruppo fondamentale"
+    "Omotopia! \\vedi{Relazione di omotopia}"
     "Cammino composto"
     "Giunzione!\\vedi{Cammino composto}"
     "Spazio contraibile"
@@ -81,7 +102,6 @@
     "Teorema di Seifert–van Kampen"
     "Genere")
    (LaTeX-add-counters
-    "lecnum"
     "exercises"))
  :latex)
 

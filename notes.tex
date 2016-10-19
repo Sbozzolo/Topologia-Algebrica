@@ -1,10 +1,11 @@
-\documentclass{article}
+\documentclass[10pt, twoside=false, x11names]{scrbook}
 
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{graphicx}
-\usepackage{lmodern}
+% \usepackage{lmodern}
+\usepackage{libertine}
 \usepackage{tikz}
 \usepackage{epigraph}
 \usepackage{lipsum}
@@ -14,101 +15,23 @@
 \usepackage{tikz-cd}
 \usepackage{makeidx}
 \usepackage{tikz}
+\usepackage{mathtools}
+\usepackage{supertabular}
+\usepackage{array}
+\usepackage{textcomp}
+\usepackage[T1]{fontenc}
 
-\renewcommand\epigraphflush{flushright}
-\renewcommand\epigraphsize{\normalsize}
-\setlength\epigraphwidth{0.7\textwidth}
-
-\definecolor{titlepagecolor}{cmyk}{1,.60,0,.40}
-
-\DeclareFixedFont{\titlefont}{T1}{ppl}{b}{it}{0.5in}
-
-\makeatletter
-\def\printauthor{%
-    {\large \@author}}
-\makeatother
-\author{%
-  Professore: \\
-  \emph{Gilberto Bini} \vspace{10pt}\\
-  Scriba: \\
-  \emph{Gabriele Bozzola}
-    }
-
-\newcommand\titlepagedecoration{%
-\begin{tikzpicture}[remember picture,overlay,shorten >= -10pt]
-
-\coordinate (aux1) at ([yshift=-15pt]current page.north east);
-\coordinate (aux2) at ([yshift=-410pt]current page.north east);
-\coordinate (aux3) at ([xshift=-4.5cm]current page.north east);
-\coordinate (aux4) at ([yshift=-150pt]current page.north east);
-
-\begin{scope}[titlepagecolor!40,line width=12pt,rounded corners=12pt]
-\draw
-  (aux1) -- coordinate (a)
-  ++(225:5) --
-  ++(-45:5.1) coordinate (b);
-\draw[shorten <= -10pt]
-  (aux3) --
-  (a) --
-  (aux1);
-\draw[opacity=0.6,titlepagecolor,shorten <= -10pt]
-  (b) --
-  ++(225:2.2) --
-  ++(-45:2.2);
-\end{scope}
-\draw[titlepagecolor,line width=8pt,rounded corners=8pt,shorten <= -10pt]
-  (aux4) --
-  ++(225:0.8) --
-  ++(-45:0.8);
-\begin{scope}[titlepagecolor!70,line width=6pt,rounded corners=8pt]
-\draw[shorten <= -10pt]
-  (aux2) --
-  ++(225:3) coordinate[pos=0.45] (c) --
-  ++(-45:3.1);
-\draw
-  (aux2) --
-  (c) --
-  ++(135:2.5) --
-  ++(45:2.5) --
-  ++(-45:2.5) coordinate[pos=0.3] (d);
-\draw
-  (d) -- +(45:1);
-\end{scope}
-\end{tikzpicture}%
-}
-
-\newcounter{lecnum}
-
-\newcommand{\lecture}[3]{
-   \pagestyle{myheadings}
-   \thispagestyle{plain}
-   \newpage
-   \setcounter{lecnum}{#1}
-   \noindent
-   \begin{center}
-   \framebox{
-      \vbox{\vspace{2mm}
-    \hbox to \linewidth { {\bf Topologia Algebrica
-	\hfill 2016/2017} }
-       \vspace{4mm}
-       \hbox to \linewidth  { {\Large \hfill Lezione #1: #2  \hfill} }
-       \vspace{2mm}
-       \hbox { {Agomenti: #3  \hfill} }
-      \vspace{2mm}}
-   }
-   \end{center}
-   \markboth{Lezione #1: #2}{Lezione #1: #2}
-}
+\input{titlepage}
 
 \newtheorem{theorem}{Teorema}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposizione}
 \newtheorem{osservation}[theorem]{Osservazione}
 \newtheorem{corollary}[theorem]{Corollario}
-\newtheorem{definition}[theorem]{Definitione}
+\newtheorem{definition}[theorem]{Definizione}
 \newcounter{exercises}
 \newtheorem{exercise}[exercises]{Esercizio}
-\newenvironment{proof}{{\bf Dimostrazione:}}{\hfill\rule{2mm}{2mm} \newline}
+\newenvironment{proof}{{\textbf{Dimostrazione}:}}{\hfill\rule{2mm}{2mm} \newline}
 
 \newcommand{\R}{\mathcal{R}}
 \newcommand{\M}{\mathcal{M}}
@@ -118,9 +41,11 @@
 \renewcommand{\ker}[1]{\mathrm{Ker}( #1)}
 \renewcommand{\phi}{\varphi}
 \newcommand{\RN}[1][]{\mathbb{R}^#1}
+\newcommand{\Id}[1][]{\mathbb{I}_#1}
 \newcommand{\Sph}[1][]{\mathcal{S}^#1}
 \newcommand{\homoto}{\xrightarrow{\,\smash{\raisebox{-0.65ex}{\ensuremath{\scriptstyle\sim}}}\,}}
 \newcommand{\Ab}[1]{\mathrm{Ab}( #1 )}
+\newcommand{\incl}{\xhookrightarrow{}}
 
 \newcommand{\vedi}[1]{\emph{vedi} #1}
 
@@ -129,6 +54,8 @@
 \renewcommand\labelitemi{\tiny$\bullet$}
 
 \makeindex
+
+\input{listofsymb}
 
 \begin{document}
 
@@ -155,13 +82,17 @@
 \end{titlepage}
 
 \tableofcontents
+\printsymblist
 
-\lecture{1}{29 Settembre}{General introduction. Homology of a complex. Singular homology.}
+% \lecture{1}{29 Settembre}{General introduction. Homology of a complex. Singular homology.}
+
+\chapter{Omotopia Singolare}
 
 \section{Introduzione}
 
 \subsection{Richiami di algebra}
 
+\newmathsymb{R}{\R}{Anello}
 \begin{definition}
   Un \textbf{anello} \index{Anello} è un insieme $ \R $ dotato di due operazioni $ + $ e $ \cdot $ tali che
   $ \R $ sia un gruppo abeliano con l'addizione, sia un monoide con la moltiplicazione
@@ -208,7 +139,7 @@ Sostanzialmente la nozione di $ \R $-modulo generalizza agli anelli il concetto 
     \begin{cases}
       \underbrace{ x + x + x + \dots}_{n \text{ volte}} & \text{se } n > 0 \\
       0 & \text{se } n = 0 \\
-       \underbrace{ x + x + x + \dots}_{|n| \text{ volte}} & \text{se } n < 0 \\
+       \underbrace{ - x - x - x - \dots}_{|n| \text{ volte}} & \text{se } n < 0 \\
     \end{cases}
   \]
   Si verfica banalmente che questa operazione è ben definita e soddisfta
@@ -320,21 +251,61 @@ Questo deriva da un problema topologico concreto.
 \begin{definition}
   La coppia $ (X, \mathcal{T}) $ è detta \textbf{spazio topologico}\index{Spazio topologico}
   (generalmente si omette la $ \mathcal{T} $)
-  se $ \mathcal{T} $ è una topologia, cioè se è una collezione di insiemi di $ X $ tali che:
+  se $ \mathcal{T} $ è una \textbf{topologia}\index{Topologia}, cioè se è una collezione di insiemi di $ X $ tali che:
   \begin{enumerate}
   \item $ \emptyset, X \in \mathcal{T} $
   \item $ \bigcup_{n \in \mathbb{N}} A_n \in \mathcal{T} $ se $ A_n \in \mathcal{T} \; \forall n \in \mathbb{N} $
-  \item $ A \cap B \in \mathcal{T} $ se $ A,B \in \mathcal{T} $
+  \item $ \bigcap_{n \in \set{0,1,\dots,N} } A_n \in \mathcal{T} $ se $ A_n \in \mathcal{T} \; \forall n \in \set{0,1,\dots,N} $
   \end{enumerate}
-  Gli elementi di $ \mathcal{T} $ sono detti aperti.
+  Gli elementi di $ \mathcal{T} $ sono detti \textbf{aperti}\index{Insiemi aperti}.
+\end{definition}
+\begin{osservation}
+  Se $ \tau $ è la collezione di tutti i sottoinsiemi di $ X $ allora le proprietà sono automaticamente
+  verificate e questa è la \textbf{topologia discreta}\index{Topologia discreta}, invece
+  $ \tau = \set{\emptyset, X} $ è una topologia ed è la \textbf{topologia triviale}.
+  Infine in $ \RN{n} $ si definisce la \textbf{topologia usuale} che è la topologia in cui gli aperti
+  sono iperintervalli aperti del tipo $ (a_1,b_1) \times (a_2, b_2) \times (a_3, b_3) \dots \times (a_n, b_n) $.
+  Si dimostra che se si ammettono intersezioni infinite allora la topologia usuale coincide con la topologia
+  triviale in $ \RN{n} $.
+\end{osservation}
+
+\begin{osservation}
+  Uno spazio metrico si può rendere topologico definendo gli insiemi aperti come gli intorni sferici aperti.
+\end{osservation}
+
+\begin{osservation}
+  Sia $ A \subseteq X $ spazio topologico, si può rendere anche $ A $ uno spazio topologico equipaggiandolo con la
+  \textbf{topologia indotta}\index{Topologia indotta} in cui gli aperti sono gli aperti di $ X $ intersecati
+  con $ A $.
+\end{osservation}
+
+\begin{osservation}
+  Uno spazio topologico è \textbf{connesso}\index{Spazio connesso} se si può scrivere come
+  unione disgiunta di due suoi aperti.
+\end{osservation}
+
+\begin{definition}
+  Sia $ X $ uno spazio topologico l'insieme $ \set{A_i | A_i \in X \; \forall i} $ è un \textbf{ricoprimento}\index{Ricoprimento}
+  di $ X $ se:
+  \[
+    \bigcup_{i} A_i = X
+  \]
+  Se in particolare gli insiemi $ A_i $ sono aperti il ricoprimento è detto \textbf{ricoprimento aperto}.
 \end{definition}
 
+\begin{definition}
+  Un insieme $ U $ è detto \textbf{compatto}\index{Insieme compatto} se per ogni suo possibile ricoprimento
+  aperto ne esiste un sottoinsieme che è un ricoprimento \emph{finito} di $ U $.
+\end{definition}
+
+\newmathsymb{homo}{\simeq}{Spazi omeomorfi}
 \begin{definition}
   Una mappa tra spazi topologici è detta \textbf{omeomorfismo}\index{Omeomorfismo} se è continua
   e ammette inverso continuo, cioè se è una mappa uno a uno. Se due spazi sono omeomorfi si utilizza
   il simbolo $ \simeq $.
 \end{definition}
-Siccome gli omomorfismi sono mappe uno a uno due spazi omeomorfi sono essenzialmente identici. Molti
+Siccome gli omeomorfismi sono mappe uno a uno due spazi omeomorfi sono essenzialmente identici. La
+relazione di omeomorfismo costituisce una relazione di equivalenza. Molti
 degli strumenti sviluppati in questo corso servono a capire se due spazi sono omeomorfi o meno.
 
 \subsection{Omomorfismo tra $ \RN{} $ e $ \RN{N} $}
@@ -375,35 +346,56 @@ il seguente risultato fondamentale:
   Se $ f: X \to Y $ è omeomorfismo tra spazi topologici allora $ f \rvert_U : U \to f(U) $ è omeomorfismo per ogni $ U \subseteq X $.
 \end{proposition}
 Nel caso considerato $ U = {x_0} $, siccome ho trovato un $ U $ per cui la funzione ristretta non è omeomorfismo $ f $
-non può essere omeomorfismo.
+non può essere omeomorfismo. Infatti l'immagine di un punto rimane un punto.
+
 Tuttavia vale anche che $ \RN{2} \not \simeq \RN{N} $ per $ n \geq 3 $, infatti:
 
+\newmathsymb{homoto}{\homoto}{Omeomorfismo}
 \begin{proof}
-  Per assurdo $ f : \RN{2} \homoto \RN{N} $ è un omomorfismo con
-  $ n \geq 3 $, tolgo un punto da $ \RN{2} $:
-  \[
-    \forall p \in \RN{2} \quad f:\RN{2} \setminus \set{p} \overset{\to}{\sim} \RN{N} \setminus \set{f(p)}
-  \]
-  Ma: $ \RN{2} \setminus \set{p} \simeq \RN{} \times \mathcal{S}^1 $ con la mappa
-  che manda $ \underline{x} \mapsto \left( || \underline{x} ||, \frac{\underline{x}}{|| \underline{x} ||} \right) $. Ma quindi il gruppo fondamentale deve essere isomorfo:
-  $ \pi_1 (\RN{} \times \mathcal{S}^{1}) \simeq \pi_1(\RN{}\times \mathcal{S}^{n-1}) $ ma $ \pi_1 (\RN{}\times \mathcal{S}^{1}) = \Z $ e $ \pi_1(\RN{}\times \mathcal{S}^{n-1}) = \set{1} $ quindi non possono essere isomorfi.
+  Per assurdo $ f : \RN{2} \homoto \RN{N} $ è un omeomorfismo con
+  $ n \geq 3 $, tolgo un punto da $ \RN{2} $, se $ f $ omeomorfismo anche la restrizione deve essere omeomorfismo, cioè
+  $ \forall p \in \RN{2} \quad f:\RN{2} \setminus \set{p} \homoto \RN{N} \setminus \set{f(p)} $.
+  Ma $ \RN{2} \setminus \set{p} \simeq \RN{} \times \mathcal{S}^1 $ con la mappa
+  $ \underline{x} \mapsto \left( || \underline{x} ||, \frac{\underline{x}}{|| \underline{x} ||} \right) $. In pratica
+  sto dicendo che il piano senza un punto è omeomorfo ad un cilindro infinito.
+  \emph{Secondo me qui bisogna fare una traslazione e portare p in zero prima di fare questa trasformazione.}
+  Analogamente $ \RN{n} \setminus \set{f(p)} \simeq \RN{} \times \Sph{n-1} $. Quindi se esiste un omeomorfismo tra $ \RN{2} $ e
+  $ \RN{n} $ significherebbe che $ \RN{} \times \Sph{1} \simeq \RN{} \times \Sph{n-1} $, ma quindi i gruppi fondamentali
+  dovrebbero essere isomorfi:
+  $ \pi_1 (\RN{} \times \Sph{1}) \simeq \pi_1(\RN{}\times \Sph{n-1}) $ ma
+  $ \pi_1 (\RN{} \times \Sph{1}) = \Z $ infatti il gruppo fondamentale di un prodotto è il prodotto dei gruppi
+  fondamentali e $ \pi_1(\RN{}) = 1 $, $ \pi_1(\Sph{1}) = \Z $ dato che i lacci omotopicamente distinti
+  sono quelli che avvolgono il buco un numero differente di volte. Analogamente $ \pi_1(\RN{}\times \Sph{n-1}) = 1 $
+  perché le sfere sono contraibili. Trovo quindi che dovrebbero essere isomorfi $ \pi_1 (\RN{} \times \Sph{1}) = \Z $
+  e $ \pi_1(\RN{}\times \Sph{n-1}) = 1 $ che è assurdo.
 \end{proof}
-Ho quindi dedotto proprietà geometriche a partire da considerazioni algebriche.
 
+Ho quindi dedotto proprietà topologiche a partire da considerazioni algebriche (con il gruppo fondamentale).
+Il gruppo fondamentale è un invariante algebrico per problemi topologici.
+
+\newmathsymb{fondgroup}{\pi_1}{Gruppo fondamentale}
 \begin{definition}
-  Si definisce il \textbf{gruppo fondamentale} di uno spazio topologico $ X $
+  Si definisce il \textbf{gruppo fondamentale}\index{Gruppo fondamentale} di uno spazio topologico $ X $
   connesso per archi attorno al punto $ x_0 \in X $
   \[
-    \pi_1 (X, x_0) = \quot{\set{ g: \mathcal{S}^1 \to X | g \text{ continua}, g(1) = x_0}}{\sim}
+    \pi_1 (X, x_0) = \quot{\set{ g: \Sph{1} \to X | g \text{ continua}, g(1) = x_0}}{\sim}
   \]
   e $ \sim $ è la relazione di omotopia: $ g_1 \sim g_2 $ se $ \exists G: \mathcal{S}^1 \times I \to X  $ tale che
-  $ G(z,0) = g_1(z), G(z,1) = g_2(z), G(1,t) = x_o $.
+  $ G(z,0) = g_1(z), G(z,1) = g_2(z), G(1,t) = x_o $ con $ G $ continua. In questo vedo $ \Sph{1} $ come sottospazio
+  di $ \RN{2} $ con la topologia indotta (il punto $ 1 $ è un punto della circonferenza vedendola come
+  insieme nello spazio complesso $ \Sph{1} = \set{ z \in \mathbb{C} | |z| = 1} $).
 \end{definition}
+Sostanzialmente il gruppo fondamentale è l'insieme dei lacci quozientato rispetto alla relazione di omotopia.
+Infatti $ g $ è un laccio dato che è un arco e il punto di partenza e il punto di arrivo necessariamente
+coincidono dato che $ g $ è definito su $ \Sph{1} $.
+Questo perché l'insieme dei lacci non è strutturabile come gruppo in quanto il laccio costante non è
+l'unità.
 
 Ora voglio mostrare per assurdo che non esiste omomorfismo tra $ \RN{3} $ e $ \RN{N} $.
 
 \begin{proof}
-  Come nel caso precedente tolgo $ q $ da $ \RN{3} $ e $ f(q) $ da $ \RN{3} $, quindi ottengo
+  Come nel caso precedente suppongo esiste $ f $ omeomorfismo tra $ \RN{3} $ a $ \RN{n} $,
+  tolgo $ q $ da $ \RN{3} $ e $ f(q) $ da $ \RN{n} $, quindi ottengo
   l'omomorfismo tra $ \RN{} \times \Sph{2} \simeq \RN{} \times \Sph{n-1} $, ma i gruppi fondamentali
   associati sono banali, quindi sono isomorfi, e non è posisbile replicare il ragionamento utilizzato sopra.
 \end{proof}
@@ -411,34 +403,48 @@ Ora voglio mostrare per assurdo che non esiste omomorfismo tra $ \RN{3} $ e $ \R
 Poincaré introdusse i gruppi di omotopia superiore.
 
 \begin{definition}
-  Si definiscono i \textbf{gruppi di omotopia superiore} di uno spazio topologico $ X $
+  Si definiscono i \textbf{gruppi di omotopia superiore}\index{Gruppi di omotopia superiore} di uno spazio topologico $ X $
   attorno al punto $ x_0 $ per $ k \geq 2 $:
   \[
-    \pi_k(X) (X, x_0) = \quot{\set{ g: \Sph{k} \to X | g(p_0) = x_0, p_o \in \Sph{k}}}{\sim}
+    \pi_k(X) (X, x_0) = \quot{\set{ g: \Sph{k} \to X | g \text{ continua}, \; g(p_0) = x_0}}{\sim}
   \]
+  Con $ p_0 \in \Sph{k} $ e $ \sim $ relazione di omotopia.
 \end{definition}
 Studiare i gruppi di omotopia superiore è un problema aperto della topologia moderna.
 Tuttavia si sa che:
 \begin{enumerate}
-\item $ \pi_k(\Sph{m}) = 1 \quad \text{per} \quad 1 \leq k < m $
+\item $ \pi_k(\Sph{m}) = 1 \quad \text{per} \quad 1 \leq k < m \quad (m > 2)$
 \item $ \pi_m(\Sph{m}) \simeq \Z \quad \text{per} \quad k = m $
 \item $ \pi_1(\Sph{2}) = 1 $
-\item $ \pi_2(\Sph{2}) \simeq 1 $
+\item $ \pi_2(\Sph{2}) \simeq \Z $
+\item $ \pi_3(\Sph{2}) \simeq \Z $\footnote{Questo da origine alla fibrazione di Hopf che ha molte applicazioni in fisica.}
 \end{enumerate}
 
+\begin{definition}
+  Sia $ A \subseteq X $ con $ X $ spazio topologico $ i: A \to X $ si definisce mappa di \textbf{inclusione}\index{Inclusione}
+  e si scrive $ i: A \incl X $ se $ \forall a \in A $ vale che $ i(a) = a $.
+\end{definition}
+
+
 Anche se non so calcolare i gruppi di omotopia superiore non vorrei buttarli via\dots
+Vorrei degli invarianti algebrici per problemi topologici, come i gruppi di omotopia.
+
 
 \subsection{Omologia}
 
-Uso la teoria dell'omologia che mi permette di semplificare i problemi.
+Uso la teoria dell'omologia che mi permette di semplificare i problemi. La teoria
+dell'omologia serve ad associare agli spazi topologici degli oggetti algebrici
+meno complicati dei gruppi di omotopia.
 Ci sono varie possibilità:
 \begin{itemize}
-  \item Omologia simpliciale
-  \item Omologia cellulare
   \item Omologia singolare
-  \item Omologia persistente\footnote{Questa ha numerose applicazioni pratiche.}
+  \item Omologia cellulare
+  \item Omologia persistente\footnote{Questa ha numerose applicazioni pratiche, come la ricostruzione di immagini.}
+  \item Omologia simpliciale
 \end{itemize}
-Ma cosa è l'omologia?
+Ma cosa è l'omologia? Assocerò ad ogni spazio topologico (anche patologico) gruppi abeliani e omomorfismi a partire
+da applicazioni continue tra due spazi topologici. In tutto questo lavoro sempre con anello di base $ \Z $, che
+quindi rimane sottinteso a meno di scriverlo esplicitamente.
 
 \begin{definition}
   In $ \RN{k+1} $ si definisce il \textbf{simplesso standard} $ \Delta_k $ l'insieme:
@@ -610,7 +616,7 @@ Devo verificare che $ \partial_k \circ \partial_{k+1} = $. Spesso come notazione
   \end{align*}
 \end{proof}
 
-\lecture{2}{4 Ottobre}{Banane}
+% \lecture{2}{4 Ottobre}{Banane}
 
 Sia $ X $ uno spazio topologico, voglio definire l'omologia singolare $ H_k(X) $, cioè il $ k $-esimo gruppo di omologia
 singolare. Costruisco il complesso $ (S_\bullet(X), \partial) $ con:
@@ -698,6 +704,13 @@ Scopo del corso è studiare $ H_k(X) $.
     \end{align*}
   \end{definition}
 
+  \begin{theorem}[Teorema fondamentale degli omomorfismi]
+    Sia $ f: \mathcal{G}_1 \to \mathcal{G}_2 $ un omomorfismo tra gruppi abeliani, allora vale che:
+    \[
+      \quot{\mathcal{G}_1}{\ker{f}} = \im{f}
+    \]
+  \end{theorem}
+
   \begin{proposition}
     La mappa grado gode di alcune proprietà:
     \begin{enumerate}
@@ -751,11 +764,24 @@ generato dai comutatori.
 Se $ X $ è connesso per archi allora $ \Ab{\pi_1(X,x_0)} \cong H_1(X) $, quindi conoscendo il gruppo fondamentale si può calcolare il
 primo gruppo di omologia.
 
-\lecture{3}{6 Ottobre}{Banane}
+% \lecture{3}{6 Ottobre}{Banane}
 
 \subsection{Richiami sul gruppo fondamentale}
+
 \begin{definition}
-  Sia $ X $ uno spazio topologico e $ x_0 \in X $ un suo punto, allora la coppia $ (X, x_0) $ è detta spazio topologico puntato.
+  Sia $ X $ uno spazio topologico e $ x_0 $ un suo punto, allora un \textbf{laccio}\index{Laccio} è un arco in $ X $
+  avente come punto di partenza e punto di arrivo il punto $ x_0 $. Un laccio $ c_{x_0} $ si dice \textbf{costante} se $ \forall t \in I $
+  $ c_{x_0}(t) = x_0 $ con $ x_0 \in X $.
+\end{definition}
+
+Vorrei strutturare l'insieme dei lacci in uno spazio $ X $ come un gruppo con l'operazione di giunzione
+e avente come unità il laccio costante. Questo non si riesce a fare perché il laccio costante non sempre
+la giunzione di un laccio con il suo inverso è il laccio costante. Per questo si passa al quoziente
+rispetto la relazione di omotopia.
+
+\begin{definition}
+  Sia $ X $ uno spazio topologico e $ x_0 \in X $ un suo punto, allora la coppia $ (X, x_0) $ è detta \textbf{spazio topologico puntato}.
+  \index{Spazio topologico puntato}
 \end{definition}
 
 \begin{definition}
@@ -768,9 +794,35 @@ primo gruppo di omologia.
   \item $ F(s,0) = x_0 \; \forall s \in I $
   \item $ F(s,1) = x_0 \; \forall s \in I $
   \end{itemize}
-  La relazione $ \sim_H $ è detta \textbf{relazione di omotopia} \index{Relazione di omotopia} e si dimostra essere una relazione di equivalenza.
+  La relazione $ \sim_H $ è detta \textbf{relazione di omotopia} \index{Relazione di omotopia} \index{Omotopia! \vedi{Relazione di omotopia}}
+  e si dimostra essere una relazione di equivalenza.
 \end{definition}
-[FIGURA]
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \draw (0, 0) rectangle (3,3);
+    \draw[-Latex] (-0.5, 1) -- (-0.5, 2);
+    \draw[-Latex] (1, -0.5) -- (2, -0.5);
+    \node[left] () at (-0.5, 1.5) {$ t $};
+    \node[below] () at (1.5, -0.5) {$ x $};
+    \node[right] () at (0, 1.5) {$ x_0 $};
+    \node[left] () at (3, 1.5) {$ x_0 $};
+    \node[above] () at (1.5, 0) {$ f(x) $};
+    \node[below] () at (1.5, 3) {$ g(x) $};
+    \draw (0,2) -- (3,2);
+    \draw[-Latex] (0, 2) -- (1.5, 2);
+    \node[below] () at (1.5, 2) {$ F(x,s) $};
+    \draw (6,1.5) circle [x radius=2, y radius=1];
+    \node[above] () at (6, 2.5) {$ f $};
+    \draw (6, 1.5) circle (0.5);
+    \node[above] () at (6, 1.5) {$ g $};
+    \draw[-Latex] (4.5, 1.5) -- (5, 1.5);
+    \draw[-Latex] (7.5, 1.5) -- (7, 1.5);
+  \end{tikzpicture}
+  \caption{Omotopia: deforma $ f $ in $ g $ in modo continuo.}
+  \label{fig:lez3:homotopy}
+\end{figure}
 
 Si definisce l'insieme;
 \[
@@ -830,10 +882,12 @@ Proprietà:
 
 \begin{itemize}
 \item $ \pi_1(\Sph{1}) \cong \Z $, infatti si può costruire la mappa:
-  \begin{align*}
-    \sigma: &\; I \to \Sph{1} \\
-       &\;  t \mapsto \mathrm{e}^{2 \pi i t}
-  \end{align*}
+  \[
+    \begin{aligned}
+      \sigma: &\; I \to \Sph{1} \\
+      &\;  t \mapsto \mathrm{e}^{2 \pi i t}
+     \end{aligned}
+   \]
   Questa è tale che $ \sigma(0) = \sigma(1) = 1 $ quindi $ [\sigma] \in \pi_1(\Sph{1}) $ e $ \pi_1(\Sph{1}) \to \Z $ con $ [\sigma] \mapsto 1 $.
   Ogni elemento è multiplo di $ \sigma $ e il fattore di proporzionalità conta il numero di avvolgimenti
   del cammino.
@@ -907,12 +961,62 @@ L'abelianizzato è uno $ \Z $-modulo.
   \]
   $ P $ è la proiezione sul quoziente. $ \phi' $ esiste perchè in $ \Ab{\pi_1(X)} $ c'è tutto quello che sta nel nucleo.
   $ \phi'(a) = \phi'(P(c)) := \phi(c) $.
-  Allora $ \phi'(a) = \phi'(P(d)) = \phi(d) $, devo mostrare che $ \phi(c) = \phi(d) $. Siccome $ \mathcal{G} $ è abeliano.
+  Allora $ \phi'(a) = \phi'(P(d)) = \phi(d) $, devo mostrare che $ \phi(c) = \phi(d) $. Siccome $ \mathcal{G} $ è abeliano $ p(c) \sim p(d) $,
+  e quindi $ c = d[x,y] $ per cui: $ \phi(c) = \phi(d[x,y]) $, siccome $ \phi $ è omomorfismo:
+  \[
+    \phi(d[x,y]) = \phi(d)\phi([x,y]) = \phi(d) \phi(xyx^{-1}y^{-1}) = \phi(d) \phi(x) \phi(y) \phi(x)^{-1} \phi(y)^{-1} = \phi(d)
+  \]
+  dove nell'ultimo passaggio ho utilizzato che il gruppo è abeliano. Per questo $ \phi' $ è ben definito.
 \end{osservation}
+Questa osservazione dipende crucialmente dal fatto che il gruppo è abeliano.
 
+Voglio dimostrare che $ \Ab{\pi_1(X)} \cong H_1(X) $, in questo modo per il teorema di Seifert-van Kampen posso ottenere tante
+informazioni su $ H_1(X) $. Per ora so che $ H_1(X) $ è uno $ \Z $-modulo. Se costruisco $ \phi: \pi_1(X) \to H_1(X) $ ottengo
+gratuitamente la mappa da $ \Ab{\pi_1(X)} $ a $ H_1(X) $.
+\[
+  \begin{tikzcd}
+    \pi_1(X) \arrow{r}{\phi} \arrow{d}{P} & \mathcal{G} \\
+    \Ab{\pi_1(X)} \arrow{ur}{\phi'}
+  \end{tikzcd}
+\]
+Poi dovrò mostrare che questa mappa è invertibile, cioè $ \exists \psi:H_!(X) \to A_1(X) $ tale che $ \phi' \circ \psi = \Id{H_1(X)} $ e
+$ \psi \circ \phi' = \Id{\Ab{\pi_1(X)}} $. Provo a costruire $ \phi $.
+\[
+  \begin{aligned}[t]
+    \phi:  \pi_1(X) & \to H_!(X) \\
+    [f]_H & \mapsto [f]_{hom}
+  \end{aligned}
+\]
+Usando il seguente risultato:
+\begin{lemma}
+  Se $ f \sim_H g $ allora $ f \sim_{hom} g $.
+\end{lemma}
+\begin{proof}
+  Siccome $ f \sim_{H} g $ allora $ \exists F $ continua tale $ F: I \times I \to X $ tale che $ F(0,x) = f(x) $,
+  $ F(1,x) = g(x) $ e $ F(t,0) = x_0 $ in quanto è un laccio.
+  [FIGURA]
+  Voglio mostrare che è il bordo di un $ 2 $-simplesso. Faccio l'equivalenza $ \quot{I \times I}{0xI} \simeq \Delta_2 $.
+  [FIGURA]
+  E questo è omeomorfo a un $ 2 $-simplesso standard.
+  Siccome rimane costante su $ x_0 $ questa mappa induce $ F' $:
+  \[
+    \begin{tikzcd}
+      I \times I \arrow{r}{F} \arrow{d}{P} & X \\
+      \quot{I \times I}{0 \times I} \simeq \Delta_2 \arrow{ur}{F'}
+    \end{tikzcd}
+  \]
+  Calcolo il bordo: $ \partial F' = F'^{(0)} - F'^{(1)} + F'^{(2)} = K - g + f $
+  dove $ K $ è il cammino costante per definizione di omotopia. Se $ K $
+  fosse il bordo di qualcosa avrei finito ($ \partial w = f - g $). Prendo il $ 2 $-simplesso
+  standard $ K $ costante e uguale a $ x_0 $ (è la stessa costante di $ K $):
+  \[
+    \partial K = K^{(0)} - K^{(1)} + K^{(2)}
+  \]
+  ma questi sono uguali perché sono costanti.
+\end{proof}
 
-\addcontentsline{toc}{chapter}{Indice analitico}
 \printindex
+
 
 \end{document}
 
