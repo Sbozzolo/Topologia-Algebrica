@@ -182,7 +182,7 @@ Voglio studiare gli omomorfismi tra $ \Z $-moduli.
   Sia $ \phi: \M \to \N $ un omomorfismo tra gli $ \R $-moduli $ \M $ e $ \N $,
   allora si definisce il \textbf{nucleo} \index{Nucleo} e l'\textbf{immagine} \index{Immagine}:
   \[
-    \ker {\phi} := \set{ m \in \M | \phi(m) = 0}  \qquad  \im{\phi} := \set{ m \in \M | \phi(m) = 0}
+    \ker {\phi} := \set{ m \in \M | \phi(m) = 0}  \qquad  \im{\phi} := \set{ m \in \N | m=\phi(k) , k \in  M}
   \]
 \end{definition}
 
@@ -205,7 +205,7 @@ Se $ M_i $ sono $ \R $-moduli posso fare composizioni di omomorfismi, come:
 Se vale $ \phi_2 \circ \phi_1 = 0 $ allora $ \im{\phi_1} \subseteq \ker{\phi_2} $.
 \end{proposition}
 \begin{proof}
-  Se $ u \in \im {\phi_2} $ allora $ \exists v \in \M_2 $ tale che $ \phi_1(v) = u $,
+  Se $ u \in \im {\phi_1} $ allora $ \exists v \in \M_2 $ tale che $ \phi_1(v) = u $,
   ma $ \phi_2(u) = \phi_2(\phi_1(v)) = (\phi_2 \circ \phi_1)(v) = 0 $ per ipotesi, quindi $ u \in \ker{\phi_2} $.
 \end{proof}
 
@@ -314,7 +314,7 @@ Questo deriva da un problema topologico concreto.
 \newmathsymb{homo}{\simeq}{Spazi omeomorfi}
 \begin{definition}
   Una mappa tra spazi topologici è detta \textbf{omeomorfismo}\index{Omeomorfismo} se è continua
-  e ammette inverso continuo, cioè se è una mappa uno a uno. Se due spazi sono omeomorfi si utilizza
+  e ammette inverso continuo, [cioè se è una mappa uno a uno]. Se due spazi sono omeomorfi si utilizza
   il simbolo $ \simeq $.
 \end{definition}
 Siccome gli omeomorfismi sono mappe uno a uno due spazi omeomorfi sono essenzialmente identici. La
@@ -331,7 +331,7 @@ degli strumenti sviluppati in questo corso servono a capire se due spazi sono om
 
 \begin{definition}
   Uno spazio topologico $ X $ è \textbf{connesso per archi}\index{Spazio connesso per archi} se per
-  ogni coppia di punto $ x, y \in X $ esiste un arco che parte da $ x $ e termina in $ y $.
+  ogni coppia di punti $ x, y \in X $ esiste un arco che parte da $ x $ e termina in $ y $.
 \end{definition}
 
 \begin{definition}
