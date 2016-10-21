@@ -160,7 +160,8 @@ Sostanzialmente la nozione di $ \R $-modulo generalizza agli anelli il concetto 
 
 \begin{definition}
   Un gruppo abeliano si dice \textbf{libero}\index{$ \Z $-modulo libero} se è generato
-  da un numero finito di elementi linearmente indipendenti.
+  da un numero finito di elementi linearmente indipendenti, il numero di tali elementi
+  definisce il \textbf{rango}\index{Rango di gruppo abeliano} del gruppo.
 \end{definition}
 
 \begin{definition}
@@ -512,6 +513,7 @@ quindi rimane sottinteso a meno di scriverlo esplicitamente.
         \draw[-] (A) --(D)--(C)--cycle;
         \draw[-] (B)--(D)--(C)--cycle;
         \node[below] () at (9,0) {$ \Delta_3 $};
+        % TODO: Bisognerebbe girare questo tetraedro
       \end{tikzpicture}
       \caption{Simplessi standard}
       \label{fig:lez1:standard_simplexes}
@@ -585,9 +587,11 @@ Posso ottenere una $ 0 $-catena prendendo i punti estremi dell'arco, infatti il 
 bordo dei simplessi.
 
 \begin{definition}
-  Sia $ \Delta_k $ un $ k $-simplesso standard con $ k \geq 0 $ si definisce l'operatore \textbf{faccia} come
-  la mappa $ F_i^{\;k} $ da $ \Delta_{k-1} $ a $ \Delta_k $ tale che $ F_i^{\;k}(\Delta_{k-1}) $ è una faccia di $ \Delta_k $.
+  Sia $ \Delta_k $ un $ k $-simplesso standard con $ k \geq 0 $ si definisce l'operatore \textbf{faccia}\index{Operatore faccia}
+  come la mappa $ F_i^{\;k}: \Delta_{k-1} \to \Delta_k $ tale che $ F_i^{\;k}(\Delta_{k-1}) $ è una faccia di $ \Delta_k $.
 \end{definition}
+L'operatore faccia prende un $ k $-simplesso standard e lo immerge in un qualche senso in un
+simplesso più grande, ad esempio manda un punto in uno degli estremi di un segmento (nel caso $ k = 0 $),
 
 Ad esempio per $ k = 2 $ $ \Delta_2 = \set{ (x_1,x_2,x_3) \in \RN{3} | x_1 + x_2 + x_3 = 1, \; 0 \leq x_i \leq 1 \; \forall i} $,
 si definisce la base $ e_0 = (1,0,0) \; e_1 = (0,1,0) \; e_2 = (0,0,1) $, voglio vedere il bordo del triangolo
@@ -616,30 +620,81 @@ come facce.
   \caption{Azione dell'operatore faccia}
   \label{fig:lez1:standard_simplex_faces}
 \end{figure}
+Il segmento faccia $ i $-esimo è quello che non contiene il vertice $ i $-esimo, cioè
+\emph{dimentico} un punto e gli altri punti diventano vertici del simplesso.
 
-[FIGURA, CONSIDERAZIONI]
+In generale se $ \Delta_k $ è un simplesso standard definisco la base standard:
+\begin{gather*}
+  e_0 = (1,0,0,\dots)                            \\
+  e_1 = (0,1,0,\dots)                            \\
+  e_2 = (0,0,1,\dots)                            \\
+  \dots
+\end{gather*}
+Questi sono i vertici del simplesso, definisco l'azione dell'operatore faccia
+come:
+\[
+  \begin{cases}
+    F_i^{\; k}(e_j) = e_{j+1}     & \text{se } j \geq i \\
+    F_i^{\; k}(e_j) = e_{j} & \text{se } j < i
+  \end{cases}
+\]
+
+Se fosse un tetraedro dimenticando punti ottengo triangoli e dimenticando
+triangoli ottengo punti, come è giusto.
 
 \begin{exercise}
   Dimostrare che se $ [\cdot, \cdot] $ indica l'inviluppo convesso allora:
   \begin{enumerate}
-  \item Per $ j > i $ vale che $ F_i^{\; k+1} \circ F_i^{\; k} = [e_0, \dots, e_i, \dots, e_j, \dots, e_k ] $.
-  \item Per $ j \leq i $ vale che $ F_i^{\; k+1} \circ F_i^{\; k} = [e_0, \dots, e_j, \dots, e_{i+1}, \dots, e_k ] $.
+  \item Per $ j > i $ vale che $ F_i^{\; k+1} \circ F_i^{\; k} = [e_0, \dots, \hat{e}_i, \dots, \hat{e}_j, \dots, e_k ] $.
+  \item Per $ j \leq i $ vale che $ F_i^{\; k+1} \circ F_i^{\; k} = [e_0, \dots, \hat{e}_j, \dots, \hat{e}_{i+1}, \dots, e_k ] $.
   \end{enumerate}
+  Dove i cappucci indicano che quell'elemento è omesso.
 \end{exercise}
 
-Dato un $ k $-simplesso singolare $ \sigma: \Delta_k \to X $ si definisce la mappa $ \sigma^{(i)} = \sigma \circ F_i^{\; k} $.
-
-[FIGURA]
+\begin{definition}
+  L'\textbf{inviluppo convesso}\index{Inviluppo convesso} di un insieme $ U $ in $ \RN{n} $ è il più piccolo
+  insieme convesso che contiene $ U $.
+\end{definition}
+\begin{definition}
+  Un insieme in $ \RN{n} $ si dice \textbf{convesso}\index{Insieme convesso} se contiene
+  il segmento che unisce ogni coppia di punti dell'insieme.
+\end{definition}
 
 \begin{definition}
-  Si definisce il \textbf{bordo} di un $ k $-simplesso singolare come $ \partial_k \sigma = \sum_{i=0}^{k}(-)^i \sigma^{(i)} $.
+  Dato un $ k $-simplesso singolare $ \sigma: \Delta_k \to X $ si definisce la mappa $ \sigma^{(i)} = \sigma \circ F_i^{\; k} $,
+  si definisce quindi il \textbf{bordo}\index{Bordo} di $ \sigma $ come $ \partial_k \sigma = \sum_{i=0}^{k}(-)^i \sigma^{(i)} $.
 \end{definition}
+Il bordo sostanzialmente corrisponde alla somma alterna delle faccie.
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+   \draw[-Latex] (0,0) -- (3,0);
+    \draw[-Latex] (0,0) -- (0,3);
+    \draw[-Latex] (0,0) -- (-1.5,-1.5);
+    \draw (-1,-1) -- (2,0);
+    \draw (0,2) -- (2,0);
+    \draw (0,2) -- (-1,-1);
+    \draw plot [smooth cycle] coordinates {(5,2) (6,3) (7,3) (6.5,0) (4,0)};
+    \node () at (7.5,1) {$ X $};
+    \draw plot [smooth, tension = 1] coordinates {(6,2) (5,1) (5.5,0.5)};
+    \draw plot [smooth, tension = 1] coordinates {(6,2) (6.2,0.7) (5.5,0.5)};
+    \draw[->] (0.75,0.5) -- (4.75,1);
+    \node[above] () at (2.5, 0.75) {$ \sigma $};
+    \draw[->] (0.35,-0.65) to [out=-30,in=-120]  (5.35,0.45);
+    \node () at (2.5, -1.45) {$ \sigma^{(i)} $};
+  \end{tikzpicture}
+  \caption{Azione di $ \sigma $}
+  \label{fig:lez1:sigma}
+\end{figure}
 
 Per $ k = 1 $ $ \partial_1 \sigma = p_1 - p_0 $ infatti $ \sigma^{0} = \sigma \circ F_0^{\; 1} = \sigma(1) = p_1 $ e $ \sigma^{0} = \sigma \circ F_1^{\; 1} = \sigma(0) = p_0 $.\footnote{Tecnicamente si intende $ p_0 = \partial_1 \sigma^{(0)}(1) $ e $ p_1 = \partial_0 \sigma^{(1)}(1) $.}
 
-Allora definisco $ \partial_k: S_k(X) \to S_{k-1}(X) $ infatti per linearità $ \partial_k \left( \sum_g n_g g\right) = \sum_g n_g \partial_k g $.
+\underline{QUI SISTEMARE}
+Allora si definisce l'operatore bordo sul complesso delle catene $ \partial_k: S_k(X) \to S_{k-1}(X) $ estendendolo per linearità
+$ \partial_k \left( \sum_g n_g g\right) = \sum_g n_g \partial_k g $ (infatti si è definita l'azione sui generatori $ g $).
 
-Devo mostrare che $ \partial_k $ è un omomorfismo.
+Devo mostrare che $ \partial_k $ è un omomorfismo e che soddisfa $ \partial^2 = 0 $. Comincio con il fatto che è un omomorfismo.
 
 \begin{proof}
   \begin{gather*}
@@ -655,7 +710,7 @@ Quindi il complesso è costituito da:
   \end{tikzcd}
 \]
 
-Devo verificare che $ \partial_k \circ \partial_{k+1} = $. Spesso come notazione si pone $ \partial^2 = 0 $.
+Devo verificare che $ \partial_k \circ \partial_{k+1} = 0 $. Spesso come notazione si pone $ \partial^2 = 0 $.
 
 \begin{proof}
   Se $ \sigma $ è un $ k $-complesso singolare $ \sigma : \Delta_k \to X $:
@@ -666,6 +721,10 @@ Devo verificare che $ \partial_k \circ \partial_{k+1} = $. Spesso come notazione
     & = \sum_{0 \leq i < j \leq k + 1} (-)^{i+j} \sigma \circ F_j^{\; k+1} \circ F_i^{\; k} + \sum_{0 \leq j < i \leq k} (-)^{i+j} \sigma \circ F_{i+1}^{\; k+1} \circ F_j^{\; k} & =  \\
     & = 0
   \end{align*}
+  Dove nell'ultimo passaggio si sono utilizzate le identità lasciate da dimostrare come esercizio.
+  \begin{exercise}
+    Verificare che fa veramente zero.
+  \end{exercise}
 \end{proof}
 
 % \lecture{2}{4 Ottobre}{Banane}
@@ -673,31 +732,38 @@ Devo verificare che $ \partial_k \circ \partial_{k+1} = $. Spesso come notazione
 Sia $ X $ uno spazio topologico, voglio definire l'omologia singolare $ H_k(X) $, cioè il $ k $-esimo gruppo di omologia
 singolare. Costruisco il complesso $ (S_\bullet(X), \partial) $ con:
 \[
-  S_k(X) = \set{ \sum_g n_g g | g \text{ continua, } n_g \in \Z }
+  S_k(X) = \set{ \sum_g n_g g | g \text{ simplesso singolare, } n_g \in \Z }
 \]
-E $ \partial_k : S_k(X) \to S_{k-1}(X) $ applicazione di bordo con $ \partial_k(g) = \sum_{i=0}^k(-)^ig^{(1)} $ con $ g: \Delta_k \to X $, e poi lo estendo per
-linearità. Si trova che $ g^{(1)} = g \circ F_i^{\; k} $.
+E $ \partial_k : S_k(X) \to S_{k-1}(X) $ applicazione di bordo con $ \partial_k(g) = \sum_{i=0}^k(-)^ig^{(i)} $ con $ g: \Delta_k \to X $, e poi lo estendo per
+linearità su tutti gli elementi di $ S $, dove $ g^{(i)} = g \circ F_i^{\; k} $.
 
-Il lemma fondamentale è $ \partial_{k-1} \circ \partial_k = 0 $ quindi $ S_k \overset{\partial_k}{\to} S_{k-1} \overset{\partial_{k-1}}{\to} S_{k-2} $ è un complesso
-e $ \partial_k \circ \partial_{k-1} $ è la mappa dalle catene di $ S_k $ a quelle di $ S_{k-2} $.
+Siccome $ \partial_{k-1} \circ \partial_k = 0 $ si ha il complesso
+\[
+  \begin{tikzcd}
+   \dots \arrow{r}{\partial_{k+1}} & S_k(X) \arrow{r}{\partial_k} & S_{k-1}(X) \arrow{r}{\partial_{k-1}} & \dots
+  \end{tikzcd}
+\]
+Inoltre $ \partial_k \circ \partial_{k-1} $ è la mappa nulla dalle catene singolari di $ S_k(X) $
+a quelle di $ S_{k-2}(X) $.
 
-$ (S_\bullet(X), \partial) $ è un complesso di gruppi abeliani o $ \Z $- moduli liberi.
-
-Siccome vale $ \partial^2 = 0 $ posso calcolare l'omologia di $ (S_\bullet(X),\partial_\bullet) $:
+$ (S_\bullet(X), \partial) $ è un complesso di gruppi abeliani o $ \Z $-moduli liberi.
+Posso quindi calcolare l'omologia di $ (S_\bullet(X),\partial) $ come l'avevo definita
+in precedenza:
 \[
   H_k(S_\bullet(X)) = \quot{\ker{\partial_k}}{\im{\partial_{k+1}}}
 \]
-Vale che $ \ker{\partial_k} = \set{c \in S_K(X) | \partial_k(c) = 0} $, cioè le $ k $-catene con
+Vale che $ \ker{\partial_k} = \set{c \in S_k(X) | \partial_k(c) = 0} $, cioè le $ k $-catene con
 bordo nullo, questi sono chiamati $ k $-cicli.
 
 \begin{definition}
-  Sia $ S_\bullet(X) $ un complesso di moduli, gli elementi di $ \ker{\partial} $ sono detti
-  \textbf{$ k $-ciclo}, \index{$ k $-ciclo} i quali sono quindi le $ k $-catene
-  con bordo nullo.
+  Sia $ (S_\bullet(X),\partial) $ un complesso di moduli, gli elementi di $ \ker{\partial} $ sono detti
+  \textbf{$ k $-cicli}\index{$ k $-ciclo}. Un $ k $-ciclo è quindi una $ k $-catene
+  con bordo nullo:
+  \[
+    c \text{ ciclo } \Leftrightarrow \partial c = 0
+  \]
+  L'insieme dei $ k $-cicli è indicato con $ Z_k(X) $, cioè: $ Z_k(X) = \ker{\partial} $.
 \end{definition}
-
-Come notazione si pone $ Z_k(X) $ come il gruppo abeliano dei $ k $-cicli: $ Z_k(X)
-= \ker{\partial} $.
 
 Si pone invece $ B_k(X) $ come l'insieme dei bordi, cioè le $ k $-catene singolari
 che sono immagini di $ k+1 $-catene, cioè esplicitamente:
@@ -706,41 +772,45 @@ che sono immagini di $ k+1 $-catene, cioè esplicitamente:
 \]
 
 Per definizione si ha quindi che $ H_k(X) = \quot{Z_k(X)}{B_k(X)} $, cioè il gruppo
-di omotopia è formato dai cicli modulo i bordi.
+di omologia è formato dai cicli modulo i bordi.
 
-Esplicitamente gli elementi di $ H_k(X) $ sono classi di equivalenza con rappresentante:
-Sia $ [c] \in H_k(X) $ quindi vale che $ \partial c = 0 $, sia inoltre $ c_1 \in [c] $ allora
+Esplicitamente gli elementi di $ H_k(X) $ sono classi di equivalenza tali che se $ [c] \in H_k(X) $
+con $ \partial c = 0 $, e $ c_1 \in [c] $ allora
 $ c_1 - c \in B_k(X) $ e $ \partial c_1 = 0 $ quindi esiste $ b $ tale che $ c_1 - c = \partial b $.
+Cioè due elementi stanno nella stessa classe di equivalenza se differiscono per un bordo:
 
+\newmathsymb{homolog}{\sim_{hom}}{Relazione di omologia}
 \begin{definition}
   Due elementi $ a,b $ si dicono \textbf{omologhi} \index{Elementi omologhi} se differiscono per un bordo.
   \[
-    a \sim_{hom} b \Leftrightarrow \exists c \; | \; \partial_k c
+    a \sim_{hom} b \Leftrightarrow \exists c \; | \; \partial_k c = a - b
   \]
 \end{definition}
 
 \begin{osservation}
-  Vale che $  H_k(X) = 1 \Leftrightarrow B_k(X) = Z_k(X) $, cioè se ogni ciclo è un bordo. In generale si ha che $ B_k(X) \subseteq Z_k(X) $
-  e possono esserci cicli che non sono immagini di bordi.
+  Vale che $  H_k(X) = 0 \Leftrightarrow B_k(X) = Z_k(X) $, cioè se ogni ciclo è un bordo, come si è già osservato.
+  In generale si ha che $ B_k(X) \subseteq Z_k(X) $ e possono esserci cicli che non sono immagini di bordi.
 \end{osservation}
 
-Scopo del corso è studiare $ H_k(X) $.
+Scopo del corso è studiare $ H_k(X) $ e capire se si possono determinare a meno di isomorfismi.
+In alcuni casi è possibile calcolare esplicitamente tutti i gruppi di omologia (come nel caso dell'omologia
+cellulare).
 
 \begin{proposition}
   Sia $ X $ uno spazio topologico connesso per archi, allora $ H_0 \cong \Z $, cioè è uno $ \Z $-modulo libero di rango 1.
-  In effetti $ H_0(X) $ \emph{conta} le componenti connesse per archi e quindi da informazioni di natura geometrica.
+  In effetti $ H_0(X) $ \emph{conta} le componenti connesse per archi in $ X $ e quindi dà informazioni di natura geometrica.
 \end{proposition}
 
 \begin{proof}
   Dalla definizione di gruppo di omologia: $ H_0(X) = \quot{Z_0(X)}{B_0(X)} $.
   Ma $ Z_0(X) = \set{ c \in S_o(X) | \partial_0 c = 0} $ e $ S_0(X) = \set{ \sum n_i p_i | n_i \in \mathbb{N}, p_i \in X} $.
-  Tecnicamente uno $ 0 $-simplesso è una mappa $ \sigma_0 : \Delta_0 \to X $ tale che manda $ \Delta_0 = 1 $ in $ \sigma_0(1) = p_0 $ e per
-  questo è naturale l'identificazione con i punti dello spazio topologico.
+  Tecnicamente uno $ 0 $-simplesso singolare è una mappa $ \sigma_0 : \Delta_0 \to X $ tale che manda $ \Delta_0 = 1 $ in $ \sigma_0(1) = p_0 $ e per
+  questo è naturale l'identificazione con i punti immagine dello spazio topologico.
   Sia $ c \in S_0(X) $ allora $ c = \sum n_i p_i $, e vale che $ \partial_0(c) = \sum n_1 \partial_0 (p) = 0 $, infatti per definizione
-  $ \partial_0 : S_0(X) \to s_{-1}(X) $, ma $ S_{-1}(X) $ in ogni complesso è banale, cioè $ S_{-1}(X) \cong 0 $.
+  $ \partial_0 : S_0(X) \to S_{-1}(X) $, ma $ S_{-1}(X) $ in ogni complesso è banale, cioè $ S_{-1}(X) \cong 0 $.
   Quindi per ora ho che:
   \[
-    H_0(X) = \quot(S_0(X))(B_0(X))
+    H_0(X) = \quot{S_0(X)}{B_0(X)}
   \]
   Per definizione $ B_0(X) = \set{ x \in S_0(X) | \exists \alpha \in S_1(X), \partial_1(\alpha) = x} $, $ \alpha $ è una catena. Sia $ p_0 \in X $, allora
   $ q \sim_{hom} p $ se e solo se $ \exists \alpha \in S_1(X) $ tale che $ q - p_0 = \partial_1 \alpha $. Per questo motivo i punti sono tutti omologhi,
