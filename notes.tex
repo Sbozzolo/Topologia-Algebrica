@@ -150,6 +150,19 @@ Sostanzialmente la nozione di $ \R $-modulo generalizza agli anelli il concetto 
   è l'unica possibile.
 \end{proof}
 
+\newmathsymb{groupgen}{<\dots>}{Gruppo generato}
+\begin{definition}
+  Un gruppo $ \mathcal{G} $ si dice \textbf{generato}\index{Gruppo generato}
+  dai suoi elementi $ x_1, x_2, \dots \in \mathcal{G} $ se
+  ogni suo elemento si può scrivere come combinazione lineare a elementi interi di $ x_1, x_2, \dots $.
+  In questo caso si indica $ \mathcal{G} = < \{ x_1, x_2, \dots \} > $.
+\end{definition}
+
+\begin{definition}
+  Un gruppo abeliano si dice \textbf{libero}\index{$ \Z $-modulo libero} se è generato
+  da un numero finito di elementi linearmente indipendenti.
+\end{definition}
+
 \begin{definition}
   Siano $ (X, \cdot) $ e $ (Y, \star) $ due gruppi, un \textbf{omomorfismo} \index{Omomorfismo} è un'applicazione $ f $
   tra $ X $ e $ Y $ che preserva la struttura di gruppo, cioè:
@@ -321,6 +334,11 @@ degli strumenti sviluppati in questo corso servono a capire se due spazi sono om
   ogni coppia di punto $ x, y \in X $ esiste un arco che parte da $ x $ e termina in $ y $.
 \end{definition}
 
+\begin{definition}
+  Uno spazio topologico $ X $ si dice \textbf{connesso per archi} \index{Spazio connesso per archi} se $ \forall x, y \in X $ esiste
+  un arco con punto iniziale $ x $ e punto finale $ y $.
+\end{definition}
+
 \begin{proposition}
   Se $ f:X \to Y $ è una mappa continua suriettiva tra spazi topologici e se $ X $ è connesso per archi
   allora $ Y $ è connesso per archi. Questo vale in particolare se $ f $ è un omeomorfismo, cioè la
@@ -356,9 +374,9 @@ Tuttavia vale anche che $ \RN{2} \not \simeq \RN{N} $ per $ n \geq 3 $, infatti:
   $ n \geq 3 $, tolgo un punto da $ \RN{2} $, se $ f $ omeomorfismo anche la restrizione deve essere omeomorfismo, cioè
   $ \forall p \in \RN{2} \quad f:\RN{2} \setminus \set{p} \homoto \RN{N} \setminus \set{f(p)} $.
   Ma $ \RN{2} \setminus \set{p} \simeq \RN{} \times \mathcal{S}^1 $ con la mappa
-  $ \underline{x} \mapsto \left( || \underline{x} ||, \frac{\underline{x}}{|| \underline{x} ||} \right) $. In pratica
+  $ \underline{x} \mapsto \left( || \underline{x} ||, \frac{\underline{x}}{|| \underline{x} ||} \right) $ (dopo aver fatto
+  una traslazione di $ p $ nell'origine, operazione che è certamente un omeomorfismo). In pratica
   sto dicendo che il piano senza un punto è omeomorfo ad un cilindro infinito.
-  \emph{Secondo me qui bisogna fare una traslazione e portare p in zero prima di fare questa trasformazione.}
   Analogamente $ \RN{n} \setminus \set{f(p)} \simeq \RN{} \times \Sph{n-1} $. Quindi se esiste un omeomorfismo tra $ \RN{2} $ e
   $ \RN{n} $ significherebbe che $ \RN{} \times \Sph{1} \simeq \RN{} \times \Sph{n-1} $, ma quindi i gruppi fondamentali
   dovrebbero essere isomorfi:
@@ -429,6 +447,7 @@ Tuttavia si sa che:
 Anche se non so calcolare i gruppi di omotopia superiore non vorrei buttarli via\dots
 Vorrei degli invarianti algebrici per problemi topologici, come i gruppi di omotopia.
 
+Inizio defininendo l'omologia singolare, che è la più generale.
 
 \subsection{Omologia}
 
@@ -446,17 +465,18 @@ Ma cosa è l'omologia? Assocerò ad ogni spazio topologico (anche patologico) gr
 da applicazioni continue tra due spazi topologici. In tutto questo lavoro sempre con anello di base $ \Z $, che
 quindi rimane sottinteso a meno di scriverlo esplicitamente.
 
+\newmathsymb{simplexstd}{\Delta_k}{Simplesso Standard}
 \begin{definition}
-  In $ \RN{k+1} $ si definisce il \textbf{simplesso standard} $ \Delta_k $ l'insieme:
+  In $ \RN{k+1} $ si definisce il \textbf{simplesso standard}\index{Simplesso standard} $ \Delta_k $ l'insieme:
   \[
-    \Delta_k = \set{(x_1,x_2,\dots) \in \RN{k+1} | \forall i \quad 0 \leq x_i \leq 1 \text{ e } \sum_{i=1}^{k+1}x_i = 1}
+    \Delta_k = \set{(x_1,x_2,\dots) \in \RN{k+1} | \forall i \; 0 \leq x_i \leq 1 \text{ e } \sum_{i=1}^{k+1}x_i = 1}
   \]
 \end{definition}
 
 \begin{osservation} Alcuni esempi sono:
   \begin{itemize}
   \item $ \Delta_0 $ è un punto.
-  \item $ \Delta_1 $ è un segmento omeomorfo a $ [0,1] $.
+  \item $ \Delta_1 $ è un segmento, che è omeomorfo a $ [0,1] $.
     \begin{figure}[htbp]
       \centering
       \begin{tikzpicture}
@@ -469,27 +489,56 @@ quindi rimane sottinteso a meno di scriverlo esplicitamente.
       \caption{1-Simplesso standard}
       \label{fig:lez1:1_standard_simplex}
     \end{figure}
+  \item $ \Delta_2 $ è un triangolo
+  \item $ \Delta_3 $ è un tetraedro
+  \item \dots
   \end{itemize}
 \end{osservation}
+    \begin{figure}[htbp]
+      \centering
+      \begin{tikzpicture}
+        \draw (0,0) circle (0.05);
+        \node[below] () at (0,0) {$ \Delta_0 $};
+        \draw (1,0) -- (3,0);
+        \node[below] () at (2,0) {$ \Delta_1 $};
+        \draw (4,0) -- (6,0) -- (5, 1.7) -- cycle;
+        \node[below] () at (5,0) {$ \Delta_2 $};
+        \coordinate [] (A) at (9.5,1.5,0);
+        \coordinate [] (B) at (8,1.5,0);
+        \coordinate [] (C) at (9,1.5,1);
+        \coordinate [] (D) at (9,0.5,1);
+
+        \draw[-] (A)--(D)--(B)--cycle;
+        \draw[-] (A) --(D)--(C)--cycle;
+        \draw[-] (B)--(D)--(C)--cycle;
+        \node[below] () at (9,0) {$ \Delta_3 $};
+      \end{tikzpicture}
+      \caption{Simplessi standard}
+      \label{fig:lez1:standard_simplexes}
+    \end{figure}
 
 \begin{definition}
-  Dato uno spazio topologico $ X $ si definisce il \textbf{$ k $-simplesso singolare}
-  in $ X $ come un'applicazione continua $ g: \Delta_k \to X $.
+  Dato uno spazio topologico $ X $ si definisce il \textbf{$ k $-simplesso singolare}\index{$ k $-simplesso singolare}
+  in $ X $ come un'applicazione continua $ \sigma: \Delta_k \to X $.
 \end{definition}
 Spesso conviene identificare il $ k $-simplesso con la sua immagine in $ X $.
-In quesot modo uno $ 0 $-simplesso è un punto in $ X $, mentre un $ 1 $-simplesso singolare potrebbe essere sia un segmento che un punto (se la mappa è costante). Siccome
-il simplesso deforma è detto singolare.
+In quesot modo uno $ 0 $-simplesso è un punto in $ X $, mentre un $ 1 $-simplesso singolare potrebbe essere sia un segmento che un punto (se la mappa è costante).
+Siccome il simplesso potrebbe deformare è detto singolare.
 
 Voglio costruire un complesso di gruppi abeliani e definire l'omologia singolare come l'omologia di tale complesso.
 
-$ S_\cdot $ è il compesso, cioè: $ \dots \to S_{k+1}(X) \to S_k() \to S_{k-1} \to \dots \to S_0(X) $, dove
+$ S_\bullet $ è il compesso ($ S $ sta per singolare), cioè:
+\[
+  \dots \to S_{k+1}(X) \to S_k(X) \to S_{k-1}(X) \to \dots \to S_0(X)
+\]
+Dove:
 \begin{align*}
   S_k(X) ={}& \{\text{combinazioni lineari finite a coefficienti interi: } \\
          & \sum_g n_g g \;|\; n_g \in \Z, g \; k-\text{simplessi singolari di } X \}
 \end{align*}
 $ S_k(X) $ è un gruppo abeliano con l'operazione somma definita naturalmente:
 \[
-  \sum_g n_g g + \sum_h n_h =   \sum_g n_g g + \sum_g n_g^\star = \sum_g (n_g + n_g^\star)g
+  \sum_g n_g g + \sum_h n_h h =   \sum_g n_g g + \sum_g n_g^\star g = \sum_g (n_g + n_g^\star)g
 \]
 Ad esempio:
 \[
@@ -497,21 +546,22 @@ Ad esempio:
 \]
 Questa è una somma con tutte le giuste proprietà. Lo zero è la catena con tutti i coefficienti nulli,
 mentre l'inverso è la catena con i coefficienti opposti.
-Queste catene sono chiamate $ k $-\textbf{catene singolari}.
+Queste catene sono chiamate $ k $-\textbf{catene singolari}\index{$ k $-catene singolari}.
+$ S_k(X) $ è generato da tutte le possibili applicazioni continue da $ \Delta_k $ a $ X $, cioe:
+\[
+  S_k(X) = < \set{g | g \text{ $ k $-simplesso singolare in $ X $}} >
+\]
+% Le $ k $-catene singolari in qualche modo generalizzano la caratteristica di Eulero.
+% \underline{\emph{Verificare questa affermazione}}
 
-Ad esempio:
-Se $ k = 0 $ $ S_0(X) $ sono catene di punti ($ g_0 : \Delta_0 \to X $)
+Ad esempio se $ k = 0 $ allora $ S_0(X) $ sono catene di punti ($ g_0 : \Delta_0 \to X $, identifico l'applicazione
+con il punto in $ X $ sapendo che l'immagine di un punto è un punto)
 \[
   S_0(X) = \set { \sum n_i p_i | n_i \in \Z, \; p_i \in X}
 \]
 Ora devo introdurre le applicazioni tra i vari $ S_k $, queste applicazioni saranno il bordo.
 
 Definisco $ h: \Delta_1 \to X $ in modo tale che $ h(\Delta) = \alpha $ dove $ \alpha $ è un \textbf{arco}.
-
-\begin{definition}
-  Uno spazio topologico $ X $ si dice \textbf{connesso per archi} \index{Spazio connesso per archi} se $ \forall x, y \in X $ esiste
-  un arco con punto iniziale $ x $ e punto finale $ y $.
-\end{definition}
 
 \begin{figure}[htbp]
   \centering
@@ -530,7 +580,9 @@ Definisco $ h: \Delta_1 \to X $ in modo tale che $ h(\Delta) = \alpha $ dove $ \
   \label{fig:lez1:1_standard_simplex_with_arc}
 \end{figure}
 
-Posso ottenere una $ 0 $-catena prendendo i punti estremi dell'arco.
+Posso ottenere una $ 0 $-catena prendendo i punti estremi dell'arco, infatti il bordo di un $ 1 $-simplesso
+è uno $ 0 $-simplesso. L'idea è quindi ottenere simplessi di ordine più piccolo prendendo il
+bordo dei simplessi.
 
 \begin{definition}
   Sia $ \Delta_k $ un $ k $-simplesso standard con $ k \geq 0 $ si definisce l'operatore \textbf{faccia} come

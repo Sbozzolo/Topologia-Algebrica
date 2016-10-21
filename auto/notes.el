@@ -46,6 +46,7 @@
     "incl")
    (LaTeX-add-labels
     "fig:lez1:1_standard_simplex"
+    "fig:lez1:standard_simplexes"
     "fig:lez1:1_standard_simplex_with_arc"
     "fig:lez1:standard_simplex_faces"
     "fig:lez3:homotopy"
@@ -66,6 +67,8 @@
     "Anello commutativo"
     "Campo"
     "$ \\R $-modulo"
+    "Gruppo generato"
+    "$ \\Z $-modulo libero"
     "Omomorfismo"
     "Nucleo"
     "Immagine"
@@ -87,6 +90,9 @@
     "Gruppo fondamentale"
     "Gruppi di omotopia superiore"
     "Inclusione"
+    "Simplesso standard"
+    "$ k $-simplesso singolare"
+    "$ k $-catene singolari"
     "$ k $-ciclo"
     "Elementi omologhi"
     "Grado"
