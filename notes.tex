@@ -86,6 +86,12 @@
 
 % \lecture{1}{29 Settembre}{General introduction. Homology of a complex. Singular homology.}
 
+%  _     _____ ________ ___  _   _ _____   _
+% | |   | ____|__  /_ _/ _ \| \ | | ____| / |
+% | |   |  _|   / / | | | | |  \| |  _|   | |
+% | |___| |___ / /_ | | |_| | |\  | |___  | |
+% |_____|_____/____|___\___/|_| \_|_____| |_|
+
 \chapter{Omotopia Singolare}
 
 \section{Introduzione}
@@ -142,8 +148,8 @@ Sostanzialmente la nozione di $ \R $-modulo generalizza agli anelli il concetto 
        \underbrace{ - x - x - x - \dots}_{|n| \text{ volte}} & \text{se } n < 0 \\
     \end{cases}
   \]
-  Si verfica banalmente che questa operazione è ben definita e soddisfta
-  le giuste proprietà perchè la coppia $ (\mathcal{G}, \Z) $ sia uno $ \Z $-modulo.
+  Si verifica banalmente che questa operazione è ben definita e soddisfa
+  le giuste proprietà perché la coppia $ (\mathcal{G}, \Z) $ sia uno $ \Z $-modulo.
   A questo punto non è possibile costruire applicazioni diverse che soddisfino le
   proprietà richieste infatti utilizzando la struttura di anello di $ \Z $:
   $ n x = (1 + 1 + 1 + 1 + \dots) x = x + x + x \dots $, quindi quella definita
@@ -251,7 +257,7 @@ Nel primo caso si dice che la successione dei moduli $ \M $ e delle
 applicazioni $ \phi $ è \textbf{esatta}\index{Complesso di moduli esatto} in $ \M_2$, nel secondo caso la
 successione è detta \textbf{complesso di moduli}\index{Complesso di moduli}.
 
-Sostanzialmente il modulo quoziente quantifica la non esattazza nel punto $ \M_2 $
+Sostanzialmente il modulo quoziente quantifica la non esattezza nel punto $ \M_2 $
 della successione.
 
 \begin{definition}
@@ -375,7 +381,7 @@ Tuttavia vale anche che $ \RN{2} \not \simeq \RN{N} $ per $ n \geq 3 $, infatti:
   $ n \geq 3 $, tolgo un punto da $ \RN{2} $, se $ f $ omeomorfismo anche la restrizione deve essere omeomorfismo, cioè
   $ \forall p \in \RN{2} \quad f:\RN{2} \setminus \set{p} \homoto \RN{N} \setminus \set{f(p)} $.
   Ma $ \RN{2} \setminus \set{p} \simeq \RN{} \times \mathcal{S}^1 $ con la mappa
-  $ \underline{x} \mapsto \left( || \underline{x} ||, \frac{\underline{x}}{|| \underline{x} ||} \right) $ (dopo aver fatto
+  $ \vec{x} \mapsto \left( || \vec{x} ||, \frac{\vec{x}}{|| \vec{x} ||} \right) $ (dopo aver fatto
   una traslazione di $ p $ nell'origine, operazione che è certamente un omeomorfismo). In pratica
   sto dicendo che il piano senza un punto è omeomorfo ad un cilindro infinito.
   Analogamente $ \RN{n} \setminus \set{f(p)} \simeq \RN{} \times \Sph{n-1} $. Quindi se esiste un omeomorfismo tra $ \RN{2} $ e
@@ -416,7 +422,7 @@ Ora voglio mostrare per assurdo che non esiste omomorfismo tra $ \RN{3} $ e $ \R
   Come nel caso precedente suppongo esiste $ f $ omeomorfismo tra $ \RN{3} $ a $ \RN{n} $,
   tolgo $ q $ da $ \RN{3} $ e $ f(q) $ da $ \RN{n} $, quindi ottengo
   l'omomorfismo tra $ \RN{} \times \Sph{2} \simeq \RN{} \times \Sph{n-1} $, ma i gruppi fondamentali
-  associati sono banali, quindi sono isomorfi, e non è posisbile replicare il ragionamento utilizzato sopra.
+  associati sono banali, quindi sono isomorfi, e non è possibile replicare il ragionamento utilizzato sopra.
 \end{proof}
 
 Poincaré introdusse i gruppi di omotopia superiore.
@@ -448,7 +454,7 @@ Tuttavia si sa che:
 Anche se non so calcolare i gruppi di omotopia superiore non vorrei buttarli via\dots
 Vorrei degli invarianti algebrici per problemi topologici, come i gruppi di omotopia.
 
-Inizio defininendo l'omologia singolare, che è la più generale.
+Inizio definendo l'omologia singolare, che è la più generale.
 
 \subsection{Omologia}
 
@@ -1134,8 +1140,152 @@ Usando il seguente risultato:
   \[
     \partial K = K^{(0)} - K^{(1)} + K^{(2)}
   \]
-  ma questi sono uguali perché sono costanti.
+  ma questi sono uguali perché sono costanti, quindi $ \partial K = K^{(2)} = k $, cioè $ k $
+  è un bordo, quindi:
+  \[
+    \partial F' = \partial K - F'^{(1)} + F'^{(2)} \Rightarrow \partial F' - \partial K = f - g \Rightarrow \partial(F' - K) = f - g
+  \]
+  $ F' - K $ è $ 2 $-simplesso singolare, lo chiamo $ \sigma $: $ \partial \sigma = f - g $.
+  $ f $ e $ g $ sono omologhi e $ \sigma $ è il $ 2 $-simplesso singolare che realizza
+  l'omologia.
 \end{proof}
+Se $ X $ è uno spazio topologico connesso per archi sono in grado di costruire
+\[
+  \begin{aligned}[t]
+    \phi:  \pi_1(X) & \to H_!(X) \\
+    [f]_H & \mapsto [f]_{hom}
+  \end{aligned}
+\]
+Nel far ciò non ho utilizzato l'ipotesi di connessione per archi.
+Ora voglio costruire $ \phi': \Ab{\pi_1(X)} \to H_1(X) $ e lo faccio ancora
+senza l'ipotesi di connessione per archi. Mostro che $ \phi' $ è omomorfismo,
+per far ciò basta che mostro che $ \phi $ lo è.
+\begin{proof}
+  Siano $ [f]_H, [g]_H \in \pi_1(X) $ voglio fare vedere che:
+  \[
+    \phi ( [f]_H [g]_h) = \phi([f]_H) + \phi([g]_H)
+  \]
+  Questo è verso se e solo se:
+  \[
+    \phi([f \star g]_H) = [f]_{hom} + [g]_{hom}
+  \]
+  Che è vera se e solo se:
+  \[
+    [f \star g]_{hom} = [f + g]_{hom}
+  \]
+  Questo è vero se e solo se i due rappresentati sono equivalenti:
+  \[
+    \exists T: \Delta_2 \to X \text{ $ 2 $-simplesso singolare tale che } \partial T = f + g - f \star g
+  \]
+  [FIGURA, ROBA]
+  % QUI MANCA!
+\end{proof}
+
+Al momento la situazione è che ho $ \phi: H_1(X,xo) \to H_1(X) $ omomorfismo di
+gruppi ben definito anche con $ X $ non necessariamente connesso per archi,
+e dato che $ H_1(X) $ è abeliano ho $ \phi': \Ab{\pi_1(X)} \to H_1(X) $.
+
+\begin{proposition}
+  Se $ X $ è connesso per archi allora la mappa $ \phi':\Ab{\pi_1(X)} \to H_1(X) $
+  è un isomorfismo.
+\end{proposition}
+\begin{proof}
+  \emph{Sketch of proof, la dimostrazione completa è piuttosto noiosa}.
+  [QUI MANCA COMPLETAMENTE QUESTO PEZZO!!!]
+\end{proof}
+%  _     _____ ________ ___  _   _ _____   _____
+% | |   | ____|__  /_ _/ _ \| \ | | ____| |___  |
+% | |   |  _|   / / | | | | |  \| |  _|      / /
+% | |___| |___ / /_ | | |_| | |\  | |___    / /
+% |_____|_____/____|___\___/|_| \_|_____|  /_/
+
+Considero $ \Sph{n} $ con $ n \geq 1 $, ho trovato che:
+\[
+  H_k(\Sph{n}) \cong
+  \begin{cases}
+    \Z & \text{se } k \in \set{0, n} \\
+    0 & \text{se } k \not \in \set{0, n}
+  \end{cases}
+\]
+Questo risultato ha numerose conseguenze, infatti ho trovato uno
+strumento più fine del gruppo fondamentale che riesce a distinguere
+cose diverse.
+
+\begin{corollary}
+  $ \Sph{n} \simeq \Sph{m} $ se e solo se $ n = m $.
+\end{corollary}
+\begin{proof}
+Se $ n = m $ vale che $ \Sph{n} = \Sph{m} $ quindi in particolare
+$ \Sph{n} \simeq \Sph{m} $ con la mappa identità. Assumo $ n \not = m $
+e senza perdita di generalità pongo $ n > m $.
+
+Per assurdo $ \Sph{n} \simeq \Sph{m} $, quindi esiste un omomorfismo
+$ F: \Sph{n} \homoto \Sph{m} $, quindi esiste anche l'omomorfismo
+inverso $ G: \Sph{m} \homoto \Sph{n} $.
+Quindi esistono anche:
+\[
+  F_\star: H_k{\Sph{n}} \to H_k(\Sph{m}) \quad \text{e} \quad G_\star: H_k{\Sph{m}} \to H_k(\Sph{n})
+\]
+Ma $ F \circ G = \Id{\Sph{n}} $ e $ G \circ F = \Id{\Sph{m}} $, ma utilizzando
+la funtorialità si trova quindi che:
+\[
+  F_\star \circ G_\star = \Id{H_k(\Sph{m})} \quad \text{e} \quad G_\star \circ F_\star = \Id{H_k(\Sph{n})}
+\]
+Da cui si deduce che $ F_\star $ e $ G_\star $ sono continue e sono inverse.
+Vale quindi che:
+\[
+  H_k(\Sph{n}) \cong H_k(\Sph{m}) \; \forall k \geq 0
+\]
+Se vale per ogni $ k $ in particolare vale per $ k = n $, cioè:
+\[
+  H_n(\Sph{n}) = H_n(\Sph{m})
+\]
+Ma $ H_n(\Sph{n}) \cong \Z $ e $ H_n(\Sph{m}) \cong 0 $ da cui $ \Z \cong 0 $, che è assurdo.
+\end{proof}
+
+\begin{corollary}[Invarianza topologica della dimensione]
+  $ \RN{n} \simeq \RN{m} $ se e solo se $ n = m $.
+\end{corollary}
+Come si è visto non si riesce a dimostrare questo corollario
+utilizzano solo il gruppo fondamentale.
+\begin{proof}
+  Per assurdo esiste un omomorfismo $ f \colon \RN{n} \homoto \RN{m} $ con $ n > m > 2 $.
+  Con i vincolo imposti su $ m $ e $ n $ gli spazi sono contraibili, quindi il gruppo
+  fondamentale è in entrambi i casi banale. Togliendo un punto $ p \in \RN{n} $ e
+  $ f(p) \in \RN{m} $, e restringendo $ f $ in modo da ottenere l'omomorfismo
+  $ f' \colon \RN{n} \setminus \set{p} \homoto \RN{m} \setminus \set{f(p)} $.
+  Si sa inoltre che per $ s \geq 2 $ vale che $ \RN{s} \setminus \set{q} \simeq \Sph{s-1} \times \RN{} $,
+  infatti è sufficiente mandare a $ 0 $ il punto $ q $ con una traslazione
+  (che è certamente un omomorfismo) e quindi si ha:
+  \[
+    \begin{aligned}[t]
+      \RN{k} \setminus \set{q} & \to  \Sph{k-1} \times {\RN{}}^+ & \simeq \Sph{k-1} \times \RN{} \\
+      \vec{x} & \mapsto \left( \vec{x}, \frac{\vec{x}}{|| \vec{x} ||} \right) &
+    \end{aligned}
+  \]
+  Quindi:
+  \[
+    \RN{n} \setminus \set{p} \simeq \RN{m} \setminus \set{f(p)} \iff \Sph{n-1} \times \RN{} \simeq \Sph{m-1} \times \RN{}
+  \]
+  Si ha la tentazione di eliminare $ \RN{} $ dalla precedente relazione, ma
+  questo non si può fare come mostrano alcuni casi molto patologici.
+  Tuttavia è possibile passare alla omotopia sapendo che $ \Sph{k} \times \RN{} \sim \Sph{k} $,
+  da cui $ \Sph{n-1} \sim \Sph{m-1} $. Ma l'omologia è invariante omotopico, cioè
+  $ H_k(\Sph{n-1}) \cong H_k(\Sph{m-1}) $, utilizzando il trucco di prima scelgo $ k = n-1 $
+  e quindi:
+  \[
+    H_{n-1}(\Sph{n-1}) \cong H_{n-1}(\Sph{m-1}) \iff \Z \cong 0
+  \]
+  Che è assurdo.
+\end{proof}
+
+
+% TODO:
+% 1. Correggere i : con \colon (CAMBIA QUALCOSA? INFORMARSI!)
+% 2. Correggere i \Leftrightarrow con \iff
+% 3. Correggere < e > dei gruppi generati con \langle\rangle
+% 4. Aggiungere i figlet delle lezioni
+% 5. Aggiungere i simboli usati con \newmathsymb{nome}{simbolo}{Nome che appare}
 
 \printindex
 
