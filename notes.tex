@@ -43,6 +43,7 @@
 \newcommand{\RN}[1][]{\mathbb{R}^#1}
 \newcommand{\Id}[1][]{\mathbb{I}_#1}
 \newcommand{\Sph}[1][]{\mathcal{S}^#1}
+\newcommand{\Disk}[1][]{\mathcal{D}^#1}
 \newcommand{\homoto}{\xrightarrow{\,\smash{\raisebox{-0.65ex}{\ensuremath{\scriptstyle\sim}}}\,}}
 \newcommand{\Ab}[1]{\mathrm{Ab}( #1 )}
 \newcommand{\incl}{\xhookrightarrow{}}
@@ -82,6 +83,8 @@
 \end{titlepage}
 
 \tableofcontents
+\newmathsymb{N}{\mathbb{N}}{Numeri naturali}
+\newmathsymb{Z}{\mathbb{Z}}{Numeri interi}
 \printsymblist
 
 % \lecture{1}{29 Settembre}{General introduction. Homology of a complex. Singular homology.}
@@ -92,7 +95,7 @@
 % | |___| |___ / /_ | | |_| | |\  | |___  | |
 % |_____|_____/____|___\___/|_| \_|_____| |_|
 
-\chapter{Omotopia Singolare}
+\chapter{Omologia Singolare}
 
 \section{Introduzione}
 
@@ -472,7 +475,7 @@ Ma cosa è l'omologia? Assocerò ad ogni spazio topologico (anche patologico) gr
 da applicazioni continue tra due spazi topologici. In tutto questo lavoro sempre con anello di base $ \Z $, che
 quindi rimane sottinteso a meno di scriverlo esplicitamente.
 
-\newmathsymb{simplexstd}{\Delta_k}{Simplesso Standard}
+\newmathsymb{simplexstd}{\Delta_k}{Simplesso standard}
 \begin{definition}
   In $ \RN{k+1} $ si definisce il \textbf{simplesso standard}\index{Simplesso standard} $ \Delta_k $ l'insieme:
   \[
@@ -1199,6 +1202,8 @@ e dato che $ H_1(X) $ è abeliano ho $ \phi': \Ab{\pi_1(X)} \to H_1(X) $.
 % | |___| |___ / /_ | | |_| | |\  | |___    / /
 % |_____|_____/____|___\___/|_| \_|_____|  /_/
 
+\section{Omologia delle sfere}
+
 Considero $ \Sph{n} $ con $ n \geq 1 $, ho trovato che:
 \[
   H_k(\Sph{n}) \cong
@@ -1279,6 +1284,117 @@ utilizzano solo il gruppo fondamentale.
   Che è assurdo.
 \end{proof}
 
+\begin{corollary}
+  $ \Sph{n-1} $ non è un retratto di deformazione di $ \Disk{n} $ per $ n \geq 2 $
+\end{corollary}
+\begin{proof}
+  Si ricorda che:
+  \[
+    \Disk{n} = \set{ \vec{x} \in \RN{n} | || \vec{x} || \leq 1} \quad \Sph{n-1} = \partial \Disk{n} = \set{ \vec{x} \in \RN{n} | || \vec{x} || = 1}
+  \]
+  Chiaramente esiste $ i \colon \Sph{n-1} \incl \Disk{n} $.
+  \begin{definition}
+    Uno spazio topologico $ Y $ si dice \textbf{retratto di deformazione}\index{Retratto di deformazione} di un altro
+    spazio topologico $ X $ tale che $ Y \incl X $ se esiste una funzione continua $ r\colon X \to Y $ che inverte a meno di omotopia
+    la mappa di inclusione $ i\colon Y \to X $, cioè tale che soddisfa:
+    \begin{enumerate}
+    \item $ r\colon X \to Y $ continua
+    \item $ i \circ r \sim \Id{X} $
+    \item $ r \circ i = \Id{Y} $
+    \end{enumerate}
+    Una mappa che soddisfa queste condizioni è detta \textbf{retrazione}\index{Retrazione}.
+  \end{definition}
+  Suppongo per assurdo che $ \Sph{n-1} $ è un retratto di deformazione di $ \Disk{n} $, cioè che
+  esiste una retrazione $ r $. Passando all'omologia:
+  \begin{gather*}
+    i_\star \colon H_k(\Sph{n-1}) \to H_k(\Disk{n}) \\
+    r_\star \colon H_k(\Disk{n}) \to H_k(\Sph{n-1}) \\
+    \left( i \circ r \right)_\star = (\Id{\Disk{n}})_\star \text{ e }  \left( r \circ i \right)_\star = (\Id{\Sph{n-1}})_\star
+  \end{gather*}
+  Quindi:
+  \[
+    i_\star \circ r_\star = \Id{H_k(\Disk{n})} \text{ e } r_\star \circ i_\star = \Id{H_k(\Sph{n-1})} \; \forall k \in \mathbb{N}
+  \]
+  In particolare considero $ k = n - 1 $:
+  \begin{gather*}
+    i_\star \colon H_n-1(\Sph{n-1}) \to H_n-1(\Disk{n}) \\
+    r_\star \colon H_n-1(\Disk{n}) \to H_n-1(\Sph{n-1})
+  \end{gather*}
+  Cioè: $ i_\star \colon \Z \to 0 $. Considero un generatore $ \alpha $ di $ H_{n-1}(\Sph{n-1}) \cong \Z $, cioè tale
+  che $ \langle\alpha\rangle = H_{n-1}(\Sph{n-1}) $ allora $ i_\star(\alpha) = 0 $ quindi $ r_\star \circ i_\star = 0 $, ma
+  $ \left( r \circ i \right)_\star = \Id{\Sph{n-1}_\star} $ quindi significherebbe $ \Id{\Sph{n-1}_\star}(\alpha) = 0 $,
+  cioè che $ \alpha = 0 $, che è assurdo perché $ \Z \not = \langle0\rangle $.
+\end{proof}
+
+\begin{theorem}[Teorema del punto fisso di Brouwer\index{Teorema del punto fisso}]
+  Ogni funzione continua $ g \colon \Disk{n} \to \Disk{n} $ con $ n \geq 2 $ ammette almeno un punto fisso
+  in $ \Disk{n} $, cioè:
+  \[
+    \exists \vec{x_o} \in \Disk{n} \; | \; g(\vec{x_0}) = \vec{x_0}
+  \]
+\end{theorem}
+
+\begin{proof}
+  Per assurdo $ g $ non ammette punto fisso cioè esisto $ \vec{x} \in \Disk{n} $
+  tale che $ g(\vec{x}) \not = \vec{x} $. Sicuramente tuttavia $ g(\vec{x}) \in \Disk{n} $.
+  Considero la retta $ l $ passante per $ \vec{x} $ e $ g(\vec{x}) $. Questa retta
+  interseca il bordo di $ \Disk{n} $ in due punti $ \set{p_1, p_2} $:
+  \[
+    l \cap \partial \Disk{n} = l \cap \Sph{n-1} = \set{p_1, p_2}
+  \]
+  Definisco la mappa $ r \colon \Disk{n} \to \partial \Disk{n} = \Sph{n-1} $ tale che associ
+  ad ogni punto del disco il punto di intersezione della retta $ l_{\vec{x}} $ che gli sta più
+  vicino (infatti in $ \RN{n} $ è ben definita una nozione di distanza). La retta $ l_{\vec{x}} $
+  è ben definita in quanto per due punti distinti (e per ipotesi  $ g(\vec{x}) \not = \vec{x} $)
+  passa una e una sola retta.
+  \begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+      \draw (0,0) circle (2);
+      \draw[-Latex] (-2.5, 0) -- (2.5,0);
+      \draw[-Latex] (0, -2.5) -- (0, 2.5);
+      \draw (-2, -2.33) -- (2, 3);
+      \node[below, right] () at (0.5, 1) {$ g(\vec{x}) $};
+      \node[] () at (0.5, 1) {\textbullet};
+      \node[above] () at (-1, -1) {$ \vec{x} $};
+      \node[] () at (-1, -1) {\textbullet};
+      \node[left] () at (2, 3) {$ l $};
+      \node[below, left] () at (-1.35, -1.47) {$ p_1 $};
+      \node[] () at  (-1.35, -1.47) {\textbullet};
+      \node[above, right] () at (1.04, 1.71) {$ p_2 $};
+      \node[] () at  (1.04, 1.70) {\textbullet};
+    \end{tikzpicture}
+    \caption{Schema per $ n = 2 $}
+    \label{fig:lez7:brouwer_proof_1}
+  \end{figure}
+  \begin{exercise}
+    Dimostrare che $ r $ è continua.
+  \end{exercise}
+  Ho una mappa di inclusione naturale:
+  \[
+    \begin{aligned}[t]
+      i \colon &\Sph{n-1} & \to &\Disk{n} \\
+      &\vec{x} & \mapsto& \vec{x}
+    \end{aligned}
+  \]
+  Se dimostro che $ r $ è una retrazione trovo un assurdo per il corollario
+  precedentemente dimostrato.
+  Devo verificare $ r \circ i = \Id{\Sph{n-1}} $ e $ i \circ r \sim \Id{\Disk{n}} $.
+  La prima uguaglianza è certamente vera perché se $ \vec{x} \in \partial \Disk{n} $
+  allora l'intersezione del bordo del disco che gli sta più vicina corrisponde a
+  $ \vec{x} $ stesso.
+  Costruisco esplicitamente una relazione di omotopia per mostrare la seconda:
+  Siccome $ \Disk{n} $ è convesso è ben definita $ G(t, \vec{x}) = (1-t)\vec{x}
+  + t r(\vec{x}) $ con $ t \in [0,1] $. Questa è una buona omotopia in quanto $ \forall t, \vec{x} $:
+  \begin{itemize}
+    \item $ G $ è continua
+    \item $ G(t, \vec{x}) \in \Disk{n} $
+    \item $ G(0, \vec{X}) = \vec{x} $
+    \item $ G(1, \vec{X}) = r(\vec{x}) $
+  \end{itemize}
+  Quindi $ r $ è retrazione ma questo è assurdo.
+\end{proof}
+
 
 % TODO:
 % 1. Correggere i : con \colon (CAMBIA QUALCOSA? INFORMARSI!)
@@ -1286,6 +1402,7 @@ utilizzano solo il gruppo fondamentale.
 % 3. Correggere < e > dei gruppi generati con \langle\rangle
 % 4. Aggiungere i figlet delle lezioni
 % 5. Aggiungere i simboli usati con \newmathsymb{nome}{simbolo}{Nome che appare}
+% 6. Sistemare le mappe (tipo questa sopra), non ho ancora capito come scriverle bene
 
 \printindex
 

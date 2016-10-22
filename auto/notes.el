@@ -31,6 +31,7 @@
     "textcomp"
     "fontenc")
    (TeX-add-symbols
+    '("Disk" ["argument"] 0)
     '("Sph" ["argument"] 0)
     '("Id" ["argument"] 0)
     '("RN" ["argument"] 0)
@@ -52,7 +53,8 @@
     "fig:lez1:sigma"
     "fig:lez3:homotopy"
     "fig:lez3:clifford_torus"
-    "fig:lez3:torus_generators")
+    "fig:lez3:torus_generators"
+    "fig:lez7:brouwer_proof_1")
    (LaTeX-add-environments
     "theorem"
     "lemma"
@@ -112,7 +114,10 @@
     "Spazio contraibile"
     "Semplicemente connesso"
     "Teorema di Seifert–van Kampen"
-    "Genere")
+    "Genere"
+    "Retratto di deformazione"
+    "Retrazione"
+    "Teorema del punto fisso")
    (LaTeX-add-counters
     "exercises"))
  :latex)
