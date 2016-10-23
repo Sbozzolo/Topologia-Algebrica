@@ -20,6 +20,8 @@
 \usepackage{array}
 \usepackage{textcomp}
 \usepackage[T1]{fontenc}
+\usepackage{stmaryrd}
+\usepackage{subcaption}
 
 \input{titlepage}
 
@@ -1194,8 +1196,88 @@ e dato che $ H_1(X) $ è abeliano ho $ \phi': \Ab{\pi_1(X)} \to H_1(X) $.
 \end{proposition}
 \begin{proof}
   \emph{Sketch of proof, la dimostrazione completa è piuttosto noiosa}.
-  [QUI MANCA COMPLETAMENTE QUESTO PEZZO!!!]
+  Per dimostrare che $ \phi' $ è isomorfismo o dimostro che è iniettiva e suriettiva
+  o che ammette un inverso. Procedo con la seconda possibilità: mostro che
+  $ \exists \psi \colon H_1(X) \to \Ab{\pi_1(X)} $ tale che $ \psi $ è inverso di $ \phi' $.
+  Considero un arco $ f \colon \Delta_1 \to X $ con $ f(0), f(1) \in X $.
+  \begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+      \draw (0,-0.75) rectangle (5.25,3);
+      \node[right] () at (5.5,1.5) {$ X $};
+      \node[above] () at (1,1) {$ x_0 $};
+      \node[] () at (1,1) {\textbullet};
+      \node[above] () at (2,2) {$ f(0) $};
+      \node[] () at (2,2) {\textbullet};
+      \node[above, right] () at (4,1) {$ f(1) $};
+      \node[] () at (4,1) {\textbullet};
+      \draw[-Latex] (1,1) to [out=-30,in=-50] (2,2);
+      \node[right] () at (2,1.6) {$ \lambda_{f(0)} $};
+      \draw[Latex-] (1,1) to [out=-60,in=-90] (4,1);
+      \node[right] () at (3.9,0.5) {$ \bar{\lambda}_{f(1)} $};
+      \draw[-Latex] (2,2) to [out=-30,in=90] (4,1);
+    \end{tikzpicture}
+    \caption{Dimostrazione della proposizione}
+    \label{fig:lez3:sketch_of_proof}
+  \end{figure}
+  Siccome lo spazio è connesso per archi esiste un cammino da $ x_0 $ a $ f(0) $, cioè
+  una funzione $ \lambda_{f(0)} \colon I \to X $ tale che $ \lambda_{f(0)} = x_0 $ e $ \lambda_{f(1)} = f(0) $.
+  Lo stesso vale per $ x_0 $ e $ f(1) $. Questi archi sono orientati partendo da $ x_0 $, posso
+  considerare il cammino con verso opposto $ \bar{\lambda}_{f(1)} $ e quindi costruire il laccio
+  di base $ x_0 $: $ \lambda_{f(0)} \star f \star \bar{\lambda}_{f(1)} =: \tilde{f} $. Vale che $ \psi(f) = \llbracket \tilde{f} \rrbracket $.
+  Bisogna mostrare che:
+  \begin{enumerate}
+  \item $ \psi $ è ben definito, cioè se $ f \sim g $ allora $ \psi(f) = \psi(g) $ e che $ \psi $
+    non dipende dalla scelta del cammino.
+  \item $ \psi $ è omomorfismo di gruppi
+  \item $ \phi' \circ \psi = \Id{H_1(X)} $
+  \item $ \psi \circ \phi' = \Id{\Ab{\pi_1(X)}} $
+  \end{enumerate}
+  \emph{Lo studente interessato può verificare queste asserzioni.}
+  \begin{exercise}
+    Verificarli.
+  \end{exercise}
+  Una volta verificati si trova quindi che $ H_1(X) \cong \Ab{\pi_1(X)} $.
 \end{proof}
+Alcuni esempi:
+\begin{itemize}
+\item $ H_1(V_g) \cong \Z^{2g} $ con $ g \geq 0 $
+\item $ H_1(\bigvee_{i=1}^{k}\Sph{1}) \cong \Z^k $ con $ \bigvee_{i=1}^{k}\Sph{1} $ bouquet, cioè $ k $ circonferenze incollate in un punto.
+\item $ H_1(\RN{3} \setminus \Sph{1}) \cong \Z $ (è un toro tappato)
+\item $ H_1(U_1) \cong \Z_2 $ dove $ U_1 $ è il piano proiettivo reale $ \mathbb{P}^2(\RN{}) = \quot{\RN{3} \setminus \set{0}}{\sim} $
+  con $ \vec{x} \sim \vec{y} $ se $ \vec{x} = a \vec{y} $ con $ a \in \RN{} $
+\item $ H_1(U_2) \cong \Z \oplus \Z_2 $ dove $ U_2 $ è la bottiglia di Klein.
+  Infatti $ \pi_1(U_2) ] \set{a, b | aba^{-1}b^{-1} = 1} $ per ableliannizzarlo bisogna
+  porre $ aba^{-1}b = 1 $ e $ aba^{-1}b^{-1} = 1 $ cioè $ b^2 = 1 $ e $ a $ libero:
+  $ \Ab{\pi_1(U_2)} = \set{\underset{\Z}{a}, \underset{\Z_2}{b} |  aba^{-1}b = 1 } $
+  \begin{figure}
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \def\svgwidth{0.26\textwidth}
+      \input{images/Klein_bottle.pdf_tex}
+      \caption{Bottiglia di Klein}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \draw (0,0) rectangle (3,3);
+        \draw[-Latex] (0,0) -- (0,1.5);
+        \draw[-Latex] (0,3) -- (1.5,3);
+        \draw[-Latex] (3,0) -- (3,1.5);
+        \draw[-Latex] (3,0) -- (1.5,0);
+        \node[left] () at (0,1.5) {$ a $};
+        \node[above] () at (1.5,3) {$ b $};
+        \node[right] () at (3,1.5) {$ a $};
+        \node[below] () at (1.5,0) {$ b $};
+      \end{tikzpicture}
+      \caption{Bottiglia di Klein, si nota che rispetto al toro di Clifford c'è
+      una torsione nella $ a $ di destra}
+    \end{subfigure}
+    \caption{Bottiglia di Klein}
+    \label{fig:lez3:klein_bottle}
+  \end{figure}.
+\end{itemize}
 %  _     _____ ________ ___  _   _ _____   _____
 % | |   | ____|__  /_ _/ _ \| \ | | ____| |___  |
 % | |   |  _|   / / | | | | |  \| |  _|      / /

@@ -10,6 +10,7 @@
     "titlepage"
     "listofsymb"
     "images/torus_generators"
+    "images/Klein_bottle"
     "scrbook"
     "scrbook10"
     "amsmath"
@@ -29,7 +30,9 @@
     "supertabular"
     "array"
     "textcomp"
-    "fontenc")
+    "fontenc"
+    "stmaryrd"
+    "subcaption")
    (TeX-add-symbols
     '("Disk" ["argument"] 0)
     '("Sph" ["argument"] 0)
@@ -44,7 +47,8 @@
     "N"
     "Z"
     "homoto"
-    "incl")
+    "incl"
+    "svgwidth")
    (LaTeX-add-labels
     "fig:lez1:1_standard_simplex"
     "fig:lez1:standard_simplexes"
@@ -54,6 +58,8 @@
     "fig:lez3:homotopy"
     "fig:lez3:clifford_torus"
     "fig:lez3:torus_generators"
+    "fig:lez3:sketch_of_proof"
+    "fig:lez3:klein_bottle"
     "fig:lez7:brouwer_proof_1")
    (LaTeX-add-environments
     "theorem"
