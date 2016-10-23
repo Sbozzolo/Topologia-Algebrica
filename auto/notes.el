@@ -117,7 +117,8 @@
     "Genere"
     "Retratto di deformazione"
     "Retrazione"
-    "Teorema del punto fisso")
+    "Teorema del punto fisso"
+    "Grado di una sfera")
    (LaTeX-add-counters
     "exercises"))
  :latex)

@@ -1395,9 +1395,71 @@ utilizzano solo il gruppo fondamentale.
   Quindi $ r $ è retrazione ma questo è assurdo.
 \end{proof}
 
+\subsection{Teoria del grado}
+
+Considero $ H_n(\Sph{m}) $, so che $ H_n(\Sph{m}) \cong \Z $, cioè esiste una mappa
+$ f \colon \Z \to H_n(\Sph{m}) $ tale che $ f(1) = \alpha $ con $ \alpha $ $ n $-ciclo
+che non è un bordo. In questo modo $ H_n(\Sph{m}) = \langle\alpha\rangle $.
+Considero $ \phi \colon \Sph{n} \to \Sph{n} $ continua con $ n \geq 1 $, so che esiste
+$ \phi_\star \colon H_n(\Sph{n}) \to H_n(\Sph{n}) $. Per $ n = 0 $ $ \phi_\star $ manda punti
+in punti, per $ n \geq 1 $: sia $ c \in H_n(\Sph{n}) $ allora $ c = p \alpha $ con $ p \in \Z $:
+\[
+  \phi_\star (c) = \phi_\star (p \alpha) = \phi_\star (\underbrace{\alpha + \alpha + \alpha + \dots}_{|p| volte}) =
+  \underbrace{\phi_\star (\alpha) + \phi_\star (\alpha) + \dots}_{|p| volte} = p \phi_\star(\alpha)
+\]
+Ma $ \phi_\star(\alpha) \in H_n(\Sph{n}) $ quindi si deve poter scrivere come multiplo di $ \alpha $:
+$ \phi_\star (\alpha) = d \alpha $ da cui: $ \phi_\star (c) = p d \alpha = d c $ con $ d \in \Z $.
+Questo numero $ d $ viene fuori dall'immagine di un generatore, ma non dipende dalla
+scelta del generatore, infatti:
+
+Sia $ \beta $ un altro generatore, siccome $ \alpha $ è un generatore si può scrivere $ \beta = m \alpha $
+con $ m \in \Z $. Pongo come notazione:
+\[
+  \phi_\star(\beta) = d(\beta) \beta \quad \phi_\star(\alpha) = d(\alpha) \alpha
+\]
+Allora:
+\[
+  d(\beta) \beta = \phi_\star (\beta) = m \phi_\star (\alpha) = m d(\alpha) \alpha
+\]
+Da cui $ d(\beta) \beta = \beta d(\alpha) $ cioè $ \left(d(\beta) - d(\alpha) \right) \beta = 0 $, siccome
+questo vale per ogni $ \alpha $ e $ \beta $ allora $ d(\alpha) = d(\beta) $.
+\begin{definition}
+  Data un'applicazione $ \phi \colon \Sph{n} \to \Sph{n} $ continua è possibile
+  associargli in modo univoco un numero intero, questo è il \textbf{grado}\index{Grado di una sfera}:
+   \[
+    \begin{aligned}[t]
+      \phi_\star \colon & H_n(\Sph{n}) & \to & H_n(\Sph{n}) \\
+      & \alpha & \mapsto & \deg{(\phi)} \alpha
+    \end{aligned}
+  \]
+  Con $ \alpha $ generatore.
+\end{definition}
+
+Ad esempio per $ n = 1 $ e $ p \in \mathbb{N} $:
+\[
+  \begin{aligned}[t]
+    \phi \colon & \Sph{1} & \to & \Sph{1} \\
+    & z   & \mapsto & z^p
+  \end{aligned}
+\]
+Vale che $ \deg{(\phi)} = p $, infatti prendo un generatore di $ \Sph{1} $:
+[MANCA MANCA MANCA]
+
+Voglio usare la teoria del grado per un'applcazione del teorema della palla pelosa.
+\begin{proposition}
+  Se $ f \colon \Sph{n} \to \Sph{n} $ è la riflessione rispetto all'iperpiano $ x_0 = 0 $,
+  cioè $ f(x_0, x_1, x_2, \dots) = (-x_0, x_1, x_2, \dots) $ allora il grado di $ f $ è $ - 1 $.
+\end{proposition}
+\begin{proof}
+  La dimostrazione è per induzione.
+  Per $ n = 1 $
+  [MANCA MANCA MANCA MANCA MANCA MANCA]
+\end{proof}
 
 % TODO:
 % 1. Correggere i : con \colon (CAMBIA QUALCOSA? INFORMARSI!)
+% NOTA i : servono solo per questioni di relazione, del tipo negli insiemi come "tale che",
+% nelle mappe si deve sempre usare \colon (http://tex.stackexchange.com/questions/37789/using-colon-or-in-formulas)
 % 2. Correggere i \Leftrightarrow con \iff
 % 3. Correggere < e > dei gruppi generati con \langle\rangle
 % 4. Aggiungere i figlet delle lezioni
