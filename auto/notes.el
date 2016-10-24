@@ -58,6 +58,7 @@
     "fig:lez3:homotopy"
     "fig:lez3:clifford_torus"
     "fig:lez3:torus_generators"
+    "fig:lez3:proof_homo"
     "fig:lez3:sketch_of_proof"
     "fig:lez3:klein_bottle"
     "fig:lez7:brouwer_proof_1")

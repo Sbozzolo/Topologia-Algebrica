@@ -60,6 +60,8 @@
 
 \input{listofsymb}
 
+\graphicspath{{./images/}}
+
 \begin{document}
 
 \begin{titlepage}
@@ -1184,6 +1186,25 @@ per far ciò basta che mostro che $ \phi $ lo è.
   \]
   [FIGURA, ROBA]
   % QUI MANCA!
+  \begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+      \draw (5,0) -- (9,0) -- (7,3) -- cycle;
+      \node[left] () at (5,0) {$ e_0 $};
+      \node[right] () at (9,0) {$ e_2 $};
+      \node[above] () at (7,3) {$ e_1 $};
+      \node[below] () at (7,0) {$ g $};
+      \node[left] () at (5.9,1.5) {$ \frac{1}{2} $};
+      \node[left] () at (6.2,1.5) {\textbullet};
+      \node[] () at (7,-0.025) {\textbullet};
+      \node[right] () at (8,2) {$ f $};
+      \draw (6.025, 1.525) -- (7,0);
+    \end{tikzpicture}
+    \caption{Costruzione dell'omomorfismo, deve avere valori costanti su rette parallele}
+    \label{fig:lez3:proof_homo}
+  \end{figure}
+
+
 \end{proof}
 
 Al momento la situazione è che ho $ \phi: H_1(X,xo) \to H_1(X) $ omomorfismo di
