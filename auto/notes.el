@@ -4,7 +4,7 @@
    (TeX-add-to-alist 'LaTeX-provided-class-options
                      '(("scrbook" "10pt" "twoside=false" "x11names")))
    (TeX-add-to-alist 'LaTeX-provided-package-options
-                     '(("inputenc" "utf8") ("babel" "italian") ("fontenc" "T1")))
+                     '(("inputenc" "utf8") ("babel" "italian") ("fontenc" "T1") ("hyperref" "hidelinks")))
    (TeX-run-style-hooks
     "latex2e"
     "titlepage"
@@ -32,7 +32,8 @@
     "textcomp"
     "fontenc"
     "stmaryrd"
-    "subcaption")
+    "subcaption"
+    "hyperref")
    (TeX-add-symbols
     '("Disk" ["argument"] 0)
     '("Sph" ["argument"] 0)

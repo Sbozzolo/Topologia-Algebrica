@@ -22,6 +22,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{stmaryrd}
 \usepackage{subcaption}
+\usepackage[hidelinks]{hyperref}
 
 \input{titlepage}
 
@@ -1299,6 +1300,37 @@ Alcuni esempi:
     \label{fig:lez3:klein_bottle}
   \end{figure}.
 \end{itemize}
+
+%  _     _____ ________ ___  _   _ _____   _  _
+% | |   | ____|__  /_ _/ _ \| \ | | ____| | || |
+% | |   |  _|   / / | | | | |  \| |  _|   | || |_
+% | |___| |___ / /_ | | |_| | |\  | |___  |__   _|
+% |_____|_____/____|___\___/|_| \_|_____|    |_|
+
+Se $ X $ è uno spazio topologico connesso per archi allora esiste:
+\[
+  \phi \colon \quot{\pi_1(X)}{[ \pi_1(X), \pi_1(X)]} \homoto H_1(X)
+\]
+Il problema è costruire
+\[
+  \psi \colon H_1(X) \to \quot{\pi_1(X)}{[ \pi_1(X), \pi_1(X)]}
+\]
+Tale che: $ \phi \circ \psi = \Id{H_1(X)} $ e $ \psi \circ \phi = \Id{\pi_1(X)} $
+So calcolare $ H_0(X) $ e $ H_1(X) $ se voglio calcolare
+gli altri $ H_k(X) $? Prima guardo come si comportano i gruppi sotto
+l'azione di applicazioni continue:
+Sia $ g \colon X \to Y $ mappa continua tra spazi topologici,
+mi chiedo $ g $ induce un'applicazione tra $ H_k(X) $ e $ H_k(Y) $?
+Considero $ \sigma \colon \Delta_k \to X $ $ k $-simplesso singolare, posso
+considerare la composizione con $ g $:
+\[
+  \begin{tikzcd}
+    \Delta_k \arrow{r}{\sigma} X & \arrow{r}{g} & Y
+  \end{tikzcd}
+\]
+
+
+
 %  _     _____ ________ ___  _   _ _____   _____
 % | |   | ____|__  /_ _/ _ \| \ | | ____| |___  |
 % | |   |  _|   / / | | | | |  \| |  _|      / /
