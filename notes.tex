@@ -1325,12 +1325,56 @@ Considero $ \sigma \colon \Delta_k \to X $ $ k $-simplesso singolare, posso
 considerare la composizione con $ g $:
 \[
   \begin{tikzcd}
-    \Delta_k \arrow{r}{\sigma} X & \arrow{r}{g} & Y
+    \Delta_k \arrow{r}{\sigma} &  X  \arrow{r}{g} & Y
   \end{tikzcd}
 \]
-
-
-
+Cioè: $ g' \colon \Delta_k \to Y $ con $ g' = g \circ \sigma $. Siccome sia
+$ g $ che $ \sigma $ sono continue allora $ g' $ è continua, quindi è un
+$ k $-simplesso singolare in $ Y $.
+Si definisce $ g_\sharp \colon S_k(X) \to S_k(Y) $ tale che se $ c = \sum_\sigma n_\sigma \sigma $
+allora $ c' = \sum n_\sigma (g \circ \sigma) $.
+Questa mappa è ben definita ed è lineare: $ g_\sharp $ è un omomorfismo di
+gruppi abeliani che manda $ k $-catene in $ S_k(X) $ in $ k $-catene
+in $ S_k(Y) $.
+Ora voglio ottenere un'applicazione a livello di omologia singolare.
+Definisco $ g_\star \colon H_k(X) \to H_k(Y) $.
+Si dice che $ g $ è \textbf{covariante} perché va da $ X $ a $ Y $.
+Considero un $ k $-ciclo $ c $, cioè tale che $ \partial c = 0 $ definisco
+\[
+  g_k([c]) = [g_\sharp (c)]
+\]
+Devo verificare se questa applicazione è ben definita:
+considero $ d \in S_k(X) $ tale che $ \partial d = 0 $, suppongo
+che $ d \sim c $, questo vale se e solo se $ [d] = [c] $,
+mi chiedo è vero che $ g_\star([d]) = g_\star([c]) $?
+Devo cioè mostrare che $ g_\sharp (d) \sim g_\sharp (c) $, ma questo è vero
+se e solo se $ \exists \tau \in S_{k+1}(Y) $ tale che $ g_\sharp(d) - g_\sharp (c) = \partial \tau $.
+Siccome $ g_\sharp $ è omomorfismo allora deve essere $ g_\sharp (d - c) = \partial \tau $,
+ma $ d $ w $ c $ sono omologhi per ipotesi, quindi:
+\[
+  \exists u \in S_{k+1}(X) \; | \; \partial u = d - c
+\]
+Quindi $ g_\sharp(\partial u) = g_\sharp (d - c) $, e quindi:
+$ [g_\sharp (d)] = [g_\sharp(c)] $ vorrei che questo sia implicato $ g_\sharp (\partial u) = g_\sharp (d - c) $.
+Voglio trovare da $ u $ $ \tau $.
+\begin{align*}
+  g_\sharp (\partial u) & = g_\sharp \left(\sum_{i = 0}^{k+1} (-)^i u^{(i)}\right) = \sum_{i=0}^{k+1}(-)^i g_\sharp (u^{i}) =
+              \sum_{i=0}^{k+1}(-)^i g \circ u^{(i)} = \\
+            & = \sum_{i = 0}^{k+1} (-)^i g \circ \left( u \circ F_i^{\; k+1} \right) =
+              \sum_{i = 0}^{k+1} (-)^i  \left( g \circ u \right) \circ F_i^{\; k+1} = \\
+            & = \sum_{i = 0}^{k+1}(-)^i \left( g \circ u \right)^{(i)} = \partial \left( g \circ u \right)
+\end{align*}
+Ma quindi $ g_\sharp(\partial u) = \partial (g_\sharp (u)) $ cioè:
+\[
+  g_\sharp(d-c) = g_\sharp (\partial u) = \partial (g_\sharp (u)) = \partial \tau \quad \text{con} \tau = g_\sharp(u)
+\]
+In conclusione:
+\[
+  \begin{aligned}[t]
+   asdasdadasdasdas
+  \end{aligned}
+\]
+In particolare $ g_\star $ è omomorfismo in quanto è il passaggio a quoziente di omomorfismi.
 %  _     _____ ________ ___  _   _ _____   _____
 % | |   | ____|__  /_ _/ _ \| \ | | ____| |___  |
 % | |   |  _|   / / | | | | |  \| |  _|      / /
