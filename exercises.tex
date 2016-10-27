@@ -1,0 +1,113 @@
+% Exercise 1.1.19: (iv), (vii), (v), (xii), (xiii);
+% Exercise 1.2.33: (v), (xii), (xiii);
+% Exercise 1.3.11: (iv);
+% Exercise 1.5.19: (ii), (vii);
+% Exercise 1.9: 3, 5, 7, 21, 28;
+% Exercise 3.1.7: (iv);
+% Exercise 3.5.23: (ii);
+% Exercise 4.2.27: (ii), (iii), (iv), (v);
+% Exercise 5.5: 5,6;
+% Exercise 6.2.20: (i), (viii);
+% Exercise 7.4.13: (iii);
+% Exercise 8.1.21: (i);
+% Exercise 8.2.19: (i), (v);
+
+\documentclass[10pt]{scrartcl}
+\usepackage[italian]{babel}
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+
+\title{Esercizi di Topologia Algebrica}
+\author{Gabriele Bozzola \\ Matricola: 882709}
+\date{Gennaio 2017}
+
+\newtheorem{lemma}[section]{Lemma}
+
+\begin{document}
+\maketitle
+
+\section*{Esercizio 1.1.19 (iv)}
+Siano $ X $ e $ Y $ due spazi topologici, dico che $ X $ è
+omotopicamente equivalente a $ Y $ se esiste una funzione
+continua $ f \colon X \to Y $ tale che esiste una funzione
+continua $ g \colon Y \to X $ tale che $ f \circ g \sim 1_{Y} $ e
+$ g \circ f \sim 1_{X} $, dove $ \sim $ indica la relazione di
+omotopia tra due applicazioni continue.
+
+Devo mostrare che la relazione di omotopia tra due spazi
+topologici è una relazione di equivalenza,
+cioè, indicando anche questa relazione con $ \sim $, soddisfa:
+\begin{enumerate}
+\item Riflessività: $ X \sim X $
+\item Simmetria: se $ X \sim Y $ allora $ Y \sim X $
+\item Transitività: se $ X \sim Y $ e $ Y \sim Z $ allora $ X \sim Z $
+\end{enumerate}
+Ma:
+\begin{enumerate}
+\item Devo trovare una funzione continua $ f \colon X \to X $
+  tale che esiste una seconda funzione continua $ g \colon X \to X $
+  con $ f \circ g \sim 1_X $ e $ g \circ f \sim 1_X $.
+  Una possibile scelta per queste funzioni è $ f = g = 1_X $
+  che è tale che $ f \circ g = g \circ f = 1_X \sim 1_X $ per la
+  riflessività della relazione di omotopia tra funzioni.
+\item Per ipotesi esiste una funzione continua $ f \colon X \to Y $
+  tale che esiste una seconda funzione continua $ g \colon Y \to X $
+  con $ f \circ g \sim 1_Y $ e $ g \circ f \sim 1_X $, devo trovare
+  una funzione continua $ \phi \colon Y \to X $ tale che esiste una
+  seconda funzione continua $ \gamma \colon X \to Y $
+  con $ \phi \circ \gamma \sim 1_X $ e $ \gamma \circ \phi \sim 1_Y $
+  Una possibile scelta per queste funzioni è $ \phi = f $
+  e $ \gamma = g $, infatti queste sono funzioni continue
+  con il giusto dominio e codominio e sono tali che
+  $ \phi \circ \gamma = g \circ f \sim 1_{X} $ e $ \gamma \circ \phi = f \circ g \sim 1_{Y} $.
+\end{enumerate}
+Per dimostrare il terzo punto è conveniente utilizzare
+un lemma:
+\begin{lemma}
+  \label{lemma:composizione_funzioni_omotopia}
+  La relazione di omotopia tra funzioni si comporta bene
+  rispetto alla composizione, cioè siano $ X, Y, W, Z $
+  spazi topologici, $ f, g \colon X \to Y $,
+  $ h \colon W \to X $ e $ k \colon Y \to Z $ mappe continue,
+  allora $ f \circ h \sim g \circ h $ e $ k \circ f \sim h \circ g $.
+\end{lemma}
+A questo punto:
+\begin{enumerate}
+  \setcounter{enumi}{2}
+\item Per ipotesi so che $ X \sim Y $ e $ Y \sim Z $, cioè
+  so che:
+  \begin{gather*}
+    \exists f_1 \colon X \to Y \text{ tale che } \exists g_1 \colon Y \to X \text{ tale che }
+    f_1 \circ g_1 \sim 1_Y \text{ e } g_1 \circ f_1 \sim 1_X \\
+    \exists f_2 \colon Y \to Z \text{ tale che } \exists g_2 \colon Z \to Y \text{ tale che }
+    f_2 \circ g_2 \sim 1_Z \text{ e } g_2 \circ f_2 \sim 1_Y
+  \end{gather*}
+  Devo mostrare che:
+  \[
+    \exists f_3 \colon X \to Z \text{ tale che } \exists g_2 \colon Z \to X \text{ tale che }
+    f_3 \circ g_3 \sim 1_Z \text{ e } g_3 \circ f_3 \sim 1_X
+  \]
+  Una possibile scelta per $ f_3 $ e $ g_3 $ è $ f_3 = f_2 \circ f_1 $
+  e $ g_3 = g_1 \circ g_2 $. In questo modo ho
+  $ f_3 \colon X \to Z $ e $ g_3 \colon Z \to X $, queste
+  mappe sono continue perché sono composizione
+  di funzioni continue.
+  Perché questa sia una buona scelta deve essere
+  $ f_2 \circ f_1 \circ g_1 \circ g_2 \sim 1_Z $
+  e  $  g_1 \circ g_2 \circ f_2 \circ f_1 \sim 1_X $.
+
+  Nel primo caso devo mostrare che $ f_2 \circ h \sim 1_Z $ con
+  $ h = f_1 \circ g_1 \circ g_2 \sim 1_Y \circ g_2 = g_2 $ per il lemma
+  \ref{lemma:composizione_funzioni_omotopia}, in quanto $ f_1 \circ g_1 \sim 1_Y $
+  per ipotesi. Siccome $ h \sim g_2 $ e $ f_2 \circ g_2 \sim 1_Z $ per il medesimo
+  lemma $ f_2 \circ h \sim 1_Z $. La seconda relazione è analoga.
+\hfill $ \square $
+\end{enumerate}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
