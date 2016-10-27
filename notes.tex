@@ -32,14 +32,16 @@
 \newtheorem{osservation}[theorem]{Osservazione}
 \newtheorem{corollary}[theorem]{Corollario}
 \newtheorem{definition}[theorem]{Definizione}
+\newtheorem{example}[theorem]{Esempio}
 \newcounter{exercises}
 \newtheorem{exercise}[exercises]{Esercizio}
-\newenvironment{proof}{{\textbf{Dimostrazione}:}}{\hfill\rule{2mm}{2mm} \newline}
+\newenvironment{proof}{{\textbf{Dimostrazione}:}}{\hfill $\square$}
 
 \newcommand{\R}{\mathcal{R}}
 \newcommand{\M}{\mathcal{M}}
 \newcommand{\N}{\mathcal{N}}
 \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\me}{\mathrm{e}}
 \newcommand{\im}[1]{\mathrm{Im}( #1 )}
 \renewcommand{\ker}[1]{\mathrm{Ker}( #1)}
 \renewcommand{\phi}{\varphi}
@@ -92,18 +94,14 @@
 \newmathsymb{Z}{\mathbb{Z}}{Numeri interi}
 \printsymblist
 
-% \lecture{1}{29 Settembre}{General introduction. Homology of a complex. Singular homology.}
-
+% lezione 1
 %  _     _____ ________ ___  _   _ _____   _
 % | |   | ____|__  /_ _/ _ \| \ | | ____| / |
 % | |   |  _|   / / | | | | |  \| |  _|   | |
 % | |___| |___ / /_ | | |_| | |\  | |___  | |
 % |_____|_____/____|___\___/|_| \_|_____| |_|
 
-\chapter{Omologia Singolare}
-
-\section{Introduzione}
-
+\chapter{Richimi di algebra e geometria}
 \subsection{Richiami di algebra}
 
 \newmathsymb{R}{\R}{Anello}
@@ -169,7 +167,7 @@ Sostanzialmente la nozione di $ \R $-modulo generalizza agli anelli il concetto 
   Un gruppo $ \mathcal{G} $ si dice \textbf{generato}\index{Gruppo generato}
   dai suoi elementi $ x_1, x_2, \dots \in \mathcal{G} $ se
   ogni suo elemento si può scrivere come combinazione lineare a elementi interi di $ x_1, x_2, \dots $.
-  In questo caso si indica $ \mathcal{G} = < \{ x_1, x_2, \dots \} > $.
+  In questo caso si indica $ \mathcal{G} = \langle \{ x_1, x_2, \dots \} \rangle $.
 \end{definition}
 
 \begin{definition}
@@ -180,7 +178,7 @@ Sostanzialmente la nozione di $ \R $-modulo generalizza agli anelli il concetto 
 
 \begin{definition}
   Siano $ (X, \cdot) $ e $ (Y, \star) $ due gruppi, un \textbf{omomorfismo} \index{Omomorfismo} è un'applicazione $ f $
-  tra $ X $ e $ Y $ che preserva la struttura di gruppo, cioè:
+  tra $ X $ e $ Y $ che preserva la struttura di gruppo, cioè tale che:
   \[
     \forall u,v \in X \quad f(u \cdot v) = f(u) \star f(v)
   \]
@@ -193,11 +191,13 @@ Sostanzialmente la nozione di $ \R $-modulo generalizza agli anelli il concetto 
 
 Voglio studiare gli omomorfismi tra $ \Z $-moduli.
 
+\newmathsymb{ker}{\ker{f}}{Nucleo di $f$}
+\newmathsymb{im}{\im{f}}{Immagine $ f$}
 \begin{definition}
   Sia $ \phi: \M \to \N $ un omomorfismo tra gli $ \R $-moduli $ \M $ e $ \N $,
   allora si definisce il \textbf{nucleo} \index{Nucleo} e l'\textbf{immagine} \index{Immagine}:
   \[
-    \ker {\phi} := \set{ m \in \M | \phi(m) = 0}  \qquad  \im{\phi} := \set{ m \in \N | m=\phi(k) , k \in  M}
+    \ker {\phi} := \set{ m \in \M | \phi(m) = 0}  \qquad  \im{\phi} := \set{ m \in \N | \exists k \in M \text{ con } m = \phi(k)}
   \]
 \end{definition}
 
@@ -259,7 +259,7 @@ A questo punto ci sono due possibilità:
   classe di equivalenza presente è $ [0] $ significa che $ \forall m \in \ker{\phi_1} \; \exists n \in \im{\phi_2} $
   tale che $ m - n = 0 $, cioè $ m $ e $ n $ coincidono e quindi $ \ker {\phi_2} = \im{\phi_1} $.
 \item $ {\ker {\phi_2}} \slash {\im{\phi_1}} \not= 0 $, cioè $ \exists v \in \ker {\phi_2} $
-  tale che $ v \not \in \im {\phi_1} $ e quindi $ \im {\phi_1} \subsetneq \ker (\phi_2) $.
+  tale che $ v \not \in \im {\phi_1} $ e quindi $ \im {\phi_1} \subsetneq \ker {\phi_2}$.
 \end{enumerate}
 Nel primo caso si dice che la successione dei moduli $ \M $ e delle
 applicazioni $ \phi $ è \textbf{esatta}\index{Complesso di moduli esatto} in $ \M_2$, nel secondo caso la
@@ -276,6 +276,7 @@ Per questo  $ H(\M_\bullet) $ quantifica quanto il complesso $ \M_\bullet $ non 
 
 Questo deriva da un problema topologico concreto.
 
+\newmathsymb{topsp}{X}{Spazio topologico}
 \begin{definition}
   La coppia $ (X, \mathcal{T}) $ è detta \textbf{spazio topologico}\index{Spazio topologico}
   (generalmente si omette la $ \mathcal{T} $)
@@ -329,12 +330,202 @@ Questo deriva da un problema topologico concreto.
 \newmathsymb{homo}{\simeq}{Spazi omeomorfi}
 \begin{definition}
   Una mappa tra spazi topologici è detta \textbf{omeomorfismo}\index{Omeomorfismo} se è continua
-  e ammette inverso continuo, [cioè se è una mappa uno a uno]. Se due spazi sono omeomorfi si utilizza
+  e ammette inverso continuo, cioè se è una mappa uno a uno. Se due spazi sono omeomorfi si utilizza
   il simbolo $ \simeq $.
 \end{definition}
 Siccome gli omeomorfismi sono mappe uno a uno due spazi omeomorfi sono essenzialmente identici. La
 relazione di omeomorfismo costituisce una relazione di equivalenza. Molti
 degli strumenti sviluppati in questo corso servono a capire se due spazi sono omeomorfi o meno.
+
+% lezione 3
+%  _     _____ ________ ___  _   _ _____   _____
+% | |   | ____|__  /_ _/ _ \| \ | | ____| |___ /
+% | |   |  _|   / / | | | | |  \| |  _|     |_ \
+% | |___| |___ / /_ | | |_| | |\  | |___   ___) |
+% |_____|_____/____|___\___/|_| \_|_____| |____/
+
+
+\subsection{Richiami sul gruppo fondamentale}
+
+\begin{definition}
+  Sia $ X $ uno spazio topologico e $ x_0 $ un suo punto, allora un \textbf{laccio}\index{Laccio} è un arco in $ X $
+  avente come punto di partenza e punto di arrivo il punto $ x_0 $. Un laccio $ c_{x_0} $ si dice \textbf{costante} se $ \forall t \in I $
+  $ c_{x_0}(t) = x_0 $ con $ x_0 \in X $.
+\end{definition}
+
+Vorrei strutturare l'insieme dei lacci in uno spazio $ X $ come un gruppo con l'operazione di giunzione
+e avente come unità il laccio costante. Questo non si riesce a fare perché non sempre
+la giunzione di un laccio con il suo inverso è il laccio costante. Per questo si passa al quoziente
+rispetto la relazione di omotopia.
+
+\begin{definition}
+  Sia $ X $ uno spazio topologico e $ x_0 \in X $ un suo punto, allora la coppia $ (X, x_0) $ è detta \textbf{spazio topologico puntato}.
+  \index{Spazio topologico puntato}
+\end{definition}
+
+\begin{definition}
+  Sia $ (X, x_0) $ uno spazio topologico puntato e $ f: I \to X $ una mappa continua tale che $ f(0) = f(1) = x_0 \; \forall t \in I $,
+  si dice che una funzione continua $ g $ è \textbf{omotopicamente equivalente} a $ f $ ($ g \sim_H f $) se esiste una funzione
+  continua $ F: I \times I \to X $ tale che;
+  \begin{itemize}
+  \item $ F(0,x) = f(x) \; \forall x \in I $
+  \item $ F(1,x) = g(x) \; \forall x \in I$
+  \item $ F(s,0) = x_0 \; \forall s \in I $
+  \item $ F(s,1) = x_0 \; \forall s \in I $
+  \end{itemize}
+  La relazione $ \sim_H $ è detta \textbf{relazione di omotopia} \index{Relazione di omotopia} \index{Omotopia! \vedi{Relazione di omotopia}}
+  e si dimostra essere una relazione di equivalenza.
+\end{definition}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \draw (0, 0) rectangle (3,3);
+    \draw[-Latex] (-0.5, 1) -- (-0.5, 2);
+    \draw[-Latex] (1, -0.5) -- (2, -0.5);
+    \node[left] () at (-0.5, 1.5) {$ t $};
+    \node[below] () at (1.5, -0.5) {$ x $};
+    \node[right] () at (0, 1.5) {$ x_0 $};
+    \node[left] () at (3, 1.5) {$ x_0 $};
+    \node[above] () at (1.5, 0) {$ f(x) $};
+    \node[below] () at (1.5, 3) {$ g(x) $};
+    \draw (0,2) -- (3,2);
+    \draw[-Latex] (0, 2) -- (1.5, 2);
+    \node[below] () at (1.5, 2) {$ F(x,s) $};
+    \draw (6,1.5) circle [x radius=2, y radius=1];
+    \node[above] () at (6, 2.5) {$ f $};
+    \draw (6, 1.5) circle (0.5);
+    \node[above] () at (6, 1.5) {$ g $};
+    \draw[-Latex] (4.5, 1.5) -- (5, 1.5);
+    \draw[-Latex] (7.5, 1.5) -- (7, 1.5);
+  \end{tikzpicture}
+  \caption{Omotopia: deforma $ f $ in $ g $ in modo continuo.}
+  \label{fig:lez3:homotopy}
+\end{figure}
+
+Si definisce l'insieme;
+\[
+  \pi_1(X,x_0) = \quot{\set{f:I \to X | f \text{ continua}, f(0) = f(1) = x_0}}{\sim_H}
+\]
+
+Questo insieme può essere equipaggiato con un'operazione di somma facendolo diventare un gruppo,
+questo è il \textbf{gruppo fondamentale} \index{Gruppo fondamentale}, tale operazione è:
+Siano $ [f], [g] \in \pi_i(X,x_0) $ si definisce $ [f][g] = [f \star g] $, dove l'operazione $ \star $ è
+il \textbf{cammino composto}, o \textbf{giunzione}, \index{Cammino composto}
+\index{Giunzione!\vedi{Cammino composto}} definita da:
+\[
+  (f \star g)(t) =
+  \begin{cases}
+    f(2t) & \text{se } 0 \leq t \leq \frac{1}{2} \\
+    g(2t -1) & \text{se } \frac{1}{2} \leq t \leq 1
+  \end{cases}
+\]
+L'elemento neutro di questa operazione è il cammino costante $ 1 = [C_{x_0}] $ con
+$ C_{x_0}(t) = x_0 \; \forall t $.
+L'inverso di un elemento invece è $ [f]^{-1} = [\bar{f}] $ dove $ \bar{f} $ è il
+cammino percorso in verso opposto, cioè definito da $ \bar{f}(t) = f(1-t) $, in
+questo modo $ \bar{f}(0) = f(1) $ e $ \bar{f}(1) = f(0) $.
+
+Proprietà:
+\begin{itemize}
+\item $ \pi_1(X,x_0) $ è invariante omotopico, cioè se $ X \sim_H Y $, cioè se
+  \[
+    \exists f: X \to Y, g: Y \to X \; | f \circ g \sim_H 1_Y \text{ e }  g \circ f \sim_H 1_X
+  \]
+  allora $ \pi_1(X,x_o) \cong \pi_1(Y,f(x_0)) $. Questo in particolare porta alla seguente
+  utile osservazione:
+  \begin{osservation}
+    Se due spazi topologici puntati hanno gruppi fondamentali non isomorfi allora
+    non possono essere omotopicamente equivalenti.
+  \end{osservation}
+\item Se $ X $ è \textbf{contraibile} \index{Spazio contraibile} (cioè è
+  omotopo ad un punto) allora vale che $ \pi_1(X,x_0) \cong 1 $, cioè il gruppo
+  fondamentale è banale.
+\item Si dimostra che:
+  \begin{proposition}
+    Se uno spazio tologico $ X $ è connesso per archi allora tutti i gruppi fondamentali
+    degli spazi puntati $ (X,x_0) $ sono isomorfi, cioè si può omettere la dipendenza da $ x_0 $.
+  \end{proposition}
+  Questo intuitivamente è vero perché se gli spazi sono connessi per archi allora esistono cammini
+  che collegano qualunque coppia di punti.
+\end{itemize}
+
+\begin{definition}
+  Uno spazio topologico connesso per archi si dice \textbf{semplicemente connesso} \index{Semplicemente connesso}
+  se il suo gruppo fondamentale è banale.
+\end{definition}
+
+\begin{osservation}
+  Non tutti gli spazi semplicemente connessi sono contraibili, come ad esempio $ \Sph{2} $.
+\end{osservation}
+
+\begin{itemize}
+\item $ \pi_1(\Sph{1}) \cong \Z $, infatti si può costruire la mappa:
+  \begin{align*}
+    \sigma \colon I & \to \Sph{1} \\
+    t & \mapsto  \mathrm{e}^{2 \pi i t}
+  \end{align*}
+  Questa è tale che $ \sigma(0) = \sigma(1) = 1 $ quindi $ [\sigma] \in \pi_1(\Sph{1}) $ e $ \pi_1(\Sph{1}) \to \Z $ con $ [\sigma] \mapsto 1 $.
+  Ogni elemento è multiplo di $ \sigma $ e il fattore di proporzionalità conta il numero di avvolgimenti
+  del cammino.
+\item $ \pi_1(X \times Y) \cong \pi_1(X) \times \pi_1(Y) $
+\item Il gruppo fondamentale si calcola o partendo da gruppi omotopi oppure utilizzando il \textbf{teorema di Seifert–van Kampen}, \index{Teorema di Seifert–van Kampen}
+  il quale fornisce un metodo algoritmico per il calcolo.
+\end{itemize}
+
+Ad esempio:
+$ V_0 := \Sph{2} \quad V_g := P_{\frac{4g}{N}} \text{ con } g \in \mathbb{N}, g \geq 1 $ e $ P_{\frac{k}{N}} $ poligono con $ k $ lati e con idenfiticazioni.
+Nel caso $ g = 1 $ si ottiene un toro piatto.
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \draw (0,0) rectangle (3,3);
+    \draw[-Latex] (0,0) -- (0,1.5);
+    \draw[-Latex] (0,3) -- (1.5,3);
+    \draw[-Latex] (3,3) -- (3,1.5);
+    \draw[-Latex] (3,0) -- (1.5,0);
+    \node[left] () at (0,1.5) {$ a $};
+    \node[above] () at (1.5,3) {$ b $};
+    \node[right] () at (3,1.5) {$ a $};
+    \node[below] () at (1.5,0) {$ b $};
+  \end{tikzpicture}
+  \caption{Toro piatto, o anche toro di Clifford}
+  \label{fig:lez3:clifford_torus}
+\end{figure}
+Si usano simboli combinatori per descrivere l'identificazione: si definisce un verso di percorrenza, si assegnano delle lettere a ciascun
+lato e si scrivono in ordine tali lettere, aggiungendo un esponente $ -1 $ quando il verso di percorrenza è opposto. In questo caso quindi
+si ha $ aba^{-1}b^{-1} $.
+
+In genrale si ha $ a_1 b_1 a_1^{-1} b_1^{-1} \dots a_g b_g a_g^{-1} b_g^{-1} $.
+
+Si dimostra che queste sono varietà differenziabili, in particolare per $ g = 1 $ si ha un toro, per $ g = 2 $ un bitoro, \dots. $ g $ è
+detto \textbf{genere} \index{Genere}.
+
+Si trova con il teorema di Seifert-Van Kampen che:
+\[
+  \pi_1(V_g) \cong
+  \begin{cases}
+    1 & \text{se } g = 0 \\
+    \Z \oplus \Z & \text{se } g = 1 \\
+    < a_1 b_1 \dots \Pi_{i=1}^g [a_i,b_i] = 1 > & \text{se } g > 1
+  \end{cases}
+\]
+Dove $ [,] $ è il commutatore, cioè esattamente $ a_1 b_1 a_1^{-1} b_1^{-1} \dots a_g b_g a_g^{-1} b_g^{-1} $.
+Solo per $ g = 0 $ o $ g = 1 $ si ottengono dei gruppi abeliani, ma io vorrei averlo sempre abeliano, quindi lo abelianizzo.
+\[
+  \Ab{\pi_1(X)} = \quot{\pi_1(X)}{[\pi_1(X), \pi_1(X)]} = \quot{\pi_1(X)}{\pi_1'(X)}
+\]
+Chiaramente questo gruppo è abeliano e si calcola facilmente che $ \Ab{\pi_1(V_g)} \cong \Z^{2g} $ per $ g \geq 2 $.
+Si vedono facilmente anche i generatori, ad esempio per un toro sono riportati in figura
+
+\begin{figure}[htbp]
+  \centering
+  \input{images/torus_generators.pdf_tex}
+  \caption{Generatori di un toro}
+  \label{fig:lez3:torus_generators}
+\end{figure}
+
+L'abelianizzato è uno $ \Z $-modulo.
 
 \subsection{Omomorfismo tra $ \RN{} $ e $ \RN{N} $}
 
@@ -462,9 +653,13 @@ Tuttavia si sa che:
 Anche se non so calcolare i gruppi di omotopia superiore non vorrei buttarli via\dots
 Vorrei degli invarianti algebrici per problemi topologici, come i gruppi di omotopia.
 
+\chapter{Omologia Singolare}
+
+\section{Introduzione}
+
 Inizio definendo l'omologia singolare, che è la più generale.
 
-\subsection{Omologia}
+\subsection{Simplessi singolari}
 
 Uso la teoria dell'omologia che mi permette di semplificare i problemi. La teoria
 dell'omologia serve ad associare agli spazi topologici degli oggetti algebrici
@@ -509,37 +704,53 @@ quindi rimane sottinteso a meno di scriverlo esplicitamente.
   \item \dots
   \end{itemize}
 \end{osservation}
-    \begin{figure}[htbp]
-      \centering
-      \begin{tikzpicture}
-        \draw (0,0) circle (0.05);
-        \node[below] () at (0,0) {$ \Delta_0 $};
-        \draw (1,0) -- (3,0);
-        \node[below] () at (2,0) {$ \Delta_1 $};
-        \draw (4,0) -- (6,0) -- (5, 1.7) -- cycle;
-        \node[below] () at (5,0) {$ \Delta_2 $};
-        \coordinate [] (A) at (9.5,1.5,0);
-        \coordinate [] (B) at (8,1.5,0);
-        \coordinate [] (C) at (9,1.5,1);
-        \coordinate [] (D) at (9,0.5,1);
-
-        \draw[-] (A)--(D)--(B)--cycle;
-        \draw[-] (A) --(D)--(C)--cycle;
-        \draw[-] (B)--(D)--(C)--cycle;
-        \node[below] () at (9,0) {$ \Delta_3 $};
-        % TODO: Bisognerebbe girare questo tetraedro
-      \end{tikzpicture}
-      \caption{Simplessi standard}
-      \label{fig:lez1:standard_simplexes}
-    \end{figure}
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}{.2\textwidth}
+    \centering
+    \begin{tikzpicture}
+      \draw (0,0) circle (0.05);
+    \end{tikzpicture}
+    \caption{$ \Delta_0 $}
+  \end{subfigure}
+  \begin{subfigure}{.2\textwidth}
+    \centering
+    \begin{tikzpicture}
+      \draw (0,0) -- (2,0);
+    \end{tikzpicture}
+    \caption{$ \Delta_1 $}
+  \end{subfigure}
+  \begin{subfigure}{.2\textwidth}
+    \centering
+    \begin{tikzpicture}
+      \draw (0,0) -- (2,0) -- (1, 1.7) -- cycle;
+    \end{tikzpicture}
+    \caption{$ \Delta_2 $}
+  \end{subfigure}
+  \begin{subfigure}{.33\textwidth}
+    \centering
+    \def\svgwidth{0.56\textwidth}
+    \input{images/Tetrahedron.pdf_tex}
+    \caption{$ \Delta_3 $}
+  \end{subfigure}%
+  \caption{Simplessi standard}
+  \label{fig:lez1:standard_simplexes}
+\end{figure}
 
 \begin{definition}
   Dato uno spazio topologico $ X $ si definisce il \textbf{$ k $-simplesso singolare}\index{$ k $-simplesso singolare}
   in $ X $ come un'applicazione continua $ \sigma: \Delta_k \to X $.
 \end{definition}
 Spesso conviene identificare il $ k $-simplesso con la sua immagine in $ X $.
-In quesot modo uno $ 0 $-simplesso è un punto in $ X $, mentre un $ 1 $-simplesso singolare potrebbe essere sia un segmento che un punto (se la mappa è costante).
-Siccome il simplesso potrebbe deformare è detto singolare.
+In questo modo uno $ 0 $-simplesso è un punto in $ X $, mentre un $ 1 $-simplesso singolare potrebbe
+essere sia un segmento che un punto (se la mappa è costante).
+Siccome non c'è relazione tra la dimensione dello spazio di partenza e lo spazio di arrivo
+(ad esempio la curva di Peano) il simplesso può deformare, ed è per questo che è detto singolare.
+
+\begin{example}
+  Un esempio di $ k $-simplesso singolare in cui è particolarmente evidente la possibilità di fare l'identificazione
+  è la mappa identità: $ \Id{} \colon \Delta_k \to \Delta_k $.
+\end{example}
 
 Voglio costruire un complesso di gruppi abeliani e definire l'omologia singolare come l'omologia di tale complesso.
 
@@ -556,6 +767,7 @@ $ S_k(X) $ è un gruppo abeliano con l'operazione somma definita naturalmente:
 \[
   \sum_g n_g g + \sum_h n_h h =   \sum_g n_g g + \sum_g n_g^\star g = \sum_g (n_g + n_g^\star)g
 \]
+Inoltre $ \forall k < 0 $ si pone $ S_k(X) = 0 $.
 Ad esempio:
 \[
   (n_1 g_1 + n_2 g_2 + 2 n_3 g_3) + (m_1 g_1 + m_4 g_4) = (n_1 + m_1)g_1 + n_2 g_2 + 2 n_3 g_3 + m_4 g_4
@@ -563,10 +775,11 @@ Ad esempio:
 Questa è una somma con tutte le giuste proprietà. Lo zero è la catena con tutti i coefficienti nulli,
 mentre l'inverso è la catena con i coefficienti opposti.
 Queste catene sono chiamate $ k $-\textbf{catene singolari}\index{$ k $-catene singolari}.
-$ S_k(X) $ è generato da tutte le possibili applicazioni continue da $ \Delta_k $ a $ X $, cioe:
+$ S_k(X) $ è generato da tutte le possibili applicazioni continue da $ \Delta_k $ a $ X $, cioè:
 \[
   S_k(X) = < \set{g | g \text{ $ k $-simplesso singolare in $ X $}} >
 \]
+Si nota che le catene sono somme formali di mappe e non sono esse stesse mappe.
 % Le $ k $-catene singolari in qualche modo generalizzano la caratteristica di Eulero.
 % \underline{\emph{Verificare questa affermazione}}
 
@@ -575,6 +788,11 @@ con il punto in $ X $ sapendo che l'immagine di un punto è un punto)
 \[
   S_0(X) = \set { \sum n_i p_i | n_i \in \Z, \; p_i \in X}
 \]
+\begin{osservation}
+  Quando è possibile faccio un abuso di notazione e identifico la mappa con la sua immagine
+  nello spazio topologico.
+\end{osservation}
+
 Ora devo introdurre le applicazioni tra i vari $ S_k $, queste applicazioni saranno il bordo.
 
 Definisco $ h: \Delta_1 \to X $ in modo tale che $ h(\Delta) = \alpha $ dove $ \alpha $ è un \textbf{arco}.
@@ -637,7 +855,8 @@ come facce.
 Il segmento faccia $ i $-esimo è quello che non contiene il vertice $ i $-esimo, cioè
 \emph{dimentico} un punto e gli altri punti diventano vertici del simplesso.
 
-In generale se $ \Delta_k $ è un simplesso standard definisco la base standard:
+In generale se $ \Delta_k $ è un simplesso standard definisco la base canonica (si noti
+che la base canonica è ordinata):
 \begin{gather*}
   e_0 = (1,0,0,\dots)                            \\
   e_1 = (0,1,0,\dots)                            \\
@@ -675,10 +894,17 @@ triangoli ottengo punti, come è giusto.
 \end{definition}
 
 \begin{definition}
-  Dato un $ k $-simplesso singolare $ \sigma: \Delta_k \to X $ si definisce la mappa $ \sigma^{(i)} = \sigma \circ F_i^{\; k} $,
-  si definisce quindi il \textbf{bordo}\index{Bordo} di $ \sigma $ come $ \partial_k \sigma = \sum_{i=0}^{k}(-)^i \sigma^{(i)} $.
+  Dato un $ k $-simplesso singolare $ \sigma: \Delta_k \to X $ si definisce la mappa $ \sigma^{(i)} \colon \Delta_{k-1} \to X $ come la restrizione
+  di $ \sigma $ sulla faccia $ i $-esima del simplesso, cioè $ \sigma^{(i)} = \sigma \circ F_i^{\; k} $,
+  si definisce quindi il \textbf{bordo}\index{Bordo} come la mappa:
+  \begin{align*}
+    \partial \colon \Sigma_k(X) & \to \Sigma_{k-1}(X) \\
+    \sigma & \mapsto  \sum_{i=0}^{k}(-)^i \sigma^{(i)}
+  \end{align*}
+  Dove $ \Sigma_k(X) $ indica lo spazio dei $ k $-simplessi singolari di $ X $.
+  % di $ \sigma $ come $ \partial_k \sigma = \sum_{i=0}^{k}(-)^i \sigma^{(i)} $.
 \end{definition}
-Il bordo sostanzialmente corrisponde alla somma alterna delle faccie.
+Il bordo sostanzialmente corrisponde alla somma alterna delle facce.
 
 \begin{figure}[htbp]
   \centering
@@ -698,23 +924,32 @@ Il bordo sostanzialmente corrisponde alla somma alterna delle faccie.
     \draw[->] (0.35,-0.65) to [out=-30,in=-120]  (5.35,0.45);
     \node () at (2.5, -1.45) {$ \sigma^{(i)} $};
   \end{tikzpicture}
-  \caption{Azione di $ \sigma $}
+  \caption{Azione di $ \sigma $ e $ \sigma^{(i)} $}
   \label{fig:lez1:sigma}
 \end{figure}
 
-Per $ k = 1 $ $ \partial_1 \sigma = p_1 - p_0 $ infatti $ \sigma^{0} = \sigma \circ F_0^{\; 1} = \sigma(1) = p_1 $ e $ \sigma^{0} = \sigma \circ F_1^{\; 1} = \sigma(0) = p_0 $.\footnote{Tecnicamente si intende $ p_0 = \partial_1 \sigma^{(0)}(1) $ e $ p_1 = \partial_0 \sigma^{(1)}(1) $.}
+\begin{example}[$ k = 1 $]
+  Per $ k = 1 $ vale che $ \partial_1 \sigma = p_1 - p_0 $, infatti:
+  \begin{align*}
+    \sigma^{0} = \sigma \circ F_0^{\; 1} = \sigma(1) = p_1 \\
+    \sigma^{1} = \sigma \circ F_1^{\; 1} = \sigma(0) = p_0
+  \end{align*}
+  Il bordo è la somma con i segni alternati: $ \partial_1 \sigma = p_1 - p_0 $. Tecnicamente il bordo è una mappa
+  quindi sarebbe più corretto scrivere $ \partial_1 \sigma = \sigma^{(1)} - \sigma^{(0)} $ dove l'azione di queste due mappe è
+  quella di mandare un estremo dell'intervallo $ [0,1] $ in $ p_0 $ o $ p_1 $.
+\end{example}
 
-\underline{QUI SISTEMARE}
 Allora si definisce l'operatore bordo sul complesso delle catene $ \partial_k: S_k(X) \to S_{k-1}(X) $ estendendolo per linearità
 $ \partial_k \left( \sum_g n_g g\right) = \sum_g n_g \partial_k g $ (infatti si è definita l'azione sui generatori $ g $).
 
-Devo mostrare che $ \partial_k $ è un omomorfismo e che soddisfa $ \partial^2 = 0 $. Comincio con il fatto che è un omomorfismo.
+Devo mostrare che $ \partial_k $ è un omomorfismo e che soddisfa $ \partial_k \circ \partial_{k+1} = 0 $. Comincio con il fatto che è un omomorfismo.
 
 \begin{proof}
   \begin{gather*}
-  \partial_k \left( \sum_g n_g g + \sum_g m_g g\right) = \partial_k \left( \sum_g(m_g + n_g)g \right) = \sum_g (m_g + n_g) \partial_k g = \\
-  = \sum_g n_g \partial_k g + \sum_g m_g \partial_k g = \partial_k \left( \sum_g n_g g\right) + \partial_k \left( \sum_g m_g g \right)
-\end{gather*}
+    \partial_k \left( \sum_g n_g g + \sum_g m_g g\right) = \partial_k \left( \sum_g(m_g + n_g)g \right) = \sum_g (m_g + n_g) \partial_k g = \\
+    = \sum_g n_g \partial_k g + \sum_g m_g \partial_k g = \partial_k \left( \sum_g n_g g\right) + \partial_k \left( \sum_g m_g g \right)
+  \end{gather*}
+  Dove si è usato che la mappa di bordo è lineare.
 \end{proof}
 
 Quindi il complesso è costituito da:
@@ -723,15 +958,17 @@ Quindi il complesso è costituito da:
    \dots \arrow{r}{\partial_{k+1}} & S_k(X) \arrow{r}{\partial_k} & S_{k-1}(X) \arrow{r}{\partial_{k-1}} & \dots
   \end{tikzcd}
 \]
-
-Devo verificare che $ \partial_k \circ \partial_{k+1} = 0 $. Spesso come notazione si pone $ \partial^2 = 0 $.
-
+Devo verificare che $ \partial_k \circ \partial_{k+1} = 0 $ (spesso come notazione si pone $ \partial^2 = 0 $).
+\underline{SISTEMARE}
 \begin{proof}
-  Se $ \sigma $ è un $ k $-complesso singolare $ \sigma : \Delta_k \to X $:
+  Se $ \sigma $ è un $ k $-complesso singolare, cioè $ \sigma : \Delta_k \to X $ continua:
   \begin{align*}
     & \partial_k \circ \partial_{k+1} \sigma = \partial_k \left( \sum_{j=0}^{k+1}(-)^j (\sigma \circ F_j^{\; k+1}) \right) =  \sum_{j=0}^{k+1}(-)^j \partial_k (\sigma \circ F_j^{\; k+1}) &= \\
                     & = \sum_{j=0}^{k+1} (-)^j \sum_{i=0}^k (-)^i (\sigma \circ F_j^{\; k+1}) \circ F_i^{\; k} = \sum_{j = 0}^{k+1} \sum_{i = 0}^{k} (-)^{j+i} \sigma \circ F_j^{\; k+1} \circ F_{j}^{\; k} &= \\
-                    & = \sum_{0 \leq i < j \leq k + 1} (-)^{i+j} \sigma \circ F_j^{\; k+1} \circ F_i^{\; k} + \sum_{0 \leq j < i \leq k} (-)^{i+j} \sigma \circ F_j^{\; k+1} \circ F_i^k &= \\
+    & = \sum_{0 \leq i < j \leq k + 1} (-)^{i+j} \sigma \circ F_j^{\; k+1} \circ F_i^{\; k} + \sum_{0 \leq j < i \leq k} (-)^{i+j} \sigma \circ F_j^{\; k+1} \circ F_i^k &=
+  \end{align*}
+  Rinominando nella seconda sommatoria \dots
+  \begin{align*}
     & = \sum_{0 \leq i < j \leq k + 1} (-)^{i+j} \sigma \circ F_j^{\; k+1} \circ F_i^{\; k} + \sum_{0 \leq j < i \leq k} (-)^{i+j} \sigma \circ F_{i+1}^{\; k+1} \circ F_j^{\; k} & =  \\
     & = 0
   \end{align*}
@@ -739,9 +976,16 @@ Devo verificare che $ \partial_k \circ \partial_{k+1} = 0 $. Spesso come notazio
   \begin{exercise}
     Verificare che fa veramente zero.
   \end{exercise}
+  Si nota che è di importanza cruciale il fatto che si è definito il bordo con i segni alternati.
 \end{proof}
 
-% \lecture{2}{4 Ottobre}{Banane}
+% lezione 2
+%  _     _____ ________ ___  _   _ _____   ____
+% | |   | ____|__  /_ _/ _ \| \ | | ____| |___ \
+% | |   |  _|   / / | | | | |  \| |  _|     __) |
+% | |___| |___ / /_ | | |_| | |\  | |___   / __/
+% |_____|_____/____|___\___/|_| \_|_____| |_____|
+
 
 Sia $ X $ uno spazio topologico, voglio definire l'omologia singolare $ H_k(X) $, cioè il $ k $-esimo gruppo di omologia
 singolare. Costruisco il complesso $ (S_\bullet(X), \partial) $ con:
@@ -758,9 +1002,7 @@ Siccome $ \partial_{k-1} \circ \partial_k = 0 $ si ha il complesso
   \end{tikzcd}
 \]
 Inoltre $ \partial_k \circ \partial_{k-1} $ è la mappa nulla dalle catene singolari di $ S_k(X) $
-a quelle di $ S_{k-2}(X) $.
-
-$ (S_\bullet(X), \partial) $ è un complesso di gruppi abeliani o $ \Z $-moduli liberi.
+a quelle di $ S_{k-2}(X) $, in questo modo $ (S_\bullet(X), \partial) $ è un complesso di gruppi abeliani.
 Posso quindi calcolare l'omologia di $ (S_\bullet(X),\partial) $ come l'avevo definita
 in precedenza:
 \[
@@ -771,7 +1013,7 @@ bordo nullo, questi sono chiamati $ k $-cicli.
 
 \begin{definition}
   Sia $ (S_\bullet(X),\partial) $ un complesso di moduli, gli elementi di $ \ker{\partial} $ sono detti
-  \textbf{$ k $-cicli}\index{$ k $-ciclo}. Un $ k $-ciclo è quindi una $ k $-catene
+  \textbf{$ k $-cicli}\index{$ k $-ciclo}. Un $ k $-ciclo è quindi una $ k $-catena
   con bordo nullo:
   \[
     c \text{ ciclo } \Leftrightarrow \partial c = 0
@@ -818,273 +1060,121 @@ cellulare).
 \begin{proof}
   Dalla definizione di gruppo di omologia: $ H_0(X) = \quot{Z_0(X)}{B_0(X)} $.
   Ma $ Z_0(X) = \set{ c \in S_o(X) | \partial_0 c = 0} $ e $ S_0(X) = \set{ \sum n_i p_i | n_i \in \mathbb{N}, p_i \in X} $.
-  Tecnicamente uno $ 0 $-simplesso singolare è una mappa $ \sigma_0 : \Delta_0 \to X $ tale che manda $ \Delta_0 = 1 $ in $ \sigma_0(1) = p_0 $ e per
-  questo è naturale l'identificazione con i punti immagine dello spazio topologico.
-  Sia $ c \in S_0(X) $ allora $ c = \sum n_i p_i $, e vale che $ \partial_0(c) = \sum n_1 \partial_0 (p) = 0 $, infatti per definizione
-  $ \partial_0 : S_0(X) \to S_{-1}(X) $, ma $ S_{-1}(X) $ in ogni complesso è banale, cioè $ S_{-1}(X) \cong 0 $.
+  % Tecnicamente uno $ 0 $-simplesso singolare è una mappa $ \sigma_0 : \Delta_0 \to X $ tale che manda $ \Delta_0 = 1 $ in $ \sigma_0(1) = p_0 $ e per
+  % questo è naturale l'identificazione con i punti immagine dello spazio topologico.
+  Sia $ c \in S_0(X) $ allora $ c = \sum n_i p_i $, e vale che $ \partial_0(c) = \sum n_i \partial_0 (p_i) = 0 $, infatti
+  $ \partial_0 : S_0(X) \to S_{-1}(X) $, ma per $ k < 0 $ $ S_{k} = 0 $ per definizione.
   Quindi per ora ho che:
   \[
-    H_0(X) = \quot{S_0(X)}{B_0(X)}
+    Z_0(X) = \ker{\partial_0} = S_0(X) \; \Rightarrow \; H_0(X) = \quot{S_0(X)}{B_0(X)}
   \]
-  Per definizione $ B_0(X) = \set{ x \in S_0(X) | \exists \alpha \in S_1(X), \partial_1(\alpha) = x} $, $ \alpha $ è una catena. Sia $ p_0 \in X $, allora
-  $ q \sim_{hom} p $ se e solo se $ \exists \alpha \in S_1(X) $ tale che $ q - p_0 = \partial_1 \alpha $. Per questo motivo i punti sono tutti omologhi,
-  essendo $ X $ connesso per archi esiste un arco che connette $ q $ e $ p_0 $, infatti per definizione gli archi sono applicaizoni
-  dall'intervallo a $ X $ che hanno come bordo $ q - p_0 $. Esiste quindi un'unica classe di equivalenza.
+  Per definizione $ B_0(X) = \set{ x \in S_0(X) | \exists \alpha \in S_1(X), \partial_1(\alpha) = x} $. % $ \alpha $ è una catena.
+  Sia $ p_0 \in X $, allora $ q \sim_{hom} p_0 $ se e solo se $ \exists \alpha \in S_1(X) $ tale che $ q - p_0 = \partial_1 \alpha $.
+  Per questo motivo i punti sono tutti omologhi, infatti
+  essendo $ X $ connesso per archi esiste un arco $ \alpha $ che connette $ q $ e $ p_0 $, ma
+  per definizione gli archi sono applicazioni continue da $ \Delta_1 $ a $ X $ che hanno come bordo $ q - p_0 $.
+  Esiste quindi un'unica classe di equivalenza che è la classe di equivalenza di un punto.
+  Per questo il gruppo è omomorfo a $ \Z $.
 
   \begin{definition}
     Si definisce inoltre la mappa \textbf{grado} \index{Grado} come l'applicazione che manda una catena in $ S_0(X) $ nella somma
     dei suoi coefficienti:
     \begin{align*}
-      \mathrm{deg}: & S_0(X)    & \to & \Z \\
-                    & \sum n_i p_i & \mapsto & \sum n_1
+      \deg \colon S_0(X)    & \to  \Z \\
+                     \sum n_i p_i & \mapsto  \sum n_i
     \end{align*}
   \end{definition}
 
-  \begin{theorem}[Teorema fondamentale degli omomorfismi]
+  \begin{theorem}[Teorema fondamentale degli omomorfismi]\index{Teorema fondamentale degli omomorfismi}
     Sia $ f: \mathcal{G}_1 \to \mathcal{G}_2 $ un omomorfismo tra gruppi abeliani, allora vale che:
     \[
-      \quot{\mathcal{G}_1}{\ker{f}} = \im{f}
+      \quot{\mathcal{G}_1}{\ker{f}} \cong \im{f}
     \]
   \end{theorem}
 
   \begin{proposition}
     La mappa grado gode di alcune proprietà:
     \begin{enumerate}
-    \item deg è un omomorfismo di gruppi abeliani
-    \item deg è suriettivo
-    \item $ \ker{\mathrm{deg}} \cong B_0(X) $
+    \item $ \deg $ è un omomorfismo di gruppi abeliani
+    \item $ \deg $ è suriettivo
+    \item $ \ker{\deg} \cong B_0(X) $
     \end{enumerate}
-    Se dimostro questa proprietà utilizando il primo teorema degli omomorfismi \dots
+    Se dimostro questa proprietà utilizando il primo teorema fondamentale di isomorfismo:
+    \[
+      \quot{S_0(X)}{B_0(X)} \cong \im{\deg}
+    \]
+    Ma $ \deg $ è suriettiva, quindi $ \im{\deg} = \Z $, perciò:
+    \[
+      H_0(X) = \quot{S_0(X)}{B_0(X)} \cong \Z
+    \]
 
     Dimostro quindi questa proposizione.
+
     \begin{proof}
-      Sia $ c_1 = \sum n_i p_i $ e $ c_2 = \sum m_i q_i $, devo mostrare che $ \mathrm{deg}(c_1 + c_2) = \mathrm{deg}(c_1) + \mathrm{deg}(c_2) $,
-      cioè che $ c_1 + c_2 = \sum n_i p_i + \sum m_i q_i = \sum (n_i + m_i)r_i $ dove $ r_i $ è quello comune tra le catene, oppure è zero se
-      l'elemento è presente in solo uno delle due catene.
+      \begin{enumerate}
+      \item
+        Sia $ c_1 = \sum n_i p_i $ e $ c_2 = \sum m_i q_i $, bisogna mostrare che:
+        \[
+          \deg(c_1 + c_2) = \deg(c_1) + \deg(c_2)
+        \]
+        ma:
+        \[
+          c_1 + c_2 = \sum n_i p_i + \sum m_i q_i = \sum (n_i + m_i)r_i
+        \]
+        dove $ r_i $ è quello comune tra le catene, oppure è zero se
+        l'elemento è presente in solo uno delle due catene.
+        Quindi:
+        \[
+          \deg(c_1 + c_2) = \sum (n_i + m_i) = \sum n_i + \sum m_i = \deg(c_1) + \deg(c_2)
+        \]
+        Alternativamente in modo più semplice si può osservare l'azione di $ \deg $ sui generatori di $ S_0(X) $,
+        che è unico e viene mandato dalla mappa grado in $ 1 $, quindi si estende per linearità.
+      \item
+        La mappa è suriettiva, basta prendere un punto $ p \in X $ e la controimmagine di $ m \in \Z $ è $ \deg^{-1}(m) = mp $
+      \item
+        \underline{SISTEMARE}
+        Mostro che $ \ker{\deg} = B_0(X) $. Sia $ c \in \ker{\deg} $ cioè tale che $ \deg(c) = 0 $, se
+        $ c = \sum n_i p_i $ allora $ \sum n_i = 0 $, bisogna mostrare che $ c \in B_0(X) $, cioè che $ \exists b \in S_1(X) $ con $ \partial_1 b = c $.
+        Considerato $ p_0 $ e altri punti $ p_i $, ci sono archi
+        $ \lambda_i s $ che li uniscono a $ p_0 $. $ b $ si può costruire in questo modo.
 
-      La mappa è suriettiva, basta prendere un punto: $ m \in \Z $ e $ \mathrm{deg}^{-1}(m) = mp $
-
-      Mostro che $ \ker{\mathrm{deg}} = B_0(X) $. Prendo $ c $ tale che $ \mathrm{deg}(c) = 0 $, ma
-      $ c = \sum n_i p_i $ quindi $ \sum n_i = 0 $, allora $ c \in B_0(X) $?
-      Se $ E b \in S_1(X) $ con $ \partial_1 b = c $. Prendo $ p_0 $ e altri punti $ p_1, p_2, p_3, \dots $, ci sono archi
-      $ \lambda_1, \lambda_2, \lambda_3, \dots $ che li uniscono a $ p_0 $.Provo a costruire $ b $ in questo modo. Siano
-      $ \lambda_i : [0,1] \to X $ con $ \lambda_i(0) = p_i $ e $ \lambda_i(1) = p_i $ considero $ c - \partial\left(\sum n_1 \lambda_i \right) =
-      c - \sum n_i \partial \lambda_i = c - \sum n_i (p_i - p_0) = c - \sum n_i p_i = \sum n_i p_0 = 0 $. Siccome per ipotesi $ p_o \in \ker{\mathrm{deg}} $
-      e $ c = \sum n_i p_i $ allora $ c = \partial(\sum n_i \lambda_i) $ quindi $ \sum n_i \lambda_i = b $ da cui $ \ker{\mathrm{deg}} \subseteq B_0(X) $.
-      Mi rimane da mostrare che $ B_0(X) \subseteq \ker{\mathrm{deg}} $, infatti ora mostro che se $ c \in B_0(X) $ allora
-      $ \mathrm{deg}(c) = 0 $.$ c = \partial b $ ma se $ \lambda_i $ sono gli archi $ b = \sum m_i \lambda_i $ quindi  $ \partial b = \sum n_i \partial \lambda_i $
-      ma $ \partial \lambda_i = \lambda_i(1) - \lambda_i(0) $ e l'azione dell'opertaore grado è quella di sommare i coefficienti, quindi
-      \[
-        \mathrm{deg}(c) = \mathrm{deg}(\partial b) = \sum n_i \mathrm{deg}(\partial \lambda_i) = 0
-      \]
+        Siano
+        $ \lambda_i : [0,1] \to X $ con $ \lambda_i(0) = p_0 $ e $ \lambda_i(1) = p_i $ considero $ c - \partial\left(\sum n_1 \lambda_i \right) =
+        c - \sum n_i \partial \lambda_i = c - \sum n_i (p_i - p_0) = c - \sum n_i p_i = \sum n_i p_0 = 0 $. Siccome per ipotesi $ p_0 \in \ker{\deg} $
+        e $ c = \sum n_i p_i $ allora $ c = \partial(\sum n_i \lambda_i) $ quindi $ \sum n_i \lambda_i = b $ da cui $ \ker{\deg} \subseteq B_0(X) $.
+        Mi rimane da mostrare che $ B_0(X) \subseteq \ker{\deg} $, infatti ora mostro che se $ c \in B_0(X) $ allora
+        $ \deg(c) = 0 $. $ c = \partial b $ ma se $ \lambda_i $ sono gli archi $ b = \sum m_i \lambda_i $ quindi  $ \partial b = \sum n_i \partial \lambda_i $
+        ma $ \partial \lambda_i = \lambda_i(1) - \lambda_i(0) $ e l'azione dell'opertaore grado è quella di sommare i coefficienti, quindi
+        \[
+          \deg(c) = \deg(\partial b) = \sum n_i \deg(\partial \lambda_i) = 0
+        \]
+      \end{enumerate}
     \end{proof}
   \end{proposition}
   Per questo $ H_0 (X) \cong \Z $ generato dalla classe $ [p] \; \forall p \in X $ (con $ X $ connesso per archi).
 \end{proof}
+
 Se ci sono più componenti connesse per archi posso ripetere il ragionamento senza connettere componenti
 distinte, quindi trovo che:
 \[
   H_0(X) \cong \Z^{N_c}
 \]
-Dove $ N_c $ è il numero di componenti connesse per archi di $ X $ con $ N_c < + \infty $.
+Dove $ N_c $ è il numero di componenti connesse per archi di $ X $ con $ N_c < + \infty $, in pratica
+$ H_0(X) $ è generato da un insieme formato da un punto per ogni componente connessa per archi.
 
 Cosa si può dire invece su $ H_1(X) $?
 
 Sia $ X $ spazio topologico e $ x_0 \in X $, allora alla coppia $ (X, x_0) $ si associa il gruppo fondamentale
 $ \pi_1(X,x_0) $. In generale il gruppo fondamentale non è abeliano, allora conviene studiare la versione abelianizzata:
-$ \Ab{\pi_1(X,x_0)} = \quot{\pi_1(X,x_0)}{\pi_i(X,x_0)'} $ dove $ ' $ indica il \textbf{gruppo derivato}, \index{Gruppo derivato} cioè il gruppo
-generato dai comutatori.
+$ \Ab{\pi_1(X,x_0)} = \quot{\pi_1(X,x_0)}{\pi_i(X,x_0)'} $ dove $ ' $ indica il \textbf{gruppo derivato}\index{Gruppo derivato}, cioè il gruppo
+generato dai commutatori.
 \[
-  \pi_1(X,x_0)' = [\pi_1(X,x_0), \pi_1(X,x_0)]
+  \pi_1(X,x_0)' = [\pi_1(X,x_0), \pi_1(X,x_0)] = \langle\set{[g,h] | g,h \in \pi_1(X,x_0)}\rangle
 \]
-Se $ X $ è connesso per archi allora $ \Ab{\pi_1(X,x_0)} \cong H_1(X) $, quindi conoscendo il gruppo fondamentale si può calcolare il
-primo gruppo di omologia.
+Se $ X $ è connesso per archi allora $ \Ab{\pi_1(X,x_0)} \cong H_1(X) $, quindi conoscendo il gruppo fondamentale si può calcolare anche
+il primo gruppo di omologia, che quindi è sostanzialmente formato dai lacci (modulo omotopia) che commutano tra loro.
 
-% \lecture{3}{6 Ottobre}{Banane}
-
-\subsection{Richiami sul gruppo fondamentale}
-
-\begin{definition}
-  Sia $ X $ uno spazio topologico e $ x_0 $ un suo punto, allora un \textbf{laccio}\index{Laccio} è un arco in $ X $
-  avente come punto di partenza e punto di arrivo il punto $ x_0 $. Un laccio $ c_{x_0} $ si dice \textbf{costante} se $ \forall t \in I $
-  $ c_{x_0}(t) = x_0 $ con $ x_0 \in X $.
-\end{definition}
-
-Vorrei strutturare l'insieme dei lacci in uno spazio $ X $ come un gruppo con l'operazione di giunzione
-e avente come unità il laccio costante. Questo non si riesce a fare perché il laccio costante non sempre
-la giunzione di un laccio con il suo inverso è il laccio costante. Per questo si passa al quoziente
-rispetto la relazione di omotopia.
-
-\begin{definition}
-  Sia $ X $ uno spazio topologico e $ x_0 \in X $ un suo punto, allora la coppia $ (X, x_0) $ è detta \textbf{spazio topologico puntato}.
-  \index{Spazio topologico puntato}
-\end{definition}
-
-\begin{definition}
-  Sia $ (X, x_0) $ uno spazio topologico puntato e $ f: I \to X $ una mappa continua tale che $ f(0) = f(1) = x_0 \; \forall t \in I $,
-  si dice che una funzione continua $ g $ è \textbf{omotopicamente equivalente} a $ f $ ($ g \sim_H f $) se esiste una funzione
-  continua $ F: I \times I \to X $ tale che;
-  \begin{itemize}
-  \item $ F(0,x) = f(x) \; \forall x \in I $
-  \item $ F(1,x) = g(x) \; \forall x \in I$
-  \item $ F(s,0) = x_0 \; \forall s \in I $
-  \item $ F(s,1) = x_0 \; \forall s \in I $
-  \end{itemize}
-  La relazione $ \sim_H $ è detta \textbf{relazione di omotopia} \index{Relazione di omotopia} \index{Omotopia! \vedi{Relazione di omotopia}}
-  e si dimostra essere una relazione di equivalenza.
-\end{definition}
-
-\begin{figure}[htbp]
-  \centering
-  \begin{tikzpicture}
-    \draw (0, 0) rectangle (3,3);
-    \draw[-Latex] (-0.5, 1) -- (-0.5, 2);
-    \draw[-Latex] (1, -0.5) -- (2, -0.5);
-    \node[left] () at (-0.5, 1.5) {$ t $};
-    \node[below] () at (1.5, -0.5) {$ x $};
-    \node[right] () at (0, 1.5) {$ x_0 $};
-    \node[left] () at (3, 1.5) {$ x_0 $};
-    \node[above] () at (1.5, 0) {$ f(x) $};
-    \node[below] () at (1.5, 3) {$ g(x) $};
-    \draw (0,2) -- (3,2);
-    \draw[-Latex] (0, 2) -- (1.5, 2);
-    \node[below] () at (1.5, 2) {$ F(x,s) $};
-    \draw (6,1.5) circle [x radius=2, y radius=1];
-    \node[above] () at (6, 2.5) {$ f $};
-    \draw (6, 1.5) circle (0.5);
-    \node[above] () at (6, 1.5) {$ g $};
-    \draw[-Latex] (4.5, 1.5) -- (5, 1.5);
-    \draw[-Latex] (7.5, 1.5) -- (7, 1.5);
-  \end{tikzpicture}
-  \caption{Omotopia: deforma $ f $ in $ g $ in modo continuo.}
-  \label{fig:lez3:homotopy}
-\end{figure}
-
-Si definisce l'insieme;
-\[
-  \pi_1(X,x_0) = \quot{\set{f:I \to X | f \text{ continua}, f(0) = f(1) = x_0}}{\sim_H}
-\]
-
-Questo insieme può essere equipaggiato con un'operazione di somma facendolo diventare un gruppo,
-questo è il \textbf{gruppo fondamentale} \index{Gruppo fondamentale}, tale operazione è:
-Siano $ [f], [g] \in \pi_i(X,x_0) $ si definisce $ [f][g] = [f \star g] $, dove l'operazione $ \star $ è
-il \textbf{cammino composto}, o \textbf{giunzione}, \index{Cammino composto}
-\index{Giunzione!\vedi{Cammino composto}} definita da:
-\[
-  (f \star g)(t) =
-  \begin{cases}
-    f(2t) & \text{se } 0 \leq t \leq \frac{1}{2} \\
-    g(2t -1) & \text{se } \frac{1}{2} \leq t \leq 1
-  \end{cases}
-\]
-L'elemento neutro di questa operazione è il cammino costante $ 1 = [C_{x_0}] $ con
-$ C_{x_0}(t) = x_0 \; \forall t $.
-L'inverso di un elemento invece è $ [f]^{-1} = [\bar{f}] $ dove $ \bar{f} $ è il
-cammino percorso in verso opposto, cioè definito da $ \bar{f}(t) = f(1-t) $, in
-questo modo $ \bar{f}(0) = f(1) $ e $ \bar{f}(1) = f(0) $.
-
-Proprietà:
-\begin{itemize}
-\item $ \pi_1(X,x_0) $ è invariante omotopico, cioè se $ X \sim_H Y $, cioè se
-  \[
-    \exists f: X \to Y, g: Y \to X \; | f \circ g \sim_H 1_Y \text{ e }  g \circ f \sim_H 1_X
-  \]
-  allora $ \pi_1(X,x_o) \cong \pi_1(Y,f(x_0)) $. Questo in particolare porta alla seguente
-  utile osservazione:
-  \begin{osservation}
-    Se due spazi topologici puntati hanno gruppi fondamentali non isomorfi allora
-    non possono essere omotopicamente equivalenti.
-  \end{osservation}
-\item Se $ X $ è \textbf{contraibile} \index{Spazio contraibile} (cioè è
-  omotopo ad un punto) allora vale che $ \pi_1(X,x_0) \cong 1 $, cioè il gruppo
-  fondamentale è banale.
-\item Si dimostra che:
-  \begin{proposition}
-    Se uno spazio tologico $ X $ è connesso per archi allora tutti i gruppi fondamentali
-    degli spazi puntati $ (X,x_0) $ sono isomorfi, cioè si può omettere la dipendenza da $ x_0 $.
-  \end{proposition}
-  Questo intuitivamente è vero perché se gli spazi sono connessi per archi allora esistono cammini
-  che collegano qualunque coppia di punti.
-\end{itemize}
-
-\begin{definition}
-  Uno spazio topologico connesso per archi si dice \textbf{semplicemente connesso} \index{Semplicemente connesso}
-  se il suo gruppo fondamentale è banale.
-\end{definition}
-
-\begin{osservation}
-  Non tutti gli spazi semplicemente connessi sono contraibili, come ad esempio $ \Sph{2} $.
-\end{osservation}
-
-\begin{itemize}
-\item $ \pi_1(\Sph{1}) \cong \Z $, infatti si può costruire la mappa:
-  \[
-    \begin{aligned}
-      \sigma: &\; I \to \Sph{1} \\
-      &\;  t \mapsto \mathrm{e}^{2 \pi i t}
-     \end{aligned}
-   \]
-  Questa è tale che $ \sigma(0) = \sigma(1) = 1 $ quindi $ [\sigma] \in \pi_1(\Sph{1}) $ e $ \pi_1(\Sph{1}) \to \Z $ con $ [\sigma] \mapsto 1 $.
-  Ogni elemento è multiplo di $ \sigma $ e il fattore di proporzionalità conta il numero di avvolgimenti
-  del cammino.
-\item $ \pi_1(X \times Y) \cong \pi_1(X) \times \pi_1(Y) $
-\item Il gruppo fondamentale si calcola o partendo da gruppi omotopi oppure utilizzando il \textbf{teorema di Seifert–van Kampen}, \index{Teorema di Seifert–van Kampen}
-  il quale fornisce un metodo algoritmico per il calcolo.
-\end{itemize}
-
-Ad esempio:
-$ V_0 := \Sph{2} \quad V_g := P_{\frac{4g}{N}} \text{ con } g \in \mathbb{N}, g \geq 1 $ e $ P_{\frac{k}{N}} $ poligono con $ k $ lati e con idenfiticazioni.
-Nel caso $ g = 1 $ si ottiene un toro piatto.
-\begin{figure}[htbp]
-  \centering
-  \begin{tikzpicture}
-    \draw (0,0) rectangle (3,3);
-    \draw[-Latex] (0,0) -- (0,1.5);
-    \draw[-Latex] (0,3) -- (1.5,3);
-    \draw[-Latex] (3,3) -- (3,1.5);
-    \draw[-Latex] (3,0) -- (1.5,0);
-    \node[left] () at (0,1.5) {$ a $};
-    \node[above] () at (1.5,3) {$ b $};
-    \node[right] () at (3,1.5) {$ a $};
-    \node[below] () at (1.5,0) {$ b $};
-  \end{tikzpicture}
-  \caption{Toro piatto, o anche toro di Clifford}
-  \label{fig:lez3:clifford_torus}
-\end{figure}
-Si usano simboli combinatori per descrivere l'identificazione: si definisce un verso di percorrenza, si assegnano delle lettere a ciascun
-lato e si scrivono in ordine tali lettere, aggiungendo un esponente $ -1 $ quando il verso di percorrenza è opposto. In questo caso quindi
-si ha $ aba^{-1}b^{-1} $.
-
-In genrale si ha $ a_1 b_1 a_1^{-1} b_1^{-1} \dots a_g b_g a_g^{-1} b_g^{-1} $.
-
-Si dimostra che queste sono varietà differenziabili, in particolare per $ g = 1 $ si ha un toro, per $ g = 2 $ un bitoro, \dots. $ g $ è
-detto \textbf{genere} \index{Genere}.
-
-Si trova con il teorema di Seifert-Van Kampen che:
-\[
-  \pi_1(V_g) \cong
-  \begin{cases}
-    1 & \text{se } g = 0 \\
-    \Z \oplus \Z & \text{se } g = 1 \\
-    < a_1 b_1 \dots \Pi_{i=1}^g [a_i,b_i] = 1 > & \text{se } g > 1
-  \end{cases}
-\]
-Dove $ [,] $ è il commutatore, cioè esattamente $ a_1 b_1 a_1^{-1} b_1^{-1} \dots a_g b_g a_g^{-1} b_g^{-1} $.
-Solo per $ g = 0 $ o $ g = 1 $ si ottengono dei gruppi abeliani, ma io vorrei averlo sempre abeliano, quindi lo abelianizzo.
-\[
-  \Ab{\pi_1(X)} = \quot{\pi_1(X)}{[\pi_1(X), \pi_1(X)]} = \quot{\pi_1(X)}{\pi_1'(X)}
-\]
-Chiaramente questo gruppo è abeliano e si calcola facilmente che $ \Ab{\pi_1(V_g)} \cong \Z^{2g} $ per $ g \geq 2 $.
-Si vedono facilmente anche i generatori, ad esempio per un toro sono riportati in figura
-
-\begin{figure}[htbp]
-  \centering
-  \input{images/torus_generators.pdf_tex}
-  \caption{Generatori di un toro}
-  \label{fig:lez3:torus_generators}
-\end{figure}
-
-L'abelianizzato è uno $ \Z $-modulo.
+% lezione 3 parte 2
 
 \begin{osservation}
   Sia $ X $ uno spazio topologico connesso per archi, $ \mathcal{G} $ un gruppo abeliano. Suppongo esista un omomorfismo
@@ -1115,11 +1205,11 @@ gratuitamente la mappa da $ \Ab{\pi_1(X)} $ a $ H_1(X) $.
     \Ab{\pi_1(X)} \arrow{ur}{\phi'}
   \end{tikzcd}
 \]
-Poi dovrò mostrare che questa mappa è invertibile, cioè $ \exists \psi:H_!(X) \to A_1(X) $ tale che $ \phi' \circ \psi = \Id{H_1(X)} $ e
+Poi dovrò mostrare che questa mappa è invertibile, cioè $ \exists \psi:H_1(X) \to A_1(X) $ tale che $ \phi' \circ \psi = \Id{H_1(X)} $ e
 $ \psi \circ \phi' = \Id{\Ab{\pi_1(X)}} $. Provo a costruire $ \phi $.
 \[
   \begin{aligned}[t]
-    \phi:  \pi_1(X) & \to H_!(X) \\
+    \phi:  \pi_1(X) & \to H_1(X) \\
     [f]_H & \mapsto [f]_{hom}
   \end{aligned}
 \]
@@ -1272,7 +1362,7 @@ Alcuni esempi:
   Infatti $ \pi_1(U_2) ] \set{a, b | aba^{-1}b^{-1} = 1} $ per ableliannizzarlo bisogna
   porre $ aba^{-1}b = 1 $ e $ aba^{-1}b^{-1} = 1 $ cioè $ b^2 = 1 $ e $ a $ libero:
   $ \Ab{\pi_1(U_2)} = \set{\underset{\Z}{a}, \underset{\Z_2}{b} |  aba^{-1}b = 1 } $
-  \begin{figure}
+  \begin{figure}[htbp]
     \centering
     \begin{subfigure}{.5\textwidth}
       \centering
@@ -1301,6 +1391,7 @@ Alcuni esempi:
   \end{figure}.
 \end{itemize}
 
+% lezione 4
 %  _     _____ ________ ___  _   _ _____   _  _
 % | |   | ____|__  /_ _/ _ \| \ | | ____| | || |
 % | |   |  _|   / / | | | | |  \| |  _|   | || |_
@@ -1369,12 +1460,71 @@ Ma quindi $ g_\sharp(\partial u) = \partial (g_\sharp (u)) $ cioè:
   g_\sharp(d-c) = g_\sharp (\partial u) = \partial (g_\sharp (u)) = \partial \tau \quad \text{con} \tau = g_\sharp(u)
 \]
 In conclusione:
-\[
-  \begin{aligned}[t]
-   asdasdadasdasdas
-  \end{aligned}
-\]
+\begin{align*}
+  g_\star \colon H_k(X) & \to H_k(Y) \\
+  [c]_X & \to [g_\sharp (c)]_Y
+  \end{align*}
 In particolare $ g_\star $ è omomorfismo in quanto è il passaggio a quoziente di omomorfismi.
+
+Esempi:
+\begin{itemize}
+\item Sia $ j \colon \Sph{1} \to \Sph{2} $ che cosa è $ j_\star \colon H_1(\Sph{1}) \to H_1(\Sph{2}) $?
+$ j_\star $ è una mappa costante in quanto $ \Sph{2} $ è contraibile, inoltre $ j $ era iniettiva,
+ma $ j_\star $ è costante quindi non è più iniettiva.
+\item Se considero $ \Sph{1} = \set{z \in \mathbb{C} | |z| = 1 } $
+  \begin{align*}
+    f \colon \Sph{1} & \to \Sph{1} \\
+    z & \to z^4
+  \end{align*}
+  Come è fatta $ f_\star \colon H_1(\Sph{1}) \to H_1(\Sph{1})$ ?
+  Si sa che $ H_1(\Sph{1}) \cong \Z $, quindi, sia
+  \begin{align*}
+    \sigma \colon \Delta_1 & \to \Sph{1} \\
+    t & \to \me^{2 \pi i t}
+  \end{align*}
+  Cioè in pratica $ [\sigma] \to 1 $, il laccio si avvolge su sè stesso una volta.
+  \begin{align*}
+    f_\star \colon H_1(\Sph{1}) & \to H_1(\Sph{1}) \\
+    [\sigma] & [f_\sharp (\sigma)] = [f \circ \sigma]
+  \end{align*}
+  Si ha:
+  \[
+    \begin{tikzcd}
+      \Delta_1 \arrow{r}{\sigma} & \Sph{1} \arrow{r}{\partial f} & \Sph{1}
+    \end{tikzcd}
+  \]
+  Con:
+   \[
+    \begin{tikzcd}
+      t \arrow{r}{\sigma} & \me^{2 \pi i t} \arrow{r}{\partial f} & \me^{8 \pi i t}
+    \end{tikzcd}
+  \]
+  Quindi:
+  \begin{align*}
+    f \circ \sigma \colon \Delta_1 & \to \Sph{1} \\
+    t & \mapsto \me^{8 \pi i t}
+  \end{align*}
+  Sostanzialmente $ f \circ \sigma $ è un cammino in $ \Sph{1} $ ed è
+  quindi potenza di $ \sigma $, che è l'unico generatore:
+  \[
+    f \circ \sigma = \sigma^4 = \sigma \star \sigma \star \sigma \star \sigma
+  \]
+  Cioè avvolgo il laccio quattro volte, quindi:
+  \begin{align*}
+    f_\star \colon H_1(\Sph{1}) & \to H_1(\Sph{1}) \\
+    [\sigma] & \mapsto [\sigma^4]
+  \end{align*}
+  Cioè:
+  \begin{align*}
+    f_\star \Z & \to \Z \\
+    [\sigma] & \mapsto [\sigma^4]
+  \end{align*}
+  $ f_\star $ è iniettivo ma non suriettivo (con tutti gli interi sono
+  multipli di 4)
+\end{itemize}
+
+Siano $ X, Y $ spazi topologici a partire da
+
 %  _     _____ ________ ___  _   _ _____   _____
 % | |   | ____|__  /_ _/ _ \| \ | | ____| |___  |
 % | |   |  _|   / / | | | | |  \| |  _|      / /
@@ -1644,6 +1794,7 @@ Voglio usare la teoria del grado per un'applcazione del teorema della palla pelo
 % 4. Aggiungere i figlet delle lezioni
 % 5. Aggiungere i simboli usati con \newmathsymb{nome}{simbolo}{Nome che appare}
 % 6. Sistemare le mappe (tipo questa sopra), non ho ancora capito come scriverle bene
+% 7. Usare al posto di \mathrm{e} \me
 
 \printindex
 
