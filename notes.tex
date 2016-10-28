@@ -1531,7 +1531,89 @@ ma $ j_\star $ è costante quindi non è più iniettiva.
   multipli di 4)
 \end{itemize}
 
-Siano $ X, Y $ spazi topologici a partire da
+Siano $ X, Y $ spazi topologici a partire da $ f \colon X \to Y $
+ho $ f_\star \colon H_k(X) \to H_k(Y) $ $ \forall k $
+
+\begin{example}
+  Siano $ X $ spazio topologico;
+  $ \Id{X} \colon X \to X $ allora:
+  \begin{align*}
+    \left(\Id{X}\right)_\star \colon H_k(X) & \to H_k(X) \\
+    [c] & \mapsto [\left(\Id{X}\right)_\star (c)] = [c]
+  \end{align*}
+\end{example}
+
+\begin{osservation}
+  Siano $ X, Y, Z $ spazi topologici e $ f \colon X \to Y $,
+  $ g \colon Y \to Z $ funzioni continue, allora $ g \circ f \colon X \to Z $
+  è continua, si ha quindi:
+  \[
+    \begin{tikzcd}
+      X \arrow{r}{f} &  Y  \arrow{r}{g} & Z
+    \end{tikzcd}
+  \]
+  E:
+  \[
+    \begin{tikzcd}
+      H_k(X) \arrow{r}{f_\star} &  H_k(Y) \arrow{r}{g_\star} & H_k(Z)
+    \end{tikzcd}
+  \]
+  Sono ben definite $ g_\star \circ f_\star \colon H_k(X) \to H_k(Z) $ e
+  $ \left(g \circ f\right)_\star \colon H_k(X) \to H_k(Z) $, vale che
+  $ g_\star \circ f_\star =  \left(g \circ f\right)_\star $, infatti:
+  \[
+    \left(g \circ f\right)_\star ([\sigma]) = [ (g \circ f) \circ \sigma ] =  [ g \circ (f \circ \sigma) ] =
+    [ g_\sharp (f \circ \sigma)] = [ g_\sharp \circ f_\sharp (\sigma) ]
+  \]
+\end{osservation}
+Quindi sulla categoria degli spazi topologici questo
+fornisce un funtore covariante.
+
+Considero due complessi $ (C_\bullet, \partial) $ e $ (C'_\bullet, \partial') $,
+considero l'omomorfismo di $ \Z $-moduli $ F \colon (C_\bullet, \partial) \to (C'_\bullet, \partial') $
+tale che $ \forall k $ si formi un diagramma commutativo,
+cioè valga $ F \circ \partial = \partial' \circ F $
+\[
+  \begin{tikzcd}
+    \dots \arrow{r}{\partial} &  C_{k+1}  \arrow{r}{\partial} \arrow{d}{F} &  C_{k}  \arrow{r}{\partial} \arrow{d}{F} & C_{k-1}  \arrow{r}{\partial} \arrow{d}{F} & \dots \\
+   \dots \arrow{r}{\partial'} &  C'_{k+1}  \arrow{r}{\partial'} &  C'_{k}  \arrow{r}{\partial'}  &  C'_{k-1} \arrow{r}{\partial'} & \dots
+  \end{tikzcd}
+\]
+Tutti i quadrati che si formano devono essere
+commutativi. Si pone questa richiesta di commutatività
+in quanto considerando $ f \colon X \to Y $ e quindi
+$ f_\sharp (S_\bullet(X), \partial) \to  (S_\bullet(Y), \partial') $ la condizione
+di commutatività è $ f_\sharp \circ \partial = \partial' \circ f_\sharp $ che è
+proprio quella che ho utilizzato poco fa e che
+serve a preservare proprietà geometriche.
+
+\begin{definition}
+  Si definisce una \textbf{successione esatta corta}\index{Successione esatta corta} di
+  complessi la successione:
+  \[
+    \begin{tikzcd}
+      0 \arrow{r}{} & A_\bullet \arrow{r}{\alpha} & B_\bullet \arrow{r}{\beta} & C_\bullet \arrow{r}{} & 0
+    \end{tikzcd}
+  \]
+  Con $ (A_\bullet, \partial^A) $, $ (B_\bullet, \partial^B) $ e $ (C_\bullet, \partial^C) $ complessi, e
+  $ \alpha $ omomorfismo iniettivo, $ \beta $ omomorfismo suriettivo
+  e si richiede che $ \forall k $ sia $ C_k \cong \quot{B_k}{A_k} $.
+\end{definition}
+
+% lezione 4 parte 2
+
+In modo più esteso questo significa:
+\[
+  \begin{tikzcd}
+    {} & 0 \arrow{d}{} & 0 \arrow{d}{} & 0 \arrow{d}{} & {} \\
+    \dots \arrow{r}{} & A_{k+1} \arrow{r}{} \arrow{d}{} & A_{k} \arrow{r}{} \arrow{d}{} & A_{k-1} \arrow{r}{} \arrow{d}{} & \dots \\
+    \dots \arrow{r}{} & B_{k+1} \arrow{r}{} \arrow{d}{} & B_{k} \arrow{r}{} \arrow{d}{} & B_{k-1} \arrow{r}{} \arrow{d}{} & \dots \\
+    \dots \arrow{r}{} & C_{k+1} \arrow{r}{} \arrow{d}{} & C_{k} \arrow{r}{} \arrow{d}{} & C_{k-1} \arrow{r}{} \arrow{d}{} & \dots \\
+    {} & 0 & 0 & 0 & {}
+  \end{tikzcd}
+\]
+Cioè per $ k $ fissato ho successioni esatte, quindi
+l'immagine è uguale al nucleo e la mappa è iniettiva.
 
 %  _     _____ ________ ___  _   _ _____   _____
 % | |   | ____|__  /_ _/ _ \| \ | | ____| |___  |

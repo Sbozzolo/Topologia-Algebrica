@@ -135,6 +135,7 @@
     "Grado"
     "Teorema fondamentale degli omomorfismi"
     "Gruppo derivato"
+    "Successione esatta corta"
     "Retratto di deformazione"
     "Retrazione"
     "Teorema del punto fisso"
