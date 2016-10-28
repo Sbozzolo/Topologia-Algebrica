@@ -23,6 +23,7 @@
 \date{Gennaio 2017}
 
 \newtheorem{lemma}[section]{Lemma}
+\newenvironment{proof}{{\textbf{Dimostrazione}:}}{\hfill $\blacksquare$}
 
 \begin{document}
 \maketitle
@@ -72,6 +73,27 @@ un lemma:
   $ h \colon W \to X $ e $ k \colon Y \to Z $ mappe continue,
   allora $ f \circ h \sim g \circ h $ e $ k \circ f \sim h \circ g $.
 \end{lemma}
+\begin{proof}
+  Siccome $ f \circ g $ significa che esiste una funzione
+  continua $ F \colon X \times I \to Y $ tale che:
+  \begin{align*}
+    F(x, 0) = f(x) \\
+    F(x, 1) = g(x)
+  \end{align*}
+  Definisco $ \phi = f \circ h $ e $ \gamma = g \circ h $, vale che
+  $ \phi, \gamma \colon W \to Y $ sono funzioni continue perché
+  composizioni di funzioni continue. Devo mostrare che:
+  \[
+    \exists H \colon W \times I \to Y \text{ continua tale che }
+    H(w, 0) = \phi(w) \text{ e } H(w, 1) = \gamma(w)
+  \]
+  Una possibile scelta per $ H $ è $ H = F \circ (h, 1_I) $,
+  questa è continua perché composizione di funzioni
+  continue, inoltre è tale che $ H(w, 0) = f \circ h (w) = \phi(w) $
+  e $ H(w, 1) = g \circ h (w) = \gamma(w) $, e quindi è l'omotopia
+  cercata.
+\end{proof}
+\newline\newline
 A questo punto:
 \begin{enumerate}
   \setcounter{enumi}{2}

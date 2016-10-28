@@ -681,6 +681,7 @@ quindi rimane sottinteso a meno di scriverlo esplicitamente.
   \[
     \Delta_k = \set{(x_1,x_2,\dots) \in \RN{k+1} | \forall i \; 0 \leq x_i \leq 1 \text{ e } \sum_{i=1}^{k+1}x_i = 1}
   \]
+  Le coordinate $ x_i $ sono dette \textbf{coordinate baricentrali}\index{Coordinate baricentrali}.
 \end{definition}
 
 \begin{osservation} Alcuni esempi sono:
@@ -767,7 +768,9 @@ $ S_k(X) $ è un gruppo abeliano con l'operazione somma definita naturalmente:
 \[
   \sum_g n_g g + \sum_h n_h h =   \sum_g n_g g + \sum_g n_g^\star g = \sum_g (n_g + n_g^\star)g
 \]
-Inoltre $ \forall k < 0 $ si pone $ S_k(X) = 0 $.
+Inoltre $ \forall k < 0 $ si pone $ S_k(X) = 0 $. Un elemento generico di $ S_k(X) $
+è una somma formale finita (cioè con un numero finito di coefficienti non nulli)
+su tutti i possibili $ k $-simplessi singolari in $ X $.
 Ad esempio:
 \[
   (n_1 g_1 + n_2 g_2 + 2 n_3 g_3) + (m_1 g_1 + m_4 g_4) = (n_1 + m_1)g_1 + n_2 g_2 + 2 n_3 g_3 + m_4 g_4
@@ -972,7 +975,8 @@ Devo verificare che $ \partial_k \circ \partial_{k+1} = 0 $ (spesso come notazio
     & = \sum_{0 \leq i < j \leq k + 1} (-)^{i+j} \sigma \circ F_j^{\; k+1} \circ F_i^{\; k} + \sum_{0 \leq j < i \leq k} (-)^{i+j} \sigma \circ F_{i+1}^{\; k+1} \circ F_j^{\; k} & =  \\
     & = 0
   \end{align*}
-  Dove nell'ultimo passaggio si sono utilizzate le identità lasciate da dimostrare come esercizio.
+  Dove nel penultimo passaggio si sono utilizzate le identità lasciate da dimostrare come esercizio,
+  e nell'ultimo si è rinominato nel secondo termine $ i + 1 $ con $ i $.
   \begin{exercise}
     Verificare che fa veramente zero.
   \end{exercise}
