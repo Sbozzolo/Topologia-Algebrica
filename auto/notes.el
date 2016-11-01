@@ -5,12 +5,12 @@
                      '(("scrbook" "10pt" "twoside=false" "x11names")))
    (TeX-add-to-alist 'LaTeX-provided-package-options
                      '(("inputenc" "utf8") ("babel" "italian") ("fontenc" "T1") ("hyperref" "hidelinks")))
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperref")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperimage")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperbaseurl")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "nolinkurl")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "nolinkurl")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperbaseurl")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperimage")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperref")
    (add-to-list 'LaTeX-verbatim-macros-with-delims-local "path")
    (TeX-run-style-hooks
     "latex2e"
@@ -63,11 +63,15 @@
     "fig:lez3:homotopy"
     "fig:lez3:clifford_torus"
     "fig:lez3:torus_generators"
+    "fig:lez3:torus"
     "fig:lez1:1_standard_simplex"
     "fig:lez1:standard_simplexes"
     "fig:lez1:1_standard_simplex_with_arc"
     "fig:lez1:standard_simplex_faces"
     "fig:lez1:sigma"
+    "fig:lez3:homotopy_f_g"
+    "fig:lez3:homotopy_f_g_to_triangle"
+    "fig:lez3:proof_homo_1"
     "fig:lez3:proof_homo"
     "fig:lez3:sketch_of_proof"
     "fig:lez3:klein_bottle"
@@ -135,7 +139,17 @@
     "Grado"
     "Teorema fondamentale degli omomorfismi"
     "Gruppo derivato"
+    "Mappa tra complessi"
     "Successione esatta corta"
+    "Omomorfismo di connessione"
+    "Omologia singolare relativa"
+    "Omologia singolare della coppia ! \\vedi{Omologia singolare relativa}"
+    "Successione spezza"
+    "Sezione dell'omomorfismo"
+    "Omologia singolare ridotta"
+    "Teoria omologica"
+    "Steendord ! \\vedi{Teoria omologica}"
+    "Eilenberg ! \\vedi{Teoria omologica}"
     "Retratto di deformazione"
     "Retrazione"
     "Teorema del punto fisso"
