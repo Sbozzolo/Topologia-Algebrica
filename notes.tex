@@ -52,6 +52,7 @@
 \newcommand{\homoto}{\xrightarrow{\,\smash{\raisebox{-0.65ex}{\ensuremath{\scriptstyle\sim}}}\,}}
 \newcommand{\Ab}[1]{\mathrm{Ab}\left( #1 \right)}
 \newcommand{\incl}{\xhookrightarrow{}}
+\newcommand{\invamalg}{\mathbin{\text{\rotatebox[origin=c]{180}{$\amalg$}}}}
 
 \newcommand{\vedi}[1]{\emph{vedi} #1}
 
@@ -2277,6 +2278,14 @@ $ \sigma_k $ è l'unica mappa che c'è.
 L'omologia singolare relativa soddisfa tutti questi assiomi, a meno di quelli non ancora verificati che
 sono l'omotopia e l'escissione.
 
+\begin{definition}
+  Sia $ \set{X_\alpha} $ una famiglia di spazi topologici, si definisce la \textbf{somma topologica}\index{Somma topologica}
+  $ X = \invamalg_\alpha X_\alpha $
+  come lo spazio topologico formato dall'unione disgiunta di tutti gli $ X_\alpha $ equipaggiato
+  con la \textbf{topologia dell'unione disgiunta}\index{Topologia dell'unione disgiunta},
+  ovvero un insieme è aperto se e solo se è aperto rispetto alla topologia di ogni $ X_\alpha $.
+\end{definition}
+
 % lezione 6
 
 [MANCA TUTTA LE LEZIONE 6]
@@ -2626,7 +2635,75 @@ Voglio studiare l'applicazione antipodale che è quella che scambia di segno tut
 \end{align*}
 Questa è continua e vale che $ A^2 = \Id{\RN{n}}$. Definisco per $ n \geq 2 $ la restrizione della trasformazione
 antipodale su $ \Sph{n-1} $: $ a = A \lvert_{\Sph{n-1}} $, vale che $ a \colon \Sph{n-1} \to \Sph{n-1} $, infatti
-$ \im{a} = \Sph{n-1} $.
+$ \im{a} = \Sph{n-1} $. Quanto vale $ \deg{(a)} $?
+Scrivo $ a $ come composizione di riflessioni:
+\[
+  a = \rho_n \circ \dots \circ \rho_1
+\]
+Per il lemma appena dimostrato:
+\[
+  \deg{(a)} = \deg{(\rho_n \circ \dots \circ \rho_1)} = \deg{(\rho_n)}\deg{(\rho_{n-1})}\dots\deg{(\rho_1)} = (-)^n
+\]
+Quindi $ \deg{(a)} = (-)^n $ e perciò cambia se $ n $ è pari o dispari.
+
+\begin{corollary}
+  La mappa antipodale non è omotopicamente equivalente all'identità su $ \Sph{n} $ su $ n $ è pari.
+\end{corollary}
+\begin{proof}
+  Se le due applicazioni fossero omotope varrebbe che $ a_\star = (\Id{\Sph{n}})_\star $ quindi:
+  \[
+    \deg{(a)} = \deg{(\Id{\Sph{n}})} = (-)^{n+1} = 1
+  \]
+  Questo è vero solo se $ n + 1 $ è pari, ma se $ n $ è pari $ n + 1 $ non può esserlo.
+\end{proof}
+
+Ciò non dimostra che per $ n $ pari invece le due applicazioni sono omotope. Questa è una
+dimostrazione avanzata che richiede i gruppi di omotopia superiori con i quali si dimostra
+che se due applicazioni definite su $ \Sph{n} $ hanno lo stesso grado allora sono omotope.
+
+\begin{corollary}
+  Sia $ f \colon \Sph{n} \to \Sph{n} $ una mappa continua con $ n $ pari, allora esiste almeno
+  un punto $ \vec{x_0} \in \Sph{n} $ tale che $ f(\vec{x_0}) = \pm x_0 $.
+\end{corollary}
+\begin{proof}
+  Per assurdo $ f(\vec{x}) \not = \pm \vec{x} \; \forall \vec{x} \in \Sph{n} $. Sia $ F \colon \Sph{n} \times I \to \Sph{n} $
+  con:
+  \[
+    F(\vec{x}, t) = \frac{t f(\vec{x}) + (1-t)\vec{x}}{|| t f(\vec{x}) + (1-t)\vec{x} ||}
+  \]
+  $ \forall \vec{x}, t $ vale che $ F(\vec{x}, t) \in \Sph{n} $.
+  La norma al denominatore non è mai nulla per ipotesi, infatti $ || t f(\vec{x}) + (1-t) \vec{x} || = 0 $
+  significa che $ t f(\vec{x}) = (1-t)\vec{x} $, quindi se $ t = 0 $ allora $ 0 = - \vec{x} $ ma $ \vec{x} = 0 \not \in \Sph{n} $,
+  se $ t \not = 0 $ allora $ f(\vec{x}) = \left(\frac{t-1}{t}\right)\vec{x} $, ma $ \vec{x}, f(\vec{x}) \in \Sph{n} $
+  quindi $ || f(\vec{x}) || = || \vec{x} || = 1 $ e quindi $ 1 = \big \rvert \frac{t-1}{t}\big \lvert $,
+  ma $ t \in (0,1] $, quindi non è possibile trovare $ t $.
+
+  Inoltre $ F(\vec{x}, 0) = \vec{x} $ e $ F(\vec{x}, 1) = f(\vec{x}) $ quindi $ F $ è una relazione di omotopia
+  tra $ f $ e l'identità.
+
+  Mostro che $ f $ è anche omotopa all'applicazione antipodale, così per la transitività della
+  relazione di omotopia trovo l'assurdo.
+
+  Si definisce  $ G\colon \Sph{n} \times I \to \Sph{n} $:
+  \[
+    G(\vec{x}, t) = \frac{-t \vec{x} + (1-t)f(\vec{x})}{|| -t \vec{x} + (1-t)f(\vec{x}) ||}
+  \]
+  Con i medesimi ragionamenti si trova che   $ \forall \vec{x}, t $ vale che $ G(\vec{x}, t) \in \Sph{n} $, e inoltre
+  $ G(\vec{x}, 0) = f(\vec{x}) $ e $ G(\vec{x}, 1) = - \vec{x} $ quindi $ G $ realizza
+  l'omotopia con l'applicazione antipodale.
+\end{proof}
+
+% lezione 8 parte 2
+
+\chapter{Omologia cellulare}
+
+\section{Complessi CW}
+
+Considero $ \Disk{n} $, vale che $ \partial\Disk{n} = \Sph{n-1} $, considerato lo spazio quoziente
+$ X = \quot{\Disk{n}}{\partial \Disk{n}} $, questo è il quoziente del disco per la relazione
+di equivalenza che fa collassare il bordo in un punto $ p $. Si trova che $ X \simeq \Sph{n} $.
+
+Posso fare questa costruzione:
 
 % TODO:
 % 1. Correggere i : con \colon (CAMBIA QUALCOSA? INFORMARSI!)

@@ -58,6 +58,7 @@
     "me"
     "homoto"
     "incl"
+    "invamalg"
     "svgwidth")
    (LaTeX-add-labels
     "fig:lez3:homotopy"
@@ -150,6 +151,8 @@
     "Teoria omologica"
     "Steendord ! \\vedi{Teoria omologica}"
     "Eilenberg ! \\vedi{Teoria omologica}"
+    "Somma topologica"
+    "Topologia dell'unione disgiunta"
     "Retratto di deformazione"
     "Retrazione"
     "Teorema del punto fisso"

@@ -23,7 +23,7 @@
 \date{Gennaio 2017}
 
 \newtheorem{lemma}[section]{Lemma}
-\newenvironment{proof}{{\textbf{Dimostrazione}:}}{\hfill $\blacksquare$}
+% \newenvironment{proof}{{\textbf{Dimostrazione}:}}{\hfill $\blacksquare$}
 
 \begin{document}
 \maketitle
@@ -93,7 +93,7 @@ un lemma:
   e $ H(w, 1) = g \circ h (w) = \gamma(w) $, e quindi è l'omotopia
   cercata.
 \end{proof}
-\newline\newline
+% \newline \newline
 A questo punto:
 \begin{enumerate}
   \setcounter{enumi}{2}
@@ -152,8 +152,30 @@ equivalenze omotopiche, cioè che:
   \exists \phi \colon Y \to X \text{ continua tale che } f \circ \phi \sim 1_Y \text{ e } \phi \circ f \sim 1_X \\
   \exists \gamma \colon X \to Y \text{ continua tale che } g \circ \gamma \sim 1_X \text{ e } \gamma \circ g \sim 1_Y
 \end{gather*}
+Siccome $ f \circ g $ e $ g \circ f $ sono equivalenze omotopiche vale che:
+\begin{gather*}
+  \exists h \colon Y \to Y  \text{ continua tale che } f \circ g \circ h \sim 1_Y \text{ e } h \circ f \circ g \sim 1_Y \\
+  \exists k \colon X \to X  \text{ continua tale che } g \circ f \circ k \sim 1_X \text{ e } k \circ g \circ f \sim 1_X
+\end{gather*}
+Affermo che $ k \circ g \circ f \circ g \circ h \sim k \circ g $ questo è vero siccome $ k \circ g \colon Y \to X $ è continua
+e siccome $ f \circ g \circ h \sim 1_Y $ posso utilizzare il lemma
+\ref{lemma:composizione_funzioni_omotopia}. Ma per il medesimo lemma e
+per il fatto che $  k \circ g \circ f \sim 1_X $ deriva che $ g \circ h \sim k \circ g $.
 
-\underline{[MANCA]}
+Una possibile scelta per $ \phi $ è $ \phi = g \circ h $, infatti utilizzando
+il fatto che $ f \circ g $ è equivalenza omotopica:
+\[
+  f \circ \phi = f \circ g \circ h \sim 1_Y
+\]
+Inoltre utilizzando l'osservazione appena fatta e il lemma
+\ref{lemma:composizione_funzioni_omotopia}
+\[
+  g \circ h \circ f \sim k \circ g \circ f \sim 1_X
+\]
+Anche in questo caso ho utilizzato il fatto che $ g \circ f $ è equivalenza
+omotopica.
+\hfill $ \square $
+
 
 \section*{Esercizio 1.2.33 (xiii)}
 Per assurdo esiste una funzione continua $ f \colon \mathbb{R}^2 \to \mathbb{R}^n $
