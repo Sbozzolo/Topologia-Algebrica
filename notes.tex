@@ -51,6 +51,7 @@
 \newcommand{\Disk}[1][]{\mathcal{D}^#1}
 \newcommand{\homoto}{\xrightarrow{\,\smash{\raisebox{-0.65ex}{\ensuremath{\scriptstyle\sim}}}\,}}
 \newcommand{\Ab}[1]{\mathrm{Ab}\left( #1 \right)}
+\newcommand{\tr}{\mathrm{tr}}
 \newcommand{\incl}{\xhookrightarrow{}}
 \newcommand{\invamalg}{\mathbin{\text{\rotatebox[origin=c]{180}{$\amalg$}}}}
 
@@ -530,8 +531,15 @@ Alcune proprietà del gruppo fondamentale:
   si ha $ aba^{-1}b^{-1} $. Questo si estende a poligoni con $ 4g $ lati e si usa l'identificazione
   $ a_1 b_1 a_1^{-1} b_1^{-1} \dots a_g b_g a_g^{-1} b_g^{-1} $.
 
-  Si dimostra che queste sono varietà differenziabili, in particolare per $ g = 1 $ si ha un toro, per $ g = 2 $ un bitoro, \dots. $ g $ è
+  Si dimostra che queste sono varietà topologiche, in particolare per $ g = 1 $ si ha un toro, per $ g = 2 $ un bitoro, \dots. $ g $ è
   detto \textbf{genere} \index{Genere}.
+
+  \begin{definition}
+    Una \textbf{varietà topologica}\index{Varietà topologica} $ \M $ è uno spazio topologico
+    che localmente sembra uno spazio reale $ n $-dimensionale, cioè tale che esiste un
+    interno $ n $ detto \textbf{dimensione}\index{Dimensione di una varietà topologica}
+    tale ogni punto in $ \M $ possiede un intorno che è omeomorfo a $ \RN{n} $.
+  \end{definition}
 
   Si trova con il teorema di Seifert-Van Kampen che:
   \[
@@ -2980,6 +2988,286 @@ Si trova che:
   \]
   Siccome $ \sum_{j=1}^k z_i^2 \leq 1 $ l'applicazione è ben definita, quindi $ \eta = (i,j) $.
 \end{example}
+
+
+
+
+% lezione 8
+
+\section{Congettura di Poincaré}
+
+Ho calcolato l'omologia di una sfera generica:
+\[
+  H_k(\Sph{n}) \cong
+  \begin{cases}
+    \Z & \text{ se } k \in \set{0,n} \\
+    0 & \text{ se } k \not \in \set{0,n}
+  \end{cases}
+\]
+In particolare ho $ H_0(\Sph{n}) \cong \Z $ ed è generato dalla classe di
+omologia di un punto qualsiasi, mentre $ H_n(\Sph{n}) \cong \Z $ è generatodalla
+classe di omologia di un $ n $-simplesso singolare $ \tau_n \colon \Delta_n \to \Sph{n} $.
+
+Per $ n = 2 $ ho $ \Sph{2} $ è una $ 2 $-varietà topologica compatta e connessa
+il cui gruppo fondamentale è banale e i gruppi di omologia noti.
+
+\begin{proposition}
+  Se $ \M $ è una $ 2 $-varietà topologica compatta e connessa tale che $ \forall k \geq 2 $
+  $ H_k(\M) \cong H_k(\Sph{2}) $ allora $ \M \simeq \Sph{2} $.
+\end{proposition}
+\begin{proof}
+  Esiste un teorema di classificazione delle varietà topologiche di dimensione $ 2 $
+  compatte e connesse, questo dice che $ \M \simeq V_g $ oppure $ \M \simeq U_n $.
+  Dove:
+  \[
+    V_g =
+    \begin{cases}
+      \Sph{2} & \text{se } g = 0 \\
+      \quot{P_{4g}}{\sim} & \text{se } g \geq 1
+    \end{cases}
+  \]
+  Dove $ \sim $ è l'identificazione $ a_1 b_1 a_1^{-1}b_1^{-1}\dots a_g b_g a_g^{-1}b_g^{-1} $,
+  come ad esempio il toro, mentre:
+  \[
+    U_n =
+    \begin{cases}
+      \mathbb{P}^2(\RN) & \text{se } n = 0 \\
+      \quot{P_{2g}}{\sim} & \text{se } n \geq 1
+    \end{cases}
+  \]
+  Con $ \sim $ è l'identificazione $ a_1 a_1 \dots a_n a_n $, come ad esempio
+  la bottiglia di Klein.
+  Tutti i $ V_g $ non sono omeomorfi tra loro, e similmente gli $ U_n $, e neppure
+  gli $ U_n $ e i $ V_g $ sono vicendevolmente omeomorfi in quanto i primi sono
+  non orientabili, mentre i secondi si.
+
+  Ho calcolato:
+  \[
+    H_1(V_g) \cong
+    \begin{cases}
+      H_1(\Sph{2}) & \text{se } g = 0 \\
+      \Z^{2g} & \text{se } g \geq 1
+    \end{cases}
+  \]
+  $ V_g $ con $ g \geq 1 $ non hanno lo stesso tipo di omologia di $ \Sph{2} $ perchè
+  $ H_1(V_g) $ è non banale, mentre il gruppo fondamentale di $ \Sph{2} $ lo è.
+  Similmente $ H_1(\mathbb{P}^2(\RN)) \cong \pi_1(\mathbb{P}^2(\RN)) \cong \Z_2 $, che non è
+  banale, e $ H_1(U_n) \cong \Ab{\pi_1(U_n)} $, ma per Seifert-van Kampen:
+  \[
+    \pi_1(U_n) = \langle a_t, \dots, a_n \; | \; a_1^2\dots a_n^2 = 1 \rangle \Rightarrow \Ab{\pi_1(U_n)} = \langle a_t, \dots, a_n, c = a_1 \dots a_n \; | \; a_1^2\dots a_n^2 = 1 \rangle =
+    \Z_2 \oplus \Z^{n-1}
+  \]
+  Dove $ \Z_2 $ viene dal fatto che abelianizzando $ a_1^2\dots a_n^2 = (a_1 \dots a_n)^2 = 1 $ quindi
+  $ c = \pm 1 $, mentre $ \Z^{n-1} $ è il gruppo libero generato dai rimanenti.
+  Questo non è banale, quindi l'unico spazio possibile è proprio $ \Sph{2} $.
+\end{proof}
+
+Cosa si può invece dire su $ \Sph{3} $? Vale la seguente proposizione:
+\begin{proposition}
+  Se $ \M $ è una $ 3 $-varietà topologica compatta e connessa tale che $ \forall k \geq 3 $
+  $ H_k(\M) \cong H_k(\Sph{3}) $ allora non si può concludere che $ \M \simeq \Sph{3} $.
+\end{proposition}
+\begin{proof}
+  Costruisco un controesempio, noto come \textbf{spazio dodecaedrico di Poincaré}\index{Spazio dodecaedrico},
+  o anche spazio a omologia razionale\index{Spazio a omologia razionale ! \vedi{Spazio dodecaedrico}}.
+  Costruisco $ P $ $ 3 $-varietà topologica compatta e connessa con lo stesso tipo di omologia di
+  una $ 3 $-sfera ma non omeomorfa a $ \Sph{3} $ in quanto il gruppo fondamentale è finito
+  non abeliano di ordine 120.
+  Parto da $ \Sph{3} $, posso scrivere:
+  \[
+    \Sph{3} \subseteq \mathbb{C}^2 \qquad \Sph{3} = \set{ (z_0, z_1) \in \mathbb{C}^2 | |z_0|^2 + |z_1|^2 = 1}
+  \]
+  Infatti $ z_0 = x + i y $ e $ z_1 = t + i w $ quindi $ |z_0|^2 = (x + iy)(x - iy) = x^2 + y^2 $
+  e $ |z_0|^2 = (t + iw)(t - iw) = t^2 + w^2 $ e quindi ottengo:
+  \[
+    \Sph{3} = \set{ (x,y,t,w) \in \RN{4} | x^2 + y^2 + t^2 + w^2 = 1}
+  \]
+  Così come $ \Sph{1} $ ha una struttura di gruppo U(1) è possibile strutturare
+  $ \Sph{3} $ come gruppo SU(2):
+  \[
+    \mathrm{SU(2)} = \set{A \in M_2(\mathbb{C}) | \det{A} = 1, \; AA^\dagger = \Id{2}}
+  \]
+  Quindi $ \mathrm{SU(2)} \subseteq \mathbb{C}^4 $, si dimostra che $ A \in \mathrm{SU(2)} $ se e solo se
+  è della forma:
+  \[
+    \begin{pmatrix}
+      \alpha & - \beta^\star \\
+      \beta & \alpha^\star \\
+    \end{pmatrix}
+    \text{ con } \alpha,\beta \in \mathbb{C} \text{ e } |\alpha|^2 + |\beta|^2 = 1
+  \]
+  Quello che sto dicendo è che i vettori in $ \mathbb{C}^2 $ $ (\alpha, \beta) $ e $ (-\beta^\star, \alpha^\star) $ sono
+  normalizzati e sono tra di loro ortogonali.
+
+  Si costruisce immediatamente la corrispondenza buinivoca tra SU(2) e $ \Sph{3} $:
+  \begin{align*}
+    \mathrm{SU(2)} & \leftrightarrow \Sph{3} \\
+    \begin{pmatrix}
+      \alpha & - \beta^\star \\
+      \beta & \alpha^\star \\
+    \end{pmatrix} & \leftrightarrow (\alpha,\beta)
+  \end{align*}
+  In questo modo si può definire un prodotto su $ \Sph{3} $ rappresentanto
+  $ x,y,t,w $ come numeri complessi e passando alla controparte matriciale, dove
+  il prodotto è definito naturalmente come prodotto riga per colonna, quindi
+  una volta svolto il prodotto si torna alla notazione a quattro reali. A questo
+  punto è triviale trovare l'identità e l'elemento inverso che permettono di dare
+  a $ \Sph{3} $ la struttura di gruppo.
+
+  SU(2) può essere visto come spazio topologico con topologia indotta da $ \mathbb{C}^4 $,
+  in questo senso SU(2) e $ \Sph{3} $ sono sia isomorfi come gruppi che omeomorfi
+  come spazi topologici.
+
+  La costruzione dello spazio dodecaedrico si basa sulle isometrie del dodecaedro $ D_{12} $,
+  questo è un solido regolare con 12 facce, 30 spigoli e 20 vertici.
+  Il gruppo di isometrie del dodecaedro, cioè:
+  \[
+    \mathrm{Isom}(D_{12}) = \set{ g \colon \RN{3} \to \RN{3} | g \text{ regolare e } g(D_{12}) = D_{12}}
+  \]
+  Questo gruppo si può vedere come:
+  \[
+    \mathrm{Isom}(D_{12}) \cong A_5 \times \Z_2
+  \]
+  Dove $ A_5 $ è un sottogruppo di $ \mathrm{Isom}(D_{12}) $ ed è il gruppo
+  alterno (cioè il gruppo delle permutazioni pari) su 5 elementi e quindi ha ordine 60.
+  Le 60 trasformazioni che sono in $ A_5 $ sono l'identità, 24 rotazioni di $ \frac{2}{5} \pi $ attorno
+  agli assi per i centri di facce opposti, 20 rotazioni di $ \frac{2}{3} \pi $ attorno
+  agli assi per vertici opposti e 15 rotazioni di $ \pi $ attorno agli assi per
+  i punti medi di spigoli opposti.
+  $ \Z_2 $ invece è dovuto all'applicazione antipodale che è $ (x,y,z) \mapsto (z,y,z) $.
+  $ A_5 $ è un sottogruppo finito di SO(3) che sono le rotazioni di $ \RN{3} $ attorno
+  a una retta passante per l'origine, cioè:
+  \[
+    \mathrm{SO(3)} = \set{ R \in M_3(\RN{}) | \det{R} = 1, \;R^T R = \Id{3}}
+  \]
+  Per passare da SO(3) a $ \Sph{3} $ utilizzo la \textbf{rappresentazione spinoriale}\index{Rappresentazione spinoriale di SO(3)}
+  (questo mi permette di passare dal dodecaedro che è tridimensionale alla $ 3 $-sfera).
+  Sia $ \rho $ una rappresentazione di SU(2), cioè un omomorfismo:
+  \[
+    \rho \colon \Sph{3} = \mathrm{SU(2)} \to \mathrm{GL}(V)
+  \]
+  Dove $ V $ è uno spazio vettoriale di dimensione 3, quindi $ V \cong \RN{3} $, scelgo
+  lo spazio delle matrici antihermitiane a traccia nulla:
+  \[
+    V = \set{H \in M_2(\mathbb{C}) | H + H^\dagger = 0, \; \tr H  = 0}
+  \]
+  Si trova che $ V $ è generato da:
+  \[
+    E_1 =
+    \begin{pmatrix}
+      0 & i \\
+      i & 0 \\
+    \end{pmatrix}
+    \quad
+    E_2 =
+    \begin{pmatrix}
+      0 & 1 \\
+      -1 & 0 \\
+    \end{pmatrix}
+    \quad
+    E_3 =
+    \begin{pmatrix}
+      i & 0 \\
+      0 & -i \\
+    \end{pmatrix}
+  \]
+  Perchè $ \rho $ sia una rappresentazione dovrei verificare:
+  \begin{enumerate}
+  \item $ \rho(T) $ lineare
+  \item $ \rho(T)(H) \in V $
+  \item $ \rho $ omomorfismo
+  \item $ \rho(T) $ inveribile
+  \end{enumerate}
+  Verifico ad esempoi che $ \rho(T)(H) \in V $:
+  \begin{gather*}
+    THT^\dagger + TH^\dagger T^\dagger = 0 \iff T(H + H^\dagger)T^\dagger = 0 \iff H \in V \\
+    \tr(THT^\dagger) = \tr(THT^{-1}) \overset{\text{ciclicità}}{=} \tr(H) = 0 \iff H \in V
+  \end{gather*}
+  Ho quindi $ \rho \colon \Sph{3} \to \mathrm{GL}(V) $, vorrei cercare di restringere
+  la questione a O($ V $) al posto di $ \mathrm{GL}(V) $.
+
+  Per parlare di isometria bisogna prima definire un prodotto scalare definito
+  positivo, e una possibile forma quadratrica naturale è in questo caso il determinante, infatti
+  se $ H \in V $ allora:
+  \[
+    H =
+    \begin{pmatrix}
+      i a & c + i b \\
+      -c + i b & - i a
+    \end{pmatrix}
+  \]
+  Con $ a,b,c \in \RN{} $, infatti $ \det{H} = a^2 + b^2 + c^2 $ che è il consueto
+  prodotto scalare in $ \RN{3} $. In questo modo $ V $ diventa uno spazio euclideo
+  con prodotto scalare $ q = \det $.
+
+  Mi chiedo $ \rho(T) \colon V \to V $ è isometria? Questo è vero se $ q(\rho(T)(H)) = q(H) $
+  cioè se $ \det(THT^\dagger) = \det{H} $, ma per Binet questo equivale a
+  $ \det{T}\det{H}\det{T^\dagger} = \det{H} $, utilizzando il fatto che il determinante
+  di una matrice è un numero complesso e quindi commuta questo equivale a
+  $ \det{T}\det{T^\dagger}\det{H} = \det{H} $, sempre per Binet  $ \det(TT^\dagger)\det{H} = \det{H} $,
+  ma per ipotesi $ TT^\dagger = \Id{} $ quindi effettivamente $ \rho(T) $ è isometria, perciò:
+  \[
+    \rho \colon \Sph{3} \to \mathrm{O}_3(V)
+  \]
+  \begin{exercise}
+    Verificare che $ \rho $ è continuo come applicazione tra spazi topologici
+    equipaggiando $ \mathrm{O}_3(V) $ con la topologia indotta da $ \RN{9} $.
+  \end{exercise}
+  Essendo $ \rho $ continua manda compatti in compatti e connessi in connessi, quindi
+  $ \rho(\Sph{3}= \mathrm{SU(2)}) $ è connesso in $ \mathrm{O}_3(V) $.
+  Ma $ \mathrm{O}_3(V) $ non è connesso, e anzi è formato da due componenti connesse,
+  una è SO(3), l'altra è SO(3) moltiplicata per una qualunque matrice di determinante
+  $ - 1 $. Siccome $ \rho $ è omomorfismo $ \rho(\Id{}) = \Id{} $, quindi $ \rho(\Sph{3}) =  \mathrm{SO(3)}) $,
+  in questo modo rappresento la $ 3 $-sfera come rotazioni in $ \RN{3} $.
+  Si dimostra che $ \rho $ è suriettiva e $ \ker{\rho} = \set{(1,0,0,0), (-1,0,0,0)} $ elementi
+  che corrispondono a $ \Id{} $ e $ -\Id{} $.
+
+  Quindi come gruppi:
+  \[
+    \quot{\Sph{3}}{\ker{\rho}} \cong \mathrm{SO(3)}
+  \]
+  Ad una rotazione in $ \RN{3} $ corrispondono due punti sulla $ 3 $-sfera che sono
+  uno l'antipodale dell'altro.
+
+  Ora ho $ A_5 \subseteq \mathrm{SO(3)} $ definisco $ G = \set{ T \in \Sph{3} | \rho(T) \in A_5} $,
+  cioè sono tutti i punti della sfera a cui corrispondono le rotazioni in $ A_5 $.
+  $ G $ è un gruppo, infatti se $ T, S \in G $ allora $ \rho(T), \rho(S) \in A_5 $ e
+  $ \rho(TS) = \rho(T)\rho(S) \in A_5 $ in quanto $ A_5 $ gruppo. Inoltre $ \Id{} \in G $ in quanto
+  $ \rho(\Id{}) \in A_5 $.
+
+  Definisco $ \phi = \rho \big \lvert_G $, per costruzione $ \phi \colon G \to A $ ed è suriettiva.
+  Inoltre $ \ker{\phi} = \set{ T \in G | \phi(T) = \Id{}} $, ma $ \phi(T) = \rho(T) $, quindi
+  $ T = \pm \Id{} $, cioè $ \ker{\phi} = \set{- \Id{}, + \Id{}} $. Ho perciò la succession
+  esatta di gruppi:
+  \[
+    \begin{tikzcd}
+      \Id{} \arrow{r}{} & \ker{\phi} \arrow{r}{} & G \arrow{r}{} & A \arrow{r}{} & \Id{}
+    \end{tikzcd}
+  \]
+  Quindi $ A = \quot{G}{\ker{\phi}} $.
+  $ G \subseteq \Sph{3} $ e ha ordine 120, inoltre $ \ker{\phi} $ è normale in $ G $.
+  Quello che si trova è $ G \simeq A_5 \times \ker{\phi} $. Questo si verifica formalmente, ma lo si
+  intuisce per il fatto che sostanzialmente $ G $ e formato da $ (A, + \Id{}) $ e  $ (A, - \Id{}) $.
+
+  A questo punto posso definire l'azione del gruppo su $ \Sph{3} $:
+  \begin{align*}
+    G \times \Sph{3} & \to \Sph{3} \\
+    (g,x) & \to gx
+  \end{align*}
+  A questo punto è sensato fare $ \pi \colon \Sph{3} \to \quot{\Sph{3}}{G} $.
+\end{proof}
+
+
+
+Vale tuttavia il seguente risultato, dimostrato da Perelman nel 2004,
+noto come congettura di Poincaré:
+\begin{proposition}[Congettura di Poincaré]
+  Se $ \M $ è una $ 3 $-varietà topologica compatta, connessa e semplicemente
+  connessa tale che $ \forall k \geq 3 $ $ H_k(\M) \cong H_k(\Sph{3}) $ allora $ \M \simeq \Sph{3} $.
+\end{proposition}
+Questo mostra che il gruppo fondamentale è uno strumento più fine
+dei gruppi di omologia.
+
 
 % TODO:
 % 1. Correggere i : con \colon (CAMBIA QUALCOSA? INFORMARSI!)

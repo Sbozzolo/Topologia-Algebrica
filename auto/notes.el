@@ -57,6 +57,7 @@
     "Z"
     "me"
     "homoto"
+    "tr"
     "incl"
     "invamalg"
     "svgwidth")
@@ -123,6 +124,8 @@
     "Semplicemente connesso"
     "Teorema di Seifert–van Kampen"
     "Genere"
+    "Varietà topologica"
+    "Dimensione di una varietà topologica"
     "Arco"
     "Spazio connesso per archi"
     "Gruppi di omotopia superiore"
@@ -161,7 +164,10 @@
     "$ 0 $-scheletro"
     "$ k $-scheletro"
     "Cella"
-    "Spazio proiettivo reale")
+    "Spazio proiettivo reale"
+    "Spazio dodecaedrico"
+    "Spazio a omologia razionale ! \\vedi{Spazio dodecaedrico}"
+    "Rappresentazione spinoriale di SO(3)")
    (LaTeX-add-counters
     "exercises"))
  :latex)
