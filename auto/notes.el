@@ -156,7 +156,12 @@
     "Retratto di deformazione"
     "Retrazione"
     "Teorema del punto fisso"
-    "Grado di una sfera")
+    "Grado di una sfera"
+    "CW-complesso"
+    "$ 0 $-scheletro"
+    "$ k $-scheletro"
+    "Cella"
+    "Spazio proiettivo reale")
    (LaTeX-add-counters
     "exercises"))
  :latex)

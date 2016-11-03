@@ -1746,6 +1746,28 @@ Una funzione $ F $ fatta in questo modo è detta
 
 \begin{definition}
   Si definisce una \textbf{successione esatta corta}\index{Successione esatta corta} di
+  gruppi la successione:
+  \[
+    \begin{tikzcd}
+       A \arrow{r}{\alpha} & B \arrow{r}{\beta} & C
+    \end{tikzcd}
+  \]
+  con $ \alpha $ omomorfismo iniettivo, $ \beta $ omomorfismo suriettivo e $ \ker{\beta} = \im{\alpha} $.
+  Si nota che richiedere queste condizioni su $ \alpha $ e $ \beta $ è equivalente a scrivere la
+  successione esatta come:
+  \[
+    \begin{tikzcd}
+      0 \arrow{r}{} & A \arrow{r}{\alpha} & B\arrow{r}{\beta} & C \arrow{r}{} & 0
+    \end{tikzcd}
+  \]
+  Infatti indicando le mappe sottointese con $ i \colon 0 \to A $ e $ j \colon C \to 0 $
+  allora per l'esattezza vale che $ \ker{\alpha} = \im{i} = 0 $ in quanto $ i $ è
+  omomorfismo, ma $ \ker{\alpha} = 0 $ signfiica che $ \alpha $ è iniettivo, inoltre
+  $ \ker{j} = \im{\beta} = C $, quindi $ \beta $ è suriettiva.
+\end{definition}
+
+\begin{definition}
+  Si definisce una \textbf{successione esatta corta}\index{Successione esatta corta} di
   complessi la successione:
   \[
     \begin{tikzcd}
@@ -1782,7 +1804,8 @@ posso passare all'omologia, se passo brutalmente
 all'omologia non ottengo una successione esatta,
 ma c'è il modo per indurre una successione esatta lunga:
 \begin{theorem}
-  Esiste una successione esatta lunga tale che sia fatta così:
+  Una successione esatta corta di complessi induce una successione
+  esatta lunga tale che sia fatta così:
   \[
     \begin{tikzcd}
       \dots \arrow{r}{} & H_p(A_\bullet) \arrow{r}{\alpha_\star} & H_p(B_\bullet) \arrow{r}{\beta_\star} & H_p(C_\bullet) \arrow{r}{\delta}
@@ -1939,7 +1962,7 @@ Posso fare:
     \dots \arrow{r}{} & S_{k+1}(A) \arrow{r}{} \arrow{d}{} & S_k(A) \arrow{r}{} \arrow{d}{} & \dots \\
     \dots \arrow{r}{} & S_{k+1}(X) \arrow{r}{} \arrow{d}{} & S_k(X) \arrow{r}{} \arrow{d}{} & \dots \\
     \dots \arrow{r}{} & S_{k+1}(X,A) \arrow{r}{} \arrow{d}{} & S_k(X,A) \arrow{r}{} \arrow{d}{}& \dots \\
-    {} & 0 & {} & {}
+    {} & 0 & 0 & {}
   \end{tikzcd}
 \]
 I quadrati sono commutativi quindi posso
@@ -2112,6 +2135,101 @@ In $ S_k $ $ \sigma \colon \Delta_k \to \set{x_0} $ è simplesso sono le applica
 dal $ k $-simplesso standard in $ \set{x_0} $. Quindi $ S_k(\set{x_0}) = \langle\sigma_k\rangle $
 $ \sigma_k $ è l'unica mappa che c'è.
 
+\begin{lemma}[Omologia di un punto]
+  Sia $ X = \set{x_0} $ con $ x_0 \in X $, allora:
+  \[
+    H_k(\set{x_0}) \cong
+    \begin{cases}
+      \Z & \text{se } k = 0 \\
+      0 & \text{se } k \geq 1
+    \end{cases}
+  \]
+\end{lemma}
+
+\begin{proof}
+  Il generico $ k $-simplesso singolare in $ X $ è una mappa
+  continua $ \sigma_k \colon \Delta_k \to \set{x_0} $, quindi fissato $ k $ esiste
+  un solo simplesso singolare, che è la mappa costante dal simplesso
+  standard a $ x_0 $. Il generico $ S_k(X) $ quindi è il gruppo libero
+  generato da questo simplesso singolare, cioè $ S_k(X) = \langle\sigma_k\rangle $.
+  A questo punto fissato $ k $ si può computare semplicemente il bordo di $ \sigma_k $:
+  % infatti dalla definizione di omologia singolare c'è il complesso:
+  % \[
+  %   \begin{tikzcd}
+  %      \dots \arrow{r}{}  & S_{k+1}(\set{x_0}) \arrow{r}{\partial} &  S_{k}(\set{x_0}) \arrow{r}{\partial} &  S_{k-1}(\set{x_0}) \arrow{r}{} & \dots
+  %   \end{tikzcd}
+  % \]
+  % Che corrisponde alla successione dei generatori:
+  % \[
+  %   \begin{tikzcd}
+  %      \dots \arrow{r}{}  & \langle\sigma_{k+1}\rangle \arrow{r}{\partial} &  \langle\sigma_{k}\rangle \arrow{r}{\partial} & \langle\sigma_{k-1}\rangle \arrow{r}{} & \dots
+  %   \end{tikzcd}
+  % \]
+  \[
+    \partial \sigma_k = \sum_{i = 0}^k (-)^i \sigma_k^{(i)}  \text{ con }  \sigma_k^{(i)} \colon \Delta_{k-1} \overset{F_k^{\; i}}{\to} \Delta_k \overset{\sigma_k}{\to} \set{x_0}
+    \text{ cioè } \sigma_k^{(i)}  = \sigma_{k-1}
+  \]
+  Fissato $ k $ nella sommatoria che calcola il bordo tutte le quantita sono uguali,
+  quindi la somma a segni alterni è nulla oppure è uguale a $ \sigma_{k-1} $ a seconda
+  della parità di $ k $.
+  \[
+    \partial \sigma_k =
+    \begin{cases}
+      0       & \text{se $ k $ dispari} \\
+      \sigma_{k-1} & \text{se $ k $ pari}
+    \end{cases}
+  \]
+  A questo punto si può calcolare facilmente il nucleo e l'immagine dell'operatore
+  bordo:
+  \[
+    \ker{\partial_k} =
+    \begin{cases}
+      0       & \text{$ k $ dispari} \\
+      S_k(X)  & \text{$ k \geq 2$ pari}
+    \end{cases}
+  \]
+  E:
+  \[
+    \im{\partial_{k+1}} =
+    \begin{cases}
+      0       & \text{$ k $ dispari} \\
+      S_k(X)  & \text{$ k \geq 2$ pari}
+    \end{cases}
+  \]
+  Infatti, se $ k \geq 2 $ ed è pari:
+  \begin{align*}
+    \partial_k \colon S_k(\set{x_0}) & \to S_{k-1}(\set{x_0}) \\
+    \sigma_k & \mapsto \sigma_{k-1}
+  \end{align*}
+  quindi solo lo $ 0 $ è mandato in $ 0 $, mentre se è dispari:
+  \begin{align*}
+    \partial_k \colon S_k(\set{x_0}) & \to S_{k-1}(\set{x_0}) \\
+    \sigma_k & \mapsto 0
+  \end{align*}
+  quindi tutto viene mandato in $ 0 $
+  Invece per $ k $ pari:
+  \begin{align*}
+    \partial_{k+1} \colon S_{k+1}(\set{x_0}) & \to S_{k}(\set{x_0}) \\
+    \sigma_{k+1} & \mapsto \sigma_{k}
+  \end{align*}
+  quindi l'immagine è il generatore, cioè tutto $ S_{k}(X) $, mentre per $ k \geq 2$ pari:
+  \begin{align*}
+    \partial_k \colon S_k(\set{x_0}) & \to S_{k-1}(\set{x_0}) \\
+    \sigma_k & \mapsto 0
+  \end{align*}
+  Quindi l'immagine è solo $ 0 $.
+
+  A questo punto se $ k \geq 2 $ $ \im{\partial_{k+1}} = \ker{\partial_k} $, quindi:
+  \[
+    H_k(X) = \quot{\ker{\partial_{k}}}{\im{\partial_{k+1}}} \cong 0
+  \]
+  Invece se $ k = 0 $ vale che $ \ker{\partial_0} = S_0(X) $, mentre
+  $ \im{\partial_1} = 0 $ quindi:
+  \[
+    \quot{\ker{\partial_{0}}}{\im{\partial_{1}}} \cong S_0(X)
+  \]
+\end{proof}
+
 \begin{proposition}
   Vale che:
   \[
@@ -2129,59 +2247,6 @@ $ \sigma_k $ è l'unica mappa che c'è.
       \dots \arrow{r}{} & H_{k+1}(\set{x_0}) \arrow{r}{} & H_{k+1}(X) \arrow{r}{} & \tilde{H}_{k+1}(X) \arrow{r}{} & H_k(\set{x_0}) \arrow{r}{} & \dots
     \end{tikzcd}
   \]
-  Vale che:
-  \[
-    H_k(\set{x_0}) \cong
-    \begin{cases}
-      \Z & \text{se } k = 0 \\
-      0 & \text{se } k \geq 1
-    \end{cases}
-  \]
-  infatti dalla definizione di omologia singolare c'è il complesso:
-  \[
-    \begin{tikzcd}
-       \dots \arrow{r}{}  & S_{k+1}(\set{x_0}) \arrow{r}{\partial} &  S_{k}(\set{x_0}) \arrow{r}{\partial} &  S_{k-1}(\set{x_0}) \arrow{r}{} & \dots
-    \end{tikzcd}
-  \]
-  Che corrisponde alla successione dei generatori:
-  \[
-    \begin{tikzcd}
-       \dots \arrow{r}{}  & \langle\sigma_{k+1}\rangle \arrow{r}{\partial} &  \langle\sigma_{k}\rangle \arrow{r}{\partial} & \langle\sigma_{k-1}\rangle \arrow{r}{} & \dots
-    \end{tikzcd}
-  \]
-  Ma $ \partial \sigma_k = \sum_{i = 0}^k (-)^i \sigma_k^{(i)} $ con $ \sigma_k \colon \Delta_k \to \set{x_0} $ e $ F_k^{\; i} \colon \Delta_{k-1} \to \Delta_k \overset{\sigma_k}{\to} \set{x_0} $.
-  Quindi $ \forall i $ vale che $ F_k^{\; i} \circ \sigma_k = \sigma_{k-1} $ in quanto il bordo della costante è costante.
-
-  Tutte le quantita sono utuali quindi la somma a segni alterni è nulla oppure è uguale a $ \sigma_{k-1} $:
-  \[
-    \partial \sigma_k =
-    \begin{cases}
-      0 & \text{se $ k $ dispari} \\
-      \sigma_{k-1} & \text{se $ k $ pari}
-    \end{cases}
-  \]
-  Conosco il nucleo e l'immagine di questo operatore, quindi posso calcolare
-  l'omologia singolare con la definizione:
-  Se $ k \geq 2 $ è pari:
-  \begin{align*}
-    \partial_k \colon S_k(\set{x_0}) & \to S_{k-1}(\set{x_0}) \\
-    \sigma_k & \mapsto \sigma_{k-1}
-  \end{align*}
-  Quindi $ \ker{\partial_k} = 0 $ infatti [MANCA] quindi $ H_k(\set{x_0}) = 0 $.
-  Se $ k $ è dispari:
-  \begin{align*}
-    \partial_k \colon S_k(\set{x_0}) & \to S_{k-1}(\set{x_0}) \\
-    \sigma_k & \mapsto 0
-  \end{align*}
-  Quindi $ \ker{\partial_{k+1}} = S_k(\set{x_0}) $ e perciò $ \quot{S_k(\set{x_0})}{S_k(\set{x_0})} = 0 $,
-  in ogni caso si ottiene:
-  \[
-    H_k(\set{x_0}) \cong
-    \begin{cases}
-      \Z & \text{se } k = 0 \\
-      0 & \text{se } k \geq 1
-    \end{cases}
-  \]
 
   Nel caso $ k \geq 1 $ sicuramente $ k + 1 > 0 $ e il complesso quindi è:
   \[
@@ -2189,7 +2254,7 @@ $ \sigma_k $ è l'unica mappa che c'è.
       0 \arrow{r}{}  & H_{k+1}(X) \arrow{r}{\psi} &  \tilde{H}_{k+1}(X) \arrow{r}{} &  0
     \end{tikzcd}
   \]
-  $ \psi $ è ininiettiva quindi $ \ker{\psi} = \im{0} = 0 $, ma è anche surietta, in quanto [MANCA].
+  $ \psi $ è iniettiva quindi $ \ker{\psi} = \im{0} = 0 $, ma è anche surietta, in quanto [MANCA].
   Quindi $ \psi $ è isomorfismo e perciò $ H_m(X) \cong \tilde{H}_m(X) $ per $ m \geq 2 $.
   Mi rimane da calcolare il caso $ k = 1 $ e il caso $ k = 0 $.
   [MANCA MANCA MANCA]
@@ -2287,6 +2352,74 @@ sono l'omotopia e l'escissione.
 \end{definition}
 
 % lezione 6
+
+Ho costruito:
+\[
+  \begin{tikzcd}
+    {} & 0 \arrow{d}{} & 0 \arrow{d}{} & {} \\
+    \dots \arrow{r}{} & S_{k+1}(A) \arrow{r}{} \arrow{d}{} & S_k(A) \arrow{r}{} \arrow{d}{} & \dots \\
+    \dots \arrow{r}{} & S_{k+1}(X) \arrow{r}{} \arrow{d}{} & S_k(X) \arrow{r}{} \arrow{d}{} & \dots \\
+    \dots \arrow{r}{} & S_{k+1}(X,A) \arrow{r}{} \arrow{d}{} & S_k(X,A) \arrow{r}{} \arrow{d}{}& \dots \\
+    {} & 0 & 0 & {}
+  \end{tikzcd}
+\]
+So che ho $ \partial' $ perchè la successione è esatta, devo verificare che $ P \circ \partial = \partial' \circ P $.
+Sia $ c \in S_{k+1}(X) $ allora $ p(c) = [c' \in S_{k+1}(X) \text{ tale che } c'-c \in S_{k+1}(A)] $,
+e $ \partial'([c]_A) := [\partial c]_A $ così la relazione è soddisfatta.
+
+Devo verificare che è ben definita:
+Se $ c' \sim_A c $ allora $ c' - c = a \in S_{k+1}(A) $, prendo il bordo $ \partial c' - \partial c = \partial a \in S_{k+1}(A) $,
+per definizione $ \partial c \sim_A \partial c $ quindi l'applicazione è ben definita.
+
+L'omologia relativa è l'omologia singolare di $ S_\bullet(X, A) $, cioè:
+\[
+  H_k(X,A) = H_k(S_\bullet(X,A)) = \quot{\ker{S_k(X,A) \to S_{k-1}}}{\im{S_{k+1}(X,A) \to S_{k}}}
+\]
+Questo gruppo abeliano (in quanto è quoziente di gruppi abeliani) è detto
+gruppo di omologia relativa della coppia  $ (X, A) $.
+Ho fatto un'associazione da una coppia a un gruppo, voglio verificare che questa
+soddisfa gli assiomi di Eilenberg e Steenrod.
+
+Sia $ f \colon (X,A) \to (Y,B) $ tale che $ f(A) \incl B $, e sia:
+\begin{align*}
+  f_\star \colon H_k(X,A) & \to H_k(Y,B) \\
+  \llbracket c \rrbracket_ A & \mapsto  \llbracket f_\sharp(c) \rrbracket_ B
+\end{align*}
+Quindi ho;
+\[
+  \begin{tikzcd}
+    \dots \arrow{r}{} & S_{k+1}(X,A) \arrow{r}{} \arrow{d}{f_\sharp} & S_k(X,A) \arrow{r}{}  \arrow{d}{f_\sharp} & S_{k-1}(X,A) \arrow{r}{}  \arrow{d}{f_\sharp} & \dots \\
+    \dots \arrow{r}{} & S_{k+1}(Y,B) \arrow{r}{} & S_k(Y,B) \arrow{r}{} & S_{k-1}(Y,B) \arrow{r}{} & \dots
+  \end{tikzcd}
+\]
+$ f_\sharp $ esiste, infatti:
+\[
+  \begin{tikzcd}
+    S_{k}(X) \arrow{r}{f} \arrow{d}{} & S_k(Y)  \arrow{d}{}  \\
+    \quot{S_k(X)}{S_k(A)} \arrow{r}{f_\sharp} & \quot{S_k(Y)}{S_k(B)}
+  \end{tikzcd}
+\]
+$ f_\sharp $ esiste perchè $ S_k(A) \to S_k(B) $ per la condizione $ f(A) \incl B $,
+il resto l'ho già verificato.
+
+Inoltre so che $ (X,A) \overset{f}{\to} (Y,B) \overset{g}{\to} (Z,C) $, allora
+$ (g \circ f)_\star = g_\star \circ f_\star $ e $ (X,A) \overset{\Id{X}}{\to} $
+allora $ (\Id{X})_\star = \Id{H_k(X,A)} $.
+
+Poi ho $ \delta $ omomorfismo di connessione $ \delta \colon H_{k+1}(X,A) \to H_k(X) $,
+lo che:
+\[
+  \begin{tikzcd}
+    0 \arrow{r}{} & S_\bullet(A) \arrow{r}{} & S_\bullet(X) \arrow{r}{} & S_\bullet(X,A) \arrow{r}{} & \dots
+  \end{tikzcd}
+\]
+Esiste una successione lunga in omologia.
+\[
+  \begin{tikzcd}
+    \dots \arrow{r}{} & H_k(A) \arrow{r}{} & H_k(X) \arrow{r}{} & \arrow{r}{} & \dots
+  \end{tikzcd}
+\]
+
 
 [MANCA TUTTA LE LEZIONE 6]
 
@@ -2704,6 +2837,149 @@ $ X = \quot{\Disk{n}}{\partial \Disk{n}} $, questo è il quoziente del disco per
 di equivalenza che fa collassare il bordo in un punto $ p $. Si trova che $ X \simeq \Sph{n} $.
 
 Posso fare questa costruzione:
+Definisco $ X^{(0)} = P $, lo spazio formato da un solo punto
+e $ \phi \colon \Sph{n-1} \to X^{(0)} $, posso definire:
+\[
+  X^{(1)} = X^{(0)} \cup_\phi \Disk{n}
+\]
+Dove con $ \cup_\phi $ si intende, con $ X, Y $ spazi topologici:
+\newmathsymb{disgun}{sqcup}{Unione disgiunta}
+\[
+  X^{(0)} \cup_\phi \Disk{n} = \quot{X^{(0)} \sqcup \Disk{n}}{p \sim \phi(q)} \quad \forall q \in \Sph{n-1}
+\]
+Questo si generalizza. Considero la proiezione al quoziente $ \pi \colon \Disk{n} \to \Sph{n} $
+con $ \Sph{n} = X^{(0)} \cup_\phi \Disk{n} $.
+
+\begin{definition}
+  Si definisce $ X $ un \textbf{CW-complesso} di tipo finito\index{CW-complesso}, dove C singifica
+  \emph{closure finite} e W \emph{weak topology} è il dato dei seguenti oggetti topologici:
+  \begin{enumerate}
+  \item Un insieme finito $ X^{(0)} = \set{p_1, \dots, p_n} $ detto \textbf{$ 0 $-scheletro}\index{$ 0 $-scheletro}
+  \item Il \textbf{$ k $-scheletro}\index{$ k $-scheletro} $ X^{(k)} = X^{(k-1)} \cup_\phi \bigcup_\alpha \Disk{k}_\alpha $
+    con $ \Disk{k}_{\alpha_1}, \dots,  \Disk{k}_{\alpha_j} $ numero finito di dischi $ k $-dimensionali.
+    Gli elementi $ \Disk{k}_\alpha $ sono detti \textbf{celle}\index{Cella} (o cella chiusa), mentre
+    il loro interno è detto cella aperta.
+    $ \psi \colon \bigcup_\alpha \partial \Disk{k}_\alpha \to X^{(k-1)} $ continua fornisce le regole di attaccamento per i dischi.
+  \item Esiste $ N \in \mathbb{N} $ tale che $ X^{(0)} \subseteq X^{(1)} \subseteq \dots \subseteq X^{(n)} =: X $
+  \end{enumerate}
+\end{definition}
+
+Si dimostra che in generale la cella chiusa non è omeomorfa all'immagine, mentre la cella
+aperta lo è.
+
+In generale uno spazio ha numerose strutture di CW complesso.
+
+La topologia è detta debole perchè la topologia di unione disgiunta per tutti i $ k $-scheletri,
+e questo è la topologia più debole di tutte. In questa topologia un insieme è aperto in $ X $
+se e solo se è aperto la sua intersezione con tutti gli $ X^{(i)} $ è aperta.
+
+\begin{example}[Sfere]
+  $ \Sph{n} $ per $ n \geq 1 $ ammette una struttura di CW complesso: sia $ X^{(0)} = \set{p} $ con
+  $ p \in \Sph{n} $ e sia $ \phi \colon \partial \Disk{n} \to \set{p} $ mappa costante, allora
+  $ \Sph{n} = X^{(0)} \cup_\phi \Disk{n} = \quot{\Disk{n}}{\partial \Disk{n}} $, cioè una $ 0 $-cella e una
+  $ n $-cella.
+
+  Alternativamente una seconda possibile struttura è: considero l'equatore di $ \Sph{n} $ che
+  è uno $ \Sph{n-1} $ su questo attacco due dischi che sono calotta superiore e inferiore.
+  $ X^{(0)} = \set{p_1, p_2} $ e $ X^{(1)} = \Disk{1}_1 \cup \Disk{1}_2 $, quindi le mappe
+  sono:
+  \begin{gather*}
+    \phi_1 \colon \partial \Disk{1}_1 \to X^{(0)} \quad \text{cioè} \quad \phi_1 \colon \set{-1, +1} \to \set{p_1, p_2} \\
+    \phi_1 \colon \partial \Disk{1}_2 \to X^{(0)} \quad \text{cioè} \quad \phi_2 \colon \set{-1, +1} \to \set{p_1, p_2}
+  \end{gather*}
+  Quindi deve essere:
+  \[
+    \phi_1(1) = p_1 \quad \phi_1(-1) = p_2 \qquad  \phi_2(1) = p_2 \quad \phi_2(-1) = p_1
+  \]
+  A questo punto $ X^{(1)} \cup_\phi (\Disk{1}_1 \cup \Disk{1}_2) = \Sph{1} $ e si può aggiungere
+  $ \Disk{2} $, cioè $ X^{(2)} = \Disk{2}_1 \cup \Disk{2}_2 $, ora:
+  \begin{gather*}
+    \psi_1 \colon \partial \Disk{2}_1 \to X^{(2)} \\
+    \psi_1 \colon \partial \Disk{2}_2 \to X^{(0)}
+  \end{gather*}
+  Cioè $ \psi_j \colon \Sph{1} \to X^{(1)} $, quindi $ \psi_j \colon \Sph{1} \to \Sph{1} $ e quindi si può prendere
+  l'identità. Si ottiene così una $ 2 $-sfera. A questo punto si può procedere ad libidum.
+\end{example}
+
+\begin{example}[Toro]
+  Considerato un toro $ T = \Sph{1} \times \Sph{1} $ una possibile costruzione si basa sul prendere
+  come punti $ p $ i vertici del quadrato dal quale si fanno le identificazioni per ottenere il
+  toro. $ X^{(0)} = \set{p} $, ho quindi due lacci. Quindi:
+  \[
+    X^{(1)} = (\Disk{1}_1 \cup \Disk{1}_2) \cup_\phi X^{(0)}
+  \]
+  Le mappe:
+  \begin{gather*}
+    \phi_1 \colon \set{-1, +1} \to \set{p} \\
+    \phi_2 \colon \set{-1, +1} \to \set{p}
+  \end{gather*}
+  La cella è $ X^{(2)} = (\Disk{2} \cup_\psi X^{(1)}) $ con $ \psi \colon \Sph{1} \to X^{(1)} $
+  [MANCA IL SECONDO MODO]
+\end{example}
+
+\begin{definition}
+  Si definice lo \textbf{spazio proiettivo reale}\index{Spazio proiettivo reale} $ \mathbb{P}^n(\RN{}) = \quot{\RN{n+1} \setminus \set{0}}{\sim} $
+  con $ \vec{x} \sim \vec{y} $ se e solo se $ \vec{x} $ e $ \vec{y} $ sono multipli,
+  cioè se esiste $ \lambda \in \RN{+} $ tale che $ \vec{x} = \lambda \vec{y} $.
+\end{definition}
+
+Si dimostra che $ \mathbb{P}^n(\RN{}) \cong \quot{\Sph{n}}{H} $ con $ H = \set{\Id{\Sph{n}}, a_{\Sph{n}}} $.
+
+Si trova che:
+\begin{itemize}
+\item $ \mathbb{P}^1(\RN{}) = \Sph{1} = \RN{} \cup {\infty} $
+\item $ \mathbb{P}^2(\RN{}) = \mathbb{P}^1(\RN{}) \cup_\phi \Disk{2} $
+  Ho $ \quot{\Sph{2}}{H} $, l'emisfero sud della sfera si identifica con quello
+  nord per l'applicazione di antipodalità.
+  $ \phi = a \big \lvert_{\Sph{1}} $ e $ \Sph{1} = \mathbb{P}^1(\RN{}) $ e $ \Sph{1} = \partial \Disk{2} $,
+  quindi:
+  \begin{align*}
+    \phi \colon \Sph{1} & \to \Sph{1} \\
+    (x,y) & \mapsto (-x,-y)
+  \end{align*}
+\item Se considero $ \mathbb{P}^2(\RN{}) \cup_\phi \Disk{3} $ con:
+  \[
+    \phi \colon \partial \Disk{3}  \to \mathbb{P}^2(\RN{})
+  \]
+  cioè il passaggio al quoziente:
+  \[
+    \phi \colon \Sph{2}  \to \quot{\Sph{1}}{H}
+  \]
+\end{itemize}
+
+\begin{example}[Spazi proiettivi]
+  Se $ X^{(k)} = \mathbb{P}^k(\RN{}) \cup_\phi \Disk{k+1} $ con
+  \[
+    \phi \colon \partial \Disk{k+1}  \to \mathbb{P}^k(\RN{})
+  \]
+  Cioè:
+  \[
+    \phi \colon \Sph{k}  \to \mathbb{P}^k(\RN{})
+  \]
+  Cioè scelgo $ \phi $ come la proiezione sul quoziente da $ \Sph{k} $ a $ \mathbb{P}^k(\RN{}) = \quot{\Sph{k+1}}{H} $,
+  questo è uno spazio compatto.
+  $ \mathbb{P}^k(\RN{}) $ è uno spazio di Hausdorf, voglio mostrare che $ X^{(k+1)} \cong \mathbb{P}^{k+1}(\RN{}) $.
+  Cerco un'applicazione continua biunivoca e chiusa $ \Phi \colon X^{(k+1)} \to  \mathbb{P}^{k+1}(\RN{}) $,
+  cioè un omeomorfismo. Ho il digramma:
+  \[
+    \begin{tikzcd}
+      \mathbb{P}^{k}(\RN{}) \sqcup \Disk{k+1} \arrow{r}{\eta} \arrow{d}{} &  \mathbb{P}^{k+1}(\RN{}) \\
+      X^{(k+1)} \arrow{ru}{\Phi}
+    \end{tikzcd}
+  \]
+  \begin{exercise}
+    Dimostrare che $ \eta $ è continua e gode di tutte le buone proprietà.
+  \end{exercise}
+  So che $ i \colon  \mathbb{P}^{k}(\RN{}) \incl \mathbb{P}^{k+1}(\RN{}) $ (è un iperpiano all'infinito),
+  quindi posso usare l'inclusione.
+
+  Devo trovare una mappa $ j \colon \Disk{k+1} \to \mathbb{P}^{k+1}(\RN{}) $. $ i $ è ovvia:
+  $ i([z_0, \dots, z_k]) = [z_0, \dots, z_k; 0] $, mentre $ j $:
+  \[
+    j \colon [z_0, \dots, z_k] \mapsto  \left[z_0, \dots, z_{k+1} = \sqrt{1 - \sum_{j=1}^k z_i^2}\right]
+  \]
+  Siccome $ \sum_{j=1}^k z_i^2 \leq 1 $ l'applicazione è ben definita, quindi $ \eta = (i,j) $.
+\end{example}
 
 % TODO:
 % 1. Correggere i : con \colon (CAMBIA QUALCOSA? INFORMARSI!)

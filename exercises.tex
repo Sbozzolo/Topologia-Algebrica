@@ -25,6 +25,10 @@
 \newtheorem{lemma}[section]{Lemma}
 % \newenvironment{proof}{{\textbf{Dimostrazione}:}}{\hfill $\blacksquare$}
 
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Sph}[1][]{\mathcal{S}^#1}
+
+
 \begin{document}
 \maketitle
 
@@ -168,13 +172,24 @@ il fatto che $ f \circ g $ è equivalenza omotopica:
   f \circ \phi = f \circ g \circ h \sim 1_Y
 \]
 Inoltre utilizzando l'osservazione appena fatta e il lemma
-\ref{lemma:composizione_funzioni_omotopia}
+\ref{lemma:composizione_funzioni_omotopia}:
 \[
   g \circ h \circ f \sim k \circ g \circ f \sim 1_X
 \]
 Anche in questo caso ho utilizzato il fatto che $ g \circ f $ è equivalenza
 omotopica.
+
+Si può utilizzare un ragionamento analogo per $ \gamma $.
 \hfill $ \square $
+
+
+\section*{Esercizio 1.2.33 (xii)}
+Per assurdo $ \Sph{1} $ e $ \Sph{n} $ con $ n \geq 2 $ sono omotopicamente
+equivalenti, questo implica che i loro gruppi fondamentali sono isomorfi,
+indipendentemente dal punto base in quanto gli spazi sono connessi per archi.
+Ma $ \pi_1(\Sph{1}) \cong \Z $, mentre $ \pi_1(\Sph{n}) \cong 0 $ per $ n \geq 2 $, quindi
+siccome i gruppi fondamentali non sono isomorfi gli spazi non possono
+essere omotopicamente equivalenti.
 
 
 \section*{Esercizio 1.2.33 (xiii)}
