@@ -4,7 +4,7 @@
    (TeX-add-to-alist 'LaTeX-provided-class-options
                      '(("scrbook" "10pt" "twoside=false" "x11names")))
    (TeX-add-to-alist 'LaTeX-provided-package-options
-                     '(("inputenc" "utf8") ("babel" "italian") ("fontenc" "T1") ("hyperref" "hidelinks")))
+                     '(("inputenc" "utf8") ("babel" "italian") ("fontenc" "T1") ("hyperref" "hidelinks") ("cancel" "makeroom")))
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "nolinkurl")
@@ -41,7 +41,8 @@
     "fontenc"
     "stmaryrd"
     "subcaption"
-    "hyperref")
+    "hyperref"
+    "cancel")
    (TeX-add-symbols
     '("Disk" ["argument"] 0)
     '("Sph" ["argument"] 0)
@@ -98,6 +99,7 @@
     "$ \\Z $-modulo libero"
     "Rango di gruppo abeliano"
     "Omomorfismo"
+    "Teorema fondamentale degli omomorfismi"
     "Nucleo"
     "Immagine"
     "Modulo quoziente"
@@ -141,7 +143,6 @@
     "$ k $-ciclo"
     "Elementi omologhi"
     "Grado"
-    "Teorema fondamentale degli omomorfismi"
     "Gruppo derivato"
     "Mappa tra complessi"
     "Successione esatta corta"
