@@ -1,4 +1,4 @@
-\documentclass[10pt, twoside=false, x11names]{scrbook}
+S\documentclass[10pt, twoside=false, x11names]{scrbook}
 
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -73,24 +73,24 @@
 
 \begin{titlepage}
 
-\noindent
-\titlefont Topologia Algebrica
-\epigraph{Zitto e studia.}%
-{\textit{Parigi 1905}\\ \textsc{H.\ Poincarè}}
-\null\vfill
-\vspace*{1cm}
-\noindent
-\hfill
-\begin{minipage}{0.35\linewidth}
+  \noindent
+  \titlefont Topologia Algebrica
+  \epigraph{Zitto e studia.}%
+  {\textit{Parigi 1905}\\ \textsc{H.\ Poincarè}}
+  \null\vfill
+  \vspace*{1cm}
+  \noindent
+  \hfill
+  \begin{minipage}{0.35\linewidth}
     \begin{flushright}
-        \printauthor
+      \printauthor
     \end{flushright}
-\end{minipage}
-%
-\begin{minipage}{0.02\linewidth}
+  \end{minipage}
+  %
+  \begin{minipage}{0.02\linewidth}
     \rule{1pt}{125pt}
-\end{minipage}
-\titlepagedecoration
+  \end{minipage}
+  \titlepagedecoration
 \end{titlepage}
 
 \tableofcontents
@@ -99,7 +99,7 @@
 \printsymblist
 
 % lezione 1
-%  _     _____ ________ ___  _   _ _____   _
+% _     _____ ________ ___  _   _ _____   _
 % | |   | ____|__  /_ _/ _ \| \ | | ____| / |
 % | |   |  _|   / / | | | | |  \| |  _|   | |
 % | |___| |___ / /_ | | |_| | |\  | |___  | |
@@ -155,7 +155,7 @@ Sostanzialmente la nozione di $ \R $-modulo generalizza agli anelli il concetto 
     \begin{cases}
       \underbrace{ x + x + x + \dots}_{n \text{ volte}} & \text{se } n > 0 \\
       0 & \text{se } n = 0 \\
-       \underbrace{ - x - x - x - \dots}_{|n| \text{ volte}} & \text{se } n < 0 \\
+      \underbrace{ - x - x - x - \dots}_{|n| \text{ volte}} & \text{se } n < 0 \\
     \end{cases}
   \]
   Si verifica banalmente che questa operazione è ben definita e soddisfa
@@ -219,16 +219,13 @@ Voglio studiare gli omomorfismi tra $ \Z $-moduli.
 
 Se $ M_i $ sono $ \R $-moduli posso fare composizioni di omomorfismi, come:
 \[
-  \begin{tikzcd}
-    \M_1 \arrow{r}{\phi_1} & \M_2 \arrow{r}{\phi_2} & \M_3
-  \end{tikzcd}
-  \text{o equivalentemente}
-  \begin{tikzcd}
-    \M_1 \arrow{r}{\phi_2 \circ \phi_1} & \M_3
-  \end{tikzcd}
+  \M_1 \overset{\phi_1}{\longrightarrow}  \M_2 \overset{\phi_2}{\longrightarrow}  \M_3
+  \text{ o equivalentemente }
+  \M_1 \overset{\phi_2 \circ \phi_1}{\longrightarrow} \M_3
 \]
+
 \begin{proposition}
-Se vale $ \phi_2 \circ \phi_1 = 0 $ allora $ \im{\phi_1} \subseteq \ker{\phi_2} $.
+  Se vale $ \phi_2 \circ \phi_1 = 0 $ allora $ \im{\phi_1} \subseteq \ker{\phi_2} $.
 \end{proposition}
 \begin{proof}
   Se $ u \in \im {\phi_1} $ allora $ \exists v \in \M_2 $ tale che $ \phi_1(v) = u $,
@@ -240,7 +237,7 @@ sarà chiaro successivamente.
 
 \begin{definition}
   Siano $ \M $ un $ \R $-modulo e $ \N $ un suo sottomodulo, allora il \textbf{modulo
-  quoziente} \index{Modulo quoziente} di $ \M $ con $ \N $ e definito da:
+    quoziente} \index{Modulo quoziente} di $ \M $ con $ \N $ e definito da:
   \[
     \quot{\M}{\N} := \quot{\M}{\sim} \quad \text{dove } \sim \text{ è definita da: } x \sim y \Leftrightarrow x - y \in \N
   \]
@@ -253,6 +250,15 @@ sarà chiaro successivamente.
   In questo caso gli elementi di $ \quot{\M}{\N} $ sono le classi di equivalenza
   $ [m] = \set{ m + n | n \in \N } $.
 \end{definition}
+
+\begin{proposition}
+  Si dimostra che:
+  \begin{itemize}
+  \item Se uno spazio è connesso o connesso per archi allora anche tutti i suoi quozienti lo sono.
+  \item Se uno spazio è compatto anche tutti i suoi quozienti lo sono.
+  \end{itemize}
+  Inoltre ovviamente la mappa di proiezione al quoziente è suriettiva.
+\end{proposition}
 
 Siccome $ \im{\phi} $ è sottomodulo di $ \ker{\phi} $ allora posso prendere
 il quoziente:
@@ -349,7 +355,7 @@ relazione di omeomorfismo costituisce una relazione di equivalenza. Molti
 degli strumenti sviluppati in questo corso servono a capire se due spazi sono omeomorfi o meno.
 
 % lezione 3
-%  _     _____ ________ ___  _   _ _____   _____
+% _     _____ ________ ___  _   _ _____   _____
 % | |   | ____|__  /_ _/ _ \| \ | | ____| |___ /
 % | |   |  _|   / / | | | | |  \| |  _|     |_ \
 % | |___| |___ / /_ | | |_| | |\  | |___   ___) |
@@ -485,7 +491,7 @@ Alcune proprietà del gruppo fondamentale:
   \end{align*}
   Questa è tale che $ \sigma(0) = \sigma(1) = 1 $ quindi $ [\sigma] \in \pi_1(\Sph{1}) $ e:
   \begin{align*}
-     \pi_1(\Sph{1}) & \to \Z \\
+    \pi_1(\Sph{1}) & \to \Z \\
     [\sigma] & \mapsto  1
   \end{align*}
   Ogni elemento è multiplo di $ \sigma $ e il fattore di proporzionalità conta il numero di avvolgimenti
@@ -711,10 +717,10 @@ dell'omologia serve ad associare agli spazi topologici degli oggetti algebrici
 meno complicati dei gruppi di omotopia.
 Ci sono varie possibilità:
 \begin{itemize}
-  \item Omologia singolare
-  \item Omologia cellulare
-  \item Omologia persistente\footnote{Questa ha numerose applicazioni pratiche, come la ricostruzione di immagini.}
-  \item Omologia simpliciale
+\item Omologia singolare
+\item Omologia cellulare
+\item Omologia persistente\footnote{Questa ha numerose applicazioni pratiche, come la ricostruzione di immagini.}
+\item Omologia simpliciale
 \end{itemize}
 Ma cosa è l'omologia? Assocerò ad ogni spazio topologico (anche patologico) gruppi abeliani e omomorfismi a partire
 da applicazioni continue tra due spazi topologici. In tutto questo lavoro sempre con anello di base $ \Z $, che
@@ -807,7 +813,7 @@ $ S_\bullet $ è il compesso ($ S $ sta per singolare), cioè:
 Dove:
 \begin{align*}
   S_k(X) ={}& \{\text{combinazioni lineari finite a coefficienti interi: } \\
-         & \sum_g n_g g \;|\; n_g \in \Z, g \; k-\text{simplessi singolari di } X \}
+            & \sum_g n_g g \;|\; n_g \in \Z, g \; k-\text{simplessi singolari di } X \}
 \end{align*}
 $ S_k(X) $ è un gruppo abeliano con l'operazione somma definita naturalmente:
 \[
@@ -965,7 +971,7 @@ Il bordo sostanzialmente corrisponde alla somma alterna delle facce.
 \begin{figure}[htbp]
   \centering
   \begin{tikzpicture}
-   \draw[-Latex] (0,0) -- (3,0);
+    \draw[-Latex] (0,0) -- (3,0);
     \draw[-Latex] (0,0) -- (0,3);
     \draw[-Latex] (0,0) -- (-1.5,-1.5);
     \draw (-1,-1) -- (2,0);
@@ -1011,7 +1017,7 @@ Devo mostrare che $ \partial_k $ è un omomorfismo e che soddisfa $ \partial_k \
 Quindi il complesso è costituito da:
 \[
   \begin{tikzcd}
-   \dots \arrow{r}{\partial_{k+1}} & S_k(X) \arrow{r}{\partial_k} & S_{k-1}(X) \arrow{r}{\partial_{k-1}} & \dots
+    \dots \arrow{r}{\partial_{k+1}} & S_k(X) \arrow{r}{\partial_k} & S_{k-1}(X) \arrow{r}{\partial_{k-1}} & \dots
   \end{tikzcd}
 \]
 Devo verificare che $ \partial_k \circ \partial_{k+1} = 0 $ (spesso come notazione si pone $ \partial^2 = 0 $).
@@ -1020,7 +1026,7 @@ Devo verificare che $ \partial_k \circ \partial_{k+1} = 0 $ (spesso come notazio
   Se $ \sigma $ è un $ k $-complesso singolare, cioè $ \sigma : \Delta_k \to X $ continua:
   \begin{align*}
     & \partial_k \circ \partial_{k+1} \sigma = \partial_k \left( \sum_{j=0}^{k+1}(-)^j (\sigma \circ F_j^{\; k+1}) \right) =  \sum_{j=0}^{k+1}(-)^j \partial_k (\sigma \circ F_j^{\; k+1}) &= \\
-                    & = \sum_{j=0}^{k+1} (-)^j \sum_{i=0}^k (-)^i (\sigma \circ F_j^{\; k+1}) \circ F_i^{\; k} = \sum_{j = 0}^{k+1} \sum_{i = 0}^{k} (-)^{j+i} \sigma \circ F_j^{\; k+1} \circ F_{j}^{\; k} &= \\
+    & = \sum_{j=0}^{k+1} (-)^j \sum_{i=0}^k (-)^i (\sigma \circ F_j^{\; k+1}) \circ F_i^{\; k} = \sum_{j = 0}^{k+1} \sum_{i = 0}^{k} (-)^{j+i} \sigma \circ F_j^{\; k+1} \circ F_{j}^{\; k} &= \\
     & = \sum_{0 \leq i < j \leq k + 1} (-)^{i+j} \sigma \circ F_j^{\; k+1} \circ F_i^{\; k} + \sum_{0 \leq j < i \leq k} (-)^{i+j} \sigma \circ F_j^{\; k+1} \circ F_i^k &=
   \end{align*}
   Rinominando nella seconda sommatoria \dots
@@ -1037,7 +1043,7 @@ Devo verificare che $ \partial_k \circ \partial_{k+1} = 0 $ (spesso come notazio
 \end{proof}
 
 % lezione 2
-%  _     _____ ________ ___  _   _ _____   ____
+% _     _____ ________ ___  _   _ _____   ____
 % | |   | ____|__  /_ _/ _ \| \ | | ____| |___ \
 % | |   |  _|   / / | | | | |  \| |  _|     __) |
 % | |___| |___ / /_ | | |_| | |\  | |___   / __/
@@ -1055,7 +1061,7 @@ linearità su tutti gli elementi di $ S $, dove $ g^{(i)} = g \circ F_i^{\; k} $
 Siccome $ \partial_{k-1} \circ \partial_k = 0 $ si ha il complesso
 \[
   \begin{tikzcd}
-   \dots \arrow{r}{\partial_{k+1}} & S_k(X) \arrow{r}{\partial_k} & S_{k-1}(X) \arrow{r}{\partial_{k-1}} & \dots
+    \dots \arrow{r}{\partial_{k+1}} & S_k(X) \arrow{r}{\partial_k} & S_{k-1}(X) \arrow{r}{\partial_{k-1}} & \dots
   \end{tikzcd}
 \]
 Inoltre $ \partial_k \circ \partial_{k-1} $ è la mappa nulla dalle catene singolari di $ S_k(X) $
@@ -1269,13 +1275,15 @@ Cosa si può dire invece su $ H_1(X) $?
 
 Sia $ X $ spazio topologico e $ x_0 \in X $, allora alla coppia $ (X, x_0) $ si associa il gruppo fondamentale
 $ \pi_1(X,x_0) $. In generale il gruppo fondamentale non è abeliano, allora conviene studiare la versione abelianizzata:
-$ \Ab{\pi_1(X,x_0)} = \quot{\pi_1(X,x_0)}{\pi_i(X,x_0)'} $ dove $ ' $ indica il \textbf{gruppo derivato}\index{Gruppo derivato}, cioè il gruppo
+$ \Ab{\pi_1(X,x_0)} = \quot{\pi_1(X,x_0)}{\pi_1(X,x_0)'} $ dove $ ' $ indica il \textbf{gruppo derivato}\index{Gruppo derivato}, cioè il gruppo
 generato dai commutatori.
 \[
   \pi_1(X,x_0)' = [\pi_1(X,x_0), \pi_1(X,x_0)] = \langle\set{[g,h] | g,h \in \pi_1(X,x_0)}\rangle
 \]
-Se $ X $ è connesso per archi allora $ \Ab{\pi_1(X,x_0)} \cong H_1(X) $, quindi conoscendo il gruppo fondamentale si può calcolare anche
-il primo gruppo di omologia, che quindi è sostanzialmente formato dai lacci (modulo omotopia) che commutano tra loro.
+Se $ X $ è connesso per archi allora mostrerò che $ \Ab{\pi_1(X,x_0)} \cong H_1(X) $,
+quindi conoscendo il gruppo fondamentale si può calcolare anche
+il primo gruppo di omologia, che quindi è sostanzialmente formato dai lacci
+(modulo omotopia) che commutano tra loro.
 
 % lezione 3 parte 2
 
@@ -1291,53 +1299,25 @@ il primo gruppo di omologia, che quindi è sostanzialmente formato dai lacci (mo
   dove $ P $ è la proiezione sul quoziente.
 \end{osservation}
 \begin{proof}
-  Bisogna mostrare che $ \phi' $ è ben definito, cioè che se:
+  $ \phi' $ è definita da $ \phi'(P(c)) = \phi(c) $, ma bisogna controllare
+  se questa è ben definita, cioè se prendendo rappresentanti equivalenti
+  si ottengono le stesse immagini, cioè se con $ c \sim_H d $:
   \[
     \phi'(a) = \phi'(P(c)) = \phi(c) \quad \text{ e } \quad \phi'(a) = \phi'(P(d)) = \phi(d)
   \]
-  allora $ \phi(c) = \phi(d) $. Se $ c \sim_H d $ allora $ P(c) = P(d) $,
-  e quindi $ c = d[x,y] $, in quanto gli elementi in $ \Ab{\pi_1(X)} $
+  implica $ \phi(c) = \phi(d) $. Se $ c \sim_H d $ allora $ P(c) = P(d) $,
+  e quindi $ c = d[x,y] $ per opprtuni $ x $ e $ y $,
+  in quanto gli elementi in $ \Ab{\pi_1(X)} $
   differiscono per commutatori. Applicando $ \phi $: $ \phi(c) = \phi(d[x,y]) $,
   siccome $ \phi $ è omomorfismo:
   \[
     \phi(d[x,y]) = \phi(d)\phi([x,y]) = \phi(d) \phi(xyx^{-1}y^{-1}) = \phi(d) \phi(x) \phi(y) \phi(x)^{-1} \phi(y)^{-1} = \phi(d)
   \]
   dove nell'ultimo passaggio ho utilizzato che il gruppo è abeliano.
+  Si nota che questa osservazione dipende crucialmente dal fatto che il gruppo è abeliano.
 \end{proof}
-
-Questa osservazione dipende crucialmente dal fatto che il gruppo è abeliano.
-
-\begin{proposition}
-  Se $ X $ è uno spazio topologico connesso per archi allora $ \Ab{\pi_1(X)} \cong H_1(X) $,
-  cioè si può passare dall'equivalenza omologica a quella omotopica, e
-  in questo modo per il teorema di Seifert-van Kampen si possono ottenere tante
-  informazioni su $ H_1(X) $.
-\end{proposition}
-
-\begin{proof}
-  Per dimostrare che $ \Ab{\pi_1(X)} \cong H_1(X) $ trovo un isomorfismo di
-  gruppi abeliani.
-  Per ora so che $ H_1(X) $ è uno $ \Z $-modulo. Se costruisco $ \phi \colon \pi_1(X) \to H_1(X) $
-  omomorfismo di gruppi ottengo
-  gratuitamente la mappa da $ \Ab{\pi_1(X)} $ a $ H_1(X) $ per l'osservazione precedente.
-  \[
-    \begin{tikzcd}
-      \pi_1(X) \arrow{r}{\phi} \arrow{d}{P} & H_1(X) \\
-      \Ab{\pi_1(X)} \arrow{ur}{\phi'}
-    \end{tikzcd}
-  \]
-  Poi dovrò mostrare che questa mappa è invertibile, cioè $ \exists \psi:H_1(X) \to A_1(X) $ tale che $ \phi' \circ \psi = \Id{H_1(X)} $ e
-  $ \psi \circ \phi' = \Id{\Ab{\pi_1(X)}} $.
-\end{proof}
-
-Provo a costruire $ \phi $.
-\[
-  \begin{aligned}[t]
-    \phi:  \pi_1(X) & \to H_1(X) \\
-    [f]_H & \mapsto [f]_{hom}
-  \end{aligned}
-\]
-Usando il seguente risultato:
+\hfill\newline\newline
+Per dimostrare che $ \Ab{\pi_1(X)} \cong H_1(X) $ mi serve prima un lemma:
 \begin{lemma}
   Se $ f \sim_H g $ allora $ f \sim_{hom} g $, cioè se $ f $ e $ g $ sono lacci che definiscono
   lo stesso elemento nel gruppo fondamentale allora differiscono per un bordo.
@@ -1389,7 +1369,7 @@ Usando il seguente risultato:
       \node[above] () at (7.7,3) {$ e_2 $};
     \end{tikzpicture}
     \caption{La relazione di equivalenza fa passare da un quadrato a un triangolo
-    in quanto fa collassare un intervallo nel punto $ e_0 $}
+      in quanto fa collassare un intervallo nel punto $ e_0 $}
     \label{fig:lez3:homotopy_f_g_to_triangle}
   \end{figure}
 
@@ -1418,19 +1398,39 @@ Usando il seguente risultato:
   $ f $ e $ g $ sono omologhi e $ \sigma $ è il $ 2 $-simplesso singolare che realizza
   l'omologia.
 \end{proof}
-\hfill\newline\newline
-\noindent
-Se $ X $ è uno spazio topologico connesso per archi sono in grado di costruire
-senza utilizzare l'ipotesi di connessione per archi:
-\begin{align*}
-  \phi:  \pi_1(X) & \to H_1(X) \\
-  [f]_H & \mapsto [f]_{hom} = \llbracket f \rrbracket
-\end{align*}
-Ora voglio costruire $ \phi' \colon \Ab{\pi_1(X)} \to H_1(X) $ e lo faccio ancora
-senza l'ipotesi di connessione per archi. Mostro che $ \phi' $ è omomorfismo,
-per far ciò basta che mostro che $ \phi $ lo è.
+
+\begin{proposition}
+  Se $ X $ è uno spazio topologico connesso per archi allora $ \Ab{\pi_1(X)} \cong H_1(X) $,
+  cioè si può passare dall'equivalenza omologica a quella omotopica, e
+  in questo modo per il teorema di Seifert-van Kampen si possono ottenere tante
+  informazioni su $ H_1(X) $.
+\end{proposition}
 
 \begin{proof}
+  Per dimostrare che $ \Ab{\pi_1(X)} \cong H_1(X) $ trovo un isomorfismo di
+  gruppi abeliani tra $ \pi_1(X) $ a $ H_1(X) $, infatti
+  se costruisco $ \phi \colon \pi_1(X) \to H_1(X) $ omomorfismo di gruppi ottengo
+  gratuitamente la mappa da $ \Ab{\pi_1(X)} $ a $ H_1(X) $ per l'osservazione precedente.
+  \[
+    \begin{tikzcd}
+      \pi_1(X) \arrow{r}{\phi} \arrow{d}{P} & H_1(X) \\
+      \Ab{\pi_1(X)} \arrow{ur}{\phi'}
+    \end{tikzcd}
+  \]
+  Poi dovrò mostrare che questa mappa è invertibile, cioè $ \exists \psi:H_1(X) \to A_1(X) $ tale che $ \phi' \circ \psi = \Id{H_1(X)} $ e
+  $ \psi \circ \phi' = \Id{\Ab{\pi_1(X)}} $.
+
+  Per il lemma appena dimostrato una possibile costruzione di $ \phi $ è:
+  \begin{align*}
+    \phi:  \pi_1(X) & \to H_1(X) \\
+    [f]_H & \mapsto [f]_{hom} = \llbracket f \rrbracket
+  \end{align*}
+  In tutto ciò non ho ancora utilizzato la connessione per archi.
+
+  % Ora voglio costruire $ \phi' \colon \Ab{\pi_1(X)} \to H_1(X) $ e lo faccio ancora
+  % senza l'ipotesi di connessione per archi.
+  Mostro che $ \phi $ è omomorfismo, in questo modo anche $ \phi' $ lo è.
+
   Siano $ [f]_H, [g]_H \in \pi_1(X) $ voglio fare vedere che:
   \[
     \phi ( [f]_H [g]_H) = \phi([f]_H) + \phi([g]_H)
@@ -1443,7 +1443,8 @@ per far ciò basta che mostro che $ \phi $ lo è.
   \[
     [f \star g]_{hom} = [f + g]_{hom}
   \]
-  Questo è vero se e solo se i due rappresentati sono equivalenti:
+  Questo è vero se e solo se i due rappresentati sono equivalenti, cioè se
+  differiscono per un bordo, ovvero se:
   \[
     \exists T: \Delta_2 \to X \text{ $ 2 $-simplesso singolare tale che } \partial T = f + g - f \star g
   \]
@@ -1453,59 +1454,65 @@ per far ciò basta che mostro che $ \phi $ lo è.
   \]
   \begin{figure}[htbp]
     \centering
-    \begin{tikzpicture}
-      \draw (5,0) -- (9,0) -- (7,3) -- cycle;
-      \node[left] () at (5,0) {$ e_0 $};
-      \node[right] () at (9,0) {$ e_1 $};
-      \node[above] () at (7,3) {$ e_2 $};
-      \node[below] () at (7,0) {$ g $};
-      \node[below] () at (7,-0.5) {$ T^{(2)} $};
-      \node[left] () at (5.95,1.7) {$ f \star g $};
-      \node[left] () at (5.05,1.7) {$ T^{(1)} $};
-      \node[left] () at (6.2,1.5) {};
-      \node[right] () at (8,1.7) {$ f $};
-      \node[right] () at (8.5, 1.7) {$ T^{(0)} $};
-    \end{tikzpicture}
+    \begin{subfigure}[htbp]{.45\linewidth}
+      \begin{tikzpicture}
+        \draw (5,0) -- (9,0) -- (7,3) -- cycle;
+        \node[left] () at (5,0) {$ e_0 $};
+        \node[right] () at (9,0) {$ e_1 $};
+        \node[above] () at (7,3) {$ e_2 $};
+        \node[below] () at (7,0) {$ g $};
+        \node[below] () at (7,-0.5) {$ T^{(2)} $};
+        \node[left] () at (5.95,1.7) {$ f \star g $};
+        \node[left] () at (5.05,1.7) {$ T^{(1)} $};
+        \node[left] () at (6.2,1.5) {};
+        \node[right] () at (8,1.7) {$ f $};
+        \node[right] () at (8.5, 1.7) {$ T^{(0)} $};
+      \end{tikzpicture}
+      \caption{Costruzione dell'omomorfismo}
+      \label{fig:lez3:proof_homo_1}
+    \end{subfigure}
+    \begin{subfigure}[htbp]{.45\linewidth}
+      \centering
+      \begin{tikzpicture}
+        \draw (5,0) -- (9,0) -- (7,3) -- cycle;
+        \node[left] () at (5,0) {$ e_0 $};
+        \node[right] () at (9,0) {$ e_1 $};
+        \node[above] () at (7,3) {$ e_2 $};
+        \node[below] () at (7,0) {$ g $};
+        \node[left] () at (5.9,1.5) {$ \frac{1}{2} $};
+        \node[left] () at (6.2,1.5) {\textbullet};
+        \node[] () at (7,-0.025) {\textbullet};
+        \node[right] () at (8,2) {$ f $};
+        \draw (6.025, 1.525) -- (7,0);
+      \end{tikzpicture}
+      \caption{Costruzione dell'omomorfismo, deve avere valori costanti su rette parallele}
+      \label{fig:lez3:proof_homo}
+    \end{subfigure}
     \caption{Costruzione dell'omomorfismo}
-    \label{fig:lez3:proof_homo_1}
   \end{figure}
   Una possibile costruzione parte tracciando la retta che congiunge
   due punti medi di due segmenti, quindi si richiede che $ T $ abbia
   valori costanti sulle rette parallele.
-  \begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}
-      \draw (5,0) -- (9,0) -- (7,3) -- cycle;
-      \node[left] () at (5,0) {$ e_0 $};
-      \node[right] () at (9,0) {$ e_1 $};
-      \node[above] () at (7,3) {$ e_2 $};
-      \node[below] () at (7,0) {$ g $};
-      \node[left] () at (5.9,1.5) {$ \frac{1}{2} $};
-      \node[left] () at (6.2,1.5) {\textbullet};
-      \node[] () at (7,-0.025) {\textbullet};
-      \node[right] () at (8,2) {$ f $};
-      \draw (6.025, 1.525) -- (7,0);
-    \end{tikzpicture}
-    \caption{Costruzione dell'omomorfismo, deve avere valori costanti su rette parallele}
-    \label{fig:lez3:proof_homo}
-  \end{figure}
 
-Quindi è un omomorfismo.
+  Al momento la situazione è che ho $ \phi: \pi_1(X,x_0) \to H_1(X) $ omomorfismo di
+  gruppi ben definito anche con $ X $ non necessariamente connesso per archi,
+  e dato che $ H_1(X) $ è abeliano ho $ \phi': \Ab{\pi_1(X)} \to H_1(X) $
+  omomorfismo di gruppi abeliani.
+
+  La conclusione della dimostrazione è nota come \textbf{teorema di Hurewicz}.
 \end{proof}
 
-Al momento la situazione è che ho $ \phi: H_1(X,x_0) \to H_1(X) $ omomorfismo di
-gruppi ben definito anche con $ X $ non necessariamente connesso per archi,
-e dato che $ H_1(X) $ è abeliano ho $ \phi': \Ab{\pi_1(X)} \to H_1(X) $.
-
-\begin{proposition}
-  Se $ X $ è connesso per archi allora la mappa $ \phi': \colon \Ab{\pi_1(X)} \to H_1(X) $
-  è un isomorfismo.
-\end{proposition}
+\begin{theorem}[Teorema di Hurewicz\index{Teorema di Hurewicz}]
+  Se $ X $ è uno spazio topologico
+  connesso per archi allora  $ \phi \colon \Ab{\pi_1(X)} \to H_1(X) $
+  è un isomorfismo, quindi $ \Ab{\pi_1(X)} \cong H_1(X) $.
+\end{theorem}
 \begin{proof}
   \emph{Sketch of proof, la dimostrazione completa è piuttosto noiosa}.
   Per dimostrare che $ \phi' $ è isomorfismo o dimostro che è iniettiva e suriettiva
   o che ammette un inverso. Procedo con la seconda possibilità: mostro che
   $ \exists \psi \colon H_1(X) \to \Ab{\pi_1(X)} $ tale che $ \psi $ è inverso di $ \phi' $.
+
   Considero un arco $ f \colon \Delta_1 \to X $ con $ f(0), f(1) \in X $.
   \begin{figure}[htbp]
     \centering
@@ -1546,7 +1553,7 @@ e dato che $ H_1(X) $ è abeliano ho $ \phi': \Ab{\pi_1(X)} \to H_1(X) $.
   \begin{exercise}
     Verificarli.
   \end{exercise}
-  Una volta verificati si trova quindi che $ H_1(X) \cong \Ab{\pi_1(X)} $.
+  Una volta verificati si trova in particolare che $ H_1(X) \cong \Ab{\pi_1(X)} $.
 \end{proof}
 
 \begin{example} \hfill
@@ -1557,7 +1564,7 @@ e dato che $ H_1(X) $ è abeliano ho $ \phi': \Ab{\pi_1(X)} \to H_1(X) $.
   \item $ H_1(U_1) \cong \Z_2 $ dove $ U_1 $ è il piano proiettivo reale $ \mathbb{P}^2(\RN{}) = \quot{\RN{3} \setminus \set{0}}{\sim} $
     con $ \vec{x} \sim \vec{y} $ se $ \vec{x} = a \vec{y} $ con $ a \in \RN{} $
   \item $ H_1(U_2) \cong \Z \oplus \Z_2 $ dove $ U_2 $ è la bottiglia di Klein.
-    Infatti $ \pi_1(U_2) ] \set{a, b | aba^{-1}b^{-1} = 1} $ per ableliannizzarlo bisogna
+    Infatti $ \pi_1(U_2) = \set{a, b | aba^{-1}b^{-1} = 1} $ per abeliannizzarlo bisogna
     porre $ aba^{-1}b = 1 $ e $ aba^{-1}b^{-1} = 1 $ cioè $ b^2 = 1 $ e $ a $ libero:
     $ \Ab{\pi_1(U_2)} = \set{\underset{\Z}{a}, \underset{\Z_2}{b} |  aba^{-1}b = 1 } $
     \begin{figure}[htbp]
@@ -1591,7 +1598,7 @@ e dato che $ H_1(X) $ è abeliano ho $ \phi': \Ab{\pi_1(X)} \to H_1(X) $.
 \end{example}
 
 % lezione 4
-%  _     _____ ________ ___  _   _ _____   _  _
+% _     _____ ________ ___  _   _ _____   _  _
 % | |   | ____|__  /_ _/ _ \| \ | | ____| | || |
 % | |   |  _|   / / | | | | |  \| |  _|   | || |_
 % | |___| |___ / /_ | | |_| | |\  | |___  |__   _|
@@ -1609,27 +1616,27 @@ e dato che $ H_1(X) $ è abeliano ho $ \phi': \Ab{\pi_1(X)} \to H_1(X) $.
 %   \psi \colon H_1(X) \to \quot{\pi_1(X)}{[ \pi_1(X), \pi_1(X)]}
 % \]
 % Tale che: $ \phi \circ \psi = \Id{H_1(X)} $ e $ \psi \circ \phi = \Id{\pi_1(X)} $.
-So calcolare $ H_0(X) $ e $ H_1(X) $ se voglio calcolare
-gli altri $ H_k(X) $? Prima guardo come si comportano i gruppi sotto
-l'azione di applicazioni continue:
+% So calcolare $ H_0(X) $ e $ H_1(X) $ se voglio calcolare
+% gli altri $ H_k(X) $? Prima guardo come si comportano i gruppi sotto
+% l'azione di applicazioni continue:
 Sia $ g \colon X \to Y $ mappa continua tra spazi topologici,
-$ g $ induce un'applicazione tra $ H_k(X) $ e $ H_k(Y) $?
-Considero $ \sigma \colon \Delta_k \to X $ $ k $-simplesso singolare, posso
-considerare la composizione con $ g $:
+allora
+$ g $ induce un'applicazione tra $ H_k(X) $ e $ H_k(Y) $.
+Infatti, considero $ \sigma \colon \Delta_k \to X $ $ k $-simplesso singolare, posso
+considerare la composizione con $ g $ definendno $ g' \colon \Delta_k \to Y $ con $ g' = g \circ \sigma $:
 \[
   \begin{tikzcd}
-    \Delta_k \arrow{r}{\sigma} &  X  \arrow{r}{g} & Y
+    g' \colon \Delta_k \arrow{r}{\sigma} &  X  \arrow{r}{g} & Y
   \end{tikzcd}
 \]
-Cioè: $ g' \colon \Delta_k \to Y $ con $ g' = g \circ \sigma $. Siccome sia
-$ g $ che $ \sigma $ sono continue allora $ g' $ è continua, quindi è un
+Siccome sia $ g $ che $ \sigma $ sono continue allora $ g' $ è continua, quindi è un
 $ k $-simplesso singolare in $ Y $.
-Si definisce $ g_\sharp $:
+Si definisce $ g_\sharp $ come l'estensione di $ g' $ su tutte le $ k $-catene
+per linearità:
 \begin{align*}
   g_\sharp \colon S_k(X) & \to S_k(Y) \\
   \sum_\sigma n_\sigma \sigma & \mapsto  \sum_\sigma n_\sigma g' =  \sum_\sigma n_\sigma ( g \circ \sigma )
 \end{align*}
-
 Questa mappa è ben definita ed è lineare quindi $ g_\sharp $ è un omomorfismo di
 gruppi abeliani che manda $ k $-catene in $ S_k(X) $ in $ k $-catene
 in $ S_k(Y) $.
@@ -1641,7 +1648,7 @@ quindi definisco $ g_\star $.
 \end{align*}
 Si dice che $ g $ è \textbf{covariante} perché va da $ X $ a $ Y $,
 cioè rispetta il verso della applicazione $ g $.
-Devo verificare se questa applicazione è ben definita, cioè non
+Devo verificare se questa applicazione è ben definita, cioè non se
 dipende dalla scelta del rappresentate della classe.
 Considero $ d \in S_k(X) $ tale che $ \partial d = 0 $, suppongo
 che $ d \sim_{hom} c $, questo vale se e solo se $ [d] = [c] $ con $ \partial c = 0 $,
@@ -1658,10 +1665,10 @@ Quindi $ g_\sharp(\partial u) = g_\sharp (d - c) $, e questo implica che $ [g_\s
 trovo $ \tau $ a partire da $ u $:
 \begin{align*}
   g_\sharp (\partial u) & = g_\sharp \left(\sum_{i = 0}^{k+1} (-)^i u^{(i)}\right) = \sum_{i=0}^{k+1}(-)^i g_\sharp (u^{(i)}) =
-              \sum_{i=0}^{k+1}(-)^i g \circ u^{(i)} = \\
-            & = \sum_{i = 0}^{k+1} (-)^i g \circ \left( u \circ F_i^{\; k+1} \right) =
-              \sum_{i = 0}^{k+1} (-)^i  \left( g \circ u \right) \circ F_i^{\; k+1} = \\
-            & = \sum_{i = 0}^{k+1}(-)^i \left( g \circ u \right)^{(i)} = \partial \left( g \circ u \right)
+                          \sum_{i=0}^{k+1}(-)^i g \circ u^{(i)} = \\
+                        & = \sum_{i = 0}^{k+1} (-)^i g \circ \left( u \circ F_i^{\; k+1} \right) =
+                          \sum_{i = 0}^{k+1} (-)^i  \left( g \circ u \right) \circ F_i^{\; k+1} = \\
+                        & = \sum_{i = 0}^{k+1}(-)^i \left( g \circ u \right)^{(i)} = \partial \left( g \circ u \right)
 \end{align*}
 Ma quindi $ g_\sharp(\partial u) = \partial (g_\sharp (u)) $ cioè:
 \[
@@ -1669,18 +1676,19 @@ Ma quindi $ g_\sharp(\partial u) = \partial (g_\sharp (u)) $ cioè:
 \]
 % In conclusione:
 % \begin{align*}
-%   g_\star \colon H_k(X) & \to H_k(Y) \\
-%   [c]_X & \to [g_\sharp (c)]_Y
-%   \end{align*}
+    %     g_\star \colon H_k(X) & \to H_k(Y) \\
+    %     [c]_X & \to [g_\sharp (c)]_Y
+                  %   \end{align*}
 Quindi $ g_\star $ è ben definita ed è omomorfismo in quanto
 è il passaggio a quoziente di omomorfismi.
+Noto in particolare che ho mostrato che $ g_\sharp \circ \partial = \partial \circ g_\sharp $
+in quanto l'ho mostrato sui generatori.
 
 \begin{example}
-  Sia $ j \colon \Sph{1} \to \Sph{2} $ l'immersione di un equatore in una sfera,
-  che cosa è $ j_\star \colon H_1(\Sph{1}) \to H_1(\Sph{2}) $?
-  $ j_\star $ è una mappa costante in quanto $ \Sph{2} $ ha gruppo fondamentale banale
-  quindi $ H_1(\Sph{2}) $ è banale. Si nota che $ j $ era iniettiva,
-  ma $ j_\star $ è costante quindi non è più iniettiva.
+  Sia $ j \colon \Sph{1} \to \Sph{2} $ l'immersione di un equatore in una sfera allora
+  $ j_\star \colon H_1(\Sph{1}) \to H_1(\Sph{2}) $  è una mappa costante in quanto $ \Sph{2} $
+  ha gruppo fondamentale banale quindi $ H_1(\Sph{2}) $ è banale.
+  Si nota che $ j $ era iniettiva,  ma $ j_\star $ è costante quindi non è più iniettiva.
 \end{example}
 \begin{example}
   Se considero $ \Sph{1} = \set{z \in \mathbb{C} | |z| = 1 } $
@@ -1689,7 +1697,9 @@ Quindi $ g_\star $ è ben definita ed è omomorfismo in quanto
     z & \to z^4
   \end{align*}
   Come è fatta $ f_\star \colon H_1(\Sph{1}) \to H_1(\Sph{1})$ ?
-  Si sa che $ H_1(\Sph{1}) \cong \Z $, quindi, sia
+  Si sa che $ H_1(\Sph{1}) \cong \Z $ in quanto il gruppo fondamentale di $ \Sph{1} $
+  è $ \Z $ che è già abeliano. C'è quindi un solo generatore, che posso prendere
+  il simplesso singolare:
   \begin{align*}
     \sigma \colon \Delta_1 & \to \Sph{1} \\
     t & \to \me^{2 \pi i t}
@@ -1735,20 +1745,20 @@ Quindi $ g_\star $ è ben definita ed è omomorfismo in quanto
   multipli di 4)
 \end{example}
 
-% Siano $ X, Y $ spazi topologici a partire da $ f \colon X \to Y $
-% ho $ f_\star \colon H_k(X) \to H_k(Y) $ $ \forall k $
+        %         Siano $ X, Y $ spazi topologici a partire da $ f \colon X \to Y $
+        %         ho $ f_\star \colon H_k(X) \to H_k(Y) $ $ \forall k $
 
 \begin{osservation}
   Siano $ X $ spazio topologico:
   $ \Id{X} \colon X \to X $ allora:
   \begin{align*}
     \left(\Id{X}\right)_\star \colon H_k(X) & \to H_k(X) \\
-    [c] & \mapsto [\left(\Id{X}\right)_\star (c)] = [c]
+    [c] & \mapsto [\left(\Id{X}\right)_\sharp (c)] = [c]
   \end{align*}
   Quindi $ \left(\Id{X}\right)_\star $ è proprio l'identità
   a livello di gruppi di omologia, cioè:
   \[
-     \left(\Id{X}\right)_\star = \Id{H_k(X)}
+    \left(\Id{X}\right)_\star = \Id{H_k(X)}
   \]
 \end{osservation}
 
@@ -1777,8 +1787,8 @@ Quindi $ g_\star $ è ben definita ed è omomorfismo in quanto
   \end{gather*}
 \end{osservation}
 Quindi sulla categoria degli spazi topologici questo
-fornisce un funtore covariante. Si veda più avanti
-cosa significa tutto ciò.
+fornisce un funtore covariante, in quanto questa associazione
+si comporta bene rispetto all'identità e alla composizione.
 
 \section{Successioni esatte}
 
@@ -1789,7 +1799,7 @@ cioè valga $ F \circ \partial = \partial' \circ F $
 \[
   \begin{tikzcd}
     \dots \arrow{r}{\partial} &  C_{k+1}  \arrow{r}{\partial} \arrow{d}{F} &  C_{k}  \arrow{r}{\partial} \arrow{d}{F} & C_{k-1}  \arrow{r}{\partial} \arrow{d}{F} & \dots \\
-   \dots \arrow{r}{\partial'} &  C'_{k+1}  \arrow{r}{\partial'} &  C'_{k}  \arrow{r}{\partial'}  &  C'_{k-1} \arrow{r}{\partial'} & \dots
+    \dots \arrow{r}{\partial'} &  C'_{k+1}  \arrow{r}{\partial'} &  C'_{k}  \arrow{r}{\partial'}  &  C'_{k-1} \arrow{r}{\partial'} & \dots
   \end{tikzcd}
 \]
 Tutti i quadrati che si formano devono essere
@@ -1808,7 +1818,7 @@ Una funzione $ F $ fatta in questo modo è detta
   gruppi la successione:
   \[
     \begin{tikzcd}
-       A \arrow{r}{\alpha} & B \arrow{r}{\beta} & C
+      A \arrow{r}{\alpha} & B \arrow{r}{\beta} & C
     \end{tikzcd}
   \]
   con $ \alpha $ omomorfismo iniettivo, $ \beta $ omomorfismo suriettivo e $ \ker{\beta} = \im{\alpha} $.
@@ -1821,7 +1831,7 @@ Una funzione $ F $ fatta in questo modo è detta
   \]
   Infatti indicando le mappe sottointese con $ i \colon 0 \to A $ e $ j \colon C \to 0 $
   allora per l'esattezza vale che $ \ker{\alpha} = \im{i} = 0 $ in quanto $ i $ è
-  omomorfismo, ma $ \ker{\alpha} = 0 $ signfiica che $ \alpha $ è iniettivo, inoltre
+  omomorfismo, ma $ \ker{\alpha} = 0 $ signfiica che $ \alpha $ è iniettiva, inoltre
   $ \ker{j} = \im{\beta} = C $, quindi $ \beta $ è suriettiva.
 \end{definition}
 
@@ -1834,11 +1844,11 @@ Una funzione $ F $ fatta in questo modo è detta
     \end{tikzcd}
   \]
   con $ (A_\bullet, \partial^A) $, $ (B_\bullet, \partial^B) $ e $ (C_\bullet, \partial^C) $ complessi, e
-  $ \alpha $ mappa tra complessi iniettiva, $ \beta $ mappa tra complessi suriettivo
+  $ \alpha $ mappa tra complessi iniettiva, $ \beta $ mappa tra complessi suriettiva
   e deve valere che $ \forall k $ sia $ C_k \cong \quot{B_k}{A_k} $.
 \end{definition}
 
-% lezione 4 parte 2
+                                                                                                         %                                                                                                          lezione 4 parte 2
 
 In modo più esteso questo significa:
 \[
@@ -1871,7 +1881,7 @@ ma c'è il modo per indurre una successione esatta lunga:
       & H_{p-1}(A_\bullet) \arrow{r}{\alpha_\star} & \dots
     \end{tikzcd}
   \]
-  Quindi $ \forall p $:
+  Esatta signfiica che $ \forall p $:
   \begin{gather*}
     \im{\alpha_\star} = \ker{\beta_\star} \\
     \im{\beta_\star} = \ker{\delta} \\
@@ -1881,17 +1891,17 @@ ma c'è il modo per indurre una successione esatta lunga:
   in quanto cambia il grado dell'omologia.
 
   La scrittura estesa della successione è:
-\[
-  \begin{tikzcd}
-    {} & \dots  \arrow{d}{} &  \dots  \arrow{d}{}  &  \dots  \arrow{d}{}  & {} \\
-    \dots \arrow{r}{} & H_{p+1}(C_{k+1}) \arrow{r}{} \arrow{d}{} &  H_{p+1}(C_{k}) \arrow{r}{} \arrow{d}{} &  H_{p+1}(C_{k-1}) \arrow{r}{} \arrow{d}{} & \dots \\
-    \dots \arrow{r}{} & H_p(A_{k+1}) \arrow{r}{} \arrow{d}{} & H_p(A_{k})  \arrow{r}{} \arrow{d}{} & H_p(A_{k-1})  \arrow{r}{} \arrow{d}{} & \dots \\
-    \dots \arrow{r}{} & H_p(B_{k+1}) \arrow{r}{} \arrow{d}{} & H_p(B_{k})  \arrow{r}{} \arrow{d}{} & H_p(B_{k-1})  \arrow{r}{} \arrow{d}{} & \dots \\
-    \dots \arrow{r}{} & H_p(C_{k+1}) \arrow{r}{} \arrow{d}{} & H_p(C_{k})  \arrow{r}{} \arrow{d}{} & H_p(C_{k-1})  \arrow{r}{} \arrow{d}{} & \dots \\
-    \dots \arrow{r}{} & H_{p-1}(A_{k+1}) \arrow{r}{} \arrow{d}{}  &  H_{p-1}(A_{k}) \arrow{r}{} \arrow{d}{} &  H_{p-1}(A_{k-1}) \arrow{r}{} \arrow{d}{} & \dots \\
-    {} & \dots &  \dots &  \dots & {}
-  \end{tikzcd}
-\]
+  \[
+    \begin{tikzcd}
+      {} & \dots  \arrow{d}{} &  \dots  \arrow{d}{}  &  \dots  \arrow{d}{}  & {} \\
+      \dots \arrow{r}{} & H_{p+1}(C_{k+1}) \arrow{r}{} \arrow{d}{} &  H_{p+1}(C_{k}) \arrow{r}{} \arrow{d}{} &  H_{p+1}(C_{k-1}) \arrow{r}{} \arrow{d}{} & \dots \\
+      \dots \arrow{r}{} & H_p(A_{k+1}) \arrow{r}{} \arrow{d}{} & H_p(A_{k})  \arrow{r}{} \arrow{d}{} & H_p(A_{k-1})  \arrow{r}{} \arrow{d}{} & \dots \\
+      \dots \arrow{r}{} & H_p(B_{k+1}) \arrow{r}{} \arrow{d}{} & H_p(B_{k})  \arrow{r}{} \arrow{d}{} & H_p(B_{k-1})  \arrow{r}{} \arrow{d}{} & \dots \\
+      \dots \arrow{r}{} & H_p(C_{k+1}) \arrow{r}{} \arrow{d}{} & H_p(C_{k})  \arrow{r}{} \arrow{d}{} & H_p(C_{k-1})  \arrow{r}{} \arrow{d}{} & \dots \\
+      \dots \arrow{r}{} & H_{p-1}(A_{k+1}) \arrow{r}{} \arrow{d}{}  &  H_{p-1}(A_{k}) \arrow{r}{} \arrow{d}{} &  H_{p-1}(A_{k-1}) \arrow{r}{} \arrow{d}{} & \dots \\
+      {} & \dots &  \dots &  \dots & {}
+    \end{tikzcd}
+  \]
 \end{theorem}
 \begin{proof}
   Per dimostrare il teorema bisogna:
@@ -1907,17 +1917,22 @@ ma c'è il modo per indurre una successione esatta lunga:
   \end{enumerate}
   \emph{Sketch of proof, la dimostrazione è lunga e noiosa.}
 
+  Per costruire l'omomorfismo di connessione devo trovare un
+  elemento in $ A_{k-1} $ a partire da uno in $ C_k $.
   Sia $ c \in C_k $ un ciclo, quindi tale che $ \partial c = 0 $,
   siccome $ \beta_k $ è suriettiva $ \exists b \in B_k $ tale che
-  $ \beta_k(b) = c $, voglio recuperare un elemento in $ A_{k-a} $.
+  $ \beta_k(b) = c $, voglio recuperare un elemento $ a \in A_{k-1} $,
+  in questo modo posso definire l'azione dell'omomorfismo
+  di connessione con $ \delta \colon \llbracket c \rrbracket \mapsto \llbracket a \rrbracket $.
   \[
     \begin{tikzcd}
-      {} & a \in A_{k-1} \arrow{d}{\partial b} \\
+      {} & a \in A_{k-1} \arrow{d}{\alpha_{k-1}} \\
       b \in B_k \arrow{r}{\partial} \arrow{d}{\beta_k} & B_{k-1} \arrow{d}{\beta_{k-1}} \\
-      c \in B_k \arrow{r}{\partial} & C_{K-1}
+      c \in C_k \arrow{r}{\partial} & C_{k-1}
     \end{tikzcd}
   \]
-  Usando la commutataività:
+  Prendo il bordo per passare a $ B_{k-1} $ ($ \partial b \in B_{k-1} $), poi
+  applico $ \beta_{k-1} $ e usando la commutatività $ \beta_{k-1} \circ \partial = \partial \circ \beta_k $:
   \[
     \beta_{k-1}(\partial b) = \partial \beta_k (b) = \partial c = 0
   \]
@@ -1926,26 +1941,30 @@ ma c'è il modo per indurre una successione esatta lunga:
   perciò $ \exists a \in A_{k-1} $ tale che $ \alpha_{k-1}(a) = \partial b $, quindi
   a partire da $ c \in C_k $ ho associato un elemento $ a \in A_{k-1} $.
   Per scendere a livello di omologia $ a $ deve essere un ciclo,
-  cioè $ \partial a = 0 $, ma per la commutatività:
+  cioè $ \partial a = 0 $, per verificarlo apllico $ \alpha_{k-2} $ a $ \partial a $
+  e uso la commutatività:
   \[
     \alpha_{k-2}(\partial a) = \partial \alpha_{k-1}(a) = \partial \partial b = 0
   \]
   Ma $ \alpha_{k-2} $ è iniettiva, quindi $ \partial a = 0 $.
   Sono partito da un $ k $-ciclo in $ C_k $ e
-  ho trovato un $ k-1 $-ciclo in $ A_{k-1} $.
+  ho trovato un $ k-1 $-ciclo in $ A_{k-1} $,
+  che è quello che mi proponevo di fare.
 
   Ci sono un paio di dettagli da verificare:
   \begin{enumerate}
   \item È univoca la scelta dell'elemento $ b $? Se non lo è ci sono
     problemi?
-  \item Se prendo un elemento $ c' $ che è omologo
+  \item Se prendo in $ C_k $ un elemento $ c' $ che è omologo
     a $ c $ è sicuro che trovo un $ a' $ che è
     omologo ad $ a $?
   \end{enumerate}
-  Se queste due cose non sono verificate l'applicazione non è
-  ben definita.
+  Se queste due problematiche non sono verificate l'applicazione a livello di
+  non è ben definita.
   Verifico che comunque scelga una controimmagine di $ \beta_k $ si ottiene
-  qualcosa di omologo ad $ a $: suppongo che $ \beta_k (b') = \beta_k (b) = c $:
+  in $ A_{k-1} $ un elemento omologo ad $ a $:
+  suppongo di aver scelto la controimmagine $ b' \in B_k $ e quindi
+  valga $ \beta_k (b') = \beta_k (b) = c $, allora:
   \[
     \beta_k(b' - b) = 0 \iff b' - b \in \ker{\beta_k} = \im{\alpha_k}
   \]
@@ -1954,39 +1973,43 @@ ma c'è il modo per indurre una successione esatta lunga:
   \[
     \partial ( b' - b ) = \partial ( \alpha_k (a_0 )) \Rightarrow \partial b' - \partial b = (\partial \circ \alpha_k)(a_0) = \alpha_{k-1}(\partial a_0)
   \]
-  Quindi:
+  Ma per come costruisco l'omomorfismo di connessione $ \partial b = \alpha_{k-1}(a) $,
+  e analogamente $ \partial b' = \alpha_{k-1}(a') $:
   \[
     \alpha_{k-1}(a') - \alpha_{k-1}(a) = \alpha_{k-1}(\partial a_0) \Rightarrow \alpha_{k-1}(a' - a - \partial a_0) = 0
   \]
   Ma $ \alpha_{k-1} $ è iniettivo quindi $ a' - a - \partial a_0 = 0 $, e perciò  $ a' \sim_{hom} a $,
-  in quanto $ a $e $ a' $ differiscono per un bordo.
+  in quanto $ a $ e $ a' $ differiscono per un bordo.
+
   Per quanto riguarda la seconda questione considero $ c'' \sim_{hom} c $ in $ C_k $
   allora mostro che $ a'' \sim_{hom} a $ in $ A_{k-1} $, e così facendo
   mostro che l'applicazione è ben definita.
   \[
-    c'' \sim_{hom} c \iff \exists c_0 \; | \; c'' - c = \partial c_0
+    c'' \sim_{hom} c \iff \exists c_0 \in C_{k+1} \; | \; c'' - c = \partial c_0
   \]
-  Ma per la suriettività $ \exists b, b'' $ tale che $ c = \beta_k(b) $ e
-  $ c'' = \beta_k(b'') $, quindi:
+  Ma per la suriettività $ \exists b, b'' $ tale che $ c = \beta_k(b) $,
+  $ c'' = \beta_k(b'') $ e $ c_0 = \beta_{k+1}(c_0) $, quindi:
   \[
-    \beta_k(b'') - \beta_k(b) = \partial c_0 \Rightarrow \beta_k(b'' - b) = \partial c_0  \overset{\text{commutatività}}{\Rightarrow}
-    \beta_k(b''-b) = \partial \beta_{k+1}(b_0) = \beta_{k}(\partial b_0)
+    \beta_k(b'') - \beta_k(b) = \partial c_0 \Rightarrow \beta_k(b'' - b) = \partial c_0  \Rightarrow
+    \beta_k(b''-b) = \partial\left( \beta_{k+1}(b_0)\right) = \beta_{k}(\partial b_0)
   \]
   Quindi:
   \[
     \beta_k(b'' - b - \partial b_0) = 0 \Rightarrow b'' - b - \partial b_0 \in \ker{\beta_k} = \im{\alpha_k}
   \]
-  Perciò $ \exists \tilde{a} \in A_k$ tale che $ b'' - b - \partial b_0 = \alpha_k (\tilde{a}) $
-  Apllicando il bordo: $ \partial b'' - \partial b - \partial \partial \alpha_k(\tilde{a}) $, quindi:
+  Perciò $ \exists \tilde{a} \in A_k$ tale che $ b'' - b - \partial b_0 = \alpha_k (\tilde{a}) $, e
+  applicando il bordo si ottiene $ \partial b'' - \partial b - \partial \alpha_k(\tilde{a}) = 0 $, quindi
+  dalla definizione dell'omomorfismo di connessione e dalla commutatività:
   \[
-    \partial b'' - \partial b = \partial \alpha_{k}(\tilde{a}) \Rightarrow \alpha_{k+1}(a'') - \alpha_{k-1}(a) = \alpha_{k-1}(\partial \tilde{a})
+    \partial b'' - \partial b = \partial \alpha_{k}(\tilde{a}) \Rightarrow \alpha_{k-1}(a'') - \alpha_{k-1}(a) = \alpha_{k-1}(\partial \tilde{a})
   \]
   Ma $ \alpha_{k-1} $ è omomorfismo iniettivo quindi
-  $ a'' - a - \partial \tilde{a} = 0 $ cioè $ a'' - a = \partial \tilde{a} $
+  $ a'' - a - \partial \tilde{a} = 0 $ cioè $ a'' - a = \partial \tilde{a} $,
+  quindi siccome $ a'' $ e $ a $ differiscono per un bordo sono omologhi.
 
-  Si può quindi definire $ \delta $ su $ [c] \in H_p(C_k) $:
+  Si può quindi definire $ \delta $ su $ \llbracket c \rrbracket \in H_p(C_k) $:
   \[
-    \delta([c]) = \llbracket \alpha \circ \partial \circ \beta^{-1}(c) \rrbracket
+    \delta(\llbracket c \rrbracket) = \llbracket \alpha \circ \partial \circ \beta^{-1}(c) \rrbracket
   \]
   Questa è ben definita.
 \end{proof}
@@ -1994,27 +2017,31 @@ ma c'è il modo per indurre una successione esatta lunga:
 \section{Omologia singolare relativa}
 Sia $ X $ uno spazio topologico e $ A $ sottospazio generico
 di $ X $ (anche improprio), cioè $ A \incl X$.
-Vorrei definrie l'omologia
+Vorrei definire l'omologia
 singolare di $ X $ tenendo presente la presenza di $ A $,
 cioè $ H_k(X,A) $, il $ k $-esimo gruppo di omologia
 singolare dellla coppia $ (X, A) $.
-Sia $ S_K(A) $ lo spazio delle $ k $-catene che finiscono
-totalmente in $ A $, la mappa di inclusione $ i \colon A \to X $
-induce una mappa $ i_\sharp \colon s_k(A) \to S_k(X) $. Questa mappa
+Sia $ S_k(A) $ lo spazio delle $ k $-catene, cioè lo spazio generato dai simplessi
+singolari in $ A $, la mappa di inclusione $ i \colon A \to X $
+induce una mappa $ i_\sharp \colon S_k(A) \to S_k(X) $. Questa mappa
 è sicuramente iniettiva (basta vedere le catene di $ A $ come
 catene di $ X $). A questo punto la successione
 \[
   \begin{tikzcd}
-    0 \arrow{r}{} & S_k(A) \arrow{r}{i_\sharp} & S_k(X) \arrow{r}{\beta} & \quot{S_k(X)}{S_k(A)} \arrow{r}{} & 0
+    0 \arrow{r}{h} & S_k(A) \arrow{r}{i_\sharp} & S_k(X) \arrow{r}{\beta} & \quot{S_k(X)}{S_k(A)} \arrow{r}{k} & 0
   \end{tikzcd}
 \]
-è esatta, e anche la restrizione:
+è esatta infatti $ h $ iniettiva e $ k $ suriettiva, $ \im{h} = \ker{i_\sharp} = 0 $,
+$ \ker{k} = \im{\beta} = \quot{S_k(X)}{S_k(A)} $ e $ \ker{\beta} = \im{i_\sharp} $ in quanto
+il nucleo della proiezione su un sottospazio è il sottospazio stesso.
+Pongo come notazione $ \quot{S_k(X)}{S_k(A)} = S_k(X, A) $, in questo modo la successione
+diventa:
 \[
   \begin{tikzcd}
     0 \arrow{r}{} & S_k(A) \arrow{r}{i_\sharp} & S_k(X) \arrow{r}{\beta} & S_k(X,A) \arrow{r}{} & 0
   \end{tikzcd}
 \]
-Posso fare:
+A partire da questa successione posso costruire una successione esatta corta di complessi:
 \[
   \begin{tikzcd}
     {} & 0 \arrow{d}{} & 0 \arrow{d}{} & {} \\
@@ -2024,72 +2051,71 @@ Posso fare:
     {} & 0 & 0 & {}
   \end{tikzcd}
 \]
-I quadrati sono commutativi quindi posso
-costruisre una successione esatta lunga.
+I quadrati sono commutativi quindi questa succession esatta corta
+di complessi ne induce una esatta lunga.
 Si ottiene quindi:
 \[
   \begin{tikzcd}
     \dots \arrow{r}{} & H_k(A) \arrow{r}{\alpha_\star} & H_k(B) \arrow{r}{\beta_\star} & H_k(X,A) \arrow{r}{\delta} & H_{k-1}(A) \arrow{r}{} & \dots
   \end{tikzcd}
 \]
-$ H_k(X,A) $ è l'\textbf{omologia singolare della coppia}\index{Omologia singolare relativa}\index{Omologia singolare della coppia ! \vedi{Omologia singolare relativa}}
+Si definisce quindi in questo modo l'\textbf{omologia singolare della coppia}\index{Omologia singolare relativa}\index{Omologia singolare della coppia ! \vedi{Omologia singolare relativa}} $ H_k(X,A) $.
 
-Questa è una costruzione geometrica e fornice informazioni su nucleo e conucleo.
+%  Questa è una costruzione geometrica e fornice informazioni su nucleo e conucleo.
 
-Consudero una successione esatta corta di $ \R $-moduli:
-\[
-  \begin{tikzcd}
-    0 \arrow{r}{} & A \arrow{r}{\alpha} & B \arrow{r}{\beta} & C \arrow{r}{} & 0
-  \end{tikzcd}
-\]
-Con $ \alpha $ iniettiva, $ \beta $ suriettiva e $ \quot{B}{A} \cong C $, cioè
-$ \im{\alpha} = A = \ker{\beta} $ in quanto $ \beta $ è suriettiva.
-\begin{definition}
-  Si dice che la \textbf{successione spezza}\index{Successione spezza} se esiste una
-  funzione continua $ \phi \colon B \to B $ idempotente, cioè tale che $ \phi^2 = \phi $, e tale che
-  $ \ker{\phi} = \im{\alpha} = \ker{\beta} $.
+\begin{definition}[Prima definizione]
+  % Con $ \alpha $ iniettiva, $ \beta $ suriettiva e $ \quot{B}{A} \cong C $, cioè
+  % $ \im{\alpha} = A = \ker{\beta} $ in quanto $ \beta $ è suriettiva.
+  Si dice che una successione esatta corta di $ \R $-moduli:
+  \[
+    \begin{tikzcd}
+      0 \arrow{r}{} & A \arrow{r}{\alpha} & B \arrow{r}{\beta} & C \arrow{r}{} & 0
+    \end{tikzcd}
+  \]\textbf{spezza}\index{Successione spezza} se esiste un endomorfismo continuo
+  $ \phi \colon B \to B $ idempotente (cioè tale che $ \phi^2 = \phi $) e tale che $ \ker{\phi} = \im{\alpha} = \ker{\beta} $
+  oppure $ \im{\phi} = \im{\alpha} = \ker{\beta} $
 \end{definition}
-
-\begin{example}
-  [MANCA ESEMPIO]
-\end{example}
 
 % lezione 5
 
-
-Sia $ B = A \oplus C $ con $ A, C $ $ \Z $-moduli, a questi sono associate la mappa
+Sia $ B = A \oplus C $ con $ A, C $ $ \Z $-moduli, in quello che segue il ruolo di
+$ A $ e $ C $ può essere scambiato. A questi moduli sono associate la mappa
 di inclusione e di passaggio al quoziente:
 \begin{align*}
   i \colon A & \to A \oplus C \\
   a & \mapsto (a, 0)
 \end{align*}
 \begin{align*}
-  j \colon A \oplus C & C
+  j \colon A \oplus C & \to C \\
+  (a,c) & \mapsto c
 \end{align*}
-Con $ j $ quoziente per lo $ \Z $-modulo $ i(A) $. Ovviamente si possono
-scegliere $ i' $ e $ j' $ in cui si scambia il ruolo di $ A $ e di $ C $.
-Si nota che $ i $ è iniettiva e $ j $ è suriettiva.
-Ho quindi:
+La mappa $ i $ è iniettiva perchè è un'inclusione, mentre $ j $ è suriettiva perchè
+è un passaggio al quoziente, si può quindi costruire la successione esatta corta:
 \[
   \begin{tikzcd}
-    0 \arrow{r}{} & A \arrow{r}{i} & B \arrow{r}{j} & C \arrow{r}{} & 0
+    0 \arrow{r}{} & A \arrow{r}{i} & B = A \oplus C \arrow{r}{j} & C \arrow{r}{} & 0
   \end{tikzcd}
 \]
-Ma esiste anche $ s \colon C \to B $ e quindi ho;
+Ma esiste anche l'inclusione $ s \colon C \to B $ e quindi ho;
 \[
-  \begin{tikzcd}
-    C \arrow{r}{s} & A \oplus C \arrow{r}{j} & C
+  \begin{tikzcd}[nodes={row sep=5pt, column sep = 20pt}]
+    C \rar{s} & A \oplus C \rar{j} & C \\
+    c  \arrow[mapsto]{r}{} & (0,c) \arrow[mapsto]{r}{} & c
   \end{tikzcd}
 \]
-Con $ s \circ j \colon c \mapsto (0,c) \mapsto c $, mi piacerebbe che $ s \circ j = \Id{C} $.
-La mappa $ s $ è detta \textbf{sezione dell'omomorfismo}\index{Sezione dell'omomorfismo}
+%  Con $ s \circ j \colon c \mapsto (0,c) \mapsto c $, mi piacerebbe che $ s \circ j = \Id{C} $.
+Vale che e $ j \circ s = \Id{C} $. Se $ B $ è proprio somma diretta di $ A $ e $ C $
+posso sempre fare questa costruzione, ma nelle successioni esatte generiche non è cosi.
+Una successione spezza quando ha un comportamento come questo, e la mappa $ s $
+tale che $ j \circ s = \Id{C} $ è detta \textbf{sezione dell'omomorfismo}\index{Sezione dell'omomorfismo}
 $ j \colon B \to C $.
-Quindi se $ B $ è proprio somma diretta ho automaticamente $ s $ e $ s' $ con $ s' $
-quoziente. Questo è il prototipo di successione che spezza.
-
-\begin{definition}
-  Siano $ A, B, C $ $ \Z $-moduli con $ \ker{\alpha} = 0 $, $ \im{\beta} = C$ e $ \ker{\beta} = \im{\alpha} $,
-  cioe una successione esatta, si dice che la successione
+% Quindi se $ B $ è proprio somma diretta ho automaticamente $ s $ e $ s' $ con $ s' $
+% quoziente.
+% Questo è il prototio di successione che spezza.
+\begin{definition}[Seconda definizione]
+  % Siano $ A, B, C $ $ \Z $-moduli con $ \ker{\alpha} = 0 $, $ \im{\beta} = C$ e $ \ker{\beta} = \im{\alpha} $,
+  % cioe una successione esatta,
+  Si dice che la successione esatta di $ \Z $-moduli
   \[
     \begin{tikzcd}
       0 \arrow{r}{} & A \arrow{r}{\alpha} & B \arrow{r}{\beta} & C \arrow{r}{} & 0
@@ -2098,46 +2124,55 @@ quoziente. Questo è il prototipo di successione che spezza.
   \textbf{spezza}\index{Successione spezza} se esiste una sezione da $ B $ a $ C $
   o da $ B $ ad $ A $, cioè:
   \begin{gather*}
-    \exists s \colon B \to C \text{ tale che } s \circ \beta = \Id{C} \\
+    \exists s \colon C \to B \text{ omomorfismo continuo tale che } \beta \circ s = \Id{C} \\
     \text{oppure} \\
-    \exists s' \colon B \to A \text{ tale che } \alpha \circ s' = \Id{A}
+    \exists s' \colon B \to A \text{ omomorfismo continuo tale che } s' \circ \alpha = \Id{A}
   \end{gather*}
 \end{definition}
-
 Questo è equivalente a dire che $ B = A \oplus s(C) $, infatti vale l'osservazione
 \begin{osservation}
-  Se la successione $ 0 \to A \to B \to C \to 0 $ spezza allora $ B = A \oplus s(C) $ con $ s $ sezione.
-  Il viceversa l'ho già dimostrato.
+  Se la successione $ 0 \to A \to B \to C \to 0 $ spezza allora $ B \cong A \oplus s(C) $ con $ s $ sezione.
+  Il viceversa l'ho già dimostrato, infatti se $ B $ si scrive come somma diretta
+  la sezione è banale.
 \end{osservation}
 \begin{proof}
-  Vale che $ A \incl B $ in quanto $ \alpha $ è iniettiva e quindi $ \alpha(A) \cong A $, inoltre
-  $ s(C) \incl B $ in quanto $ s \colon C \to B $ è la sezione.
-  Sia $ x \in \alpha(A) \cap s(C) $, cioè $ x \in \alpha(A) $ e $ x \in s(C) $ allora
-  esiste $ a \in A $ tale che $ x = \alpha(a) $ ed esiste $ k \in C $ tale che
-  $ x = s(k) $, vale che $ \alpha(a) = s(k) $. Applicando $ \beta \colon B \to C $ si ottiene
-  $ (\beta \circ \alpha) (a) = (\beta \circ s)(k) $, ma $ \beta \circ \alpha = 0$ in quanto $ \ker{\beta} = \im{\alpha} $, quindi
-  $ (\beta \circ s)(k) = 0 $. Ma $ s $ è sezione quindi $ \beta \circ s = \Id{C} $, da cui $ k = 0 $.
-  $ s $ è omomorfismo quindi $ s(k) = 0 $, perciò $ x = 0 $.
+  Per dimostrare che $ B \cong A \oplus s(C) $ per prima cosa mostro che l'intersezione
+  tra $ A $ e $ s(C) $ è vuota.
 
-  Ogni elemento di $ B $si scrive come somma di elemento di $ \alpha(A) $ e di un elemento
-  di $ s(C) $. Sia $ b \in B $ applicando $ \beta $ si ottiene $ \beta(b) \in C $, ci sono due
-  possibilità:
+  Vale che $ A \incl B $ in quanto $ \alpha $ è iniettiva e quindi $ \alpha(A) \cong A $, inoltre
+  $ s(C) \subseteq B $ in quanto per ipotesi $ s \colon C \to B $.
+  Sia $ x \in \alpha(A) \cap s(C) $, mostro che $ x = 0 $.%cioè $ x \in \alpha(A) $ e $ x \in s(C) $ allora
+  Siccome $ x \in \alpha(A) $ allora esiste $ a \in A $ tale che $ x = \alpha(a) $ e siccome
+  $ x \in s(C) $ allora esiste $ k \in C $ tale che
+  $ x = s(k) $, naturalmente $ \alpha(a) = s(k) $. Applicando $ \beta $ si ottiene
+  $ (\beta \circ \alpha) (a) = (\beta \circ s)(k) $, ma $ \beta \circ \alpha = 0 $ in quanto la successione è esatta, quindi
+  $ (\beta \circ s)(k) = 0 $. Ma $ s $ è sezione quindi $ \beta \circ s = \Id{C} $, quindi $ k = 0 $, ma
+  siccome $ s $ è omomorfismo allora $ s(k) = 0 $, perciò $ x = s(k) = 0 $.
+
+  A questo punto bisogna dimostrare che ogni elemento di $ B $ si scrive come somma
+  di un elemento di $ \alpha(A) $ e di un elemento
+  di $ s(C) $.
+
+  Sia $ b \in B $ allora $ \beta(b) \in C $, ci sono due possibilità:
   \begin{enumerate}
-  \item $ \beta(b) = 0 $ quindi $ b \in \ker{\beta} = \im{\alpha} $, quindi $ b \in \im{a} $, cioè
+  \item Se $ \beta(b) = 0 $ significa $ b \in \ker{\beta} = \im{\alpha} $, quindi $ b \in \im{a} $, cioè
     $ \exists \alpha \in A $ tale che $ b = \alpha(a) $ e quindi si scrive come elemento di $ A $ sommato
     a zero.
-  \item $ \beta(b) = c \not = 0 $. Vorrei scrivre $ b = x + y $ con $ x \in \alpha(A) $ e $ y \in s(C) $.
-    Considero $ s(t) $ con $ s(t) \in B $, allora $ b - s(t) \in B $, allora
+  \item Se $ \beta(b) = c \not = 0 $ allora $ b - s(t) \in B $,
     mostro che $ b - s(t) \in \ker{\beta} $ e quindi posso usare lo stesso ragionamento
     di prima.
     \[
       \beta(b - s(t)) = \beta(b) - \beta(s(t)) = t - t = 0 \Rightarrow \beta(b - s(t)) \in \ker{b} = \im{\alpha}
     \]
-    Quindi esiste $ a' \in A $ tale che $ \alpha(a') = b - s(t) $ e quindi $ b = s(t) + \alpha(a') $
+    Quindi esiste $ a' \in A $ tale che $ \alpha(a') = b - s(t) $ e quindi
+    vale che $ b = s(t) + \alpha(a') $
   \end{enumerate}
+  Siccome l'intersezione tra $ A $ e $ s(C) $ è vuota e ogni elemento di $ B $
+  si può scrivere come somma di un elemento di $ A $ e di uno di $ s(C) $ allora
+  $ B $ è somma diretta di $ A $ e $ s(C) $.
 \end{proof}
 
-\begin{example}
+\begin{example}[Successione non spezzante]
   Considero la successione:
   \[
     \begin{tikzcd}
@@ -2146,29 +2181,33 @@ Questo è equivalente a dire che $ B = A \oplus s(C) $, infatti vale l'osservazi
   \]
   Questa successione è esatta ma non spezza, infatti se spezzasse esisterebbe una sezione:
   \[
-    s \colon \quot{\Z}{n\Z} \to \Z
+    s \colon \quot{\Z}{n\Z} = \Z_n \to \Z
   \]
   Ma questa non può esistere per queztioni di immagini.
 \end{example}
 
 \begin{proposition}
   Le due definizioni di successione che spezza sono equivalenti, cioè
-  se $ \exists s \colon C \to B $ tale che $ s \circ \beta = \Id{C} $ allora $ \exists \phi \colon B \to B $ tale che sia
+  se $ \exists s \colon C \to B $ tale che $ \beta \circ s = \Id{C} $ allora $ \exists \phi \colon B \to B $ tale che sia
   idempotente e che $ \ker{\phi} = \ker{\beta} $
 \end{proposition}
 \begin{proof}
-  Una possibile costruzione è $ \phi = s \circ \beta \not = \Id{C} $, infatti:
+  Una possibile costruzione è $ \phi = s \circ \beta  $, infatti:
   \[
     \phi^2 = s \circ \beta \circ s \circ \beta = s \circ \Id{C} \circ \beta = s \circ \beta = \phi
   \]
-  Quindi $ \phi $ è idempotente. Inoltre:
+  Quindi $ \phi $ è idempotente. Siccome $ s $ omomorfismo $ \ker{\beta} \subseteq \ker{s \circ \beta } $,
+  mostro che $ \ker{s \circ \beta} \subseteq \ker{\beta} $:
   \[
     \ker{\phi} = \ker{s \circ \beta} = \set{ b \in B | (s \circ \beta)(b) = 0}
   \]
   Quindi $ s(\beta(b)) = 0 $ cioè $  \beta \circ s \circ \beta (b) = 0 $ quindi $ \beta(b) = 0 $ che significa
-  che $ b \in \ker{\beta} $. Deve essere $ \ker{\phi} = \ker{\beta} $. Siccome
-  $ \ker{\beta} \subseteq \ker{s \circ \beta} \subseteq \ker{\beta} $ allora $ \ker{s \circ \beta} = \ker{\beta} $.
+  che $ b \in \ker{\beta} $. Ma quindi $ \ker{\beta} \subseteq \ker{s \circ \beta} \subseteq \ker{\beta} $ allora $ \ker{s \circ \beta} = \ker{\beta} $.
   Rimane da mostrare il viceversa.
+  \begin{exercise}
+    Mostrare che se esiste l'endomorfismo $ \phi $ allora si può costruire una sezione.
+  \end{exercise}
+  \emph{Lo studente interessato può verificare queste asserzioni.}
 \end{proof}
 
 \section{Omologia singolare ridotta}
@@ -2215,13 +2254,13 @@ $ \sigma_k $ è l'unica mappa che c'è.
   % infatti dalla definizione di omologia singolare c'è il complesso:
   % \[
   %   \begin{tikzcd}
-  %      \dots \arrow{r}{}  & S_{k+1}(\set{x_0}) \arrow{r}{\partial} &  S_{k}(\set{x_0}) \arrow{r}{\partial} &  S_{k-1}(\set{x_0}) \arrow{r}{} & \dots
+  %     \dots \arrow{r}{}  & S_{k+1}(\set{x_0}) \arrow{r}{\partial} &  S_{k}(\set{x_0}) \arrow{r}{\partial} &  S_{k-1}(\set{x_0}) \arrow{r}{} & \dots
   %   \end{tikzcd}
   % \]
   % Che corrisponde alla successione dei generatori:
   % \[
   %   \begin{tikzcd}
-  %      \dots \arrow{r}{}  & \langle\sigma_{k+1}\rangle \arrow{r}{\partial} &  \langle\sigma_{k}\rangle \arrow{r}{\partial} & \langle\sigma_{k-1}\rangle \arrow{r}{} & \dots
+  %     \dots \arrow{r}{}  & \langle\sigma_{k+1}\rangle \arrow{r}{\partial} &  \langle\sigma_{k}\rangle \arrow{r}{\partial} & \langle\sigma_{k-1}\rangle \arrow{r}{} & \dots
   %   \end{tikzcd}
   % \]
   \[
@@ -2323,13 +2362,13 @@ $ \sigma_k $ è l'unica mappa che c'è.
   suriettiva. Ho quindi la successione:
   \[
     \begin{tikzcd}
-       0 \arrow{r}{}  & H_1(X) \arrow{r}{\phi} &  \tilde{H}_1(X) \arrow{r}{} & 0
+      0 \arrow{r}{}  & H_1(X) \arrow{r}{\phi} &  \tilde{H}_1(X) \arrow{r}{} & 0
     \end{tikzcd}
   \]
   $ \phi $ è isomorfismo quindi $ H_1(X) \cong \tilde{H}_1(X) $, ma vale anche che:
   \[
     \begin{tikzcd}
-       0 \arrow{r}{}  & H_0(\set{x_0}) \arrow{r}{i_\star} &  H_0(X) \arrow{r}{} & \tilde{H}_0(X) \arrow{r}{} & 0
+      0 \arrow{r}{}  & H_0(\set{x_0}) \arrow{r}{i_\star} &  H_0(X) \arrow{r}{} & \tilde{H}_0(X) \arrow{r}{} & 0
     \end{tikzcd}
   \]
   Quindi $ \quot{H_0(X)}{H_0(\set{x_0})} \cong \tilde{H}_0(X) $ infatti $ \quot{H_0(X)}{\ker{\tau}} \cong \im{\tau} $
@@ -2361,7 +2400,7 @@ $ \sigma_k $ è l'unica mappa che c'è.
   ma per farlo mi servono altru strumenti.
 \end{example}
 
-\section{Assioni di una teoria omologica}
+\section{Assiomi di una teoria omologica}
 
 \begin{definition}[Teoria omologica secondo Eilenberg e Steenrod]
   Una \textbf{teoria omologica}\index{Teoria omologica}\index{Steendord ! \vedi{Teoria omologica}}\index{Eilenberg ! \vedi{Teoria omologica}}
@@ -2383,7 +2422,7 @@ $ \sigma_k $ è l'unica mappa che c'è.
     \]
     è esatta.
   \item (Dimensione): $ H_k (P) = 0 $ $ \forall k \not = 0 $ dove $ P $ è lo spazio formato da un solo punto.
-  \item (Additività): Se $ X $ è la somma topologica di spazi $ X_\alpha $ allora $ H_p(X) = MANCA BIG \oplus H_p(X_\alpha) $
+  \item (Additività): Se $ X $ è la somma topologica di spazi $ X_\alpha $ allora $ H_p(X) = \bigoplus H_p(X_\alpha) $
   \item (Escissione): Se $ U $ è un aperto in $ X $ tale che $ \bar{U} \subset \mathrm{int}(A) $ allora l'inclusione
     di $ (X \setminus U, A \setminus U) $ in $ (X, A) $ induce un isomorfismo tra $ H_k $, cioe togliendo
     un opportuno insieme da $ (X,A) $ l'omologia non sente della escissione.
@@ -2402,6 +2441,7 @@ $ \sigma_k $ è l'unica mappa che c'è.
 L'omologia singolare relativa soddisfa tutti questi assiomi, a meno di quelli non ancora verificati che
 sono l'omotopia e l'escissione.
 
+\newmathsymb{topsum}{\invamalg}{Somma topologica}
 \begin{definition}
   Sia $ \set{X_\alpha} $ una famiglia di spazi topologici, si definisce la \textbf{somma topologica}\index{Somma topologica}
   $ X = \invamalg_\alpha X_\alpha $
@@ -2410,7 +2450,12 @@ sono l'omotopia e l'escissione.
   ovvero un insieme è aperto se e solo se è aperto rispetto alla topologia di ogni $ X_\alpha $.
 \end{definition}
 
-% lezione 6
+                                   %                                    lezione 6
+                                   %                                    _     _____ ________ ___  _   _ _____    __
+                                   %                                    | |   | ____|__  /_ _/ _ \| \ | | ____|  / /_
+                                   %                                    | |   |  _|   / / | | | | |  \| |  _|   | '_ \
+                                   %                                    | |___| |___ / /_ | | |_| | |\  | |___  | (_) |
+                                   %                                    |_____|_____/____|___\___/|_| \_|_____|  \___/
 
 Ho costruito:
 \[
@@ -2478,17 +2523,152 @@ Esiste una successione lunga in omologia.
     \dots \arrow{r}{} & H_k(A) \arrow{r}{} & H_k(X) \arrow{r}{} & \arrow{r}{} & \dots
   \end{tikzcd}
 \]
+Mi rimangono da verificare l'invarianza omotopica e l'escissione.
+Ho già visto che $ H_k(P) = H_k(P, \emptyset) = 0 $ per $ k \geq 1 $ e $ P $ insieme
+formato da un solo punto, inoltre so che $ H_k (\invamalg_\alpha X_\alpha) \cong \bigoplus_\alpha H_k(X_\alpha) $
+
+Quindi gli assiomi di Eilenberg e Steenrod non definiscono una teoria
+vuota ma c'è almeno una teoria a soddisftarli.
+
+In futuro verificherò gli assiomi mancanti.
+
+Sia $ X \not = \emptyset $ spazio topologico e $ p \in X $ punto, allora ho le
+applicazioni di inclusione $ i $ e la mappa costante $ \epsilon $:
+\begin{gather*}
+  i \colon p \to X \\
+  \epsilon \colon X \to p
+\end{gather*}
+Si ha che $ \epsilon \circ i = \Id{p} $ in quanto $ p \overset{i}{\to} X \overset{\epsilon}{\to} p $.
+Definisco (deriva dagli assioni ponendo $ k = 0 $) $ \epsilon_\star H_0(X) \to H_0(p) $,
+$ \epsilon_\star $ è suriettiva perchè c'è $ i_\star \colon H_0(p) \to H_0(X) $:
+\[
+  \begin{tikzcd}
+    0 \arrow{r}{} & \ker{\epsilon_\star} \arrow{r}{} & H_0(X) \arrow{r}{\epsilon_\star} & \arrow[bend right]{ll}{i_\star} H_0(p) \arrow{r}{} & 0
+  \end{tikzcd}
+\]
+Inoltre per le proprietà funtoriali $ (\epsilon \circ i)_\star = (\Id{p})_\star = \Id{H_0(p)} $
+e $ (\epsilon \circ i)_\star = \epsilon_\star \circ i_\star $ quindi $ \epsilon_\star \circ i_\star = \Id{H_0(p)} $.
+La successione spezza quindi $ H_0(X) \cong \ker{\epsilon_\star} \oplus H_0(p) $.
+Per qualsiasi teoria omologia che soddisfa gli assioni di Eilenberg
+e Steenrod, e quindi in particolare per l'omologia singolare relativa,
+si ha che $ H_0(X) \cong \ker{\epsilon_\star} \oplus H_0(p) $.
+
+Generalmente si chiama $ H_0(p) $ il \textbf{gruppo dei coefficienti}\index{Gruppo dei coifficienti}
+di una teoria omologica. Nell'omologia singolare relativa questo è $ \Z $.
+Inoltre si definisce $ \ker{\epsilon_\star} = \tilde{H}_0(X) $ gruppo di omologia ridotta di ordine zero.
+
+Cosa sono invece gli $ \tilde{H}_k(X) $? Vorrei che fossero i gruppi di omologia,
+cosi' come nel solo nel caso dell'omologia singolare.
+
+\begin{proposition}
+  Infatti è così.
+\end{proposition}
+\begin{proof}
+  Cibsuderi $ F \colon (X, A) \to (p,p) $ con:
+  \[
+    F =
+    \begin{cases}
+      \epsilon_X \colon X \to p \\
+      \epsilon_A \colon A \to p
+    \end{cases}
+  \]
+  Posso fare:
+  \[
+    \begin{tikzcd}
+      0 \arrow{r}{}        & \ker{\epsilon_X} \arrow{r}{} & H_k(X) \arrow{r}{\epsilon_\star} & H_k(p) \arrow{r}{}    & 0
+    \end{tikzcd}
+  \]
+  In generale:
+  \[
+    \begin{tikzcd}
+      0 \arrow{r}{}        & \ker{\epsilon_X} \arrow{r}{} & H_k(X) \arrow{r}{\epsilon_\star} & H_k(p) \arrow{r}{}    & 0
+    \end{tikzcd}
+  \]
+  Per $ k \geq 1 $ $ \ker{\epsilon_X} = H_k(X) $, mentre per $ k = 0 $ $ H_0(X) \cong \tilde{H}_0(X) \oplus H_0(p) $,
+  quindi:
+  \[
+    \tilde{H}_k(X) = \ker{\epsilon_C} =
+    \begin{cases}
+      H_k(X)               & \text{per } k \geq 1 \\
+      \tilde{H}_0(X) \oplus H_0(p)
+    \end{cases}
+  \]
+  Questo lo posso fare anche nel caso di una coppia.
+  \[
+    \begin{tikzcd}
+      0 \arrow{r}{}        & \ker{F_X} \arrow{r}{} & H_k(X, A) \arrow{r}{} & H_k(p, p) \arrow{r}{} & 0
+    \end{tikzcd}
+  \]
+  E si definisce $ \tilde{H}_k(X,A) = \ker{F_\star} $.
+  Calcolo $ H_k(P,P) $ con $ P $ spazio formato da un solo punto in $ X $.
+  So che c'è una successione esatta lunga:
+  \[
+    \begin{tikzcd}
+      \dots \arrow{r}{}        & H_k(P) \arrow{r}{}    & H_k(P) \arrow{r}{}    & H_k(P,P) \arrow{r}{}  & H_{k-1}(P) \arrow{r}{} & \dots
+    \end{tikzcd}
+  \]
+  La coppia è $ (P, P) = (X, A) $ quindi $ X = P $ e $ A = P $. Supponendo $ k \geq 2 $ la successione diventa:
+  \[
+    \begin{tikzcd}
+      \dots \arrow{r}{}        & 0 \arrow{r}{}         & 0 \arrow{r}{}         & H_k(P,P) \arrow{r}{}  & 0 \arrow{r}{}          & \dots
+    \end{tikzcd}
+  \]
+  Allora $ H_k(P, P) = 0 $. Mentre se $ k = 1 $ allora:
+  \[
+    \begin{tikzcd}[nodes={column sep=10pt}]
+      \dots \arrow{r}{}        & H_1(P) \arrow{r}{}    & H_1(P) \arrow{r}{}    & H_1(P,P) \arrow{r}{}  & H_{0}(P) \arrow{r}{}   &
+      H_{0}(P) \arrow{r}{} & H_{0}(P,P) \rar       & 0
+    \end{tikzcd}
+  \]
+  Cioè:
+  \[
+    \begin{tikzcd}[nodes={column sep=10pt}]
+      \dots \arrow{r}{}   & 0 \arrow{r}{}         & 0 \arrow{r}{}         & H_1(P,P) \arrow{r}{}  & H_{0}(P) \arrow{r}{}   &
+      H_{0}(P) \arrow{r}{} & H_{0}(P,P) \rar       & 0
+    \end{tikzcd}
+  \]
+  Ma quindi:
+  \[
+    \begin{tikzcd}[nodes={column sep=10pt, row sep=10pt}]
+      {} & {} & {} & {} & 0  \arrow{dr}{} & {} & {}  & 0 \arrow{dr}{} & {} & {}  & {}    \\
+      \dots \rar & 0 \rar  & 0 \rar & H_1(P,P) \arrow{rr}{}  \arrow{ur}{}  & {}  & H_{0}(P) \rar &  H_{0}(P) \arrow{rr}{}  \arrow{ur}{}
+      & {} & H_{0}(P,P) \rar & 0
+    \end{tikzcd}
+  \]
+  E quindi $ H_1(P,P) = H_0(P,P) = 0 $.
+\end{proof}
+
+\begin{corollary}
+  Se $ X $ è uno spazio topologico contraibile allora $ \tilde{H}_k(X) = 0 $.
+\end{corollary}
+\begin{proof}
+  Se $ X $ è contraibile allora $ x \sim_H p $ cioè $ \exists f \colon X \to P $ e $ \exists g \colon P \to X $
+  continue tali che $ f \circ g \sim_H \Id{P} $ e $ g \circ f \sim_H \Id{X} $, quindi
+  $ f_\star \circ g_\star = \Id{H_k(P)} $ e  $ g_\star \circ f_\star = \Id{H_k(X)} $ con $ f_\star \colon H_k(X) \to H_k(P) $
+  e  $ g_\star \colon H_k(P) \to H_k(X) $, quindi $ f_\star $ e $ g_\star $ sono inversi, cioè:
+  $ (f \circ g)_\star = \left( \Id{P} \right)_\star $ e $ (g \circ f)_\star = \left( \Id{X} \right)_\star $
+  per l'assiome dell'omotopia e per la funtorialità.
+  Quindi:
+  \[
+    H_k(P) \cong H_k(X) \cong
+    \begin{cases}
+      \tilde{H}_k(X) = 0 & \text{se } k \geq 1 \\
+      \tilde{H}_0(X) \oplus H_0(X) = H_0(X) & \text{se } k = 0
+    \end{cases}
+  \]
+\end{proof}
+Un secondo importantissimo corollario è l'omologia delle sfere.
 
 
-[MANCA TUTTA LE LEZIONE 6]
-
-%  _     _____ ________ ___  _   _ _____   _____
-% | |   | ____|__  /_ _/ _ \| \ | | ____| |___  |
-% | |   |  _|   / / | | | | |  \| |  _|      / /
-% | |___| |___ / /_ | | |_| | |\  | |___    / /
-% |_____|_____/____|___\___/|_| \_|_____|  /_/
-
+[MANCA SECONDA PARTE]
 \section{Omologia delle sfere}
+
+
+                                              %                                               _     _____ ________ ___  _   _ _____   _____
+                                              %                                               | |   | ____|__  /_ _/ _ \| \ | | ____| |___  |
+                                              %                                               | |   |  _|   / / | | | | |  \| |  _|      / /
+                                              %                                               | |___| |___ / /_ | | |_| | |\  | |___    / /
+                                              %                                               |_____|_____/____|___\___/|_| \_|_____|  /_/
 
 Considero $ \Sph{n} $ con $ n \geq 1 $, ho trovato che:
 \[
@@ -2506,32 +2686,32 @@ cose diverse.
   $ \Sph{n} \simeq \Sph{m} $ se e solo se $ n = m $.
 \end{corollary}
 \begin{proof}
-Se $ n = m $ vale che $ \Sph{n} = \Sph{m} $ quindi in particolare
-$ \Sph{n} \simeq \Sph{m} $ con la mappa identità. Assumo $ n \not = m $
-e senza perdita di generalità pongo $ n > m $.
+  Se $ n = m $ vale che $ \Sph{n} = \Sph{m} $ quindi in particolare
+  $ \Sph{n} \simeq \Sph{m} $ con la mappa identità. Assumo $ n \not = m $
+  e senza perdita di generalità pongo $ n > m $.
 
-Per assurdo $ \Sph{n} \simeq \Sph{m} $, quindi esiste un omomorfismo
-$ F: \Sph{n} \homoto \Sph{m} $, quindi esiste anche l'omomorfismo
-inverso $ G: \Sph{m} \homoto \Sph{n} $.
-Quindi esistono anche:
-\[
-  F_\star: H_k{\Sph{n}} \to H_k(\Sph{m}) \quad \text{e} \quad G_\star: H_k{\Sph{m}} \to H_k(\Sph{n})
-\]
-Ma $ F \circ G = \Id{\Sph{n}} $ e $ G \circ F = \Id{\Sph{m}} $, ma utilizzando
-la funtorialità si trova quindi che:
-\[
-  F_\star \circ G_\star = \Id{H_k(\Sph{m})} \quad \text{e} \quad G_\star \circ F_\star = \Id{H_k(\Sph{n})}
-\]
-Da cui si deduce che $ F_\star $ e $ G_\star $ sono continue e sono inverse.
-Vale quindi che:
-\[
-  H_k(\Sph{n}) \cong H_k(\Sph{m}) \; \forall k \geq 0
-\]
-Se vale per ogni $ k $ in particolare vale per $ k = n $, cioè:
-\[
-  H_n(\Sph{n}) = H_n(\Sph{m})
-\]
-Ma $ H_n(\Sph{n}) \cong \Z $ e $ H_n(\Sph{m}) \cong 0 $ da cui $ \Z \cong 0 $, che è assurdo.
+  Per assurdo $ \Sph{n} \simeq \Sph{m} $, quindi esiste un omomorfismo
+  $ F: \Sph{n} \homoto \Sph{m} $, quindi esiste anche l'omomorfismo
+  inverso $ G: \Sph{m} \homoto \Sph{n} $.
+  Quindi esistono anche:
+  \[
+    F_\star: H_k{\Sph{n}} \to H_k(\Sph{m}) \quad \text{e} \quad G_\star: H_k{\Sph{m}} \to H_k(\Sph{n})
+  \]
+  Ma $ F \circ G = \Id{\Sph{n}} $ e $ G \circ F = \Id{\Sph{m}} $, ma utilizzando
+  la funtorialità si trova quindi che:
+  \[
+    F_\star \circ G_\star = \Id{H_k(\Sph{m})} \quad \text{e} \quad G_\star \circ F_\star = \Id{H_k(\Sph{n})}
+  \]
+  Da cui si deduce che $ F_\star $ e $ G_\star $ sono continue e sono inverse.
+  Vale quindi che:
+  \[
+    H_k(\Sph{n}) \cong H_k(\Sph{m}) \; \forall k \geq 0
+  \]
+  Se vale per ogni $ k $ in particolare vale per $ k = n $, cioè:
+  \[
+    H_n(\Sph{n}) = H_n(\Sph{m})
+  \]
+  Ma $ H_n(\Sph{n}) \cong \Z $ e $ H_n(\Sph{m}) \cong 0 $ da cui $ \Z \cong 0 $, che è assurdo.
 \end{proof}
 
 \begin{corollary}[Invarianza topologica della dimensione]
@@ -2673,10 +2853,10 @@ utilizzano solo il gruppo fondamentale.
   Siccome $ \Disk{n} $ è convesso è ben definita $ G(t, \vec{x}) = (1-t)\vec{x}
   + t r(\vec{x}) $ con $ t \in [0,1] $. Questa è una buona omotopia in quanto $ \forall t, \vec{x} $:
   \begin{itemize}
-    \item $ G $ è continua
-    \item $ G(t, \vec{x}) \in \Disk{n} $
-    \item $ G(0, \vec{X}) = \vec{x} $
-    \item $ G(1, \vec{X}) = r(\vec{x}) $
+  \item $ G $ è continua
+  \item $ G(t, \vec{x}) \in \Disk{n} $
+  \item $ G(0, \vec{X}) = \vec{x} $
+  \item $ G(1, \vec{X}) = r(\vec{x}) $
   \end{itemize}
   Quindi $ r $ è retrazione ma questo è assurdo.
 \end{proof}
@@ -2712,7 +2892,7 @@ questo vale per ogni $ \alpha $ e $ \beta $ allora $ d(\alpha) = d(\beta) $.
 \begin{definition}
   Data un'applicazione $ \phi \colon \Sph{n} \to \Sph{n} $ continua è possibile
   associargli in modo univoco un numero intero, questo è il \textbf{grado}\index{Grado di una sfera}:
-   \[
+  \[
     \begin{aligned}[t]
       \phi_\star \colon & H_n(\Sph{n}) & \to & H_n(\Sph{n}) \\
       & \alpha & \mapsto & \deg{(\phi)} \alpha
@@ -2742,7 +2922,7 @@ Voglio usare la teoria del grado per un'applcazione del teorema della palla pelo
   [MANCA MANCA MANCA MANCA MANCA MANCA]
 \end{proof}
 
-% lezione 8
+                      %                       lezione 8
 
 Ho $ \Sph{n} = \set{ (x_1, \dots, x_{n+1}) \in \RN{n+1} | \sum_{i=1}^{n+1} x_i^2 = 1 } \subset \RN{n+1} $
 spazio topologico con la topologia indotta.
@@ -2885,7 +3065,7 @@ che se due applicazioni definite su $ \Sph{n} $ hanno lo stesso grado allora son
   l'omotopia con l'applicazione antipodale.
 \end{proof}
 
-% lezione 8 parte 2
+                        %                         lezione 8 parte 2
 
 \chapter{Omologia cellulare}
 
@@ -2902,7 +3082,7 @@ e $ \phi \colon \Sph{n-1} \to X^{(0)} $, posso definire:
   X^{(1)} = X^{(0)} \cup_\phi \Disk{n}
 \]
 Dove con $ \cup_\phi $ si intende, con $ X, Y $ spazi topologici:
-\newmathsymb{disgun}{sqcup}{Unione disgiunta}
+\newmathsymb{disgun}{\sqcup}{Unione disgiunta}
 \[
   X^{(0)} \cup_\phi \Disk{n} = \quot{X^{(0)} \sqcup \Disk{n}}{p \sim \phi(q)} \quad \forall q \in \Sph{n-1}
 \]
@@ -3043,7 +3223,7 @@ Si trova che:
 
 
 
-% lezione 8
+    %     lezione 8
 
 \section{Congettura di Poincaré}
 
@@ -3320,16 +3500,16 @@ Questo mostra che il gruppo fondamentale è uno strumento più fine
 dei gruppi di omologia.
 
 
-% TODO:
-% 1. Correggere i : con \colon (CAMBIA QUALCOSA? INFORMARSI!)
-% NOTA i : servono solo per questioni di relazione, del tipo negli insiemi come "tale che",
-% nelle mappe si deve sempre usare \colon (http://tex.stackexchange.com/questions/37789/using-colon-or-in-formulas)
-% 2. Correggere i \Leftrightarrow con \iff
-% 3. Correggere < e > dei gruppi generati con \langle\rangle
-% 4. Aggiungere i figlet delle lezioni
-% 5. Aggiungere i simboli usati con \newmathsymb{nome}{simbolo}{Nome che appare}
-% 6. Sistemare le mappe (tipo questa sopra), non ho ancora capito come scriverle bene
-% 7. Usare al posto di \mathrm{e} \me
+            %             TODO:
+            %             1. Correggere i : con \colon (CAMBIA QUALCOSA? INFORMARSI!)
+            %             NOTA i : servono solo per questioni di relazione, del tipo negli insiemi come "tale che",
+            %             nelle mappe si deve sempre usare \colon (http://tex.stackexchange.com/questions/37789/using-colon-or-in-formulas)
+            %             2. Correggere i \Leftrightarrow con \iff
+            %             3. Correggere < e > dei gruppi generati con \langle\rangle
+            %             4. Aggiungere i figlet delle lezioni
+            %             5. Aggiungere i simboli usati con \newmathsymb{nome}{simbolo}{Nome che appare}
+            %             6. Sistemare le mappe (tipo questa sopra), non ho ancora capito come scriverle bene
+            %             7. Usare al posto di \mathrm{e} \me
 
 \printindex
 
