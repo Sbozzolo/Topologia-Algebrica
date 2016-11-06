@@ -149,7 +149,7 @@ Sostanzialmente la nozione di $ \R $-modulo generalizza agli anelli il concetto 
 
 \begin{osservation}
   Ogni gruppo abeliano $ \mathcal{G} $ è uno $ \Z $-modulo in modo univoco, cioè $ \mathcal{G} $ è un
-  gruppo abeliano se e solo e è uno $ \Z $-modulo.
+  gruppo abeliano se e solo se è uno $ \Z $-modulo.
 \end{osservation}
 \begin{proof}
   Sia $ x \in \mathcal{G} $ si definisce l'applicazione di moltiplicazione per un elemento $ n \in \Z $ come
@@ -2922,14 +2922,15 @@ cose diverse.
   inverso $ G: \Sph{m} \homoto \Sph{n} $.
   Quindi esistono anche:
   \[
-    F_\star: H_k{\Sph{n}} \to H_k(\Sph{m}) \quad \text{e} \quad G_\star: H_k{\Sph{m}} \to H_k(\Sph{n})
+    F_\star: H_k(\Sph{n}) \to H_k(\Sph{m}) \quad \text{e} \quad G_\star: H_k(\Sph{m}) \to H_k(\Sph{n})
   \]
-  Ma $ F \circ G = \Id{\Sph{n}} $ e $ G \circ F = \Id{\Sph{m}} $, ma utilizzando
-  la funtorialità si trova quindi che:
+  Ma $ F \circ G = \Id{\Sph{n}} $ e $ G \circ F = \Id{\Sph{m}} $ perché sono omeomorfismi,
+  ma utilizzando la funtorialità si trova quindi che:
   \[
     F_\star \circ G_\star = \Id{H_k(\Sph{m})} \quad \text{e} \quad G_\star \circ F_\star = \Id{H_k(\Sph{n})}
   \]
-  Da cui si deduce che $ F_\star $ e $ G_\star $ sono continue e sono inverse.
+  Da cui si deduce che $ F_\star $ e $ G_\star $ sono continue e sono inverse l'una
+  dell'altra.
   Vale quindi che:
   \[
     H_k(\Sph{n}) \cong H_k(\Sph{m}) \; \forall k \geq 0

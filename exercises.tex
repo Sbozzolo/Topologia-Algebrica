@@ -182,6 +182,8 @@ omotopica.
 Si può utilizzare un ragionamento analogo per $ \gamma $.
 \hfill $ \square $
 
+\section*{Esercizio 1.2.33 (v)}
+
 
 \section*{Esercizio 1.2.33 (xii)}
 Per assurdo $ \Sph{1} $ e $ \Sph{n} $ con $ n \geq 2 $ sono omotopicamente
@@ -190,11 +192,34 @@ indipendentemente dal punto base in quanto gli spazi sono connessi per archi.
 Ma $ \pi_1(\Sph{1}) \cong \Z $, mentre $ \pi_1(\Sph{n}) \cong 0 $ per $ n \geq 2 $, quindi
 siccome i gruppi fondamentali non sono isomorfi gli spazi non possono
 essere omotopicamente equivalenti.
-
+\hfill $ \square $
 
 \section*{Esercizio 1.2.33 (xiii)}
 Per assurdo esiste una funzione continua $ f \colon \mathbb{R}^2 \to \mathbb{R}^n $
-con $ n > 2 $ che sia omeomorfismo.
+con $ n > 2 $ che sia omeomorfismo. Tolgo un punto $ p $ da $ \mathbb{R}^2 $,
+se $ f $ omeomorfismo anche la restrizione $ \tilde{f} $ di $ f $ su
+$ \mathbb{R}^2 \setminus \{ p \} $ è omeomorfismo.
+Ma  $ \mathbb{R}^{2} \setminus  \{ p \} \simeq \mathbb{R} \times \mathcal{S}^1 $, infatti una mappa
+che realizza esplicitamente questo omeomorfismo è, dopo aver portato $ p $ in $ 0 $
+(una traslazione è un omeomorfismo):
+\begin{align*}
+  \mathbb{R}^{2} \setminus \{ p \} & \to \mathbb{R} \times \mathcal{S}^1 \\
+  \vec{x} & \mapsto \left( || \vec{x} ||, \frac{\vec{x}}{|| \vec{x} ||} \right)
+\end{align*}
+Analogamente $ \mathbb{R}^{n} \setminus \{ f(p) \}  \simeq \mathbb{R} \times \Sph{n-1} $.
+Quindi siccome per ipotesi esiste un omeomorfismo tra $ \mathbb{R}^{2} $ e
+$ \mathbb{R}^{n} $ allora $ \mathbb{R} \times \Sph{1} \simeq \mathbb{R} \times \Sph{n-1} $,
+e questo implica che i gruppi fondamentali sono isomorfi.
+Siccome il gruppo fondamentale di un prodotto è il prodotto dei gruppi fondamentali
+e vale che:
+\begin{gather*}
+  \pi_1(\mathbb{R}) = 0 \\
+  \pi_1(\Sph{1}) = \Z \\
+  \pi_1(\Sph{n}) = 0
+\end{gather*}
+allora $ \pi_1 (\mathbb{R} \times \Sph{1}) = \Z $ e $ \pi_1(\mathbb{R} \times \Sph{n-1}) = 0 $, ma
+questi gruppi non sono isomorfi, e quindi ho trovato l'assurdo.
+\hfill $ \square $
 
 \end{document}
 
