@@ -1,4 +1,4 @@
-S\documentclass[10pt, twoside=false, x11names]{scrbook}
+\documentclass[10pt, twoside=false, x11names]{scrbook}
 
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -45,8 +45,8 @@ S\documentclass[10pt, twoside=false, x11names]{scrbook}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\me}{\mathrm{e}}
 \newcommand{\im}[1]{\mathrm{Im}( #1 )}
+\newcommand{\rank}[1]{\mathrm{Rank}( #1 )}
 \renewcommand{\ker}[1]{\mathrm{Ker}( #1)}
-\renewcommand{\phi}{\varphi}
 \newcommand{\RN}[1][]{\mathbb{R}^#1}
 \newcommand{\Id}[1][]{\mathbb{I}_#1}
 \newcommand{\Sph}[1][]{\mathcal{S}^#1}
@@ -55,11 +55,12 @@ S\documentclass[10pt, twoside=false, x11names]{scrbook}
 \newcommand{\Ab}[1]{\mathrm{Ab}\left( #1 \right)}
 \newcommand{\tr}{\mathrm{tr}}
 \newcommand{\incl}{\xhookrightarrow{}}
-\newcommand{\invamalg}{\mathbin{\text{\rotatebox[origin=c]{180}{$\amalg$}}}}
-
+\newcommand{\invamalg}{\mathbin{\text{\rotatebox[origin=c]{180}{$\Pi$}}}}
 \newcommand{\vedi}[1]{\emph{vedi} #1}
-
 \newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+\let\phi\varphi
+\let\emptyset\varnothing
 
 \renewcommand\labelitemi{\tiny$\bullet$}
 
@@ -96,6 +97,8 @@ S\documentclass[10pt, twoside=false, x11names]{scrbook}
 \tableofcontents
 \newmathsymb{N}{\mathbb{N}}{Numeri naturali}
 \newmathsymb{Z}{\mathbb{Z}}{Numeri interi}
+\newmathsymb{closure}{\bar{U}}{Chiusura di $ U $}
+\newmathsymb{interior}{\mathrm{int}(U)}{Interno di $ U $}
 \printsymblist
 
 % lezione 1
@@ -1631,6 +1634,7 @@ considerare la composizione con $ g $ definendno $ g' \colon \Delta_k \to Y $ co
 \]
 Siccome sia $ g $ che $ \sigma $ sono continue allora $ g' $ è continua, quindi è un
 $ k $-simplesso singolare in $ Y $.
+\newmathsymb{fsharp}{f_\sharp}{Applicazione indotta da $ f $ sulle catene}
 Si definisce $ g_\sharp $ come l'estensione di $ g' $ su tutte le $ k $-catene
 per linearità:
 \begin{align*}
@@ -1642,6 +1646,7 @@ gruppi abeliani che manda $ k $-catene in $ S_k(X) $ in $ k $-catene
 in $ S_k(Y) $.
 Ora voglio ottenere un'applicazione a livello di omologia singolare,
 quindi definisco $ g_\star $.
+\newmathsymb{fstar}{f_\star}{Applicazione indotta da $ f $ sui gruppi di omologia}
 \begin{align*}
   g_\star \colon H_k(X) & \to H_k(Y) \\
   [c]          & \mapsto [g_\sharp (c)]
@@ -2051,7 +2056,7 @@ A partire da questa successione posso costruire una successione esatta corta di 
     {} & 0 & 0 & {}
   \end{tikzcd}
 \]
-I quadrati sono commutativi quindi questa succession esatta corta
+I quadrati sono commutativi quindi questa successione esatta corta
 di complessi ne induce una esatta lunga.
 Si ottiene quindi:
 \[
@@ -2221,7 +2226,6 @@ $ H_k(X,A) $, ora introduco l'omologia singolare ridotta.
   $ \tilde{H}_k(X) $.
   L'omologia singolare ridotta è l'omologia relativa ad un punto.
 \end{definition}
-
 Per costruire l'omologia singolare ridotta servono le $ k $-catene in $ X $ e le
 $ k $-catene in $ \set{x_0} $
 \[
@@ -2232,7 +2236,6 @@ $ k $-catene in $ \set{x_0} $
 In $ S_k $ $ \sigma \colon \Delta_k \to \set{x_0} $ è simplesso sono le applicazioni costanti
 dal $ k $-simplesso standard in $ \set{x_0} $. Quindi $ S_k(\set{x_0}) = \langle\sigma_k\rangle $
 $ \sigma_k $ è l'unica mappa che c'è.
-
 \begin{lemma}[Omologia di un punto]
   Sia $ X = \set{x_0} $ con $ x_0 \in X $, allora:
   \[
@@ -2326,6 +2329,8 @@ $ \sigma_k $ è l'unica mappa che c'è.
   \[
     \quot{\ker{\partial_{0}}}{\im{\partial_{1}}} \cong S_0(X)
   \]
+  Questo è sostanzialmente l'unico caso in cui si può calcolare
+  direttamente dalla definizione i gruppi di omologia.
 \end{proof}
 
 \begin{proposition}
@@ -2339,44 +2344,99 @@ $ \sigma_k $ è l'unica mappa che c'è.
   \]
 \end{proposition}
 \begin{proof}
-  Per dimostrarlo uso la succession esatta lunga in omologia relativa:
+  Per dimostrarlo uso la successione esatta lunga in omologia relativa:
   \[
     \begin{tikzcd}
       \dots \arrow{r}{} & H_{k+1}(\set{x_0}) \arrow{r}{} & H_{k+1}(X) \arrow{r}{} & \tilde{H}_{k+1}(X) \arrow{r}{} & H_k(\set{x_0}) \arrow{r}{} & \dots
     \end{tikzcd}
   \]
-
-  Nel caso $ k \geq 1 $ sicuramente $ k + 1 > 0 $ e il complesso quindi è:
+  Nel caso $ k \geq 1 $ tutti i gruppi di omologia del punto sono banali, quindi il complesso diventa:
   \[
     \begin{tikzcd}
-      0 \arrow{r}{}  & H_{k+1}(X) \arrow{r}{\psi} &  \tilde{H}_{k+1}(X) \arrow{r}{} &  0
+      0 \arrow{r}{i} & H_{k+1}(X) \arrow{r}{\psi} &  \tilde{H}_{k+1}(X) \arrow{r}{j} &  0
     \end{tikzcd}
   \]
-  $ \psi $ è iniettiva quindi $ \ker{\psi} = \im{0} = 0 $, ma è anche surietta, in quanto [MANCA].
-  Quindi $ \psi $ è isomorfismo e perciò $ H_m(X) \cong \tilde{H}_m(X) $ per $ m \geq 2 $.
+  La successione è esatta quindi $ \psi $ è iniettiva, ma è suriettiva essendo una
+  proiezione al quoziente, quindi è un isomorfismo e perciò $ H_m(X) \cong \tilde{H}_m(X) $ per $ m \geq 2 $.
+  % $ \ker{\psi} = \im{i} $, ma $ i \colon 0 \to H_{k+1}(X) $ omomorfismo,
+  % perciò $ i(0) = 0 $ quindi $ \ker{\psi} = 0 $, cioè $ \psi $ è iniettiva.
+  % $ \psi $ è iniettiva quindi $ \ker{\psi} = \im{0} = 0 $, ma è anche surietta, in quanto [MANCA].
+  % Quindi $ \psi $ è isomorfismo e perciò $ H_m(X) \cong \tilde{H}_m(X) $ per $ m \geq 2 $.
   Mi rimane da calcolare il caso $ k = 1 $ e il caso $ k = 0 $.
-  [MANCA MANCA MANCA]
-
-
-  Quindi $ \ker{i_\star} = 0 $ da cui $ \im{j} = \ker{i_\star} = 0 $ e perciò $ \phi $ è iniettiva ma anche
-  suriettiva. Ho quindi la successione:
+  Considero la successione esatta:
   \[
-    \begin{tikzcd}
-      0 \arrow{r}{}  & H_1(X) \arrow{r}{\phi} &  \tilde{H}_1(X) \arrow{r}{} & 0
+    \begin{tikzcd}[nodes = {column sep = 10pt}]
+      0 \rar & H_1(\set{x_0}) \rar & H_1(X) \rar & \tilde{H}_1(X) \rar & H_0(\set{x_0}) \rar & H_0(X) \rar & \tilde{H}_0(X) \rar & 0
     \end{tikzcd}
   \]
-  $ \phi $ è isomorfismo quindi $ H_1(X) \cong \tilde{H}_1(X) $, ma vale anche che:
+  So che $ H_1(\set{x_0}) = 0 $ quindi:
   \[
-    \begin{tikzcd}
-      0 \arrow{r}{}  & H_0(\set{x_0}) \arrow{r}{i_\star} &  H_0(X) \arrow{r}{} & \tilde{H}_0(X) \arrow{r}{} & 0
+    \begin{tikzcd}[nodes = {column sep = 15pt}]
+      0 \rar & H_1(X) \rar{\phi} & \tilde{H}_1(X) \rar{j} & H_0(\set{x_0}) \rar{i_\star} & H_0(X) \rar{\tau} & \tilde{H}_0(X) \rar & 0
     \end{tikzcd}
   \]
-  Quindi $ \quot{H_0(X)}{H_0(\set{x_0})} \cong \tilde{H}_0(X) $ infatti $ \quot{H_0(X)}{\ker{\tau}} \cong \im{\tau} $
-  per il teorema fondamentale dell'isomorfismo. E infine $ \im{\tau} = \tilde{H}_0(X) $ per la suriettività
-  e $ \ker{\tau} = \Z $ per l'iniettività.
+  Inoltre so sempre dall'omologia di un punto che $ H_0(\set{x_0}) $ è il gruppo libero di rango
+  uno, sia la classe di $ \sigma_0 \colon \Delta_0 \to \set{x_0} $ il generatore. È definita una
+  mappa di inclusione $ i \colon \set{x_0} \to X $ che induce
+  \begin{align*}
+    i_\star \colon H_0(\set{x_0}) & \to H_0(X) \\
+    \llbracket\sigma_0\rrbracket & \mapsto \llbracket i \circ \sigma_0 \rrbracket = \llbracket \sigma_0 \rrbracket
+  \end{align*}
+  Poi si estende per linearità al generico elemento $ c = k \sigma_0 $ con $ k \in \Z $, inoltre
+  si è usato che $ i \circ \sigma_0 = \sigma_0 $ perchè $ \sigma_0 $ è lo $ 0 $-simplesso singolare
+  costante che vale $ x_0 $. In particolare $ \im{i_\star} = H_0(\set{x_0}) $.
+  Questa mappa indotta è iniettiva, infatti sia  $ c = k \sigma_0 \in H_0(\set{x_0}) $:
+  \[
+    i_\star(\llbracket c \rrbracket) = \llbracket 0 \rrbracket \iff \llbracket i \circ c \rrbracket = \llbracket 0 \rrbracket \iff \exists u \in S_1(X) \text{ tale che } i \circ c - 0 = \partial u \Rightarrow i \circ c = \partial u
+  \]
+  Ma $ c = k \sigma_0 $, quindi:
+  \[
+    k i \circ \sigma_0 = \partial u \Rightarrow k \circ \sigma_0 = \partial u \Rightarrow c = \partial u
+  \]
+  Ma quindi $ c $ e $ 0 $ differiscono per un bordo, quindi $ c $ è nella stessa classe
+  di equivalenza di $ 0 $, cioè $ \llbracket c \rrbracket = \llbracket 0 \rrbracket $ e quindi $ \ker{i_\star} = 0 $, cioè $ i_\star $ è
+  iniettiva.
+  Quindi $ \ker{i_\star} = 0 $ da cui $ \im{j} = \ker{i_\star} = 0 $, perciò posso scrivere
+  la successione esatta corta:
+  \[
+    \begin{tikzcd}
+      0 \rar & H_1(X) \rar{\phi} & \tilde{H}_1(X) \rar{j} & 0
+    \end{tikzcd}
+  \]
+  Siccome $ \phi $ è iniettiva ma e è anche suriettiva perchè è proiezione
+  sul quoziente allora è isomorfismo e quindi $ H_1(X) \cong \tilde{H}_1(X) $.
+  [NON SONO SICURO DI QUESTO, RIASCOLTARE!!!]
+  Ma siccome $ H_1(X) \cong \tilde{H}_1(X) $ allora la successione lunga iniziale diventa:
+  \[
+    \begin{tikzcd}
+      0 \rar & H_1(X) \arrow{r}{j} & H_0(\set{x_0}) \arrow{r}{i_\star} &  H_0(X) \arrow{r}{\tau} & \tilde{H}_0(X) \arrow{r}{} & 0
+    \end{tikzcd}
+  \]
+  Quindi ora $ j $ è iniettiva perciò sono $ 0 $ va in $ 0 $:
+  \[
+    \begin{tikzcd}
+      0 \rar & H_0(\set{x_0}) \arrow{r}{i_\star} &  H_0(X) \arrow{r}{\tau} & \tilde{H}_0(X) \arrow{r}{} & 0
+    \end{tikzcd}
+  \]
+  Ma $ \tau $ è suriettiva, quindi $ \im{\tau} = \tilde{H}_0(X) $, inoltre la successione è esatta
+  quindi $ \ker{\tau} = \im{i_\star} = H_0(\set{x_0}) $, quindi $ \quot{H_0(X)}{H_0(\set{x_0})} \cong \tilde{H}_0(X) $
+  infatti $ \quot{H_0(X)}{\ker{\tau}} \cong \im{\tau} $
+  per il teorema fondamentale dell'isomorfismo.
+  % E infine $ \im{\tau} = \tilde{H}_0(X) $ per la suriettività e $ \ker{\tau} = \Z $ per l'iniettività.
 
-  Se voglio mostrare che $ H_0(X) \cong \tilde{H}_0(X) \oplus \Z $ basta che mostro che esiste una sezione, e in
-  molti casi questo è vero.
+  Quindi ho trovato che $ \forall k \geq 1 $ i gruppi di omologia singolare e omologia singolare ridotta
+  sono isomorfi, mentre per $ k = 0 $ ho trovato che:
+  \[
+    \tilde{H}_0(X) = \quot{H_0(X)}{H_0(\set{x_0})} \cong  \quot{H_0(X)}{\Z}
+  \]
+  Se voglio mostrare che $ H_0(X) \cong \tilde{H}_0(X) \oplus \Z $ basta che mostro che esiste una sezione,
+  ovvero che la successione esatta corta:
+  \[
+    \begin{tikzcd}
+      0 \rar & H_0(X) \rar & \tilde{H}_0(X) \rar & \Z \rar & 0
+    \end{tikzcd}
+  \]
+  spezza. Questo è sempre vero, a meno di casi eccezzionalmente patologici.
 \end{proof}
 
 \begin{example}
@@ -2397,7 +2457,7 @@ $ \sigma_k $ è l'unica mappa che c'è.
     \end{cases}
   \]
   E che $ H_0(\Sph{n}) \cong \Z $ per $ n \geq 1 $, vorrei calcolare gli altri gruppi di omologia,
-  ma per farlo mi servono altru strumenti.
+  ma per farlo mi servono altri strumenti.
 \end{example}
 
 \section{Assiomi di una teoria omologica}
@@ -2406,9 +2466,11 @@ $ \sigma_k $ è l'unica mappa che c'è.
   Una \textbf{teoria omologica}\index{Teoria omologica}\index{Steendord ! \vedi{Teoria omologica}}\index{Eilenberg ! \vedi{Teoria omologica}}
   sulla categoria di tutte le coppie di spazi topologici e mappe continue è
   un funtore che assegna ad ogni coppia di spazi $ (X, A) $ un gruppo
-  abeliano $ H_p(X, A) $ e ad ogni applicazione continua $ f \colon (X, A) \to (Y, B) $
+  abeliano $ H_p(X, A) $ per il quale si pone $ H_k(X) := H_{k}(X, \emptyset) $
+  e ad ogni applicazione continua $ f \colon (X, A) \to (Y, B) $
   un omomorfismo $ f_\star \colon H_k(X, A) \to H_k(Y, B) $ con una trasformazione
-  naturale $ \delta_k \colon H_k(X, A) \to H_{k-1}(A) := H_{k-1}(A, \emptyset) $, detta \textbf{omomorfismo di connessione}\index{Omomorfismo di connessione}
+  naturale $ \delta_k \colon H_k(X, A) \to H_{k-1}(A) $,
+  detta \textbf{omomorfismo di connessione}\index{Omomorfismo di connessione}
   tale che siano soddisfatti i seguenti assioni:
   \begin{enumerate}
   \item (Omotopia): se $ f \sim_H g $ con $ f, g \colon (X, A) \to (Y, B) $ mappe continue, allora $ f_\star = g_\star$.
@@ -2423,8 +2485,8 @@ $ \sigma_k $ è l'unica mappa che c'è.
     è esatta.
   \item (Dimensione): $ H_k (P) = 0 $ $ \forall k \not = 0 $ dove $ P $ è lo spazio formato da un solo punto.
   \item (Additività): Se $ X $ è la somma topologica di spazi $ X_\alpha $ allora $ H_p(X) = \bigoplus H_p(X_\alpha) $
-  \item (Escissione): Se $ U $ è un aperto in $ X $ tale che $ \bar{U} \subset \mathrm{int}(A) $ allora l'inclusione
-    di $ (X \setminus U, A \setminus U) $ in $ (X, A) $ induce un isomorfismo tra $ H_k $, cioe togliendo
+  \item (Escissione): Se $ U $ è un aperto in $ X $ tale che $ \bar{U} \subset \mathrm{int}(A) $ allora la mappa di
+    inclusione di $ (X \setminus U, A \setminus U) $ in $ (X, A) $ induce un isomorfismo tra $ H_k $, cioè togliendo
     un opportuno insieme da $ (X,A) $ l'omologia non sente della escissione.
   \end{enumerate}
   Per trasformazione naturale si intende che $ \forall f \colon (X, A) \to (Y, B) $ il seguente diagramma è commutativo:
@@ -2434,12 +2496,12 @@ $ \sigma_k $ è l'unica mappa che c'è.
       H_p(Y,B) \arrow{r}{\delta} & H_{p-1}(B)
     \end{tikzcd}
   \]
-  dove $ f' = f \lvert_A $.
+  dove $ f' = f \big \lvert_A $.
   Mentre la richiesta che sia funtore significa che se $ f \colon (X, A) \to (Y, B) $ e $ g \colon (Y, B) \to (Z, C) $ sono
-  mappe continue allora $ (g \circ f)_\star = g_\star \circ f_\star $.
+  mappe continue allora $ (g \circ f)_\star = g_\star \circ f_\star $ e che $ (\Id{X})_\star = \Id{H_k(X)} $.
 \end{definition}
-L'omologia singolare relativa soddisfa tutti questi assiomi, a meno di quelli non ancora verificati che
-sono l'omotopia e l'escissione.
+L'omologia singolare relativa soddisfa tutti questi assiomi,
+ma non tutti sono stati ancora verificati, cioè l'omotopia e l'escissione.
 
 \newmathsymb{topsum}{\invamalg}{Somma topologica}
 \begin{definition}
@@ -2450,225 +2512,390 @@ sono l'omotopia e l'escissione.
   ovvero un insieme è aperto se e solo se è aperto rispetto alla topologia di ogni $ X_\alpha $.
 \end{definition}
 
-                                   %                                    lezione 6
-                                   %                                    _     _____ ________ ___  _   _ _____    __
-                                   %                                    | |   | ____|__  /_ _/ _ \| \ | | ____|  / /_
-                                   %                                    | |   |  _|   / / | | | | |  \| |  _|   | '_ \
-                                   %                                    | |___| |___ / /_ | | |_| | |\  | |___  | (_) |
-                                   %                                    |_____|_____/____|___\___/|_| \_|_____|  \___/
+% lezione 6
+%  _     _____ ________ ___  _   _ _____    __
+% | |   | ____|__  /_ _/ _ \| \ | | ____|  / /_
+% | |   |  _|   / / | | | | |  \| |  _|   | '_ \
+% | |___| |___ / /_ | | |_| | |\  | |___  | (_) |
+% |_____|_____/____|___\___/|_| \_|_____|  \___/
 
-Ho costruito:
-\[
-  \begin{tikzcd}
-    {} & 0 \arrow{d}{} & 0 \arrow{d}{} & {} \\
-    \dots \arrow{r}{} & S_{k+1}(A) \arrow{r}{} \arrow{d}{} & S_k(A) \arrow{r}{} \arrow{d}{} & \dots \\
-    \dots \arrow{r}{} & S_{k+1}(X) \arrow{r}{} \arrow{d}{} & S_k(X) \arrow{r}{} \arrow{d}{} & \dots \\
-    \dots \arrow{r}{} & S_{k+1}(X,A) \arrow{r}{} \arrow{d}{} & S_k(X,A) \arrow{r}{} \arrow{d}{}& \dots \\
-    {} & 0 & 0 & {}
-  \end{tikzcd}
-\]
-So che ho $ \partial' $ perchè la successione è esatta, devo verificare che $ P \circ \partial = \partial' \circ P $.
-Sia $ c \in S_{k+1}(X) $ allora $ p(c) = [c' \in S_{k+1}(X) \text{ tale che } c'-c \in S_{k+1}(A)] $,
-e $ \partial'([c]_A) := [\partial c]_A $ così la relazione è soddisfatta.
+\begin{proposition}
+  Esiste almeno una teoria che soddisfa gli assiomi di Eilenberg e Steenrod.
+\end{proposition}
+\begin{proof}
+  [MANCA DA SISTEMARE TUTTA QUESTA PROOF!!!]
+  L'omologia singolare relativa soddisfa gli assiomi di Eilenberg e Steenrod,
+  ne ripercorro la costruzione e metto in luce il collegamento con gli assiomi.
 
-Devo verificare che è ben definita:
-Se $ c' \sim_A c $ allora $ c' - c = a \in S_{k+1}(A) $, prendo il bordo $ \partial c' - \partial c = \partial a \in S_{k+1}(A) $,
-per definizione $ \partial c \sim_A \partial c $ quindi l'applicazione è ben definita.
+  Ho introdotto gli spazi di $ k $-catene e ho definito $ S_k(X,A) = \quot{S_k(X)}{S_k(A)} $,
+  poi ho costruito con l'operatore di bordo $ \partial $ e la proiezione al quoziente $ P $
+  la successione esatta corta:
+  \[
+    \begin{tikzcd}
+     0 \rar & S_k(A) \rar & S_k(X) \rar & S_k(X,A) = \quot{S_k(X)}{S_k(A)} \rar & 0
+    \end{tikzcd}
+  \]
+  Cioè in modo più esteso:
+  \[
+    \begin{tikzcd}
+      {} & 0 \arrow{d}{} & 0 \arrow{d}{} & {} \\
+      \dots \arrow{r}{} & S_{k+1}(A) \arrow{r}{\partial} \arrow{d}{} & S_k(A) \arrow{r}{} \arrow{d}{} & \dots \\
+      \dots \arrow{r}{} & S_{k+1}(X) \arrow{r}{\partial} \arrow{d}{P} & S_k(X) \arrow{r}{} \arrow{d}{P} & \dots \\
+      \dots \arrow{r}{} & S_{k+1}(X,A) \arrow{r}{\partial'} \arrow{d}{} & S_k(X,A) \arrow{r}{} \arrow{d}{}& \dots \\
+      {} & 0 & 0 & {}
+    \end{tikzcd}
+  \]
+  Posso costruire $ \partial '$  tale che i quadrati siano commutativi, cioè tale che $ P \circ \partial = \partial' \circ P $,
+  infatti: sia $ c \in S_{k+1}(X) $ allora la sua immagine tramite $ P $ è la classe di equivalenza
+  $ P(c) = [c' \in S_{k+1}(X) \text{ tale che } c'-c \in S_{k+1}(A)] $,
+  allora definisco $ \partial'([c]_A) := [\partial c]_A $ dove con il pedice $ A $ indico la relazione
+  di equivalenza indotta dalle $ k $-catene in $ A $, così la relazione è automaticamente soddisfatta.
 
-L'omologia relativa è l'omologia singolare di $ S_\bullet(X, A) $, cioè:
-\[
-  H_k(X,A) = H_k(S_\bullet(X,A)) = \quot{\ker{S_k(X,A) \to S_{k-1}}}{\im{S_{k+1}(X,A) \to S_{k}}}
-\]
-Questo gruppo abeliano (in quanto è quoziente di gruppi abeliani) è detto
-gruppo di omologia relativa della coppia  $ (X, A) $.
-Ho fatto un'associazione da una coppia a un gruppo, voglio verificare che questa
-soddisfa gli assiomi di Eilenberg e Steenrod.
+  Devo verificare che $ \partial' $ è ben definita cioè che se prendo elementi
+  equivalenti ottengo elementi equivalenti.
+  Se $ c' \sim_A c $ allora $ \exists a \in S_{k+1}(A) $ tale che $ c' - c = a $,
+  prendo il bordo $ \partial c' - \partial c = \partial a $, ma $ \partial a \in S_k(A) $ quindi
+  $ \partial c' $ e $ \partial c $ differiscono per un elemento in $ S_k(A) $ e quindi
+  $ \partial c' \sim_A \partial c $ perciò l'applicazione è ben definita.
 
-Sia $ f \colon (X,A) \to (Y,B) $ tale che $ f(A) \incl B $, e sia:
-\begin{align*}
-  f_\star \colon H_k(X,A) & \to H_k(Y,B) \\
-  \llbracket c \rrbracket_ A & \mapsto  \llbracket f_\sharp(c) \rrbracket_ B
-\end{align*}
-Quindi ho;
-\[
-  \begin{tikzcd}
-    \dots \arrow{r}{} & S_{k+1}(X,A) \arrow{r}{} \arrow{d}{f_\sharp} & S_k(X,A) \arrow{r}{}  \arrow{d}{f_\sharp} & S_{k-1}(X,A) \arrow{r}{}  \arrow{d}{f_\sharp} & \dots \\
-    \dots \arrow{r}{} & S_{k+1}(Y,B) \arrow{r}{} & S_k(Y,B) \arrow{r}{} & S_{k-1}(Y,B) \arrow{r}{} & \dots
-  \end{tikzcd}
-\]
-$ f_\sharp $ esiste, infatti:
-\[
-  \begin{tikzcd}
-    S_{k}(X) \arrow{r}{f} \arrow{d}{} & S_k(Y)  \arrow{d}{}  \\
-    \quot{S_k(X)}{S_k(A)} \arrow{r}{f_\sharp} & \quot{S_k(Y)}{S_k(B)}
-  \end{tikzcd}
-\]
-$ f_\sharp $ esiste perchè $ S_k(A) \to S_k(B) $ per la condizione $ f(A) \incl B $,
-il resto l'ho già verificato.
+  L'omologia relativa singolare è l'omologia singolare del complesso $ S_\bullet(X, A) $,
+  cioè per definizione:
+  \[
+    H_k(X,A) = H_k(S_\bullet(X,A)) = \quot{\ker{S_k(X,A) \to S_{k-1}(X,A)}}{\im{S_{k+1}(X,A) \to S_{k}(X,A)}}
+  \]
+  Questo gruppo abeliano (in quanto è quoziente di gruppi abeliani) è detto
+  gruppo di omologia relativa della coppia  $ (X, A) $. Se in particolare $ A = \emptyset $
+  allora riottengo $ H_k(X, \emptyset) = H_k(X) $.
+  Ho fatto un'associazione da una coppia a un gruppo, voglio verificare che questa
+  soddisfa gli assiomi di Eilenberg e Steenrod.
 
-Inoltre so che $ (X,A) \overset{f}{\to} (Y,B) \overset{g}{\to} (Z,C) $, allora
-$ (g \circ f)_\star = g_\star \circ f_\star $ e $ (X,A) \overset{\Id{X}}{\to} $
-allora $ (\Id{X})_\star = \Id{H_k(X,A)} $.
+  Sia $ f \colon (X,A) \to (Y,B) $ continua tale che $ f(A) \subseteq B $, definisco:
+  \begin{align*}
+    f_\star \colon H_k(X,A) & \to H_k(Y,B) \\
+    \llbracket c \rrbracket_ A & \mapsto  \llbracket f_\sharp(c) \rrbracket_ B
+  \end{align*}
+  I pedici $ A $ e $ B $ stanno a ricordare che l'omologia è relativa.
+  Quindi ho;
+  \[
+    \begin{tikzcd}
+      \dots \arrow{r}{} & S_{k+1}(X,A) \arrow{r}{} \arrow{d}{f_\sharp} & S_k(X,A) \arrow{r}{}  \arrow{d}{f_\sharp} & S_{k-1}(X,A) \arrow{r}{}  \arrow{d}{f_\sharp} & \dots \\
+      \dots \arrow{r}{} & S_{k+1}(Y,B) \arrow{r}{} & S_k(Y,B) \arrow{r}{} & S_{k-1}(Y,B) \arrow{r}{} & \dots
+    \end{tikzcd}
+  \]
+  $ f_\sharp $ esiste, infatti:
+  \[
+    \begin{tikzcd}
+      S_{k}(X) \arrow{r}{f} \arrow{d}{} & S_k(Y)  \arrow{d}{}  \\
+      \quot{S_k(X)}{S_k(A)} \arrow{r}{f_\sharp} & \quot{S_k(Y)}{S_k(B)}
+    \end{tikzcd}
+  \]
+  $ f_\sharp $ esiste perchè $ S_k(A) \to S_k(B) $ per la condizione $ f(A) \subseteq B $
+  quindi simplessi singolari in $ A $ vanno a finire in simplessi singolari in $ B $.
+  Una volta che ho $ f_\sharp $ posso scendere a livello di omologia prendendo la
+  classe di equivalenza.
 
-Poi ho $ \delta $ omomorfismo di connessione $ \delta \colon H_{k+1}(X,A) \to H_k(X) $,
-lo che:
-\[
-  \begin{tikzcd}
-    0 \arrow{r}{} & S_\bullet(A) \arrow{r}{} & S_\bullet(X) \arrow{r}{} & S_\bullet(X,A) \arrow{r}{} & \dots
-  \end{tikzcd}
-\]
-Esiste una successione lunga in omologia.
-\[
-  \begin{tikzcd}
-    \dots \arrow{r}{} & H_k(A) \arrow{r}{} & H_k(X) \arrow{r}{} & \arrow{r}{} & \dots
-  \end{tikzcd}
-\]
-Mi rimangono da verificare l'invarianza omotopica e l'escissione.
-Ho già visto che $ H_k(P) = H_k(P, \emptyset) = 0 $ per $ k \geq 1 $ e $ P $ insieme
-formato da un solo punto, inoltre so che $ H_k (\invamalg_\alpha X_\alpha) \cong \bigoplus_\alpha H_k(X_\alpha) $
+  Inoltre ho dimostrato che se $ (X,A) \overset{f}{\to} (Y,B) \overset{g}{\to} (Z,C) $,
+  allora $ (g \circ f)_\star = g_\star \circ f_\star $ e $ (X,A) \overset{\Id{X}}{\to} (X,A) $
+  allora $ (\Id{X})_\star = \Id{H_k(X,A)} $.
 
-Quindi gli assiomi di Eilenberg e Steenrod non definiscono una teoria
-vuota ma c'è almeno una teoria a soddisftarli.
+  Poi ho $ \delta $ omomorfismo di connessione $ \delta \colon H_{k+1}(X,A) \to H_k(X) $,
+  ho che se ho una successione esatta di complessi:
+  \[
+    \begin{tikzcd}
+      0 \arrow{r}{} & S_\bullet(A) \arrow{r}{} & S_\bullet(X) \arrow{r}{} & S_\bullet(X,A) \arrow{r}{} & \dots
+    \end{tikzcd}
+  \]
+  Esiste una successione lunga in omologia:
+  \[
+    \begin{tikzcd}
+      \dots \arrow{r}{} & H_k(A) \arrow{r}{} & H_k(X) \arrow{r}{} & H_k(X,A) \arrow{r}{\delta} & H_{k-1}(A) \rar &  \dots
+    \end{tikzcd}
+  \]
 
-In futuro verificherò gli assiomi mancanti.
+  Ho dimostrato che $ H_k(P) = H_k(P, \emptyset) = 0 $ per $ k \geq 1 $ e $ P $ insieme
+  formato da un solo punto in $ X $,
+  inoltre so che $ H_k (\invamalg_\alpha X_\alpha) \cong \bigoplus_\alpha H_k(X_\alpha) $ con $ X_\alpha $
+  varie componenti connesse per archi.
 
-Sia $ X \not = \emptyset $ spazio topologico e $ p \in X $ punto, allora ho le
+  Mi rimangono da verificare l'invarianza omotopica e l'escissione.
+
+  Quindi gli assiomi di Eilenberg e Steenrod non definiscono una teoria
+  vuota ma c'è almeno una teoria a soddisfarli, che è l'omologia singolare
+  relativa.
+
+  In futuro verificherò gli assiomi mancanti.
+\end{proof}
+ % \hfill\newline\newline
+\subsection{Applicazioni}
+
+Sia $ X \not = \emptyset $ spazio topologico e $ p \in X $ punto ($ P = \set{p} $), allora ho le
 applicazioni di inclusione $ i $ e la mappa costante $ \epsilon $:
 \begin{gather*}
-  i \colon p \to X \\
-  \epsilon \colon X \to p
+  i \colon P \to X \\
+  \epsilon \colon X \to P
 \end{gather*}
-Si ha che $ \epsilon \circ i = \Id{p} $ in quanto $ p \overset{i}{\to} X \overset{\epsilon}{\to} p $.
-Definisco (deriva dagli assioni ponendo $ k = 0 $) $ \epsilon_\star H_0(X) \to H_0(p) $,
-$ \epsilon_\star $ è suriettiva perchè c'è $ i_\star \colon H_0(p) \to H_0(X) $:
+Si ha che $ \epsilon \circ i = \Id{P} $ in quanto $ P \overset{i}{\to} X \overset{\epsilon}{\to} P $.
+Dagli assiomi deriva l'esistenza di un'applicazione indotta
+sui gruppi di omologia: $ \epsilon_\star \colon H_0(X) \to H_0(P) $,
+$ \epsilon_\star $ è suriettiva perchè c'è $ i_\star \colon H_0(P) \to H_0(X) $:
+C'è la successione esatta:
 \[
   \begin{tikzcd}
-    0 \arrow{r}{} & \ker{\epsilon_\star} \arrow{r}{} & H_0(X) \arrow{r}{\epsilon_\star} & \arrow[bend right]{ll}{i_\star} H_0(p) \arrow{r}{} & 0
+    0 \arrow{r}{} & \ker{\epsilon_\star} \arrow{r}{} & H_0(X) \arrow{r}{\epsilon_\star} & \arrow[bend left]{l}{i_\star} H_0(P) \arrow{r}{} & 0
   \end{tikzcd}
 \]
 Inoltre per le proprietà funtoriali $ (\epsilon \circ i)_\star = (\Id{p})_\star = \Id{H_0(p)} $
-e $ (\epsilon \circ i)_\star = \epsilon_\star \circ i_\star $ quindi $ \epsilon_\star \circ i_\star = \Id{H_0(p)} $.
-La successione spezza quindi $ H_0(X) \cong \ker{\epsilon_\star} \oplus H_0(p) $.
-Per qualsiasi teoria omologia che soddisfa gli assioni di Eilenberg
-e Steenrod, e quindi in particolare per l'omologia singolare relativa,
-si ha che $ H_0(X) \cong \ker{\epsilon_\star} \oplus H_0(p) $.
+e $ (\epsilon \circ i)_\star = \epsilon_\star \circ i_\star $ quindi $ \epsilon_\star \circ i_\star = \Id{H_0(p)} $, ma quindi
+la successione spezza perché esiste una sezione $ i_\star $, perciò $ H_0(X) \cong \ker{\epsilon_\star} \oplus H_0(p) $.
+Si ha quindi che per qualsiasi teoria omologia che soddisfa gli assioni di Eilenberg
+e Steenrod (infatti ho utilizzato solo gli assiomi),
+e quindi in particolare per l'omologia singolare relativa,
+si ha che $ H_0(X) \cong \ker{\epsilon_\star} \oplus H_0(P) $.
 
-Generalmente si chiama $ H_0(p) $ il \textbf{gruppo dei coefficienti}\index{Gruppo dei coifficienti}
-di una teoria omologica. Nell'omologia singolare relativa questo è $ \Z $.
-Inoltre si definisce $ \ker{\epsilon_\star} = \tilde{H}_0(X) $ gruppo di omologia ridotta di ordine zero.
+\newmathsymb{coefgrup}{\mathcal{G}}{Gruppo dei coefficienti}
+Generalmente si chiama $ H_0(p) $ il \textbf{gruppo dei coefficienti}\index{Gruppo dei coefficienti di una teoria omologica}
+di una teoria omologica e viene denotato con $ \mathcal{G} $. Nell'omologia singolare relativa questo è $ \Z $.
+Inoltre si definisce $ \ker{\epsilon_\star} = \tilde{H}_0(X) $ \textbf{gruppo di omologia ridotta di ordine zero}.
 
-Cosa sono invece gli $ \tilde{H}_k(X) $? Vorrei che fossero i gruppi di omologia,
+Cosa sono invece gli $ \tilde{H}_k(X) $? Vorrei che fossero proprio $ H_k(X) $,
 cosi' come nel solo nel caso dell'omologia singolare.
 
 \begin{proposition}
-  Infatti è così.
+  In qualsiasi teoria omologica di Eilenberg e Steenrod, se $ \tilde{H}_k(X) $ sono
+  i gruppi di omologia ridotta allora:
+  \[
+    \tilde{H}_k(X) \cong
+    \begin{cases}
+      \ker{\epsilon_\star} & \text{se } k = 0 \\
+      H_k(X) & \text{se } k \not= 0
+    \end{cases}
+  \]
+  Con $ \epsilon \colon X \to P $ dove $ P = \set{p} $ con $ p \in X $.
 \end{proposition}
 \begin{proof}
-  Cibsuderi $ F \colon (X, A) \to (p,p) $ con:
+  Considero $ F \colon (X, A) \to (P,P) $ con:
   \[
     F =
     \begin{cases}
-      \epsilon_X \colon X \to p \\
-      \epsilon_A \colon A \to p
+      \epsilon_X \colon X \to P \\
+      \epsilon_A \colon A \to P
     \end{cases}
   \]
   Posso fare:
   \[
     \begin{tikzcd}
-      0 \arrow{r}{}        & \ker{\epsilon_X} \arrow{r}{} & H_k(X) \arrow{r}{\epsilon_\star} & H_k(p) \arrow{r}{}    & 0
+      0 \arrow{r}{}        & \ker{\epsilon_X} \arrow{r}{} & H_k(X) \arrow{r}{\epsilon_\star} & H_k(P) \arrow{r}{}    & 0
     \end{tikzcd}
   \]
   In generale:
   \[
     \begin{tikzcd}
-      0 \arrow{r}{}        & \ker{\epsilon_X} \arrow{r}{} & H_k(X) \arrow{r}{\epsilon_\star} & H_k(p) \arrow{r}{}    & 0
+      0 \arrow{r}{}        & \ker{\epsilon_X} \arrow{r}{} & H_k(X) \arrow{r}{\epsilon_\star} & H_k(P) \arrow{r}{}    & 0
     \end{tikzcd}
   \]
-  Per $ k \geq 1 $ $ \ker{\epsilon_X} = H_k(X) $, mentre per $ k = 0 $ $ H_0(X) \cong \tilde{H}_0(X) \oplus H_0(p) $,
+  Per $ k \geq 1 $ $ \ker{\epsilon_X} = H_k(X) $, mentre per $ k = 0 $ ho che $ H_0(X) \cong \tilde{H}_0(X) \oplus \mathcal{G} $,
   quindi:
   \[
     \tilde{H}_k(X) = \ker{\epsilon_C} =
     \begin{cases}
       H_k(X)               & \text{per } k \geq 1 \\
-      \tilde{H}_0(X) \oplus H_0(p)
+      \tilde{H}_0(X) \oplus \mathcal{G}
     \end{cases}
   \]
   Questo lo posso fare anche nel caso di una coppia.
   \[
     \begin{tikzcd}
-      0 \arrow{r}{}        & \ker{F_X} \arrow{r}{} & H_k(X, A) \arrow{r}{} & H_k(p, p) \arrow{r}{} & 0
+      0 \arrow{r}{}        & \ker{F_\star} \arrow{r}{} & H_k(X, A) \arrow{r}{} & H_k(p, p) \arrow{r}{} & 0
     \end{tikzcd}
   \]
   E si definisce $ \tilde{H}_k(X,A) = \ker{F_\star} $.
   Calcolo $ H_k(P,P) $ con $ P $ spazio formato da un solo punto in $ X $.
-  So che c'è una successione esatta lunga:
+  So che c'è una successione esatta lunga per gli assiomi:
   \[
     \begin{tikzcd}
       \dots \arrow{r}{}        & H_k(P) \arrow{r}{}    & H_k(P) \arrow{r}{}    & H_k(P,P) \arrow{r}{}  & H_{k-1}(P) \arrow{r}{} & \dots
     \end{tikzcd}
   \]
-  La coppia è $ (P, P) = (X, A) $ quindi $ X = P $ e $ A = P $. Supponendo $ k \geq 2 $ la successione diventa:
+  Cioè ho posto $ X = P $ e $ A = P $. Ma io conosco l'omologia di un punto, che è nulla
+  per $ k \geq 1 $ mentre vale il gruppo dei coefficienti per $ k = 0 $.
+  Supponendo $ k \geq 2 $ la successione diventa:
   \[
     \begin{tikzcd}
-      \dots \arrow{r}{}        & 0 \arrow{r}{}         & 0 \arrow{r}{}         & H_k(P,P) \arrow{r}{}  & 0 \arrow{r}{}          & \dots
+       0 \arrow{r}{} & H_k(P,P) \arrow{r}{}  & 0
     \end{tikzcd}
   \]
-  Allora $ H_k(P, P) = 0 $. Mentre se $ k = 1 $ allora:
+  E quindi $ H_k(P, P) = 0 $. Mentre se $ k = 1 $ allora:
   \[
     \begin{tikzcd}[nodes={column sep=10pt}]
       \dots \arrow{r}{}        & H_1(P) \arrow{r}{}    & H_1(P) \arrow{r}{}    & H_1(P,P) \arrow{r}{}  & H_{0}(P) \arrow{r}{}   &
       H_{0}(P) \arrow{r}{} & H_{0}(P,P) \rar       & 0
     \end{tikzcd}
   \]
-  Cioè:
+  Cioè siccome $ H_1(P) \cong 0 $:
   \[
-    \begin{tikzcd}[nodes={column sep=10pt}]
-      \dots \arrow{r}{}   & 0 \arrow{r}{}         & 0 \arrow{r}{}         & H_1(P,P) \arrow{r}{}  & H_{0}(P) \arrow{r}{}   &
-      H_{0}(P) \arrow{r}{} & H_{0}(P,P) \rar       & 0
+    \begin{tikzcd}
+       0 \arrow{r}{}         & H_1(P,P) \arrow{r}{i}  & H_{0}(P) \arrow{r}{j}   & H_{0}(P) \arrow{r}{k} & H_{0}(P,P) \rar       & 0
     \end{tikzcd}
   \]
-  Ma quindi:
+  Ma quindi ho $ H_0(P) \to H_0(P) $ che sarebbe $ H_0(A) \to H_0(X) $ e quindi la mappa che li collega è quella
+  indotta dall'inclusione, che per $ X = A = P $ e l'indentità, ma per la funtorialità viene mandata nell'indentità,
+  quindi $ j $ è isomorfismo. Per l'esattezza della successione $ \ker{j} = \im{i} $, quindi posso
+  riscrivere la prima parte della successione come:
   \[
-    \begin{tikzcd}[nodes={column sep=10pt, row sep=10pt}]
-      {} & {} & {} & {} & 0  \arrow{dr}{} & {} & {}  & 0 \arrow{dr}{} & {} & {}  & {}    \\
-      \dots \rar & 0 \rar  & 0 \rar & H_1(P,P) \arrow{rr}{}  \arrow{ur}{}  & {}  & H_{0}(P) \rar &  H_{0}(P) \arrow{rr}{}  \arrow{ur}{}
-      & {} & H_{0}(P,P) \rar & 0
+    \begin{tikzcd}
+      0 \rar & H_1(P,P) \rar & 0
     \end{tikzcd}
   \]
-  E quindi $ H_1(P,P) = H_0(P,P) = 0 $.
+  Da cui $ H_1(P,P) = 0 $. Similmente $ \ker{k} = \im{j} = H_0(P) $ quindi $ H_0(P,P) = 0 $ perché
+  $ H_0(P,P) \cong \quot{H_0(P)}{\ker{k}} \cong \quot{H_0(P)}{H_0(P)} = 0 $.
+  % \[
+  %   \begin{tikzcd}[nodes={column sep=10pt, row sep=5pt}]
+  %      {} & {} & 0  \arrow{dr}{} & {} & {}  & 0 \arrow{dr}{} & {} & {}  & {}    \\
+  %      0 \rar & H_1(P,P) \arrow{rr}{}  \arrow{ur}{}  & {}  & H_{0}(P) \rar &  H_{0}(P) \arrow{rr}{}  \arrow{ur}{}
+  %     & {} & H_{0}(P,P) \rar & 0
+  %   \end{tikzcd}
+  % \]
+  % E quindi $ H_1(P,P) = 0 $ e $ H_0(P,P) = 0 $.
 \end{proof}
 
 \begin{corollary}
   Se $ X $ è uno spazio topologico contraibile allora $ \tilde{H}_k(X) = 0 $.
 \end{corollary}
 \begin{proof}
-  Se $ X $ è contraibile allora $ x \sim_H p $ cioè $ \exists f \colon X \to P $ e $ \exists g \colon P \to X $
+  Se $ X $ è contraibile allora $ X \sim_H P $ cioè $ \exists f \colon X \to P $ e $ \exists g \colon P \to X $
   continue tali che $ f \circ g \sim_H \Id{P} $ e $ g \circ f \sim_H \Id{X} $, quindi
-  $ f_\star \circ g_\star = \Id{H_k(P)} $ e  $ g_\star \circ f_\star = \Id{H_k(X)} $ con $ f_\star \colon H_k(X) \to H_k(P) $
-  e  $ g_\star \colon H_k(P) \to H_k(X) $, quindi $ f_\star $ e $ g_\star $ sono inversi, cioè:
-  $ (f \circ g)_\star = \left( \Id{P} \right)_\star $ e $ (g \circ f)_\star = \left( \Id{X} \right)_\star $
-  per l'assiome dell'omotopia e per la funtorialità.
-  Quindi:
+  per la funtorialità e l'assioma dell'omotopia vale che passando a livello
+  di omologia:
+  $ f_\star \circ g_\star = \Id{H_k(P)} $ e  $ g_\star \circ f_\star = \Id{H_k(X)} $
+  % con $ f_\star \colon H_k(X) \to H_k(P) $  e  $ g_\star \colon H_k(P) \to H_k(X) $,
+  quindi $ f_\star $ e $ g_\star $ sono inversi l'una dell'altra, ma sempre per la funtorialità:
+  $ (f \circ g)_\star = \left( \Id{P} \right)_\star $ e $ (g \circ f)_\star = \left( \Id{X} \right)_\star $.
+
   \[
-    H_k(P) \cong H_k(X) \cong
+   H_k(X) \cong H_k(P) \cong
     \begin{cases}
       \tilde{H}_k(X) = 0 & \text{se } k \geq 1 \\
-      \tilde{H}_0(X) \oplus H_0(X) = H_0(X) & \text{se } k = 0
+      \tilde{H}_0(X) \oplus \mathcal{G} = \mathcal{G} & \text{se } k = 0
     \end{cases}
   \]
+  Ma quindi $ \mathcal{G} = H_0(P) = \tilde{H}_0(X) \oplus \mathcal{G} $ e quindi $ \tilde{H}_0(X) = 0 $.
 \end{proof}
+
 Un secondo importantissimo corollario è l'omologia delle sfere.
 
-
-[MANCA SECONDA PARTE]
+\newmathsymb{spheres}{\Sph{n}}{$ n $-sfera}
+\newmathsymb{disks}{\Disk{n}}{$ n $-disco}
+\newmathsymb{updisk}{\Disk{n}_+}{Calotta superiore dell'$ n $-disco}
 \section{Omologia delle sfere}
+\begin{theorem}[Omologia di dischi e sfere]
+  Siano:
+  \begin{gather*}
+    \Sph{n} = \set{\vec{x} \in \RN{n+1} | ||\vec{x}||^2 = 1} \\
+    \Disk{n} = \set{\vec{x} \in \RN{n} | ||\vec{x}||^2 \leq 1} \\
+    \Disk{n}_+ = \set{\vec{x} \in \RN{n+1} | ||\vec{x}||^2 \leq 1, x_n \geq 0}
+  \end{gather*}
+  Allora in una qualsiasi teoria omologica avente $ \mathcal{G} $ come
+  gruppo dei coefficienti:
+  \begin{align*}
+    \tilde{H}_k(\Sph{n}) & \cong
+    \begin{cases}
+      \mathcal{G} & \text{se } k = n \\
+      0 & \text{se } k \not = n
+    \end{cases} \\
+    H_k(\Disk{n}, \Sph{n-1}) & \cong
+    \begin{cases}
+      \mathcal{G} & \text{se } k = n \\
+      0 & \text{se } k \not = n
+    \end{cases} \\
+    H_k(\Sph{n}, \Disk{n}_+) & \cong
+    \begin{cases}
+      \mathcal{G} & \text{se } k = n \\
+      0 & \text{se } k \not = n
+    \end{cases}
+  \end{align*}
+  Quindi $ \tilde{H}_k(\Sph{n}) \cong H_k(\Disk{n}, \Sph{n-1}) \cong H_k(\Sph{n}, \Disk{n}_+) $.
+\end{theorem}
 
+\begin{proof}
+  Comincio calcolando $ H_k(\Sph{0}, \Disk{0}_+) $.
+  Ho $ \Sph{0} = \set{-1, +1} $ e $ \Disk{0} = \set{+ 1} $.
+  Considero la successione:
+  \[
+    \begin{tikzcd}
+      \dots \rar & H_k(\Disk{0}) \rar & H_k(\Sph{0}) \rar & H_k(\Sph{0}, \Disk{0}) \rar & H_{k-1}(\Disk(0)) \rar & \dots
+    \end{tikzcd}
+  \]
+  Per $ k \geq 2 $ $ H_k(\Disk{0}) = H_{k-1}(\Disk{0}) \cong 0 $ perchè $ \Disk{0} $ è un punto, quindi
+  la successione diventa:
+  \[
+    \begin{tikzcd}
+      0 \rar & H_k(\Sph{0}) \rar{i} & H_k(\Sph{0}, \Disk{0}) \rar & 0
+    \end{tikzcd}
+  \]
+  Ma per l'assione di additività, siccome $ \Sph{0} $ è la somma di due punti
+  $ H_k(\Sph{0}) \cong 0 $, siccome $ i $ è iniettiva perchè la successione è esatta
+  ed è suriettiva perché proiezione al quoziente allora è isomorfismo quindi
+  anche $ H_k(\Sph{0}, \Disk{0}) \cong 0 $. Per calcolare i casi $ k = 1 $ e $ k = 0 $
+  considero la successione esatta:
+  \[
+    \begin{tikzcd}[nodes={column sep=10pt, inner sep=4pt}]
+      \dots \rar & H_1(\Disk{0}) \rar & H_1(\Sph{0}) \rar & H_1(\Sph{0}, \Disk{0}) \rar
+      & H_0(\Disk{0}) \rar & H_{0}(\Sph{0}) \rar & H_0(\Sph{0}, \Disk{0}) \rar & 0
+    \end{tikzcd}
+  \]
+  Cioè siccome l'omologia di un punto è nulla per $ k \not = 0 $:
+  \[
+    \begin{tikzcd}
+       0 \rar & H_1(\Disk{0}, \Sph{0}) \rar{i}
+      & H_0(\Disk{0}) \rar{j} & H_{0}(\Sph{0}) \rar & H_0(\Sph{0}, \Disk{0}) \rar & 0
+    \end{tikzcd}
+  \]
+  Siccome $ \Disk{0} \incl \Sph{0} $ in quanto $ \set{+1} \incl \set{-1, +1} $ è inieittiva
+  a livello di omologia per l'assioma di addittività $ j \colon H_0(\set{+1}) \to H_0(\set{-1}) \oplus H_0(\set{+1}) $
+  è iniettiva, quindi $ \ker{j} = \im{i} = 0 $ quindi posso riscrivere la prima
+  parte della successione come:
+  \[
+    \begin{tikzcd}
+      0 \rar & H_1(\Sph{0},\Disk{0}) \rar & 0
+    \end{tikzcd}
+  \]
+  Da cui $ H_1(\Sph{0},\Disk{0}) $. Infine per definizione $ H_0(\Disk{0}) = \mathcal{G} $ e
+  per l'additività $ H_0(\Sph{0}) = \mathcal{g} \oplus \mathcal{G} $ quindi $ H_0(\Sph{0}, \Disk{0}) = \mathcal{G} $.
+  In conclusione:
+  \[
+    H_k(\Sph{0}, \Disk{0}) \cong
+    \begin{cases}
+      \mathcal{G} & \text{se } k = 0 \\
+      0 & \text{se } k \not =  0
+    \end{cases}
+  \]
+  Assumo sia vero che:
+  \[
+    \tilde{H}_k(\Sph{n}) \cong
+    \begin{cases}
+      \mathcal{G} & \text{se } k = n \\
+      0 & \text{se } k \not = n
+    \end{cases}
+  \]
+  Ho che $ \Sph{n-1} $ è il bordo di $ \Disk{n} $ quindi ponendo $ X = \Disk{n} $ e $ A = \Sph{n-1} $
+  è ben definita la successione esatta lunga:
+  \[
+    \begin{tikzcd}[nodes={column sep=4.5pt, inner sep=0.5pt}]
+      \dots \rar & H_k(\Sph{n-1}) \rar & H_k(\Disk{n}) \rar & H_k(\Disk{n}, \Sph{n-1}) \rar
+      & H_{k-1}(\Sph{n-1}) \rar & H_{k-1}(\Disk{n}) \rar & H_{k-1}(\Disk{n}, \Sph{n-1}) \rar & \dots
+    \end{tikzcd}
+  \]
+  Per $ k \geq 1 $ $ H_k() $
+  [COPIARE QUESTA ROBA]
+\end{proof}
 
-                                              %                                               _     _____ ________ ___  _   _ _____   _____
-                                              %                                               | |   | ____|__  /_ _/ _ \| \ | | ____| |___  |
-                                              %                                               | |   |  _|   / / | | | | |  \| |  _|      / /
-                                              %                                               | |___| |___ / /_ | | |_| | |\  | |___    / /
-                                              %                                               |_____|_____/____|___\___/|_| \_|_____|  /_/
+% lezione 7
+
+%  _      _____ ________ ___  _   _ _____   _____
+% |  |   | ____|__  /_ _/ _ \| \ | | ____| |___  |
+% |  |   |  _|   / / | | | | |  \| |  _|      / /
+% |  |___| |___ / /_ | | |_| | |\  | |___    / /
+% | _____|_____/____|___\___/|_| \_|_____|  /_/
 
 Considero $ \Sph{n} $ con $ n \geq 1 $, ho trovato che:
 \[
@@ -3486,13 +3713,73 @@ Cosa si può invece dire su $ \Sph{3} $? Vale la seguente proposizione:
     (g,x) & \to gx
   \end{align*}
   A questo punto è sensato fare $ \pi \colon \Sph{3} \to \quot{\Sph{3}}{G} $.
+  Quello che si trova è che lo spazio dodecaedrico è $ P \cong \quot{\Sph{3}}{G} $, infatti
+  $ P $ è connesso e compatto perché quoziente di uno spazio connesso e compatto, bisogna
+  verificare:
+  \begin{enumerate}
+  \item $ P $ è una $ 3 $-varietà
+  \item $ \pi_1(P) $ non è banale
+  \item $ H_k(P) \cong H_k(\Sph{3}) \; \forall k \in \mathbb{N}$
+  \end{enumerate}
+  Si dimostra che $ \pi $ è un rivestimento, cioè comunque si prenda un punto $ p \in P $
+  esiste intorno di $ p $ a cui corrispondono 120 intorni disgiunti su $ \Sph{3} $.
+  Siccome $ \Sph{3} $ è semplicemente connesso il rivestimento è universale.
+  \begin{exercise}
+    Dimostrare che $ \pi $ è rivestimento universale di $ P $ su $ \Sph{3} $.
+  \end{exercise}
+  Siccome $ P $ è rivestito da $ \Sph{3} $ localmente è di dimensione 3 perché localmente
+  è fatto come $ \Sph{3} $.
+  Dalla teoria generale dei rivestimenti si trova che $ \pi_1(P) \cong G $, quindi $ \pi_1(P) $ è non banale.
+
+  $ P $ è connesso per archi perché passaggio al quoziente di insieme connesso per archi
+  quindi $ H_0(P) \cong \Z $ e quindi $ H_0(P) \cong H_0(\Sph{3}) $.
+
+  Calcolo il gruppo di omologia per $ k = 1 $ e $ k = 2 $, sia $ \sigma \colon \Delta_k \to P $ un
+  simplesso singolare.
+  \[
+    \begin{tikzcd}
+      {} & \Sph{3} \dar{\pi} \\
+      \Delta_k \rar{\sigma} \arrow{ru}{} & P
+    \end{tikzcd}
+  \]
+  Per il teorema di sollevamento siccome il rivestimento è universale
+  $ \sigma $ si solleva e quindi vuol dire che c'è un elemento non banale in $ H_k(\Sph{3}) $,
+  ma per $ k = 1 $ e per $ k = 2 $ l'omologia è nulla, quindi non può esserci
+  qualcosa di non banale, per questo $ H_1(P) = 0 $ e $ H_2(P) = 0 $.
+
+  Per calcolare $ H_3(P) $ si usa un barbatrucco.
+  $ \Sph{3} $ ha una struttura di CW-complesso, quella di una $ 0 $-cella e una $ 3 $-cella.
+
+  \newmathsymb{eulerc}{e(X)}{Caratteristica di Eulero di $ X $}
+  \begin{definition}
+    Per un CW-complesso finito $ X $ si definisce la \textbf{caratteristica di Eulero}\index{Caratteristica di Eulero di un CW-complesso}
+    come:
+    \[
+      e(X) = \sum_{i = 0}^n (-)^i a_i
+    \]
+    dove $ a_i $ è il numero di $ i $-celle, che per ipotesi è finito.
+  \end{definition}
+  Si dimostra che
+  \begin{enumerate}
+  \item La caratteristica di Eulero non dipende dalla scelta della struttura
+    di CW-complesso.
+  \item Vale la formula:
+    \[
+      e(X) = \sum_{i\geq0}(-)^i \rank{H_i(X)}
+    \]
+  \item Se $ \pi \colon X \to Y $ è un riversimento $ d $ a 1 allora vale che $ e(X) = d e(Y) $.
+  \end{enumerate}
+  Per $ P $:
+  \[
+    e(P) = \rank{H_0(P)} - \rank{H_1(P)} + \rank{H_2(P)} - \rank{H_3(P)} = 0
+  \]
+  Da cui $ \rank{H_3(P)} = 1 $ e quindi $ H_3(P) \cong \Z \oplus T $ dove $ T $ è una parte
+  di torsione. Mostro che $ T $ è nulla.
 \end{proof}
 
-
-
-Vale tuttavia il seguente risultato, dimostrato da Perelman nel 2004,
+Vale tuttavia il seguente risultato, dimostrato da Perelman nel 2003,
 noto come congettura di Poincaré:
-\begin{proposition}[Congettura di Poincaré]
+\begin{proposition}[ex-Congettura di Poincaré]
   Se $ \M $ è una $ 3 $-varietà topologica compatta, connessa e semplicemente
   connessa tale che $ \forall k \geq 3 $ $ H_k(\M) \cong H_k(\Sph{3}) $ allora $ \M \simeq \Sph{3} $.
 \end{proposition}

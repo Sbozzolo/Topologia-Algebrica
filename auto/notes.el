@@ -51,6 +51,7 @@
     '("quot" 2)
     '("vedi" 1)
     '("Ab" 1)
+    '("rank" 1)
     '("im" 1)
     "R"
     "M"
@@ -61,6 +62,8 @@
     "tr"
     "incl"
     "invamalg"
+    "phi"
+    "emptyset"
     "svgwidth")
    (LaTeX-add-labels
     "fig:lez3:homotopy"
@@ -158,7 +161,7 @@
     "Eilenberg ! \\vedi{Teoria omologica}"
     "Somma topologica"
     "Topologia dell'unione disgiunta"
-    "Gruppo dei coifficienti"
+    "Gruppo dei coefficienti di una teoria omologica"
     "Retratto di deformazione"
     "Retrazione"
     "Teorema del punto fisso"
@@ -170,7 +173,8 @@
     "Spazio proiettivo reale"
     "Spazio dodecaedrico"
     "Spazio a omologia razionale ! \\vedi{Spazio dodecaedrico}"
-    "Rappresentazione spinoriale di SO(3)")
+    "Rappresentazione spinoriale di SO(3)"
+    "Caratteristica di Eulero di un CW-complesso")
    (LaTeX-add-counters
     "exercises"))
  :latex)
