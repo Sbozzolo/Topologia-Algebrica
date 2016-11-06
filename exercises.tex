@@ -15,6 +15,7 @@
 \documentclass[10pt]{scrartcl}
 \usepackage[italian]{babel}
 \usepackage{amsmath, amsfonts, amssymb, amsthm}
+\usepackage{braket}
 \usepackage[utf8]{inputenc}
 \usepackage{libertine}
 
@@ -198,15 +199,15 @@ essere omotopicamente equivalenti.
 Per assurdo esiste una funzione continua $ f \colon \mathbb{R}^2 \to \mathbb{R}^n $
 con $ n > 2 $ che sia omeomorfismo. Tolgo un punto $ p $ da $ \mathbb{R}^2 $,
 se $ f $ omeomorfismo anche la restrizione $ \tilde{f} $ di $ f $ su
-$ \mathbb{R}^2 \setminus \{ p \} $ è omeomorfismo.
-Ma  $ \mathbb{R}^{2} \setminus  \{ p \} \simeq \mathbb{R} \times \mathcal{S}^1 $, infatti una mappa
+$ \mathbb{R}^2 \setminus \set{p} $ è omeomorfismo.
+Ma  $ \mathbb{R}^{2} \setminus  \set{p} \simeq \mathbb{R} \times \mathcal{S}^1 $, infatti una mappa
 che realizza esplicitamente questo omeomorfismo è, dopo aver portato $ p $ in $ 0 $
 (una traslazione è un omeomorfismo):
 \begin{align*}
-  \mathbb{R}^{2} \setminus \{ p \} & \to \mathbb{R} \times \mathcal{S}^1 \\
+  \mathbb{R}^{2} \setminus \set{p} & \to \mathbb{R} \times \mathcal{S}^1 \\
   \vec{x} & \mapsto \left( || \vec{x} ||, \frac{\vec{x}}{|| \vec{x} ||} \right)
 \end{align*}
-Analogamente $ \mathbb{R}^{n} \setminus \{ f(p) \}  \simeq \mathbb{R} \times \Sph{n-1} $.
+Analogamente $ \mathbb{R}^{n} \setminus \set{f(p)}  \simeq \mathbb{R} \times \Sph{n-1} $.
 Quindi siccome per ipotesi esiste un omeomorfismo tra $ \mathbb{R}^{2} $ e
 $ \mathbb{R}^{n} $ allora $ \mathbb{R} \times \Sph{1} \simeq \mathbb{R} \times \Sph{n-1} $,
 e questo implica che i gruppi fondamentali sono isomorfi.
@@ -220,6 +221,30 @@ e vale che:
 allora $ \pi_1 (\mathbb{R} \times \Sph{1}) = \Z $ e $ \pi_1(\mathbb{R} \times \Sph{n-1}) = 0 $, ma
 questi gruppi non sono isomorfi, e quindi ho trovato l'assurdo.
 \hfill $ \square $
+
+\section*{Esercizio 1.3.11 (iv)}
+
+
+\section*{Esercizio 1.5.19 (vii)}
+Il gruppo fondamentale di uno spazio topologico $ X $ sul punto base $ x_0 \in X $
+è:
+\[
+  \pi_1(X,x_0) = \set{ f \colon \Sph{1} \to X \text{ continua} | f(1) = x_0 } \slash \sim
+\]
+Dove $ \sim $ è la relazione di equivalenza omotopica. Una funzione si dice
+omotopa a zero quando è omotopa ad una funzione costante.
+
+Se il gruppo fondamentale è banale $ \forall x_0 \in X $ singifica che il suo unico elemento
+è la classe di equivalenza del laccio costante $ [1] $, per cui considerata
+la generica funzione $ g \colon \Sph{1} \to X $ continua, questa è necessariamente
+nella stessa classe di equivalenza di $ [1] $ in $ \pi_1(X, g(1)) $ e ciò singifica
+che è omotopa ad un cammino costante, quindi omotopa a zero.
+
+Mostro il viceversa. Se tutte le funzioni $ h \colon \Sph{1} \to X $ sono omotope a zero
+allora sono tutte equivalenti al laccio costante $ C_{h(1)} $ e quindi il gruppo
+fondamentale $ \pi_1(X, h(1)) $ contiene questa sola classe di equivalenza, ed è
+quindi banale. Questo vale $ \forall x_0 \in X $, basta considerare una funzione tale
+che $ h(1) = x_0 $.
 
 \end{document}
 
