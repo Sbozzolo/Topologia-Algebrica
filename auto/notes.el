@@ -5,12 +5,12 @@
                      '(("scrbook" "10pt" "twoside=false" "x11names")))
    (TeX-add-to-alist 'LaTeX-provided-package-options
                      '(("inputenc" "utf8") ("babel" "italian") ("fontenc" "T1") ("hyperref" "hidelinks") ("cancel" "makeroom")))
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "nolinkurl")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperbaseurl")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperimage")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperref")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperimage")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperbaseurl")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "nolinkurl")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
    (add-to-list 'LaTeX-verbatim-macros-with-delims-local "path")
    (TeX-run-style-hooks
     "latex2e"
@@ -48,20 +48,27 @@
     '("Sph" ["argument"] 0)
     '("Id" ["argument"] 0)
     '("RN" ["argument"] 0)
+    '("xcirc" 1)
     '("quot" 2)
     '("vedi" 1)
     '("Ab" 1)
+    '("Pjc" 1)
+    '("Pjr" 1)
     '("rank" 1)
     '("im" 1)
     "R"
     "M"
     "N"
     "Z"
+    "C"
     "me"
     "homoto"
     "tr"
     "incl"
     "invamalg"
+    "ccirc"
+    "latexcirc"
+    "circ"
     "phi"
     "emptyset"
     "svgwidth")
@@ -81,7 +88,8 @@
     "fig:lez3:proof_homo"
     "fig:lez3:sketch_of_proof"
     "fig:lez3:klein_bottle"
-    "fig:lez7:brouwer_proof_1")
+    "fig:lez7:brouwer_proof_1"
+    "fig:lez10:projective")
    (LaTeX-add-environments
     "theorem"
     "lemma"
@@ -160,7 +168,7 @@
     "Steendord ! \\vedi{Teoria omologica}"
     "Eilenberg ! \\vedi{Teoria omologica}"
     "Somma topologica"
-    "Topologia dell'unione disgiunta"
+    "Topologia debole"
     "Gruppo dei coefficienti di una teoria omologica"
     "Retratto di deformazione"
     "Retrazione"
@@ -174,7 +182,8 @@
     "Spazio dodecaedrico"
     "Spazio a omologia razionale ! \\vedi{Spazio dodecaedrico}"
     "Rappresentazione spinoriale di SO(3)"
-    "Caratteristica di Eulero di un CW-complesso")
+    "Caratteristica di Eulero di un CW-complesso"
+    "Spazio proiettivo complesso")
    (LaTeX-add-counters
     "exercises"))
  :latex)

@@ -25,7 +25,6 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage[makeroom]{cancel}
 
-
 \input{titlepage}
 
 \newtheorem{theorem}{Teorema}[section]
@@ -43,11 +42,14 @@
 \newcommand{\M}{\mathcal{M}}
 \newcommand{\N}{\mathcal{N}}
 \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
 \newcommand{\me}{\mathrm{e}}
 \newcommand{\im}[1]{\mathrm{Im}( #1 )}
 \newcommand{\rank}[1]{\mathrm{Rank}( #1 )}
 \renewcommand{\ker}[1]{\mathrm{Ker}( #1)}
 \newcommand{\RN}[1][]{\mathbb{R}^#1}
+\newcommand{\Pjr}[1]{\mathrm{P}^#1 (\mathbb{R})}
+\newcommand{\Pjc}[1]{\mathrm{P}^#1 (\mathbb{C})}
 \newcommand{\Id}[1][]{\mathbb{I}_#1}
 \newcommand{\Sph}[1][]{\mathcal{S}^#1}
 \newcommand{\Disk}[1][]{\mathcal{D}^#1}
@@ -58,6 +60,17 @@
 \newcommand{\invamalg}{\mathbin{\text{\rotatebox[origin=c]{180}{$\Pi$}}}}
 \newcommand{\vedi}[1]{\emph{vedi} #1}
 \newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+\renewcommand{\vec}[1]{\underline{#1}}
+
+\let\latexcirc=\circ
+\newcommand{\ccirc}{\mathbin{\mathchoice
+  {\xcirc\scriptstyle}
+  {\xcirc\scriptstyle}
+  {\xcirc\scriptscriptstyle}
+  {\xcirc\scriptscriptstyle}
+}}
+\newcommand{\xcirc}[1]{\vcenter{\hbox{$#1\latexcirc$}}}
+\let\circ\ccirc
 
 \let\phi\varphi
 \let\emptyset\varnothing
@@ -1837,7 +1850,11 @@ Una funzione $ F $ fatta in questo modo è detta
   Infatti indicando le mappe sottointese con $ i \colon 0 \to A $ e $ j \colon C \to 0 $
   allora per l'esattezza vale che $ \ker{\alpha} = \im{i} = 0 $ in quanto $ i $ è
   omomorfismo, ma $ \ker{\alpha} = 0 $ signfiica che $ \alpha $ è iniettiva, inoltre
-  $ \ker{j} = \im{\beta} = C $, quindi $ \beta $ è suriettiva.
+  $ \ker{j} = \im{\beta} = C $, quindi $ \beta $ è suriettiva. Quindi automaticamente
+  $ C \cong \quot{B}{A} $ infatti per il teorema fondamentale degli omomorfismi
+  $ \quot{B}{\ker{\beta}} \cong \im{\beta} \overset{\text{suriettività}}{=} C $, ma per
+  l'esattezza $ \ker{\beta} = \im{\alpha} $ quindi $ \ker{\beta} = \alpha(A) $ ed essendo $ \alpha $
+  iniettiva $ \alpha(A) \cong A $.
 \end{definition}
 
 \begin{definition}
@@ -2094,7 +2111,7 @@ di inclusione e di passaggio al quoziente:
   j \colon A \oplus C & \to C \\
   (a,c) & \mapsto c
 \end{align*}
-La mappa $ i $ è iniettiva perchè è un'inclusione, mentre $ j $ è suriettiva perchè
+La mappa $ i $ è iniettiva perché è un'inclusione, mentre $ j $ è suriettiva perché
 è un passaggio al quoziente, si può quindi costruire la successione esatta corta:
 \[
   \begin{tikzcd}
@@ -2383,7 +2400,7 @@ $ \sigma_k $ è l'unica mappa che c'è.
     \llbracket\sigma_0\rrbracket & \mapsto \llbracket i \circ \sigma_0 \rrbracket = \llbracket \sigma_0 \rrbracket
   \end{align*}
   Poi si estende per linearità al generico elemento $ c = k \sigma_0 $ con $ k \in \Z $, inoltre
-  si è usato che $ i \circ \sigma_0 = \sigma_0 $ perchè $ \sigma_0 $ è lo $ 0 $-simplesso singolare
+  si è usato che $ i \circ \sigma_0 = \sigma_0 $ perché $ \sigma_0 $ è lo $ 0 $-simplesso singolare
   costante che vale $ x_0 $. In particolare $ \im{i_\star} = H_0(\set{x_0}) $.
   Questa mappa indotta è iniettiva, infatti sia  $ c = k \sigma_0 \in H_0(\set{x_0}) $:
   \[
@@ -2403,7 +2420,7 @@ $ \sigma_k $ è l'unica mappa che c'è.
       0 \rar & H_1(X) \rar{\phi} & \tilde{H}_1(X) \rar{j} & 0
     \end{tikzcd}
   \]
-  Siccome $ \phi $ è iniettiva ma e è anche suriettiva perchè è proiezione
+  Siccome $ \phi $ è iniettiva ma e è anche suriettiva perché è proiezione
   sul quoziente allora è isomorfismo e quindi $ H_1(X) \cong \tilde{H}_1(X) $.
   [NON SONO SICURO DI QUESTO, RIASCOLTARE!!!]
   Ma siccome $ H_1(X) \cong \tilde{H}_1(X) $ allora la successione lunga iniziale diventa:
@@ -2436,7 +2453,7 @@ $ \sigma_k $ è l'unica mappa che c'è.
       0 \rar & H_0(X) \rar & \tilde{H}_0(X) \rar & \Z \rar & 0
     \end{tikzcd}
   \]
-  spezza. Questo è sempre vero, a meno di casi eccezzionalmente patologici.
+  spezza. Questo è sempre vero, a meno di casi eccezionalmente patologici.
 \end{proof}
 
 \begin{example}
@@ -2508,7 +2525,7 @@ ma non tutti sono stati ancora verificati, cioè l'omotopia e l'escissione.
   Sia $ \set{X_\alpha} $ una famiglia di spazi topologici, si definisce la \textbf{somma topologica}\index{Somma topologica}
   $ X = \invamalg_\alpha X_\alpha $
   come lo spazio topologico formato dall'unione disgiunta di tutti gli $ X_\alpha $ equipaggiato
-  con la \textbf{topologia dell'unione disgiunta}\index{Topologia dell'unione disgiunta},
+  con la \textbf{topologia debole}\index{Topologia debole},
   ovvero un insieme è aperto se e solo se è aperto rispetto alla topologia di ogni $ X_\alpha $.
 \end{definition}
 
@@ -2589,7 +2606,7 @@ ma non tutti sono stati ancora verificati, cioè l'omotopia e l'escissione.
       \quot{S_k(X)}{S_k(A)} \arrow{r}{f_\sharp} & \quot{S_k(Y)}{S_k(B)}
     \end{tikzcd}
   \]
-  $ f_\sharp $ esiste perchè $ S_k(A) \to S_k(B) $ per la condizione $ f(A) \subseteq B $
+  $ f_\sharp $ esiste perché $ S_k(A) \to S_k(B) $ per la condizione $ f(A) \subseteq B $
   quindi simplessi singolari in $ A $ vanno a finire in simplessi singolari in $ B $.
   Una volta che ho $ f_\sharp $ posso scendere a livello di omologia prendendo la
   classe di equivalenza.
@@ -2637,7 +2654,7 @@ applicazioni di inclusione $ i $ e la mappa costante $ \epsilon $:
 Si ha che $ \epsilon \circ i = \Id{P} $ in quanto $ P \overset{i}{\to} X \overset{\epsilon}{\to} P $.
 Dagli assiomi deriva l'esistenza di un'applicazione indotta
 sui gruppi di omologia: $ \epsilon_\star \colon H_0(X) \to H_0(P) $,
-$ \epsilon_\star $ è suriettiva perchè c'è $ i_\star \colon H_0(P) \to H_0(X) $:
+$ \epsilon_\star $ è suriettiva perché c'è $ i_\star \colon H_0(P) \to H_0(X) $:
 C'è la successione esatta:
 \[
   \begin{tikzcd}
@@ -2788,7 +2805,7 @@ Un secondo importantissimo corollario è l'omologia delle sfere.
 \newmathsymb{updisk}{\Disk{n}_+}{Calotta superiore dell'$ n $-disco}
 \section{Omologia delle sfere}
 \begin{theorem}[Omologia di dischi e sfere]
-  Siano:
+  Siano per $ n \geq 1$:
   \begin{gather*}
     \Sph{n} = \set{\vec{x} \in \RN{n+1} | ||\vec{x}||^2 = 1} \\
     \Disk{n} = \set{\vec{x} \in \RN{n} | ||\vec{x}||^2 \leq 1} \\
@@ -2819,23 +2836,25 @@ Un secondo importantissimo corollario è l'omologia delle sfere.
 \begin{proof}
   Comincio calcolando $ H_k(\Sph{0}, \Disk{0}_+) $.
   Ho $ \Sph{0} = \set{-1, +1} $ e $ \Disk{0} = \set{+ 1} $.
-  Considero la successione:
+  Siccome $ \Disk{0} \subseteq \Sph{0} $ per l'assioma dell'esattezza esiste
+  una successione esatta in omologia:
   \[
     \begin{tikzcd}
-      \dots \rar & H_k(\Disk{0}) \rar & H_k(\Sph{0}) \rar & H_k(\Sph{0}, \Disk{0}) \rar & H_{k-1}(\Disk(0)) \rar & \dots
+      \dots \rar & H_k(\Disk{0}) \rar & H_k(\Sph{0}) \rar & H_k(\Sph{0}, \Disk{0}) \rar & H_{k-1}(\Disk{0}) \rar & \dots
     \end{tikzcd}
   \]
-  Per $ k \geq 2 $ $ H_k(\Disk{0}) = H_{k-1}(\Disk{0}) \cong 0 $ perchè $ \Disk{0} $ è un punto, quindi
+  Per $ k \geq 2 $ $ H_k(\Disk{0}) = H_{k-1}(\Disk{0}) \cong 0 $ perché $ \Disk{0} $ è un punto, quindi
   la successione diventa:
   \[
     \begin{tikzcd}
-      0 \rar & H_k(\Sph{0}) \rar{i} & H_k(\Sph{0}, \Disk{0}) \rar & 0
+      0 \rar & H_k(\Sph{0}) \rar{i} & H_k(\Sph{0}, \Disk{0}) \rar{j} & 0
     \end{tikzcd}
   \]
   Ma per l'assione di additività, siccome $ \Sph{0} $ è la somma di due punti
-  $ H_k(\Sph{0}) \cong 0 $, siccome $ i $ è iniettiva perchè la successione è esatta
-  ed è suriettiva perché proiezione al quoziente allora è isomorfismo quindi
-  anche $ H_k(\Sph{0}, \Disk{0}) \cong 0 $. Per calcolare i casi $ k = 1 $ e $ k = 0 $
+  $ H_k(\Sph{0}) \cong 0 $, siccome $ i $ è iniettiva perché la successione è esatta
+  ed è suriettiva perché essendo la successione esatta $ \im{i} = \ker{j} =  H_k(\Sph{0}, \Disk{0}) $
+  allora è isomorfismo quindi anche $ H_k(\Sph{0}, \Disk{0}) \cong 0 $.
+  Per calcolare i casi $ k = 1 $ e $ k = 0 $
   considero la successione esatta:
   \[
     \begin{tikzcd}[nodes={column sep=10pt, inner sep=4pt}]
@@ -2859,8 +2878,10 @@ Un secondo importantissimo corollario è l'omologia delle sfere.
       0 \rar & H_1(\Sph{0},\Disk{0}) \rar & 0
     \end{tikzcd}
   \]
-  Da cui $ H_1(\Sph{0},\Disk{0}) $. Infine per definizione $ H_0(\Disk{0}) = \mathcal{G} $ e
-  per l'additività $ H_0(\Sph{0}) = \mathcal{g} \oplus \mathcal{G} $ quindi $ H_0(\Sph{0}, \Disk{0}) = \mathcal{G} $.
+  Da cui $ H_1(\Sph{0},\Disk{0}) = 0 $ per lo stesso ragionamento di prima.
+  Infine per definizione $ H_0(\Disk{0}) = \mathcal{G} $ e
+  per l'additività $ H_0(\Sph{0}) = \mathcal{G} \oplus \mathcal{G} $ quindi
+  $ H_0(\Sph{0}, \Disk{0}) \cong \quot{\mathcal{G} \oplus \mathcal{G}}{\mathcal{G}} \cong \mathcal{G} $.
   In conclusione:
   \[
     H_k(\Sph{0}, \Disk{0}) \cong
@@ -2869,24 +2890,102 @@ Un secondo importantissimo corollario è l'omologia delle sfere.
       0 & \text{se } k \not =  0
     \end{cases}
   \]
-  Assumo sia vero che:
-  \[
-    \tilde{H}_k(\Sph{n}) \cong
-    \begin{cases}
-      \mathcal{G} & \text{se } k = n \\
-      0 & \text{se } k \not = n
-    \end{cases}
-  \]
-  Ho che $ \Sph{n-1} $ è il bordo di $ \Disk{n} $ quindi ponendo $ X = \Disk{n} $ e $ A = \Sph{n-1} $
-  è ben definita la successione esatta lunga:
+  Mostro che $ \tilde{H}_k(\Sph{n}) \cong H_k(\Disk{n}, \Sph{n-1}) $.
+  % \[
+  %   \tilde{H}_k(\Sph{n}) \cong
+  %   \begin{cases}
+  %     \mathcal{G} & \text{se } k = n \\
+  %     0 & \text{se } k \not = n
+  %   \end{cases}
+  % \]
+  Ho che $ \Sph{n-1} $ è il bordo di $ \Disk{n} $ quindi c'è una mappa naturale di inclusione
+  e ponendo $ X = \Disk{n} $ e $ A = \Sph{n-1} $ è ben definita la successione esatta lunga:
   \[
     \begin{tikzcd}[nodes={column sep=4.5pt, inner sep=0.5pt}]
       \dots \rar & H_k(\Sph{n-1}) \rar & H_k(\Disk{n}) \rar & H_k(\Disk{n}, \Sph{n-1}) \rar
       & H_{k-1}(\Sph{n-1}) \rar & H_{k-1}(\Disk{n}) \rar & H_{k-1}(\Disk{n}, \Sph{n-1}) \rar & \dots
     \end{tikzcd}
   \]
-  Per $ k \geq 1 $ $ H_k() $
-  [COPIARE QUESTA ROBA]
+  Per $ k \geq 1 $ $ H_k(\Disk{n}) = 0 $ perché $ \Disk{n} $ è contraibile, quindi ho la successione:
+  \[
+    \begin{tikzcd}[nodes={column sep=10pt}]
+      0 \rar & H_k(\Disk{n}, \Sph{n-1}) \rar & H_{k-1}(\Sph{n-1}) \rar & H_{k-1}(\Disk{n}) \rar & H_{k-1}(\Disk{n}, \Sph{n-1}) \rar & \dots
+    \end{tikzcd}
+  \]
+  Se $ k \geq 2 $ la successione si riduce a:
+  \[
+    \begin{tikzcd}[nodes={column sep=10pt}]
+      0 \rar & H_k(\Disk{n}, \Sph{n-1}) \rar{i} & H_{k-1}(\Sph{n-1}) \rar & 0
+    \end{tikzcd}
+  \]
+  Quindi $ i $ è inieittiva e suriettiva e perciò
+  $ H_k(\Disk{n}, \Sph{n-1}) \cong H_{k-1}(\Sph{n-1}) \cong \tilde{H}_{k-1}(\Sph{n-1}) $.
+  Per $ k = 1 $ ho la successione:
+  \[
+    \begin{tikzcd}[nodes={column sep=10pt}]
+      0 \rar & H_1(\Disk{n}, \Sph{n-1}) \rar & H_0(\Sph{n-1}) \rar & H_0(\Disk{n}) \rar & H_0(\Disk{n}, \Sph{n-1}) \rar & 0
+    \end{tikzcd}
+  \]
+  Quindi $ H_1(\Disk{n}, \Sph{n-1}) = 0 $ per i soliti motivi.
+  Ma esiste $ i \colon \Sph{n-1} \incl \Disk{n} $ iniettiva, quindi esiste $ i_\star \colon H_0(\Sph{n-1}) \to H_0(\Disk{n}) $.
+  Ma $ \Disk{n} $ è contraibile quindi posso prendere come generatore un punto di $ \Disk{n} $, e ne prendo
+  uno sul bordo, cioè in $ \Sph{n-1} $, quindi:
+  \begin{align*}
+    i_\star \colon H_0(\Sph{n-1}) & \to H_0(\Disk{n}) \\
+    \llbracket p \rrbracket & \mapsto \llbracket p \rrbracket
+  \end{align*}
+  Quindi $ H_0(\Disk{n}, \Sph{n-1}) = 0 $ in quanto $ H_0(\Sph{n-1}) \to H_0(\Disk{n}) $ è iniettiva
+  e suriettiva e $ H_0(\Disk{n}, \Sph{n-1}) \cong \quot{H_0(\Disk{n})}{H_0(\Sph{n-1})} \cong 0 $.
+  In conclusione ho trovato che $ H_k(\Disk{n}, \Sph{n-1}) = 0 $ per $ k \in \set{0,1} $.
+  Mi rimane da verificare l'ultimo, osservo intanto che $ \Disk{n}_+ \simeq \Disk{n} $,
+  quindi in quello che segue sostanzialmente ometto il $ + $.
+
+  Considero la successione esatta ($ \Disk{n} \subseteq \Sph{n} $):
+  \[
+    \begin{tikzcd}
+      \dots \rar & H_k(\Disk{n}) \rar & H_k(\Sph{n}) \rar & H_k(\Sph{n}, \Disk{n}) \rar & H_{k-1}(\Disk{n}) \rar & \dots
+    \end{tikzcd}
+  \]
+  Per $ k \geq 2 $ ho che $ H_k(\Disk{n}) \cong 0 $ e che $ H_{k-1}(\Disk{n}) \cong 0 $ quindi
+  la successione diventa:
+  \[
+    \begin{tikzcd}
+      0 \rar & H_k(\Sph{n}) \rar & H_k(\Sph{n}, \Disk{n}) \rar & 0
+    \end{tikzcd}
+  \]
+  Quindi $ H_k(\Sph{n}, \Disk{n}) \cong H_k(\Sph{n}) \cong \tilde{H}_k(\Sph{n}) $ per $ k \geq 2 $.
+  Per $ k = 1 $ la successione è:
+  \[
+    \begin{tikzcd}[nodes={column sep=10pt}]
+      0 \rar & H_1(\Sph{n}) \rar & H_1(\Sph{n}, \Disk{n}) \rar & H_0(\Disk{n}) \rar & H_0(\Sph{n}) \rar & H_0(\Sph{n}, \Disk{n}) \rar & 0
+    \end{tikzcd}
+  \]
+  Ma $ H_0(X) $ conta le componenti connesse per archi di $ X $ quindi $ H_0(\Disk{n}) \cong H_0(\Sph{n}) $
+  e per lo stesso motivo di prima $ H_0(\Sph{n}, \Disk{n}) \cong 0$
+  \[
+    H_k(\Sph{n}, \Disk{n}) =
+    \begin{cases}
+      H_k(\Sph{n}) & \text{se } k \geq 1 \\
+      0 & \text{se } k = 0
+    \end{cases}
+  \]
+  Rimane da vedere come si comportano i gruppi di omologia $ \tilde{H}_k(\Sph{n}) $ con $ k \geq 1 $.
+  Per $ n = 0 $ è noto perché sono $ \Sph{0} $ sono due punti, per $ k = 0 $ anche perché sono connessi
+  per archi, infine so che: $ H_k(\Sph{n}) \cong \tilde{H}_k(\Sph{n}) $ per $ k \geq 1 $, ma anche
+  che $ H_k(\Sph{n}, \Disk{n}) \cong H_k(\Sph{n}) $, se mostro che $ H_p(\Sph{n}, \Disk{n}) \cong H_p(\Disk{n}, \Sph{n-1}) $
+  allora $ H_k(\Sph{n}, \Disk{n}) \cong H_k(\Disk{n}, \Sph{n-1}) $.
+  Ma ho mostrato che $ H_k(\Disk{n}, \Sph{n-1}) \cong H_{k-1}(\Sph{n-1}) $, quindi posso procedere
+  per induzione:
+  \[
+    \tilde{H}_k(\Sph{n}) \cong H_k(\Sph{n}) \cong H_k(\Sph{n}, \Disk{n}) \cong H_k(\Disk{n}, \Sph{n-1}) \cong H_{k-1}(\Sph{n-1}) \cong \dots
+  \]
+  Per far vedere che $ H_p(\Sph{n}) \cong H_p(\Disk{n}, \Sph{n-1}) $ uso l'escissione:
+  considero $ U $ intorno opportuno del polo nord di $ \Sph{n} $, per l'escissione:
+  \[
+    H_p(\Sph{n}, \Disk{n}) \cong H_p(\Sph{n} \setminus U, \Disk{n} \setminus U )
+  \]
+  Per l'equivalenza omotopica $  H_p(\Sph{n} \setminus U, \Disk{n} \setminus U ) \cong H_p(\Disk{n}, \Sph{n-1}) $, in pratica
+  deformo il buco facendolo retrarre.
 \end{proof}
 
 % lezione 7
@@ -2896,18 +2995,19 @@ Un secondo importantissimo corollario è l'omologia delle sfere.
 % |  |   |  _|   / / | | | | |  \| |  _|      / /
 % |  |___| |___ / /_ | | |_| | |\  | |___    / /
 % | _____|_____/____|___\___/|_| \_|_____|  /_/
-
-Considero $ \Sph{n} $ con $ n \geq 1 $, ho trovato che:
-\[
-  H_k(\Sph{n}) \cong
-  \begin{cases}
-    \Z & \text{se } k \in \set{0, n} \\
-    0 & \text{se } k \not \in \set{0, n}
-  \end{cases}
-\]
+\begin{corollary}
+  Se il gruppo dei coefficienti è $ \Z $:
+  \[
+    H_k(\Sph{n}) \cong
+    \begin{cases}
+      \Z & \text{se } k \in \set{0, n} \\
+      0 & \text{se } k \not \in \set{0, n}
+    \end{cases}
+  \]
+\end{corollary}
 Questo risultato ha numerose conseguenze, infatti ho trovato uno
 strumento più fine del gruppo fondamentale che riesce a distinguere
-cose diverse.
+spazi diversi.
 
 \begin{corollary}
   $ \Sph{n} \simeq \Sph{m} $ se e solo se $ n = m $.
@@ -3065,12 +3165,10 @@ utilizzano solo il gruppo fondamentale.
     Dimostrare che $ r $ è continua.
   \end{exercise}
   Ho una mappa di inclusione naturale:
-  \[
-    \begin{aligned}[t]
-      i \colon &\Sph{n-1} & \to &\Disk{n} \\
-      &\vec{x} & \mapsto& \vec{x}
-    \end{aligned}
-  \]
+  \begin{align*}
+      i \colon \Sph{n-1} & \to \Disk{n} \\
+      \vec{x} & \mapsto \vec{x}
+  \end{align*}
   Se dimostro che $ r $ è una retrazione trovo un assurdo per il corollario
   precedentemente dimostrato.
   Devo verificare $ r \circ i = \Id{\Sph{n-1}} $ e $ i \circ r \sim \Id{\Disk{n}} $.
@@ -3089,89 +3187,70 @@ utilizzano solo il gruppo fondamentale.
   Quindi $ r $ è retrazione ma questo è assurdo.
 \end{proof}
 
-\subsection{Teoria del grado}
 
-Considero $ H_n(\Sph{m}) $, so che $ H_n(\Sph{m}) \cong \Z $, cioè esiste una mappa
-$ f \colon \Z \to H_n(\Sph{m}) $ tale che $ f(1) = \alpha $ con $ \alpha $ $ n $-ciclo
-che non è un bordo. In questo modo $ H_n(\Sph{m}) = \langle\alpha\rangle $.
-Considero $ \phi \colon \Sph{n} \to \Sph{n} $ continua con $ n \geq 1 $, so che esiste
-$ \phi_\star \colon H_n(\Sph{n}) \to H_n(\Sph{n}) $. Per $ n = 0 $ $ \phi_\star $ manda punti
-in punti, per $ n \geq 1 $: sia $ c \in H_n(\Sph{n}) $ allora $ c = p \alpha $ con $ p \in \Z $:
+\subsection{Teoria del grado}
+\begin{definition}
+  Ad ogni applicazione continua $ \phi \colon \Sph{n} \to \Sph{n} $ continua è possibile
+  associare in modo univoco un numero intero, questo è il \textbf{grado}\index{Grado di una sfera}:
+  \begin{align*}
+    \phi_\star \colon H_n(\Sph{n}) & \to H_n(\Sph{n}) \\
+    \alpha & \mapsto  \deg{(\phi)} \alpha
+  \end{align*}
+  con $ \alpha $ generatore.
+\end{definition}
+
+Si ha che $ H_n(\Sph{n}) \cong \Z $, quindi $ H_n(\Sph{n}) $ è il gruppo
+libero di rango 1 generato da un singolo $ n $-ciclo che non è un bordo,
+cioè esiste una mappa $ f \colon \Z \to H_n(\Sph{n}) $ tale che $ f(1) = \alpha $,
+$ \alpha $ generatore, in questo modo $ H_n(\Sph{n}) = \langle\alpha\rangle $.
+Considero $ \phi \colon \Sph{n} \to \Sph{n} $ continua con $ n \geq 1 $, questa induce
+$ \phi_\star \colon H_n(\Sph{n}) \to H_n(\Sph{n}) $.
+% Per $ n = 0 $ $ \phi_\star $ manda punti in punti, per $ n \geq 1 $:
+L'azione di $ \phi_\star $ si calcola facilmente, infatti sia $ c \in H_n(\Sph{n}) $
+allora $ c = p \alpha $ con $ p \in \Z $, quindi:
 \[
-  \phi_\star (c) = \phi_\star (p \alpha) = \phi_\star (\underbrace{\alpha + \alpha + \alpha + \dots}_{|p| volte}) =
-  \underbrace{\phi_\star (\alpha) + \phi_\star (\alpha) + \dots}_{|p| volte} = p \phi_\star(\alpha)
+  \phi_\star (c) = \phi_\star (p \alpha) = \phi_\star (\underbrace{\alpha + \alpha + \alpha + \dots}_{\text{|p| volte}}) =
+  \underbrace{\phi_\star (\alpha) + \phi_\star (\alpha) + \dots}_{\text{|p| volte}} = p \phi_\star(\alpha)
 \]
 Ma $ \phi_\star(\alpha) \in H_n(\Sph{n}) $ quindi si deve poter scrivere come multiplo di $ \alpha $:
 $ \phi_\star (\alpha) = d \alpha $ da cui: $ \phi_\star (c) = p d \alpha = d c $ con $ d \in \Z $.
-Questo numero $ d $ viene fuori dall'immagine di un generatore, ma non dipende dalla
-scelta del generatore, infatti:
 
-Sia $ \beta $ un altro generatore, siccome $ \alpha $ è un generatore si può scrivere $ \beta = m \alpha $
-con $ m \in \Z $. Pongo come notazione:
-\[
-  \phi_\star(\beta) = d(\beta) \beta \quad \phi_\star(\alpha) = d(\alpha) \alpha
-\]
-Allora:
-\[
-  d(\beta) \beta = \phi_\star (\beta) = m \phi_\star (\alpha) = m d(\alpha) \alpha
-\]
-Da cui $ d(\beta) \beta = \beta d(\alpha) $ cioè $ \left(d(\beta) - d(\alpha) \right) \beta = 0 $, siccome
-questo vale per ogni $ \alpha $ e $ \beta $ allora $ d(\alpha) = d(\beta) $.
-\begin{definition}
-  Data un'applicazione $ \phi \colon \Sph{n} \to \Sph{n} $ continua è possibile
-  associargli in modo univoco un numero intero, questo è il \textbf{grado}\index{Grado di una sfera}:
-  \[
-    \begin{aligned}[t]
-      \phi_\star \colon & H_n(\Sph{n}) & \to & H_n(\Sph{n}) \\
-      & \alpha & \mapsto & \deg{(\phi)} \alpha
-    \end{aligned}
-  \]
-  Con $ \alpha $ generatore.
-\end{definition}
-
-Ad esempio per $ n = 1 $ e $ p \in \mathbb{N} $:
-\[
-  \begin{aligned}[t]
-    \phi \colon & \Sph{1} & \to & \Sph{1} \\
-    & z   & \mapsto & z^p
-  \end{aligned}
-\]
-Vale che $ \deg{(\phi)} = p $, infatti prendo un generatore di $ \Sph{1} $:
-[MANCA MANCA MANCA]
-
-Voglio usare la teoria del grado per un'applcazione del teorema della palla pelosa.
-\begin{proposition}
-  Se $ f \colon \Sph{n} \to \Sph{n} $ è la riflessione rispetto all'iperpiano $ x_0 = 0 $,
-  cioè $ f(x_0, x_1, x_2, \dots) = (-x_0, x_1, x_2, \dots) $ allora il grado di $ f $ è $ - 1 $.
-\end{proposition}
+\begin{osservation}
+  Questo numero $ d $ viene fuori dall'immagine di un generatore, ma non dipende dalla
+  scelta del generatore, infatti:
+\end{osservation}
 \begin{proof}
-  La dimostrazione è per induzione.
-  Per $ n = 1 $
-  [MANCA MANCA MANCA MANCA MANCA MANCA]
+  Sia $ \beta $ un altro generatore, siccome $ \alpha $ è un generatore si può scrivere $ \beta = m \alpha $
+  con $ m \in \Z $. Pongo come notazione:
+  \[
+    \phi_\star(\beta) = d(\beta) \beta \quad \phi_\star(\alpha) = d(\alpha) \alpha
+  \]
+  Allora:
+  \[
+    d(\beta) \beta = \phi_\star (\beta) = m \phi_\star (\alpha) = m d(\alpha) \alpha = d(\alpha) \beta
+  \]
+  Da cui $ d(\beta) \beta = \beta d(\alpha) $ cioè $ \left(d(\beta) - d(\alpha) \right) \beta = 0 $, siccome
+  questo vale per ogni $ \alpha $ e $ \beta $ allora $ d(\alpha) = d(\beta) $.
 \end{proof}
 
-                      %                       lezione 8
-
-Ho $ \Sph{n} = \set{ (x_1, \dots, x_{n+1}) \in \RN{n+1} | \sum_{i=1}^{n+1} x_i^2 = 1 } \subset \RN{n+1} $
-spazio topologico con la topologia indotta.
-
-Ho trovato che:
-\[
-  H_k(\Sph{n}) \cong
-  \begin{cases}
-    \Z & \text{se } k \in \set{0, n} \\
-    0 & \text{se } k \not \in \set{0, n}
-  \end{cases}
-\]
-Ho che $ f \colon \Sph{n} \to \Sph{n} $ induce $ f_\star \colon H_n(\Sph{n}) \to H_n(\Sph{n}) $ e ho definito il grado
-come:
-
-Prendo $ \alpha $ tale che $ \langle\alpha\rangle = H_n(\Sph{n}) $ con:
-\begin{align*}
-  H_n(\Sph{n}) & \to \Z \\
-  \alpha & \mapsto 1
-\end{align*}
-e $ f_\star (\alpha) = \deg{(f)} \alpha $. So che il grado è un invariante topologico per le sfere.
+\begin{example}[$ n = 1 $]
+  Ad esempio per $ n = 1 $ e $ p \in \mathbb{N} $ e la mappa
+  \begin{align*}
+    \phi \colon  \Sph{1} & \to  \Sph{1} \\
+    z   & \mapsto  z^p
+  \end{align*}
+  Vale che $ \deg{(\phi)} = p $, infatti prendo un generatore di $ \Sph{1} $:
+  \begin{align*}
+    \sigma \colon \Delta_1 & \to \Sph{1} \\
+    t & \mapsto \me^{2 \pi i t}
+  \end{align*}
+  Applicando la mappa:
+  \begin{align*}
+    \phi \circ \sigma \colon \Delta_1 & \to \Sph{1} \\
+    t & \mapsto \me^{2 \pi i p t}
+  \end{align*}
+  Cioè $ \phi \circ \sigma = \sigma \star \sigma \star \dots = p \sigma $ volte, e quindi $ \deg{(\phi)} = p $.
+\end{example}
 
 \begin{proposition}
   Siano $ f,g \colon \Sph{n} \to \Sph{n} $ mappe continue, allora $ \deg{(g \circ f)} = \deg{(f)} \deg{(g)} $.
@@ -3179,7 +3258,7 @@ e $ f_\star (\alpha) = \deg{(f)} \alpha $. So che il grado è un invariante topo
 \begin{proof}
   Per la funtorialità $ (g \circ f)_\star = g_\star \circ f_\star $ quindi:
   \[
-    (g \circ f)_\star (\alpha) = (g_\star \circ f_\star)(\alpha) \quad \Rightarrow \quad g_\star (f_\star (\alpha)) = g_\star(\deg{(f)}\alpha) = \deg{(f)} g_\star(\alpha) = \deg{(f)}\deg{(g)}\alpha
+    (g \circ f)_\star (\alpha) = (g_\star \circ f_\star)(\alpha) \; \Rightarrow \; g_\star (f_\star (\alpha)) = g_\star(\deg{(f)}\alpha) = \deg{(f)} g_\star(\alpha) = \deg{(f)}\deg{(g)}\alpha
   \]
   Quindi:
   \[
@@ -3188,47 +3267,100 @@ e $ f_\star (\alpha) = \deg{(f)} \alpha $. So che il grado è un invariante topo
   Siccome $ \alpha $ è generatore: $ \deg{(g \circ f)} = \deg{(f)} \deg{(g)} $.
 \end{proof}
 
-Voglio applicare questa proprietà alla composizione di riflessioni.
-Considero:
-\begin{align*}
-  \rho \colon \Sph{n} & \to \Sph{n} \\
-  (x_1, \dots, x_{n+1}) & \mapsto (x_1, \dots, - x_{n-1})
-\end{align*}
-Questa è la riflessione rispetto al sottospazio $ x_{n+1} = 0 $ in $ \RN{n+1} $, quindi
-$ \rho $ fissa su $ \Sph{n} $ l'equatore $ \Sph{n} \cap x_{n+1} = 0 $.
-Ho trovato che per $ n = 1 $ $ \deg{(\rho)} = -1 $, ora voglio continuare la
-dimostrazione per induzione.
+Voglio usare la teoria del grado per un'applcazione del teorema della palla pelosa.
+\begin{proposition}
+  Considero riflessione rispetto al sottospazio $ x_{n+1} = 0 $ in $ \RN{n+1} $
+  \begin{align*}
+    \rho \colon \Sph{n} & \to \Sph{n} \\
+    (x_1, \dots, x_{n+1}) & \mapsto (x_1, \dots, - x_{n-1})
+  \end{align*}
+  Il grado di questa applicazione è $ - 1 $.
+\end{proposition}
+\begin{proof}
+  La dimostrazione è per induzione.
+  Per $ n = 1 $.
+  \begin{align*}
+    \rho \colon \Sph{1} & \to \Sph{1} \\
+    (x_0,x_1) & \mapsto (x_0, -x_1)
+  \end{align*}
+  Considero il generatore $ \sigma $:
+  \begin{align*}
+    \sigma \colon \Delta_1 & \to \Sph{1} \\
+    t & \mapsto \left(\cos(2 \pi t), \sin(2 \pi t)\right)
+  \end{align*}
+  Quindi:
+  \begin{align*}
+    \rho \circ \sigma \colon \Delta_1 & \to \Sph{1} \\
+    t & \mapsto \left(\cos(2 \pi t), -\sin(2 \pi t))\right)
+  \end{align*}
+  Ma:
+  \[
+    \left(\cos(2 \pi t), -\sin(2 \pi t))\right) = \left(\cos(-2 \pi t), \sin(-2 \pi t))\right) = \left(\cos(2 \pi (1-t)), \sin(2 \pi (1-t)))\right)
+  \]
+  Quindi $ \rho \circ \sigma = \bar{\sigma} = - \sigma $ e quindi il grado è $ - 1 $.
 
-Suppongo che il risultato sia vero per $ \Sph{k} $ e $ \Sph{n} $ con $ k < n $
-mostro che è vero anche per $ \Sph{n} $.
+  Suppongo che il risultato sia vero per $ \Sph{n-1} $ mostro che è vero anche per $ \Sph{n} $.
 
-In $ \Sph{n} $ ho dei sottoinsiemi naturali:
-\begin{gather*}
-  \Disk{n}_+ = \set{ (x_1, \dots, x_{n+1}) \in \Sph{n} | x_1 \geq 0 } \\
-  \Disk{n}_- = \set{ (x_1, \dots, x_{n+1}) \in \Sph{n} | x_1 \leq 0 }
-\end{gather*}
-Vale che $ \Disk{n}_+ \cap \Disk{n}_- = \set{ (x_1, \dots, x_{n+1}) \in \Sph{n} | x_1 \leq 0 } = \Sph{n-1} $.
-Ho dimostrato che $ \tilde{H}_p(\Sph{n}) \cong H_p(\Disk{n}, \Sph{n-1}) \cong H_p(\Sph{n}, \Disk{n}) $
-Lo uso
-[FIGURA]
+  % In $ \Sph{n} $ ho dei sottoinsiemi naturali:
+  % \begin{gather*}
+  %   \Disk{n}_+ = \set{ (x_1, \dots, x_{n+1}) \in \Sph{n} | x_1 \geq 0 } \\
+  %   \Disk{n}_- = \set{ (x_1, \dots, x_{n+1}) \in \Sph{n} | x_1 \leq 0 }
+  % \end{gather*}
+  % Vale che $ \Disk{n}_+ \cap \Disk{n}_- = \set{ (x_1, \dots, x_{n+1}) \in \Sph{n} | x_1 \leq 0 } = \Sph{n-1} $.
+  Ho dimostrato che
+  \[
+    \tilde{H}_p(\Sph{n}) \cong H_p(\Disk{n}, \Sph{n-1}) \cong H_p(\Sph{n}, \Disk{n})
+  \]
+  Quindi considerando anche che $ \rho $ induce una mappa $ \rho_\star $ a livello di omologia:
+  \[
+    \begin{tikzcd}
+      H_n(\Sph{n}) \rar{\rho_\star} \arrow[leftrightarrow]{d}{\cong} & H_n(\Sph{n})  \arrow[leftrightarrow]{d}{\cong} \\
+      H_n(\Disk{n}, \Sph{n-1}) &  H_n(\Disk{n}, \Sph{n-1})
+    \end{tikzcd}
+  \]
+  Ho anche che $ H_n(\Disk{n}, \Sph{n-1}) \cong H_{n-1}(\Sph{n-1}) $, come ho dimostrato
+  calcolando l'omologia delle sfere, quindi il diagramma diventa:
+  \[
+    \begin{tikzcd}
+      H_n(\Sph{n}) \rar{\rho_\star} \arrow[leftrightarrow]{d}{\cong} & H_n(\Sph{n})  \arrow[leftrightarrow]{d}{\cong} \\
+      H_{n-1}(\Sph{n-1}) \rar{\rho_\star^{(n-1)}} &  H_{n-1}(\Sph{n-1})
+    \end{tikzcd}
+  \]
+  Ma per ipotesi induttiva per $ n - 1 $ il grado è $ - 1 $, quindi anche per $ n $ il grado è $ - 1 $.
+\end{proof}
+\hfill\newline\newline
+% lezione 8
 
-Ora dimsotro che $ H_n{\Disk{n}, \Sph{n-1}} \cong \tilde{H}_{n-1}(\Sph{n-1}) $.
-Sia $ i \colon \Sph{n-1} = \partial \Disk{n} \to \Disk{n} $ mappa di inclusione. Ho $ (\Disk{n}, \Sph{n-1}) $ coppia,
-faccio la successione esatta lunga in omologia relativa:
-[FIGURA]
-Considero per $ p = n $ con $ n \geq 2 $ $ H_p(\Disk{n}) = H_p(\Disk{n-1}) = 0 $ perchè contraibili.
-Quindi $ H_n(\Disk{n}, \Sph{n-1}) \cong H_{n-1}(\Sph{n-1}) $
-[MANCA MANCA]
+% Ho $ \Sph{n} = \set{ (x_1, \dots, x_{n+1}) \in \RN{n+1} | \sum_{i=1}^{n+1} x_i^2 = 1 } \subset \RN{n+1} $
+% spazio topologico con la topologia indotta.
+
+% Ho trovato che:
+% \[
+%   H_k(\Sph{n}) \cong
+%   \begin{cases}
+%     \Z & \text{se } k \in \set{0, n} \\
+%     0 & \text{se } k \not \in \set{0, n}
+%   \end{cases}
+% \]
+% Ho che $ f \colon \Sph{n} \to \Sph{n} $ induce $ f_\star \colon H_n(\Sph{n}) \to H_n(\Sph{n}) $ e ho definito il grado
+% come:
+
+% Prendo $ \alpha $ tale che $ \langle\alpha\rangle = H_n(\Sph{n}) $ con:
+% \begin{align*}
+%   H_n(\Sph{n}) & \to \Z \\
+%   \alpha & \mapsto 1
+% \end{align*}
+% e $ f_\star (\alpha) = \deg{(f)} \alpha $. So che il grado è un invariante topologico per le sfere.
 
 
-Quindi il risultato finale è:
-\begin{lemma}
-  Se $ \rho \colon \Sph{n} \to \Sph{n} $ è la riflessione rispetto a $ \set{x_{n+1} = 0} $ allora
-  $ \deg{(\rho)} = - 1 $.
-\end{lemma}
+% Quindi il risultato finale è:
+% \begin{lemma}
+%   Se $ \rho \colon \Sph{n} \to \Sph{n} $ è la riflessione rispetto a $ \set{x_{n+1} = 0} $ allora
+%   $ \deg{(\rho)} = - 1 $.
+% \end{lemma}
 
-Perchè voglio fare la riflessione?
-Voglio studiare l'applicazione antipodale che è quella che scambia di segno tutte le componenti:
+% Perché voglio fare la riflessione?
+Considero l'applicazione antipodale che è quella che scambia di segno tutte le componenti:
 \begin{align*}
   A \colon \RN{n} & \to \RN{n} \\
   (x_1, \dots, x_{n}) & \mapsto (-x_, \dots, -x_n)
@@ -3240,7 +3372,7 @@ Scrivo $ a $ come composizione di riflessioni:
 \[
   a = \rho_n \circ \dots \circ \rho_1
 \]
-Per il lemma appena dimostrato:
+Per il risultato appena dimostrato:
 \[
   \deg{(a)} = \deg{(\rho_n \circ \dots \circ \rho_1)} = \deg{(\rho_n)}\deg{(\rho_{n-1})}\dots\deg{(\rho_1)} = (-)^n
 \]
@@ -3297,15 +3429,16 @@ che se due applicazioni definite su $ \Sph{n} $ hanno lo stesso grado allora son
 
 \chapter{Omologia cellulare}
 
-\section{Complessi CW}
+\section{CW-complessi}
 
 Considero $ \Disk{n} $, vale che $ \partial\Disk{n} = \Sph{n-1} $, considerato lo spazio quoziente
 $ X = \quot{\Disk{n}}{\partial \Disk{n}} $, questo è il quoziente del disco per la relazione
 di equivalenza che fa collassare il bordo in un punto $ p $. Si trova che $ X \simeq \Sph{n} $.
-
-Posso fare questa costruzione:
-Definisco $ X^{(0)} = P $, lo spazio formato da un solo punto
-e $ \phi \colon \Sph{n-1} \to X^{(0)} $, posso definire:
+In 2 dimensioni questo si visualizza facilmente: considerato il cerchio, si spinge il centro
+in basso in modo da ottenere una superficie semisferica, quindi indentificare tutti i punti
+del bordo con un unico punto vuol dire chiudere il cerchio ottenendo qualcosa di simile ad
+una goccia, che è omeomorfa ad una sfera. In pratica quello che ho fatto è:
+definisco $ X^{(0)} = P = \set{p} $ e $ \phi \colon \Sph{n-1} \to X^{(0)} $, posso definire:
 \[
   X^{(1)} = X^{(0)} \cup_\phi \Disk{n}
 \]
@@ -3314,20 +3447,28 @@ Dove con $ \cup_\phi $ si intende, con $ X, Y $ spazi topologici:
 \[
   X^{(0)} \cup_\phi \Disk{n} = \quot{X^{(0)} \sqcup \Disk{n}}{p \sim \phi(q)} \quad \forall q \in \Sph{n-1}
 \]
-Questo si generalizza. Considero la proiezione al quoziente $ \pi \colon \Disk{n} \to \Sph{n} $
-con $ \Sph{n} = X^{(0)} \cup_\phi \Disk{n} $.
+Quello che sto facendo in pratica è prendendo un punto e un disco, quindi
+identifico il bordo del disco con il punto.
+
+% Considero la proiezione al quoziente $ \pi \colon \Disk{n} \to \Sph{n} $
+% con $ \Sph{n} \cong X^{(0)} \cup_\phi \Disk{n} $.
 
 \begin{definition}
-  Si definisce $ X $ un \textbf{CW-complesso} di tipo finito\index{CW-complesso}, dove C singifica
-  \emph{closure finite} e W \emph{weak topology} è il dato dei seguenti oggetti topologici:
+  Si dice che lo spazio topologico $ X $ è un \textbf{CW-complesso} di tipo finito\index{CW-complesso},
+  dove C singifica \emph{closure finite} e W \emph{weak topology} se è dato dai seguenti oggetti topologici:
   \begin{enumerate}
   \item Un insieme finito $ X^{(0)} = \set{p_1, \dots, p_n} $ detto \textbf{$ 0 $-scheletro}\index{$ 0 $-scheletro}
-  \item Il \textbf{$ k $-scheletro}\index{$ k $-scheletro} $ X^{(k)} = X^{(k-1)} \cup_\phi \bigcup_\alpha \Disk{k}_\alpha $
-    con $ \Disk{k}_{\alpha_1}, \dots,  \Disk{k}_{\alpha_j} $ numero finito di dischi $ k $-dimensionali.
-    Gli elementi $ \Disk{k}_\alpha $ sono detti \textbf{celle}\index{Cella} (o cella chiusa), mentre
-    il loro interno è detto cella aperta.
-    $ \psi \colon \bigcup_\alpha \partial \Disk{k}_\alpha \to X^{(k-1)} $ continua fornisce le regole di attaccamento per i dischi.
-  \item Esiste $ N \in \mathbb{N} $ tale che $ X^{(0)} \subseteq X^{(1)} \subseteq \dots \subseteq X^{(n)} =: X $
+  \item Il \textbf{$ k $-scheletro}\index{$ k $-scheletro} $ X^{k} $ si costruisce induttivamente
+    a partire da $ X^{(k-1)} $ attaccando opportunamente dei dischi nel modo seguente.
+    Considero un numero finito di dischi $ k $-dimensionali $ \Disk{k}_\alpha $,
+    detti \textbf{celle}\index{Cella} (o cella chiusa, mentre
+    il loro interno è detto cella aperta) per ciascuno si definice una mappa
+    continua di attaccamento $ \phi_\alpha \colon \partial\Disk{k}_\alpha \to X^{(k-1)} $, quindi si definisce:
+    \[
+      X^{(k)} = X^{(k-1)} \cup_\phi \bigcup_\alpha \Disk{k}_\alpha = \quot{ X^{(k-1)} \sqcup \Disk{k}_\alpha}{x \sim \phi_\alpha(x)} \quad \forall \alpha \text{ e }
+      \forall x \in \partial \Disk{k}_\alpha
+    \]
+  \item Esiste $ N \in \mathbb{N} $ tale che $ X^{(0)} \subseteq X^{(1)} \subseteq \dots \subseteq X^{(N)} =: X $
   \end{enumerate}
 \end{definition}
 
@@ -3336,7 +3477,7 @@ aperta lo è.
 
 In generale uno spazio ha numerose strutture di CW complesso.
 
-La topologia è detta debole perchè la topologia di unione disgiunta per tutti i $ k $-scheletri,
+La topologia è detta debole perché la topologia di unione disgiunta per tutti i $ k $-scheletri,
 e questo è la topologia più debole di tutte. In questa topologia un insieme è aperto in $ X $
 se e solo se è aperto la sua intersezione con tutti gli $ X^{(i)} $ è aperta.
 
@@ -3508,7 +3649,7 @@ il cui gruppo fondamentale è banale e i gruppi di omologia noti.
       \Z^{2g} & \text{se } g \geq 1
     \end{cases}
   \]
-  $ V_g $ con $ g \geq 1 $ non hanno lo stesso tipo di omologia di $ \Sph{2} $ perchè
+  $ V_g $ con $ g \geq 1 $ non hanno lo stesso tipo di omologia di $ \Sph{2} $ perché
   $ H_1(V_g) $ è non banale, mentre il gruppo fondamentale di $ \Sph{2} $ lo è.
   Similmente $ H_1(\mathbb{P}^2(\RN)) \cong \pi_1(\mathbb{P}^2(\RN)) \cong \Z_2 $, che non è
   banale, e $ H_1(U_n) \cong \Ab{\pi_1(U_n)} $, ma per Seifert-van Kampen:
@@ -3630,7 +3771,7 @@ Cosa si può invece dire su $ \Sph{3} $? Vale la seguente proposizione:
       0 & -i \\
     \end{pmatrix}
   \]
-  Perchè $ \rho $ sia una rappresentazione dovrei verificare:
+  Perché $ \rho $ sia una rappresentazione dovrei verificare:
   \begin{enumerate}
   \item $ \rho(T) $ lineare
   \item $ \rho(T)(H) \in V $
@@ -3786,6 +3927,415 @@ noto come congettura di Poincaré:
 \end{proposition}
 Questo mostra che il gruppo fondamentale è uno strumento più fine
 dei gruppi di omologia.
+
+
+
+                                           %                                            lezione 10
+
+Esempi di CW complessi:
+\begin{example}
+  La sfera $ \Sph{n} $ per $ n \geq 0 $ possiede numerose strutture di CW complesso,
+  ad esempio una $ 0 $-cella e una $ n $-cella, oppure un politopo gonfiato.
+\end{example}
+\begin{example}
+  Lo spazio proiettivo reale di dimensione $ n $ $ \Pjr{n} $ possiede una struttura
+  di CW complesso con una $ 0 $-cella, una $ 1 $-cella, \dots, una $ n $-cella. Lo
+  $ 0 $-scheletro è un punto, l'$ 1 $-scheletro è $ K^{(1)} = K^{(0)} \cup_{f_0} \Disk{1} \cong \Pjr{1} $
+  che è una retta proiettiva reale, il $ 2 $-scheletro è $ K^{(2)} = K^{(1)} \cup_{f_1} \Disk{1} \cong \Pjr{2} $
+  che è un piano proiettivo reale, e cosí via con $ f_j \colon \partial \Disk{j} \to K^{(j-1)} $ per $ j \geq 1 $.
+  In generale ho $ \phi_j \colon \Disk{j} \to K^{(j-1)} \cong \Pjr{j-1} $. $ \Pjr{j-1} $ continee
+  $ \Pjr(j-2) $ come iperpiano all'infinito, ad esempio $ z_{j-1} = 0 $. Poi a $ \Pjr{j-2} $ incollo
+  $ \Sph{j-2} $ tramite la mappa antipodale. Ad esempio per $ n = 2 $ $ \Pjr{2} $ contiene
+  $ \Pjr{1} = \set{ [z_0, z_1 : 0] | (z_0, z_1) \not = 0 } $. Attacco $ \Disk{2} $ su $ \Pjr{1} $
+  Ho:
+  \begin{align*}
+    f \colon \Sph{1} & \to \Pjr{1} \\
+    z & \mapsto [z]
+  \end{align*}
+  Che è la proiezione sul quoziente, infatti $ \Pjr{1} = \quot{\Sph{1}}{H} $. Quindi
+  $ \Pjr{2} = \Pjr{1} \cup_f \Disk{2} $.
+  \begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+      \draw (0,0) circle (1);
+      \draw[-Latex] (0.1,1) -- (0.1001,1);
+      \draw[-Latex] (-0.0999,-1) -- (-0.1,-1);
+      \node () at (1,0) {-};
+      \node () at (-1,0) {-};
+    \end{tikzpicture}
+    \caption{$ \Pjr{1} $}
+    \label{fig:lez10:projective}
+  \end{figure}
+\end{example}
+
+\newmathsymb{pjc}{\Pjc{n}}{Spazio proiettivo complesso}
+\newmathsymb{cstar}{\C^\star}{Piano complesso privato dell'origine}
+Lo \textbf{spazio proiettivo complesso}\index{Spazio proiettivo complesso} invece è:
+\[
+  \Pjc{n} = \quot{\C \setminus \set{\vec{0}}}{\C^\star}
+\]
+Dove $ \C^\star = \C \setminus \set{0} $. Cioè lo spazio proiettivo complesso
+è dato dal quoziente con la relazione:
+\[
+  (z_0, \dots, z_n) \sim (w_0, \dots, w_n) \iff \exists \lambda_i \in \C^\star \text{ tali che } z_i = \lambda w_i \; \forall i \in \set{0, \dots, n}
+\]
+Questo è uno spazio compatto, connesso, di Hausdorf, ed
+è una varietà topologia di dimensione reale $ 2n $.
+Se $ p \in \Pjc{n} $ allora $ p = [z_0, \dots, z_n] $ e sicuramente
+esiste $ j \in \set{0, \dots, n} $ tale che $ z_j \not = 0 $, quindi
+si può costruire:
+\[
+  U_j = \set{[z_0, \dots, z_j] \in \Pjc{n} | z_j \not = 0 }
+\]
+Si ha la mappa:
+\begin{align*}
+  \phi_j \colon U_j & \to \C^n \simeq \RN{2n} \\
+  [z_0, \dots, z_n] & \mapsto \left(\frac{z_0}{z_j}, \dots, \frac{z_n}{z_j}\right)
+\end{align*}
+Si dimostra che $ \phi_j $ è omeomorfismo e quindi ogni aperto
+è omeomorfo a $ \RN{2n} $ e perciò la dimensione topologica è $ 2n $.
+
+Esempi:
+\begin{example}[$ n = 1 $]
+  $ \Pjc{1} $ è nota come retta complessa o sfera di Riemann, in quanto
+  si trova che $ \Pjc{1} \simeq \Sph{2} $, infatti:
+  \[
+    \Pjc{1} = \set{ [0:1] } \cup U = \set{\infty} \cup U
+  \]
+  Ma la proeizione stenografica manda la sfera senza polo Nord in $ \RN{2} $,
+  cioè $ \Sph{2} \setminus \set{N} \to \RN{2} $, quindi $ \Pjc{1} \setminus \set{\infty} \simeq \RN{2} $
+  e quindi $ \Pjc{1} \setminus \set{\infty} \simeq \Sph{2} \setminus \set{N} $. Questi sono spazi non compatti
+  ma di Hausdorf, so che la compattificazione di Alexander sono spazi omeomorfi, ma
+  quindi: $ \Pjc{1} \simeq \Sph{2} $.
+\end{example}
+
+In merito al generico spazio proiettivo complesso $ \Pjc{n} $ vorrei sapere
+quale è la struttura di CW complesso, quale è il suo gruppo fondamentale e quali
+sono i suoi gruppi di omologia.
+
+Inizio cercando la struttura di CW complesso, questa è simile a quella
+dello spazio proiettivo reale.
+
+$ K^{(0)} $ è un punto $ \Pjc{0} $, poi $ K^{(2)} = K^{(0)} \cup_f \Disk{2} = \Sph{2} \simeq \Pjc{1} $
+con $ f $ mappa che fa collassare il bordo in un punto.
+
+Poi $ K^{(4)} = K^{(2)} \cup_g \Disk{4} $ infatti $ K^{(2)} = \Pjc{1} $, poi prendo $ \Disk{4} $
+so che $ \partial \Disk{4} = \Sph{3} $ e la mappa al quoziente è $ \pi \colon \Sph{3} \to \Pjc{1} $
+che è fatta così:
+\begin{align*}
+  \pi \colon \Sph{3} & \mapsto \Pjc{1} \\
+  (z_0, z_1) & \mapsto [z_0, z_1]
+\end{align*}
+Posso fare agire $ \Sph{1} $:
+\begin{align*}
+  \Sph{1} \times \Sph{3} & \to \Sph{3} \\
+  (\lambda, (z_0, z_1)) & \mapsto (\lambda z_0, \lambda z_1)
+\end{align*}
+Siccome $ \lambda \in \Sph{1} $ allora $ | \lambda | = 1 $ e quindi $ | \lambda z_0 |^2 + | \lambda z_1 |^2 = 1 $.
+Faccio il quoziente $ \Pjc{1} = \quot{\Sph{3}}{\Sph{1}} $ e $ \pi $ è la proiezione al
+quoziente. Allora $ K^{(4)} = K^{(2)} \cup_\pi \Disk{4} \simeq \Pjc{2} $.
+
+In generale $ K^{(2n - 2)} $ si costruisce prendendo $ \Disk{2n} $ e con la mappa
+di proiezione $ \pi \colon \partial \Disk{2n} = \Sph{n-1} \to \Pjc{n-1} $, quindi $ K^{(2n -2)} \cup_\pi \Disk{2n} $.
+$ \Pjc{n} $ è un CW complesso ottenuto attaccando celle di dimensione $ 2j $ per $ 0 \leq j \leq n $
+Quindi ho una $ 0 $-cella, una $ 1 $-cella, \dots, una $ 2n $-cella.
+
+\begin{osservation}
+  In generale $ \Pjc{n} = \Pjc{n-} \cup \C^n $ quindi si può srotolare.
+\end{osservation}
+
+\begin{proposition}
+  Vale che $ K^{(2n)} \simeq \Pjc{n} $.
+\end{proposition}
+\begin{proof}
+  La dimostrazione è per induzione. Assumo che $ K^{2t} = \Pjc{t} $ per $ 0 \leq t \leq n-1 $.
+\end{proof}
+[MANCA TUTTA LA SECONDA PARTE DI QUESTA LEZIONE]
+
+%     lezione 11
+%  _     _____ ________ ___  _   _ _____   _ _
+% | |   | ____|__  /_ _/ _ \| \ | | ____| / / |
+% | |   |  _|   / / | | | | |  \| |  _|   | | |
+% | |___| |___ / /_ | | |_| | |\  | |___  | | |
+% |_____|_____/____|___\___/|_| \_|_____| |_|_|
+
+\begin{lemma}
+  Sia $ X $ un CW complesso finito i cui $ k $-scheletri sono $ X^{(0)}, \dots, X^{(k)} $, allora
+  vale che:
+  \begin{enumerate}
+  \item
+    \[
+      H_k(X^{(n)}, X^{(n-1)}) \cong
+      \begin{cases}
+        \Z^{a_n} & \text{se } k = n \text{ con $ a_n $ numero di $ k $-celle} \\
+        0 & \text{se } k \not = n
+      \end{cases}
+    \]
+  \item
+    \[
+      H_k(X^{(n)}) \cong
+      \begin{cases}
+        0 & \text{per } k > n \\
+        H_k(X) & \text{per } k < n
+      \end{cases}
+    \]
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  Considero $ q \colon (Y,A) \to \left( \quot{Y}{A}, \quot{A}{A} \right) $ (lo spazio di arrivo
+  è uno spazio puntato in cui il quoziente rispetto $ A $ fa collassare $ A $ in un punto).
+  Si ha il risultato che dimostro dopo:
+  \[
+    H_k(Y,A) \cong H_k(\quot{Y}{A}, \quot{A}{A}) \cong \tilde{H}_k(\quot{Y}{A})
+  \]
+  Usandolo ho $ H_k(X^{(n)}, X^{(n-1)}) \cong \tilde{H}_k(\quot{X^{(n)}}{X^{(n-1)}}) $, ma
+  \[
+    X^{(n)} = X^{(n-1)} \cup_f \Disk{n}_{\alpha_i} \cup_{f_1} \dots \cup_{f_t} \Disk{n}_{\alpha_t} = \Sph{n}_{\alpha_1} \vee \dots \vee \Sph{n}_{\alpha_t}
+  \]
+  L'identificazione $ \quot{X^{(n)}}{X^{n-1}} $ fa collassare i bordi in un punto, quindi ottengo
+  un bouquet.
+  Osservo che:
+  \[
+    \tilde{H}_k(\Sph{n}_{\alpha_1} \vee \dots \vee \Sph{n}_{\alpha_t}) \cong \bigoplus \tilde{H}_k(\Sph{n}_{\alpha_j})
+  \]
+  Quindi ho automaticamente il risultato che volevo mostrare.
+  Se $ k > n $ è nullo, se $ k < n $ è $ \Z $ per ogni cella.
+  Questo è vero per induzione su $ t $.
+  \[
+    \tilde{h}_k(\Sph{n}) \cong
+    \begin{cases}
+      \Z     & \text{se } k = n \\
+      0      & \text{se } k \not = 0
+    \end{cases}
+  \]
+  Suppongo di conoscere $ \tilde{H}_k(\Sph{n}_1 \vee \dots \Sph{n}_t) $ voglio calcolare $ \tilde{H}_k(\Sph{n}_1 \vee \dots \Sph{n}_t) $.
+  Come notazione pongo $ Z_t = \Sph{n}_1 \vee \dots \Sph{n}_t $ e $ B = \Sph{n}_t $, cioè $ Z_t = Z_{t-1} \vee B $
+  vale la successione esatta lunga in omologia relativa:
+  \[
+    \begin{tikzcd}
+      \dots \rar & H_k(Z_{t-1}) \rar & H_k(Z_t) \rar          & H_k(Z_t, Z_{t-1}) \rar & H_{k-1}(Z_{t-1}) \rar & \dots
+    \end{tikzcd}
+  \]
+  Se $ k \not = n $ allora $ H_k(Z_{t-1}) = H_{t-1}(Z_{t-1}) = 0 $ quindi la successione è:
+  \[
+    \begin{tikzcd}
+      0 \rar   & H_k(Z_t) \rar     & H_k(Z_t, Z_{t-1}) \rar & 0
+    \end{tikzcd}
+  \]
+  Per $ k = 0 $ lo so calcolare, mi metto nel caso $ k \geq 2 $ e quindi
+  $ H_k(Z_t) = 0 $ per ipotesi induttiva quindi $ H_k(Z_t) \cong H_k(Z_t, Z_{t-1}) $.
+  Ma vale il risultato $ H_k(Y,A) \cong \tilde{H}_k(\quot{Y}{A}) $ quindi:
+  \[
+    \begin{tikzcd}
+      H_k(Z_t, Z_{t-1}) \cong \tilde{H}_k(\quot{Z_t}{Z_{t-1}}) \cong \tilde{H}_k(\Sph{n}_t) \cong \tilde{H}_k(B)
+    \end{tikzcd}
+  \]
+  Se invece $ k = n $ allora vale la successione esatta:
+  \[
+    \begin{tikzcd}
+      \dots \rar \tilde{H}_{n+1}(\quot{Z_t}{Z_{t-1}}) \rar & H_n(Z_{t-1}) \rar & H_n(Z_t) \rar  & H_n(Z_t, Z_{t-1}) \rar & H_{n-1}(Z_{t-1}) \rar & \dots
+    \end{tikzcd}
+  \]
+  Ma $ \quot{Z_t}{Z_{t-1}} \cong \Sph{n} $ quindi $ \tilde{H}_{n+1} \cong 0 $ e $ H_{n-1}(Z_{t-1}) \cong 0 $ per ipotesi induttiva
+  quindi:
+  \[
+    \begin{tikzcd}
+      0 \rar   & \Z^{t-1} \rar     & H_n(Z_t) \rar & \Z \rar & 0
+    \end{tikzcd}
+  \]
+  Quindi siccome la successione è spezzante $ H_n(Z_t) \cong \Z^t $. Questo era il primo punto.
+  Considero la successione esatta della coppia $ (X^{n}, X^{n-1}) $:
+  \[
+    \begin{tikzcd}
+      \dots \rar & H_{k+1}(X^{(n)}, X^{(n-1)}) \rar & H_k(X^{n-1}) \rar & H_k(X^{n}) \rar & H_{k}(X^{(n)}, X^{(n-1)}) \rar & \dots
+    \end{tikzcd}
+  \]
+  Ma adesso so quelli dell'omologia relativa, quindi se $ k \not \in \set{n, n-1} $ allora
+  $ H_{k+1}(X^{(n)}, X^{(n-1)}) $ e $ H_k(X^{(n)}, X^{(n-1)}) $ sono nulli quindi la successione diventa:
+  \[
+    \begin{tikzcd}
+      0 \rar   & H_k(X^{(n-1)}) \rar  & H_k(X^{(n)}) \rar & 0
+    \end{tikzcd}
+  \]
+  Quindi $ H_k(X^{(n-1)}) \cong X_k(X^{(n)}) $. Per $ k \not \in \set{n, n-1} $  se $ k \geq \not = 0 $ allora
+  $ H_k(X^{(0)}) = 0 $ in quanto $ X^{(0)} $ sono punti.
+  Se $ k < n $ considero la successione esatta lunga della coppia $ (X^{(n+1)}, X^{(n)}) $:
+  \[
+    \begin{tikzcd}
+      \dots \rar & H_{k+1}(X^{(n)}, X^{(n-1)}) \rar & H_k(X^{n-1}) \rar & H_k(X^{n}) \rar & H_{k}(X^{(n)}, X^{(n-1)}) \rar & \dots
+    \end{tikzcd}
+  \]
+  Se $ k < n $ sicuramente $ k + 1 \not = n + 1 $ quindi $ H_{k+1}(X^{(n+1)}, X^{(n)}) \cong 0 $, ma anche $ H_k(X^{(n+1)}, X^{(n)}) $
+  quindi $ H_k(X^{(n)}) \cong H_k(X^{(n+1)}) $.
+  Quindi $ H_k(X^{(n)}) \cong H_k(X^{(n-1)}) \dots \cong H_k(X^{(n)}) \cong H_k(X) $.
+\end{proof}
+
+Dimostro il risultato che ho lasciato in sospeso:
+\begin{lemma}
+  Sia $ (Y,A) $ e $ q \colon (Y,A) \to \left(\quot{Y}{A}, \quot{A}{A} \right) $
+  se $ Y = X^{(n)} $ e $ A = X^{(n-1)} $ allora esiste un intorno $ V $
+  di $ A $ in $ X $ tale che $ A $ sia un retratto di deformazione di $ A $.
+  Le coppie $ (Y,A) $ con $ A \subseteq Y $ entrambi dotati di struttura di CW complessi
+  che soddisfano questa condizione sono dette \textbf{coppie buone}.
+\end{lemma}
+\begin{proof}
+  Per la funtorialità:
+  \[
+    \begin{tikzcd}
+      H_n(Y,A) \rar \dar{q_\star} & H_n(Y,V) \dar{q_\star} \\
+      H_n(\quot{Y}{A}, \quot{A}{A}) \cong \tilde{H}_n(Y,A) \rar & H_n(\quot{Y}{A}, \quot{V}{A})
+    \end{tikzcd}
+  \]
+  Ho la terna $ (A, V, Y) $ tale che $ A \subseteq V \subseteq Y $ allora c'è l'inclusione
+  $ (Y,A) \incl (Y,V) $. A questa inclusione corrisponde la successione esatta lunga:
+    \[
+    \begin{tikzcd}
+      \dots \rar & H_{n+1}(Y, A) \rar & H_n(Y, A) \rar & H_k(Y,V) \rar & H_{n-1}(Y,A) \rar & \dots
+    \end{tikzcd}
+  \]
+  Ma $ V $è omotopa ad $ A $ quindi $ H_k(V,A) \cong H_k(A,A) \cong 0 $, infatti:
+  \[
+    \begin{tikzcd}
+      0 \rar   & H_k(A) \rar  & H_k(A) \rar  & H_k(A,A) \rar & 0
+    \end{tikzcd}
+  \]
+  Quindi $ H_k(Y,A) \cong H_n(Y,V) $. Per gli stessi motivi sono isomorfi
+  $ H_n(\quot{Y}{A}, \quot{A}{A}) $ siccome $ V $ ha lo stesso tipo di omotopia
+  di $ A $. Quindi ho:
+  \begin{align*}
+    i \colon A & \to V \\
+    r \colon V & \to A
+  \end{align*}
+  Prendo:
+  \[
+    j \colon \quot{A}{A}  \to \quot{V}{A}
+  \]
+  E $ \quot{A}{A} $ è retratto di $ \quot{V}{A} $,
+  \[
+    \rho \colon \quot{V}{A}  \to \quot{A}{A}
+  \]
+  è la retrazione cioè tale che $ \rho \circ j = \Id{\quot{A}{A}} $ e $ j \circ \rho = \Id{\quot{V}{A}} $.
+  Questi si ottengono componendo l'omotopia con la proiezione al quoziente.
+  Io ho $ A \subseteq V \subseteq Y $, faccio l'escissione di $ A $:
+  \[
+    \begin{tikzcd}
+      H_n(Y,A) \rar{\cong} \dar{q_\star} & H_n(Y,V)  \dar{q_\star}& H_n(\quot{Y}{A}, \quot{V}{A}) \lar{\cong} \\
+      H_n(\quot{Y}{A}, \quot{A}{A}) \rar{\cong} & H_n(\quot{Y}{A}, \quot{V}{A}) & H_n(\quot{Y}{A} \setminus \quot{A}{A}, \quot{V}{A} \setminus \quot{A}{A}) \lar{\cong}
+    \end{tikzcd}
+  \]
+  Ho $ \quot{A}{A} \subseteq \quot{V}{A} \subseteq \quot{Y}{A} $.
+  Mi rimane da mostrare che $ H_k(\quot{Y}{A}, \quot{V}{A}) \cong H_n(\quot{Y}{A} \setminus \quot{A}{A}, \quot{V}{A} \setminus \quot{A}{A}) $.
+  Ma questo è vero in quanto.
+  In questo è fondamentale prendere l'aperto, ma nel CW complesso posso sempre farlo.
+\end{proof}
+\begin{exercise}
+  Dimostrare che la coppia formata da un $ k $-scheletro e un $ k-1 $-scheletro è buona.
+\end{exercise}
+
+Sia $ X $ un CW complesso di tipo finito, voglio costruire un complesso $ (S_\bullet^{CW}, d^{CW}) $ e
+voglio mostrare che l'omologia di questo complesso, detta omologia cellulare, è isomorfa con
+l'omologia singolare:
+\[
+  H_k^{CW}(X) = H_k(S^{CW}_\bullet(X)) \qquad H_k^{CW} = H_k(X^{(k)}, X^{(k-1)})
+\]
+Definisco $ S_k^{CW}(X) := H_k(X^{(k)}, X^{(k-1)}) $. So che $ (X^{(k+1)}, X^{(k-1)}) $ è una coppia
+e ho la successione esatta in omologia:
+\[
+  \begin{tikzcd}
+    \dots \rar H_{k+1}(X^{(k)}) \rar & H_{k+1}(X^{(k+1)}) \rar                                        & H_{k+1}(X^{(k+1)}, X^{(k)}) \rar           & H_k(X^{k})                   & \dots
+  \end{tikzcd}
+\]
+Poi ho la coppia $ (X^{(k)}, X^{(k-1)}) $ e quindi la successione
+\[
+  \begin{tikzcd}
+    \dots \rar                       & H_{k+1}(X^{(n)}, X^{(n-1)}) \rar                               & H_k(X^{n-1}) \rar                          & H_k(X^{n}) \rar              & H_{k}(X^{(n)}, X^{(n-1)}) \rar & \dots
+  \end{tikzcd}
+\]
+Nel complesso ho:
+\[
+  \begin{tikzcd}[nodes={column sep=4pt}]
+  0            \arrow{dr}{}      & {}                   & {}                                         & {}                           & 0  & {}\\
+  {}                             & H_k(X^{(k)})   \arrow{dr}{}                 & {}                                    & H_k(X^{(k+1)})  \arrow{ur}{} & {} & {}\\
+  {}                             & {}             & H_k(X^{(k)})   \arrow{dr}{j_k}   \arrow{ur}{\tau} & {}                           & {} & {}\\
+  {}  & H_k(X^{(k+1)}, X^{(k)})  \arrow{ur}{\delta_{k+1}} \arrow{rr}{d_{k+1}^{CW}} & {}      & H_k(X^{(k)}, X^{(k-1)})  \arrow{rr}{d_{k}^{CW}}   \arrow{dr}{\delta_k}  & {} &  H_{k-1}(X^{(k-1)}, X^{(k-2)}) \\
+  {} & {} & {} & {} & H_{k-1}(X^{k-1}) \arrow{ur}{j_{k-1}} & {} & {}
+\end{tikzcd}
+\]
+Cioè definisco $ d_k^{CW} = j_{k-1} \circ \delta_k $. Devo mostrare che questo è un complesso, cioè $ d^2 = 0 $,
+quindi posso definire l'omologia:
+\[
+   d_k^{CW} \circ  d_k^{CW} = j_{k-1} \circ \delta_k \circ j_k \circ \delta_{k-1} = 0
+\]
+Infatti $ \delta_k \circ j_k $ è composizione in una successione esatta quindi è nulla.
+$ d^{CW} $ è un operatore di bordo.
+
+Ora voglio mostrare che l'omologia è isomorfa a quella singolare, devo mostrare
+che:
+\[
+  H_k(X) \cong j_k\left(\quot{\ker{d_k^{CW}}}{\im{d_{k+1}^{CW}}}\right)
+\]
+Ho visto che se $ k < n $ allora $ H_k(X^{(n)}) \cong H_k(X) $ posso prendere $ n = k + 1 $
+e ho $ H_k(X) \cong H_k(X^{(k+1)}) \cong \quot{H_k(X^{(k)})}{\ker{\tau}} $ in quanto la successione
+è esatta. Ma $ \ker{\tau} = \im{\delta_{k+1}} $ quindi $ H_k(X) \cong \quot{H_k(X^{(k)})}{\im{\delta_{k+1}}} $.
+Poi ho $ j_k \colon H_k(X^{(k)}) \to S_k^{CW}(X) $ cosa è $ j_k(\im{\delta_{k+1}}) $
+\[
+  j_k\left(\im{\delta_{k+1}}\right) = \im{j_k \circ \delta_{k+1}}
+\]
+Infatti se $ z \in j_k\left(\im{\delta_{k+1}}\right) $ allora $ z = j_k \circ \delta_{k+1}(u) $,
+se $ w \in \im{j_k \circ \delta_{k+1}} $ allora $ w = j_k \delta_{k+1}(r) $. Quindi
+$ j_k\left(\im{\delta_{k+1}}\right) = \im{d_{k+1}^{CW}} $, e perciò;
+\[
+  H_k(X) \cong \quot{H_k(X^{(k)})}{\im{d^{CW}_{k+1}}}
+\]
+Se faccio vedere che $ \im{d_{k+1}^{CW}} = \ker{d_k^{CW}} $ ho finito. Avevo mostrato che
+$ H_k(X^{(k-1))}) = 0 $ quindi se $ n = k - 1 $ allora $ H_k(X^{(k-1)}) = 0 $ quindi
+$ j_k $ è iniettiva. Devo capire cosa è $  j_k\left(\im{H_k(X^{(k)})}\right) $, questo è
+$ \im{j_k} $ ma la successione è esatta quindi $ \im{j_k} = \ker{\delta_k} $.
+
+Se dimostro che $ \ker{\delta_k} \cong \ker{d_k^{CW}} $ ho finito.
+Quindi $ j_k(H_k(X^{(k)})) \cong \ker{\delta_k} \cong \ker{d_k^{CW}} $ quindi
+\[
+  H_k(X) \cong \quot{ker{d_k^{CW}}}{d_{k+1}^{CW}} \cong H_k^{CW}(X)
+\]
+Ma quello che ho detto prima è vero perché se $ z \in \ker{\delta_k} $:
+\[
+  \delta_k(z) = 0 \iff j_{k-1} \circ \delta_k(z) = 0 \Rightarrow z \in \ker{j_k \circ \delta_k} = \ker{d_k^{CW}}
+\]
+Ho $ j_{k-1} \colon \ker{\delta_k} \to \ker{d_k^{CW}} $ e $ j_{k-1} \left(\ker{\delta_k} \right) \subseteq \ker{d_{k}^{CW}} $.
+Mostro l'inclusione inversa:
+Se $ w \in \ker{d_k^{CW}} $ allora $ 0 = d_k^{CW}(w) = j_{k-1} \circ \delta_k (w) $.
+Quindi $  j_{k-1} \circ \delta_k (w) = 0 $ ma $ j_{k-1} $ è iniettivo e perciò:
+$ \delta_k(w) = 0 $ quindi $ w \in \ker{\delta_k} $.
+
+\begin{osservation}
+  So che $ S_k^{CW}(X) \cong H_k(X^{(k)}, X^{(k-1)}) \cong \Z^{a_k} $ con $ a_k $ numero di celle,
+  cosa posso dire su $ d_k^{CW} \colon S_k^{CW} \to S_k^{CW}(X) $ ?
+
+  Una base di $ S_k^{CW}(X) $ è in corrispondenza biunivoca con le celle,
+  posso considerare $ e_1, \dots, e_k $ come una base di $ S_k^{CW}(X) $.
+  $ d_k^{CW}(e_j) $ è una combinazione lineare a coefficienti interi di $ k-1 $-celle:
+  \[
+    d^{CW}_k (e_j) = \sum A_{jm}f_m
+  \]
+  Coma si calcolano gli $ A_{jm} $?
+  Prendo $ e_j $ un generatore di $ H_k(X^{(k)}, X^{(k-1)}) \cong \bigoplus_j H_k(\Sph{k}_j) $.
+  $ e_j $ genera il bordo di una cella.
+
+  Posso rileggere gli $ H_k $:
+  \[
+    H_k(\Sph{k}_k) \cong H_k(\quot{\Disk{k}}{\partial \Disk{k}}) \cong H_k(\Disk{n}, \partial \Disk{n}) =
+    H_k(\Disk{k}, \Sph{k-1}) \cong H_{k-1}(\Sph{k-1})
+  \]
+  Sono partito da $ \Sph{k} $ e sono arrivato in $ \Sph{k-1} $.
+  $ d_k^{CW} $ è la mappa in omologia indotta dall'applicazione:
+  \[
+    \begin{tikzcd}
+      \partial \Disk{k} \rar{\phi_k} \arrow{dr}{\eta_j} & X^{(k-1)} \dar & {}\\
+      {} & \quot{X^{(k-1)}}{X^{(k-2)}} = \bigvee_\alpha \Sph{k-1}_\alpha \rar{u_\beta} & \Sph{k-1}_\beta
+    \end{tikzcd}
+  \]
+  Allora $ A_{jb} = \deg{u_\beta \circ \eta_j} $.
+\end{osservation}
 
 
             %             TODO:
