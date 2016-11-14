@@ -5,12 +5,12 @@
                      '(("scrbook" "10pt" "twoside=false" "x11names")))
    (TeX-add-to-alist 'LaTeX-provided-package-options
                      '(("inputenc" "utf8") ("babel" "italian") ("fontenc" "T1") ("hyperref" "hidelinks") ("cancel" "makeroom")))
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperref")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperimage")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperbaseurl")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "nolinkurl")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "nolinkurl")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperbaseurl")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperimage")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperref")
    (add-to-list 'LaTeX-verbatim-macros-with-delims-local "path")
    (TeX-run-style-hooks
     "latex2e"
@@ -70,6 +70,7 @@
     "latexcirc"
     "circ"
     "phi"
+    "setminus"
     "emptyset"
     "svgwidth")
    (LaTeX-add-labels
@@ -156,6 +157,7 @@
     "Grado"
     "Gruppo derivato"
     "Teorema di Hurewicz"
+    "Bouquet"
     "Mappa tra complessi"
     "Successione esatta corta"
     "Omomorfismo di connessione"
@@ -183,7 +185,9 @@
     "Spazio a omologia razionale ! \\vedi{Spazio dodecaedrico}"
     "Rappresentazione spinoriale di SO(3)"
     "Caratteristica di Eulero di un CW-complesso"
-    "Spazio proiettivo complesso")
+    "Spazio proiettivo complesso"
+    "Coppia Buona"
+    "Omologia cellulare")
    (LaTeX-add-counters
     "exercises"))
  :latex)

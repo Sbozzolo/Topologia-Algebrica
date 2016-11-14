@@ -23,17 +23,27 @@
 \author{Gabriele Bozzola \\ Matricola: 882709}
 \date{Gennaio 2017}
 
-\newtheorem{lemma}[section]{Lemma}
+\newcounter{lemmac}
+\newtheorem{lemma}[lemmac]{Lemma}
 % \newenvironment{proof}{{\textbf{Dimostrazione}:}}{\hfill $\blacksquare$}
 
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Sph}[1][]{\mathcal{S}^#1}
 
+\let\latexcirc=\circ
+\newcommand{\ccirc}{\mathbin{\mathchoice
+  {\xcirc\scriptstyle}
+  {\xcirc\scriptstyle}
+  {\xcirc\scriptscriptstyle}
+  {\xcirc\scriptscriptstyle}
+}}
+\newcommand{\xcirc}[1]{\vcenter{\hbox{$#1\latexcirc$}}}
+\let\circ\ccirc
 
 \begin{document}
 \maketitle
 
-\section*{Esercizio 1.1.19 (iv)}
+\section{Esercizio 1.1.19 (iv)}
 Siano $ X $ e $ Y $ due spazi topologici, dico che $ X $ è
 omotopicamente equivalente a $ Y $ se esiste una funzione
 continua $ f \colon X \to Y $ tale che esiste una funzione
@@ -132,7 +142,7 @@ A questo punto:
 \hfill $ \square $
 \end{enumerate}
 
-\section*{Esercizio 1.1.19 (v)}
+\section{Esercizio 1.1.19 (v)}
 Siano $ X, Y $ spazi topologici omotopicamente equivalenti quindi
 esiste una funzione continua $ f \colon X \to Y $, detta
 \emph{relazione di omotopia} tale che esista una seconda
@@ -147,7 +157,7 @@ vale che $ h \circ g \sim 1_Y $ e $ g \circ h \sim 1_X $ in quanto per
 ipotesi  $ f \circ g \sim 1_Y $ e $ g \circ f \sim 1_X $ e $ f \sim h $.
 \hfill $ \square $
 
-\section*{Esercizio 1.1.19 (vii)}
+\section{Esercizio 1.1.19 (vii)}
 Siano $ X, Y $ spazi topologici e $ f \colon X \to X $,
 $ g \colon Y \to Y $ funzioni continue tali che $ f \circ g $
 e $ g \circ f $ siano equivalenze omotopiche, devo mostrare
@@ -183,7 +193,7 @@ omotopica.
 Si può utilizzare un ragionamento analogo per $ \gamma $.
 \hfill $ \square $
 
-\section*{Esercizio 1.2.33 (v)}
+\section{Esercizio 1.2.33 (v)}
 È dato l'omomorfismo:
 \begin{align*}
   f \colon \Sph{1} \times \Sph{1} & \to  \Sph{1} \times \Sph{1} \\
@@ -200,8 +210,9 @@ cui sostanzialmente $ n, m \in \Z $ contano il numero
 di avvolgimenti del laccio attorno alle due circonferenze,
 per questo il gruppo fondamentale è $ \pi_1(\Sph{1} \times \Sph{1})
 \cong \Z \times \Z $.
+{\huge FINIRE}
 
-\section*{Esercizio 1.2.33 (xii)}
+\section{Esercizio 1.2.33 (xii)}
 Per assurdo $ \Sph{1} $ e $ \Sph{n} $ con $ n \geq 2 $ sono omotopicamente
 equivalenti, questo implica che i loro gruppi fondamentali sono isomorfi,
 indipendentemente dal punto base in quanto gli spazi sono connessi per archi.
@@ -210,7 +221,7 @@ siccome i gruppi fondamentali non sono isomorfi gli spazi non possono
 essere omotopicamente equivalenti.
 \hfill $ \square $
 
-\section*{Esercizio 1.2.33 (xiii)}
+\section{Esercizio 1.2.33 (xiii)}
 Per assurdo esiste una funzione continua $ f \colon \mathbb{R}^2 \to \mathbb{R}^n $
 con $ n > 2 $ che sia omeomorfismo. Tolgo un punto $ p $ da $ \mathbb{R}^2 $,
 se $ f $ omeomorfismo anche la restrizione $ \tilde{f} $ di $ f $ su
@@ -237,10 +248,9 @@ allora $ \pi_1 (\mathbb{R} \times \Sph{1}) = \Z $ e $ \pi_1(\mathbb{R} \times \S
 questi gruppi non sono isomorfi, e quindi ho trovato l'assurdo.
 \hfill $ \square $
 
-% \section*{Esercizio 1.3.11 (iv)}
+% \section{Esercizio 1.3.11 (iv)}
 
-
-\section*{Esercizio 1.5.19 (vii)}
+\section{Esercizio 1.5.19 (vii)}
 Il gruppo fondamentale di uno spazio topologico $ X $ sul punto base $ x_0 \in X $
 è:
 \[
@@ -260,8 +270,53 @@ allora sono tutte equivalenti al laccio costante $ C_{h(1)} $ e quindi il gruppo
 fondamentale $ \pi_1(X, h(1)) $ contiene questa sola classe di equivalenza, ed è
 quindi banale. Questo vale $ \forall x_0 \in X $, basta considerare una funzione tale
 che $ h(1) = x_0 $.
+\hfill $ \square $
 
-\section*{Esercizio 1.9 (21)}
+\section{Esercizio 1.9 (7)}
+\label{esercizio:grado_sfere}
+Per risolvere velocemente questo esercizio sono utili alcuni lemmi:
+\begin{lemma}
+  Siano $ f,g \colon \Sph{n} \to \Sph{n} $ due mappe continue, se
+  $ \deg f = \deg g $ allora $ f \sim g $, cioe se due applicazioni
+  hanno le stesso grado allora sono omotope.
+\end{lemma}
+\begin{lemma}
+  Sia $ \rho_i $ la riflessione rispetto al piano $ x_i = 0 $:
+  \begin{align*}
+    \rho_i \colon \Sph{n} & \to \Sph{n} \\
+    (x_1\dots, x_{n+1}) & \mapsto (x_1,\dots,-x_i, \dots, x_{n+1})
+  \end{align*}
+  allora il suo grado è $ -1 $, cioè $ \deg \rho_i = -1 \; \forall i \in \set{1, \dots, n+1} $.
+\end{lemma}
+\begin{lemma}
+  \label{lemma:composizione_grado}
+  Siano $ f,g \colon \Sph{n} \to \Sph{n} $ due mappe continue allora
+  $ \deg {(f \circ g)} = \deg{f} \, \deg{g} $.
+\end{lemma}
+Utilizzando questi lemmi dimostrati (o enunciati) a lezione diventa
+semplice classificare tutte le mappe della forma:
+\[
+  (x_1, \dots, x_{n+1}) \mapsto (\pm x_1, \dots, \pm x_{n+1})
+\]
+Per rappresentare tutto questo insieme si può scrivere:
+\[
+   r^{i_1\dots i_{n+1}} \colon (x_1, \dots, x_{n+1}) \mapsto ( (-)^{i_1} x_1, \dots, (-)^{i_{n+1}} x_{n+1}) \text{ con } i_j \in \set{0,1} \; \forall j \in \set{1,\dots, n}
+\]
+L'insieme di queste applicazioni forma un gruppo discreto finito
+generato dalle riflessioni $ \rho_i $, e la generica mappa si può
+scrivere come:
+\[
+  r^{i_1\dots i_{n+1}} = \rho_{n+1}^{i_{n+1}} \circ \dots \circ \rho_{1}^{i_{1}} \text{ con } i_j \in \set{0,1} \; \forall j \in \set{1,\dots, n}
+\]
+Utilizzando il lemma \ref{lemma:composizione_grado} si ha che:
+\[
+  \deg r^{i_1\dots i_{n+1}} = \prod_j^{n+1} i_{j} = \pm 1
+\]
+Quindi tutte le funzioni $ r^{i_1\dots i_{n+1}} $ si ripartiscono in
+due classi di equivalenza, una con rappresentante l'identità,
+l'altra con rappresentante la mappa antipodale.
+
+\section{Esercizio 1.9 (21)}
 Sia:
 \begin{align*}
   q_1 \colon & \Sph{1} \to \Sph{1} \\
@@ -305,6 +360,20 @@ Quindi a livello di gruppi di omologia:
 \end{align*}
 E quindi il grado è $ -1 $.
 \hfill $ \square $
+
+\section{Esercizio 4.2.27 (v)}
+
+Utilizzando i risultati dell'esercizio \ref{esercizio:grado_sfere}
+e le medesima notazione, la funzione $ f_k $ si può scrivere come
+$ f_k = \rho_k \circ \dots \circ \rho_1 $, quindi usando il lemma del grado della
+composizione di funzioni su sfere:
+\[
+  \deg {f_k} =
+  \begin{cases}
+    + 1 & \text{se $ k $ è pari} \\
+    - 1 & \text{se $ k $ è dispari}
+  \end{cases}
+\]
 
 \end{document}
 

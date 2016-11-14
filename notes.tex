@@ -73,6 +73,7 @@
 \let\circ\ccirc
 
 \let\phi\varphi
+\let\setminus-
 \let\emptyset\varnothing
 
 \renewcommand\labelitemi{\tiny$\bullet$}
@@ -1613,6 +1614,16 @@ Per dimostrare che $ \Ab{\pi_1(X)} \cong H_1(X) $ mi serve prima un lemma:
   \end{itemize}
 \end{example}
 
+\newmathsymb{bouquet}{\vee}{Bouquet}
+\begin{definition}
+  Siano $ (X,x_0) $ e $ (Y,y_0) $ due spazi topologici puntati, si definisce il \textbf{bouquet}\index{Bouquet}
+  $ X \vee Y $ come lo spazio topologico definito da:
+  \[
+    X \vee Y = \quot{X \invamalg Y}{\sim}
+  \]
+  in cui $ \sim $ identifica $ x_0 $ con $ y_0 $. In pratica si incollano $ X $ e $ Y $ per lo stesso punto.
+\end{definition}
+
 % lezione 4
 % _     _____ ________ ___  _   _ _____   _  _
 % | |   | ____|__  /_ _/ _ \| \ | | ____| | || |
@@ -2502,9 +2513,12 @@ $ \sigma_k $ è l'unica mappa che c'è.
     è esatta.
   \item (Dimensione): $ H_k (P) = 0 $ $ \forall k \not = 0 $ dove $ P $ è lo spazio formato da un solo punto.
   \item (Additività): Se $ X $ è la somma topologica di spazi $ X_\alpha $ allora $ H_p(X) = \bigoplus H_p(X_\alpha) $
-  \item (Escissione): Se $ U $ è un aperto in $ X $ tale che $ \bar{U} \subset \mathrm{int}(A) $ allora la mappa di
-    inclusione di $ (X \setminus U, A \setminus U) $ in $ (X, A) $ induce un isomorfismo tra $ H_k $, cioè togliendo
-    un opportuno insieme da $ (X,A) $ l'omologia non sente della escissione.
+  \item (Escissione): Se $ U $ è un aperto in $ X $ tale che $ \bar{U} \subseteq \mathrm{int}(A) $ allora la mappa di
+    inclusione di $ (X \setminus U, A \setminus U) $ in $ (X, A) $ induce un isomorfismo tra i gruppi di omologia:
+    \[
+      H_k(X \setminus U, A \setminus U) \cong H_k(X, A) \; \forall k
+    \]
+    (cioè togliendo un opportuno insieme da $ (X,A) $ l'omologia non sente della escissione).
   \end{enumerate}
   Per trasformazione naturale si intende che $ \forall f \colon (X, A) \to (Y, B) $ il seguente diagramma è commutativo:
   \[
@@ -3272,7 +3286,7 @@ Voglio usare la teoria del grado per un'applcazione del teorema della palla pelo
   Considero riflessione rispetto al sottospazio $ x_{n+1} = 0 $ in $ \RN{n+1} $
   \begin{align*}
     \rho \colon \Sph{n} & \to \Sph{n} \\
-    (x_1, \dots, x_{n+1}) & \mapsto (x_1, \dots, - x_{n-1})
+    (x_1, \dots, x_{n+1}) & \mapsto (x_1, \dots, - x_{n+1})
   \end{align*}
   Il grado di questa applicazione è $ - 1 $.
 \end{proposition}
@@ -4057,17 +4071,213 @@ Quindi ho una $ 0 $-cella, una $ 1 $-cella, \dots, una $ 2n $-cella.
 % | |   | ____|__  /_ _/ _ \| \ | | ____| / / |
 % | |   |  _|   / / | | | | |  \| |  _|   | | |
 % | |___| |___ / /_ | | |_| | |\  | |___  | | |
-% |_____|_____/____|___\___/|_| \_|_____| |_|_|
+
+
+\section{Costruzione dell'omologia cellulare}
+
+\begin{definition}
+  Sia $ (Y,A) $ CW complessi con $ A \subseteq Y $
+  la coppia $ (Y,A) $ si dice \textbf{buona}\index{Coppia Buona} se
+  allora esiste un intorno $ V $ di $ A $ in $ Y $ tale che $ A $
+  sia un retratto di deformazione di $ A $.
+\end{definition}
+\begin{osservation}
+  Siccome $ V $ è un intorno di $ A $ allora è aperto e vale
+  che $ \bar{A} \subseteq \mathrm{int}(V) = V $.
+\end{osservation}
 
 \begin{lemma}
-  Sia $ X $ un CW complesso finito i cui $ k $-scheletri sono $ X^{(0)}, \dots, X^{(k)} $, allora
-  vale che:
+  Per coppie buone $ (Y,A) $ la proiezione al quoziente
+  \[
+    q \colon (Y,A) \to \left(\quot{Y}{A}, \quot{A}{A} \right)
+  \]
+  induce un isomorfismo:
+  \[
+    q_\star \colon H_n(Y,A) \to  H_n(\quot{Y}{A}, \quot{A}{A})
+  \]
+\end{lemma}
+\begin{proof}
+  Essendo $ A $ retratto di deformazione di $ V $ esiste
+  una mappa di inclusione $ i \colon A \to V $, per la funtorialità
+  sono ben definite le mappe a livello di omologia:
+  \[
+    \begin{tikzcd}
+      H_n(Y,A) \rar{i_\star} \dar{q_\star} & H_n(Y,V) \dar{q_\star} \\
+      H_n(\quot{Y}{A}, \quot{A}{A}) \cong \tilde{H}_n(Y,A) \rar & H_n(\quot{Y}{A}, \quot{V}{A})
+    \end{tikzcd}
+  \]
+  $  H_n(\quot{Y}{A}, \quot{A}{A}) \cong \tilde{H}_n(\quot{Y}{A}) $ in quanto il quoziente
+  di $ A $ con sé stesso fa collassare $ A $ in un punto, quindi il gruppo di omologia
+  è relativo ad un punto, e quindi è l'omologia ridotta.
+  Ho la terna $ (A, V, Y) $ tale che $ A \subseteq V \subseteq Y $ allora c'è l'inclusione
+  $ (Y,A) \incl (Y,V) $. A questa inclusione corrisponde la successione esatta lunga:
+  \[
+    \begin{tikzcd}
+      \dots \rar & H_{n+1}(V, A) \rar & H_n(Y, A) \rar & H_n(Y,V) \rar & H_{n}(V,A) \rar & \dots
+    \end{tikzcd}
+  \]
+  Ma $ V $ è omotopa ad $ A $ quindi $ H_n(V,A) \cong H_n(A,A) $ per l'assioma dell'omolotopia
+  Ma $ H_n(A,A) \cong 0 $, infatti:
+  $ H_n(A,A) \cong 0 \; \forall k $ in quanto il gruppo di omologia relativa
+  di $ A $ con $ A $ stesso è definito dalla successione:
+  \[
+    \begin{tikzcd}
+      0 \rar   & H_k(A) \rar  & H_k(A) \rar  & H_k(A,A) \rar & 0
+    \end{tikzcd}
+  \]
+  Ma $ H_k(A) \cong H_k(A) $ quindi  $ H_k(A,A) \cong \quot{H_k(A)}{H_k(A)} \cong 0 $.
+  La successione diventa:
+  \[
+    \begin{tikzcd}
+      0 \rar & H_n(Y, A) \rar & H_n(Y,V) \rar & 0
+    \end{tikzcd}
+  \]
+  Quindi $ H_k(Y,A) \cong H_n(Y,V) $.
+  Se mostro che anche $ \quot{A}{A} $ è retratto di $ \quot{V}{A} $
+  allora per  gli stessi motivi sono isomorfi
+  $ H_n(\quot{Y}{A}, \quot{A}{A}) $ e $ H_n(\quot{Y}{A}, \quot{V}{A}) $.
+  % siccome $ V $ ha lo stesso tipo di omotopia di $ A $.
+  Quindi ho:
+  \begin{align*}
+    i \colon A & \to V \\
+    r \colon V & \to A
+  \end{align*}
+  E $ \quot{A}{A} $ è retratto di $ \quot{V}{A} $,
+  Infatti compongo $ i $ e $ r $ con le proiezioni al quoziente:
+  \begin{align*}
+    j \colon \quot{A}{A} & \to \quot{V}{A} \\
+    \rho \colon \quot{V}{A} & \to \quot{A}{A}
+  \end{align*}
+  Sono tali che $ \rho \circ j = \Id{\quot{A}{A}} $ e $ j \circ \rho = \Id{\quot{V}{A}} $,
+  in quanto per ipotesi $ r $ è retrazione per $ i $ e
+  quindi $ \rho $ è retrazione per $ j $.
+  Io ho $ A \subseteq V \subseteq Y $, faccio l'escissione di $ A $:
+  \[
+    \begin{tikzcd}
+      H_n(Y,A) \rar{\cong} \dar{q_\star} & H_n(Y,V)  \dar{q_\star}& H_n({Y} \setminus {A}, {V} \setminus {A}) \lar{\cong} \dar{q_\star} \\
+      H_n(\quot{Y}{A}, \quot{A}{A}) \rar{\cong} & H_n(\quot{Y}{A}, \quot{V}{A}) & H_n(\quot{Y}{A} \setminus \quot{A}{A}, \quot{V}{A} \setminus \quot{A}{A}) \lar{\cong}
+    \end{tikzcd}
+  \]
+  Ho $ \quot{A}{A} \subseteq \quot{V}{A} \subseteq \quot{Y}{A} $.
+  Inoltre
+  \[
+    H_k(\quot{Y}{A}, \quot{V}{A}) \cong H_n(\quot{Y}{A} \setminus \quot{A}{A}, \quot{V}{A} \setminus \quot{A}{A})
+  \]
+  per l'assioma di escissione che posso applicare in quanto vale che $ \bar{A} \subset \mathrm{int}(V) $.
+  In questo è necessario che la coppia sia buona, ma nei CW complessi è sempre così, come si può
+  verificare.
+  \begin{exercise}
+    Dimostrare che la coppia formata da un $ k $-scheletro e un $ k-1 $-scheletro è buona.
+  \end{exercise}
+  La $ q_\star $ di destra è un isomorfismo perché la sua restrizione sul complementare di $ A $
+  in $ Y $ è un omeomorfismo. Per la commutatività del diagramma $ q_\star $ è isomorfismo.
+\end{proof}
+\begin{corollary}
+  Se $ (Y,A) $ è una coppia buona allora vale che $ \tilde{H}_k(\quot{Y}{A}) \cong H_k(Y,A) $.
+\end{corollary}
+
+\begin{lemma}
+  Vale che:
+  \[
+    \tilde{H}_k(\Sph{n}_{\alpha_1} \vee \dots \vee \Sph{n}_{\alpha_t}) \cong \bigoplus \tilde{H}_k(\Sph{n}_{\alpha_j}) \cong
+    \begin{cases}
+      \Z^t & \text{se $ k = n $} \\
+      0 & \text{se $ k \not =  n $}
+    \end{cases}
+  \]
+  dove $ t $ è il numero di sfere.
+\end{lemma}
+\begin{proof}
+  Lavoro con $ n $ fissato, conosco l'omologia delle sfere,
+  in particolare quella ridotta è:
+  \[
+    \tilde{H}_k(\Sph{n}) \cong
+    \begin{cases}
+      \Z     & \text{se } k = n \\
+      0      & \text{se } k \not = n
+    \end{cases}
+  \]
+  Per $ k = 0 $ e $ k = 1 $ so calcolare i gruppi di omologia perché sono
+  il gruppo fondamentale è il suo abelianizzato,
+  mi metto quindi nel caso $ k \geq 2 $.
+  Nel caso $ k \geq 2 $ omologia ridotta coincide con quella usuale.
+  So anche calcolare i gruppi di omologia nel caso di una sfera,
+  cioè $ t = 1 $.
+
+  La dimostrazione è per induzione:
+  suppongo di conoscere $ \tilde{H}_k(\Sph{n}_1 \vee \dots \Sph{n}_{t-1}) $
+  voglio calcolare $ \tilde{H}_k(\Sph{n}_1 \vee \dots \Sph{n}_t) $.
+  Come notazione pongo $ Z_t = \Sph{n}_1 \vee \dots \Sph{n}_t $ e $ B = \Sph{n}_t $,
+  cioè vale che $ Z_t = Z_{t-1} \vee B $.
+
+  L'ipotesi induttiva è:
+  \[
+    \tilde{H}_k(Z_{t-1}) \cong
+    \begin{cases}
+      \Z^{t-1} & \text{se $ k = n $} \\
+      0 & \text{se $ k \not = n $}
+    \end{cases}
+  \]
+  Siccome ci sono delle naturali mappe di inclusione vale
+  la successione esatta lunga in omologia relativa:
+  \[
+    \begin{tikzcd}[nodes={column sep=10pt}]
+      \dots \rar & H_k(Z_{t-1}) \rar & H_k(Z_t) \rar & H_k(Z_t, Z_{t-1}) \rar & H_{k-1}(Z_{t-1}) \rar & \dots
+    \end{tikzcd}
+  \]
+  Se $ k \not = n $ e siccome $ k \geq 2 $ allora $ H_k(Z_{t-1}) \cong 0 $ per ipotesi induttiva.
+  % e $  H_{k-1}(Z_{t-1}) \cong 0 $
+  Ma come dimostrato nel lemma precedente vale che
+  \[
+    H_k(Y,A) \cong \tilde{H}_k(\quot{Y}{A})
+  \]
+  Quindi:
+  \[
+    \begin{tikzcd}
+      H_k(Z_t, Z_{t-1}) \cong \tilde{H}_k(\quot{Z_t}{Z_{t-1}}) \cong \tilde{H}_k(\Sph{n}_t) \cong 0 %\tilde{H}_k(B)
+    \end{tikzcd}
+  \]
+  quindi la successione è:
+  \[
+    \begin{tikzcd}
+      0 \rar   & H_k(Z_t) \rar  & 0
+    \end{tikzcd}
+  \]
+  e quindi $ H_{k}(Z_t) = 0 $ siccome la successione è esatta.
+
+  Se invece $ k = n $ allora vale la successione esatta:
+  \[
+    \begin{tikzcd}[nodes={column sep=7pt}]
+      \dots \rar & H_{n+1}(Z_t, Z_{t-1}) \rar & H_n(Z_{t-1}) \rar & H _n(Z_t) \rar  & H_n(Z_t, Z_{t-1}) \rar & H_{n-1}(Z_{t-1}) \rar & \dots
+    \end{tikzcd}
+  \]
+  Ma
+  \[
+    H_{n+1}(Z_t, Z_{t-1}) \cong \tilde{H}_{n+1}(\quot{Z_t}{Z_{t-1}}) \cong \tilde{H}_{n+1}(\Sph{n}) \cong 0
+  \]
+  E:
+  \[
+    H_{n}(Z_t, Z_{t-1}) \cong \tilde{H}_{n}(\quot{Z_t}{Z_{t-1}}) \cong \tilde{H}_{n}(\Sph{n}) \cong \Z
+  \]
+  Mentre $ H_{n-1}(Z_{t-1}) \cong 0 $ e $ H_{n}(Z_{t-1}) \cong \Z^{t-1} $ per ipotesi induttiva quindi:
+  \[
+    \begin{tikzcd}
+      0 \rar   & \Z^{t-1} \rar & H_n(Z_t) \rar & \Z \rar & 0
+    \end{tikzcd}
+  \]
+  Quindi siccome la successione è spezzante $ H_n(Z_t) \cong \Z^t $.
+  [PERCHÈ LA SUCCESSIONE SPEZZA?]
+\end{proof}
+
+\begin{lemma}
+  Sia $ X $ un CW complesso finito i cui $ k $-scheletri sono $ X^{(0)} \subseteq  \dots \subseteq X^{(n)} \subseteq \dots \subseteq X^{(N)} = X $,
+  allora vale che:
   \begin{enumerate}
   \item
     \[
       H_k(X^{(n)}, X^{(n-1)}) \cong
       \begin{cases}
-        \Z^{a_n} & \text{se } k = n \text{ con $ a_n $ numero di $ k $-celle} \\
+        \Z^{a_n} & \text{se } k = n \text{ con $ a_n $ numero di $ n $-celle} \\
         0 & \text{se } k \not = n
       \end{cases}
     \]
@@ -4082,155 +4292,77 @@ Quindi ho una $ 0 $-cella, una $ 1 $-cella, \dots, una $ 2n $-cella.
   \end{enumerate}
 \end{lemma}
 \begin{proof}
-  Considero $ q \colon (Y,A) \to \left( \quot{Y}{A}, \quot{A}{A} \right) $ (lo spazio di arrivo
-  è uno spazio puntato in cui il quoziente rispetto $ A $ fa collassare $ A $ in un punto).
-  Si ha il risultato che dimostro dopo:
-  \[
-    H_k(Y,A) \cong H_k(\quot{Y}{A}, \quot{A}{A}) \cong \tilde{H}_k(\quot{Y}{A})
-  \]
-  Usandolo ho $ H_k(X^{(n)}, X^{(n-1)}) \cong \tilde{H}_k(\quot{X^{(n)}}{X^{(n-1)}}) $, ma
-  \[
-    X^{(n)} = X^{(n-1)} \cup_f \Disk{n}_{\alpha_i} \cup_{f_1} \dots \cup_{f_t} \Disk{n}_{\alpha_t} = \Sph{n}_{\alpha_1} \vee \dots \vee \Sph{n}_{\alpha_t}
-  \]
-  L'identificazione $ \quot{X^{(n)}}{X^{n-1}} $ fa collassare i bordi in un punto, quindi ottengo
-  un bouquet.
-  Osservo che:
-  \[
-    \tilde{H}_k(\Sph{n}_{\alpha_1} \vee \dots \vee \Sph{n}_{\alpha_t}) \cong \bigoplus \tilde{H}_k(\Sph{n}_{\alpha_j})
-  \]
-  Quindi ho automaticamente il risultato che volevo mostrare.
-  Se $ k > n $ è nullo, se $ k < n $ è $ \Z $ per ogni cella.
-  Questo è vero per induzione su $ t $.
-  \[
-    \tilde{h}_k(\Sph{n}) \cong
-    \begin{cases}
-      \Z     & \text{se } k = n \\
-      0      & \text{se } k \not = 0
-    \end{cases}
-  \]
-  Suppongo di conoscere $ \tilde{H}_k(\Sph{n}_1 \vee \dots \Sph{n}_t) $ voglio calcolare $ \tilde{H}_k(\Sph{n}_1 \vee \dots \Sph{n}_t) $.
-  Come notazione pongo $ Z_t = \Sph{n}_1 \vee \dots \Sph{n}_t $ e $ B = \Sph{n}_t $, cioè $ Z_t = Z_{t-1} \vee B $
-  vale la successione esatta lunga in omologia relativa:
-  \[
-    \begin{tikzcd}
-      \dots \rar & H_k(Z_{t-1}) \rar & H_k(Z_t) \rar          & H_k(Z_t, Z_{t-1}) \rar & H_{k-1}(Z_{t-1}) \rar & \dots
-    \end{tikzcd}
-  \]
-  Se $ k \not = n $ allora $ H_k(Z_{t-1}) = H_{t-1}(Z_{t-1}) = 0 $ quindi la successione è:
-  \[
-    \begin{tikzcd}
-      0 \rar   & H_k(Z_t) \rar     & H_k(Z_t, Z_{t-1}) \rar & 0
-    \end{tikzcd}
-  \]
-  Per $ k = 0 $ lo so calcolare, mi metto nel caso $ k \geq 2 $ e quindi
-  $ H_k(Z_t) = 0 $ per ipotesi induttiva quindi $ H_k(Z_t) \cong H_k(Z_t, Z_{t-1}) $.
-  Ma vale il risultato $ H_k(Y,A) \cong \tilde{H}_k(\quot{Y}{A}) $ quindi:
-  \[
-    \begin{tikzcd}
-      H_k(Z_t, Z_{t-1}) \cong \tilde{H}_k(\quot{Z_t}{Z_{t-1}}) \cong \tilde{H}_k(\Sph{n}_t) \cong \tilde{H}_k(B)
-    \end{tikzcd}
-  \]
-  Se invece $ k = n $ allora vale la successione esatta:
-  \[
-    \begin{tikzcd}
-      \dots \rar \tilde{H}_{n+1}(\quot{Z_t}{Z_{t-1}}) \rar & H_n(Z_{t-1}) \rar & H_n(Z_t) \rar  & H_n(Z_t, Z_{t-1}) \rar & H_{n-1}(Z_{t-1}) \rar & \dots
-    \end{tikzcd}
-  \]
-  Ma $ \quot{Z_t}{Z_{t-1}} \cong \Sph{n} $ quindi $ \tilde{H}_{n+1} \cong 0 $ e $ H_{n-1}(Z_{t-1}) \cong 0 $ per ipotesi induttiva
-  quindi:
-  \[
-    \begin{tikzcd}
-      0 \rar   & \Z^{t-1} \rar     & H_n(Z_t) \rar & \Z \rar & 0
-    \end{tikzcd}
-  \]
-  Quindi siccome la successione è spezzante $ H_n(Z_t) \cong \Z^t $. Questo era il primo punto.
-  Considero la successione esatta della coppia $ (X^{n}, X^{n-1}) $:
-  \[
-    \begin{tikzcd}
-      \dots \rar & H_{k+1}(X^{(n)}, X^{(n-1)}) \rar & H_k(X^{n-1}) \rar & H_k(X^{n}) \rar & H_{k}(X^{(n)}, X^{(n-1)}) \rar & \dots
-    \end{tikzcd}
-  \]
-  Ma adesso so quelli dell'omologia relativa, quindi se $ k \not \in \set{n, n-1} $ allora
-  $ H_{k+1}(X^{(n)}, X^{(n-1)}) $ e $ H_k(X^{(n)}, X^{(n-1)}) $ sono nulli quindi la successione diventa:
-  \[
-    \begin{tikzcd}
-      0 \rar   & H_k(X^{(n-1)}) \rar  & H_k(X^{(n)}) \rar & 0
-    \end{tikzcd}
-  \]
-  Quindi $ H_k(X^{(n-1)}) \cong X_k(X^{(n)}) $. Per $ k \not \in \set{n, n-1} $  se $ k \geq \not = 0 $ allora
-  $ H_k(X^{(0)}) = 0 $ in quanto $ X^{(0)} $ sono punti.
-  Se $ k < n $ considero la successione esatta lunga della coppia $ (X^{(n+1)}, X^{(n)}) $:
-  \[
-    \begin{tikzcd}
-      \dots \rar & H_{k+1}(X^{(n)}, X^{(n-1)}) \rar & H_k(X^{n-1}) \rar & H_k(X^{n}) \rar & H_{k}(X^{(n)}, X^{(n-1)}) \rar & \dots
-    \end{tikzcd}
-  \]
-  Se $ k < n $ sicuramente $ k + 1 \not = n + 1 $ quindi $ H_{k+1}(X^{(n+1)}, X^{(n)}) \cong 0 $, ma anche $ H_k(X^{(n+1)}, X^{(n)}) $
-  quindi $ H_k(X^{(n)}) \cong H_k(X^{(n+1)}) $.
-  Quindi $ H_k(X^{(n)}) \cong H_k(X^{(n-1)}) \dots \cong H_k(X^{(n)}) \cong H_k(X) $.
-\end{proof}
-
-Dimostro il risultato che ho lasciato in sospeso:
-\begin{lemma}
-  Sia $ (Y,A) $ e $ q \colon (Y,A) \to \left(\quot{Y}{A}, \quot{A}{A} \right) $
-  se $ Y = X^{(n)} $ e $ A = X^{(n-1)} $ allora esiste un intorno $ V $
-  di $ A $ in $ X $ tale che $ A $ sia un retratto di deformazione di $ A $.
-  Le coppie $ (Y,A) $ con $ A \subseteq Y $ entrambi dotati di struttura di CW complessi
-  che soddisfano questa condizione sono dette \textbf{coppie buone}.
-\end{lemma}
-\begin{proof}
-  Per la funtorialità:
-  \[
-    \begin{tikzcd}
-      H_n(Y,A) \rar \dar{q_\star} & H_n(Y,V) \dar{q_\star} \\
-      H_n(\quot{Y}{A}, \quot{A}{A}) \cong \tilde{H}_n(Y,A) \rar & H_n(\quot{Y}{A}, \quot{V}{A})
-    \end{tikzcd}
-  \]
-  Ho la terna $ (A, V, Y) $ tale che $ A \subseteq V \subseteq Y $ allora c'è l'inclusione
-  $ (Y,A) \incl (Y,V) $. A questa inclusione corrisponde la successione esatta lunga:
+  \begin{enumerate}
+  \item
+    % Considero $ q \colon (Y,A) \to \left( \quot{Y}{A}, \quot{A}{A} \right) $ (lo spazio di arrivo
+    % è uno spazio puntato in cui il quoziente rispetto $ A $ fa collassare $ A $ in un punto).
+    % Si ha il risultato che dimostro dopo:
+    % Se $ (Y,A) $ è una coppia buona allora:
+    % \[
+    %   H_k(Y,A) \cong H_k(\quot{Y}{A}, \quot{A}{A}) \cong \tilde{H}_k(\quot{Y}{A})
+    % \]
+    La coppia $ (X^{(n)}, X^{(n-1)}) $ è una coppia buona, quindi vale che:
     \[
-    \begin{tikzcd}
-      \dots \rar & H_{n+1}(Y, A) \rar & H_n(Y, A) \rar & H_k(Y,V) \rar & H_{n-1}(Y,A) \rar & \dots
-    \end{tikzcd}
-  \]
-  Ma $ V $è omotopa ad $ A $ quindi $ H_k(V,A) \cong H_k(A,A) \cong 0 $, infatti:
-  \[
-    \begin{tikzcd}
-      0 \rar   & H_k(A) \rar  & H_k(A) \rar  & H_k(A,A) \rar & 0
-    \end{tikzcd}
-  \]
-  Quindi $ H_k(Y,A) \cong H_n(Y,V) $. Per gli stessi motivi sono isomorfi
-  $ H_n(\quot{Y}{A}, \quot{A}{A}) $ siccome $ V $ ha lo stesso tipo di omotopia
-  di $ A $. Quindi ho:
-  \begin{align*}
-    i \colon A & \to V \\
-    r \colon V & \to A
-  \end{align*}
-  Prendo:
-  \[
-    j \colon \quot{A}{A}  \to \quot{V}{A}
-  \]
-  E $ \quot{A}{A} $ è retratto di $ \quot{V}{A} $,
-  \[
-    \rho \colon \quot{V}{A}  \to \quot{A}{A}
-  \]
-  è la retrazione cioè tale che $ \rho \circ j = \Id{\quot{A}{A}} $ e $ j \circ \rho = \Id{\quot{V}{A}} $.
-  Questi si ottengono componendo l'omotopia con la proiezione al quoziente.
-  Io ho $ A \subseteq V \subseteq Y $, faccio l'escissione di $ A $:
-  \[
-    \begin{tikzcd}
-      H_n(Y,A) \rar{\cong} \dar{q_\star} & H_n(Y,V)  \dar{q_\star}& H_n(\quot{Y}{A}, \quot{V}{A}) \lar{\cong} \\
-      H_n(\quot{Y}{A}, \quot{A}{A}) \rar{\cong} & H_n(\quot{Y}{A}, \quot{V}{A}) & H_n(\quot{Y}{A} \setminus \quot{A}{A}, \quot{V}{A} \setminus \quot{A}{A}) \lar{\cong}
-    \end{tikzcd}
-  \]
-  Ho $ \quot{A}{A} \subseteq \quot{V}{A} \subseteq \quot{Y}{A} $.
-  Mi rimane da mostrare che $ H_k(\quot{Y}{A}, \quot{V}{A}) \cong H_n(\quot{Y}{A} \setminus \quot{A}{A}, \quot{V}{A} \setminus \quot{A}{A}) $.
-  Ma questo è vero in quanto.
-  In questo è fondamentale prendere l'aperto, ma nel CW complesso posso sempre farlo.
+      H_k(X^{(n)}, X^{(n-1)}) \cong \tilde{H}_k(\quot{X^{(n)}}{X^{(n-1)}})
+    \]
+    Ma
+    \[
+      X^{(n)} = X^{(n-1)} \cup_f \Disk{n}_{\alpha_i} \cup_{f_1} \dots \cup_{f_t} \Disk{n}_{\alpha_t} = \Sph{n}_{\alpha_1} \vee \dots \vee \Sph{n}_{\alpha_t}
+    \]
+    L'identificazione $ \quot{X^{(n)}}{X^{(n-1)}} $ fa collassare i bordi in un punto, quindi ottengo
+    un bouquet.
+    Per il lemma precedente:
+    \[
+      \tilde{H}_k(\Sph{n}_{\alpha_1} \vee \dots \vee \Sph{n}_{\alpha_t}) \cong \bigoplus \tilde{H}_k(\Sph{n}_{\alpha_j})
+    \]
+    % Quindi ho automaticamente il risultato che volevo mostrare.
+    Se $ k > n $ l'omologia di ogni sfera è nulla, mentre
+    se $ k < n $ è $ \Z $ per ogni cella.
+  \item
+    Considero la successione esatta della coppia $ (X^{(n)}, X^{(n-1)}) $:
+    \[
+      \begin{tikzcd}[nodes={column sep=7pt}]
+        \dots \rar & H_{k+1}(X^{(n)}, X^{(n-1)}) \rar & H_k(X^{(n-1)}) \rar & H_k(X^{(n)}) \rar & H_{k}(X^{(n)}, X^{(n-1)}) \rar & \dots
+      \end{tikzcd}
+    \]
+    Nel punto precedente ho calcolato i gruppi di omologia relativa:
+    se $ k \not \in \set{n, n-1} $ allora sia
+    $ H_{k+1}(X^{(n)}, X^{(n-1)}) $ che $ H_k(X^{(n)}, X^{(n-1)}) $ sono nulli
+    quindi la successione diventa:
+    \[
+      \begin{tikzcd}
+        0 \rar   & H_k(X^{(n-1)}) \rar  & H_k(X^{(n)}) \rar & 0
+      \end{tikzcd}
+    \]
+    Quindi $ H_k(X^{(n-1)}) \cong H_k(X^{(n)}) $. Noto che per $ k \not = 0 $ vale che
+    $ H_k(X^{(0)}) \cong 0 $ in quanto $ X^{(0)} $ sono punti,
+    ma quindi:
+    \[
+      H_k(X^{(n)}) \cong  H_k(X^{(n-1)}) \cong H_k(X^{(n-2)}) \cong \dots \cong H_k(X^{(0)}) \cong 0
+    \]
+    Quindi per $ k > n $ sono tutti banali in quanto sicuramente $ k \not \in \set{n, n-1} $,
+
+    Se $ k < n $ considero la successione esatta lunga della coppia $ (X^{(n+1)}, X^{(n)}) $:
+    \[
+      \begin{tikzcd}[nodes={column sep=7pt}]
+        \dots \rar & H_{k+1}(X^{(n+1)}, X^{(n)}) \rar & H_k(X^{(n)}) \rar & H_k(X^{(n+1)}) \rar & H_{k}(X^{(n+1)}, X^{(n)}) \rar & \dots
+      \end{tikzcd}
+    \]
+    Se $ k < n $ sicuramente $ k + 1 \not = n + 1 $ quindi $ H_{k+1}(X^{(n+1)}, X^{(n)}) \cong 0 $,
+    ma anche $ H_k(X^{(n+1)}, X^{(n)}) \cong 0 $
+    quindi ho la successione:
+    \[
+      \begin{tikzcd}
+       0\rar & H_k(X^{(n)}) \rar & H_k(X^{(n+1)}) \rar & 0
+      \end{tikzcd}
+    \]
+    Da cui $ H_k(X^{(n)}) \cong H_k(X^{(n+1)}) $.
+    Quindi:
+    \[
+      H_k(X^{(n)}) \cong H_k(X^{(n+1)}) \dots \cong H_k(X^{(N)}) = H_k(X)
+    \]
+  \end{enumerate}
 \end{proof}
-\begin{exercise}
-  Dimostrare che la coppia formata da un $ k $-scheletro e un $ k-1 $-scheletro è buona.
-\end{exercise}
 
 Sia $ X $ un CW complesso di tipo finito, voglio costruire un complesso $ (S_\bullet^{CW}, d^{CW}) $ e
 voglio mostrare che l'omologia di questo complesso, detta omologia cellulare, è isomorfa con
@@ -4238,74 +4370,94 @@ l'omologia singolare:
 \[
   H_k^{CW}(X) = H_k(S^{CW}_\bullet(X)) \qquad H_k^{CW} = H_k(X^{(k)}, X^{(k-1)})
 \]
-Definisco $ S_k^{CW}(X) := H_k(X^{(k)}, X^{(k-1)}) $. So che $ (X^{(k+1)}, X^{(k-1)}) $ è una coppia
+% $ S_k^{CW}(X) := H_k(X^{(k)}, X^{(k-1)}) $
+So che $ (X^{(k+1)}, X^{(k)}) $ è una coppia
 e ho la successione esatta in omologia:
 \[
-  \begin{tikzcd}
-    \dots \rar H_{k+1}(X^{(k)}) \rar & H_{k+1}(X^{(k+1)}) \rar                                        & H_{k+1}(X^{(k+1)}, X^{(k)}) \rar           & H_k(X^{k})                   & \dots
+  \begin{tikzcd}[nodes={column sep=10pt}]
+    \dots \rar  & H_{k+1}(X^{(k+1)}) \rar & H_{k+1}(X^{(k+1)}, X^{(k)}) \rar & H_k(X^{(k)})   \rar & H_k(X^{(k+1)}) \rar & \dots
   \end{tikzcd}
 \]
 Poi ho la coppia $ (X^{(k)}, X^{(k-1)}) $ e quindi la successione
 \[
-  \begin{tikzcd}
-    \dots \rar                       & H_{k+1}(X^{(n)}, X^{(n-1)}) \rar                               & H_k(X^{n-1}) \rar                          & H_k(X^{n}) \rar              & H_{k}(X^{(n)}, X^{(n-1)}) \rar & \dots
+  \begin{tikzcd}[nodes={column sep=10pt}]
+    \dots \rar & H_{k+1}(X^{(k)}, X^{(k-1)}) \rar & H_k(X^{(k-1)}) \rar & H_k(X^{(k)}) \rar & H_{k}(X^{(k)}, X^{(k-1)}) \rar & \dots
   \end{tikzcd}
 \]
-Nel complesso ho:
+Incrociando le successioni e considerando che $ H_k(X^{(k+1)}, X^{(k)}) \cong 0$:
 \[
-  \begin{tikzcd}[nodes={column sep=4pt}]
+  \begin{tikzcd}[nodes={column sep=1pt, inner sep=2pt, outer sep=1pt}]
   0            \arrow{dr}{}      & {}                   & {}                                         & {}                           & 0  & {}\\
-  {}                             & H_k(X^{(k)})   \arrow{dr}{}                 & {}                                    & H_k(X^{(k+1)})  \arrow{ur}{} & {} & {}\\
+  {}                              & H_k(X^{(k-1)})   \arrow{dr}{\sigma}                 & {}                                    & H_k(X^{(k+1)})  \arrow{ur}{} & {} & {}\\
   {}                             & {}             & H_k(X^{(k)})   \arrow{dr}{j_k}   \arrow{ur}{\tau} & {}                           & {} & {}\\
-  {}  & H_k(X^{(k+1)}, X^{(k)})  \arrow{ur}{\delta_{k+1}} \arrow{rr}{d_{k+1}^{CW}} & {}      & H_k(X^{(k)}, X^{(k-1)})  \arrow{rr}{d_{k}^{CW}}   \arrow{dr}{\delta_k}  & {} &  H_{k-1}(X^{(k-1)}, X^{(k-2)}) \\
-  {} & {} & {} & {} & H_{k-1}(X^{k-1}) \arrow{ur}{j_{k-1}} & {} & {}
+  {}  & H_{k+1}(X^{(k+1)}, X^{(k)})  \arrow{ur}{\delta_{k+1}} \arrow{rr}{d_{k+1}^{CW}} & {}      & H_k(X^{(k)}, X^{(k-1)})  \arrow{rr}{d_{k}^{CW}}   \arrow{dr}{\delta_k}  & {} &  H_{k-1}(X^{(k-1)}, X^{(k-2)}) \\
+  \dots \arrow{ur}{} & {} & {} & {} & H_{k-1}(X^{(k-1)}) \arrow{ur}{j_{k-1}} \arrow{dr}{} & {} \\
+  {} & {} & {} & \dots \arrow{ur}{} & {} & \dots
 \end{tikzcd}
 \]
 Cioè definisco $ d_k^{CW} = j_{k-1} \circ \delta_k $. Devo mostrare che questo è un complesso, cioè $ d^2 = 0 $,
 quindi posso definire l'omologia:
 \[
-   d_k^{CW} \circ  d_k^{CW} = j_{k-1} \circ \delta_k \circ j_k \circ \delta_{k-1} = 0
+   d_k^{CW} \circ  d_{k+1}^{CW} = j_{k-1} \circ \delta_k \circ j_k \circ \delta_{k+1} = 0
 \]
 Infatti $ \delta_k \circ j_k $ è composizione in una successione esatta quindi è nulla.
 $ d^{CW} $ è un operatore di bordo.
 
-Ora voglio mostrare che l'omologia è isomorfa a quella singolare, devo mostrare
-che:
-\[
-  H_k(X) \cong j_k\left(\quot{\ker{d_k^{CW}}}{\im{d_{k+1}^{CW}}}\right)
-\]
-Ho visto che se $ k < n $ allora $ H_k(X^{(n)}) \cong H_k(X) $ posso prendere $ n = k + 1 $
-e ho $ H_k(X) \cong H_k(X^{(k+1)}) \cong \quot{H_k(X^{(k)})}{\ker{\tau}} $ in quanto la successione
-è esatta. Ma $ \ker{\tau} = \im{\delta_{k+1}} $ quindi $ H_k(X) \cong \quot{H_k(X^{(k)})}{\im{\delta_{k+1}}} $.
-Poi ho $ j_k \colon H_k(X^{(k)}) \to S_k^{CW}(X) $ cosa è $ j_k(\im{\delta_{k+1}}) $
-\[
-  j_k\left(\im{\delta_{k+1}}\right) = \im{j_k \circ \delta_{k+1}}
-\]
-Infatti se $ z \in j_k\left(\im{\delta_{k+1}}\right) $ allora $ z = j_k \circ \delta_{k+1}(u) $,
-se $ w \in \im{j_k \circ \delta_{k+1}} $ allora $ w = j_k \delta_{k+1}(r) $. Quindi
-$ j_k\left(\im{\delta_{k+1}}\right) = \im{d_{k+1}^{CW}} $, e perciò;
-\[
-  H_k(X) \cong \quot{H_k(X^{(k)})}{\im{d^{CW}_{k+1}}}
-\]
-Se faccio vedere che $ \im{d_{k+1}^{CW}} = \ker{d_k^{CW}} $ ho finito. Avevo mostrato che
-$ H_k(X^{(k-1))}) = 0 $ quindi se $ n = k - 1 $ allora $ H_k(X^{(k-1)}) = 0 $ quindi
-$ j_k $ è iniettiva. Devo capire cosa è $  j_k\left(\im{H_k(X^{(k)})}\right) $, questo è
-$ \im{j_k} $ ma la successione è esatta quindi $ \im{j_k} = \ker{\delta_k} $.
+\begin{definition}
+  Sia $ X $ un CW complesso, siano $ S_k^{CW}(X) := H_k(X^{(k)}, X^{(k-1)}) $ e $ d_k^{CW} = j_{k-1} \circ \delta_k $
+  con $ j_k \colon H_k(X^{(k)}) \to H_k(X^{(k)}, X^{(k-1)}) $ e $ \delta_k \colon H_k(X^{(k)}, X^{(k-1)}) \to  H_{k-1}(X^{(k-1)})  $,
+  allora si definisce \textbf{omologia cellulare}\index{Omologia cellulare}
+  come l'omologia del complesso $ (S_\bullet^{CW}, d^{CW}) $.
+\end{definition}
 
-Se dimostro che $ \ker{\delta_k} \cong \ker{d_k^{CW}} $ ho finito.
-Quindi $ j_k(H_k(X^{(k)})) \cong \ker{\delta_k} \cong \ker{d_k^{CW}} $ quindi
-\[
-  H_k(X) \cong \quot{ker{d_k^{CW}}}{d_{k+1}^{CW}} \cong H_k^{CW}(X)
-\]
-Ma quello che ho detto prima è vero perché se $ z \in \ker{\delta_k} $:
-\[
-  \delta_k(z) = 0 \iff j_{k-1} \circ \delta_k(z) = 0 \Rightarrow z \in \ker{j_k \circ \delta_k} = \ker{d_k^{CW}}
-\]
-Ho $ j_{k-1} \colon \ker{\delta_k} \to \ker{d_k^{CW}} $ e $ j_{k-1} \left(\ker{\delta_k} \right) \subseteq \ker{d_{k}^{CW}} $.
-Mostro l'inclusione inversa:
-Se $ w \in \ker{d_k^{CW}} $ allora $ 0 = d_k^{CW}(w) = j_{k-1} \circ \delta_k (w) $.
-Quindi $  j_{k-1} \circ \delta_k (w) = 0 $ ma $ j_{k-1} $ è iniettivo e perciò:
-$ \delta_k(w) = 0 $ quindi $ w \in \ker{\delta_k} $.
+\begin{proposition}
+  L'omologia cellulare è isomorfa all'omologia singolare.
+\end{proposition}
+\begin{proof}
+  Ora voglio mostrare che l'omologia è isomorfa a quella singolare, devo mostrare
+  che:
+  \[
+    H_k(X) \cong H^{CW}_k(X) := \quot{\ker{d_k^{CW}}}{\im{d_{k+1}^{CW}}}
+  \]
+  Avevo mostrato che
+  $ H_k(X^{(k-1))}) = 0 $ quindi se $ n = k - 1 $ allora $ H_k(X^{(k-1)}) = 0 $ quindi
+  $ j_k $ è iniettiva in quanto $ \ker{j_k} = \im{\sigma} = 0 $.
+  Osservo che siccome $ \tau $ è suriettiva $ \im{\tau} = H_k(X^{(k+1)}) $, ma per
+  il teorema fondamentale degli omeomorfismi $ \quot{H_k(X^{(k)})}{\ker{\tau}} \cong \im{\tau} $
+  quindi $ H_k(X^{(k+1)}) \cong \quot{H_k(X^{(k)})}{\ker{\tau}} $. Ma $ H_k(X^{(k+1)}) \cong H_k(X) $,
+  quindi ho che: $ \quot{H_k(X^{(k)})}{\ker{\tau}} \cong H_k(X) $. Inoltre siccome
+  la successione è esatta $ \ker{\tau} = \im{\delta_{k+1}} $ quindi
+  nel complesso ho che
+  \[
+    H_k(X) \cong \quot{H_k(X^{(k)})}{\im{\delta_{k+1}}}
+  \]
+  Inoltre ho $ j_k \colon H_k(X^{(k)}) \to H_k(X^{(k)}, X^{(k-1)}) $ che è tale che:
+  \[
+    j_k\left(\im{\delta_{k+1}}\right) = \im{j_k \circ \delta_{k+1}}
+  \]
+  infatti se $ z \in j_k\left(\im{\delta_{k+1}}\right) $ allora esiste $ u $ tale che
+  $ z = j_k(\delta_{k+1}(u)) = j_k \circ \delta_{k+1}(u) $, e se $ w \in \im{j_k \circ \delta_{k+1}} $ allora esiste $ r $ tale che
+  $ w = j_k \circ \delta_{k+1}(r) = j_k(\delta_{k+1}(r)) $.
+  Quindi $ j_k\left(\im{\delta_{k+1}}\right) = \im{d_{k+1}^{CW}} $, e perciò\footnote{Usando il fatto che se
+  $ j $ è iniettiva $ \quot{A}{B} \cong \quot{j(A)}{j(B)} $}:
+  \[
+    H_k(X) \cong \quot{j_k\left(H_k(X^{(k)})\right)}{\im{d^{CW}_{k+1}}}
+  \]
+  % Se faccio vedere che $ \im{d_{k+1}^{CW}} = \ker{d_k^{CW}} $ ho finito.
+  Mi rimane da mostrare che $ j_k\left(H_k(X^{(k)})\right) \cong \ker{d_k^{CW}} $.
+  Per l'esattezza vale che:
+  \[
+    j_k\left(H_k(X^{(k)})\right) = \im{j_k} = \ker{\delta_k}
+  \]
+  Ma $ \ker{\delta_k} = \ker{d_k^{CW}} $ in quanto se $ z \in \ker{\delta_k} $:
+  \[
+    \delta_k(z) = 0 \overset{\text{iniettività}}{\iff} j_{k-1} \circ \delta_k(z) = 0 \Rightarrow z \in \ker{j_k \circ \delta_k} = \ker{d_k^{CW}}
+  \]
+  % Ho $ j_{k-1} \colon \ker{\delta_k} \to \ker{d_k^{CW}} $ e $ j_{k-1} \left(\ker{\delta_k} \right) \subseteq \ker{d_{k}^{CW}} $.
+  Infine, se $ w \in \ker{d_k^{CW}} $ allora $ 0 = d_k^{CW}(w) = j_{k-1} \circ \delta_k (w) $,
+  ma $ j_{k-1} $ è iniettivo e perciò $ \delta_k(w) = 0 $ quindi $ w \in \ker{\delta_k} $.
+\end{proof}
+
 
 \begin{osservation}
   So che $ S_k^{CW}(X) \cong H_k(X^{(k)}, X^{(k-1)}) \cong \Z^{a_k} $ con $ a_k $ numero di celle,
