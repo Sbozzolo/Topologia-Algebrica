@@ -18,6 +18,7 @@
 \usepackage{braket}
 \usepackage[utf8]{inputenc}
 \usepackage{libertine}
+\usepackage{tikz-cd}
 
 \title{Esercizi di Topologia Algebrica}
 \author{Gabriele Bozzola \\ Matricola: 882709}
@@ -29,6 +30,7 @@
 
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Sph}[1][]{\mathcal{S}^#1}
+\newcommand{\Disk}[1][]{\mathcal{D}^#1}
 
 \let\latexcirc=\circ
 \newcommand{\ccirc}{\mathbin{\mathchoice
@@ -209,8 +211,31 @@ Dove $ \Delta_1 \simeq [0,1] $ è l'$ 1 $-simplesso standard, e in
 cui sostanzialmente $ n, m \in \Z $ contano il numero
 di avvolgimenti del laccio attorno alle due circonferenze,
 per questo il gruppo fondamentale è $ \pi_1(\Sph{1} \times \Sph{1})
-\cong \Z \times \Z $.
-{\huge FINIRE}
+\cong \Z \times \Z $. Sto cercando quindi la mappa:
+\begin{align*}
+  f_\star \colon \Z \times \Z & \to \Z \times \Z \\
+  (n, m) & \mapsto \; ?
+\end{align*}
+L'azione di $ f_\star $ è definita a partire dai lacci
+omotopicamente distinti del gruppo fondamentale:
+$ f_\star[\sigma] = [f \circ \sigma] $ quindi:
+\[
+  \begin{tikzcd}
+    (s,t) \rar{\sigma} &  (\mathrm{e}^{2 \pi i n s}, \mathrm{e}^{2 \pi i m t}) \rar &
+     (\mathrm{e}^{2 \pi i n s} \mathrm{e}^{2 \pi i m t}, \mathrm{e}^{2 \pi i m t})
+  \end{tikzcd}
+\]
+Le classi di equivalenza distinte sono quelle in cui il numero
+di avvolgimenti del laccio intorno a $ \Sph{1} $ è diverso,
+quindi:
+\begin{align*}
+  f_\star \colon \Z \times \Z & \to \Z \times \Z \\
+  (n, m) & \mapsto (n+m, m)
+\end{align*}
+Intuitivamente quello che succede è che $ f $ fa ruotare il punto
+sulla prima $ \Sph{1} $ di un angolo pari a quello del punto della seconda
+$ \Sph{1} $ e quindi il numero di avvolgimenti si somma.
+\hfill $ \square $
 
 \section{Esercizio 1.2.33 (xii)}
 Per assurdo $ \Sph{1} $ e $ \Sph{n} $ con $ n \geq 2 $ sono omotopicamente
@@ -276,11 +301,6 @@ che $ h(1) = x_0 $.
 \label{esercizio:grado_sfere}
 Per risolvere velocemente questo esercizio sono utili alcuni lemmi:
 \begin{lemma}
-  Siano $ f,g \colon \Sph{n} \to \Sph{n} $ due mappe continue, se
-  $ \deg f = \deg g $ allora $ f \sim g $, cioe se due applicazioni
-  hanno le stesso grado allora sono omotope.
-\end{lemma}
-\begin{lemma}
   Sia $ \rho_i $ la riflessione rispetto al piano $ x_i = 0 $:
   \begin{align*}
     \rho_i \colon \Sph{n} & \to \Sph{n} \\
@@ -288,12 +308,99 @@ Per risolvere velocemente questo esercizio sono utili alcuni lemmi:
   \end{align*}
   allora il suo grado è $ -1 $, cioè $ \deg \rho_i = -1 \; \forall i \in \set{1, \dots, n+1} $.
 \end{lemma}
+\begin{proof}
+  La dimostrazione è per induzione.
+    Per $ n = 1 $.
+  \begin{align*}
+    \rho \colon \Sph{1} & \to \Sph{1} \\
+    (x_0,x_1) & \mapsto (x_0, -x_1)
+  \end{align*}
+  Considero il generatore $ \sigma $:
+  \begin{align*}
+    \sigma \colon \Delta_1 & \to \Sph{1} \\
+    t & \mapsto \left(\cos(2 \pi t), \sin(2 \pi t)\right)
+  \end{align*}
+  Quindi:
+  \begin{align*}
+    \rho \circ \sigma \colon \Delta_1 & \to \Sph{1} \\
+    t & \mapsto \left(\cos(2 \pi t), -\sin(2 \pi t))\right)
+  \end{align*}
+  Ma:
+  \begin{gather*}
+    \left(\cos(2 \pi t), -\sin(2 \pi t))\right) = \left(\cos(-2 \pi t), \sin(-2 \pi t))\right) = \\
+    = \left(\cos(2 \pi (1-t)), \sin(2 \pi (1-t)))\right)
+  \end{gather*}
+  Quindi $ \rho \circ \sigma = \bar{\sigma} = - \sigma $ e quindi il grado è $ - 1 $.
+
+  Suppongo che il risultato sia vero per $ \Sph{n-1} $ mostro che è vero anche per $ \Sph{n} $.
+
+  % In $ \Sph{n} $ ho dei sottoinsiemi naturali:
+  % \begin{gather*}
+  %   \Disk{n}_+ = \set{ (x_1, \dots, x_{n+1}) \in \Sph{n} | x_1 \geq 0 } \\
+  %   \Disk{n}_- = \set{ (x_1, \dots, x_{n+1}) \in \Sph{n} | x_1 \leq 0 }
+  % \end{gather*}
+  % Vale che $ \Disk{n}_+ \cap \Disk{n}_- = \set{ (x_1, \dots, x_{n+1}) \in \Sph{n} | x_1 \leq 0 } = \Sph{n-1} $.
+  Ho dimostrato che
+  \[
+    \tilde{H}_p(\Sph{n}) \cong H_p(\Disk{n}, \Sph{n-1}) \cong H_p(\Sph{n}, \Disk{n})
+  \]
+  Quindi considerando anche che $ \rho $ induce una mappa $ \rho_\star $ a livello di omologia:
+  \[
+    \begin{tikzcd}
+      H_n(\Sph{n}) \rar{\rho_\star} \arrow[leftrightarrow]{d}{\cong} & H_n(\Sph{n})  \arrow[leftrightarrow]{d}{\cong} \\
+      H_n(\Disk{n}, \Sph{n-1}) &  H_n(\Disk{n}, \Sph{n-1})
+    \end{tikzcd}
+  \]
+  Ho anche che $ H_n(\Disk{n}, \Sph{n-1}) \cong H_{n-1}(\Sph{n-1}) $, quindi il diagramma diventa:
+  \[
+    \begin{tikzcd}
+      H_n(\Sph{n}) \rar{\rho_\star} \arrow[leftrightarrow]{d}{\cong} & H_n(\Sph{n})  \arrow[leftrightarrow]{d}{\cong} \\
+      H_{n-1}(\Sph{n-1}) \rar{\rho_\star^{(n-1)}} &  H_{n-1}(\Sph{n-1})
+    \end{tikzcd}
+  \]
+  Ma per ipotesi induttiva per $ n - 1 $ il grado è $ - 1 $, quindi anche per $ n $ il grado è $ - 1 $.
+\end{proof}
 \begin{lemma}
   \label{lemma:composizione_grado}
   Siano $ f,g \colon \Sph{n} \to \Sph{n} $ due mappe continue allora
   $ \deg {(f \circ g)} = \deg{f} \, \deg{g} $.
 \end{lemma}
-Utilizzando questi lemmi dimostrati (o enunciati) a lezione diventa
+\begin{proof}
+  Il grado è definito dall'azione delle mappe indotte da $ f $ e $ g $
+  su $ H_n(\Sph{n}) $:
+  \begin{align*}
+    f_\star \colon H_n(\Sph{n}) & \to H_n(\Sph{n}) \\
+    \alpha & \mapsto \deg f \, \alpha
+  \end{align*}
+  Analogamente:
+  \begin{align*}
+    g_\star \colon H_n(\Sph{n}) & \to H_n(\Sph{n}) \\
+    \alpha & \mapsto \deg g \, \alpha
+  \end{align*}
+  Per la funtorialità:
+  \[
+    (f \circ g)_\star (\alpha) = (f_\star \circ g_\star)(\alpha) = f_\star(g_\star(\alpha)) = f_\star (\deg g \, \alpha)
+  \]
+  Siccome $ f_\star $ è omomorfismo:
+  \[
+    f_\star (\deg g \, \alpha) = \deg g f_\star (\alpha) = \deg g \, \deg f
+  \]
+  Ma per definizione:
+  \[
+    (f \circ g)_\star (\alpha) = \deg{(f \circ g)} \alpha
+  \]
+  Da cui $ \deg{(f \circ g)} = \deg f \, \deg g $.
+\end{proof}
+\begin{lemma}
+  Siano $ f,g \colon \Sph{n} \to \Sph{n} $ due mappe continue, se
+  $ \deg f = \deg g $ allora $ f \sim g $, cioe se due applicazioni
+  hanno le stesso grado allora sono omotope.
+\end{lemma}
+% \begin{proof}
+%   La dimostrazione non è banale, si assume questo lemma, enunciato
+%   a lezione, vero.
+% \end{proof}
+Utilizzando questi lemmi diventa %dimostrati (o enunciati) a lezione diventa
 semplice classificare tutte le mappe della forma:
 \[
   (x_1, \dots, x_{n+1}) \mapsto (\pm x_1, \dots, \pm x_{n+1})
@@ -315,6 +422,7 @@ Utilizzando il lemma \ref{lemma:composizione_grado} si ha che:
 Quindi tutte le funzioni $ r^{i_1\dots i_{n+1}} $ si ripartiscono in
 due classi di equivalenza, una con rappresentante l'identità,
 l'altra con rappresentante la mappa antipodale.
+\hfill $ \square $
 
 \section{Esercizio 1.9 (21)}
 Sia:
@@ -344,13 +452,13 @@ di omologia:
 Per questo il grado della mappa è $ n $.
 Sia:
 \begin{align*}
-  q_2 \colon & \Sph{1} \to \Sph{1} \\
+  q_2 \colon  \Sph{1} & \to \Sph{1} \\
   z & \mapsto \bar{z}
 \end{align*}
 Dove $ \bar{z} $ indica il cammino inverso. Allora
 considerando lo stesso generatore:
 \begin{align*}
-  q_2 \circ \sigma \colon & \Delta_1 \to \Sph{1} \\
+  q_2 \circ \sigma \colon  \Delta_1 & \to \Sph{1} \\
   t & \mapsto \mathrm{e}^{2 \pi i (1 - t)} = \mathrm{e}^{-2 \pi i t}
 \end{align*}
 Quindi a livello di gruppi di omologia:
