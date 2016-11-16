@@ -3469,7 +3469,7 @@ identifico il bordo del disco con il punto.
 
 \begin{definition}
   Si dice che lo spazio topologico $ X $ è un \textbf{CW-complesso} di tipo finito\index{CW-complesso},
-  dove C singifica \emph{closure finite} e W \emph{weak topology} se è dato dai seguenti oggetti topologici:
+  dove C singif>>>>>>>>>>>ica \emph{closure finite} e W \emph{weak topology} se è dato dai seguenti oggetti topologici:
   \begin{enumerate}
   \item Un insieme finito $ X^{(0)} = \set{p_1, \dots, p_n} $ detto \textbf{$ 0 $-scheletro}\index{$ 0 $-scheletro}
   \item Il \textbf{$ k $-scheletro}\index{$ k $-scheletro} $ X^{k} $ si costruisce induttivamente
@@ -4063,6 +4063,33 @@ Quindi ho una $ 0 $-cella, una $ 1 $-cella, \dots, una $ 2n $-cella.
 \end{proposition}
 \begin{proof}
   La dimostrazione è per induzione. Assumo che $ K^{2t} = \Pjc{t} $ per $ 0 \leq t \leq n-1 $.
+
+  Sia
+  \begin{align*}
+    h \colon \Disk{2n} & \to \Pjc{n} \\
+    (z_0, \dots, z_{n-1}) & \mapsto \left(z_0,\dots, \sqrt{1 - \sum_{i < n}|z_i|^2} \right)
+  \end{align*}
+  So che $ \partial \Disk{2n} = \Sph{2n-1} = \set{|z_0|^2 + \dots + |z_{n-1}|^2 = 1} $
+  quindi $ h $ è ben definita in quanto la radice esiste, ed è continua.
+  \begin{align*}
+    h \big \lvert_{\partial \Disk{2n}} \colon \Sph{2n-1} & \to \Pjc{n-1} \\
+    (z_0, \dots, z_{n}) & \mapsto [z_0, \dots, z_{n-1}, 0] = P
+  \end{align*}
+  Vale che:
+  \[
+    \left( h \big \lvert_{\partial \Disk{2n}}\right)^{-1}(P) = \set{ (\lambda_{z_0}, \dots, \lambda_{z_{n-1}}) | |\lambda| = 1} \simeq \Sph{1}
+  \]
+  Queste sono le preimmagini. $ h $ non è iniettiva.
+  \[
+    \begin{tikzcd}
+      \Disk{2n} \rar{h} & \Pjc{n} \\
+      \Pjc{n-1} \cup_\tau \Disk{n} \arrow{ur}{F} & {}
+    \end{tikzcd}
+  \]
+  Dove $ \tau = h \big \lvert_{\partial \Disk{2n}} $, con $ P((z_0, \dots, z_{n-1})) = ([z_0, \dots, z_{n-1}]) $.
+  $ F $ manda $ \Pjc{n-1} $ in $ \Pjc{n} $ banalmente e raccorda bene i dischi.
+  $ F $ è iniettiva e suriettiva da uno spazio compatto a uno spazio di Hausdorf,
+  quindi è un omeomorfismo.
 \end{proof}
 [MANCA TUTTA LA SECONDA PARTE DI QUESTA LEZIONE]
 
@@ -4463,12 +4490,13 @@ $ d^{CW} $ è un operatore di bordo.
   So che $ S_k^{CW}(X) = H_k(X^{(k)}, X^{(k-1)}) \cong \Z^{a_k} $ con $ a_k $ numero di celle,
   cosa posso dire su $ d_k^{CW} \colon S_k^{CW}(X) \to S_{k-1}^{CW}(X) $ ?
 
-  Una base di $ S_k^{CW}(X) $ è in corrispondenza biunivoca con le celle,
-  posso considerare $ e_1, \dots, e_k $ come una base di $ S_k^{CW}(X) $.
-  $ d_k^{CW}(e_j) $ è una combinazione lineare a coefficienti interi di $ k-1 $-celle
-  $ f_m $:
+  Siccome $ S_k^{CW}(X) \cong \Z^{a_k} $ e c'è un fattore $ \Z $ per ogni cella
+  posso considerare $ S_k^{CW}(X) $ generato da una base formata da
+  $ k $-celle $ e_1, \dots, e_{a_k} $, e similmente $ S_{k-1}^{CW}(X) $ generato
+  da $ k - 1 $-celle $ f_1, \dots, f_{a_{k-1}} $. Siccome $ d_k^{CW}(e_j) $ è un elemento in
+  $ S_{k-1}^{CW}(X) $ si può scrivere come combinazione lineare a coefficienti interi di $ f_m $:
   \[
-    d^{CW}_k (e_j) = \sum A_{jm}f_m
+    d^{CW}_k (e_j) = \sum_m A_{jm}f_m
   \]
   Coma si calcolano gli $ A_{jm} $?
   Prendo $ e_j $ un generatore di $ H_k(X^{(k)}, X^{(k-1)}) \cong \bigoplus_j H_k(\Sph{k}_j) $.
@@ -4476,7 +4504,7 @@ $ d^{CW} $ è un operatore di bordo.
 
   Posso rileggere gli $ H_k $:
   \[
-    H_k(\Sph{k}_k) \cong H_k(\quot{\Disk{k}}{\partial \Disk{k}}) \cong H_k(\Disk{n}, \partial \Disk{n}) =
+    H_k(\Sph{k}_k) \cong H_k(\quot{\Disk{k}}{\partial \Disk{k}}) \cong H_k(\Disk{k}, \partial \Disk{k}) =
     H_k(\Disk{k}, \Sph{k-1}) \cong H_{k-1}(\Sph{k-1})
   \]
   Sono partito da $ \Sph{k} $ e sono arrivato in $ \Sph{k-1} $.
@@ -4490,9 +4518,339 @@ $ d^{CW} $ è un operatore di bordo.
   Allora $ A_{jb} = \deg{u_\beta \circ \eta_j} $.
 \end{osservation}
 
+ % lezione 12
+%  _     _____ ________ ___  _   _ _____   _ ____
+% | |   | ____|__  /_ _/ _ \| \ | | ____| / |___ \
+% | |   |  _|   / / | | | | |  \| |  _|   | | __) |
+% | |___| |___ / /_ | | |_| | |\  | |___  | |/ __/
+% |_____|_____/____|___\___/|_| \_|_____| |_|_____|
+
+\subsection{Calcolo dell'omologia cellulare di alcuni spazi}
+
+\subsubsection{Spazi $ V_g $}
+
+Gli spazi $ V_g $ sono definiti a partire dai poligoni
+regolari con $ 4g $ lati, quozientati con l'identificazione
+$ a_1 b_1 a_1^{-1} b_1^{-1} \dots a_g b_g a_g^{-1} b_g^{-1} $.
+Di questi spazi conosco già $ H_0(V_g) \cong \Z $ in quanto
+sono connessi per archi e $ H_1(V_g) \cong \Z^{2g} $ in quanto
+conosco il gruppo fondamentale.
+
+A questi spazi è possibile dare la struttura di CW complessi
+con una $ 0 $-cella che è il punto in cui tutti i vertici del
+poligono collassano sotto la proiezione $ \pi \colon P_{4g} \to V_g $
+quindi la $ 0 $-cella è $ x = \pi(v) $, dove $ v $ sono i vertici.
+Poi $ 2 g $ $ 1 $-celle $ \alpha_1, \dots, \alpha_g, \beta_1, \dots, \beta_g $ con
+$ \alpha_i = \pi(a_i) $ e $ \beta_i = \pi(b_1) $. La funzione di attaccamento
+è:
+\begin{align*}
+  f_1 \colon \partial \Disk{2} & \to X^{(0)} \\
+  \pm 1 & \mapsto x
+\end{align*}
+Infine una $ 2 $-cella
+che è l'immagine dell'interno, cioè ottenuta con la mappa
+di attaccamento
+\[
+  f \colon \Sph{1} \to X^{(1)} = \Sph{1}_1 \vee \dots \vee \Sph{1}_{2g}
+\]
+Calcolo l'omologia di $ V_g $ con $ g \geq 1 $, il complesso
+è:
+\[
+  \begin{tikzcd}
+    0 \rar & S^{CW}_2(V_g) \rar & S^{CW}_(V_g) \rar & S^{CW}_0(V_g) \rar & 0
+  \end{tikzcd}
+\]
+Ma:
+\begin{gather*}
+  S^{CW}_0(V_g) = H_0(X^{(0)}, X^{(-1)}) = H_0(X^{(0)}, \emptyset) = H_0(X^{(0)}) = H_0(X) \cong Z \\
+  S^{CW}_1(V_g) = H_1(X^{(1)}, X^{(0)}) \cong \Z^{2g} \\
+  S^{CW}_2(V_g) = H_2(X^{(2)}, X^{(0)}) \cong \Z
+\end{gather*}
+Quindi il complesso è:
+\[
+  \begin{tikzcd}
+    0 \rar & \Z \rar{d_2} & \Z^{2g} \rar{d_1} & \Z \rar{d_0} & 0
+  \end{tikzcd}
+\]
+Voglio calcolare i gruppi di omologia di questo complesso a partire dalla definizione
+di omologia e so che questi gruppi sono isomorfi ai gruppi di omologia singolare.
+$ d_0 $ è la mappa nulla per costruzione quindi $ \ker{d_0} \cong \Z $, mentre cosa è
+$ d_1 \colon \Z^{2g} \to \Z $? $ \Z^{2g} $ è in corrispondenza con le celle, quindi posso
+prende come generatori $ e_n $ celle in $ X^{(1)} $. $ e_n $ è una $ 1 $-cella, quindi
+$ e_n \in H_1(X^{(1)}, X^{(0)}) $, ma $ H_1(X^{(1)}, X^{(0)}) \cong H_1(\quot{X^{(1)}}{X^{(0)}}) $,
+inoltre $ X^{(1)} = X^{(0)} \cup_{f_1} \Disk{1}_1 \dots \cup_{f_{2g}} \Disk{1}_{2g} $. Quando collasso
+i bordi ad un punto mi rimane un bouquet:
+\[
+  = h_1(\Sph{1}_1 \vee \dots \vee \Sph{1}_{4g}) \cong \bigoplus_n H_1(\Sph{1}_n)
+\]
+Quindi $ e_n \in H_1(\Sph{1}_n) $ per qualche $ n $. Poi ho:
+\[
+  \begin{tikzcd}
+    \Sph{1}_n \rar{r} \arrow{dr}{} & X^{(1)} \dar{s} \\
+    \quot{X^{(1)}}{X^{(0)}} & {}
+  \end{tikzcd}
+\]
+E $ d_1(e_n) = \sum A_{kn}f_k $, con  $ A_{kn} = \deg {(r \circ s)} $.
+[...]
+Quello che trovo è $ \im{d} = 0 $, quindi:
+\[
+  H_0^{CW}(V_g) = \quot{\ker{d_}}{\im{d_1}} = \Z
+\]
+Faccio la stessa cosa con $ d_2 $, ho $ \im{d_2} = 0 $ e $ \ker{d_2} = \Z^{2g} $.
+Considero:
+\[
+  \begin{tikzcd}
+    \partial \Disk{2} \rar{f} & X^{(1)} \dar  \\
+    {} & \quot{X^{(1)}}{X^{(0)}}
+  \end{tikzcd}
+\]
+La mappa verticale non fa nulla in quanto fa collassare un punto in un punto.
+Quindi ho:
+\[
+  \begin{tikzcd}
+    \Sph{1} \rar{f} & \Sph{1} \vee \dots \Sph{1} \\
+    {} & \Sph{1}
+  \end{tikzcd}
+\]
+xHo $ d_2 \colon S^{CW}_2(V_g) \to S_1^{CW}(V_g) $ cioè:
+$ d_2 \colon H_2(X^{(2)}, X^{(1)}) \to H_1(X^{(1)}, X^{(0)}) $,
+ma:
+\[
+  H_2(X^{(2)}, X^{(1)}) \cong H_2(\quot{X^{(2)}}{X^{(1)}}) \cong H_2(\Sph{2}) \cong H_2(\Disk{2}, \partial \Disk{1})
+  \cong H_2(\Disk{2}, \Sph{1}) \cong H_1(\Sph{1})
+\]
+Quindi:
+\begin{align*}
+  d_2 \colon H_1(\Sph{1}) & \to H_1(\Sph{1}_1 \vee \dots \vee \Sph{1}_{2g}) \\
+  1 & \mapsto 0
+\end{align*}
+Infatti $ a_1 + b_1 - a_1 - b_1 \dots = 0$
+Quindi $ \ker{d_2} = \Z $ e $ \im{d_2} = 0 $,
+$ H_2^{CW}(V_g) = \quot{\ker{d_2}}{\im{d_3}} \cong \Z $ e
+$ H_1^{CW}(V_g) = \quot{\ker{d_1}}{\im{d_2}} \cong \Z^{2g} $.
+Si nota che
+\[
+  \rank{H_0(V_g)} - \rank{H_1(V_g)} + \rank{H_2(V_g)} = 1 - 2g + 1 = 2 - 2g
+\]
+Questa è la caratteristica di Eulero di $ V_g $: $ \chi(V_g) = 2 - 2g $.
+
+\begin{osservation}
+  Se $ X $ è un CW complesso finito allora $ H_k(X) = 0 $ se non ci sono $ k $-celle,
+  infatti $ H_k(X) \cong H_k^{CW} \cong 0 $ se non ci sono $ k $-celle.
+\end{osservation}
+
+\begin{osservation}
+  Se $ X $ è un CW complesso finito con $ a_n $ $ n $-celle allora $ H_n(X) $
+  è generato da al più $ a_n $ elementi, infatti
+  $ H_n(X) \cong H_n^{CW}(X) $ che è quoziente di $ S_n^{CW}(X) \cong \Z^{a_n} $.
+\end{osservation}
+
+\begin{corollary}
+  Se $ X $ è CW complesso finito $ H_k(X) $ è un gruppo abeliano finitamente
+  generato, infatti $ H_k(X) \cong H_k^{CW}(X) $ quoziente di un gruppo abeliano
+  libero finitamente generato.
+\end{corollary}
+
+\begin{theorem}[Teorema di struttura per gruppi abeliani liberi finitamente generati
+  \index{Teorema di struttura per gruppi abelini liberi finitamente generati}]
+  Se $ \mathcal{G} $ è un gruppo abeliano libero finitamente generato di rango
+  $ \rank{\mathcal{G}} $ allora:
+  \[
+    \mathcal{G} \cong \Z^{\rank{\mathcal{G}}} \oplus T_k
+  \]
+  Dove $ T_k $ è il sotto gruppo di torsione di $ \mathcal{G} $.
+\end{theorem}
+
+\begin{definition}[Numero di Betti e caratteristica di Eulero]
+  Se $ X $ è un CW complesso allora si definisce il $ k $-esimo
+  numero di Betti come $ b_k(X) = \rank{H_k(X)} $, e si definisce
+  la caratteristica di Eulero di $ X $ come:
+  \[
+    \chi(X) = \sum_{k=0}^{N} (-)^k b_k(X)
+  \]
+\end{definition}
+
+\subsubsection{Spazi proiettivi}
+
+\begin{osservation}
+  Se $ X $ è un CW complesso che non ha celle in indici consecutivi
+  allora $ H_k(X) $è abeliano libero con una base in corrispondenza
+  con le $ k $-celle.
+\end{osservation}
+\begin{proof}
+  Infatti ho il complesso:
+  \[
+    \begin{tikzcd}
+      \dots \rar & S^{CW}_{k+1}(X) \rar & S_k^{CW}(X) \rar & S_{k-1}^{CW}(X) \rar & \dots
+    \end{tikzcd}
+  \]
+  Cioè:
+  \[
+    \begin{tikzcd}
+      \dots \rar & \Z^{a_{n=1}} \rar & \Z^{a_n} \rar & \Z^{a_{n-1}} \rar & \dots
+    \end{tikzcd}
+  \]
+  Almeno alcuni di questi sono zeri, quindi alcuni differenziali sono zero.
+\end{proof}
+
+Ad esempio se $ Y = \Pjc{n} $ ho una $ 0 $-cella, una $ 1 $-cella, \dots,
+e una $ n $-cella, quindi la struttura del complesso è:
+\[
+  \begin{tikzcd}
+    \dots \rar & S^{CW}_{2n}(Y) \rar & 0 \rar & S_{2n - 2}^{CW}(X) \rar & \dots \rar & 0
+  \end{tikzcd}
+\]
+Quindi $ H_{2n}^{CW}(Y) = \quot{S^{CW}_{2n}(Y)}{\set{0}} \cong S_{2n}^{CW}(Y) \cong \Z $,
+ecc, cioè:
+\[
+  H_{2k}^{CW}(Y) \cong \Z \text{ per } k \in \set{0, \dots, n}
+\]
+La caratteristica di Eulero è:
+\[
+  \chi(Y) = \sum_{k=0}^N (-)^{2k} = n + 1
+\]
+
+\begin{example}
+  Sia $ X_1 = \Sph{n} $, $ X_2 = \Sph{n} $ e $ Z = X_1 \times X_2 $, $ Z $ è un CW
+  complesso finito, e siccome $ \Sph{n} $ ha una $ 0 $-cella e una $ n $-cella,
+  allora $ Z $ ha una $ 0 $-cella, due $ n $-celle e una $ 2n $-cella.
+  Quindi ho:
+  \[
+    \begin{tikzcd}
+      0 \rar & S_{2n}^{CW}(Z) \rar & 0 \rar & \dots \rar & S_n^{CW}(Z) \rar & \dots \rar & 0
+    \end{tikzcd}
+  \]
+  Quindi:
+  \[
+    H_k(Z) \cong
+    \begin{cases}
+      \Z & \text{se } k \in \set{0, 2n} \\
+      \Z^2 & \text{se } k = n \\
+      0 & \text{se } k \not \in \set{0, n, 2n}
+    \end{cases}
+  \]
+\end{example}
+
+\subsubsection{Spazi proiettivi reali}
+Lo spazio proiettivo reale è più complicato. So che
+$ \Sph{1} \simeq \Pjr{1} $ e $ U_1 \simeq \Pjr{2} $.
+
+Le celle del proiettivo reale sono una $ 0 $-cella,
+una $ 1 $-cella, \dots, una $ n $-cella, e siccome non ci
+sono buchi non si può usare lo stesso ragionamento di prima.
+So che;
+\[
+  X^{(k+1)} = X^{(k)} \cup_f \Disk{k+1} \text{ con } f \colon \partial \Disk{k+1} \to X^{(k)}
+\]
+Cioè $ f \colon \Sph{k} \to X^{(k)} = \Pjr{k} \cong \quot{\Sph{k}}{\sim} $
+quindi $ f $ è la proiezione.
+Ho il complesso per $ \Pjr{2} $:
+\[
+  \begin{tikzcd}
+    0 \rar & S^{CW}_{2}(\Pjr{2}) \rar & S_1^{CW}(\Pjr{2}) \rar & S_{0}^{CW}(\Pjr{2}) \rar & 0
+  \end{tikzcd}
+\]
+Cioè:
+\[
+  \begin{tikzcd}
+    0 \rar{t_3} & \Z \rar{t_2} & \Z \rar{t_1} & \Z \rar{t_0} & 0
+  \end{tikzcd}
+\]
+Devo calcolare nuclei e immagini. So che:
+\[
+  \begin{cases}
+    \im{t_3} = 0 \\
+    \ker{t_3} = 0
+  \end{cases}
+\]
+E:
+\[
+  \begin{cases}
+    \im{t_0} = 0\\
+    \ker{t_0} = \Z
+  \end{cases}
+\]
+Trovo che:
+\begin{align*}
+  t_2 \colon & \Z \to \Z \\
+  x & \mapsto 2 x
+\end{align*}
+Ho il diagramma:
+\[
+  \begin{tikzcd}
+    \Sph{1} = \partial \Disk{2} \rar{\mathcal{A}} \dar{\mathcal{A}} & \Pjr{1} \dar{\Id{}} \\
+    {} & \Pjr{1}
+  \end{tikzcd}
+\]
+La mappa $ \mathcal{A} $ è la proiezione sul gruppo generato dalla mappa antipodale.
+Siccome è una mappa 2 a 1 viene quello che ho scritto.
+So che $ H_1(\Pjr{2}) \cong \quot{\Z}{2 \Z} $ quindi:
+\[
+  \quot{\ker{t_1}}{\im{t_2}} \cong \quot{\Z}{2 \Z}
+\]
+$ t_1 \colon \Z \to \Z $ viene da:
+\[
+  \begin{tikzcd}
+    \Sph{0} \rar{\Id{}} \arrow{rd}{} & \Pjr{0} \dar{\Id{}} \\
+    {} & \Pjr{0}
+  \end{tikzcd}
+\]
+Quindi il grado è zero.
+
+Nel complesso ho che:
+\[
+  \begin{tikzcd}
+    0 \rar{0} & \Z \rar{2} & \Z \rar{0} & \Z \rar{0} & 0
+  \end{tikzcd}
+\]
+Trovo che: $ H_0 \cong \Z $, $ H_1 \cong \quot{\Z}{2 \Z} $, $ H_2 \cong 0 $.
+In generale ho:
+\[
+  \begin{tikzcd}
+    \Sph{k} \rar \arrow{rd}{} & \Pjr{k} \\
+    {} & \quot{\Pjr{k}}{\Pjr{k-1}} \cong \Sph{k}
+  \end{tikzcd}
+\]
+Cioè ho che:
+\[
+  \begin{tikzcd}
+    0 \rar{0} & \Z \rar{t_n} & \Z \rar{t_{n-1}} & \dots \rar{t_1 }& \Z \rar{t_0} & 0
+  \end{tikzcd}
+\]
+In generale il comportamento è differente per $ n $ pari o per $ n $
+dispari, nel caso $ n = 3 $:
+\[
+  \begin{tikzcd}
+    0 \rar{0} & \Z \rar{t_3} & \Z \rar{t_{2}} & \Z \rar{t_1}& \Z \rar{t_0} & 0
+  \end{tikzcd}
+\]
+$ d_4 \colon 0 \to \Z $, quindi $ \im{t_4} = 0 $ e $ \ker{t_4} = 0 $,
+mentre $ d_3 \colon \Z \to \Z $ e ho:
+\[
+  \begin{tikzcd}
+    \Sph{2} = \partial \Disk{3} \rar \arrow{rd}{\mathcal{A}} & \Pjr{3} \\
+    {} & \quot{\Pjr{3}}{\Pjr{2}} \cong \Sph{2}
+  \end{tikzcd}
+\]
+Si trova che il grado di $ \mathcal{A} $ è zero e:
+\begin{align*}
+  t_3 \colon \Z & \to \Z \\
+  x & \mapsto \deg{t_3} x
+\end{align*}
+Alla fine si ha che:
+\[
+  H_k(\Pjr{3}) =
+  \begin{cases}
+    \Z & \text{se } k = 0 \\
+    \Z_2 & \text{se } k = 1 \\
+    0 & \text{se } k = 2 \\
+    \Z & \text{se } k = 3
+  \end{cases}
+\]
+
 
             %             TODO:
-            %             1. Correggere i : con \colon (CAMBIA QUALCOSA? INFORMARSI!)
+            %             1. Correggere i : con \colon (AMBIA QUALCOSA? INFORMARSI!)
             %             NOTA i : servono solo per questioni di relazione, del tipo negli insiemi come "tale che",
             %             nelle mappe si deve sempre usare \colon (http://tex.stackexchange.com/questions/37789/using-colon-or-in-formulas)
             %             2. Correggere i \Leftrightarrow con \iff

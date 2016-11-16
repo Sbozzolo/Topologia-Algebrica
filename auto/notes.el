@@ -187,7 +187,8 @@
     "Caratteristica di Eulero di un CW-complesso"
     "Spazio proiettivo complesso"
     "Coppia Buona"
-    "Omologia cellulare")
+    "Omologia cellulare"
+    "Teorema di struttura per gruppi abelini liberi finitamente generati")
    (LaTeX-add-counters
     "exercises"))
  :latex)
