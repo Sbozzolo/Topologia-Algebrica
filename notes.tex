@@ -4091,6 +4091,140 @@ Quindi ho una $ 0 $-cella, una $ 1 $-cella, \dots, una $ 2n $-cella.
   $ F $ è iniettiva e suriettiva da uno spazio compatto a uno spazio di Hausdorf,
   quindi è un omeomorfismo.
 \end{proof}
+
+Ho che $ \pi_1(\Pjc{n}) = \set{1} $ $ \forall n \geq 1 $
+infatti per $ n = 1 $ $ \pi_1(\Pjc{1}) \cong \pi_1(\Sph[1]) = \set{1} $.
+Per induzione suppongo che $ \pi_1(\Pjc{n-1}) = \set{1} $, voglio
+mostrare che $ \pi_1(\Pjc{n}) = \set{1} $. Per fa ciò
+uso il teorema di Seifert-van Kampen.
+\[
+  \Pjc{n} = \Pjc{n-1} \cup_\pi \Disk{2n}
+\]
+Considero $ x \in \Disk{2n} $ e un aperto $ V $ disco centrato in $ x $
+di raggio $ \epsilon $ piccolo, cioè $ V = \Disk{2n}_\epsilon(x) $. Poi prendo
+$ U = \Pjc{n} \setminus \set{x} $ aperto.
+Vale che $ V \sim \set{x} $, poi $ \Disk{2n} $ si ritrae al bordo, che
+si attacca. $ U \simeq \Pjc{n-1} $.
+Poi $ V \cap U $ è una specie di corona circolare in $ \Disk{2n} $,
+quindi $ V \cap U \sim \Sph{2n -1} $. Quindi $ \pi_1(\Pjc{n}) = \Pjc{n-1} \cong \set{1} $.
+È più interessante vedere l'omologia singolare.
+Si trova che:
+\[
+  H_k(\Pjc{n}) \cong
+  \begin{cases}
+    \Z & \text{se } k \in \set{0,2,4,\dots, 2n} \\
+    0 & \text{altrimenti}
+  \end{cases}
+\]
+Con $ k = 1 $ è il gruppo fondamentale, quindi è nullo, e poi torna per $ n = 1 $.
+
+Per comodità si introduce l'omologia cellulare di $ X $.
+
+Se $ X $ è spazio topologico con struttura di CW complesso si introduce
+l'omologia cellulare $ H_k^{CW}(X) $.
+
+Si trova che $ H_k^{CW}(X) \cong H_k(X) $ e c'è un algoritmo per calcolare $ H_k^{CW}(X) $.
+
+So che $ \Pjc{n} = \Pjc{n-1} \cup_\pi \Disk{2n} $. Fisso $ n $ voglio calcolare
+$ H_s(\Pjc{n}^{(t)}, \Pjc{n}^{(t-1)}) $.
+Calcolo per induzione.
+So che $ H_k(\Pjc{1}) $ è a posto, voglio calcolare $ H_k(\Sph{m}) $ per induzione.
+
+Mi piacerebbe che:
+\[
+  H_s(\Pjc{c}^{(t)}, \Pjc{n}^{(t-1)}) \cong H_s(\quot{\Pjc{n}^{(t)}}{\Pjc{n}^{(t-1)}})
+\]
+
+Questo è vero in generale, se $ A \subseteq X $ CW complessi allora:
+\[
+  H_k(X,A) \cong H_k(\quot{X}{A})
+\]
+Ma $ \Pjc{n}^{(t)} = \Pjc{n}^{(t-1)} \cup_\pi \Disk{2t} $, è come se collassa
+quello che è in comune alle celle, cioè il bordo del dei dischi ad un punto,
+cioè:
+\[
+  \quot{\Pjc{n}^{(t)}}{\Pjc{n}^{(t-1)}} \simeq \Sph{2t}
+\]
+Se $ s \not = 2 t $ allora $ H_s(\quot{\Pjc{n}^{(t)}}{\Pjc{n}^{(t-1)}}) = 0 $.
+\[
+  H_{2t}(\Pjc{n}^{(t)}, \Pjc{n}^{(t-1)}) \cong \Z
+\]
+E gli altri sono zero.
+
+In generale $ X^{(k)}- X^{(k-1)} \cup_{f_1} \Disk{k}_{\alpha_1} \cup \dots \cup_{f_n} \Disk{k}_{\alpha_N} $
+cosa è $ H_s(X^{(k)}, X^{(k-1)}) $.
+\[
+  H_s(X^{(k)}, X^{(k-1)}) \cong H_s(\quot{X^{(k)}}{X^{(k-1)}})
+\]
+Ma $ \quot{X^{(k)}}{X^{(k-1)}} $ è un bouquet, in quanto tutte le sfere hanno in comune
+il punto a cui si è contratto $ X^{(k-1)} $.
+Quindi:
+\[
+  H_s(X^{(k)}, X^{(k-1)}) \cong
+  \begin{cases}
+    \Z^N & \text{se } k = s \\
+    0 & \text{se } k \not = s
+  \end{cases}
+\]
+
+Considero $ \Pjc{n} $ ho che:
+\[
+  \Pjc{n-2} \incl \Pjc{n-1} \incl \Pjc{n}
+\]
+Quindi:
+\[
+  (\Pjc{n-1}, \Pjc{n-2}) \to (\Pjc{n}, \Pjc{n-1})
+\]
+e quindi
+\[
+  H_s(\Pjc{n-1}, \Pjc{n-2}) \to H_s(\Pjc{n}, \Pjc{n-1})
+\]
+Ma il primo è diverso da zero se $ s = 2n - 2 $ e
+il secondo è diverso da zero se $ s = 2n $.
+
+Da qui non ottengo informazioni di carattere generale,
+cioè quello che sto dicendo è che non è semplicemente
+la composizione della coppia allora uso un trucco.
+
+Costruisco un'applicazione. FORSE
+
+Sia $ X $ un CW complesso e $ Y $ un CW complesso, è
+possibile dare una struttura di CW complesso anche a $ Z = X \times Y  $.
+Se $ \set{e_\alpha} $ sono le celle di $ X $ e $ \set{f_\beta} $
+quelle di $ Y $, allora $ \set{e_\alpha \times f_\beta} $ sono
+celle di $ Z $. Bisogna solo capire come sono fatte le
+mappe di attaccamento.
+
+\begin{example}[Sfere]
+  Sia $ X = \Sph{p} $ allora una possibile struttura di CW
+  è data da una $ 0 $-cella $ e_0 $ e una $ p $-cella $ e_p $.
+  Allora $ X^{(0)} = \set{X} $, $ X^{(p)} = \set{X} \cup_f \Disk{p} $
+  e $ f \colon \Disk{p} \to \Sph{p} $ con $ f \big \vert_{\partial \Disk{p}} = \mathrm{cost.} $.
+  $ Y = \Sph{q} $ con $ f_0 $ $ 0 $-cella, $ f_q $ $ q $-cella,
+  la mappa di attaccamento è: $ g \colon \Disk{q} \to \Sph{q} $ con $ g \big \vert_{\partial \Disk{p}} = \mathrm{cost.} $.
+  Il prodotto è una $ 0 $-cella $ e_0 \times f_0 $, una $ p $-cella
+  $ e_p \times f_0 $, una $ q $-cella $ e_0 \times f_q $ e una $ p + q $-cella
+  $ e_p \times f_q $. La mappa di attaccamento è per la prima
+  $ \set{(x,y)} $ con $ x \in \Sph{p} $ e $ y \in \Sph{q} $,
+  per la seconda
+  \begin{align*}
+    F_{p0} \colon \Disk{p} & \to \Sph{p} \times \Sph{q} \\
+    z & \mapsto (f(z), y)
+  \end{align*}
+  Per la terza
+  \begin{align*}
+    F_{0q} \colon \Disk{q} & \to \Sph{p} \times \Sph{q} \\
+    z & \mapsto (z, g(u))
+  \end{align*}
+  Per la quarta:
+  \begin{align*}
+    F_{pq} \colon \Disk{p+q} & \to \Sph{p} \times \Sph{q} \\
+    (w,u) & \mapsto (f(w), g(u))
+  \end{align*}
+\end{example}
+
+
+
 [MANCA TUTTA LA SECONDA PARTE DI QUESTA LEZIONE]
 
 %     lezione 11
