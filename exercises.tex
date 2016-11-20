@@ -12,13 +12,14 @@
 % Exercise 8.1.21: (i);
 % Exercise 8.2.19: (i), (v);
 
-\documentclass[10pt]{scrartcl}
+\documentclass[10pt, toc=sectionentrywithdots]{scrartcl}
 \usepackage[italian]{babel}
 \usepackage{amsmath, amsfonts, amssymb, amsthm}
 \usepackage{braket}
 \usepackage[utf8]{inputenc}
 \usepackage{libertine}
 \usepackage{tikz-cd}
+
 
 \title{Esercizi di Topologia Algebrica}
 \author{Gabriele Bozzola \\ Matricola: 882709}
@@ -45,7 +46,20 @@
 \begin{document}
 \maketitle
 
-\section{Esercizio 1.1.19 (iv)}
+\renewcommand\contentsname{Esercizi}
+
+\tableofcontents{}
+\addtocontents{toc}{\vspace*{-20pt}~\hfill\textbf{Pagina}\par}
+
+
+\section[1.1.19 (iv)]{Esercizio 1.1.19 (iv)}
+
+\subsubsection*{Testo}
+% Show that homotopy equivalence amongst spaces is an equivalence relation.
+Mostra che l'equivalenza omotopica tra spazi topologici è una relazione di
+equivalenza.
+
+\subsubsection*{Soluzione}
 Siano $ X $ e $ Y $ due spazi topologici, dico che $ X $ è
 omotopicamente equivalente a $ Y $ se esiste una funzione
 continua $ f \colon X \to Y $ tale che esiste una funzione
@@ -84,15 +98,15 @@ Per dimostrare il terzo punto è conveniente utilizzare
 un lemma:
 \begin{lemma}
   \label{lemma:composizione_funzioni_omotopia}
-  La relazione di omotopia tra funzioni si comporta bene
-  rispetto alla composizione, cioè siano $ X, Y, W, Z $
-  spazi topologici, $ f, g \colon X \to Y $,
-  $ h \colon W \to X $ e $ k \colon Y \to Z $ mappe continue,
-  allora $ f \circ h \sim g \circ h $ e $ k \circ f \sim h \circ g $.
+  La relazione di omotopia tra funzioni si comporta bene rispetto alla
+  composizione, cioè siano $ X, Y, W, Z $ spazi topologici,
+  $ f, g \colon X \to Y $, $ h \colon W \to X $ e $ k \colon Y \to Z $ mappe
+  continue con $ f \sim g $, allora $ f \circ h \sim g \circ h $ e
+  $ k \circ f \sim h \circ g $.
 \end{lemma}
 \begin{proof}
   Siccome $ f \circ g $ significa che esiste una funzione
-  continua $ F \colon X \times I \to Y $ tale che:
+  continua $ F \colon X \times I \to Y $ (con $ I = [0,1] $) tale che:
   \begin{align*}
     F(x, 0) = f(x) \\
     F(x, 1) = g(x)
@@ -124,7 +138,7 @@ A questo punto:
   \end{gather*}
   Devo mostrare che:
   \[
-    \exists f_3 \colon X \to Z \text{ tale che } \exists g_2 \colon Z \to X \text{ tale che }
+    \exists f_3 \colon X \to Z \text{ tale che } \exists g_3 \colon Z \to X \text{ tale che }
     f_3 \circ g_3 \sim 1_Z \text{ e } g_3 \circ f_3 \sim 1_X
   \]
   Una possibile scelta per $ f_3 $ e $ g_3 $ è $ f_3 = f_2 \circ f_1 $
@@ -132,34 +146,52 @@ A questo punto:
   $ f_3 \colon X \to Z $ e $ g_3 \colon Z \to X $, queste
   mappe sono continue perché sono composizione
   di funzioni continue.
-  Perché questa sia una buona scelta deve essere
-  $ f_2 \circ f_1 \circ g_1 \circ g_2 \sim 1_Z $
-  e  $  g_1 \circ g_2 \circ f_2 \circ f_1 \sim 1_X $.
+  Perché questa sia una buona scelta deve essere che:
+  \begin{enumerate}
+  \item  $ f_2 \circ f_1 \circ g_1 \circ g_2 \sim 1_Z $
+  \item  $  g_1 \circ g_2 \circ f_2 \circ f_1 \sim 1_X $
+  \end{enumerate}
+  Definisco $ h = f_1 \circ g_1 \circ g_2 $, mostrare la prima relazione equivale a
+  mostrare che $ f_2 \circ h \sim 1_Z $. Per il lemma
+  \ref{lemma:composizione_funzioni_omotopia} vale che
+  $ h = f_1 \circ g_1 \circ g_2 \sim 1_Y \circ g_2 = g_2 $, in quanto
+  $ f_1 \circ g_1 \sim 1_Y $ per ipotesi, ma siccome $ h \sim g_2 $ e
+  $ f_2 \circ g_2 \sim 1_Z $ per il medesimo lemma $ f_2 \circ h \sim 1_Z $.
 
-  Nel primo caso devo mostrare che $ f_2 \circ h \sim 1_Z $ con
-  $ h = f_1 \circ g_1 \circ g_2 \sim 1_Y \circ g_2 = g_2 $ per il lemma
-  \ref{lemma:composizione_funzioni_omotopia}, in quanto $ f_1 \circ g_1 \sim 1_Y $
-  per ipotesi. Siccome $ h \sim g_2 $ e $ f_2 \circ g_2 \sim 1_Z $ per il medesimo
-  lemma $ f_2 \circ h \sim 1_Z $. La seconda relazione è analoga.
+  La seconda relazione è analoga.
 \hfill $ \square $
 \end{enumerate}
 
-\section{Esercizio 1.1.19 (v)}
-Siano $ X, Y $ spazi topologici omotopicamente equivalenti quindi
-esiste una funzione continua $ f \colon X \to Y $, detta
-\emph{relazione di omotopia} tale che esista una seconda
-funzione continua $ g \colon Y \to X $ con $ f \circ g \sim 1_Y $
-e $ g \circ f \sim 1_X $. Sia $ h \colon X \to Y $ una funzione
-continua con $ h \sim f $, devo mostrare che $ h $ è una
-relazione di omotopia, cioè esiste una funzione continua
-$ k \colon Y \to X $ tale che $ h \circ k \sim 1_Y $ e $ k \circ h \sim 1_X $.
-Una possibile scelta per questa funzione $ k $ è la funzione
-$ g $ stessa. Questa è continua e per il lemma \ref{lemma:composizione_funzioni_omotopia}
-vale che $ h \circ g \sim 1_Y $ e $ g \circ h \sim 1_X $ in quanto per
-ipotesi  $ f \circ g \sim 1_Y $ e $ g \circ f \sim 1_X $ e $ f \sim h $.
-\hfill $ \square $
+\section[1.1.19 (v)]{Esercizio 1.1.19 (v)}
 
-\section{Esercizio 1.1.19 (vii)}
+\subsubsection*{Testo}
+Mostra che una mappa equivalente a una equivalenza omotopica è
+una equivalenza omotopica.
+
+\subsubsection*{Soluzione}
+
+Se $ X, Y $ sono spazi topologici omotopicamente equivalenti esiste una
+funzione continua $ f \colon X \to Y $, detta equivalenza omotopica tale che esista una
+seconda funzione continua $ g \colon Y \to X $ con $ f \circ g \sim 1_Y $ e
+$ g \circ f \sim 1_X $. Sia $ h \colon X \to Y $ una funzione continua con
+$ h \sim f $, devo mostrare che $ h $ è una equivalenza omotopica, cioè che esiste una
+funzione continua $ k \colon Y \to X $ tale che $ h \circ k \sim 1_Y $ e
+$ k \circ h \sim 1_X $. Una possibile scelta per questa funzione $ k $ è la funzione
+$ g $ stessa. Questa è continua e per il lemma
+\ref{lemma:composizione_funzioni_omotopia} vale che $ h \circ g \sim 1_Y $ e
+$ g \circ h \sim 1_X $ in quanto per ipotesi $ f \circ g \sim 1_Y $ e
+$ g \circ f \sim 1_X $ e $ f \sim h $. \hfill $ \square $
+
+\section[1.1.19 (vii)]{Esercizio 1.1.19 (vii)}
+
+\subsubsection*{Testo}
+
+Sia $ f \colon X \to Y $ e $ g \colon Y \to X $ mappe tali che $ f \circ g $ e
+$ g \circ f $ siano relazioni omotopiche, mostra che $ f $ e $ g $ sono equivalenze
+omotopiche.
+
+\subsubsection*{Soluzione}
+
 Siano $ X, Y $ spazi topologici e $ f \colon X \to X $,
 $ g \colon Y \to Y $ funzioni continue tali che $ f \circ g $
 e $ g \circ f $ siano equivalenze omotopiche, devo mostrare
@@ -174,10 +206,11 @@ Siccome $ f \circ g $ e $ g \circ f $ sono equivalenze omotopiche vale che:
   \exists h \colon Y \to Y  \text{ continua tale che } f \circ g \circ h \sim 1_Y \text{ e } h \circ f \circ g \sim 1_Y \\
   \exists k \colon X \to X  \text{ continua tale che } g \circ f \circ k \sim 1_X \text{ e } k \circ g \circ f \sim 1_X
 \end{gather*}
-Affermo che $ k \circ g \circ f \circ g \circ h \sim k \circ g $ questo è vero siccome $ k \circ g \colon Y \to X $ è continua
-e siccome $ f \circ g \circ h \sim 1_Y $ posso utilizzare il lemma
-\ref{lemma:composizione_funzioni_omotopia}. Ma per il medesimo lemma e
-per il fatto che $  k \circ g \circ f \sim 1_X $ deriva che $ g \circ h \sim k \circ g $.
+$ k \circ g \colon Y \to X $ è continua e vale che
+$ f \circ g \circ h \sim 1_Y $, allora per il lemma
+\ref{lemma:composizione_funzioni_omotopia}
+$ k \circ g \circ f \circ g \circ h \sim k \circ g $. Per il medesimo lemma e per il fatto che
+$ k \circ g \circ f \sim 1_X $ deriva similmente che $ g \circ h \sim k \circ g $.
 
 Una possibile scelta per $ \phi $ è $ \phi = g \circ h $, infatti utilizzando
 il fatto che $ f \circ g $ è equivalenza omotopica:
@@ -191,11 +224,18 @@ Inoltre utilizzando l'osservazione appena fatta e il lemma
 \]
 Anche in questo caso ho utilizzato il fatto che $ g \circ f $ è equivalenza
 omotopica.
-
 Si può utilizzare un ragionamento analogo per $ \gamma $.
 \hfill $ \square $
 
-\section{Esercizio 1.2.33 (v)}
+\section[1.2.33 (v)]{Esercizio 1.2.33 (v)}
+
+\subsubsection*{Testo}
+Considera la mappa $ f \colon \Sph{1} \times \Sph{1} \to \Sph{1} \times \Sph{1} $
+data da $ f(z_1, z_2) = (z_1 z_2, z_2) $, calcola l'omomorfismo
+indotto $ f_\star $ sul gruppo fondamentale.
+
+\subsubsection*{Soluzione}
+
 È dato l'omomorfismo:
 \begin{align*}
   f \colon \Sph{1} \times \Sph{1} & \to  \Sph{1} \times \Sph{1} \\
@@ -237,45 +277,68 @@ sulla prima $ \Sph{1} $ di un angolo pari a quello del punto della seconda
 $ \Sph{1} $ e quindi il numero di avvolgimenti si somma.
 \hfill $ \square $
 
-\section{Esercizio 1.2.33 (xii)}
-Per assurdo $ \Sph{1} $ e $ \Sph{n} $ con $ n \geq 2 $ sono omotopicamente
-equivalenti, questo implica che i loro gruppi fondamentali sono isomorfi,
-indipendentemente dal punto base in quanto gli spazi sono connessi per archi.
-Ma $ \pi_1(\Sph{1}) \cong \Z $, mentre $ \pi_1(\Sph{n}) \cong 0 $ per $ n \geq 2 $, quindi
-siccome i gruppi fondamentali non sono isomorfi gli spazi non possono
-essere omotopicamente equivalenti.
-\hfill $ \square $
+\section[1.2.33 (xii)]{Esercizio 1.2.33 (xii)}
 
-\section{Esercizio 1.2.33 (xiii)}
-Per assurdo esiste una funzione continua $ f \colon \mathbb{R}^2 \to \mathbb{R}^n $
-con $ n > 2 $ che sia omeomorfismo. Tolgo un punto $ p $ da $ \mathbb{R}^2 $,
-se $ f $ omeomorfismo anche la restrizione $ \tilde{f} $ di $ f $ su
-$ \mathbb{R}^2 \setminus \set{p} $ è omeomorfismo.
-Ma  $ \mathbb{R}^{2} \setminus  \set{p} \simeq \mathbb{R} \times \mathcal{S}^1 $, infatti una mappa
-che realizza esplicitamente questo omeomorfismo è, dopo aver portato $ p $ in $ 0 $
+\subsubsection*{Testo}
+
+Mostra che $ \Sph{1} $ non è dello stesso tipo di omotopia
+di $ \Sph{n} $ per $ n \geq 2 $.
+
+\subsubsection*{Soluzione}
+
+Due spazi topologici hanno lo stesso tipo di omotopia se sono omotopicamente
+equivalenti. Per assurdo $ \Sph{1} $ e $ \Sph{n} $ con $ n \geq 2 $ sono
+omotopicamente equivalenti, questo implica che i loro gruppi fondamentali sono
+isomorfi, indipendentemente dal punto base in quanto gli spazi sono connessi per
+archi. Ma $ \pi_1(\Sph{1}) \cong \Z $, mentre $ \pi_1(\Sph{n}) \cong 1 $ per
+$ n \geq 2 $, quindi siccome i gruppi fondamentali non sono isomorfi gli spazi non
+possono essere omotopicamente equivalenti. \hfill $ \square $
+
+\section[1.2.33 (xiii)]{Esercizio 1.2.33 (xiii)}
+
+\subsubsection*{Testo}
+Mostra che $ \mathbb{R}^{2} $ non è omeomorfo a $ \mathbb{R}^{n} $ per ogni
+$ n > 2 $.
+
+\subsubsection*{Soluzione}
+
+Per assurdo esiste una funzione continua
+$ f \colon \mathbb{R}^2 \to \mathbb{R}^n $ con $ n > 2 $ che sia omeomorfismo. Tolgo un
+punto $ p $ da $ \mathbb{R}^2 $, se $ f $ è un omeomorfismo anche la restrizione
+$ \tilde{f} $ di $ f $ su $ \mathbb{R}^2 \setminus \set{p} $ è omeomorfismo. Ma
+$ \mathbb{R}^{2} \setminus \set{p} \simeq \mathbb{R} \times \mathcal{S}^1 $, infatti una mappa che
+realizza esplicitamente questo omeomorfismo è, dopo aver portato $ p $ in $ 0 $
 (una traslazione è un omeomorfismo):
 \begin{align*}
-  \mathbb{R}^{2} \setminus \set{p} & \to \mathbb{R} \times \mathcal{S}^1 \\
+  \mathbb{R}^{2} \setminus \set{0} & \to \mathbb{R} \times \mathcal{S}^1 \\
   \vec{x} & \mapsto \left( || \vec{x} ||, \frac{\vec{x}}{|| \vec{x} ||} \right)
 \end{align*}
-Analogamente $ \mathbb{R}^{n} \setminus \set{f(p)}  \simeq \mathbb{R} \times \Sph{n-1} $.
-Quindi siccome per ipotesi esiste un omeomorfismo tra $ \mathbb{R}^{2} $ e
-$ \mathbb{R}^{n} $ allora $ \mathbb{R} \times \Sph{1} \simeq \mathbb{R} \times \Sph{n-1} $,
-e questo implica che i gruppi fondamentali sono isomorfi.
-Siccome il gruppo fondamentale di un prodotto è il prodotto dei gruppi fondamentali
-e vale che:
+Analogamente
+$ \mathbb{R}^{n} \setminus \set{f(p)} \simeq \mathbb{R} \times \Sph{n-1} $. Quindi siccome per
+ipotesi esiste un omeomorfismo tra $ \mathbb{R}^{2} $ e $ \mathbb{R}^{n} $
+allora $ \mathbb{R} \times \Sph{1} \simeq \mathbb{R} \times \Sph{n-1} $, e questo implica che i
+gruppi fondamentali sono isomorfi. Siccome il gruppo fondamentale di un prodotto
+è il prodotto dei gruppi fondamentali e vale che:
 \begin{gather*}
-  \pi_1(\mathbb{R}) = 0 \\
+  \pi_1(\mathbb{R}) = 1 \\
   \pi_1(\Sph{1}) = \Z \\
-  \pi_1(\Sph{n}) = 0
+  \pi_1(\Sph{n}) = 1
 \end{gather*}
-allora $ \pi_1 (\mathbb{R} \times \Sph{1}) = \Z $ e $ \pi_1(\mathbb{R} \times \Sph{n-1}) = 0 $, ma
+allora $ \pi_1 (\mathbb{R} \times \Sph{1}) = \Z $ e $ \pi_1(\mathbb{R} \times \Sph{n-1}) = 1 $, ma
 questi gruppi non sono isomorfi, e quindi ho trovato l'assurdo.
 \hfill $ \square $
 
-% \section{Esercizio 1.3.11 (iv)}
+% \section[1.3.11 (iv)]{Esercizio 1.3.11 (iv)}
 
-\section{Esercizio 1.5.19 (vii)}
+\section[1.5.19 (vii)]{Esercizio 1.5.19 (vii)}
+
+\subsubsection*{Testo}
+
+Mostra che ogni mappa $ \Sph{1} \to X $ è omotopa a zero se e solo se $ \pi_1(X, x_0) $
+è banale in ogni punto $ x_0 \in X $.
+
+\subsubsection*{Soluzione}
+
 Il gruppo fondamentale di uno spazio topologico $ X $ sul punto base $ x_0 \in X $
 è:
 \[
@@ -290,15 +353,22 @@ la generica funzione $ g \colon \Sph{1} \to X $ continua, questa è necessariame
 nella stessa classe di equivalenza di $ [1] $ in $ \pi_1(X, g(1)) $ e ciò singifica
 che è omotopa ad un cammino costante, quindi omotopa a zero.
 
-Mostro il viceversa. Se tutte le funzioni $ h \colon \Sph{1} \to X $ sono omotope a zero
-allora sono tutte equivalenti al laccio costante $ C_{h(1)} $ e quindi il gruppo
-fondamentale $ \pi_1(X, h(1)) $ contiene questa sola classe di equivalenza, ed è
-quindi banale. Questo vale $ \forall x_0 \in X $, basta considerare una funzione tale
-che $ h(1) = x_0 $.
-\hfill $ \square $
+Mostro il viceversa. Fisso $ x_0 \in X $ e considero tutte le funzioni continue
+$ h \colon \Sph{1} \to X $ tali che $ h(1) = x_0 $, per ipotesi questi lacci sono
+omotopi a zero, quindi sono tutti equivalenti al laccio costante $ C_{h(1)} $.
+Per questo motivo il gruppo fondamentale $ \pi_1(X, h(1)) $ contiene la sola
+classe di equivalenza del laccio costante, ed è quindi banale. \hfill $ \square $
 
-\section{Esercizio 1.9 (7)}
+\section[1.9 (7)]{Esercizio 1.9 (7)}
 \label{esercizio:grado_sfere}
+
+\subsubsection*{Testo}
+
+Considera le mappe $ (x_1, \dots, x_{n+1}) \mapsto (\pm x_1, \dots, \pm x_{n+1}) $ da $ \Sph{n} $ a $ \Sph{n} $
+e inseriscile in classi di equivalenza rispetto omotopia. Quante classi ci sono?
+
+\subsubsection*{Soluzione}
+
 Per risolvere velocemente questo esercizio sono utili alcuni lemmi:
 \begin{lemma}
   Sia $ \rho_i $ la riflessione rispetto al piano $ x_i = 0 $:
@@ -309,8 +379,20 @@ Per risolvere velocemente questo esercizio sono utili alcuni lemmi:
   allora il suo grado è $ -1 $, cioè $ \deg \rho_i = -1 \; \forall i \in \set{1, \dots, n+1} $.
 \end{lemma}
 \begin{proof}
-  La dimostrazione è per induzione.
-    Per $ n = 1 $.
+  In dimensione $ n + 1 $ ci sono $ n + 1 $ diverse riflessioni, tuttavia
+  ciascuna di queste può essere ricondotta a una riflessione di riferimento
+  scambiando due opportunamente due coordinate, ma questa operazione è
+  un omeomorfismo tra sfere in quanto è continua e ammette inverso continuo,
+  % mediante una opportuna rotazione della sfera, ad esempio per $ \Sph{1} $
+  % $ \rho_0 = \rho_1 \circ r(\frac{\pi}{2}) $, dove $ r $ è la rotazione di angolo
+  % $ \frac{\pi}{2} $ e la sua azione è
+  % $ r(\frac{\pi}{2}) \colon (x,y) \to (y,x) $. Le rotazioni sono omeomorfismi di
+  % $ \Sph{n} $ in $ \Sph{n} $ e hanno grado $ 1 $ in quanto sostanzialmente
+  % consistono in una riparametrizzazione dei generatori del gruppo di omologia.
+  e quindi è sufficiente dimostrare che una riflessione in $\Sph{n} $
+  ha grado $ - 1 $ per dimostrare che anche tutte le altre hanno grado $ - 1 $.
+
+  Tale dimostrazione è per induzione, per $ n = 1 $:
   \begin{align*}
     \rho \colon \Sph{1} & \to \Sph{1} \\
     (x_0,x_1) & \mapsto (x_0, -x_1)
@@ -333,32 +415,37 @@ Per risolvere velocemente questo esercizio sono utili alcuni lemmi:
   Quindi $ \rho \circ \sigma = \bar{\sigma} = - \sigma $ e quindi il grado è $ - 1 $.
 
   Suppongo che il risultato sia vero per $ \Sph{n-1} $ mostro che è vero anche per $ \Sph{n} $.
-
+  Indico con $ \rho^{(k)} $ la riflessione in generica dimensione $ k $.
   % In $ \Sph{n} $ ho dei sottoinsiemi naturali:
   % \begin{gather*}
   %   \Disk{n}_+ = \set{ (x_1, \dots, x_{n+1}) \in \Sph{n} | x_1 \geq 0 } \\
   %   \Disk{n}_- = \set{ (x_1, \dots, x_{n+1}) \in \Sph{n} | x_1 \leq 0 }
   % \end{gather*}
   % Vale che $ \Disk{n}_+ \cap \Disk{n}_- = \set{ (x_1, \dots, x_{n+1}) \in \Sph{n} | x_1 \leq 0 } = \Sph{n-1} $.
-  Ho dimostrato che
+  \noindent
+  L'omologia di dischi e sfere è nota, e si sa che:
   \[
     \tilde{H}_p(\Sph{n}) \cong H_p(\Disk{n}, \Sph{n-1}) \cong H_p(\Sph{n}, \Disk{n})
   \]
-  Quindi considerando anche che $ \rho $ induce una mappa $ \rho_\star $ a livello di omologia:
+  Siccome $ \rho $ induce una mappa $ \rho_\star $ a livello di omologia:
   \[
     \begin{tikzcd}
-      H_n(\Sph{n}) \rar{\rho_\star} \arrow[leftrightarrow]{d}{\cong} & H_n(\Sph{n})  \arrow[leftrightarrow]{d}{\cong} \\
+      H_n(\Sph{n}) \rar{\rho^{(n)}_\star} \arrow[leftrightarrow]{d}{\cong} & H_n(\Sph{n})  \arrow[leftrightarrow]{d}{\cong} \\
       H_n(\Disk{n}, \Sph{n-1}) &  H_n(\Disk{n}, \Sph{n-1})
     \end{tikzcd}
   \]
-  Ho anche che $ H_n(\Disk{n}, \Sph{n-1}) \cong H_{n-1}(\Sph{n-1}) $, quindi il diagramma diventa:
+  Ma vale anche che $ H_n(\Disk{n}, \Sph{n-1}) \cong H_{n-1}(\Sph{n-1}) $, quindi il diagramma diventa:
   \[
     \begin{tikzcd}
-      H_n(\Sph{n}) \rar{\rho_\star} \arrow[leftrightarrow]{d}{\cong} & H_n(\Sph{n})  \arrow[leftrightarrow]{d}{\cong} \\
+      H_n(\Sph{n}) \rar{\rho^{(n)}_\star} \arrow[leftrightarrow]{d}{\cong} & H_n(\Sph{n})  \arrow[leftrightarrow]{d}{\cong} \\
       H_{n-1}(\Sph{n-1}) \rar{\rho_\star^{(n-1)}} &  H_{n-1}(\Sph{n-1})
     \end{tikzcd}
   \]
-  Ma per ipotesi induttiva per $ n - 1 $ il grado è $ - 1 $, quindi anche per $ n $ il grado è $ - 1 $.
+  Quindi il grado di $ \rho^{(n)} $ è $ - 1 $ in quanto per ipotesi induttiva il grado di $ \rho^{(n-1)} $ è $ - 1 $.
+  % Siccome per ipotesi induttiva per $ n - 1 $ il grado di $ \rho $ è $ - 1 $ allora anche per $ n $ il grado è $ \rho $ è $ - 1 $,
+  % a causa degli isomorfismi del precedente diagramma.
+  % Si nota che in tutto ciò non si è usato da nessuna parte il fatto che la riflessione è rispetto
+  % al piano definito da $ \set{x_{n+1} = 0} $, quindi la presente dimostrazione vale per ogni riflessione.
 \end{proof}
 \begin{lemma}
   \label{lemma:composizione_grado}
@@ -392,10 +479,12 @@ Per risolvere velocemente questo esercizio sono utili alcuni lemmi:
   Da cui $ \deg{(f \circ g)} = \deg f \, \deg g $.
 \end{proof}
 \begin{lemma}
+  \label{lemma:hopf}
   Siano $ f,g \colon \Sph{n} \to \Sph{n} $ due mappe continue, se
   $ \deg f = \deg g $ allora $ f \sim g $, cioe se due applicazioni
   hanno le stesso grado allora sono omotope.
 \end{lemma}
+\noindent
 % \begin{proof}
 %   La dimostrazione non è banale, si assume questo lemma, enunciato
 %   a lezione, vero.
@@ -419,15 +508,21 @@ Utilizzando il lemma \ref{lemma:composizione_grado} si ha che:
 \[
   \deg r^{i_1\dots i_{n+1}} = \prod_j^{n+1} i_{j} = \pm 1
 \]
-Quindi tutte le funzioni $ r^{i_1\dots i_{n+1}} $ si ripartiscono in
-due classi di equivalenza, una con rappresentante l'identità,
-l'altra con rappresentante la mappa antipodale.
-\hfill $ \square $
+Quindi per il lemma \ref{lemma:hopf} tutte le funzioni $ r^{i_1\dots i_{n+1}} $ si
+ripartiscono in due classi di equivalenza, una con rappresentante l'identità,
+l'altra con rappresentante la mappa antipodale. \hfill $ \square $
 
-\section{Esercizio 1.9 (21)}
+\section[1.9 (21)]{Esercizio 1.9 (21)}
+
+\subsubsection*{Testo}
+
+Sia $ q_1 (z) = z^n $ e $ q_2(z) = \bar{z} $. Calcola il grado di $ q_1, q_2 \colon \Sph{1} \to \Sph{1} $.
+
+\subsubsection*{Soluzione}
+
 Sia:
 \begin{align*}
-  q_1 \colon & \Sph{1} \to \Sph{1} \\
+  q_1 \colon  \Sph{1} &\to \Sph{1} \\
   z & \mapsto z^n
 \end{align*}
 Questa induce una mappa sul gruppo $ H_1(\Sph{1}) $,
@@ -469,19 +564,34 @@ Quindi a livello di gruppi di omologia:
 E quindi il grado è $ -1 $.
 \hfill $ \square $
 
-\section{Esercizio 4.2.27 (v)}
+\section[4.2.27 (v)]{Esercizio 4.2.27 (v)}
 
-Utilizzando i risultati dell'esercizio \ref{esercizio:grado_sfere}
-e le medesima notazione, la funzione $ f_k $ si può scrivere come
-$ f_k = \rho_k \circ \dots \circ \rho_1 $, quindi usando il lemma del grado della
-composizione di funzioni su sfere:
+\subsubsection*{Testo}
+Calcola il grado di ogni riflessione in un piano, cioè $ r \colon \Sph{n} \to \Sph{n} $
+definita da:
+\[
+  \rho_0 \colon (x_0, \dots, x_{n+1}) \mapsto (-x_0, \dots, x_{n+1})
+\]
+Più in generale calcola il grado di una mappa  $ f_k \colon \Sph{n} \to \Sph{n} $ del tipo:
+\[
+  f_k \colon (x_0, \dots, x_{n+1}) \mapsto (-x_0, \dots, -x_k, \dots, x_{n+1})
+\]
+
+\subsubsection*{Soluzione}
+
+Il grado delle riflessioni è già stato calcolato nell'esercizio
+\ref{esercizio:grado_sfere}. Utilizzando i risultati di tale esercizio e le
+medesima notazione, la funzione $ f_k $ si può scrivere come
+$ f_k = \rho_k \circ \dots \circ \rho_1 $, quindi usando il lemma \ref{lemma:composizione_grado}:
 \[
   \deg {f_k} =
   \begin{cases}
-    + 1 & \text{se $ k $ è pari} \\
-    - 1 & \text{se $ k $ è dispari}
+    + 1 & \text{se $ k $ è dispari} \\
+    - 1 & \text{se $ k $ è pari}
   \end{cases}
 \]
+\hfill $ \square $
+
 
 \end{document}
 
