@@ -90,7 +90,9 @@
     "fig:lez3:sketch_of_proof"
     "fig:lez3:klein_bottle"
     "fig:lez7:brouwer_proof_1"
-    "fig:lez10:projective")
+    "fig:lez14:excision_proof"
+    "fig:lez10:projective"
+    "fig:lez13:dimension_topological_invariance")
    (LaTeX-add-environments
     "theorem"
     "lemma"
@@ -176,6 +178,12 @@
     "Retrazione"
     "Teorema del punto fisso"
     "Grado di una sfera"
+    "$ \\mathcal{U} $-piccolo"
+    "Suddivisione
+      baricentrica"
+    "Terzo teorema degli omomorfismi"
+    "Lemma dei cinque"
+    "Omotopia di catena"
     "CW-complesso"
     "$ 0 $-scheletro"
     "$ k $-scheletro"
@@ -189,7 +197,7 @@
     "Coppia Buona"
     "Omologia cellulare"
     "Teorema di struttura per gruppi abeliani liberi finitamente generati"
-    "Successione di Mayers-Vietoris"
+    "Successione di Mayer-Vietoris"
     "Teorema di Jordan generalizzato"
     "Embedding"
     "Teorema di Jordan"

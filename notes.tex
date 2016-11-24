@@ -90,7 +90,7 @@
 
   \noindent
   \titlefont Topologia Algebrica
-  \epigraph{Zitto e studia.}%
+  \epigraph{Topologia portami via.}%
   {\textit{Parigi 1905}\\ \textsc{H.\ Poincarè}}
   \null\vfill
   \vspace*{1cm}
@@ -2678,7 +2678,7 @@ C'è la successione esatta:
 Inoltre per le proprietà funtoriali $ (\epsilon \circ i)_\star = (\Id{p})_\star = \Id{H_0(p)} $
 e $ (\epsilon \circ i)_\star = \epsilon_\star \circ i_\star $ quindi $ \epsilon_\star \circ i_\star = \Id{H_0(p)} $, ma quindi
 la successione spezza perché esiste una sezione $ i_\star $, perciò $ H_0(X) \cong \ker{\epsilon_\star} \oplus H_0(p) $.
-Si ha quindi che per qualsiasi teoria omologia che soddisfa gli assioni di Eilenberg
+Si ha quindi che per qualsiasi teoria omologia che soddisfa gli assiomi di Eilenberg
 e Steenrod (infatti ho utilizzato solo gli assiomi),
 e quindi in particolare per l'omologia singolare relativa,
 si ha che $ H_0(X) \cong \ker{\epsilon_\star} \oplus H_0(P) $.
@@ -3438,6 +3438,225 @@ che se due applicazioni definite su $ \Sph{n} $ hanno lo stesso grado allora son
   $ G(\vec{x}, 0) = f(\vec{x}) $ e $ G(\vec{x}, 1) = - \vec{x} $ quindi $ G $ realizza
   l'omotopia con l'applicazione antipodale.
 \end{proof}
+
+
+% lezione 14
+
+%  _     _____ ________ ___  _   _ _____   _ _  _
+% | |   | ____|__  /_ _/ _ \| \ | | ____| / | || |
+% | |   |  _|   / / | | | | |  \| |  _|   | | || |_
+% | |___| |___ / /_ | | |_| | |\  | |___  | |__   _|
+% |_____|_____/____|___\___/|_| \_|_____| |_|  |_|
+
+\subsection{Escissione e omotopia}
+
+Dimostro che l'omologia singolare soddisfa gli assiomi verificando quelli
+che mi mancano che sono l'escissione e l'omotopia.
+
+\begin{theorem}
+  Sia $ X $ uno spazio topologico, e $ A, B $ suoi sottospazi topologici
+  con la topologia indotta tali che $ B \subseteq A \subseteq X $ e $ \bar{B} \subseteq \mathrm{int}(A) $,
+  allora è possibile escindere il sottoinsieme $ B $ da $ A $ e da $ X $, cioè
+  l'inclusione $ i \colon (X \setminus B, A \setminus B) \incl (X,A) $ induce un isomorfismo a livello
+  di omologia $ i_\star \colon H_k(X \setminus B, A \setminus B) \homoto H_k(X,A) $.
+\end{theorem}
+\begin{proof}
+  Sia $ \mathcal{U} = \set{A, X \setminus B} $ un ricoprimento per $ X $ (infatti
+  $ X = A \cup X \setminus B $). Considero le $ k $-catene singolari in $ A $ $ S_k(A) $,
+  le $ k $-catene singolari in $ X \setminus B $ $ S_k(X \setminus B) $ e definisco
+  $ S_k^\mathcal{U}(X) $ il sottocomplesso generato dai simplessi singolari
+  $ \sigma \colon \Delta_k \to X $ tali che $ \sigma $ sia un $ \mathcal{U} $-piccolo.
+
+  \begin{definition}
+    Un simplesso singolare in $ X $ si dice
+    \textbf{$ \mathcal{U} $-piccolo}\index{$ \mathcal{U} $-piccolo} se esiste
+    una suddivisione baricentrica di $ \Delta_k $ tale che abbia immagine in
+    $ U_\alpha $, dove $ \mathcal{U} = \bigcup_\alpha U_\alpha $.
+  \end{definition}
+
+  \begin{definition}
+    La definizione di \textbf{suddivisione baricentrica}\index{Suddivisione
+      baricentrica} è piuttosto tecnica e noiosa, ma l'idea fondamentale è
+    quella di spezzettare il simplesso a partire dal suo baricentro (che sempre
+    univocamente determinabile) in tanti simplessi tanto piccoli da essere
+    completamente contenuti negli insiemi del ricoprimento.
+  \end{definition}
+
+  Sostanzialmente $ S_k^\mathcal{U}(X) $ sono le catene somme di simplessi
+  completamente contenuti in uno degli $ U_\alpha $ che formano il ricoprimento.
+
+  \begin{exercise}
+    Dimostrare che $ X = \mathrm{int}(A) \cup \mathrm{int}(X \setminus B) $.
+  \end{exercise}
+  Sostanzialmente è quindi possibile prendere insiemi aperti per formare il
+  ricoprimento $ \mathcal{U} $, infatti se $ A $ e/o $ X \setminus B $ non fossero
+  aperti potrei considerare il ricoprimento
+  $ \mathcal{U} = \set{ \mathrm{int}(A), \mathrm{int}(X \setminus B)} $.
+
+  La dimostrazione del teorema di escissione si basa ora su alcune assunzioni
+  di natura algebrica.
+
+  \begin{osservation}
+    Vale che $ S_k^\mathcal{U}(X) = S_k(A) + S_k(X \setminus B) $. L'operazione di somma
+    è ben definita perché i complessi sono $ \Z $-moduli. Per mostrare che
+    questa asserzione è vera la verifico sui generatori
+    $ \sigma \colon \Delta_k \to X $. Per definizione di $ S_k^\mathcal{U}(X) $ se
+    $ \sigma \in S_k^\mathcal{U}(X) $ o $ \sigma \in S_k(A) $ oppure
+    $ \sigma \in S_k(X\setminus B) $, quindi
+    $ S_k^\mathcal{U}(X) \subseteq S_k(A) + S_k(X \setminus B) $. Inoltre se
+    $ \sigma_1 \colon \Delta_1 \to A $ e
+    $ \sigma_2 \colon \Delta_k \to X \setminus B $ allora
+    $ \sigma_1 + \sigma_2 \colon \Delta_k \to X $ e naturalmente
+    $ \sigma_1 + \sigma_2 \in S_k^\mathcal{U}(X) $, quindi vale l'inclusione e quindi vale
+    l'uguaglianza.
+  \end{osservation}
+
+  \begin{osservation}[Terzo teorema degli omomorfismi\index{Terzo teorema degli omomorfismi}]
+    Vale che $ S_k(A \setminus B) = S_k(A) \cap S_k(X \setminus B) $, questo è ovvio.
+  \end{osservation}
+
+  \begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=0.75]
+      \draw plot [smooth cycle] coordinates {(0,0) (2,3) (3,4) (5,2) (2,-1)};
+      \draw plot [smooth cycle] coordinates {(1.5,1) (2,2) (3,3) (4,2) (2,0)};
+      \draw (2.5,1.5) circle (0.3);
+      \node[above] () at (3,4) {$ X $};
+      \node[right] () at (4,2) {$ A $};
+      \node[] () at (2.5,1.5) {$ B $};
+    \end{tikzpicture}
+    \caption{Situazione}
+    \label{fig:lez14:excision_proof}
+  \end{figure}
+
+  \begin{osservation}
+    Vale che:
+    \[
+      \quot{S_k(X \setminus B)}{A \setminus B} \cong \quot{S_k^\mathcal{U}(X)}{S_k(A)}
+    \]
+    Infatti \dots
+  \end{osservation}
+
+  \begin{osservation}
+    Vale che:
+    \[
+      \begin{tikzcd}
+        S_k(X \setminus B) \rar \dar & S_k(X) \dar \\
+        \quot{S_k(X \setminus B)}{S_k(A \setminus B)} \rar & \quot{S_k(X)}{S_k(A)}
+      \end{tikzcd}
+    \]
+    Quindi usando le osservazioni precedenti è ben definito il diagramma:
+    \[
+      \begin{tikzcd}
+        \quot{S_k(X \setminus B)}{S_k(A \setminus B)} \arrow{rd}{} \arrow{rr}{\cong} & {} & \quot{S_k^\mathcal{U}(X)}{S_K(A)} \arrow{ld}{}\\
+        {} & \quot{S_k(X)}{S_k(A)} & {}
+      \end{tikzcd}
+    \]
+    Passando all'omologia della coppia:
+    \[
+      \begin{tikzcd}
+        H_p(X \setminus B, A \setminus B) \arrow{rd}{\phi} \arrow{rr}{\cong} & {} & H_P^\mathcal{U}(X,A) \arrow{ld}{\psi} \\
+        {} & H_p(X,A) & {}
+      \end{tikzcd}
+    \]
+    Per dimostrare l'escissione bisogna mostrare che $ \phi $ è un isomorfismo, e questo può essere
+    ottenuto mostrando che $ \psi $ è isomorfismo (così sarebbe $ \phi $ composizione di isomorfismi),
+    cioè devo dimostrare che $ H_p^\mathcal{U}(X, A) \cong H_p(X,A) $.
+
+    Questo risultato dipende da altre due osservazioni:
+    \begin{osservation}
+      Se $ X $ è uno spazio topologico e $ \mathcal{U} = \set{U_\alpha} $ un suo ricoprimento di aperti
+      allora $ H_p^\mathcal{U}(X) \cong H_p(X) $.
+    \end{osservation}
+    A questo punto voglio passare all'omologia relativa. Considero $ \mathcal{U} \cap A = \set{U_\alpha \cap A} $,
+    questo è un ricoprimento aperto di $ A $. Definisco:
+    \[
+      S_k^\mathcal{U}(X,A) = \quot{S_k^\mathcal{U}(X)}{S_k^{\mathcal{U} \cap A}(A)}
+    \]
+    Ho quindi la successione esatta corta:
+    \[
+      \begin{tikzcd}
+        0 \rar & S_k^{\mathcal{U} \cap A}(A) \rar & S_k^{\mathcal{U}}(X) \rar & S_k^{\mathcal{U}}(X,A) \rar & 0
+      \end{tikzcd}
+    \]
+    Ma c'è anche la successione esatta corta:
+    \[
+      \begin{tikzcd}
+        0 \rar & S_k(A) \rar & S_k(X) \rar & S_k(X,A) \rar & 0
+      \end{tikzcd}
+    \]
+    Quindi è ben definita la mappa tra successioni corte:
+    \[
+      \begin{tikzcd}
+        0 \rar & S_k^{\mathcal{U} \cap A}(A) \rar \dar & S_k^{\mathcal{U}}(X) \rar \dar & S_k^{\mathcal{U}}(X,A) \rar \dar & 0 \\
+        0 \rar & S_k(A) \rar & S_k(X) \rar & S_k(X,A) \rar & 0
+      \end{tikzcd}
+    \]
+    Queste successioni esatte corte ne inducono una esatta lunga in omologia:
+    \[
+      \begin{tikzcd}[nodes={column sep = 7 pt}]
+        \dots \rar & H_i^{\mathcal{U} \cap A}(A) \rar \dar{\cong} & H_i^{\mathcal{U}}(X) \rar \dar{\cong} & H_i^{\mathcal{U}}(X,A) \rar \dar{?} &  H_{i_1}^{\mathcal{U} \cap A}(A) \rar
+        \dar{\cong} & H_{i-1}^{\mathcal{U}}(X) \rar \dar{\cong} & \dots \\
+        \dots \rar & H_i(A) \rar & H_i(X) \rar & H_i(X,A) \rar &  H_{i_1}(A) \rar & H_{i-1}(X) \rar & \dots
+      \end{tikzcd}
+    \]
+    In queste condizioni si può applicare il lemma dei cinque con il quale si trova immediatamente
+    che  $ H_p^\mathcal{U}(X, A) \cong H_p(X,A) $.
+
+    \begin{lemma}[Lemma dei cinque\index{Lemma dei cinque}]
+      Considerato il seguente diagramma formato da successioni esatte corte in cui ogni quadrato è commutativo:
+      \[
+        \begin{tikzcd}
+          A \rar{i} \dar{\alpha} & B \rar{j} \dar{\beta} & C \rar{k} \dar{\gamma} & D \rar{l} \dar{\delta} & E \dar{\epsilon} \\
+          A' \rar{i} & B' \rar{j} & C' \rar{k} & D' \rar{l} & E'
+        \end{tikzcd}
+      \]
+      Se $ \alpha, \beta, \delta, \epsilon $ sono isomorfismi allora anche $ \gamma $ lo è.
+    \end{lemma}
+    \begin{proof}
+      [MANCA LA PROVA (HATCHER 129)]
+    \end{proof}
+
+  \end{osservation}
+
+\end{proof}
+
+% lezione 14 parte 2
+
+Ora verifico l'assioma di omotopia. Riepilogo alcuni concetti: Siano $ X, Y $
+spazi topologici e $ A, B $ sottospazi topologici di $ X $ e $ Y $
+rispettivamente, siano $ f_0 \colon (X, A) \to (Y,B) $ e
+$ f_1 \colon (X,A) \to (Y,B) $ mappe continue con $ f_0(A) \subseteq B $ e
+$ f_1(A) \subseteq B $, $ f_0 $ e $ f_1 $ si dicono omotopicamente equivalenti se esiste
+una funzione continua $ F \colon I \times X \to Y $ tale che $ \forall x \in X $
+$ F(0,x) = f_0(x) $, $ F(1,x) = f_1(x) $ e $ \forall t \in I $ $ F(t,a) \in B $.
+
+\begin{theorem}
+  Siano $ X, Y $ spazi topologici e $ A, B $ sottospazi topologici rispettivamente
+  di $ X $ e $ Y $, e $ f_0, f_1 \colon (X, A) \to (Y, B) $ funzioni continue omotope,
+  allora le mappe indotte da queste funzioni sui gruppi di omologia coincidono,
+  cioè $ (f_0)_\star = (f_1)_\star $, con $ (f_0)_\star, (f_1)_\star \colon H_l(X,A) \to H_k(Y,B) $.
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+
+La mappa $ G $ è un esempio di omotopia di catena:
+\begin{definition}
+  Siano $ (A_\bullet, \partial^A) $ e $ (B_\bullet, \partial^B) $ complessi, e siano $ \phi, \psi \colon A_\bullet \to B_\bullet $
+  mappe continue tra complessi, $ \phi $ e $ \psi $ si dicono \textbf{omotope}\index{Omotopia di catena}
+  (\emph{chain homotopic}) se esiste una mappa tra complessi $ D \colon A_\bullet \to B_{\bullet + 1} $
+  tale che $ \partial \circ D + D \circ \partial = \phi - \psi $. Si ha quindi il diagramma:
+  \[
+    \begin{tikzcd}
+      \dots \rar & A_{i+1} \rar{\partial^A} & A_i \rar{\partial^A} & A_{i-1} \rar & \dots \\
+      \dots \rar & B_{i+1} \rar{\partial^B} & B_i \rar{\partial^B} & B_{i-1} \rar & \dots
+    \end{tikzcd}
+  \]
+
+\end{definition}
+
+
 
                         %                         lezione 8 parte 2
 
@@ -4784,8 +5003,8 @@ Questa è la caratteristica di Eulero di $ V_g $: $ \chi(V_g) = 2 - 2g $.
   libero finitamente generato.
 \end{corollary}
 
-\begin{theorem}[Teorema di struttura per gruppi abeliani liberi finitamente generati
-  \index{Teorema di struttura per gruppi abeliani liberi finitamente generati}]
+\begin{theorem}[Teorema di struttura per gruppi abeliani liberi finitamente generati]
+  \index{Teorema di struttura per gruppi abeliani liberi finitamente generati}
   Se $ \mathcal{G} $ è un gruppo abeliano libero finitamente generato di rango
   $ \rank{\mathcal{G}} $ allora:
   \[
@@ -5040,7 +5259,7 @@ Per $ n $ dispari:
 Si ha l'alternanza di applicazione costante e moltiplicazione per 2.
 
 \section{Successione di Mayer-Vietoris}
-\index{Successione di Mayers-Vietoris}
+\index{Successione di Mayer-Vietoris}
 
 \begin{theorem}
   Sia $ X $ uno spazio topologico e $ A $ e $ B $ sottospazi aperti di $ X $ con la
@@ -5050,27 +5269,50 @@ Si ha l'alternanza di applicazione costante e moltiplicazione per 2.
       0 \rar & S_p(A \cap B) \rar & S_p(A) \oplus S_p(B) \rar & S_p(A \cup B) \rar & 0
     \end{tikzcd}
   \]
-  Infatti ci sono $ i_A \colon A \cap B \to A $ e $ i_B \colon A \cap B \to B $ quindi
-  $ c \mapsto (i_A^\sharp (c), i_B^\sharp (c)) $, e poi ci sono $ j_A \colon A \to X $ e $ j_B \colon B \to X $,
-  quindi l'ultima applicazione è $ (x,y) \to j_A^\sharp(x) - j_B^\sharp(y) $.
-  La successione è esatta, infatti:
+  Quindi esiste una successione esatta lunga in omologia:
   \[
-    \text{Se }  j_A^\sharp(x) - j_B^\sharp(y) = 0 \Rightarrow  j_A^\sharp(x) = j_B^\sharp(y)
-  \]
-  Quindi $ y \lvert_B $ è qualcosa in $ A $ $ x \lvert_A $ è qualcosa in $ B $
-  quindi $ \exists c $ tale che $ i_A(c) = x $ e $ i_b(c) = y $.
-  Poi esiste una successione esatta lunga in omologia:
-  \[
-    \begin{tikzcd}
+    \begin{tikzcd}[nodes = {column sep = 10 pt}]
       \dots \rar & H_p(A \cap B) \rar & H_p(A) \oplus H_p(B) \rar & H_p(A \cup B) \rar{\delta} & H_{p-1}(A \cap B) \rar & \dots
     \end{tikzcd}
   \]
-  $ \delta $ è l'omomorfismo di connessione ed è ben definito nel solito modo.
+  % $ \delta $ è l'omomorfismo di connessione ed è ben definito nel solito modo.
 \end{theorem}
+\begin{proof}
+  Esistono le mappe di inclusione sono $ i_A \colon A \cap B \incl A $ e $ i_B \colon A \cap B \incl B $ quindi
+  è ben definita:
+  \begin{align*}
+    i_\sharp \colon S_p(A \cap B) & \to S_p(A) \oplus S_p(B) \\
+    c & \mapsto (i_A^\sharp (c), i_B^\sharp (c))
+  \end{align*}
+  Ma ci sono anche le inclusioni $ j_A \colon A \incl X $ e $ j_B \colon B \incl X $,
+  quindi è ben definita
+  \begin{align*}
+    j_\sharp \colon  S_p(A) \oplus S_p(B) & \to S_p(A \cup B) = S_p(X) \\
+    (a,b) &  \mapsto j_A^\sharp(a) - j_B^\sharp(b)
+  \end{align*}
+  La successione è esatta, infatti sia $ c \in S_p(A \cap B) $:
+  \[
+    j_\sharp \circ i_\sharp (c) = (i_A^\sharp (c), i_B^\sharp (c)) = i_A^\sharp (c) -  i_B^\sharp (c) = 0
+  \]
+  In quanto sugli elementi di $ S_p(A \cap B) $ $ i_A^\sharp $ e $ i_B^\sharp $ agiscono
+  allo stesso modo.
+\end{proof}
+
+\begin{osservation}
+  Questa non è la forma più generale del teorema di Mayer-Veitoris, il quale
+  ammette anche la possibilità che $ A $ e $ B $ non siano aperti ma che
+  $ X = \mathrm{int} A \cup \mathrm{int} B $, tuttavia questa possibilità si rivela
+  necessaria solo in casi patologici.
+\end{osservation}
+
+Nel dimostrare il seguente teorema si dà per noto il seguente risultato:
+\begin{lemma}
+  Se $ f \colon \Disk{n} \to \Sph{n} $ è un embdetting allora $ \tilde{H}_k(\Sph{r} \setminus f(\Disk{r})) = 0 $.
+\end{lemma}
 
 \begin{theorem}[Teorema di Jordan generalizzato\index{Teorema di Jordan generalizzato}]
   Sia $ f \colon \Sph{r} \to \Sph{n} $ un \textbf{embedding}\index{Embedding}, cioè una funzione
-  continua tale che $ f(\Sph{r}) \simeq \Sph{n} $, allora:
+  continua tale che $ f(\Sph{r}) \simeq \Sph{r} $, allora:
   \[
     \tilde{H}_i(\Sph{n} \setminus f(\Sph{r})) \cong
     \begin{cases}
@@ -5078,47 +5320,52 @@ Si ha l'alternanza di applicazione costante e moltiplicazione per 2.
       0 & \text{se }  i \not = n - r - 1
     \end{cases}
   \]
+  Ovvero $ \tilde{H}_i(\Sph{n} \setminus f(\Sph{r})) \cong \tilde{H}_i(\Sph{n - r - 1}) $.
 \end{theorem}
 \begin{proof}
   La dimostrazione è per induzione su $ r $.
   Per $ r = 0 $ $ \Sph{0} = \set{+1,-1} $, $ f(\Sph{0}) = \set{p,q} $
-  essendo un embedding. Allora $ \Sph{n} \setminus \set{p,q} \cong \RN{n} \setminus \set{\vec{0}} \simeq \Sph{n-1} $.
-  Quindi è vero.
+  essendo un embedding. Allora $ (\Sph{n} \setminus \set{p}) \setminus \set{q} \cong \RN{n} \setminus \set{\vec{0}} \simeq \Sph{n-1} $.
+  Quindi  $ \tilde{H}_i(\Sph{n} \setminus f(\Sph{0})) \cong \tilde{H}_i(\Sph{n - 1}) $.
 
-  Suppongo di conoscere il risultato per $ r - 1 $:
-  sia $ f \colon \Sph{r} \to \Sph{n} $ embedding, considero i due emisferi
-  $ \Disk{n}_+ \cup \Disk{n}_- = \Sph{r} $ e   $ \Disk{n}_+ \cap \Disk{n}_- = \Sph{r-1} $.
-  Sia $ U_ = \Sph{n} \setminus f(\Disk{r}_+) $ e $ U_- = \Sph{n} \setminus f(\Disk{r}_-) $,
-  uno Mayer-Vietoris, infatti $ U_- $ e $ U_+ $ sono aperti.
+  Suppongo di conoscere il risultato per $ r - 1 $: sia
+  $ f \colon \Sph{r} \to \Sph{n} $ embedding, considero i due emisferi
+  $ \Disk{r}_+ $ e $ \Disk{r}_- $, vale che:
+  $ \Disk{r}_+ \, \cup \, \Disk{r}_- = \Sph{r} $ e
+  $ \Disk{r}_+ \, \cap \, \Disk{r}_- = \Sph{r-1} $. Sia
+  $ U_+ = \Sph{n} \setminus f(\Disk{r}_+) $ e
+  $ U_- = \Sph{n} \setminus f(\Disk{r}_-) $, uno Mayer-Vietoris, infatti $ U_- $ e
+  $ U_+ $ sono aperti in quanto sono complementari di chiusi in $ \Sph{n} $.
   Ho che:
-  \[
-    U_+ \cup U_i = \Sph{n} \setminus f(\Disk{r}_+) \cup \Sph{n} \setminus f(\Disk{r}_-) =
-    \Sph{n} \setminus (f(\Disk{r}_+) \cap f(\Disk{r}_-)) = \Sph{n} \setminus (f(\Disk{r}_+ \cap \Disk{r}_-))
-    = \Sph{n} \setminus f(\Sph{r-1})
-  \]
+  \begin{gather*}
+    U_+ \cup U_- = \left(\Sph{n} \setminus f(\Disk{r}_+) \right) \cup \left( \Sph{n} \setminus f(\Disk{r}_-) \right) =
+    \Sph{n} \setminus (f(\Disk{r}_+) \cap  f(\Disk{r}_-)) = \\
+   \overset{\text{$ f $ è embedding}} {=}  \Sph{n} \setminus (f(\Disk{r}_+  \cap  \Disk{r}_-)) = \Sph{n} \setminus f(\Sph{r-1})
+  \end{gather*}
   Mentre:
-  \[
-    U_+ \cap U_- = \Sph{n} \setminus f(\Disk{r}_+) \cap \Sph{n} \setminus f(\Disk{f}_-) = \Sph{n} \setminus f(\Sph{r})
-  \]
+  \begin{gather*}
+    U_+ \cap U_- = \left(\Sph{n} \setminus f(\Disk{r}_+) \right) \cap \left(\Sph{n} \setminus f(\Disk{f}_-) \right)
+    \Sph{n} \setminus (f(\Disk{r}_+) \cup  f(\Disk{r}_-)) = \\
+    \overset{\text{$ f $ è embedding}} {=}  \Sph{n} \setminus (f(\Disk{r}_+  \cup  \Disk{r}_-)) = \Sph{n} \setminus f(\Sph{r})
+  \end{gather*}
   Per Mayers-Vietoris c'è:
   \[
-    \begin{tikzcd}
-      \dots \rar & H_{i+1}(U_+) \oplus H_{i+1}(U_-) \rar & H_{i+1}(\Sph{n} \setminus
-      f(\Sph{n-1})) \rar H_1(\Sph{n} \setminus f(\Sph{r})) \rar & H_i (U_+) \oplus H_i(U_-)
+    \begin{tikzcd}[nodes={column sep = 5pt, inner sep = 2pt}]
+      \dots \rar & H_{i+1}(U_+) \oplus H_{i+1}(U_-) \rar & H_{i+1}(U_+ \cup U_-) \rar & H_i(U_+ \cap U_-) \rar & H_i (U_+) \oplus H_i(U_-)
       \rar & \dots
     \end{tikzcd}
   \]
-  Si dà per noto questo risultato:
-  \begin{lemma}
-    Se $ f \colon \Disk{n} \to \Sph{n} $ è un embdetting allora $ \tilde{H}_k(\Sph{r} \setminus f(\Disk{r})) = 0 $.
-  \end{lemma}
-  Da cui:
+  Da cui, utilizzando il precedente lemma ($ H_i(U_\pm) \cong 0 $):
   \[
     \begin{tikzcd}
-      0 \rar & H_{i+1}(\Sph{n} - f(\Sph{r-1})) \rar & H_1(\Sph{n} \setminus f(\Sph{r})) \rar & 0
+      0 \rar & H_{i+1}(\Sph{n} - f(\Sph{r-1})) \rar & H_i(\Sph{n} \setminus f(\Sph{r})) \rar & 0
     \end{tikzcd}
   \]
+  Da cui passando all'omologia ridotta
+  $ \tilde{H}_i(\Sph{n} \setminus f(\Sph{r})) \cong \tilde{H}_{i+1}(\Sph{n} - f(\Sph{r-1}) \cong \tilde{H}_{i+1}(\Sph{n-r}) \cong \tilde{H}_i(\Sph{n-r-1}) $
+  per ipotesi induttiva.
 \end{proof}
+
 Questo risultato generalizza il teorema di Jordan\index{Teorema di Jordan} che
 dice che se $ C $ è una curva semplice (cioè che non si autointerseca) chiusa in
 $ \RN{2} $ allora $ C $ divide $ \RN{2} $ in due componenti connesse.
@@ -5126,7 +5373,7 @@ $ \RN{2} $ allora $ C $ divide $ \RN{2} $ in due componenti connesse.
 \begin{example}
   Sia $ f \colon \Sph{1} \to \Sph{2} $ embedding allora:
   \[
-    \tilde{H}_1(\Sph{2} \setminus f(\Sph{1})) \cong
+    \tilde{H}_i(\Sph{2} \setminus f(\Sph{1})) \cong
     \begin{cases}
       \Z & \text{se } i = 0 \\
       0 & \text{se } i \not = 0
@@ -5138,16 +5385,18 @@ $ \RN{2} $ allora $ C $ divide $ \RN{2} $ in due componenti connesse.
   Il teorema di Jordan generalizzato implica il teorema di Jordan.
 \end{proposition}
 \begin{proof}
-  Ho $ \Sph{2} \setminus \set{p} \cong \RN{2} $, $ f \colon \Sph{1} \to \Sph{2} $ embedding,
-  $ f(\Sph{1}) $ è una curva chiusa semplice. So che
+  Ho $ \Sph{2} \setminus \set{p} \cong \RN{2} $, per proiezione stenografica,
+  sia $ f \colon \Sph{1} \to \Sph{2} $ embedding,
+  $ f(\Sph{1}) $ è una curva chiusa semplice, la denoto con $ C = f(\Sph{1})$. So che
   \[
-    \tilde{H}_1(\Sph{2} \setminus C ) \cong
+    \tilde{H}_i(\Sph{2} \setminus C ) \cong
     \begin{cases}
       \Z & \text{se } i = 0 \\
       0 & \text{se } i \not = 0
     \end{cases}
   \]
-  Ci sono due componenti connesse. Bisogna dimostrare che
+  Ci sono due componenti connesse, infatti per $ i = 0 $ l'omologia è $ \Z^2 $ (infatti
+  l'omologia ridotta toglie uno $ \Z $). Bisogna dimostrare che
   $ \tilde{H}_1(\Sph{2} \setminus C) \cong \tilde{H}_1(\RN{2} \setminus C) $. Mostro che
   $ \tilde{H}_0(\Sph{2} \setminus C) \cong \tilde{H}_0(\RN{2} \setminus C) $. Un modo per farlo è
   con Mayers-Vietoris. Sia $ q \in C $,
@@ -5163,11 +5412,11 @@ $ \RN{2} $ allora $ C $ divide $ \RN{2} $ in due componenti connesse.
   Prendo $ V(q) $ intorno di $ q $ omeomorfo a $ D $, poi prendo $ D' $
   e considero $ \Sph{2} \setminus C = K $, quindi $ K \setminus D $.
   [FIGURA]
-  Uso Meyer-Vietoris $ K = (K \setminus D') \cup D $. So che $ D \sim P $ punto e
+  Uso Mayer-Vietoris $ K = (K \setminus D') \cup D $. So che $ D \sim P $ punto e
   $ (K \setminus D') \cap D \sim \Sph{1} $ (è una corona circolare). Quindi per
   Mayers-Vietoris ho la successione esatta lunga:
   \[
-    \begin{tikzcd}
+    \begin{tikzcd}[nodes={column sep=7pt}]
       \dots \rar & H_1(\Sph{1}) \rar & H_1(K \setminus \set{q}) \oplus H_1(P) \rar & H_1(K) \rar & H_0(\Sph{1}) \rar & H_0(K \setminus \set{q})
       \oplus H_0(P) \rar & H_0(K) \rar & 0
     \end{tikzcd}
@@ -5175,47 +5424,81 @@ $ \RN{2} $ allora $ C $ divide $ \RN{2} $ in due componenti connesse.
   So che $ H_1(K) \cong 0 $ per il teorema di Jordan generalizzato e $ H_0(K) \cong \Z^2 $.
   Ma $ 1 - \rank{(H_0(K \setminus \set{q}))} -1 + 2 = 0 $ quindi $ \rank{(H_0(K \setminus \set{q}))} = 2 $
   e quindi $ H_0(K \setminus \set{q}) \cong \Z^2 $.
+  [SISTEMARE QUESTA ROBA]
 \end{proof}
 
 \begin{theorem}[Invarianza topologica della dimensione]\index{Invarianza topologica della dimensione}
   Se $ M $ è una varietà topologica di dimensione $ m $ e $ N $ una varietà
-  topologica di dimensione $ n $, se $ M \simeq N $ allora $ m = n $, cioè la dimensione
-  di una varietà topologica è un invariante topologico, se due spazi topologici sono
+  topologica di dimensione $ n $ con $ M \simeq N $ allora $ m = n $, cioè la dimensione
+  di una varietà topologica è un invariante topologico: se due spazi topologici sono
   omeomorfi allora hanno la stessa dimensione.
 \end{theorem}
 \begin{proof}
-  Mostro che $ \dim{M} $ è legata al gruppo di omologia della sfera.
-  Sia $ x \in M $ allora siccome $ M $ è una varietà topologica esiste un aperto
-  $ \Disk{m}(x) $, calcolo $ H_1(M, M \setminus \set{x}) $.
-  Prendo $ V = \Disk{m} \setminus \set{x} $ aperto, faccio escissione:
-  $ H_i(M, M \setminus \set{x}) \cong H_1(M \setminus U, M \setminus \set{x}) $, sia $ U = M \setminus \Disk{m} $
-  allora $ \bar{U} \subseteq M \setminus \set{x} $ in quanto $ U $ è chiuso e quindi
-  $ \bar{U} = U $, ma $ U \subseteq M \setminus \set{x} $.
-  Quindi:
+  Mostro inizialmente che la dimensione di una varietà topologica è legata al
+  gruppo di omologia della sfera. Sia $ x \in M $ allora siccome $ M $ è una
+  varietà topologica esiste un intorno aperto di $ x $ $ \Disk{m}(x) $, questo
+  intorno è omeomorfo al disco aperto $ m $-dimensionale. Sia
+  $ U = M \setminus \Disk{m}(x) $, $ U $ è chiuso perché complementare in $ M $ di un
+  aperto. Vale che $ \bar{U} = U \subseteq M \setminus \set{x} $ perciò
+  $ U \subseteq M \setminus \set{x} \subseteq M $ e quindi posso fare l'escissione:
   \[
-    M \setminus U = M \setminus V = M \setminus (M \setminus \Disk{m}) = \Disk{m}
+    H_i(M, M \setminus \set{x}) \cong H_i(M \setminus U, M \setminus U \setminus \set{x})
+  \]
+  Ma:
+  \[
+    M \setminus U  = M \setminus (M \setminus \Disk{m}(x)) = \Disk{m}(x)
   \]
   Quindi:
   \[
-    H_i(N, M \setminus \set{x}) = H_i(\Disk{m}, \Disk{m} \setminus \set{\vec{0}})
+    H_i(M, M \setminus \set{x}) \cong H_i(\Disk{m}(x), \Disk{m}(x) \setminus \set{x}) \cong H_i(\Disk{m}, \Disk{m} \setminus \set{\vec{0}})
   \]
-  C'è la successione esatta lunga in omologia relativa, e trovo che:
+  \begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+      \fill[gray!30] plot [smooth cycle] coordinates {(0,0) (1,1) (3,1) (4,0) (2,-2)};
+      \draw plot [smooth cycle] coordinates {(0,0) (1,1) (3,1) (4,0) (2,-2)};
+      \fill[gray!10] (2,0) circle (0.6);
+      \node () at (2,0) {\textbullet};
+      % \node[right] () at (2.6,0) {$ V $};
+      \node[above] () at (2,0) {$ x $};
+      \draw (2,0) circle (0.6);
+      \node[above] () at (2,-1.8) {$ U $};
+      \node[right] () at (4,0) {$ M $};
+    \end{tikzpicture}
+    \caption{Situazione}
+    \label{fig:lez13:dimension_topological_invariance}
+  \end{figure}
+  L'immersione di $ \Disk{m} \setminus \set{\vec{0}} $ in $ \Disk{m} $ induce una
+  successione esatta lunga in omologia relativa ridotta, da cui si trova
+  facilmente che:
   \[
-    H_i(\Disk{m}, \Disk{m} \setminus \set{\vec{0}}) \cong \tilde{H}_i(\Disk{n} \setminus \set{\vec{0}})
+    H_i(\Disk{m}, \Disk{m} \setminus \set{\vec{0}}) \cong \tilde{H}_{i-1}(\Disk{m} \setminus \set{\vec{0}})
   \]
-  Ma $ \Disk{n} \setminus \set{\vec{0}} \sim_h \tilde{H}_i(\Sph{n-1}) $ quindi
-  $ \tilde{H}_i(\Disk{n} \setminus \set{\vec{0}}) \cong \tilde{H}_i(\Sph{n-1}) $
-  e quindi:
+  Ma $ \Disk{m} \setminus \set{\vec{0}} \sim_h \Sph{m-1} $ quindi
+  $ \tilde{H}_i(\Disk{m} \setminus \set{\vec{0}}) \cong \tilde{H}_i(\Sph{m-1}) $
+  e perciò:
   \[
-    H_i(M, M \setminus \set{x}) \cong \tilde{H}_i(\Sph{n-1})
+    H_i(M, M \setminus \set{x}) \cong \tilde{H}_i(\Sph{m-1})
   \]
-  Per assurdo $ n \not = m $ quindi $ H_i(M, M \setminus \set{x}) \cong \tilde{H}_i(\Sph{m-1}) $
-  e $ H_j(M, N \setminus \set{y}) \cong \tilde{H}_i(\Sph{n-1}) $, ma $ n \not = m $ quindi
-  $ H_i(M, M \setminus \set{x}) \not \cong H_j(M, N \setminus \set{y}) $ e questo è assurdo.
+  A questo punto diventa semplice collegare due varietà differenti: se $ M \simeq N $
+  allora:
+  \[
+    H_i(M, M \setminus \set{x}) \cong H_i(N, N \setminus \set{y})
+  \]
+  Cioè:
+  \[
+    \tilde{H}_i(\Sph{m-1}) \cong \tilde{H}_i(\Sph{n-1})
+  \]
+  Quindi necessariamente $ m = n $.
 \end{proof}
 \begin{osservation}
-  Non vale il viceversa, come ad esempio un toro e una sfera.
+  Non vale il viceversa, come ad esempio un toro e una sfera, che hanno la stessa
+  dimensione topologica ma non sono omeomorfi.
 \end{osservation}
+
+
+
+
             %             1. Correggere i : con \colon (CAMBIA QUALCOSA? INFORMARSI!)
             %             NOTA i : servono solo per questioni di relazione, del tipo negli insiemi come "tale che",
             %             nelle mappe si deve sempre usare \colon (http://tex.stackexchange.com/questions/37789/using-colon-or-in-formulas)
