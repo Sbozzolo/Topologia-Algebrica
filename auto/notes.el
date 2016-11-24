@@ -183,6 +183,7 @@
       baricentrica"
     "Terzo teorema degli omomorfismi"
     "Lemma dei cinque"
+    "Operatore prisma"
     "Omotopia di catena"
     "CW-complesso"
     "$ 0 $-scheletro"

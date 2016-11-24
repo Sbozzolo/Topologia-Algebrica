@@ -3638,7 +3638,93 @@ $ F(0,x) = f_0(x) $, $ F(1,x) = f_1(x) $ e $ \forall t \in I $ $ F(t,a) \in B $.
   cioè $ (f_0)_\star = (f_1)_\star $, con $ (f_0)_\star, (f_1)_\star \colon H_l(X,A) \to H_k(Y,B) $.
 \end{theorem}
 \begin{proof}
+  L'intervallo $ I $ è omeomorfo al simplesso standard $ \Delta_1 $, introducendo
+  $ \epsilon_1 \colon \Delta_0 \to I $ e $ \epsilon_0 \colon \Delta_0 \to I $ definiti da:
+  $ \epsilon_i(e_0) = i $ con $ i \in \set{0,1} $, allora il bordo dell'intervallo è
+  $ \partial I = \epsilon_1 - \epsilon_0 $. Chiamo $ I $ con abuso di notazione il simplesso che
+  manda $ \Delta_1 $ in $ I $, Sia $ c \in S_q(X) $, cioè $ c \in S_q(X) $
+  allora $ I \times c \in S_{q+1}(I \times X) $, infatti
+  \begin{align*}
+    I \times x \colon \Delta_1 \times \Delta_1 & \to I \times X \\
+    (t,x) & \mapsto (I(t), c(x))
+  \end{align*}
+  Il bordo di questa catena è:
+  \[
+    \partial (I \times c) = \sum_i^{q} (-)^{i+1}(I \times c)^{(i+1)} = (I \times C)^{(0)} - (I \times C)^{(1)} + \dots
+  \]
+  Osservo che:
+  [FIGURA]
+  \[
+    = \epsilon_1 \times c - \epsilon_0 \times c - I \times \partial c
+  \]
+  \begin{definition}
+    Si definisce l'\textbf{operatore prisma}\index{Operatore prisma} definendo
+    la sua azione sui simplessi singolari e poi estendendo per linearità:
+    \begin{align*}
+      D \colon S_q(X) & \to S_{q+1}(X) \\
+      c & \mapsto I \times c
+    \end{align*}
+  \end{definition}
+  \begin{exercise}
+    Verificare che l'operatore prisma è un omomorfismo.
+  \end{exercise}
+  Questo operatore sostanzialmente prende un simplesso e restituisce il prisma
+  in figura.
+  Per quanto detto sopra vale che:
+  \[
+    \partial \circ D (c) + D \circ \partial (c) = \partial (I \times c) + I \times \partial c = \epsilon_1 \times c - \epsilon_0 \times c - \cancel{I \times \partial c}
+    + \cancel{I \times \partial c}
+  \]
+  Cioè:
+  \[
+    \partial \circ D (c) + D \circ \partial (c) = \epsilon_1 \times x - \epsilon_0 \times c
+  \]
+  Nella figura questo sono la faccia superiore e inferiore del prisma.
+  Si definiscono le sezioni del prisma, con $ t \in I $:
+  \begin{align*}
+    \eta_t  \colon X & \to I \times X \\
+    x & \mapsto (t,x)
+  \end{align*}
+  Le sezioni a $ t = 0 $ e a $ t = 1 $ (e anche le altre, ma non interessano)
+  inducono una mappa sulle catene:
+  \begin{align*}
+    (\eta_i)_\sharp \colon S_k(X) & S_k(I \times X) \\
+    c & \mapsto \eta_i \circ c
+  \end{align*}
+  Ma $ (\eta_i \circ c)(x) = (i, c(x)) = \epsilon_i(c) $, quindi
+  $ \partial \circ D (c) + D \circ \partial (c) = (\eta_1)_\sharp - (\eta_0)_\sharp $. Considero la relazione di
+  omotopia $ F \colon I \times X \to Y $, per definizione vale che
+  $ F(i,x) = f_i(x) $, e quindi $ (F \circ \eta_i)(x) = f_i(x) $, cioè $ F \circ \eta_i = f_i $.
+  Essendo una funzione continua $ F $ induce una mappa sulle catene di simplessi:
+  $ F_\sharp \colon S_k(I \times X, I \times A) \to S_k(Y,B) $.
 
+  Considero $ D \colon S_q(X,A) \to S_{q+1}(I \times X, I \times A) $, posso definire
+  $ G = F_\sharp \circ D $, questo è un omomorfismo tra $ S_k(X,A) $ e
+  $ S_k(Y,B) $ in quanto composizione di omomorfismi.
+  Sia $ c \in S_q(X,A) $ allora:
+  \begin{gather*}
+    \partial \circ G (c) = \partial (F_\sharp \circ D)(c) \\
+    G \circ \partial (c) = (F_\sharp \circ D)(\partial c)
+  \end{gather*}
+  $ F_\sharp $ è un'applicazione tra complessi e si verifica che una chain map, cioè
+  i quadrati che determina sono commutativi ($ F_\sharp \circ \partial = \partial \circ F_\sharp $). In questo modo
+  \begin{gather*}
+    \partial (F_\sharp \circ D)(c) + (F_\sharp \circ D)(\partial c) = F_\sharp \circ \partial \circ D (c) + F_\sharp \circ D \circ \partial (c) = \\
+    = F_\sharp \circ ( \partial \circ D (c) + D \circ \partial (c)) = F_\sharp \circ ( (\eta_1)_\sharp - (\eta_0)_\sharp) (c)
+  \end{gather*}
+  Quindi $ \partial \circ G + G \circ \partial = (f_1)_\sharp - (f_0)_\sharp $.
+  Passando a livello di omologia considero $ k $ un $ q $-ciclo in $ (X,A) $, quindi
+  tale che $ \partial k = 0 $. Allora:
+  \[
+    (f_1)_\star(k) = [(f_1)_\sharp(k)]
+  \]
+  Ma:
+  \[
+    (f_1)_\sharp(k) = (f_0)_\sharp (k) + \partial \circ G (k) + \cancel{G \circ \partial (k)}
+  \]
+  Quindi in $ (Y,B) $ $ [(f_1)_\sharp(k)] = [(f_0)_\sharp(k)] $ in quanto differiscono per un bordo.
+  Quindi $ (f_1)_\star(k) = (f_2)_\star(k) $, ma siccome questo è vero per ogni $ k $ allora
+  deve essere $ (f_1)_\star = (f_2)_\star $.
 \end{proof}
 
 La mappa $ G $ è un esempio di omotopia di catena:
