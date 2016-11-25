@@ -5584,6 +5584,118 @@ $ \RN{2} $ allora $ C $ divide $ \RN{2} $ in due componenti connesse.
 
 
 
+% Lezione 15
+
+\section{Prodotto tensore}
+
+Ho trovato che per $ n $ pari:
+\[
+  H_i(\Pjr{n}) \cong
+  \begin{cases}
+    \Z & \text{se } i = 0 \\
+    \Z_2 & \text{se $ i $ pari e $ i < n $} \\
+    0 & \text{altrimenti}
+  \end{cases}
+\]
+Mentre per $ n $ dispari:
+\[
+  H_i(\Pjr{n}) \cong
+  \begin{cases}
+    \Z & \text{se } i = 0,n \\
+    \Z_2 & \text{se $ i $ pari e $ i < n $} \\
+    0 & \text{altrimenti}
+  \end{cases}
+\]
+Non mi piace. Voglio cambiare i coefficienti.
+
+Sia $ A, B $ gruppi abeliani, è ben definito il prodotto
+cartesiano:
+\[
+  A \times B = \set{(a,b) | a \in A, b \in B}
+\]
+Sia $ F(A,B) $ il gruppo libero generato dalle coppie $ (a, b) \in A \times B $
+in notazione additiva. Il gruppo $ F(A,B) $ è abeliano in quanto
+$ A $ e $ B $ lo sono, e l'operazione di somma è:
+\[
+  (a_1, b_1 ) + (a_2, b_2) = (a_1 + a_2, b_1 + b_2)
+\]
+\begin{definition}
+  Se $ A, B $ sono $ \Z $-moduli si definisce il \textbf{prodotto
+    tensore}\index{Prodotto tensore} tra $ A $ e $ B $, come:
+  \[
+    A \otimes B = \quot{F(A,B)}{R(A,B)}
+  \]
+  Dove $ F(A,B) $ è il gruppo libero generato da $ A \times B $ e $ R(A,B) $ il gruppo
+  generato in $ F(A,B) $ dalle espressioni:
+  \begin{gather*}
+    (a_1 + a_2, b) - (a_1, b) - (a_2, b) \\
+    (a, b_1 + b_2) - (a, b_1) - (a, b_2) \\
+    n (a, b) - (na, b) \\
+    n (a, b) - (a, nb)
+  \end{gather*}.
+  Gli elementi di $ A \otimes B $ sono $ a \otimes b $ con $ a \in A $ e $ b \in B $ e vale che:
+  \begin{gather*}
+    (a_1 + a_2) \otimes b = a_1 \otimes b + a_2 \otimes b \\
+    a \otimes (b_1 + b_2) = a \otimes b_1 + a \times b_2 \\
+    n (a \otimes b) = (na) \otimes b \\
+    n (a \otimes b) = a \otimes (nb)
+  \end{gather*}
+\end{definition}
+
+\begin{proposition}[Proprietà universale\index{Proprietà universale! \vedi{Prodotto tensore}}]
+  Sia $ G $ un gruppo abeliano e $ \psi \colon A \times B \to G $ un'applicazione bilineare continua,
+  allora esiste un unico omomorfismo $ \phi \colon A \otimes B \to G $ tale che il diagramma:
+  \[
+    \begin{tikzcd}
+      A \times B \rar{\psi} \dar{\pi} & G \\
+      A \otimes B \arrow{ru}{\phi} & {}
+    \end{tikzcd}
+  \]
+  è commutativo, con:
+  \begin{align*}
+    \pi \colon A \times B & \to A \oplus B \\
+    (a,b) & \mapsto a \otimes b
+  \end{align*}
+  In pratica $ \psi $ fattorizza per il prodotto tensoriale.
+\end{proposition}
+\begin{proof}
+  La costruzione di $ \phi $ è banale, bisogna solo verificare che è ben definita. Sia
+  $ \phi(a \otimes b) = \phi(\pi(a,b)) = \psi(a,b) $. Se $ \pi((c,d)) = a \otimes b $ allora
+  $ (c,d) - (a,b) \in R(A,B) $, devo fare vedere che $ \psi((c,d)) = \psi((a,b)) = \phi(a \otimes b) $,
+  cioè per linearità devo mostrare che $ \psi((c,d) - (a,b)) = 0 $, ma
+  $ (a,b) $ e $ (c,d) $ sono in $ R(A,B) $, quindi:
+  \[
+    \psi((c,d) - (a,b)) = \sum_\alpha \psi((r_\alpha, s_\alpha)) = \sum_\alpha \phi(\pi((r_\alpha, s_\alpha))) = 0
+  \]
+  perché al quoziente vanno a zero.
+\end{proof}
+
+Un'altra importante proprietà del prodotto tensore è il suo comportamento
+rispetto agli omomorfismi.
+
+\begin{proposition}
+  Siano $ f \colon A \to B $ e $ g \colon A' \to B' $ omomorfismi, posso definire:
+  \begin{align*}
+    f \otimes g \colon A \otimes A' & \to B \otimes B' \\
+    a \otimes a' & \to f(a) \otimes g(a')
+  \end{align*}
+  Allora $ f \otimes g $ è omomorfismi di gruppi abeliani.
+\end{proposition}
+\begin{proof}
+  Ovvio.
+\end{proof}
+
+\begin{proposition}
+  vale che $ A \otimes B \cong B \otimes A $, cioè il prodotto tensore è simmetrico.
+\end{proposition}
+\begin{proof}
+a
+\end{proof}
+
+
+
+
+
 
             %             1. Correggere i : con \colon (CAMBIA QUALCOSA? INFORMARSI!)
             %             NOTA i : servono solo per questioni di relazione, del tipo negli insiemi come "tale che",

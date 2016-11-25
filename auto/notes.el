@@ -202,7 +202,9 @@
     "Teorema di Jordan generalizzato"
     "Embedding"
     "Teorema di Jordan"
-    "Invarianza topologica della dimensione")
+    "Invarianza topologica della dimensione"
+    "Prodotto tensore"
+    "Proprietà universale! \\vedi{Prodotto tensore}")
    (LaTeX-add-counters
     "exercises"))
  :latex)
