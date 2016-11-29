@@ -19,6 +19,7 @@
     "intro"
     "singular"
     "cellular"
+    "cohom"
     "scrbook"
     "scrbook10"
     "amsmath"

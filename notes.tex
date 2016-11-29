@@ -86,7 +86,7 @@
 
 \graphicspath{{./images/}}
 
-\includeonly{intro,singular,cellular}
+\includeonly{intro,singular,cellular,cohom}
 
 \begin{document}
 
@@ -112,19 +112,44 @@
   \titlepagedecoration
 \end{titlepage}
 
+
+\vspace*{150pt}
+
+Ho scritto queste note come strumento personale per lo studio
+della topologia algebrica, e per questo motivo solo lontane dall'essere rigorose
+e sicuramente saranno ricche di errori e imprecisioni. Molte definizioni o
+concetti sono qui riportati perché, essendo uno studente di fisica, inizialmente
+ero a digiuno in merito ad argomenti che per gli studenti di matematica sono
+banalità. Queste note sono basate sulle lezioni del Professor Gilberto Bini
+dell'anno accademico 2016/2017, ma sono riportate in un ordine differente
+rispetto a quello cronologico, e alcune dimostrazioni sono state sistemate da me
+prima di essere scritte. I file {\small \texttt{.tex} }di questo documento sono
+tutti disponibili su GitHub all'indirizzo
+\href{https://github.com/Sbozzolo/Topologia-Algebrica}{\small
+  \texttt{https://github.com/Sbozzolo/Topologia-Algebrica}}, chiunque lo
+desideri può forkarli e modificarli a piacere, correggendo i numerosi errori qui
+presenti.
+\\ \\
+{
+\flushright{Milano, \today}
+\flushright{Gabriele Bozzola}
+}
+
 \tableofcontents
 \newmathsymb{N}{\mathbb{N}}{Numeri naturali}
 \newmathsymb{Z}{\mathbb{Z}}{Numeri interi}
 \newmathsymb{closure}{\bar{U}}{Chiusura di $ U $}
 \newmathsymb{interior}{\mathrm{int}(U)}{Interno di $ U $}
+\newmathsymb{dirsum}{\oplus}{Somma diretta}
 \printsymblist
-
 
 \include{intro}
 \include{singular}
 \include{cellular}
+\include{cohom}
 
 \printindex
+
 
 \end{document}
 

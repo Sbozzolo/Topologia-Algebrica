@@ -29,10 +29,6 @@
     "Teorema di Jordan generalizzato"
     "Embedding"
     "Teorema di Jordan"
-    "Invarianza topologica della dimensione"
-    "Prodotto tensore"
-    "Proprietà universale! \\vedi{Prodotto tensore}"
-    "Risoluzione di $ A $"
-    "Modulo di torsione"))
+    "Invarianza topologica della dimensione"))
  :latex)
 

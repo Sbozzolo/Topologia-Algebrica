@@ -46,7 +46,8 @@
     "Successione esatta corta"
     "Omomorfismo di connessione"
     "Omologia singolare relativa"
-    "Omologia singolare della coppia ! \\vedi{Omologia singolare relativa}"
+    "Omologia singolare della
+  coppia ! \\vedi{Omologia singolare relativa}"
     "Successione spezza"
     "Sezione dell'omomorfismo"
     "Omologia singolare ridotta"

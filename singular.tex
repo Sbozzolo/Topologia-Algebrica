@@ -450,7 +450,7 @@ cellulare).
   generato dai punti di $ X $. $ B_0(X) $ è l'insieme delle coppie di punti di $ X $ che sono
   bordo di un $ 1 $-simplesso singolare, il quale è una mappa $ \Delta_1 \cong I \to X $, cioè è un
   arco. Siccome lo spazio è connesso per archi ogni coppia di punti è bordo di qualcosa, fissando
-  un putno $ x \in X $ sostanzialmente $ B_0(X) $ lo si può immaginare con $ X $ e quindi
+  un punto $ x \in X $ sostanzialmente $ B_0(X) $ lo si può immaginare con $ X $ e quindi
   $ H_0(X) \cong \Z $ in quanto quoziente tra un gruppo libero generato da un insieme di punti
   e l'insieme di punti stessi. Sostanzialmente esiste un'unica classe di equivalenza che
   è la classe di equivalenza di un punto, in quanto ogni coppia di punti è omologa essendo
@@ -1325,39 +1325,43 @@ ma c'è il modo per indurre una successione esatta lunga:
 \end{proof}
 
 \section{Omologia singolare relativa}
-Sia $ X $ uno spazio topologico e $ A $ sottospazio generico
-di $ X $ (anche improprio), cioè $ A \incl X$.
-Vorrei definire l'omologia
-singolare di $ X $ tenendo presente la presenza di $ A $,
-cioè $ H_k(X,A) $, il $ k $-esimo gruppo di omologia
-singolare dellla coppia $ (X, A) $.
-Sia $ S_k(A) $ lo spazio delle $ k $-catene, cioè lo spazio generato dai simplessi
-singolari in $ A $, la mappa di inclusione $ i \colon A \to X $
-induce una mappa $ i_\sharp \colon S_k(A) \to S_k(X) $. Questa mappa
-è sicuramente iniettiva (basta vedere le catene di $ A $ come
-catene di $ X $). A questo punto la successione
+Sia $ X $ uno spazio topologico e $ A $ sottospazio generico di $ X $ (anche
+improprio), cioè $ A \incl X$. Vorrei definire l'omologia singolare di $ X $ tenendo
+presente la presenza di $ A $, cioè $ H_k(X,A) $, il $ k $-esimo gruppo di
+omologia singolare dellla coppia $ (X, A) $. Sia $ S_k(A) $ lo spazio delle
+$ k $-catene in $ A $, cioè lo spazio generato dai simplessi singolari in $ A $,
+la mappa di inclusione $ i \colon A \to X $ induce una mappa
+$ i_\sharp \colon S_k(A) \to S_k(X) $. Questa mappa è sicuramente iniettiva (basta vedere le
+catene di $ A $ come catene di $ X $, per cui $ S_k(A) \subseteq S_k(X) $). A questo
+punto la successione
 \[
   \begin{tikzcd}
     0 \arrow{r}{h} & S_k(A) \arrow{r}{i_\sharp} & S_k(X) \arrow{r}{\beta} & \quot{S_k(X)}{S_k(A)} \arrow{r}{k} & 0
   \end{tikzcd}
 \]
-è esatta infatti $ h $ iniettiva e $ k $ suriettiva, $ \im{h} = \ker{i_\sharp} = 0 $,
-$ \ker{k} = \im{\beta} = \quot{S_k(X)}{S_k(A)} $ e $ \ker{\beta} = \im{i_\sharp} $ in quanto
-il nucleo della proiezione su un sottospazio è il sottospazio stesso.
-Pongo come notazione $ \quot{S_k(X)}{S_k(A)} = S_k(X, A) $, in questo modo la successione
-diventa:
+è esatta infatti $ h $ iniettiva e $ \beta $ suriettiva. Vale che:
+\begin{gather*}
+  \im{h} = \ker{i_\sharp} = 0  \\
+  \ker{k} = \im{\beta} = \quot{S_k(X)}{S_k(A)} \\
+  \ker{\beta} = \im{i_\sharp}
+\end{gather*}
+di cui l'ultima è valida in quanto il nucleo della proiezione su un sottospazio
+è il sottospazio stesso e $ \im{i_\sharp} \cong S_k(A) $ in quanto $ i_\sharp $ è iniettiva.
+Pongo come notazione $ \quot{S_k(X)}{S_k(A)} = S_k(X, A) $, in questo modo la
+successione diventa:
 \[
   \begin{tikzcd}
     0 \arrow{r}{} & S_k(A) \arrow{r}{i_\sharp} & S_k(X) \arrow{r}{\beta} & S_k(X,A) \arrow{r}{} & 0
   \end{tikzcd}
 \]
-A partire da questa successione posso costruire una successione esatta corta di complessi:
+A partire da questa successione posso costruire una successione esatta corta di
+complessi (la mappa tra complessi è l'applicazione bordo):
 \[
   \begin{tikzcd}
     {} & 0 \arrow{d}{} & 0 \arrow{d}{} & {} \\
-    \dots \arrow{r}{} & S_{k+1}(A) \arrow{r}{} \arrow{d}{} & S_k(A) \arrow{r}{} \arrow{d}{} & \dots \\
-    \dots \arrow{r}{} & S_{k+1}(X) \arrow{r}{} \arrow{d}{} & S_k(X) \arrow{r}{} \arrow{d}{} & \dots \\
-    \dots \arrow{r}{} & S_{k+1}(X,A) \arrow{r}{} \arrow{d}{} & S_k(X,A) \arrow{r}{} \arrow{d}{}& \dots \\
+    \dots \arrow{r}{} & S_{k+1}(A) \arrow{r}{} \arrow{d}{} &   S_k(A) \arrow{r}{} \arrow{d}{}   & S_{k-1}(A) \arrow{r}{} \arrow{d}{}  & \dots \\
+    \dots \arrow{r}{} & S_{k+1}(X) \arrow{r}{} \arrow{d}{} &   S_k(X) \arrow{r}{} \arrow{d}{}   & S_{k-1}(X) \arrow{r}{} \arrow{d}{}  & \dots \\
+    \dots \arrow{r}{} & S_{k+1}(X,A) \arrow{r}{} \arrow{d}{} & S_k(X,A) \arrow{r}{} \arrow{d}{} & S_{k-1}(X,A) \arrow{r}{} \arrow{d}{} & \dots \\
     {} & 0 & 0 & {}
   \end{tikzcd}
 \]
@@ -1369,14 +1373,16 @@ Si ottiene quindi:
     \dots \arrow{r}{} & H_k(A) \arrow{r}{\alpha_\star} & H_k(B) \arrow{r}{\beta_\star} & H_k(X,A) \arrow{r}{\delta} & H_{k-1}(A) \arrow{r}{} & \dots
   \end{tikzcd}
 \]
-Si definisce quindi in questo modo l'\textbf{omologia singolare della coppia}\index{Omologia singolare relativa}\index{Omologia singolare della coppia ! \vedi{Omologia singolare relativa}} $ H_k(X,A) $.
+Si definisce quindi in questo modo l'\textbf{omologia singolare della
+  coppia}\index{Omologia singolare relativa}\index{Omologia singolare della
+  coppia ! \vedi{Omologia singolare relativa}} $ H_k(X,A) $.
 
-%  Questa è una costruzione geometrica e fornice informazioni su nucleo e conucleo.
+\subsection{Successioni spezzanti}
 
 \begin{definition}[Prima definizione]
   % Con $ \alpha $ iniettiva, $ \beta $ suriettiva e $ \quot{B}{A} \cong C $, cioè
   % $ \im{\alpha} = A = \ker{\beta} $ in quanto $ \beta $ è suriettiva.
-  Si dice che una successione esatta corta di $ \R $-moduli:
+  Si dice che una successione esatta corta di $ \Z $-moduli:
   \[
     \begin{tikzcd}
       0 \arrow{r}{} & A \arrow{r}{\alpha} & B \arrow{r}{\beta} & C \arrow{r}{} & 0
@@ -1431,7 +1437,7 @@ $ j \colon B \to C $.
       0 \arrow{r}{} & A \arrow{r}{\alpha} & B \arrow{r}{\beta} & C \arrow{r}{} & 0
     \end{tikzcd}
   \]
-  \textbf{spezza}\index{Successione spezza} se esiste una sezione da $ B $ a $ C $
+  \textbf{spezza}\index{Successione spezza} se esiste una sezione da $ C $ a $ B $
   o da $ B $ ad $ A $, cioè:
   \begin{gather*}
     \exists s \colon C \to B \text{ omomorfismo continuo tale che } \beta \circ s = \Id{C} \\
@@ -1449,15 +1455,18 @@ Questo è equivalente a dire che $ B = A \oplus s(C) $, infatti vale l'osservazi
   Per dimostrare che $ B \cong A \oplus s(C) $ per prima cosa mostro che l'intersezione
   tra $ A $ e $ s(C) $ è vuota.
 
-  Vale che $ A \incl B $ in quanto $ \alpha $ è iniettiva e quindi $ \alpha(A) \cong A $, inoltre
-  $ s(C) \subseteq B $ in quanto per ipotesi $ s \colon C \to B $.
-  Sia $ x \in \alpha(A) \cap s(C) $, mostro che $ x = 0 $.%cioè $ x \in \alpha(A) $ e $ x \in s(C) $ allora
-  Siccome $ x \in \alpha(A) $ allora esiste $ a \in A $ tale che $ x = \alpha(a) $ e siccome
-  $ x \in s(C) $ allora esiste $ k \in C $ tale che
+  Siccome $ \alpha $ è iniettiva allora $ \alpha(A) \cong A $, inoltre
+  $ s(C) \subseteq B $ in quanto per ipotesi $ s \colon C \to B $. Sia
+  $ x \in \alpha(A) \cap s(C) $, mostro che $ x = 0
+  $.%cioè $ x \in \alpha(A) $ e $ x \in s(C) $ allora
+  Siccome $ x \in \alpha(A) $ allora esiste $ a \in A $ tale che
+  $ x = \alpha(a) $ e siccome $ x \in s(C) $ allora esiste $ k \in C $ tale che
   $ x = s(k) $, naturalmente $ \alpha(a) = s(k) $. Applicando $ \beta $ si ottiene
-  $ (\beta \circ \alpha) (a) = (\beta \circ s)(k) $, ma $ \beta \circ \alpha = 0 $ in quanto la successione è esatta, quindi
-  $ (\beta \circ s)(k) = 0 $. Ma $ s $ è sezione quindi $ \beta \circ s = \Id{C} $, quindi $ k = 0 $, ma
-  siccome $ s $ è omomorfismo allora $ s(k) = 0 $, perciò $ x = s(k) = 0 $.
+  $ (\beta \circ \alpha) (a) = (\beta \circ s)(k) $, ma
+  $ \beta \circ \alpha = 0 $ in quanto la successione è esatta, quindi
+  $ (\beta \circ s)(k) = 0 $. Ma $ s $ è sezione quindi
+  $ \beta \circ s = \Id{C} $, quindi $ k = 0 $, ma siccome $ s $ è omomorfismo allora
+  $ s(k) = 0 $, perciò $ x = s(k) = 0 $.
 
   A questo punto bisogna dimostrare che ogni elemento di $ B $ si scrive come somma
   di un elemento di $ \alpha(A) $ e di un elemento
@@ -1482,6 +1491,14 @@ Questo è equivalente a dire che $ B = A \oplus s(C) $, infatti vale l'osservazi
   $ B $ è somma diretta di $ A $ e $ s(C) $.
 \end{proof}
 
+Sostanzialmente una successione esatta corta spezza se vale il diagramma commutativo:
+\[
+  \begin{tikzcd}
+    0  \rar & A \rar \dar{\cong} & B \rar  \dar{\cong} & C \rar \dar{\cong} & 0 \\
+    0 \rar & A \rar &  A \oplus C \rar & C \rar & 0
+  \end{tikzcd}
+\]
+
 \begin{example}[Successione non spezzante]
   Considero la successione:
   \[
@@ -1489,11 +1506,12 @@ Questo è equivalente a dire che $ B = A \oplus s(C) $, infatti vale l'osservazi
       0 \arrow{r}{} & n \Z \arrow{r}{\alpha} & \Z \arrow{r}{\beta} & \quot{\Z}{n\Z} \arrow{r}{} & 0
     \end{tikzcd}
   \]
-  Questa successione è esatta ma non spezza, infatti se spezzasse esisterebbe una sezione:
+  Questa successione è esatta ma non spezza, infatti se spezzasse varrebbe che:
   \[
-    s \colon \quot{\Z}{n\Z} = \Z_n \to \Z
+    \Z_n \oplus n \Z \cong \Z
   \]
-  Ma questa non può esistere per queztioni di immagini.
+  Ma questa non è possibile in quanto $ n \Z \cong \Z $ e $ \Z_n $ non è banale. Più
+  precisamente si vede che non può esistere una sezione $ s \colon \Z_n \to Z $.
 \end{example}
 
 \begin{proposition}
@@ -1517,7 +1535,7 @@ Questo è equivalente a dire che $ B = A \oplus s(C) $, infatti vale l'osservazi
   \begin{exercise}
     Mostrare che se esiste l'endomorfismo $ \phi $ allora si può costruire una sezione.
   \end{exercise}
-  \emph{Lo studente interessato può verificare queste asserzioni.}
+  Le due definizioni sono quindi equivalenti.
 \end{proof}
 
 \section{Omologia singolare ridotta}
@@ -1776,7 +1794,7 @@ $ \sigma_k $ è l'unica mappa che c'è.
   un omomorfismo $ f_\star \colon H_k(X, A) \to H_k(Y, B) $ con una trasformazione
   naturale $ \delta_k \colon H_k(X, A) \to H_{k-1}(A) $,
   detta \textbf{omomorfismo di connessione}\index{Omomorfismo di connessione}
-  tale che siano soddisfatti i seguenti assioni:
+  tale che siano soddisfatti i seguenti assiomi:
   \begin{enumerate}
   \item (Omotopia): se $ f \sim_H g $ con $ f, g \colon (X, A) \to (Y, B) $ mappe continue, allora $ f_\star = g_\star$.
     Dove $ f \sim_H g $ se esiste una funzione continua $ F \colon X \times I \to Y $ tale che $ F(x,0) = f(x) $,
@@ -1789,11 +1807,11 @@ $ \sigma_k $ è l'unica mappa che c'è.
     \]
     è esatta.
   \item (Dimensione): $ H_k (P) = 0 $ $ \forall k \not = 0 $ dove $ P $ è lo spazio formato da un solo punto.
-  \item (Additività): Se $ X $ è la somma topologica di spazi $ X_\alpha $ allora $ H_p(X) = \bigoplus H_p(X_\alpha) $
-  \item (Escissione): Se $ U $ è un aperto in $ X $ tale che $ \bar{U} \subseteq \mathrm{int}(A) $ allora la mappa di
+  \item (Additività): Se $ X $ è la somma topologica di spazi $ X_\alpha $ allora $ H_p(X) = \bigoplus_\alpha H_p(X_\alpha) $
+  \item (Escissione): Se $ U $ è un aperto in $ X $ tale che $ \bar{U} \subset \mathrm{int}(A) $ allora la mappa di
     inclusione di $ (X \setminus U, A \setminus U) $ in $ (X, A) $ induce un isomorfismo tra i gruppi di omologia:
     \[
-      H_k(X \setminus U, A \setminus U) \cong H_k(X, A) \; \forall k
+      H_k(X \setminus U, A \setminus U) \cong H_k(X, A) \quad \forall k \in \mathbb{N}
     \]
     (cioè togliendo un opportuno insieme da $ (X,A) $ l'omologia non sente della escissione).
   \end{enumerate}
@@ -1875,7 +1893,7 @@ ma non tutti sono stati ancora verificati, cioè l'omotopia e l'escissione.
   gruppo di omologia relativa della coppia  $ (X, A) $. Se in particolare $ A = \emptyset $
   allora riottengo $ H_k(X, \emptyset) = H_k(X) $.
   Ho fatto un'associazione da una coppia a un gruppo, voglio verificare che questa
-  soddisfa gli assiomi di Eilenberg e Steenrod.
+  sia funtoriale.
 
   Sia $ f \colon (X,A) \to (Y,B) $ continua tale che $ f(A) \subseteq B $, definisco:
   \begin{align*}
@@ -1906,7 +1924,7 @@ ma non tutti sono stati ancora verificati, cioè l'omotopia e l'escissione.
   allora $ (g \circ f)_\star = g_\star \circ f_\star $ e $ (X,A) \overset{\Id{X}}{\to} (X,A) $
   allora $ (\Id{X})_\star = \Id{H_k(X,A)} $.
 
-  Poi ho $ \delta $ omomorfismo di connessione $ \delta \colon H_{k+1}(X,A) \to H_k(X) $,
+  Poi ho $ \delta $ omomorfismo di connessione $ \delta \colon H_{k+1}(X,A) \to H_k(A) $,
   ho che se ho una successione esatta di complessi:
   \[
     \begin{tikzcd}
@@ -1934,48 +1952,74 @@ ma non tutti sono stati ancora verificati, cioè l'omotopia e l'escissione.
   In futuro verificherò gli assiomi mancanti.
 \end{proof}
  % \hfill\newline\newline
-\subsection{Applicazioni}
+\subsection{Omologia ridotta per una qualsiasi teoria omologica}
 
-Sia $ X \not = \emptyset $ spazio topologico e $ p \in X $ punto ($ P = \set{p} $), allora ho le
-applicazioni di inclusione $ i $ e la mappa costante $ \epsilon $:
+Sia $ X \not = \emptyset $ spazio topologico e $ p \in X $ punto
+($ P = \set{p} $), allora sono ben definite le applicazioni di inclusione $ i $
+e la mappa costante $ \epsilon $:
 \begin{gather*}
   i \colon P \to X \\
   \epsilon \colon X \to P
 \end{gather*}
-Si ha che $ \epsilon \circ i = \Id{P} $ in quanto $ P \overset{i}{\to} X \overset{\epsilon}{\to} P $.
-Dagli assiomi deriva l'esistenza di un'applicazione indotta
-sui gruppi di omologia: $ \epsilon_\star \colon H_0(X) \to H_0(P) $,
-$ \epsilon_\star $ è suriettiva perché c'è $ i_\star \colon H_0(P) \to H_0(X) $:
-C'è la successione esatta:
+Si ha che $ \epsilon \circ i = \Id{P} $ in quanto
+$ P \overset{i}{\to} X \overset{\epsilon}{\to} P $. Dagli assiomi deriva l'esistenza di
+un'applicazione indotta sui gruppi di omologia:
+$ \epsilon_\star \colon H_0(X) \to H_0(P) $, questa è suriettiva perché per le proprietà
+funtoriali $ (\epsilon \circ i)_\star = (\Id{p})_\star = \Id{H_0(p)} $ e
+$ (\epsilon \circ i)_\star = \epsilon_\star \circ i_\star $ quindi $ \epsilon_\star \circ i_\star = \Id{H_0(p)} $, quindi:
+\[
+  \forall y \in H_0(P) \text{ vale che } (\epsilon_\star \circ i_\star)(y) = y \text{ quindi } \epsilon_\star (i_\star(y)) = y
+\]
+Sia $ i_\star(y) = x \in H_0(X) $ allora $ \epsilon_\star(x) = y $, quindi $ \epsilon_\star $ è suriettiva.
+A partire da ciò posso costruire una successione esatta, infatti per ora ho:
 \[
   \begin{tikzcd}
-    0 \arrow{r}{} & \ker{\epsilon_\star} \arrow{r}{} & H_0(X) \arrow{r}{\epsilon_\star} & \arrow[bend left]{l}{i_\star} H_0(P) \arrow{r}{} & 0
+    H_0(X) \rar{\epsilon_\star} & H_0(P) \rar & 0
   \end{tikzcd}
 \]
-Inoltre per le proprietà funtoriali $ (\epsilon \circ i)_\star = (\Id{p})_\star = \Id{H_0(p)} $
-e $ (\epsilon \circ i)_\star = \epsilon_\star \circ i_\star $ quindi $ \epsilon_\star \circ i_\star = \Id{H_0(p)} $, ma quindi
-la successione spezza perché esiste una sezione $ i_\star $, perciò $ H_0(X) \cong \ker{\epsilon_\star} \oplus H_0(p) $.
-Si ha quindi che per qualsiasi teoria omologia che soddisfa gli assiomi di Eilenberg
-e Steenrod (infatti ho utilizzato solo gli assiomi),
-e quindi in particolare per l'omologia singolare relativa,
-si ha che $ H_0(X) \cong \ker{\epsilon_\star} \oplus H_0(P) $.
+Per il teorema fondamentale degli omomorfismi:
+\[
+  \quot{H_0(X)}{\ker{\epsilon_\star}} \cong \im{\epsilon_\star} = H_0(P)
+\]
+Se ora considero la mappa iniettiva $ \alpha \colon \ker{\epsilon_\star} \incl H_0(X) $, quindi tale che
+$ \im{\alpha} = \ker{\epsilon_\star} $, la successione corta è automaticamente esatta (infatti $ \epsilon_\star \circ \alpha = 0 $, dato
+che in $ H_0(P) $ $ \ker{\epsilon_\star} $ è ridotto al solo $ 0 $):
+\[
+  \begin{tikzcd}
+    0 \arrow{r}{} & \ker{\epsilon_\star} \arrow{r}{\alpha} & H_0(X) \arrow{r}{\epsilon_\star} & \arrow[bend left]{l}{i_\star} H_0(P) \arrow{r}{} & 0
+  \end{tikzcd}
+\]
+% c'è $ i_\star \colon H_0(P) \to H_0(X) $:
+% C'è la successione esatta:
+% \[
+%   \begin{tikzcd}
+%     0 \arrow{r}{} & \ker{\epsilon_\star} \arrow{r}{} & H_0(X) \arrow{r}{\epsilon_\star} & \arrow[bend left]{l}{i_\star} H_0(P) \arrow{r}{} & 0
+%   \end{tikzcd}
+% \]
+Inoltre, siccome $ \epsilon_\star \circ i_\star = \Id{H_0(p)} $, la successione spezza perché
+esiste una sezione $ i_\star $, perciò
+$ H_0(X) \cong \ker{\epsilon_\star} \oplus H_0(P) $. Si ha quindi che per qualsiasi teoria omologia
+che soddisfa gli assiomi di Eilenberg e Steenrod (infatti ho utilizzato solo gli
+assiomi), e quindi in particolare per l'omologia singolare relativa, si ha che
+$ H_0(X) \cong \ker{\epsilon_\star} \oplus H_0(P) $.
 
 \newmathsymb{coefgrup}{\mathcal{G}}{Gruppo dei coefficienti}
-Generalmente si chiama $ H_0(p) $ il \textbf{gruppo dei coefficienti}\index{Gruppo dei coefficienti di una teoria omologica}
+Generalmente si chiama $ H_0(P) $ il \textbf{gruppo dei coefficienti}\index{Gruppo dei coefficienti di una teoria omologica}
 di una teoria omologica e viene denotato con $ \mathcal{G} $. Nell'omologia singolare relativa questo è $ \Z $.
-Inoltre si definisce $ \ker{\epsilon_\star} = \tilde{H}_0(X) $ \textbf{gruppo di omologia ridotta di ordine zero}.
+Inoltre si definisce $ \ker{\epsilon_\star} = \tilde{H}_0(X) $ \textbf{gruppo di omologia ridotta di ordine zero}, quindi
+ho trovato che $ H_0(X) \cong \tilde{H}_0(X) \oplus \mathcal{G} $.
 
 Cosa sono invece gli $ \tilde{H}_k(X) $? Vorrei che fossero proprio $ H_k(X) $,
-cosi' come nel solo nel caso dell'omologia singolare.
+così come nel solo nel caso dell'omologia singolare.
 
 \begin{proposition}
   In qualsiasi teoria omologica di Eilenberg e Steenrod, se $ \tilde{H}_k(X) $ sono
   i gruppi di omologia ridotta allora:
   \[
-    \tilde{H}_k(X) \cong
+    H_k(X) \cong
     \begin{cases}
-      \ker{\epsilon_\star} & \text{se } k = 0 \\
-      H_k(X) & \text{se } k \not= 0
+      \tilde{H}_0(X) \oplus \mathcal{G} & \text{se } k = 0 \\
+      \tilde{H}_k(X) & \text{se } k \not= 0
     \end{cases}
   \]
   Con $ \epsilon \colon X \to P $ dove $ P = \set{p} $ con $ p \in X $.
@@ -1989,25 +2033,32 @@ cosi' come nel solo nel caso dell'omologia singolare.
       \epsilon_A \colon A \to P
     \end{cases}
   \]
-  Posso fare:
-  \[
-    \begin{tikzcd}
-      0 \arrow{r}{}        & \ker{\epsilon_X} \arrow{r}{} & H_k(X) \arrow{r}{\epsilon_\star} & H_k(P) \arrow{r}{}    & 0
-    \end{tikzcd}
-  \]
+  % Posso fare:
+  % \[
+  %   \begin{tikzcd}
+  %     0 \arrow{r}{}        & \ker{\epsilon_X} \arrow{r}{} & H_k(X) \arrow{r}{\epsilon_\star} & H_k(P) \arrow{r}{}    & 0
+  %   \end{tikzcd}
+  % \]
   In generale:
   \[
     \begin{tikzcd}
       0 \arrow{r}{}        & \ker{\epsilon_X} \arrow{r}{} & H_k(X) \arrow{r}{\epsilon_\star} & H_k(P) \arrow{r}{}    & 0
     \end{tikzcd}
   \]
-  Per $ k \geq 1 $ $ \ker{\epsilon_X} = H_k(X) $, mentre per $ k = 0 $ ho che $ H_0(X) \cong \tilde{H}_0(X) \oplus \mathcal{G} $,
+  Per $ k \geq 1 $ $ \ker{\epsilon_X} = H_k(X) $, in quanto per gli assiomi $ H_k(P) \cong 0 $ se $ k \geq 1 $, quindi
+  la successione si riduce a:
+  \[
+    \begin{tikzcd}
+      0 \rar & \ker{\epsilon_X} \rar & H_k(X) \rar & 0
+    \end{tikzcd}
+  \]
+  Mentre per $ k = 0 $ ho che $ H_0(X) \cong \tilde{H}_0(X) \oplus \mathcal{G} $,
   quindi:
   \[
-    \tilde{H}_k(X) = \ker{\epsilon_C} =
+    \tilde{H}_k(X) =
     \begin{cases}
       H_k(X)               & \text{per } k \geq 1 \\
-      \tilde{H}_0(X) \oplus \mathcal{G}
+      \tilde{H}_0(X) \oplus \mathcal{G} & \text{per } k = 0 \\
     \end{cases}
   \]
   Questo lo posso fare anche nel caso di una coppia.
