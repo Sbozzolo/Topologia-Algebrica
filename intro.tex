@@ -6,7 +6,7 @@
 % |_____|_____/____|___\___/|_| \_|_____| |_|
 
 \chapter{Richimi di algebra e geometria}
-\section{Richiami di algebra}
+\section{Richiami di algebra e geometria}
 
 \newmathsymb{R}{\R}{Anello}
 \begin{definition}
@@ -19,7 +19,7 @@
 \end{definition}
 
 \begin{definition}
-  Un anello si dice \textbf{anello commutativo} \index{Anello commutativo} se l'operazione di moltiplicazione
+  Un anello si dice \textbf{commutativo} \index{Anello commutativo} se l'operazione di moltiplicazione
   è commutativa.
 \end{definition}
 
@@ -61,15 +61,15 @@ Sostanzialmente la nozione di $ \R $-modulo generalizza agli anelli il concetto 
   Si verifica banalmente che questa operazione è ben definita e soddisfa
   le giuste proprietà perché la coppia $ (\mathcal{G}, \Z) $ sia uno $ \Z $-modulo.
   A questo punto non è possibile costruire applicazioni diverse che soddisfino le
-  proprietà richieste infatti utilizzando la struttura di anello di $ \Z $:
+  proprietà richieste infatti utilizzando la struttura di anello di $ \Z $ vale che
   $ n x = (1 + 1 + 1 + 1 + \dots) x = x + x + x \dots $, quindi quella definita
   è l'unica possibile.
 \end{proof}
 
-\newmathsymb{groupgen}{<\dots>}{Gruppo generato}
+\newmathsymb{groupgen}{\langle\dots\rangle}{Gruppo generato}
 \begin{definition}
   Un gruppo $ \mathcal{G} $ si dice \textbf{generato}\index{Gruppo generato}
-  dai suoi elementi $ x_1, x_2, \dots \in \mathcal{G} $ se
+  dai suoi elementi $ \set{x_1, x_2, \dots} \in \mathcal{G} $ se
   ogni suo elemento si può scrivere come combinazione lineare a elementi interi di $ x_1, x_2, \dots $.
   In questo caso si indica $ \mathcal{G} = \langle \{ x_1, x_2, \dots \} \rangle $.
 \end{definition}
@@ -93,6 +93,22 @@ Sostanzialmente la nozione di $ \R $-modulo generalizza agli anelli il concetto 
   confronti dell'inverso, cioè $ \forall v \in X $ vale che $ f(v^{-1}) = {f(v)}^{-1} $.
 \end{osservation}
 
+\begin{definition}
+  Siano $ \M $ un $ \R $-modulo e $ \N $ un suo sottomodulo, allora il \textbf{modulo
+    quoziente} \index{Modulo quoziente} di $ \M $ con $ \N $ e definito da:
+  \[
+    \quot{\M}{\N} := \quot{\M}{\sim} \quad \text{dove } \sim \text{ è definita da: } x \sim y \Leftrightarrow x - y \in \N
+  \]
+  $ \quot{\M}{\sim} $ è l'insieme delle classi di equivalenza di $ \sim $ equipaggiate
+  con operazioni indotte dall'$ \R $-modulo, cioè se $ [u], [w] \in \quot{\M}{\sim} $ e $ a \in \R $:
+  \begin{itemize}
+  \item $ [u] + [w] = [u + w] $
+  \item $ a [u] = [au] $
+  \end{itemize}
+  In questo caso gli elementi di $ \quot{\M}{\N} $ sono le classi di equivalenza
+  $ [m] = \set{ m + n | n \in \N } $.
+\end{definition}
+
 \begin{theorem}[Teorema fondamentale degli omomorfismi]\index{Teorema fondamentale degli omomorfismi}
   Sia $ f: \mathcal{G}_1 \to \mathcal{G}_2 $ un omomorfismo tra gruppi abeliani, allora vale che:
   \[
@@ -100,7 +116,7 @@ Sostanzialmente la nozione di $ \R $-modulo generalizza agli anelli il concetto 
   \]
 \end{theorem}
 
-Voglio studiare gli omomorfismi tra $ \Z $-moduli.
+% Voglio studiare gli omomorfismi tra $ \Z $-moduli.
 
 \newmathsymb{ker}{\ker{f}}{Nucleo di $f$}
 \newmathsymb{im}{\im{f}}{Immagine $ f$}
@@ -116,12 +132,15 @@ Voglio studiare gli omomorfismi tra $ \Z $-moduli.
   $ \ker{\phi} $ e $ \im{\phi} $ sono $ \R $-sottomoduli, cioè sono sottoinsiemi di $ \M $ e $ \N $
   che posseggono la struttura di $ \R $-modulo.
 \end{osservation}
-
-Se $ M_i $ sono $ \R $-moduli posso fare composizioni di omomorfismi, come:
+Siano $ M_i $ $ \R $-moduli allora posso fare composizioni di omomorfismi, come:
 \[
-  \M_1 \overset{\phi_1}{\longrightarrow}  \M_2 \overset{\phi_2}{\longrightarrow}  \M_3
+  \begin{tikzcd}
+    \M_1 \rar{\phi_1} & \M_2 \rar{\phi_2} & \M_3
+  \end{tikzcd}
   \text{ o equivalentemente }
-  \M_1 \overset{\phi_2 \circ \phi_1}{\longrightarrow} \M_3
+  \begin{tikzcd}
+    \M_1 \rar{\phi_2 \circ \phi_1} & \M_3
+  \end{tikzcd}
 \]
 
 \begin{proposition}
@@ -131,67 +150,48 @@ Se $ M_i $ sono $ \R $-moduli posso fare composizioni di omomorfismi, come:
   Se $ u \in \im {\phi_1} $ allora $ \exists v \in \M_2 $ tale che $ \phi_1(v) = u $,
   ma $ \phi_2(u) = \phi_2(\phi_1(v)) = (\phi_2 \circ \phi_1)(v) = 0 $ per ipotesi, quindi $ u \in \ker{\phi_2} $.
 \end{proof}
-
-Mi interessano questi morfismi perché hanno un preciso significato geometrico che
-sarà chiaro successivamente.
-
-\begin{definition}
-  Siano $ \M $ un $ \R $-modulo e $ \N $ un suo sottomodulo, allora il \textbf{modulo
-    quoziente} \index{Modulo quoziente} di $ \M $ con $ \N $ e definito da:
-  \[
-    \quot{\M}{\N} := \quot{\M}{\sim} \quad \text{dove } \sim \text{ è definita da: } x \sim y \Leftrightarrow x - y \in \N
-  \]
-  Dove $ \quot{\M}{\sim} $ è l'insieme delle classi di equivalenza di $ \sim $ equipaggiate
-  con operazioni indotte dall'$ \R $-modulo, cioè se $ [u], [w] \in \quot{\M}{\sim} $ e $ a \in \R $:
-  \begin{itemize}
-  \item $ [u] + [w] = [u + w] $
-  \item $ a [u] = [au] $
-  \end{itemize}
-  In questo caso gli elementi di $ \quot{\M}{\N} $ sono le classi di equivalenza
-  $ [m] = \set{ m + n | n \in \N } $.
-\end{definition}
-
-\begin{proposition}
-  Si dimostra che:
-  \begin{itemize}
-  \item Se uno spazio è connesso o connesso per archi allora anche tutti i suoi quozienti lo sono.
-  \item Se uno spazio è compatto anche tutti i suoi quozienti lo sono.
-  \end{itemize}
-  Inoltre ovviamente la mappa di proiezione al quoziente è suriettiva.
-\end{proposition}
-
+\hfill \newline \noindent
+% Mi interessano questi morfismi perché hanno un preciso significato geometrico che
+% sarà chiaro successivamente.
 Siccome $ \im{\phi} $ è sottomodulo di $ \ker{\phi} $ allora posso prendere
 il quoziente:
 \[
   \quot{\ker{\phi_2}}{\im{\phi_1}}
 \]
-Questo è un sottomodulo. Si nota che questo è sensato solo se si impone la condizione
-$ \phi_2 \circ \phi_1 = 0 $, altrimenti non c'è l'inclusione e quindi non è possibile fare l'operazione
-di quoziente.
+Il modulo così costruito è un sottomodulo si $ \M_2 $, e si nota che questa
+operazione è sensata solo se si impone la condizione $ \phi_2 \circ \phi_1 = 0 $,
+altrimenti non c'è l'inclusione e quindi non è possibile fare l'operazione di
+quoziente.
 
 A questo punto ci sono due possibilità:
 \begin{enumerate}
-\item $ {\ker {\phi_2}} \slash {\im{\phi_1}} = 0 $, che significa che $ \ker {\phi_2} = \im{\phi_1} $
-  in quanto non ci sono elementi di $ \ker {\phi_2} $ fuori da $ \im{\phi_1} $, dato che l'unica
-  classe di equivalenza presente è $ [0] $ significa che $ \forall m \in \ker{\phi_1} \; \exists n \in \im{\phi_2} $
-  tale che $ m - n = 0 $, cioè $ m $ e $ n $ coincidono e quindi $ \ker {\phi_2} = \im{\phi_1} $.
+\item $ {\ker {\phi_2}} \slash {\im{\phi_1}} = 0 $, che significa che
+  $ \ker {\phi_2} = \im{\phi_1} $ in quanto non ci sono elementi di
+  $ \ker {\phi_2} $ fuori da $ \im{\phi_1} $, dato che l'unica classe di equivalenza
+  presente è $ [0] $ e ciò significa che
+  $ \forall m \in \ker{\phi_2} \; \exists n \in \im{\phi_1} $ tale che
+  $ m - n = 0 $, cioè $ m $ e $ n $ coincidono e quindi
+  $ \ker {\phi_2} = \im{\phi_1} $.
 \item $ {\ker {\phi_2}} \slash {\im{\phi_1}} \not= 0 $, cioè $ \exists v \in \ker {\phi_2} $
   tale che $ v \not \in \im {\phi_1} $ e quindi $ \im {\phi_1} \subsetneq \ker {\phi_2}$.
 \end{enumerate}
 Nel primo caso si dice che la successione dei moduli $ \M $ e delle
 applicazioni $ \phi $ è \textbf{esatta}\index{Complesso di moduli esatto} in $ \M_2$, nel secondo caso la
 successione è detta \textbf{complesso di moduli}\index{Complesso di moduli}.
-
 Sostanzialmente il modulo quoziente quantifica la non esattezza nel punto $ \M_2 $
 della successione.
 
 \begin{definition}
   $ H(\M_\bullet) = {\ker {\phi_2}} \slash {\im {\phi_1}} $ è detto \textbf{modulo di omologia} \index{Modulo di omologia}
-  del complesso $ M_\bullet = M_1 \longrightarrow M_2 \longrightarrow M_3 $ con le applicazioni $ \phi_1 $ e $ \phi_2 $.
+  del complesso:
+  \[
+    \begin{tikzcd}
+      M_1 \rar{\phi_1} & M_2 \rar{\phi_2} & M_3
+    \end{tikzcd}
+  \]
 \end{definition}
-Per questo  $ H(\M_\bullet) $ quantifica quanto il complesso $ \M_\bullet $ non è esatto.
-
-Questo deriva da un problema topologico concreto.
+% Per questo  $ H(\M_\bullet) $ quantifica quanto il complesso $ \M_\bullet $ non è esatto.
+Questo deriva da problemi topologici concreti.
 
 \newmathsymb{topsp}{X}{Spazio topologico}
 \begin{definition}
@@ -206,12 +206,15 @@ Questo deriva da un problema topologico concreto.
   Gli elementi di $ \mathcal{T} $ sono detti \textbf{aperti}\index{Insiemi aperti}.
 \end{definition}
 \begin{osservation}
-  Se $ \tau $ è la collezione di tutti i sottoinsiemi di $ X $ allora le proprietà sono automaticamente
-  verificate e questa è la \textbf{topologia discreta}\index{Topologia discreta}, invece
-  $ \tau = \set{\emptyset, X} $ è una topologia ed è la \textbf{topologia triviale}.
-  Infine in $ \RN{n} $ si definisce la \textbf{topologia usuale} che è la topologia in cui gli aperti
-  sono iperintervalli aperti del tipo $ (a_1,b_1) \times (a_2, b_2) \times (a_3, b_3) \dots \times (a_n, b_n) $.
-  Si dimostra che se si ammettono intersezioni infinite allora la topologia usuale coincide con la topologia
+  Se $ \mathcal{T} $ è la collezione di tutti i sottoinsiemi di $ X $ allora le
+  proprietà sono automaticamente verificate e questa è la \textbf{topologia
+    discreta}\index{Topologia discreta}, invece
+  $ \mathcal{T} = \set{\emptyset, X} $ è una topologia ed è la \textbf{topologia
+    triviale}. Infine in $ \RN{n} $ si definisce la \textbf{topologia usuale}
+  che è la topologia in cui gli aperti sono iperintervalli aperti del tipo
+  $ (a_1,b_1) \times (a_2, b_2) \times (a_3, b_3) \dots \times (a_n, b_n) $. Si dimostra che se si
+  ammettono intersezioni infinite invece di intersezioni finite come in questa
+  definizione di topologia, allora la topologia usuale coincide con la topologia
   triviale in $ \RN{n} $.
 \end{osservation}
 
@@ -225,13 +228,31 @@ Questo deriva da un problema topologico concreto.
   con $ A $.
 \end{osservation}
 
+\newmathsymb{incls}{\incl}{Inclusione}
+\begin{definition}
+  Sia $ A \subseteq X $ con $ X $ spazio topologico $ i: A \to X $ si definisce mappa di \textbf{inclusione}\index{Inclusione}
+  e si scrive $ i: A \incl X $ se $ \forall a \in A $ vale che $ i(a) = a $.
+\end{definition}
+
 \begin{osservation}
   Uno spazio topologico è \textbf{connesso}\index{Spazio connesso} se si può scrivere come
   unione disgiunta di due suoi aperti.
 \end{osservation}
 
 \begin{definition}
-  Sia $ X $ uno spazio topologico l'insieme $ \set{A_i | A_i \in X \; \forall i} $ è un \textbf{ricoprimento}\index{Ricoprimento}
+  Un \textbf{arco}\index{Arco} in uno spazio topologico $ X $ tra i punti $ x_0 \in X $ e $ y_0 \in X $
+  è una funzione continua da $ I = [0,1] $ a $ X $ tale che $ \alpha(0) = x_0 $ e $ \alpha(1) = y_0 $.
+  Si dice che l'arco parte da $ x_0 $ e finisce in $ y_0 $.
+\end{definition}
+
+\begin{definition}
+  Uno spazio topologico $ X $ si dice \textbf{connesso per archi}\index{Spazio
+    connesso per archi} se $ \forall x, y \in X $ esiste un arco con punto iniziale
+  $ x $ e punto finale $ y $.
+\end{definition}
+
+\begin{definition}
+  Sia $ X $ uno spazio topologico, l'insieme $ \set{A_i | A_i \in X \; \forall i} $ è un \textbf{ricoprimento}\index{Ricoprimento}
   di $ X $ se:
   \[
     \bigcup_{i} A_i = X
@@ -244,15 +265,27 @@ Questo deriva da un problema topologico concreto.
   aperto ne esiste un sottoinsieme che è un ricoprimento \emph{finito} di $ U $.
 \end{definition}
 
+\begin{proposition}
+  Si dimostra che:
+  \begin{itemize}
+  \item Se uno spazio è connesso o connesso per archi allora anche tutti i suoi quozienti lo sono.
+  \item Se uno spazio è compatto anche tutti i suoi quozienti lo sono.
+  \end{itemize}
+  Inoltre ovviamente la mappa di proiezione al quoziente è suriettiva.
+\end{proposition}
+
 \newmathsymb{homo}{\simeq}{Spazi omeomorfi}
 \begin{definition}
   Una mappa tra spazi topologici è detta \textbf{omeomorfismo}\index{Omeomorfismo} se è continua
   e ammette inverso continuo, cioè se è una mappa uno a uno. Se due spazi sono omeomorfi si utilizza
   il simbolo $ \simeq $.
 \end{definition}
-Siccome gli omeomorfismi sono mappe uno a uno due spazi omeomorfi sono essenzialmente identici. La
-relazione di omeomorfismo costituisce una relazione di equivalenza. Molti
-degli strumenti sviluppati in questo corso servono a capire se due spazi sono omeomorfi o meno.
+Siccome gli omeomorfismi sono mappe uno a uno, due spazi omeomorfi sono
+essenzialmente identici. Inoltre, la relazione di omeomorfismo costituisce una
+relazione di equivalenza.
+
+% Molti degli strumenti sviluppati in questo corso servono a capire se due spazi
+% sono omeomorfi o meno.
 
 % lezione 3
 % _     _____ ________ ___  _   _ _____   _____
@@ -262,18 +295,34 @@ degli strumenti sviluppati in questo corso servono a capire se due spazi sono om
 % |_____|_____/____|___\___/|_| \_|_____| |____/
 
 
-\section{Richiami sul gruppo fondamentale}
+\section{Gruppo fondamentale}
 
 \begin{definition}
   Sia $ X $ uno spazio topologico e $ x_0 $ un suo punto, allora un \textbf{laccio}\index{Laccio} è un arco in $ X $
-  avente come punto di partenza e punto di arrivo il punto $ x_0 $. Un laccio $ c_{x_0} $ si dice \textbf{costante} se $ \forall t \in I $
-  $ c_{x_0}(t) = x_0 $ con $ x_0 \in X $.
+  avente come punto di partenza e punto di arrivo il punto $ x_0 $. Un laccio $ C_{x_0} $ si dice \textbf{costante} se $ \forall t \in I $
+  $ C_{x_0}(t) = x_0 $ con $ x_0 \in X $.
 \end{definition}
-
+\noindent
 Vorrei strutturare l'insieme dei lacci in uno spazio $ X $ come un gruppo con l'operazione di giunzione
-e avente come unità il laccio costante. Questo non si riesce a fare perché non sempre
-la giunzione di un laccio con il suo inverso è il laccio costante. Per questo si passa al quoziente
-rispetto la relazione di omotopia.
+e avente come unità il laccio costante.
+
+\begin{definition}
+  Siano $ f, g $ due lacci, si definisce l'operazione $ \star $ detta \textbf{cammino
+    composto}, o \textbf{giunzione}, \index{Cammino composto}
+  \index{Giunzione!\vedi{Cammino composto}} come:
+  \[
+    (f \star g)(t) =
+    \begin{cases}
+      f(2t) & \text{se } 0 \leq t \leq \frac{1}{2} \\
+      g(2t -1) & \text{se } \frac{1}{2} \leq t \leq 1
+    \end{cases}
+  \]
+\end{definition}
+Il cammino composto è un laccio di base $ x_0 $ percorso a velocità doppia,
+metà del tempo percorso su $ f $ l'altra metà su $ g $.
+Il problema di questa costruzione è non sempre la giunzione di un laccio con il
+suo inverso è il laccio costante. Per questo si passa al quoziente rispetto la
+relazione di omotopia.
 
 \begin{definition}
   Sia $ X $ uno spazio topologico e $ x_0 \in X $ un suo punto, allora la coppia $ (X, x_0) $ è detta \textbf{spazio topologico puntato}.
@@ -321,36 +370,24 @@ rispetto la relazione di omotopia.
   \caption{Omotopia: deforma $ f $ in $ g $ in modo continuo.}
   \label{fig:lez3:homotopy}
 \end{figure}
-
-Si definisce l'insieme;
-\[
-  \pi_1(X,x_0) = \quot{\set{f \colon I \to X | f \text{ continua}, f(0) = f(1) = x_0}}{\sim_H}
-\]
-
-Questo insieme può essere equipaggiato con un'operazione di somma facendolo diventare un gruppo,
-questo è noto come \textbf{gruppo fondamentale}\index{Gruppo fondamentale}, e i suoi elementi
-si indicano con la usuale notazione di classe di equivalenza.
-Si vogliono definire le operazioni di gruppo:
-siano $ [f], [g] \in \pi_i(X,x_0) $, si definisce $ [f][g] := [f \star g] $, dove l'operazione $ \star $ è
-il \textbf{cammino composto}, o \textbf{giunzione}, \index{Cammino composto}
-\index{Giunzione!\vedi{Cammino composto}} definita da:
-\[
-  (f \star g)(t) =
-  \begin{cases}
-    f(2t) & \text{se } 0 \leq t \leq \frac{1}{2} \\
-    g(2t -1) & \text{se } \frac{1}{2} \leq t \leq 1
-  \end{cases}
-\]
-Cioè è un cammino di base $ x_0 $ percorso a velocità doppia, metà del tempo
-percorso su $ f $ l'altra metà su $ g $.
-L'elemento neutro di questa operazione è il cammino costante $ 1_{\pi_1(X,x_0)} = [C_{x_0}] $ con
-$ C_{x_0}(t) = x_0 \; \forall t $.
-L'inverso di un elemento invece è $ [f]^{-1} = [\bar{f}] $ dove $ \bar{f} $ è il
-cammino percorso in verso opposto, cioè definito da $ \bar{f}(t) = f(1-t) $, in
-questo modo $ \bar{f}(0) = f(1) $ e $ \bar{f}(1) = f(0) $.
+\newmathsymb{fondgroup}{\pi_1}{Gruppo fondamentale}
+\begin{definition}
+  Dato uno spazio topologico puntato $ (X,x_0) $ si definisce il \textbf{gruppo
+    fondamentale}\index{Gruppo fondamentale} come l'insieme:
+  \[
+    \pi_1(X,x_0) = \quot{\set{f \colon I \to X | f \text{ continua}, f(0) = f(1) = x_0}}{\sim_H}
+  \]
+  equipaggiato con un'operazione l'operazione di giunzione, cioè se
+  $ [f], [g] \in \pi_i(X,x_0) $, si definisce $ [f][g] := [f \star g] $, l'elemento
+  neutro di questa operazione è il cammino costante
+  $ 1_{\pi_1(X,x_0)} = [C_{x_0}] $ con $ C_{x_0}(t) = x_0 \; \forall t $. L'inverso di
+  un elemento invece è $ [f]^{-1} = [\bar{f}] $ dove $ \bar{f} $ è il cammino
+  percorso in verso opposto, cioè definito da $ \bar{f}(t) = f(1-t) $, in questo
+  modo $ \bar{f}(0) = f(1) $ e $ \bar{f}(1) = f(0) $.
+\end{definition}
 
 Alcune proprietà del gruppo fondamentale:
-\begin{itemize}
+\begin{enumerate}
 \item $ \pi_1(X,x_0) $ è invariante omotopico, cioè se $ X \sim_H Y $, cioè se
   \[
     \exists f: X \to Y, g: Y \to X \; | \; f \circ g \sim_H 1_Y \text{ e }  g \circ f \sim_H 1_X
@@ -371,7 +408,7 @@ Alcune proprietà del gruppo fondamentale:
   \end{proposition}
   Questo intuitivamente è vero perché se gli spazi sono connessi per archi allora esistono cammini
   che collegano qualunque coppia di punti.
-\end{itemize}
+\end{enumerate}
 
 \begin{definition}
   Uno spazio topologico connesso per archi si dice \textbf{semplicemente connesso}\index{Semplicemente connesso}
@@ -383,7 +420,8 @@ Alcune proprietà del gruppo fondamentale:
   non tutti gli spazi semplicemente connessi sono contraibili, come ad esempio $ \Sph{2} $.
 \end{osservation}
 
-\begin{itemize}
+\begin{enumerate}
+  \setcounter{enumi}{3}
 \item $ \pi_1(\Sph{1}) \cong \Z $, infatti si può costruire la mappa:
   \begin{align*}
     \sigma \colon I & \to \Sph{1} \\
@@ -399,7 +437,7 @@ Alcune proprietà del gruppo fondamentale:
 \item $ \pi_1(X \times Y) \cong \pi_1(X) \times \pi_1(Y) $
 \item Il gruppo fondamentale si calcola o partendo da gruppi omotopi oppure utilizzando il \textbf{teorema di Seifert–van Kampen}, \index{Teorema di Seifert–van Kampen}
   il quale fornisce un metodo algoritmico per il calcolo.
-\end{itemize}
+\end{enumerate}
 
 \begin{example}
   Si definisce:
@@ -446,8 +484,9 @@ Alcune proprietà del gruppo fondamentale:
   si ha $ aba^{-1}b^{-1} $. Questo si estende a poligoni con $ 4g $ lati e si usa l'identificazione
   $ a_1 b_1 a_1^{-1} b_1^{-1} \dots a_g b_g a_g^{-1} b_g^{-1} $.
 
-  Si dimostra che queste sono varietà topologiche, in particolare per $ g = 1 $ si ha un toro, per $ g = 2 $ un bitoro, \dots. $ g $ è
-  detto \textbf{genere} \index{Genere}.
+  Si dimostra che queste sono varietà topologiche nel senso che verrà ora
+  riportato, in particolare per $ g = 1 $ si ha un toro, per $ g = 2 $ un
+  bitoro, \dots. $ g $ è detto \textbf{genere}\index{Genere}.
 
   \begin{definition}
     Una \textbf{varietà topologica}\index{Varietà topologica} $ \M $ è uno spazio topologico
@@ -455,7 +494,6 @@ Alcune proprietà del gruppo fondamentale:
     interno $ n $ detto \textbf{dimensione}\index{Dimensione di una varietà topologica}
     tale ogni punto in $ \M $ possiede un intorno che è omeomorfo a $ \RN{n} $.
   \end{definition}
-
   Si trova con il teorema di Seifert-Van Kampen che:
   \[
     \pi_1(V_g) \cong
@@ -480,35 +518,24 @@ Alcune proprietà del gruppo fondamentale:
 
 \subsection{Omomorfismo tra $ \RN{} $ e $ \RN{N} $}
 
-\begin{definition}
-  Un \textbf{arco}\index{Arco} in uno spazio topologico $ X $ tra i punti $ x_0 \in X $ e $ y_0 \in X $
-  è una funzione continua da $ I = [0,1] $ a $ X $ tale che $ \alpha(0) = x_0 $ e $ \alpha(1) = y_0 $.
-  Si dice che l'arco parte da $ x_0 $ e finisce in $ y_0 $.
-\end{definition}
-
-\begin{definition}
-  Uno spazio topologico $ X $ è \textbf{connesso per archi}\index{Spazio connesso per archi} se per
-  ogni coppia di punti $ x, y \in X $ esiste un arco che parte da $ x $ e termina in $ y $.
-\end{definition}
-
-\begin{definition}
-  Uno spazio topologico $ X $ si dice \textbf{connesso per archi} \index{Spazio connesso per archi} se $ \forall x, y \in X $ esiste
-  un arco con punto iniziale $ x $ e punto finale $ y $.
-\end{definition}
 
 \begin{proposition}
-  Se $ f:X \to Y $ è una mappa continua suriettiva tra spazi topologici e se $ X $ è connesso per archi
-  allora $ Y $ è connesso per archi. Questo vale in particolare se $ f $ è un omeomorfismo, cioè la
-  connessione per archi è una proprietà invariante per omeomorfismi.
+  Se $ f:X \to Y $ è una mappa continua suriettiva tra spazi topologici e se
+  $ X $ è connesso per archi allora $ Y $ è connesso per archi. Questo vale in
+  particolare se $ f $ è un omeomorfismo, cioè la connessione per archi è una
+  proprietà invariante per omeomorfismi.
 \end{proposition}
 
 \begin{proof}
-  Siano $ y_0, y_1 $ due punti di $ Y $. La funzione $ f $ è suriettiva, e dunque esistono $ x_0 $ e $ x_1 $ in $ X $
-  tali che $ f(x_0)=y_0 $ e $ f(x_1)=y_1 $. Dato che $ X $ è connesso, esiste un cammino $ \alpha:[0,1] \to X $ tale che $ \alpha(0)=x_0 $
-  e $ \alpha(1)=x_1 $. Ma la composizione di funzioni continue è continua, e quindi il cammino ottenuto componendo $ \alpha $ con $ f $:
-  $ f \circ \alpha : [0,1] \to X \to Y $ è un cammino continuo che parte da $ y_0 $ e arriva a $ y_1 $.
+  Siano $ y_0, y_1 $ due punti di $ Y $. La funzione $ f $ è suriettiva, e
+  dunque esistono $ x_0 $ e $ x_1 $ in $ X $ tali che $ f(x_0)=y_0 $ e
+  $ f(x_1)=y_1 $. Dato che $ X $ è connesso, esiste un cammino
+  $ \alpha:[0,1] \to X $ tale che $ \alpha(0)=x_0 $ e $ \alpha(1)=x_1 $. Ma la composizione di
+  funzioni continue è continua, e quindi il cammino ottenuto componendo
+  $ \alpha $ con $ f $: $ f \circ \alpha : [0,1] \to X \to Y $ è un cammino continuo che parte da
+  $ y_0 $ e arriva a $ y_1 $.
 \end{proof}
-
+\hfill \newline \noindent
 Si sa inoltre che:
 \begin{proposition}
   $ \RN{n} $ è connesso per archi $ \forall n \in \mathbb{N} $.
@@ -520,10 +547,12 @@ il seguente risultato fondamentale:
 \begin{proposition}
   Se $ f: X \to Y $ è omeomorfismo tra spazi topologici allora $ f \rvert_U : U \to f(U) $ è omeomorfismo per ogni $ U \subseteq X $.
 \end{proposition}
-Nel caso considerato $ U = {x_0} $, siccome ho trovato un $ U $ per cui la funzione ristretta non è omeomorfismo $ f $
-non può essere omeomorfismo. Infatti l'immagine di un punto rimane un punto.
+Nel caso considerato $ U = \Sph{n} \setminus {x_0} $, siccome ho trovato un
+$ U $ per cui la funzione ristretta non è omeomorfismo $ f $ non può essere
+omeomorfismo. Infatti l'immagine di un punto rimane un punto.
 
-Tuttavia vale anche che $ \RN{2} \not \simeq \RN{N} $ per $ n \geq 3 $, infatti:
+\noindent
+Questo risultato vale anche che $ \RN{2} \not \simeq \RN{N} $ per $ n \geq 3 $, infatti:
 
 \newmathsymb{homoto}{\homoto}{Omeomorfismo}
 \begin{proof}
@@ -532,8 +561,8 @@ Tuttavia vale anche che $ \RN{2} \not \simeq \RN{N} $ per $ n \geq 3 $, infatti:
   $ \forall p \in \RN{2} \quad f:\RN{2} \setminus \set{p} \homoto \RN{N} \setminus \set{f(p)} $.
   Ma $ \RN{2} \setminus \set{p} \simeq \RN{} \times \mathcal{S}^1 $ con la mappa
   $ \vec{x} \mapsto \left( || \vec{x} ||, \frac{\vec{x}}{|| \vec{x} ||} \right) $ (dopo aver fatto
-  una traslazione di $ p $ nell'origine, operazione che è certamente un omeomorfismo). In pratica
-  sto dicendo che il piano senza un punto è omeomorfo ad un cilindro infinito.
+  una traslazione di $ p $ nell'origine, operazione che è certamente un omeomorfismo).
+  % In pratica sto dicendo che il piano senza un punto è omeomorfo ad un cilindro infinito.
   Analogamente $ \RN{n} \setminus \set{f(p)} \simeq \RN{} \times \Sph{n-1} $. Quindi se esiste un omeomorfismo tra $ \RN{2} $ e
   $ \RN{n} $ significherebbe che $ \RN{} \times \Sph{1} \simeq \RN{} \times \Sph{n-1} $, ma quindi i gruppi fondamentali
   dovrebbero essere isomorfi:
@@ -544,39 +573,41 @@ Tuttavia vale anche che $ \RN{2} \not \simeq \RN{N} $ per $ n \geq 3 $, infatti:
   perché le sfere sono contraibili. Trovo quindi che dovrebbero essere isomorfi $ \pi_1 (\RN{} \times \Sph{1}) = \Z $
   e $ \pi_1(\RN{}\times \Sph{n-1}) = 1 $ che è assurdo.
 \end{proof}
-
+\hfill \newline \newline \noindent
 Ho quindi dedotto proprietà topologiche a partire da considerazioni algebriche (con il gruppo fondamentale).
-Il gruppo fondamentale è un invariante algebrico per problemi topologici.
+Il gruppo fondamentale è un invariante algebrico per problemi topologici, provo ad utilizzarlo per mostrare
+l'analogo risultato per $ \RN{3} $.
 
-\newmathsymb{fondgroup}{\pi_1}{Gruppo fondamentale}
-\begin{definition}
-  Si definisce il \textbf{gruppo fondamentale}\index{Gruppo fondamentale} di uno spazio topologico $ X $
-  connesso per archi attorno al punto $ x_0 \in X $
-  \[
-    \pi_1 (X, x_0) = \quot{\set{ g: \Sph{1} \to X | g \text{ continua}, g(1) = x_0}}{\sim}
-  \]
-  e $ \sim $ è la relazione di omotopia: $ g_1 \sim g_2 $ se $ \exists G: \mathcal{S}^1 \times I \to X  $ tale che
-  $ G(z,0) = g_1(z), G(z,1) = g_2(z), G(1,t) = x_o $ con $ G $ continua. In questo vedo $ \Sph{1} $ come sottospazio
-  di $ \RN{2} $ con la topologia indotta (il punto $ 1 $ è un punto della circonferenza vedendola come
-  insieme nello spazio complesso $ \Sph{1} = \set{ z \in \mathbb{C} | |z| = 1} $).
-\end{definition}
-Sostanzialmente il gruppo fondamentale è l'insieme dei lacci quozientato rispetto alla relazione di omotopia.
-Infatti $ g $ è un laccio dato che è un arco e il punto di partenza e il punto di arrivo necessariamente
-coincidono dato che $ g $ è definito su $ \Sph{1} $.
-Questo perché l'insieme dei lacci non è strutturabile come gruppo in quanto il laccio costante non è
-l'unità.
+% \begin{definition}
+%   Si definisce il \textbf{gruppo fondamentale}\index{Gruppo fondamentale} di uno spazio topologico $ X $
+%   connesso per archi attorno al punto $ x_0 \in X $
+%   \[
+%     \pi_1 (X, x_0) = \quot{\set{ g: \Sph{1} \to X | g \text{ continua}, g(1) = x_0}}{\sim}
+%   \]
+%   e $ \sim $ è la relazione di omotopia: $ g_1 \sim g_2 $ se $ \exists G: \mathcal{S}^1 \times I \to X  $ tale che
+%   $ G(z,0) = g_1(z), G(z,1) = g_2(z), G(1,t) = x_o $ con $ G $ continua. In questo vedo $ \Sph{1} $ come sottospazio
+%   di $ \RN{2} $ con la topologia indotta (il punto $ 1 $ è un punto della circonferenza vedendola come
+%   insieme nello spazio complesso $ \Sph{1} = \set{ z \in \mathbb{C} | |z| = 1} $).
+% \end{definition}
+% Sostanzialmente il gruppo fondamentale è l'insieme dei lacci quozientato rispetto alla relazione di omotopia.
+% Infatti $ g $ è un laccio dato che è un arco e il punto di partenza e il punto di arrivo necessariamente
+% coincidono dato che $ g $ è definito su $ \Sph{1} $.
+% Questo perché l'insieme dei lacci non è strutturabile come gruppo in quanto il laccio costante non è
+% l'unità.
 
-Ora voglio mostrare per assurdo che non esiste omomorfismo tra $ \RN{3} $ e $ \RN{N} $.
+\begin{proposition}
+  Non esiste omomorfismo tra $ \RN{3} $ e $ \RN{N} $.
+\end{proposition}
 
 \begin{proof}
-  Come nel caso precedente suppongo esiste $ f $ omeomorfismo tra $ \RN{3} $ a $ \RN{n} $,
-  tolgo $ q $ da $ \RN{3} $ e $ f(q) $ da $ \RN{n} $, quindi ottengo
-  l'omomorfismo tra $ \RN{} \times \Sph{2} \simeq \RN{} \times \Sph{n-1} $, ma i gruppi fondamentali
-  associati sono banali, quindi sono isomorfi, e non è possibile replicare il ragionamento utilizzato sopra.
+  Come nel caso precedente suppongo esiste $ f $ omeomorfismo tra $ \RN{3} $ a
+  $ \RN{n} $, tolgo $ q $ da $ \RN{3} $ e $ f(q) $ da $ \RN{n} $, quindi ottengo
+  l'omomorfismo tra $ \RN{} \times \Sph{2} \simeq \RN{} \times \Sph{n-1} $, ma i gruppi
+  fondamentali associati sono banali, quindi sono isomorfi, e non è possibile
+  replicare il ragionamento utilizzato sopra.
 \end{proof}
-
-Poincaré introdusse i gruppi di omotopia superiore.
-
+\hfill \newline \newline \noindent
+Poincaré introdusse i gruppi di  omotopia superiore per risolvere questo e altri problemi.
 \begin{definition}
   Si definiscono i \textbf{gruppi di omotopia superiore}\index{Gruppi di omotopia superiore} di uno spazio topologico $ X $
   attorno al punto $ x_0 $ per $ k \geq 2 $:
@@ -592,19 +623,16 @@ Tuttavia si sa che:
 \item $ \pi_m(\Sph{m}) \simeq \Z \quad \text{per} \quad k = m $
 \item $ \pi_1(\Sph{2}) = 1 $
 \item $ \pi_2(\Sph{2}) \simeq \Z $
-\item $ \pi_3(\Sph{2}) \simeq \Z $\footnote{Questo da origine alla fibrazione di Hopf che ha molte applicazioni in fisica.}
+\item $ \pi_3(\Sph{2}) \simeq \Z $\footnote[$\dagger$]{Questo da origine alla fibrazione di Hopf che ha molte applicazioni in fisica.}
 \end{enumerate}
 
-\begin{definition}
-  Sia $ A \subseteq X $ con $ X $ spazio topologico $ i: A \to X $ si definisce mappa di \textbf{inclusione}\index{Inclusione}
-  e si scrive $ i: A \incl X $ se $ \forall a \in A $ vale che $ i(a) = a $.
-\end{definition}
+% Anche se non so calcolare i gruppi di omotopia superiore non vorrei buttarli via \dots
+% Vorrei degli invarianti algebrici per problemi topologici, come i gruppi di omotopia.
+Per evitare di utilizzare i gruppi di omotopia superiore introduco i gruppi di omologia.
 
-
-Anche se non so calcolare i gruppi di omotopia superiore non vorrei buttarli via\dots
-Vorrei degli invarianti algebrici per problemi topologici, come i gruppi di omotopia.
 
 %%% Local Variables:
+%%% ispell-local-dictionary: "italiano"
 %%% mode: latex
 %%% TeX-master: "notes"
 %%% End:

@@ -47,6 +47,8 @@
 \newcommand{\im}[1]{\mathrm{Im}( #1 )}
 \newcommand{\rank}[1]{\mathrm{Rank}( #1 )}
 \renewcommand{\ker}[1]{\mathrm{Ker}( #1)}
+\renewcommand{\hom}[1]{\mathrm{Hom}( #1)}
+\newcommand{\ext}[1]{\mathrm{Ext^1}( #1)}
 \newcommand{\tor}[1]{\mathrm{Tor_1}( #1)}
 \newcommand{\RN}[1][]{\mathbb{R}^#1}
 \newcommand{\Pjr}[1]{\mathrm{P}^#1 (\mathbb{R})}
@@ -62,6 +64,13 @@
 \newcommand{\vedi}[1]{\emph{vedi} #1}
 \newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
 \renewcommand{\vec}[1]{\underline{#1}}
+
+
+\makeatletter
+\def\@xfootnote[#1]{%
+  \protected@xdef\@thefnmark{#1}%
+  \@footnotemark\@footnotetext}
+\makeatother
 
 
 \let\latexcirc=\circ
@@ -87,6 +96,7 @@
 \graphicspath{{./images/}}
 
 \includeonly{intro,singular,cellular,cohom}
+% \includeonly{cohom}
 
 \begin{document}
 
@@ -155,6 +165,7 @@ presenti.
 
 
 %%% Local Variables:
+%%% ispell-local-dictionary: "italiano"
 %%% mode: latex
 %%% TeX-master: t
 %%% End:
