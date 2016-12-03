@@ -69,6 +69,7 @@ esplicitamente.
   \begin{subfigure}{.2\textwidth}
     \centering
     \begin{tikzpicture}
+      \fill[gray!15] (0,0) -- (2,0) -- (1, 1.7) -- cycle;
       \draw (0,0) -- (2,0) -- (1, 1.7) -- cycle;
     \end{tikzpicture}
     \caption{$ \Delta_2 $}
@@ -195,9 +196,11 @@ simplesso più grande, ad esempio manda un punto in uno degli estremi di un segm
       \node[below] () at (2,0) {$ e_1 $};
       \node[right] () at (0,2) {$ e_2 $};
       \node[right, below] () at (-1,-1) {$ e_0 $};
+      \fill[gray!40, fill opacity=0.75] (-1, -1) -- (2,0) -- (0,2) -- cycle;
       \draw (-1,-1) -- (2,0);
       \draw (0,2) -- (2,0);
       \draw (0,2) -- (-1,-1);
+      \fill[gray!15] (5,0) -- (9,0) -- (7,3) -- cycle;
       \draw (5,0) -- (9,0) -- (7,3) -- cycle;
       \node[left] () at (5,0) {$ e_0 $};
       \node[right] () at (9,0) {$ e_1 $};
@@ -271,6 +274,7 @@ Il bordo sostanzialmente corrisponde alla somma alterna delle facce.
     \draw[-Latex] (0,0) -- (3,0);
     \draw[-Latex] (0,0) -- (0,3);
     \draw[-Latex] (0,0) -- (-1.5,-1.5);
+    \fill[gray!40, fill opacity=0.75] (-1, -1) -- (2,0) -- (0,2) -- cycle;
     \draw (-1,-1) -- (2,0);
     \draw (0,2) -- (2,0);
     \draw (0,2) -- (-1,-1);
@@ -685,12 +689,14 @@ Per dimostrare che $ \Ab{\pi_1(X)} \cong H_1(X) $ mi serve prima un lemma:
     \centering
     \begin{tikzpicture}
       \draw (0, 0) rectangle (3,3);
+      \fill[gray!15] (0, 0) rectangle (3,3);
       \draw[ultra thick] (0,0) -- (0,3);
       % \node[right] () at (0, 1.5) {$ C_{x_0} $};
       % \node[left] () at (3, 1.5) {$ C_{x_0} $};
       \node[above] () at (1.5, 0) {$ f(x) $};
       \node[below] () at (1.5, 3) {$ g(x) $};
       \draw[-Latex] (4,1.5) -- (5,1.5);
+      \fill[gray!15] (6,0) -- (7.7, 3) -- (9.4,0) -- cycle;
       \draw (6,0) -- (7.7, 3) -- (9.4,0) -- cycle;
       \node[above, rotate = 60] () at (6.7, 1.3) {$ g(x) $};
       \node[above, rotate = -58] () at (8.7, 1.3) {$ K(x) = C_{x_0} $};
@@ -704,20 +710,21 @@ Per dimostrare che $ \Ab{\pi_1(X)} \cong H_1(X) $ mi serve prima un lemma:
       in quanto fa collassare un intervallo nel punto $ e_0 $}
     \label{fig:lez3:homotopy_f_g_to_triangle}
   \end{figure}
-
+  [NON VA BENE, SISTEMARE!]
   Siccome $ F $ rimane costante sul sottospazio su cui su quozienta,
   dove vale sempre $ x_0 $,
   $ F $ induce $ F' \colon \Delta_2 \to X $ continua in cui $ e_0 $ viene mandato in $ x_0 $:
   \[
     \begin{tikzcd}
       I \times I \arrow{r}{F} \arrow{d}{P} & X \\
-      \quot{I \times I}{0 \times I} \simeq \Delta_2 \arrow{ur}{F'}
+      \quot{I \times I}{\set{0} \times I} \simeq \Delta_2 \arrow{ur}{F'}
     \end{tikzcd}
   \]
   Calcolo il bordo: $ \partial F' = F'^{(0)} - F'^{(1)} + F'^{(2)} = K - g + f $
-  dove $ K $ è il cammino costante per definizione di omotopia, cioè è $ C_{x_0}$. Se $ K $
-  fosse il bordo di qualcosa avrei finito ($ \partial w = f - g $). Ma $ K $ è il $ 2 $-simplesso
-  singolare costante uguale a $ x_0 $, cioe $ K \colon \Delta_2 \to \set{x_0} $, quindi il suo bordo:
+  dove $ K $ è il cammino costante per definizione di omotopia, cioè è
+  $ C_{x_0}$. Se $ K $ fosse il bordo di qualcosa avrei finito, ma $ K $ è il
+  $ 2 $-simplesso singolare costante uguale a $ x_0 $, cioè
+  $ K \colon \Delta_2 \to \set{x_0} $, quindi il suo bordo:
   \[
     \partial K = K^{(0)} - K^{(1)} + K^{(2)} =  K^{(2)}
   \]
@@ -732,37 +739,35 @@ Per dimostrare che $ \Ab{\pi_1(X)} \cong H_1(X) $ mi serve prima un lemma:
 \end{proof}
 
 \begin{proposition}
-  Se $ X $ è uno spazio topologico connesso per archi allora esiste un
-  omomorfismo $ \phi \colon \Ab{\pi_1(X)} \to H_1(X) $, cioè si può passare dall'equivalenza
-  omologica a quella omotopica.
+  Se $ X $ è uno spazio topologico allora esiste un omomorfismo ben definito
+  $ \phi \colon \Ab{\pi_1(X)} \to H_1(X) $.
+  % cioè si può passare dall'equivalenza  omologica a quella omotopica.
 \end{proposition}
-
 \begin{proof}
-  Per dimostrare che $ \Ab{\pi_1(X)} \cong H_1(X) $ trovo un omomorfismo di
-  gruppi abeliani tra $ \pi_1(X) $ a $ H_1(X) $, infatti
-  se costruisco $ \phi \colon \pi_1(X) \to H_1(X) $ omomorfismo di gruppi ottengo
-  gratuitamente la mappa da $ \Ab{\pi_1(X)} $ a $ H_1(X) $ per l'osservazione precedente.
+  Per dimostrare che $ \Ab{\pi_1(X, x_0)} \cong H_1(X) $ trovo un omomorfismo di
+  gruppi abeliani tra $ \pi_1(X, x_0 $ a $ H_1(X) $, infatti
+  se costruisco $ \phi \colon \pi_1(X, x_0) \to H_1(X) $ omomorfismo di gruppi ottengo
+  gratuitamente la mappa da $ \Ab{\pi_1(X, x_0)} $ a $ H_1(X) $ per l'osservazione precedente.
   \[
     \begin{tikzcd}
-      \pi_1(X) \arrow{r}{\phi} \arrow{d}{P} & H_1(X) \\
-      \Ab{\pi_1(X)} \arrow{ur}{\phi'}
+      \pi_1(X, x_0) \arrow{r}{\phi} \arrow{d}{P} & H_1(X) \\
+      \Ab{\pi_1(X, x_0)} \arrow{ur}{\phi'}
     \end{tikzcd}
   \]
-  Poi dovrò mostrare che questa mappa è invertibile, cioè $ \exists \psi:H_1(X) \to A_1(X) $ tale che $ \phi' \circ \psi = \Id{H_1(X)} $ e
-  $ \psi \circ \phi' = \Id{\Ab{\pi_1(X)}} $.
-
-  Per il lemma appena dimostrato una possibile costruzione di $ \phi $ è:
+  % Poi dovrò mostrare che questa mappa è invertibile, cioè $ \exists \psi:H_1(X) \to A_1(X) $ tale che $ \phi' \circ \psi = \Id{H_1(X)} $ e
+  % $ \psi \circ \phi' = \Id{\Ab{\pi_1(X)}} $.
+  Una possibile costruzione di $ \phi $ è:
   \begin{align*}
-    \phi:  \pi_1(X) & \to H_1(X) \\
+    \phi:  \pi_1(X, x_0) & \to H_1(X) \\
     [f]_H & \mapsto [f]_{hom} = \llbracket f \rrbracket
   \end{align*}
-  In tutto ciò non ho ancora utilizzato la connessione per archi.
-
+  % In tutto ciò non ho ancora utilizzato la connessione per archi.
   % Ora voglio costruire $ \phi' \colon \Ab{\pi_1(X)} \to H_1(X) $ e lo faccio ancora
   % senza l'ipotesi di connessione per archi.
-  Mostro che $ \phi $ è omomorfismo, in questo modo anche $ \phi' $ lo è.
-
-  Siano $ [f]_H, [g]_H \in \pi_1(X) $ voglio fare vedere che:
+  Per il lemma precedente questa applicazione è ben definita, bisogna mostrare
+  che $ \phi $ è omomorfismo, e in questo modo anche
+  $ \phi' \colon \Ab{\pi_1(X,x_0)} \to H_1(X) $ lo è. Siano
+  $ [f]_H, [g]_H \in \pi_1(X, x_0) $ voglio fare vedere che:
   \[
     \phi ( [f]_H [g]_H) = \phi([f]_H) + \phi([g]_H)
   \]
@@ -787,6 +792,7 @@ Per dimostrare che $ \Ab{\pi_1(X)} \cong H_1(X) $ mi serve prima un lemma:
     \centering
     \begin{subfigure}[htbp]{.45\linewidth}
       \begin{tikzpicture}
+        \fill[gray!15] (5,0) -- (9,0) -- (7,3) -- cycle;
         \draw (5,0) -- (9,0) -- (7,3) -- cycle;
         \node[left] () at (5,0) {$ e_0 $};
         \node[right] () at (9,0) {$ e_1 $};
@@ -805,30 +811,38 @@ Per dimostrare che $ \Ab{\pi_1(X)} \cong H_1(X) $ mi serve prima un lemma:
     \begin{subfigure}[htbp]{.45\linewidth}
       \centering
       \begin{tikzpicture}
+        \fill[gray!15] (5,0) -- (9,0) -- (7,3) -- cycle;
         \draw (5,0) -- (9,0) -- (7,3) -- cycle;
         \node[left] () at (5,0) {$ e_0 $};
         \node[right] () at (9,0) {$ e_1 $};
         \node[above] () at (7,3) {$ e_2 $};
         \node[below] () at (7,0) {$ g $};
-        \node[left] () at (5.9,1.5) {$ \frac{1}{2} $};
-        \node[left] () at (6.2,1.5) {\textbullet};
-        \node[] () at (7,-0.025) {\textbullet};
+        % \node[left, above] () at (5.95,1.7) {$ f \star g $};
+        % \node[left] () at (5.9,1.5) {$ \frac{1}{2} $};
+        \node[] (n1) at (6.,1.5) {\textbullet};
+        \node[] (n2) at (9,0) {\textbullet};
         \node[right] () at (8,2) {$ f $};
-        \draw (6.025, 1.525) -- (7,0);
+        \draw (6,1.5) -- (9,0);
+        \draw[dashed] (6.18,1.75) -- (8.66, 0.5);
+        \draw[dashed] (5.82,1.25) -- (8.26, 0);
       \end{tikzpicture}
       \caption{Costruzione dell'omomorfismo, deve avere valori costanti su rette parallele}
       \label{fig:lez3:proof_homo}
     \end{subfigure}
     \caption{Costruzione dell'omomorfismo}
   \end{figure}
-  Una possibile costruzione parte tracciando la retta che congiunge
-  due punti medi di due segmenti, quindi si richiede che $ T $ abbia
-  valori costanti sulle rette parallele.
+  Una possibile costruzione di $ T $ consiste mettere $ g $ su lato $ e_0 e_1 $,
+  $ f $ sul lato $ e_1 e_2 $ e poi definire $ T \colon \Delta_2 \to X $ in modo che all'interno
+  del simplesso abbia valori determinati dall'intersezione di rette parallele alla
+  retta che divide il lato $ e_2 e_1 $ in due (cioè la mediana) con gli altri due
+  lati del simplesso. In questo modo su metà del terzo lato c'è esattamente $ f $,
+  e sull'altra metà $ g $, cioè complessivamente $ f \star g $.
 \end{proof}
-Al momento la situazione è che ho $ \phi: \pi_1(X,x_0) \to H_1(X) $ omomorfismo di
-gruppi ben definito anche con $ X $ non necessariamente connesso per archi, e
-dato che $ H_1(X) $ è abeliano ho $ \phi': \Ab{\pi_1(X)} \to H_1(X) $ omomorfismo di
-gruppi abeliani. L'omomorfismo costruito è in realtà un isomorfismo, come
+\hfill \newline \newline \noindent La mappa $ \phi: \pi_1(X,x_0) \to H_1(X) $ è un omomorfismo di
+gruppi ben definito anche se $ X $ non è connesso per archi, e dato che
+$ H_1(X) $ è abeliano per il precedente lemma è ben definito
+$ \phi': \Ab{\pi_1(X)} \to H_1(X) $ omomorfismo di gruppi abeliani. Richiedendo che
+$ X $ sia anche connesso per archi si ottiene che $ \phi' $ è un isomorfismo, come
 afferma il \textbf{teorema di Hurewicz}.
 \begin{theorem}[Teorema di Hurewicz\index{Teorema di Hurewicz}]
   Se $ X $ è uno spazio topologico
@@ -836,12 +850,9 @@ afferma il \textbf{teorema di Hurewicz}.
   è un isomorfismo, quindi $ \Ab{\pi_1(X)} \cong H_1(X) $.
 \end{theorem}
 \begin{proof}
-  \emph{Sketch of proof, la dimostrazione completa è piuttosto noiosa}.
-  Per dimostrare che $ \phi' $ è isomorfismo o dimostro che è iniettiva e suriettiva
-  o che ammette un inverso. Procedo con la seconda possibilità: mostro che
-  $ \exists \psi \colon H_1(X) \to \Ab{\pi_1(X)} $ tale che $ \psi $ è inverso di $ \phi' $.
-
-  Considero un arco $ f \colon \Delta_1 \to X $ con $ f(0), f(1) \in X $.
+  \emph{Sketch of proof, la dimostrazione completa è piuttosto noiosa}. Per
+  dimostrare che $ \phi' $ è isomorfismo mostro che è invertibile,
+  $ \exists \psi \colon H_1(X) \to \Ab{\pi_1(X)} $ tale che $ \psi $ sia inverso di $ \phi' $.
   \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
@@ -862,26 +873,28 @@ afferma il \textbf{teorema di Hurewicz}.
     \caption{Dimostrazione della proposizione}
     \label{fig:lez3:sketch_of_proof}
   \end{figure}
-  Siccome lo spazio è connesso per archi esiste un cammino da $ x_0 $ a $ f(0) $, cioè
-  una funzione $ \lambda_{f(0)} \colon I \to X $ tale che $ \lambda_{f(0)} = x_0 $ e $ \lambda_{f(1)} = f(0) $.
-  Lo stesso vale per $ x_0 $ e $ f(1) $. Questi archi sono orientati partendo da $ x_0 $, posso
-  considerare il cammino con verso opposto $ \bar{\lambda}_{f(1)} $ e quindi costruire il laccio
-  di base $ x_0 $: $ \lambda_{f(0)} \star f \star \bar{\lambda}_{f(1)} =: \tilde{f} $. Vale che $
-  \psi(f) = \llbracket \tilde{f} \rrbracket $,
-  dove $  \llbracket \tilde{f} \rrbracket = P \left([\tilde{f}]_H\right)$.
-  Bisogna mostrare che:
+  Considero un arco $ f \colon \Delta_1 \to X $ con $ f(0), f(1) \in X $, siccome lo spazio è
+  connesso per archi esiste un cammino da un punto $ x_0 $ a $ f(0) $, cioè una
+  funzione $ \lambda_{f(0)} \colon I \to X $ tale che
+  $ \lambda_{f(0)}(0) = x_0 $ e $ \lambda_{f(0)}(1) = f(0) $ e lo stesso vale per
+  $ x_0 $ e $ f(1) $. Questi archi sono orientati con punto di partenza $ x_0 $,
+  posso considerare il cammino con verso opposto $ \bar{\lambda}_{f(1)} $ e quindi
+  costruire il laccio di base $ x_0 $:
+  $ \lambda_{f(0)} \star f \star \bar{\lambda}_{f(1)} =: \tilde{f} $. Definisco
+  $ \psi $ tale che $ \psi( \llbracket f \rrbracket ) = [\tilde{f}]_H $, dove
+  $ \llbracket f \rrbracket = P ([\tilde{f}]_H)$. Bisogna mostrare che:
   \begin{enumerate}
-  \item $ \psi $ è ben definito, cioè se $ f \sim_{hom} g $ allora $ \psi(f) = \psi(g) $ e che $ \psi $
-    non dipende dalla scelta del cammino.
+  \item $ \psi $ è ben definito, cioè se $ f \sim_{hom} g $ allora $ \psi( \llbracket f \rrbracket ) = \psi( \llbracket g \rrbracket ) $ e che $ \psi $
+    non dipende dalla scelta dei cammini $ \lambda $ e di $ x_0 $
   \item $ \psi $ è omomorfismo di gruppi
   \item $ \phi' \circ \psi = \Id{H_1(X)} $
   \item $ \psi \circ \phi' = \Id{\Ab{\pi_1(X)}} $
   \end{enumerate}
-  \emph{Lo studente interessato può verificare queste asserzioni.}
   \begin{exercise}
-    Verificarli.
+    Verificare queste affermazioni.
   \end{exercise}
-  Una volta verificati si trova in particolare che $ H_1(X) \cong \Ab{\pi_1(X)} $.
+  Una volta verificati si trova che essendo $ \psi $ inverso di $ \phi'$ allora
+  $ \phi'$ è un isomorfismo e quindi $ H_1(X) \cong \Ab{\pi_1(X)} $.
 \end{proof}
 
 \begin{example} \hfill
@@ -985,23 +998,24 @@ quindi definisco $ g_\star $.
 \newmathsymb{fstar}{f_\star}{Applicazione indotta da $ f $ sui gruppi di omologia}
 \begin{align*}
   g_\star \colon H_k(X) & \to H_k(Y) \\
-  [c]          & \mapsto [g_\sharp (c)]
+  \llbracket c \rrbracket        & \mapsto  \llbracket g_\sharp (c) \rrbracket
 \end{align*}
-Si dice che $ g $ è \textbf{covariante} perché va da $ X $ a $ Y $,
-cioè rispetta il verso della applicazione $ g $.
-Devo verificare se questa applicazione è ben definita, cioè non se
-dipende dalla scelta del rappresentate della classe.
-Considero $ d \in S_k(X) $ tale che $ \partial d = 0 $, suppongo
-che $ d \sim_{hom} c $, questo vale se e solo se $ [d] = [c] $ con $ \partial c = 0 $,
-mi chiedo è vero che $ g_\star([d]) = g_\star([c]) $?
-Devo cioè mostrare che $ g_\sharp (d) \sim_{hom} g_\sharp (c) $, ma questo è vero
-se e solo se $ \exists \tau \in S_{k+1}(Y) $ tale che $ g_\sharp(d) - g_\sharp (c) = \partial \tau $.
-Siccome $ g_\sharp $ è omomorfismo allora deve essere $ g_\sharp (d - c) = \partial \tau $,
-ma $ d $ e $ c $ sono omologhi per ipotesi, quindi:
+Si dice che l'associazione di $ g_\star $ a $ g $ è \textbf{covariante} perché va da
+$ X $ a $ Y $, cioè rispetta il verso della applicazione $ g $. Bisogna
+verificare se questa applicazione è ben definita, cioè non se dipende dalla
+scelta del rappresentate della classe.
+
+Per far ciò considero $ c,d \in S_k(X) $ tali che
+$ \partial c = \partial d = 0 $ e $ d \sim_{hom} c $, bisogna verificare che
+$ g_\star( \llbracket c \rrbracket ) = g_\star( \llbracket d \rrbracket) $, cioè
+$ g_\sharp (d) \sim_{hom} g_\sharp (c) $. Ma questo è vero se e solo se differiscono per un
+bordo, cioè se $ \exists \tau \in S_{k+1}(Y) $ tale che
+$ g_\sharp(d) - g_\sharp (c) = \partial \tau $. Siccome $ g_\sharp $ è omomorfismo allora deve essere
+$ g_\sharp (d - c) = \partial \tau $, ma $ d $ e $ c $ sono omologhi per ipotesi, quindi:
 \[
   \exists u \in S_{k+1}(X) \; | \; \partial u = d - c
 \]
-Quindi $ g_\sharp(\partial u) = g_\sharp (d - c) $, e questo implica che $ [g_\sharp (d)] = [g_\sharp(c)] $, infatti
+Quindi $ g_\sharp(\partial u) = g_\sharp (d - c) $, e questo implica che $ \llbracket g_\sharp (d) \rrbracket = \llbracket g_\sharp(c) \rrbracket $, infatti
 % vorrei che questo sia implicato $ g_\sharp (\partial u) = g_\sharp (d - c) $.
 trovo $ \tau $ a partire da $ u $:
 \begin{align*}
@@ -1090,11 +1104,10 @@ in quanto l'ho mostrato sui generatori.
         %         ho $ f_\star \colon H_k(X) \to H_k(Y) $ $ \forall k $
 
 \begin{osservation}
-  Siano $ X $ spazio topologico:
-  $ \Id{X} \colon X \to X $ allora:
+  Sia $ X $ spazio topologico e sia $ \Id{X} \colon X \to X $ allora:
   \begin{align*}
     \left(\Id{X}\right)_\star \colon H_k(X) & \to H_k(X) \\
-    [c] & \mapsto [\left(\Id{X}\right)_\sharp (c)] = [c]
+     \llbracket c \rrbracket  & \mapsto \llbracket \left(\Id{X}\right)_\sharp (c) \rrbracket = \llbracket c \rrbracket
   \end{align*}
   Quindi $ \left(\Id{X}\right)_\star $ è proprio l'identità
   a livello di gruppi di omologia, cioè:
@@ -1123,8 +1136,8 @@ in quanto l'ho mostrato sui generatori.
   $ g_\star \circ f_\star =  \left(g \circ f\right)_\star $, infatti se $ \sigma $ è
   simplesso singolare (poi basta estendere per linearlità):
   \begin{gather*}
-    \left(g \circ f\right)_\star ([\sigma]) = [ (g \circ f)_\sharp (\sigma) ] = [ (g \circ f) \circ \sigma ] =  [ g \circ (f \circ \sigma) ] = \\
-    = [ g_\sharp (f \circ \sigma)] = [ g_\sharp \circ f_\sharp (\sigma) ] = (g_\star \circ f_\star) ([\sigma])
+    \left(g \circ f\right)_\star ( \llbracket \sigma \rrbracket) = \llbracket (g \circ f)_\sharp (\sigma) \rrbracket = \llbracket (g \circ f) \circ \sigma \rrbracket =  \llbracket g \circ (f \circ \sigma) \rrbracket = \\
+    = \llbracket g_\sharp (f \circ \sigma) \rrbracket = \llbracket g_\sharp \circ f_\sharp (\sigma) \rrbracket = (g_\star \circ f_\star) (\llbracket\sigma\rrbracket)
   \end{gather*}
 \end{osservation}
 Quindi sulla categoria degli spazi topologici questo

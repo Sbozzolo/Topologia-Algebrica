@@ -307,8 +307,10 @@ di $ \alpha \otimes \Id{} $, ma mantenendo $ \ker{\beta \otimes \Id{}} = \im{\al
 \]
 
 \begin{definition}
-  Se $ A, G $ sono $ \Z $-moduli allora esiste una successione esatta corta detta \textbf{risoluzione di $ A $}\index{Risoluzione di $ A $}
-  del tipo:
+  Se $ A, G $ sono $ \Z $-moduli allora esiste una successione esatta corta
+  detta \textbf{risoluzione di $ A $}\index{Risoluzione di $ A $} oppure
+  \textbf{presentazione di $ A $}\index{Presentazione di $ A $!
+    \vedi{Risoluzione di $ A $}} del tipo:
   \[
     \begin{tikzcd}
       0 \rar & R \rar{\alpha} & F \rar{\beta} & A \rar & 0
@@ -739,6 +741,39 @@ due costruzioni sono differenti, cioè:
   \]
   La presenza di questi moduli è responsabile della non uguaglianza di $ \hom{H_p(X), G} $ e $ H^p(X ; G) $.
 \end{example}
+\begin{definition}
+  Siano $ A, B $ $ \Z $-moduli, considero una risoluzione di $ A $:
+  \[
+    \begin{tikzcd}
+      0 \rar & R \rar & F \rar & A \rar & 0
+    \end{tikzcd}
+  \]
+  Passando agli omomorfismi la successione si gira e si aggiunge il \textbf{conucleo}\index{Conucleo}
+  \[
+    \begin{tikzcd}
+      0 \rar & \hom{A,B} \rar & \hom{F,B} \rar{\beta} & \hom{R,B} \rar & \coker{\beta} \rar & 0
+    \end{tikzcd}
+  \]
+  Il conucleo è infatti definito da:
+  \[
+    \coker{\beta} = \quot{\hom{R,B}}{\im{\beta}}
+  \]
+  Esistono anche altre presentazioni, ma si dimostra che tutti i conuclei sono isomorfi,
+  questo gruppo è proprio il \textbf{modulo di estensione di $ A $ e $ B $}\index{Modulo di estensione}.
+\end{definition}
+\begin{lemma}
+  Se $ F $ è libero allora $ \ext{F, G} \cong 0 $ con $ G $ gruppo abeliano generico.
+\end{lemma}
+\begin{proof}
+  Considero la presentazione:
+  \[
+    \begin{tikzcd}
+      0 \rar & F \rar & F \rar & 0
+    \end{tikzcd}
+  \]
+  Passando agli omomorfismi ho che il conucleo è zero in quanto tra $ F $ e $ F $ c'è un omomorfismo.
+\end{proof}
+
 \begin{theorem}[Teorema dei coefficienti universali]
   Le successioni:
   \[
@@ -761,6 +796,340 @@ due costruzioni sono differenti, cioè:
     H^N(X; G) \cong \hom{H_n(X), G} \oplus \ext{H_{n-1}(X), G}
   \]
 \end{theorem}
+
+% lezione 17
+
+Sia $ X $ spazio topologico e $ G $ gruppo abeliano, ho
+\[
+  \begin{tikzcd}
+    H_\bullet \oplus G \rar & \lar H^\bullet(X;G) \\
+    \hom{H_\bullet(X); G} \rar & \lar H_\bullet(X;G)
+  \end{tikzcd}
+\]
+Quale è esattamente la relazione tra questi gruppi?
+La risposta è data dal teorema dei coefficienti universali.
+\begin{theorem}
+  Esiste una successione esatta spezzante in modo non naturale, cioè possono
+  esistere più sezioni in omologia singolare e in coomologia, queste sono:
+  \[
+    \begin{tikzcd}[nodes = {column sep = 12 pt}]
+      0 \rar & \ext{H_{p-1}(X), G} \rar & \arrow[bend left]{l}{} H^p(X;G) \rar & \hom{H_p(X), G} \rar & 0
+    \end{tikzcd}
+  \]
+  E:
+  \[
+    \begin{tikzcd}[nodes = {column sep = 18 pt}]
+      0 \rar & H_n(X) \oplus G \rar & H_n(X; G) \rar & \arrow[bend left]{l}{} \tor{H_{n-1}(X), G} \rar & 0
+    \end{tikzcd}
+  \]
+\end{theorem}
+\begin{proof}
+  La dimostrazione per le due successioni è praticamente identica, dimostro quella in coomologia.
+  Voglio costruire la successione:
+  \[
+    \begin{tikzcd}[nodes = {column sep = 12 pt}]
+      0 \rar & \ext{H_{p-1}(X), G} \rar & \arrow[bend left]{l}{} H^p(X;G) \rar & \hom{H_p(X), G} \rar & 0
+    \end{tikzcd}
+  \]
+  Per definizione $ H^P(X;G) $ è l'omologia del complesso delle cocatene $ S^p $ con il cobordo,
+  dove $ S^p(X;G) = \hom{S_p(X), G} $ e il cobordo è:
+  \begin{align*}
+    \delta \colon S^p(X;G) & \to S^{p+1}(X;G) \\
+    \phi & \mapsto \phi \circ \partial
+  \end{align*}
+  Per definizione $ H_p(X) = Z_p \slash B_p $ (cicli modulo i bordi), quindi ho:
+  \[
+    \begin{tikzcd}
+      0 \rar & B_p \rar{i} & Z_p \rar{\pi} & H_p \rar & 0
+    \end{tikzcd}
+  \]
+  Non necessariamente questa spezza perché $ H_p $ può essere di torsione.
+  Poi ho:
+  \[
+    \begin{tikzcd}
+      0 \rar & Z_p \rar & S_p \rar{\partial} & \arrow[bend left]{l}{i} B_{p-1} \rar & 0
+    \end{tikzcd}
+  \]
+  Questa spezza perché tra le catene singolari ci sono quelle che si esprimono
+  come bordo e quindi c'è una sezione, e $ B_{p-1} $ è libero.
+  Poi ho a partire da:
+  \[
+    \begin{tikzcd}
+      0 \rar & B_p \rar & Z_p \rar & H_p \rar & 0
+    \end{tikzcd}
+  \]
+  Passando agli omomorfismi:
+  \[
+    \begin{tikzcd}
+      0 \rar & \hom{H_p, G} \rar & \hom{Z_p, G} \rar{t_p} & \hom{B_p, G} \rar & \ext{H_p, G} \rar & 0
+    \end{tikzcd}
+  \]
+  Per definizione ho che:
+  \[
+    \ext{H_p,G} = \quot{\hom{B_p,G}}{\im{t_p}}
+  \]
+  Oltre a ciò ho la successione:
+  \[
+    \begin{tikzcd}
+      0 \rar & Z_{p+1} \rar & S_{p+1} \rar & B_p \rar & 0
+    \end{tikzcd}
+  \]
+  Passando agli omomorfismi:
+  \[
+    \begin{tikzcd}
+      0 \rar & \hom{B_p, G } \rar & \hom{S_{p+1}, G} \rar & \dots
+    \end{tikzcd}
+  \]
+  Oltre a ciò ho la successione:
+  \[
+    \begin{tikzcd}
+      0 \rar & Z_{p-1} \rar & S_{p-1} \rar & B_{p-2} \rar & 0
+    \end{tikzcd}
+  \]
+  Prendendo gli omomorfismi:
+  \[
+    \begin{tikzcd}
+      0 \rar & \hom{B_{p-2}, G} \rar & \hom{S_{p-1}, G} \rar & \hom{Z_{p-1}, G} \rar & 0
+    \end{tikzcd}
+  \]
+  Infine, siccome ho la successione spezzante:
+  \[
+    \begin{tikzcd}
+      0 \rar & Z_p \rar & S_p \arrow[bend left]{l}{\phi} \rar & B_{p-1} \rar & 0
+    \end{tikzcd}
+  \]
+  Ho quindi la mappa:
+  \begin{align*}
+    \Phi \colon \hom{Z_p, G} & \to \hom{S_p, G} \\
+    \alpha \colon Z_p \to G & \mapsto \phi \circ \alpha \colon S_p \to G
+  \end{align*}
+  cioè $ \Phi = \alpha \circ \phi $.
+  Il mio obiettivo è trovare la successione esatta:
+  \[
+    \begin{tikzcd}
+      0 \rar & \ext{H_{p-1}, G} \rar{\beta_2} & H^p(X; G) \rar{\beta_1} & \hom{H_p, G} \rar & 0
+    \end{tikzcd}
+  \]
+  Faccio diagram chase:
+  \[
+    \begin{tikzcd}
+      {} & 0 & \dots & \dots & {} \\
+      {} & \ext{H_{p-1},G} \uar & \hom{S_{p+1},G} \uar & \lar{\sigma} \hom{B_p,G} \uar & 0 \lar \\
+      0 \rar & \hom{B_{p-1}, G} \uar{\lambda_2} \rar{\alpha_1} & \rar{\alpha_2} \hom{S_p,G} \uar{\delta} & \hom{Z_p,G} \rar \uar{\tau_2} \arrow[bend left]{l}{\Phi}  & 0 \\
+      0 & \lar \hom{Z_{p-1}, G} \uar{\lambda_1} & \lar{\Delta} \hom{S_{p-1},G} \uar{\delta} & \hom{H_p,G} \uar{\tau_1}  & {} \\
+      {} & \dots \uar & \dots \uar & 0 \uar{} & {}
+    \end{tikzcd}
+  \]
+  Costruisco $ \beta_1 $.
+  Per definizione:
+  \[
+    H^p(X;G) = \quot{\ker{\delta\colon S^p(X;G) \to S^{p+1}(X;G)}}{\im{\delta \colon S^{p-1}(X;G) \to S^p(X;G)}}
+  \]
+  Se $ f \in H^p(X; G) $ allora $ f \in S^p $ quindi $ \delta(f) = 0 $, cioè $ f \in \hom{\delta_p, G} = S^p $.
+  Considero
+  \[
+    f \mapsto \alpha_2(f) \mapsto \tau_2 \circ \alpha_2 (f) \mapsto \sigma \circ \tau_2 \circ \alpha_2 (f) = \delta(f) = 0
+  \]
+  Quindi $ \sigma \circ \tau_2 \circ \alpha_2 (f) = 0 $, ma $ \sigma $ è iniettiva e quindi
+  $ \tau_2(\alpha_2(f)) = 0 $, cioè
+  $ \alpha_2(f) \in \ker{\tau_2} = \im{\tau_1} $ e quindi
+  $ \exists g \in \hom{H_p, G} $ tale che $ \tau_1(g) = \alpha_2(f) $, e quindi ho trovato
+  $ g $ a partire da $ f $. Pongo $ \beta_1(f) = g_f $. Ma $ f $ è un elemento del
+  quoziente, quindi considero gli elementi al denominatore.
+  Se $ h \in S^{p-1} $ se $ \beta_1(\delta(h)) = 0 $ l'applicazione è ben definita in quanto
+  manda tutto il denominatore in zero. Ma:
+  \[
+    \alpha_2(\delta(h)) \mapsto \sigma \circ \tau_2 \circ \alpha_2 (\delta(h)) = 0
+  \]
+  Quindi $ \tau_2(\alpha_2(\delta(h))) = 0 $ perciò esiste $ v \in \hom{} $ tale
+  che $ \alpha_2(\delta(h)) = \tau_1(v) $ e quindi $ \beta_1(\delta(h)) = v $.
+  Devo mostrare che $ v = 0 $
+  $ \tau_1 $ è iniettivo, devo mostrare che $ \alpha_2 \circ \delta (h) = 0 $, quindi
+  ho:
+  \[
+    \begin{tikzcd}
+      S_p \rar{\partial} & S_{p-1} \rar{h} & G \rar & {}
+    \end{tikzcd}
+  \]
+  \[
+    \begin{tikzcd}
+      SZ_p \rar{i} & S_{p} \rar{h \circ \partial} & G \rar & {}
+    \end{tikzcd}
+  \]
+  Ma $ \alpha(\delta(h)) = \alpha_2(h \circ \partial) $ quindi $ \alpha_2(h \circ \partial) = h \circ \partial \circ i \colon Z_p \to G $
+  Ma in $ Z_p $ ci sono solo quelli di bordo nullo, cioè se $ c \in Z_p $:
+  \[
+    (h \circ \partial \circ i)(c) = h \circ \partial(c) = h(0) = 0
+  \]
+  Quindi:
+  \[
+    \alpha_2 \circ \delta(h) = 0 \quad \Rightarrow \quad \tau_1(v) = 0
+  \]
+  Ma quindi $ v = 0 $ in quando $ \tau_1 $ è iniettiva. Ma questo significa
+  che $ \beta_1 $ è ben definita.
+  \begin{align*}
+    \beta_1 \colon H^p(X;G) & \to \hom{H_p,G} \\
+    \llbracket f \rrbracket & \mapsto g_f \; | |; \tau_1(g_f) = \alpha_2(f)
+  \end{align*}
+
+  Ora costruisco $ \beta_2 $. Parto da $ u \in \ext{H_{p-1}, G} $.
+  $ \lambda_2 $ è suriettiva, quindi esiste $ \tilde{u} $ tale che
+  $ \lambda(\tilde{u}) = u $, poi ho che $ \alpha_1(\tilde{u}) \in \hom{S_p, G} = S^p $,
+  quindi:
+  \begin{align*}
+    \beta_2 \colon \ext{H_{p-1}, G} & \to H^p(X,G) \\
+    u & \mapsto \alpha_1(\tilde{u})
+  \end{align*}
+  $ \beta_2 $ è ben definita? Se $ \tilde{u} $ non fosse unico, ma se esistessero
+  $ \tilde{u}_1, \tilde{u}_2 $ tali che
+  $ \lambda_2(\tilde{u}_1) = \lambda(\tilde{u}_1) = u $, siccome $ \lambda $ è un
+  $ \lambda_2(\tilde{u}_1 - \tilde{u}_2) = 0 $, quindi
+  $ \tilde{u}_1 - \tilde{u}_2 \in \ker{\lambda_2} = \im{\lambda_1} $, quindi esiste
+  $ V \in \hom{Z_{p-1}, G} $ tale che $ \lambda_1(V) = \tilde{u}_1 - \tilde{u}_2 $
+  ma $ \Delta $ è suriettiva, quindi esiste $ w \in \hom{S_{p-1}, G} $ tale
+  che $ \Delta(w) = V $.
+  Quindi:
+  \[
+    \delta(w) = \alpha_1 \circ \lambda_1 \circ \Delta (w) = \alpha_1 \circ \lambda_1 (V) = \alpha_1 ( \tilde{u}_1 - \tilde{u}_2 )
+  \]
+  Quindi:
+  \[
+    \alpha_1(\tilde{u}_1) - \alpha_2(\tilde{u}_2) = \delta(w)
+  \]
+  Le immagini differiscono per un cobordo, quindi $ \beta_2 $ è ben definita.
+
+  Devo mostrare che se $ u \in \ext{H_{p-1},G} $ allora $ \alpha_1(\tilde{u}) \in S^p $
+  è un cociclo, cioè $ \delta(\alpha_1(\tilde{u})) = 0 $, infatti
+  \[
+    \delta \circ \alpha_1 = (\sigma \circ \tau_2 \circ \alpha_2)(\alpha_1) = \sigma \circ \tau_2 \circ \alpha_2 \circ \alpha_1 = 0
+  \]
+  In quanto $ \alpha_2 \circ \alpha_1 = 0 $ perché la successione è esatta.
+  Quindi $ \delta(\alpha_1(\tilde{u})) = 0 $ e quindi $ \alpha_1(\tilde{u}) \in Z^p $.
+  Così ho costruito le due applicazione che mi servivano, ma non ho ancora
+  finito, devo mostrare che $ \beta_2 $ è suriettiva, $ \beta_1 $ iniettiva, e tutto
+  il resto.
+  Se $ \beta_2(u) = 0 $ allora $ \alpha_1(\tilde{u}) = 0 $ ma $ \alpha $ è iniettiva quindi
+  $ \tilde{u} = 0 $, quindi $ \lambda(\tilde{u}) = u $ quindi $ u = 0 $, e perciò
+  $ \ker{\beta_2} = 0 $, e quindi $ \beta_2 $ è iniettiva.
+  $ \beta_1 $ è suriettiva infatti se $ v \in \hom{H_p, G} $ allora $ \Phi(\tau_1(v)) \in \hom{S_p,G} $
+  ma $ \delta \circ \Phi(\tau_1(v)) = (\sigma \circ \tau_2 \circ \alpha_2) \circ \Phi \circ \tau_1 (v) = \sigma \circ \tau_2 (\alpha_2 \circ \Phi) \circ \tau_1 (v) $,
+  ma ho:
+  \[
+    \begin{tikzcd}
+      0 \rar & Z_p \rar{\psi} & S_p \arrow[bend left]{l}{\phi} \rar & B_{p-1} \rar & 0
+    \end{tikzcd}
+  \]
+  Questa è spezzante, quindi $ \phi \circ \psi = \Id{Z_p} $, ma
+  $ \alpha_2 = \hom{\psi, \Id{G}} $ e $ \Phi = \hom{\phi, \Id{G}} $
+  quindi se $ h \in \hom{Z_p, G} $ allora;
+  \[
+    (\alpha_2 \circ \Phi)(h) = \alpha_2(h \circ \phi) - h \circ \phi \circ \psi = h
+  \]
+  Quindi $ \alpha_2 \in \Phi = \Id{} $ e quindi $ \sigma \circ \tau_2 \circ \tau_2 (v) = 0 $ in quanto
+  $ \tau_2 \circ \tau_1 = 0 $, dato che la colonna è esatta, quindi $ \Phi(\tau_1(v)) $ è un cociclo.
+  Ora devo mostrare che $ \beta_1(\Phi(\tau_1(v))) = v $, prendo la preimmagine attraverso $ \tau_1 $
+  di
+  \[
+    \beta_1(\Phi(\tau_1(v)))  = \alpha_2 \circ \Phi (\tau_1(v)) = \Id{}(\tau_1(v)) = \tau_1(v)
+  \]
+  Quindi è proprio $ v $.
+  ora devo mostrare che $ \im{\beta_2} \ker{\beta_1} $.
+  Mostro che $ \im{\beta_2} \subseteq \ker{\beta_1} $:
+  Se $ u \in \ext{H_{p-1},G} $ allora $ \beta_2(u) = \alpha_1(\tilde{u}) $, è vero che
+  $ \beta_1(\alpha_1(\tilde{u})) = 0 $, ma $ \alpha_2 (\alpha_1(\tilde{u})) = 0 $, ma poi devo prendere
+  la preimmagine quindi ho proprio $ 0 $.
+
+  Ora mostro che $ \ker{\beta_1} \subseteq \im{\beta_2} $, sia $ \llbracket f \rrbracket \in H^p(X;G) $, se $ \beta_1(\llbracket f \rrbracket) = 0 $
+  allora $ \alpha_2(f) = \tau_1(0) $ quindi $ \alpha_2(f) = 0 $, ma la successione è esatta e quindi
+  esiste $ f' \in \hom{B_{p-1}, G} $ tale che $ \alpha_1(f') = f $. Voglio fare vedere che $ \llbracket f \rrbracket = \beta_2 (u) $
+  con $ u \in \ext{H_p, G} $. Definisco $ u = \lambda_2(f') $, ma allora $ \beta_2(u) = \llbracket f \rrbracket $ per definizione.
+
+  La successione è quindi esatta.
+
+  Mi rimane da vedere che spezza:
+  \[
+    \begin{tikzcd}
+      0 \rar & \ext{H_{p-1}(X), G} \rar{\beta_2} & H^p(X,G) \rar{\beta_1} & \hom{H_p(X), G} \rar & 0
+    \end{tikzcd}
+  \]
+  Sia $ y \in \hom{H_p, G} $, definisco $ \rho(y) $ come $ \rho(y) = \Phi(\tau_1(y)) $, in questo modo
+  $ \beta_1 \circ \rho = \Id{\hom{}} $.
+\end{proof}
+
+\begin{example}[Coomologia dello spazio proiettivo reale]
+  So che l'omologia dello spazio proiettivo reale con $ n = 3 $ è:
+  \[
+    H_p(\Pjr{3}, \Z_2) \cong
+    \begin{cases}
+      \Z & \text{se } p = 0 \\
+      \Z_2 & \text{se } p = 1 \\
+      0 & \text{se } p = 2 \\
+      \Z & \text{se } p = 3
+    \end{cases}
+  \]
+  Applico il teorema dei coefficienti universali, per ogni $ p \in \mathbb{N} $:
+  \[
+    H^p(\Pjr{3}, \Z_2) \cong \hom{H_p(\Pjr{3}, \Z_2)} \oplus \ext{H_{p-1}(\Pjr{3}, \Z_2)}
+  \]
+  Quindi:
+  \begin{gather*}
+    H^0(\Pjr{3}, \Z_2) \cong \hom{\Z, \Z_2} \\
+    H^1(\Pjr{3}, \Z_2) \cong \hom{\Z_2, \Z_2} \oplus \ext{\Z, \Z_2} \\
+    H^2(\Pjr{3}, \Z_2) \cong \hom{, \Z_2} \oplus \ext{\Z_2, \Z_2} \cong \ext{\Z_2, \Z_2} \\
+    H^3(\Pjr{3}, \Z_2) \cong \hom{\Z, \Z_2} \oplus \ext{0, \Z_2} \cong \hom{\Z, \Z_2} \\
+  \end{gather*}
+  Calcolo i gruppi che mi mancano:
+  \[
+    \hom{\Z, \Z_2} = \set{\phi \colon \Z \to \Z_2 } \cong \Z_2
+  \]
+  Infatti considero l'azione sui generatori, devo decidere dove mandare il generatore di $ \Z $,
+  che è $ 1 $, lo posso mandare in $ 0 $ o in $ 1 $, quindi ho due possibili applicazioni, e quindi
+  lo spazio degli omomorfismi è isomorfo a $ \Z_2 $. Considerazioni analoghe valgono per
+  \[
+    \hom{\Z_2, \Z_2} = \set{\phi \colon \Z_2 \to \Z_2 } \cong \Z_2
+  \]
+  Infatti $ 0 $ deve andare in $ 0 $ essendo un omomorfismo.
+  Per calcolare $ \ext{\Z, \Z_2} $ considero la risoluzione:
+  \[
+    \begin{tikzcd}
+      0 \rar & 0 \rar & \Z \rar & \Z \rar & 0
+    \end{tikzcd}
+  \]
+  Passando agli omomorfismi:
+  \[
+    \begin{tikzcd}
+      0 \rar & \hom{\Z, \Z_2} \rar & \hom{\Z, \Z_2} \rar & 0 \rar & 0
+    \end{tikzcd}
+  \]
+  Quindi $ \ext{\Z, \Z_2} \cong 0 $.
+  Invece per $ \ext{\Z, \Z_2} $ considero la risoluzione:
+  \[
+    \begin{tikzcd}
+      0 \rar & 2 \Z \rar{i} & \Z \rar{\pi} & \Z_2 \rar & 0
+    \end{tikzcd}
+  \]
+  Passando agli omomorfismi:
+  \[
+    \begin{tikzcd}
+      0 \rar & \Z_2 \rar & \Z_2 \rar & \hom{2\Z, \Z_2} \rar & \ext{\Z_2, \Z_2} \rar & 0
+    \end{tikzcd}
+  \]
+  Tra $ \Z_2 $ e $ \Z_2 $ l'unica possibile mappa iniettiva è l'isomorfismo, quindi
+  la successione spezza e $ \ext{\Z_2, \Z_2} \cong \hom{\Z, \Z_2} \cong \Z_2 $.
+  Nel complesso quindi:
+  \[
+    H^k(\Pjr{3}, \Z_2) \cong \Z_2
+  \]
+  In realtà si dimostra che $ \forall n \in \mathbb{N} $:
+  \[
+    H^k(\Pjr{n}, \Z_2) \cong \Z_2
+  \]
+  Mentre:
+  \[
+    H^k(\Pjc{n}, \Z) \cong \Z
+  \]
+\end{example}
+
 
 %%% Local Variables:
 %%% ispell-local-dictionary: "italiano"
