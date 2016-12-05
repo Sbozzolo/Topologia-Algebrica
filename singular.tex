@@ -1146,10 +1146,9 @@ si comporta bene rispetto all'identità e alla composizione.
 
 \section{Successioni esatte}
 
-Considero due complessi $ (C_\bullet, \partial) $ e $ (C'_\bullet, \partial') $,
-considero l'omomorfismo di $ \Z $-moduli $ F \colon (C_\bullet, \partial) \to (C'_\bullet, \partial') $
-tale che $ \forall k $ si formi un diagramma commutativo,
-cioè valga $ F \circ \partial = \partial' \circ F $
+Considero due complessi $ (C_\bullet, \partial) $ e $ (C'_\bullet, \partial') $, considero l'omomorfismo
+di gruppi abeliani $ F \colon (C_\bullet, \partial) \to (C'_\bullet, \partial') $ tale che
+$ \forall k $ si formi un diagramma commutativo, cioè valga $ F \circ \partial = \partial' \circ F $
 \[
   \begin{tikzcd}
     \dots \arrow{r}{\partial} &  C_{k+1}  \arrow{r}{\partial} \arrow{d}{F} &  C_{k}  \arrow{r}{\partial} \arrow{d}{F} & C_{k-1}  \arrow{r}{\partial} \arrow{d}{F} & \dots \\
@@ -1187,8 +1186,8 @@ Una funzione $ F $ fatta in questo modo è detta
   allora per l'esattezza vale che $ \ker{\alpha} = \im{i} = 0 $ in quanto $ i $ è
   omomorfismo, ma $ \ker{\alpha} = 0 $ signfiica che $ \alpha $ è iniettiva, inoltre
   $ \ker{j} = \im{\beta} = C $, quindi $ \beta $ è suriettiva. Quindi automaticamente
-  $ C \cong \quot{B}{A} $ infatti per il teorema fondamentale degli omomorfismi
-  $ \quot{B}{\ker{\beta}} \cong \im{\beta} \overset{\text{suriettività}}{=} C $, ma per
+  $ C \cong {B} \slash {A} $ infatti per il teorema fondamentale degli omomorfismi
+  $ {B} \slash {\ker{\beta}} \cong \im{\beta} \overset{\text{suriettività}}{=} C $, ma per
   l'esattezza $ \ker{\beta} = \im{\alpha} $ quindi $ \ker{\beta} = \alpha(A) $ ed essendo $ \alpha $
   iniettiva $ \alpha(A) \cong A $.
 \end{definition}
@@ -1203,7 +1202,7 @@ Una funzione $ F $ fatta in questo modo è detta
   \]
   con $ (A_\bullet, \partial^A) $, $ (B_\bullet, \partial^B) $ e $ (C_\bullet, \partial^C) $ complessi, e
   $ \alpha $ mappa tra complessi iniettiva, $ \beta $ mappa tra complessi suriettiva
-  e deve valere che $ \forall k $ sia $ C_k \cong \quot{B_k}{A_k} $.
+  e deve valere che $ \forall k $ sia $ C_k \cong {B_k} \slash {A_k} $.
 \end{definition}
 
                                                                                                          %                                                                                                          lezione 4 parte 2
@@ -1225,21 +1224,20 @@ iniettiva il nucleo è zero), similmente siccome
 la mappa $ \beta $ è suriettiva quindi l'ultima
 riga è formata da zero.
 Inoltre tutti i quadrati sono commutativi.
-\subsection{Omomorfismo di connessione}
-A partire da una successione esatta corta
-posso passare all'omologia, se passo brutalmente
-all'omologia non ottengo una successione esatta,
-ma c'è il modo per indurre una successione esatta lunga:
+\subsection{Successioni esatte in omologia}
+A partire da una successione esatta corta posso passare all'omologia, se passo
+brutalmente all'omologia non ottengo una successione esatta, ma c'è il modo per
+indurre una successione esatta lunga:
 \begin{theorem}
   Una successione esatta corta di complessi induce una successione
-  esatta lunga tale che sia fatta così:
+  esatta lunga in omologia:
   \[
     \begin{tikzcd}
       \dots \arrow{r}{} & H_p(A_\bullet) \arrow{r}{\alpha_\star} & H_p(B_\bullet) \arrow{r}{\beta_\star} & H_p(C_\bullet) \arrow{r}{\delta}
       & H_{p-1}(A_\bullet) \arrow{r}{\alpha_\star} & \dots
     \end{tikzcd}
   \]
-  Esatta signfiica che $ \forall p $:
+  Questa successione è esatta, cioè $ \forall p $ risulta che:
   \begin{gather*}
     \im{\alpha_\star} = \ker{\beta_\star} \\
     \im{\beta_\star} = \ker{\delta} \\
@@ -1265,7 +1263,7 @@ ma c'è il modo per indurre una successione esatta lunga:
   Per dimostrare il teorema bisogna:
   \begin{enumerate}
   \item Dimostrare che $ \alpha_\star $ e $ \beta_\star $ sono ben definite
-  \item Costruire l'omomorfismo di connessione e verificare che è effettivamente un omomorfismo
+  \item Costruire l'omomorfismo di connessione e verificare che sia effettivamente un omomorfismo
   \item Mostare che la successione è esatta, cioè che
     \begin{gather*}
       \im{\alpha_\star} = \ker{\beta_\star} \\
@@ -1294,7 +1292,7 @@ ma c'è il modo per indurre una successione esatta lunga:
   \[
     \beta_{k-1}(\partial b) = \partial \beta_k (b) = \partial c = 0
   \]
-  Quindi $ \beta_{k-1}(b) = 0 $, e quindi $ \partial b \in \ker{\beta_{k-1}} $, ma
+  Quindi $ \beta_{k-1}(\partial b) = 0 $, e quindi $ \partial b \in \ker{\beta_{k-1}} $, ma
   le colonne sono esatte quindi $ \partial b \in \im{\alpha_{k-1}} = \ker{\beta_{k-1}} $,
   perciò $ \exists a \in A_{k-1} $ tale che $ \alpha_{k-1}(a) = \partial b $, quindi
   a partire da $ c \in C_k $ ho associato un elemento $ a \in A_{k-1} $.
@@ -1317,12 +1315,11 @@ ma c'è il modo per indurre una successione esatta lunga:
     a $ c $ è sicuro che trovo un $ a' $ che è
     omologo ad $ a $?
   \end{enumerate}
-  Se queste due problematiche non sono verificate l'applicazione a livello di
-  non è ben definita.
-  Verifico che comunque scelga una controimmagine di $ \beta_k $ si ottiene
-  in $ A_{k-1} $ un elemento omologo ad $ a $:
-  suppongo di aver scelto la controimmagine $ b' \in B_k $ e quindi
-  valga $ \beta_k (b') = \beta_k (b) = c $, allora:
+  Se queste due problematiche non sono risolte l'applicazione a livello di
+  omologia non è ben definita. Verifico che comunque scelga una controimmagine
+  di $ \beta_k $ si ottiene in $ A_{k-1} $ un elemento omologo ad $ a $: suppongo di
+  aver scelto la controimmagine $ b' \in B_k $ e quindi valga
+  $ \beta_k (b') = \beta_k (b) = c $, allora:
   \[
     \beta_k(b' - b) = 0 \iff b' - b \in \ker{\beta_k} = \im{\alpha_k}
   \]
@@ -1331,7 +1328,7 @@ ma c'è il modo per indurre una successione esatta lunga:
   \[
     \partial ( b' - b ) = \partial ( \alpha_k (a_0 )) \Rightarrow \partial b' - \partial b = (\partial \circ \alpha_k)(a_0) = \alpha_{k-1}(\partial a_0)
   \]
-  Ma per come costruisco l'omomorfismo di connessione $ \partial b = \alpha_{k-1}(a) $,
+  Ma per come ho costruito l'omomorfismo di connessione $ \partial b = \alpha_{k-1}(a) $,
   e analogamente $ \partial b' = \alpha_{k-1}(a') $:
   \[
     \alpha_{k-1}(a') - \alpha_{k-1}(a) = \alpha_{k-1}(\partial a_0) \Rightarrow \alpha_{k-1}(a' - a - \partial a_0) = 0
@@ -1395,7 +1392,7 @@ punto la successione
 \end{gather*}
 di cui l'ultima è valida in quanto il nucleo della proiezione su un sottospazio
 è il sottospazio stesso e $ \im{i_\sharp} \cong S_k(A) $ in quanto $ i_\sharp $ è iniettiva.
-Pongo come notazione $ \quot{S_k(X)}{S_k(A)} = S_k(X, A) $, in questo modo la
+Pongo come notazione $ {S_k(X)} \slash {S_k(A)} = S_k(X, A) $, in questo modo la
 successione diventa:
 \[
   \begin{tikzcd}
@@ -1406,7 +1403,7 @@ A partire da questa successione posso costruire una successione esatta corta di
 complessi (la mappa tra complessi è l'applicazione bordo):
 \[
   \begin{tikzcd}
-    {} & 0 \arrow{d}{} & 0 \arrow{d}{} & {} \\
+    {} & 0 \arrow{d}{} & 0 \arrow{d}{} & 0 \arrow{d}{} \\
     \dots \arrow{r}{} & S_{k+1}(A) \arrow{r}{} \arrow{d}{} &   S_k(A) \arrow{r}{} \arrow{d}{}   & S_{k-1}(A) \arrow{r}{} \arrow{d}{}  & \dots \\
     \dots \arrow{r}{} & S_{k+1}(X) \arrow{r}{} \arrow{d}{} &   S_k(X) \arrow{r}{} \arrow{d}{}   & S_{k-1}(X) \arrow{r}{} \arrow{d}{}  & \dots \\
     \dots \arrow{r}{} & S_{k+1}(X,A) \arrow{r}{} \arrow{d}{} & S_k(X,A) \arrow{r}{} \arrow{d}{} & S_{k-1}(X,A) \arrow{r}{} \arrow{d}{} & \dots \\
@@ -1442,9 +1439,9 @@ Si definisce quindi in questo modo l'\textbf{omologia singolare della
 
 % lezione 5
 
-Sia $ B = A \oplus C $ con $ A, C $ $ \Z $-moduli, in quello che segue il ruolo di
-$ A $ e $ C $ può essere scambiato. A questi moduli sono associate la mappa
-di inclusione e di passaggio al quoziente:
+Sia $ B = A \oplus C $ con $ A, C $ $ \Z $-moduli (in quello che segue il ruolo di
+$ A $ e $ C $ può essere scambiato). A questi moduli sono associate la mappa di
+inclusione e di passaggio al quoziente:
 \begin{align*}
   i \colon A & \to A \oplus C \\
   a & \mapsto (a, 0)
@@ -1529,7 +1526,7 @@ Questo è equivalente a dire che $ B = A \oplus s(C) $, infatti vale l'osservazi
     mostro che $ b - s(t) \in \ker{\beta} $ e quindi posso usare lo stesso ragionamento
     di prima.
     \[
-      \beta(b - s(t)) = \beta(b) - \beta(s(t)) = t - t = 0 \Rightarrow \beta(b - s(t)) \in \ker{b} = \im{\alpha}
+      \beta(b - s(t)) = \beta(b) - \beta(s(t)) = t - t = 0 \Rightarrow \beta(b - s(t)) \in \ker{\beta} = \im{\alpha}
     \]
     Quindi esiste $ a' \in A $ tale che $ \alpha(a') = b - s(t) $ e quindi
     vale che $ b = s(t) + \alpha(a') $
@@ -1538,14 +1535,19 @@ Questo è equivalente a dire che $ B = A \oplus s(C) $, infatti vale l'osservazi
   si può scrivere come somma di un elemento di $ A $ e di uno di $ s(C) $ allora
   $ B $ è somma diretta di $ A $ e $ s(C) $.
 \end{proof}
-
-Sostanzialmente una successione esatta corta spezza se vale il diagramma commutativo:
-\[
-  \begin{tikzcd}
-    0  \rar & A \rar \dar{\cong} & B \rar  \dar{\cong} & C \rar \dar{\cong} & 0 \\
-    0 \rar & A \rar &  A \oplus C \rar & C \rar & 0
-  \end{tikzcd}
-\]
+\begin{osservation}
+  Siccome $ \beta \circ s = \Id{C} $, allora $ s $ è iniettiva, infatti siano
+  $ a, b \in C $ tali che $ s(a) = s(b) $, applicando $ \beta $ si ha che
+  $ \beta \circ s (a) = \beta \circ s (b) $ e quindi $ a = b $. Questo significa che
+  $ s(C) \cong C $, e quindi sostanzialmente una successione esatta corta spezza se
+  vale il diagramma commutativo:
+  \[
+    \begin{tikzcd}
+      0  \rar & A \rar \dar{\cong} & B \rar  \dar{\cong} & C \rar \dar{\cong} & 0 \\
+      0 \rar & A \rar &  A \oplus C \rar & C \rar & 0
+    \end{tikzcd}
+  \]
+\end{osservation}
 
 \begin{example}[Successione non spezzante]
   Considero la successione:
@@ -1559,20 +1561,20 @@ Sostanzialmente una successione esatta corta spezza se vale il diagramma commuta
     \Z_n \oplus n \Z \cong \Z
   \]
   Ma questa non è possibile in quanto $ n \Z \cong \Z $ e $ \Z_n $ non è banale. Più
-  precisamente si vede che non può esistere una sezione $ s \colon \Z_n \to Z $.
+  precisamente si vede che non può esistere una sezione $ s \colon \Z_n \to \Z $.
 \end{example}
 
 \begin{proposition}
-  Le due definizioni di successione che spezza sono equivalenti, cioè
-  se $ \exists s \colon C \to B $ tale che $ \beta \circ s = \Id{C} $ allora $ \exists \phi \colon B \to B $ tale che sia
-  idempotente e che $ \ker{\phi} = \ker{\beta} $
+  Le due definizioni di successione che spezza sono equivalenti, cioè se
+  $ s \colon C \to B $ tale che $ \beta \circ s = \Id{C} $ allora esiste
+  $ \phi \colon B \to B $ tale che sia idempotente e che $ \ker{\phi} = \ker{\beta} $
 \end{proposition}
 \begin{proof}
-  Una possibile costruzione è $ \phi = s \circ \beta  $, infatti:
+  Una possibile costruzione è $ \phi = s \circ \beta  $, infatti $ \phi $ è idempotente:
   \[
     \phi^2 = s \circ \beta \circ s \circ \beta = s \circ \Id{C} \circ \beta = s \circ \beta = \phi
   \]
-  Quindi $ \phi $ è idempotente. Siccome $ s $ omomorfismo $ \ker{\beta} \subseteq \ker{s \circ \beta } $,
+  Inoltre, siccome $ s $ omomorfismo $ \ker{\beta} \subseteq \ker{s \circ \beta } $,
   mostro che $ \ker{s \circ \beta} \subseteq \ker{\beta} $:
   \[
     \ker{\phi} = \ker{s \circ \beta} = \set{ b \in B | (s \circ \beta)(b) = 0}
@@ -1592,10 +1594,10 @@ Fin ora ho parlato di omologia singolare $ H_k(X) $, omologia singolare relativa
 $ H_k(X,A) $, ora introduco l'omologia singolare ridotta.
 
 \begin{definition}
-  Sia $ X $ uno spazio topologico e $ A = \set{x_0 \in X} $, è ben definita l'omologia
-  relativa $ H_k(X, A) $, si definisce questa come \textbf{omologia singolare ridotta}\index{Omologia singolare ridotta}
-  $ \tilde{H}_k(X) $.
-  L'omologia singolare ridotta è l'omologia relativa ad un punto.
+  Sia $ X $ uno spazio topologico, si definisce \textbf{omologia singolare
+    ridotta}\index{Omologia singolare ridotta} $ \tilde{H}_k(X) $ come
+  l'omologia relativa di $ H_k(X, A) $ con $ A $ insieme formato da un solo
+  punto cioè $ A = \set{x_0 \in X} $.
 \end{definition}
 Per costruire l'omologia singolare ridotta servono le $ k $-catene in $ X $ e le
 $ k $-catene in $ \set{x_0} $
@@ -1604,10 +1606,8 @@ $ k $-catene in $ \set{x_0} $
     0 \arrow{r}{} & S_k(\set{x_0}) \arrow{r}{} & S_k(X) \arrow{r}{} & \quot{S_k(X)}{S_k({\set{x_0}})} = S_k(X, \set{x_0}) \arrow{r}{} & \dots
   \end{tikzcd}
 \]
-In $ S_k $ $ \sigma \colon \Delta_k \to \set{x_0} $ è simplesso sono le applicazioni costanti
-dal $ k $-simplesso standard in $ \set{x_0} $. Quindi $ S_k(\set{x_0}) = \langle\sigma_k\rangle $, dato che $ \sigma_k $ è l'unica mappa che c'è.
 \begin{lemma}[Omologia di un punto]
-  Sia $ X = \set{x_0} $ con $ x_0 \in X $, allora:
+  Sia $ X $ spazio topologico e $ x_0 \in X $, allora:
   \[
     H_k(\set{x_0}) \cong
     \begin{cases}
@@ -1616,14 +1616,15 @@ dal $ k $-simplesso standard in $ \set{x_0} $. Quindi $ S_k(\set{x_0}) = \langle
     \end{cases}
   \]
 \end{lemma}
-
 \begin{proof}
-  Il generico $ k $-simplesso singolare in $ X $ è una mappa
-  continua $ \sigma_k \colon \Delta_k \to \set{x_0} $, quindi fissato $ k $ esiste
-  un solo simplesso singolare, che è la mappa costante dal simplesso
-  standard a $ x_0 $. Il generico $ S_k(X) $ quindi è il gruppo libero
-  generato da questo simplesso singolare, cioè $ S_k(X) = \langle\sigma_k\rangle $.
-  A questo punto fissato $ k $ si può computare semplicemente il bordo di $ \sigma_k $:
+  % Il generico $ k $-simplesso singolare in $ \set{x_0} $ è una mappa
+  % continua $ \sigma_k \colon \Delta_k \to \set{x_0} $, quindi fissato $ k $ esiste
+  % un solo simplesso singolare, che è la mappa costante dal simplesso
+  % standard a $ x_0 $. Il generico $ S_k(X) $ quindi è il gruppo libero
+  % generato da questo simplesso singolare, cioè $ S_k(X) = \langle\sigma_k\rangle $.
+  $ S_k(\set{x_0}) = \langle\sigma_k\rangle $, con
+  $ \sigma \colon \Delta_k \to \set{x_0} $ dato che questa è l'unico simplesso che è possibile
+  costruire. Fissato $ k $ si può computare semplicemente il bordo di $ \sigma_k $:
   % infatti dalla definizione di omologia singolare c'è il complesso:
   % \[
   %   \begin{tikzcd}
@@ -1677,7 +1678,7 @@ dal $ k $-simplesso standard in $ \set{x_0} $. Quindi $ S_k(\set{x_0}) = \langle
     \partial_k \colon S_k(\set{x_0}) & \to S_{k-1}(\set{x_0}) \\
     \sigma_k & \mapsto 0
   \end{align*}
-  quindi tutto viene mandato in $ 0 $
+  quindi tutto viene mandato in $ 0 $.
   Invece per $ k $ pari:
   \begin{align*}
     \partial_{k+1} \colon S_{k+1}(\set{x_0}) & \to S_{k}(\set{x_0}) \\
@@ -1745,9 +1746,10 @@ dal $ k $-simplesso standard in $ \set{x_0} $. Quindi $ S_k(\set{x_0}) = \langle
       0 \rar & H_1(X) \rar{\phi} & \tilde{H}_1(X) \rar{j} & H_0(\set{x_0}) \rar{i_\star} & H_0(X) \rar{\tau} & \tilde{H}_0(X) \rar & 0
     \end{tikzcd}
   \]
-  Inoltre so sempre dall'omologia di un punto che $ H_0(\set{x_0}) $ è il gruppo libero di rango
-  uno, sia la classe di $ \sigma_0 \colon \Delta_0 \to \set{x_0} $ il generatore. È definita una
-  mappa di inclusione $ i \colon \set{x_0} \to X $ che induce
+  Inoltre so sempre dall'omologia di un punto che $ H_0(\set{x_0}) $ è il gruppo
+  libero di rango uno di cui un possibile generatore è il simplesso
+  $ \sigma_0 \colon \Delta_0 \to \set{x_0} $. È definita una mappa di inclusione
+  $ i \colon \set{x_0} \to X $ che induce
   \begin{align*}
     i_\star \colon H_0(\set{x_0}) & \to H_0(X) \\
     \llbracket\sigma_0\rrbracket & \mapsto \llbracket i \circ \sigma_0 \rrbracket = \llbracket \sigma_0 \rrbracket
@@ -1775,23 +1777,23 @@ dal $ k $-simplesso standard in $ \set{x_0} $. Quindi $ S_k(\set{x_0}) = \langle
   \]
   Siccome $ \phi $ è iniettiva ma e è anche suriettiva perché è proiezione
   sul quoziente allora è isomorfismo e quindi $ H_1(X) \cong \tilde{H}_1(X) $.
-  [NON SONO SICURO DI QUESTO, RIASCOLTARE!!!]
   Ma siccome $ H_1(X) \cong \tilde{H}_1(X) $ allora la successione lunga iniziale diventa:
   \[
     \begin{tikzcd}
       0 \rar & H_1(X) \arrow{r}{j} & H_0(\set{x_0}) \arrow{r}{i_\star} &  H_0(X) \arrow{r}{\tau} & \tilde{H}_0(X) \arrow{r}{} & 0
     \end{tikzcd}
   \]
-  Quindi ora $ j $ è iniettiva perciò sono $ 0 $ va in $ 0 $:
+  Quindi ora $ j $ è iniettiva perciò solo $ 0 $ va in $ 0 $:
   \[
     \begin{tikzcd}
       0 \rar & H_0(\set{x_0}) \arrow{r}{i_\star} &  H_0(X) \arrow{r}{\tau} & \tilde{H}_0(X) \arrow{r}{} & 0
     \end{tikzcd}
   \]
-  Ma $ \tau $ è suriettiva, quindi $ \im{\tau} = \tilde{H}_0(X) $, inoltre la successione è esatta
-  quindi $ \ker{\tau} = \im{i_\star} = H_0(\set{x_0}) $, quindi $ \quot{H_0(X)}{H_0(\set{x_0})} \cong \tilde{H}_0(X) $
-  infatti $ \quot{H_0(X)}{\ker{\tau}} \cong \im{\tau} $
-  per il teorema fondamentale dell'isomorfismo.
+  Ma $ \tau $ è suriettiva, quindi $ \im{\tau} = \tilde{H}_0(X) $, inoltre la
+  successione è esatta quindi $ \ker{\tau} = \im{i_\star} = H_0(\set{x_0}) $, quindi
+  $ {H_0(X)} \slash {H_0(\set{x_0})} \cong \tilde{H}_0(X) $ infatti
+  $ {H_0(X)} \slash {\ker{\tau}} \cong \im{\tau} $ per il teorema fondamentale
+  dell'isomorfismo.
   % E infine $ \im{\tau} = \tilde{H}_0(X) $ per la suriettività e $ \ker{\tau} = \Z $ per l'iniettività.
 
   Quindi ho trovato che $ \forall k \geq 1 $ i gruppi di omologia singolare e omologia singolare ridotta
