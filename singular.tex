@@ -1522,7 +1522,7 @@ Questo è equivalente a dire che $ B = A \oplus s(C) $, infatti vale l'osservazi
   \item Se $ \beta(b) = 0 $ significa $ b \in \ker{\beta} = \im{\alpha} $, quindi $ b \in \im{a} $, cioè
     $ \exists \alpha \in A $ tale che $ b = \alpha(a) $ e quindi si scrive come elemento di $ A $ sommato
     a zero.
-  \item Se $ \beta(b) = c \not = 0 $ allora $ b - s(t) \in B $,
+  \item Se $ \beta(b) = t \not = 0 $ allora $ b - s(t) \in B $,
     mostro che $ b - s(t) \in \ker{\beta} $ e quindi posso usare lo stesso ragionamento
     di prima.
     \[
@@ -1581,7 +1581,8 @@ Questo è equivalente a dire che $ B = A \oplus s(C) $, infatti vale l'osservazi
   \]
   Quindi $ s(\beta(b)) = 0 $ cioè $  \beta \circ s \circ \beta (b) = 0 $ quindi $ \beta(b) = 0 $ che significa
   che $ b \in \ker{\beta} $. Ma quindi $ \ker{\beta} \subseteq \ker{s \circ \beta} \subseteq \ker{\beta} $ allora $ \ker{s \circ \beta} = \ker{\beta} $.
-  Rimane da mostrare il viceversa.
+
+  Rimane da mostrare il viceversa, cioè che la definizione 1 implica la definizione 2.
   \begin{exercise}
     Mostrare che se esiste l'endomorfismo $ \phi $ allora si può costruire una sezione.
   \end{exercise}
@@ -1894,113 +1895,421 @@ ma non tutti sono stati ancora verificati, cioè l'omotopia e l'escissione.
 % | |___| |___ / /_ | | |_| | |\  | |___  | (_) |
 % |_____|_____/____|___\___/|_| \_|_____|  \___/
 
-\begin{proposition}
-  Esiste almeno una teoria che soddisfa gli assiomi di Eilenberg e Steenrod.
-\end{proposition}
+\begin{osservation}
+  L'omologia singolare relativa soddisfa gli assiomi di Eilenberg e Steenrod, infatti
+  nella prossima sezione dimostro i risultati mancanti, cioè l'assioma di escissione
+  e di omotopia.
+\end{osservation}
+
+% \begin{proposition}
+%   Esiste almeno una teoria che soddisfa gli assiomi di Eilenberg e Steenrod.
+% \end{proposition}
+% \begin{proof}
+%   [MANCA DA SISTEMARE TUTTA QUESTA PROOF!!!]
+%   L'omologia singolare relativa soddisfa gli assiomi di Eilenberg e Steenrod,
+%   ne ripercorro la costruzione e metto in luce il collegamento con gli assiomi.
+
+%   Ho introdotto gli spazi di $ k $-catene e ho definito $ S_k(X,A) = \quot{S_k(X)}{S_k(A)} $,
+%   poi ho costruito con l'operatore di bordo $ \partial $ e la proiezione al quoziente $ P $
+%   la successione esatta corta:
+%   \[
+%     \begin{tikzcd}
+%      0 \rar & S_k(A) \rar & S_k(X) \rar & S_k(X,A) = \quot{S_k(X)}{S_k(A)} \rar & 0
+%     \end{tikzcd}
+%   \]
+%   Cioè in modo più esteso:
+%   \[
+%     \begin{tikzcd}
+%       {} & 0 \arrow{d}{} & 0 \arrow{d}{} & {} \\
+%       \dots \arrow{r}{} & S_{k+1}(A) \arrow{r}{\partial} \arrow{d}{} & S_k(A) \arrow{r}{} \arrow{d}{} & \dots \\
+%       \dots \arrow{r}{} & S_{k+1}(X) \arrow{r}{\partial} \arrow{d}{P} & S_k(X) \arrow{r}{} \arrow{d}{P} & \dots \\
+%       \dots \arrow{r}{} & S_{k+1}(X,A) \arrow{r}{\partial'} \arrow{d}{} & S_k(X,A) \arrow{r}{} \arrow{d}{}& \dots \\
+%       {} & 0 & 0 & {}
+%     \end{tikzcd}
+%   \]
+%   Posso costruire $ \partial '$  tale che i quadrati siano commutativi, cioè tale che $ P \circ \partial = \partial' \circ P $,
+%   infatti: sia $ c \in S_{k+1}(X) $ allora la sua immagine tramite $ P $ è la classe di equivalenza
+%   $ P(c) = [c' \in S_{k+1}(X) \text{ tale che } c'-c \in S_{k+1}(A)] $,
+%   allora definisco $ \partial'([c]_A) := [\partial c]_A $ dove con il pedice $ A $ indico la relazione
+%   di equivalenza indotta dalle $ k $-catene in $ A $, così la relazione è automaticamente soddisfatta.
+
+%   Devo verificare che $ \partial' $ è ben definita cioè che se prendo elementi
+%   equivalenti ottengo elementi equivalenti.
+%   Se $ c' \sim_A c $ allora $ \exists a \in S_{k+1}(A) $ tale che $ c' - c = a $,
+%   prendo il bordo $ \partial c' - \partial c = \partial a $, ma $ \partial a \in S_k(A) $ quindi
+%   $ \partial c' $ e $ \partial c $ differiscono per un elemento in $ S_k(A) $ e quindi
+%   $ \partial c' \sim_A \partial c $ perciò l'applicazione è ben definita.
+
+%   L'omologia relativa singolare è l'omologia singolare del complesso $ S_\bullet(X, A) $,
+%   cioè per definizione:
+%   \[
+%     H_k(X,A) = H_k(S_\bullet(X,A)) = \quot{\ker{S_k(X,A) \to S_{k-1}(X,A)}}{\im{S_{k+1}(X,A) \to S_{k}(X,A)}}
+%   \]
+%   Questo gruppo abeliano (in quanto è quoziente di gruppi abeliani) è detto
+%   gruppo di omologia relativa della coppia  $ (X, A) $. Se in particolare $ A = \emptyset $
+%   allora riottengo $ H_k(X, \emptyset) = H_k(X) $.
+%   Ho fatto un'associazione da una coppia a un gruppo, voglio verificare che questa
+%   sia funtoriale.
+
+%   Sia $ f \colon (X,A) \to (Y,B) $ continua tale che $ f(A) \subseteq B $, definisco:
+%   \begin{align*}
+%     f_\star \colon H_k(X,A) & \to H_k(Y,B) \\
+%     \llbracket c \rrbracket_ A & \mapsto  \llbracket f_\sharp(c) \rrbracket_ B
+%   \end{align*}
+%   I pedici $ A $ e $ B $ stanno a ricordare che l'omologia è relativa.
+%   Quindi ho;
+%   \[
+%     \begin{tikzcd}
+%       \dots \arrow{r}{} & S_{k+1}(X,A) \arrow{r}{} \arrow{d}{f_\sharp} & S_k(X,A) \arrow{r}{}  \arrow{d}{f_\sharp} & S_{k-1}(X,A) \arrow{r}{}  \arrow{d}{f_\sharp} & \dots \\
+%       \dots \arrow{r}{} & S_{k+1}(Y,B) \arrow{r}{} & S_k(Y,B) \arrow{r}{} & S_{k-1}(Y,B) \arrow{r}{} & \dots
+%     \end{tikzcd}
+%   \]
+%   $ f_\sharp $ esiste, infatti:
+%   \[
+%     \begin{tikzcd}
+%       S_{k}(X) \arrow{r}{f} \arrow{d}{} & S_k(Y)  \arrow{d}{}  \\
+%       \quot{S_k(X)}{S_k(A)} \arrow{r}{f_\sharp} & \quot{S_k(Y)}{S_k(B)}
+%     \end{tikzcd}
+%   \]
+%   $ f_\sharp $ esiste perché $ S_k(A) \to S_k(B) $ per la condizione $ f(A) \subseteq B $
+%   quindi simplessi singolari in $ A $ vanno a finire in simplessi singolari in $ B $.
+%   Una volta che ho $ f_\sharp $ posso scendere a livello di omologia prendendo la
+%   classe di equivalenza.
+
+%   Inoltre ho dimostrato che se $ (X,A) \overset{f}{\to} (Y,B) \overset{g}{\to} (Z,C) $,
+%   allora $ (g \circ f)_\star = g_\star \circ f_\star $ e $ (X,A) \overset{\Id{X}}{\to} (X,A) $
+%   allora $ (\Id{X})_\star = \Id{H_k(X,A)} $.
+
+%   Poi ho $ \delta $ omomorfismo di connessione $ \delta \colon H_{k+1}(X,A) \to H_k(A) $,
+%   ho che se ho una successione esatta di complessi:
+%   \[
+%     \begin{tikzcd}
+%       0 \arrow{r}{} & S_\bullet(A) \arrow{r}{} & S_\bullet(X) \arrow{r}{} & S_\bullet(X,A) \arrow{r}{} & \dots
+%     \end{tikzcd}
+%   \]
+%   Esiste una successione lunga in omologia:
+%   \[
+%     \begin{tikzcd}
+%       \dots \arrow{r}{} & H_k(A) \arrow{r}{} & H_k(X) \arrow{r}{} & H_k(X,A) \arrow{r}{\delta} & H_{k-1}(A) \rar &  \dots
+%     \end{tikzcd}
+%   \]
+
+%   Ho dimostrato che $ H_k(P) = H_k(P, \emptyset) = 0 $ per $ k \geq 1 $ e $ P $ insieme
+%   formato da un solo punto in $ X $,
+%   inoltre so che $ H_k (\invamalg_\alpha X_\alpha) \cong \bigoplus_\alpha H_k(X_\alpha) $ con $ X_\alpha $
+%   varie componenti connesse per archi.
+
+%   Mi rimangono da verificare l'invarianza omotopica e l'escissione.
+
+%   Quindi gli assiomi di Eilenberg e Steenrod non definiscono una teoria
+%   vuota ma c'è almeno una teoria a soddisfarli, che è l'omologia singolare
+%   relativa.
+
+%   In futuro verificherò gli assiomi mancanti.
+% \end{proof}
+% \hfill\newline\newline
+% lezione 14
+
+%  _     _____ ________ ___  _   _ _____   _ _  _
+% | |   | ____|__  /_ _/ _ \| \ | | ____| / | || |
+% | |   |  _|   / / | | | | |  \| |  _|   | | || |_
+% | |___| |___ / /_ | | |_| | |\  | |___  | |__   _|
+% |_____|_____/____|___\___/|_| \_|_____| |_|  |_|
+
+\subsection{Escissione e omotopia}
+
+Dimostro che l'omologia singolare soddisfa gli assiomi verificando quelli
+che mi mancano che sono l'escissione e l'omotopia.
+
+\begin{theorem}
+  Sia $ X $ uno spazio topologico, e $ A, B $ suoi sottospazi topologici
+  con la topologia indotta tali che $ B \subseteq A \subseteq X $ e $ \bar{B} \subseteq \mathrm{int}(A) $,
+  allora è possibile escindere il sottoinsieme $ B $ da $ A $ e da $ X $, cioè
+  l'inclusione $ i \colon (X \setminus B, A \setminus B) \incl (X,A) $ induce un isomorfismo a livello
+  di omologia $ i_\star \colon H_k(X \setminus B, A \setminus B) \homoto H_k(X,A) $.
+\end{theorem}
 \begin{proof}
-  [MANCA DA SISTEMARE TUTTA QUESTA PROOF!!!]
-  L'omologia singolare relativa soddisfa gli assiomi di Eilenberg e Steenrod,
-  ne ripercorro la costruzione e metto in luce il collegamento con gli assiomi.
+  Sia $ \mathcal{U} = \set{A, X \setminus B} $ un ricoprimento per $ X $ (infatti
+  $ X = A \cup X \setminus B $). Considero le $ k $-catene singolari in $ A $ $ S_k(A) $,
+  le $ k $-catene singolari in $ X \setminus B $ $ S_k(X \setminus B) $ e definisco
+  $ S_k^\mathcal{U}(X) $ il sottocomplesso generato dai simplessi singolari
+  $ \sigma \colon \Delta_k \to X $ tali che $ \sigma $ sia un $ \mathcal{U} $-piccolo.
 
-  Ho introdotto gli spazi di $ k $-catene e ho definito $ S_k(X,A) = \quot{S_k(X)}{S_k(A)} $,
-  poi ho costruito con l'operatore di bordo $ \partial $ e la proiezione al quoziente $ P $
-  la successione esatta corta:
-  \[
-    \begin{tikzcd}
-     0 \rar & S_k(A) \rar & S_k(X) \rar & S_k(X,A) = \quot{S_k(X)}{S_k(A)} \rar & 0
-    \end{tikzcd}
-  \]
-  Cioè in modo più esteso:
-  \[
-    \begin{tikzcd}
-      {} & 0 \arrow{d}{} & 0 \arrow{d}{} & {} \\
-      \dots \arrow{r}{} & S_{k+1}(A) \arrow{r}{\partial} \arrow{d}{} & S_k(A) \arrow{r}{} \arrow{d}{} & \dots \\
-      \dots \arrow{r}{} & S_{k+1}(X) \arrow{r}{\partial} \arrow{d}{P} & S_k(X) \arrow{r}{} \arrow{d}{P} & \dots \\
-      \dots \arrow{r}{} & S_{k+1}(X,A) \arrow{r}{\partial'} \arrow{d}{} & S_k(X,A) \arrow{r}{} \arrow{d}{}& \dots \\
-      {} & 0 & 0 & {}
-    \end{tikzcd}
-  \]
-  Posso costruire $ \partial '$  tale che i quadrati siano commutativi, cioè tale che $ P \circ \partial = \partial' \circ P $,
-  infatti: sia $ c \in S_{k+1}(X) $ allora la sua immagine tramite $ P $ è la classe di equivalenza
-  $ P(c) = [c' \in S_{k+1}(X) \text{ tale che } c'-c \in S_{k+1}(A)] $,
-  allora definisco $ \partial'([c]_A) := [\partial c]_A $ dove con il pedice $ A $ indico la relazione
-  di equivalenza indotta dalle $ k $-catene in $ A $, così la relazione è automaticamente soddisfatta.
+  \begin{definition}
+    Un simplesso singolare in $ X $ si dice
+    \textbf{$ \mathcal{U} $-piccolo}\index{$ \mathcal{U} $-piccolo} se esiste
+    una suddivisione baricentrica di $ \Delta_k $ tale che abbia immagine in
+    $ U_\alpha $, dove $ \mathcal{U} = \bigcup_\alpha U_\alpha $.
+  \end{definition}
 
-  Devo verificare che $ \partial' $ è ben definita cioè che se prendo elementi
-  equivalenti ottengo elementi equivalenti.
-  Se $ c' \sim_A c $ allora $ \exists a \in S_{k+1}(A) $ tale che $ c' - c = a $,
-  prendo il bordo $ \partial c' - \partial c = \partial a $, ma $ \partial a \in S_k(A) $ quindi
-  $ \partial c' $ e $ \partial c $ differiscono per un elemento in $ S_k(A) $ e quindi
-  $ \partial c' \sim_A \partial c $ perciò l'applicazione è ben definita.
+  \begin{definition}
+    La definizione di \textbf{suddivisione baricentrica}\index{Suddivisione
+      baricentrica} è piuttosto tecnica e noiosa, ma l'idea fondamentale è
+    quella di spezzettare il simplesso a partire dal suo baricentro (che sempre
+    univocamente determinabile) in tanti simplessi tanto piccoli da essere
+    completamente contenuti negli insiemi del ricoprimento.
+  \end{definition}
 
-  L'omologia relativa singolare è l'omologia singolare del complesso $ S_\bullet(X, A) $,
-  cioè per definizione:
-  \[
-    H_k(X,A) = H_k(S_\bullet(X,A)) = \quot{\ker{S_k(X,A) \to S_{k-1}(X,A)}}{\im{S_{k+1}(X,A) \to S_{k}(X,A)}}
-  \]
-  Questo gruppo abeliano (in quanto è quoziente di gruppi abeliani) è detto
-  gruppo di omologia relativa della coppia  $ (X, A) $. Se in particolare $ A = \emptyset $
-  allora riottengo $ H_k(X, \emptyset) = H_k(X) $.
-  Ho fatto un'associazione da una coppia a un gruppo, voglio verificare che questa
-  sia funtoriale.
+  Sostanzialmente $ S_k^\mathcal{U}(X) $ sono le catene somme di simplessi
+  completamente contenuti in uno degli $ U_\alpha $ che formano il ricoprimento.
 
-  Sia $ f \colon (X,A) \to (Y,B) $ continua tale che $ f(A) \subseteq B $, definisco:
-  \begin{align*}
-    f_\star \colon H_k(X,A) & \to H_k(Y,B) \\
-    \llbracket c \rrbracket_ A & \mapsto  \llbracket f_\sharp(c) \rrbracket_ B
-  \end{align*}
-  I pedici $ A $ e $ B $ stanno a ricordare che l'omologia è relativa.
-  Quindi ho;
-  \[
-    \begin{tikzcd}
-      \dots \arrow{r}{} & S_{k+1}(X,A) \arrow{r}{} \arrow{d}{f_\sharp} & S_k(X,A) \arrow{r}{}  \arrow{d}{f_\sharp} & S_{k-1}(X,A) \arrow{r}{}  \arrow{d}{f_\sharp} & \dots \\
-      \dots \arrow{r}{} & S_{k+1}(Y,B) \arrow{r}{} & S_k(Y,B) \arrow{r}{} & S_{k-1}(Y,B) \arrow{r}{} & \dots
-    \end{tikzcd}
-  \]
-  $ f_\sharp $ esiste, infatti:
-  \[
-    \begin{tikzcd}
-      S_{k}(X) \arrow{r}{f} \arrow{d}{} & S_k(Y)  \arrow{d}{}  \\
-      \quot{S_k(X)}{S_k(A)} \arrow{r}{f_\sharp} & \quot{S_k(Y)}{S_k(B)}
-    \end{tikzcd}
-  \]
-  $ f_\sharp $ esiste perché $ S_k(A) \to S_k(B) $ per la condizione $ f(A) \subseteq B $
-  quindi simplessi singolari in $ A $ vanno a finire in simplessi singolari in $ B $.
-  Una volta che ho $ f_\sharp $ posso scendere a livello di omologia prendendo la
-  classe di equivalenza.
+  \begin{exercise}
+    Dimostrare che $ X = \mathrm{int}(A) \cup \mathrm{int}(X \setminus B) $.
+  \end{exercise}
+  Sostanzialmente è quindi possibile prendere insiemi aperti per formare il
+  ricoprimento $ \mathcal{U} $, infatti se $ A $ e/o $ X \setminus B $ non fossero
+  aperti potrei considerare il ricoprimento
+  $ \mathcal{U} = \set{ \mathrm{int}(A), \mathrm{int}(X \setminus B)} $.
 
-  Inoltre ho dimostrato che se $ (X,A) \overset{f}{\to} (Y,B) \overset{g}{\to} (Z,C) $,
-  allora $ (g \circ f)_\star = g_\star \circ f_\star $ e $ (X,A) \overset{\Id{X}}{\to} (X,A) $
-  allora $ (\Id{X})_\star = \Id{H_k(X,A)} $.
+  La dimostrazione del teorema di escissione si basa ora su alcune assunzioni
+  di natura algebrica.
 
-  Poi ho $ \delta $ omomorfismo di connessione $ \delta \colon H_{k+1}(X,A) \to H_k(A) $,
-  ho che se ho una successione esatta di complessi:
-  \[
-    \begin{tikzcd}
-      0 \arrow{r}{} & S_\bullet(A) \arrow{r}{} & S_\bullet(X) \arrow{r}{} & S_\bullet(X,A) \arrow{r}{} & \dots
-    \end{tikzcd}
-  \]
-  Esiste una successione lunga in omologia:
-  \[
-    \begin{tikzcd}
-      \dots \arrow{r}{} & H_k(A) \arrow{r}{} & H_k(X) \arrow{r}{} & H_k(X,A) \arrow{r}{\delta} & H_{k-1}(A) \rar &  \dots
-    \end{tikzcd}
-  \]
+  \begin{osservation}
+    Vale che $ S_k^\mathcal{U}(X) = S_k(A) + S_k(X \setminus B) $. L'operazione di somma
+    è ben definita perché i complessi sono $ \Z $-moduli. Per mostrare che
+    questa asserzione è vera la verifico sui generatori
+    $ \sigma \colon \Delta_k \to X $. Per definizione di $ S_k^\mathcal{U}(X) $ se
+    $ \sigma \in S_k^\mathcal{U}(X) $ o $ \sigma \in S_k(A) $ oppure
+    $ \sigma \in S_k(X\setminus B) $, quindi
+    $ S_k^\mathcal{U}(X) \subseteq S_k(A) + S_k(X \setminus B) $. Inoltre se
+    $ \sigma_1 \colon \Delta_1 \to A $ e
+    $ \sigma_2 \colon \Delta_k \to X \setminus B $ allora
+    $ \sigma_1 + \sigma_2 \colon \Delta_k \to X $ e naturalmente
+    $ \sigma_1 + \sigma_2 \in S_k^\mathcal{U}(X) $, quindi vale l'inclusione e quindi vale
+    l'uguaglianza.
+  \end{osservation}
 
-  Ho dimostrato che $ H_k(P) = H_k(P, \emptyset) = 0 $ per $ k \geq 1 $ e $ P $ insieme
-  formato da un solo punto in $ X $,
-  inoltre so che $ H_k (\invamalg_\alpha X_\alpha) \cong \bigoplus_\alpha H_k(X_\alpha) $ con $ X_\alpha $
-  varie componenti connesse per archi.
+  \begin{osservation}[Terzo teorema degli omomorfismi\index{Terzo teorema degli omomorfismi}]
+    Vale che $ S_k(A \setminus B) = S_k(A) \cap S_k(X \setminus B) $, questo è ovvio.
+  \end{osservation}
 
-  Mi rimangono da verificare l'invarianza omotopica e l'escissione.
+  \begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=0.75]
+      \draw plot [smooth cycle] coordinates {(0,0) (2,3) (3,4) (5,2) (2,-1)};
+      \draw plot [smooth cycle] coordinates {(1.5,1) (2,2) (3,3) (4,2) (2,0)};
+      \draw (2.5,1.5) circle (0.3);
+      \node[above] () at (3,4) {$ X $};
+      \node[right] () at (4,2) {$ A $};
+      \node[] () at (2.5,1.5) {$ B $};
+    \end{tikzpicture}
+    \caption{Situazione}
+    \label{fig:lez14:excision_proof}
+  \end{figure}
 
-  Quindi gli assiomi di Eilenberg e Steenrod non definiscono una teoria
-  vuota ma c'è almeno una teoria a soddisfarli, che è l'omologia singolare
-  relativa.
+  \begin{osservation}
+    Vale che:
+    \[
+      \quot{S_k(X \setminus B)}{A \setminus B} \cong \quot{S_k^\mathcal{U}(X)}{S_k(A)}
+    \]
+    Infatti \dots
+  \end{osservation}
 
-  In futuro verificherò gli assiomi mancanti.
+  \begin{osservation}
+    Vale che:
+    \[
+      \begin{tikzcd}
+        S_k(X \setminus B) \rar \dar & S_k(X) \dar \\
+        \quot{S_k(X \setminus B)}{S_k(A \setminus B)} \rar & \quot{S_k(X)}{S_k(A)}
+      \end{tikzcd}
+    \]
+    Quindi usando le osservazioni precedenti è ben definito il diagramma:
+    \[
+      \begin{tikzcd}
+        \quot{S_k(X \setminus B)}{S_k(A \setminus B)} \arrow{rd}{} \arrow{rr}{\cong} & {} & \quot{S_k^\mathcal{U}(X)}{S_K(A)} \arrow{ld}{}\\
+        {} & \quot{S_k(X)}{S_k(A)} & {}
+      \end{tikzcd}
+    \]
+    Passando all'omologia della coppia:
+    \[
+      \begin{tikzcd}
+        H_p(X \setminus B, A \setminus B) \arrow{rd}{\phi} \arrow{rr}{\cong} & {} & H_P^\mathcal{U}(X,A) \arrow{ld}{\psi} \\
+        {} & H_p(X,A) & {}
+      \end{tikzcd}
+    \]
+    Per dimostrare l'escissione bisogna mostrare che $ \phi $ è un isomorfismo, e questo può essere
+    ottenuto mostrando che $ \psi $ è isomorfismo (così sarebbe $ \phi $ composizione di isomorfismi),
+    cioè devo dimostrare che $ H_p^\mathcal{U}(X, A) \cong H_p(X,A) $.
+
+    Questo risultato dipende da altre due osservazioni:
+    \begin{osservation}
+      Se $ X $ è uno spazio topologico e $ \mathcal{U} = \set{U_\alpha} $ un suo ricoprimento di aperti
+      allora $ H_p^\mathcal{U}(X) \cong H_p(X) $.
+    \end{osservation}
+    A questo punto voglio passare all'omologia relativa. Considero $ \mathcal{U} \cap A = \set{U_\alpha \cap A} $,
+    questo è un ricoprimento aperto di $ A $. Definisco:
+    \[
+      S_k^\mathcal{U}(X,A) = \quot{S_k^\mathcal{U}(X)}{S_k^{\mathcal{U} \cap A}(A)}
+    \]
+    Ho quindi la successione esatta corta:
+    \[
+      \begin{tikzcd}
+        0 \rar & S_k^{\mathcal{U} \cap A}(A) \rar & S_k^{\mathcal{U}}(X) \rar & S_k^{\mathcal{U}}(X,A) \rar & 0
+      \end{tikzcd}
+    \]
+    Ma c'è anche la successione esatta corta:
+    \[
+      \begin{tikzcd}
+        0 \rar & S_k(A) \rar & S_k(X) \rar & S_k(X,A) \rar & 0
+      \end{tikzcd}
+    \]
+    Quindi è ben definita la mappa tra successioni corte:
+    \[
+      \begin{tikzcd}
+        0 \rar & S_k^{\mathcal{U} \cap A}(A) \rar \dar & S_k^{\mathcal{U}}(X) \rar \dar & S_k^{\mathcal{U}}(X,A) \rar \dar & 0 \\
+        0 \rar & S_k(A) \rar & S_k(X) \rar & S_k(X,A) \rar & 0
+      \end{tikzcd}
+    \]
+    Queste successioni esatte corte ne inducono una esatta lunga in omologia:
+    \[
+      \begin{tikzcd}[nodes={column sep = 7 pt}]
+        \dots \rar & H_i^{\mathcal{U} \cap A}(A) \rar \dar{\cong} & H_i^{\mathcal{U}}(X) \rar \dar{\cong} & H_i^{\mathcal{U}}(X,A) \rar \dar{?} &  H_{i_1}^{\mathcal{U} \cap A}(A) \rar
+        \dar{\cong} & H_{i-1}^{\mathcal{U}}(X) \rar \dar{\cong} & \dots \\
+        \dots \rar & H_i(A) \rar & H_i(X) \rar & H_i(X,A) \rar &  H_{i_1}(A) \rar & H_{i-1}(X) \rar & \dots
+      \end{tikzcd}
+    \]
+    In queste condizioni si può applicare il lemma dei cinque con il quale si trova immediatamente
+    che  $ H_p^\mathcal{U}(X, A) \cong H_p(X,A) $.
+
+    \begin{lemma}[Lemma dei cinque\index{Lemma dei cinque}]
+      Considerato il seguente diagramma formato da successioni esatte corte in cui ogni quadrato è commutativo:
+      \[
+        \begin{tikzcd}
+          A \rar{i} \dar{\alpha} & B \rar{j} \dar{\beta} & C \rar{k} \dar{\gamma} & D \rar{l} \dar{\delta} & E \dar{\epsilon} \\
+          A' \rar{i} & B' \rar{j} & C' \rar{k} & D' \rar{l} & E'
+        \end{tikzcd}
+      \]
+      Se $ \alpha, \beta, \delta, \epsilon $ sono isomorfismi allora anche $ \gamma $ lo è.
+    \end{lemma}
+    \begin{proof}
+      [MANCA LA PROVA (HATCHER 129)]
+    \end{proof}
+
+  \end{osservation}
+
 \end{proof}
- % \hfill\newline\newline
+
+% lezione 14 parte 2
+
+Ora verifico l'assioma di omotopia. Riepilogo alcuni concetti: Siano $ X, Y $
+spazi topologici e $ A, B $ sottospazi topologici di $ X $ e $ Y $
+rispettivamente, siano $ f_0 \colon (X, A) \to (Y,B) $ e
+$ f_1 \colon (X,A) \to (Y,B) $ mappe continue con $ f_0(A) \subseteq B $ e
+$ f_1(A) \subseteq B $, $ f_0 $ e $ f_1 $ si dicono omotopicamente equivalenti se esiste
+una funzione continua $ F \colon I \times X \to Y $ tale che $ \forall x \in X $
+$ F(0,x) = f_0(x) $, $ F(1,x) = f_1(x) $ e $ \forall t \in I $ $ F(t,a) \in B $.
+
+\begin{theorem}
+  Siano $ X, Y $ spazi topologici e $ A, B $ sottospazi topologici rispettivamente
+  di $ X $ e $ Y $, e $ f_0, f_1 \colon (X, A) \to (Y, B) $ funzioni continue omotope,
+  allora le mappe indotte da queste funzioni sui gruppi di omologia coincidono,
+  cioè $ (f_0)_\star = (f_1)_\star $, con $ (f_0)_\star, (f_1)_\star \colon H_l(X,A) \to H_k(Y,B) $.
+\end{theorem}
+\begin{proof}
+  L'intervallo $ I $ è omeomorfo al simplesso standard $ \Delta_1 $, introducendo
+  $ \epsilon_1 \colon \Delta_0 \to I $ e $ \epsilon_0 \colon \Delta_0 \to I $ definiti da:
+  $ \epsilon_i(e_0) = i $ con $ i \in \set{0,1} $, allora il bordo dell'intervallo è
+  $ \partial I = \epsilon_1 - \epsilon_0 $. Chiamo $ I $ con abuso di notazione il simplesso che
+  manda $ \Delta_1 $ in $ I $, Sia $ c \in S_q(X) $, cioè $ c \in S_q(X) $
+  allora $ I \times c \in S_{q+1}(I \times X) $, infatti
+  \begin{align*}
+    I \times x \colon \Delta_1 \times \Delta_1 & \to I \times X \\
+    (t,x) & \mapsto (I(t), c(x))
+  \end{align*}
+  Il bordo di questa catena è:
+  \[
+    \partial (I \times c) = \sum_i^{q} (-)^{i+1}(I \times c)^{(i+1)} = (I \times C)^{(0)} - (I \times C)^{(1)} + \dots
+  \]
+  Osservo che:
+  [FIGURA]
+  \[
+    = \epsilon_1 \times c - \epsilon_0 \times c - I \times \partial c
+  \]
+  \begin{definition}
+    Si definisce l'\textbf{operatore prisma}\index{Operatore prisma} definendo
+    la sua azione sui simplessi singolari e poi estendendo per linearità:
+    \begin{align*}
+      D \colon S_q(X) & \to S_{q+1}(X) \\
+      c & \mapsto I \times c
+    \end{align*}
+  \end{definition}
+  \begin{exercise}
+    Verificare che l'operatore prisma è un omomorfismo.
+  \end{exercise}
+  Questo operatore sostanzialmente prende un simplesso e restituisce il prisma
+  in figura.
+  Per quanto detto sopra vale che:
+  \[
+    \partial \circ D (c) + D \circ \partial (c) = \partial (I \times c) + I \times \partial c = \epsilon_1 \times c - \epsilon_0 \times c - \cancel{I \times \partial c}
+    + \cancel{I \times \partial c}
+  \]
+  Cioè:
+  \[
+    \partial \circ D (c) + D \circ \partial (c) = \epsilon_1 \times x - \epsilon_0 \times c
+  \]
+  Nella figura questo sono la faccia superiore e inferiore del prisma.
+  Si definiscono le sezioni del prisma, con $ t \in I $:
+  \begin{align*}
+    \eta_t  \colon X & \to I \times X \\
+    x & \mapsto (t,x)
+  \end{align*}
+  Le sezioni a $ t = 0 $ e a $ t = 1 $ (e anche le altre, ma non interessano)
+  inducono una mappa sulle catene:
+  \begin{align*}
+    (\eta_i)_\sharp \colon S_k(X) & S_k(I \times X) \\
+    c & \mapsto \eta_i \circ c
+  \end{align*}
+  Ma $ (\eta_i \circ c)(x) = (i, c(x)) = \epsilon_i(c) $, quindi
+  $ \partial \circ D (c) + D \circ \partial (c) = (\eta_1)_\sharp - (\eta_0)_\sharp $. Considero la relazione di
+  omotopia $ F \colon I \times X \to Y $, per definizione vale che
+  $ F(i,x) = f_i(x) $, e quindi $ (F \circ \eta_i)(x) = f_i(x) $, cioè $ F \circ \eta_i = f_i $.
+  Essendo una funzione continua $ F $ induce una mappa sulle catene di simplessi:
+  $ F_\sharp \colon S_k(I \times X, I \times A) \to S_k(Y,B) $.
+
+  Considero $ D \colon S_q(X,A) \to S_{q+1}(I \times X, I \times A) $, posso definire
+  $ G = F_\sharp \circ D $, questo è un omomorfismo tra $ S_k(X,A) $ e
+  $ S_k(Y,B) $ in quanto composizione di omomorfismi.
+  Sia $ c \in S_q(X,A) $ allora:
+  \begin{gather*}
+    \partial \circ G (c) = \partial (F_\sharp \circ D)(c) \\
+    G \circ \partial (c) = (F_\sharp \circ D)(\partial c)
+  \end{gather*}
+  $ F_\sharp $ è un'applicazione tra complessi e si verifica che una chain map, cioè
+  i quadrati che determina sono commutativi ($ F_\sharp \circ \partial = \partial \circ F_\sharp $). In questo modo
+  \begin{gather*}
+    \partial (F_\sharp \circ D)(c) + (F_\sharp \circ D)(\partial c) = F_\sharp \circ \partial \circ D (c) + F_\sharp \circ D \circ \partial (c) = \\
+    = F_\sharp \circ ( \partial \circ D (c) + D \circ \partial (c)) = F_\sharp \circ ( (\eta_1)_\sharp - (\eta_0)_\sharp) (c)
+  \end{gather*}
+  Quindi $ \partial \circ G + G \circ \partial = (f_1)_\sharp - (f_0)_\sharp $.
+  Passando a livello di omologia considero $ k $ un $ q $-ciclo in $ (X,A) $, quindi
+  tale che $ \partial k = 0 $. Allora:
+  \[
+    (f_1)_\star(k) = [(f_1)_\sharp(k)]
+  \]
+  Ma:
+  \[
+    (f_1)_\sharp(k) = (f_0)_\sharp (k) + \partial \circ G (k) + \cancel{G \circ \partial (k)}
+  \]
+  Quindi in $ (Y,B) $ $ [(f_1)_\sharp(k)] = [(f_0)_\sharp(k)] $ in quanto differiscono per un bordo.
+  Quindi $ (f_1)_\star(k) = (f_2)_\star(k) $, ma siccome questo è vero per ogni $ k $ allora
+  deve essere $ (f_1)_\star = (f_2)_\star $.
+\end{proof}
+
+La mappa $ G $ è un esempio di omotopia di catena:
+\begin{definition}
+  Siano $ (A_\bullet, \partial^A) $ e $ (B_\bullet, \partial^B) $ complessi, e siano $ \phi, \psi \colon A_\bullet \to B_\bullet $
+  mappe continue tra complessi, $ \phi $ e $ \psi $ si dicono \textbf{omotope}\index{Omotopia di catena}
+  (\emph{chain homotopic}) se esiste una mappa tra complessi $ D \colon A_\bullet \to B_{\bullet + 1} $
+  tale che $ \partial \circ D + D \circ \partial = \phi - \psi $. Si ha quindi il diagramma:
+  \[
+    \begin{tikzcd}
+      \dots \rar & A_{i+1} \rar{\partial^A} & A_i \rar{\partial^A} & A_{i-1} \rar & \dots \\
+      \dots \rar & B_{i+1} \rar{\partial^B} & B_i \rar{\partial^B} & B_{i-1} \rar & \dots
+    \end{tikzcd}
+  \]
+
+\end{definition}
+
 \subsection{Omologia ridotta per una qualsiasi teoria omologica}
 
 Sia $ X \not = \emptyset $ spazio topologico e $ p \in X $ punto
@@ -2817,307 +3126,6 @@ che se due applicazioni definite su $ \Sph{n} $ hanno lo stesso grado allora son
 \end{proof}
 
 
-% lezione 14
-
-%  _     _____ ________ ___  _   _ _____   _ _  _
-% | |   | ____|__  /_ _/ _ \| \ | | ____| / | || |
-% | |   |  _|   / / | | | | |  \| |  _|   | | || |_
-% | |___| |___ / /_ | | |_| | |\  | |___  | |__   _|
-% |_____|_____/____|___\___/|_| \_|_____| |_|  |_|
-
-\subsection{Escissione e omotopia}
-
-Dimostro che l'omologia singolare soddisfa gli assiomi verificando quelli
-che mi mancano che sono l'escissione e l'omotopia.
-
-\begin{theorem}
-  Sia $ X $ uno spazio topologico, e $ A, B $ suoi sottospazi topologici
-  con la topologia indotta tali che $ B \subseteq A \subseteq X $ e $ \bar{B} \subseteq \mathrm{int}(A) $,
-  allora è possibile escindere il sottoinsieme $ B $ da $ A $ e da $ X $, cioè
-  l'inclusione $ i \colon (X \setminus B, A \setminus B) \incl (X,A) $ induce un isomorfismo a livello
-  di omologia $ i_\star \colon H_k(X \setminus B, A \setminus B) \homoto H_k(X,A) $.
-\end{theorem}
-\begin{proof}
-  Sia $ \mathcal{U} = \set{A, X \setminus B} $ un ricoprimento per $ X $ (infatti
-  $ X = A \cup X \setminus B $). Considero le $ k $-catene singolari in $ A $ $ S_k(A) $,
-  le $ k $-catene singolari in $ X \setminus B $ $ S_k(X \setminus B) $ e definisco
-  $ S_k^\mathcal{U}(X) $ il sottocomplesso generato dai simplessi singolari
-  $ \sigma \colon \Delta_k \to X $ tali che $ \sigma $ sia un $ \mathcal{U} $-piccolo.
-
-  \begin{definition}
-    Un simplesso singolare in $ X $ si dice
-    \textbf{$ \mathcal{U} $-piccolo}\index{$ \mathcal{U} $-piccolo} se esiste
-    una suddivisione baricentrica di $ \Delta_k $ tale che abbia immagine in
-    $ U_\alpha $, dove $ \mathcal{U} = \bigcup_\alpha U_\alpha $.
-  \end{definition}
-
-  \begin{definition}
-    La definizione di \textbf{suddivisione baricentrica}\index{Suddivisione
-      baricentrica} è piuttosto tecnica e noiosa, ma l'idea fondamentale è
-    quella di spezzettare il simplesso a partire dal suo baricentro (che sempre
-    univocamente determinabile) in tanti simplessi tanto piccoli da essere
-    completamente contenuti negli insiemi del ricoprimento.
-  \end{definition}
-
-  Sostanzialmente $ S_k^\mathcal{U}(X) $ sono le catene somme di simplessi
-  completamente contenuti in uno degli $ U_\alpha $ che formano il ricoprimento.
-
-  \begin{exercise}
-    Dimostrare che $ X = \mathrm{int}(A) \cup \mathrm{int}(X \setminus B) $.
-  \end{exercise}
-  Sostanzialmente è quindi possibile prendere insiemi aperti per formare il
-  ricoprimento $ \mathcal{U} $, infatti se $ A $ e/o $ X \setminus B $ non fossero
-  aperti potrei considerare il ricoprimento
-  $ \mathcal{U} = \set{ \mathrm{int}(A), \mathrm{int}(X \setminus B)} $.
-
-  La dimostrazione del teorema di escissione si basa ora su alcune assunzioni
-  di natura algebrica.
-
-  \begin{osservation}
-    Vale che $ S_k^\mathcal{U}(X) = S_k(A) + S_k(X \setminus B) $. L'operazione di somma
-    è ben definita perché i complessi sono $ \Z $-moduli. Per mostrare che
-    questa asserzione è vera la verifico sui generatori
-    $ \sigma \colon \Delta_k \to X $. Per definizione di $ S_k^\mathcal{U}(X) $ se
-    $ \sigma \in S_k^\mathcal{U}(X) $ o $ \sigma \in S_k(A) $ oppure
-    $ \sigma \in S_k(X\setminus B) $, quindi
-    $ S_k^\mathcal{U}(X) \subseteq S_k(A) + S_k(X \setminus B) $. Inoltre se
-    $ \sigma_1 \colon \Delta_1 \to A $ e
-    $ \sigma_2 \colon \Delta_k \to X \setminus B $ allora
-    $ \sigma_1 + \sigma_2 \colon \Delta_k \to X $ e naturalmente
-    $ \sigma_1 + \sigma_2 \in S_k^\mathcal{U}(X) $, quindi vale l'inclusione e quindi vale
-    l'uguaglianza.
-  \end{osservation}
-
-  \begin{osservation}[Terzo teorema degli omomorfismi\index{Terzo teorema degli omomorfismi}]
-    Vale che $ S_k(A \setminus B) = S_k(A) \cap S_k(X \setminus B) $, questo è ovvio.
-  \end{osservation}
-
-  \begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}[scale=0.75]
-      \draw plot [smooth cycle] coordinates {(0,0) (2,3) (3,4) (5,2) (2,-1)};
-      \draw plot [smooth cycle] coordinates {(1.5,1) (2,2) (3,3) (4,2) (2,0)};
-      \draw (2.5,1.5) circle (0.3);
-      \node[above] () at (3,4) {$ X $};
-      \node[right] () at (4,2) {$ A $};
-      \node[] () at (2.5,1.5) {$ B $};
-    \end{tikzpicture}
-    \caption{Situazione}
-    \label{fig:lez14:excision_proof}
-  \end{figure}
-
-  \begin{osservation}
-    Vale che:
-    \[
-      \quot{S_k(X \setminus B)}{A \setminus B} \cong \quot{S_k^\mathcal{U}(X)}{S_k(A)}
-    \]
-    Infatti \dots
-  \end{osservation}
-
-  \begin{osservation}
-    Vale che:
-    \[
-      \begin{tikzcd}
-        S_k(X \setminus B) \rar \dar & S_k(X) \dar \\
-        \quot{S_k(X \setminus B)}{S_k(A \setminus B)} \rar & \quot{S_k(X)}{S_k(A)}
-      \end{tikzcd}
-    \]
-    Quindi usando le osservazioni precedenti è ben definito il diagramma:
-    \[
-      \begin{tikzcd}
-        \quot{S_k(X \setminus B)}{S_k(A \setminus B)} \arrow{rd}{} \arrow{rr}{\cong} & {} & \quot{S_k^\mathcal{U}(X)}{S_K(A)} \arrow{ld}{}\\
-        {} & \quot{S_k(X)}{S_k(A)} & {}
-      \end{tikzcd}
-    \]
-    Passando all'omologia della coppia:
-    \[
-      \begin{tikzcd}
-        H_p(X \setminus B, A \setminus B) \arrow{rd}{\phi} \arrow{rr}{\cong} & {} & H_P^\mathcal{U}(X,A) \arrow{ld}{\psi} \\
-        {} & H_p(X,A) & {}
-      \end{tikzcd}
-    \]
-    Per dimostrare l'escissione bisogna mostrare che $ \phi $ è un isomorfismo, e questo può essere
-    ottenuto mostrando che $ \psi $ è isomorfismo (così sarebbe $ \phi $ composizione di isomorfismi),
-    cioè devo dimostrare che $ H_p^\mathcal{U}(X, A) \cong H_p(X,A) $.
-
-    Questo risultato dipende da altre due osservazioni:
-    \begin{osservation}
-      Se $ X $ è uno spazio topologico e $ \mathcal{U} = \set{U_\alpha} $ un suo ricoprimento di aperti
-      allora $ H_p^\mathcal{U}(X) \cong H_p(X) $.
-    \end{osservation}
-    A questo punto voglio passare all'omologia relativa. Considero $ \mathcal{U} \cap A = \set{U_\alpha \cap A} $,
-    questo è un ricoprimento aperto di $ A $. Definisco:
-    \[
-      S_k^\mathcal{U}(X,A) = \quot{S_k^\mathcal{U}(X)}{S_k^{\mathcal{U} \cap A}(A)}
-    \]
-    Ho quindi la successione esatta corta:
-    \[
-      \begin{tikzcd}
-        0 \rar & S_k^{\mathcal{U} \cap A}(A) \rar & S_k^{\mathcal{U}}(X) \rar & S_k^{\mathcal{U}}(X,A) \rar & 0
-      \end{tikzcd}
-    \]
-    Ma c'è anche la successione esatta corta:
-    \[
-      \begin{tikzcd}
-        0 \rar & S_k(A) \rar & S_k(X) \rar & S_k(X,A) \rar & 0
-      \end{tikzcd}
-    \]
-    Quindi è ben definita la mappa tra successioni corte:
-    \[
-      \begin{tikzcd}
-        0 \rar & S_k^{\mathcal{U} \cap A}(A) \rar \dar & S_k^{\mathcal{U}}(X) \rar \dar & S_k^{\mathcal{U}}(X,A) \rar \dar & 0 \\
-        0 \rar & S_k(A) \rar & S_k(X) \rar & S_k(X,A) \rar & 0
-      \end{tikzcd}
-    \]
-    Queste successioni esatte corte ne inducono una esatta lunga in omologia:
-    \[
-      \begin{tikzcd}[nodes={column sep = 7 pt}]
-        \dots \rar & H_i^{\mathcal{U} \cap A}(A) \rar \dar{\cong} & H_i^{\mathcal{U}}(X) \rar \dar{\cong} & H_i^{\mathcal{U}}(X,A) \rar \dar{?} &  H_{i_1}^{\mathcal{U} \cap A}(A) \rar
-        \dar{\cong} & H_{i-1}^{\mathcal{U}}(X) \rar \dar{\cong} & \dots \\
-        \dots \rar & H_i(A) \rar & H_i(X) \rar & H_i(X,A) \rar &  H_{i_1}(A) \rar & H_{i-1}(X) \rar & \dots
-      \end{tikzcd}
-    \]
-    In queste condizioni si può applicare il lemma dei cinque con il quale si trova immediatamente
-    che  $ H_p^\mathcal{U}(X, A) \cong H_p(X,A) $.
-
-    \begin{lemma}[Lemma dei cinque\index{Lemma dei cinque}]
-      Considerato il seguente diagramma formato da successioni esatte corte in cui ogni quadrato è commutativo:
-      \[
-        \begin{tikzcd}
-          A \rar{i} \dar{\alpha} & B \rar{j} \dar{\beta} & C \rar{k} \dar{\gamma} & D \rar{l} \dar{\delta} & E \dar{\epsilon} \\
-          A' \rar{i} & B' \rar{j} & C' \rar{k} & D' \rar{l} & E'
-        \end{tikzcd}
-      \]
-      Se $ \alpha, \beta, \delta, \epsilon $ sono isomorfismi allora anche $ \gamma $ lo è.
-    \end{lemma}
-    \begin{proof}
-      [MANCA LA PROVA (HATCHER 129)]
-    \end{proof}
-
-  \end{osservation}
-
-\end{proof}
-
-% lezione 14 parte 2
-
-Ora verifico l'assioma di omotopia. Riepilogo alcuni concetti: Siano $ X, Y $
-spazi topologici e $ A, B $ sottospazi topologici di $ X $ e $ Y $
-rispettivamente, siano $ f_0 \colon (X, A) \to (Y,B) $ e
-$ f_1 \colon (X,A) \to (Y,B) $ mappe continue con $ f_0(A) \subseteq B $ e
-$ f_1(A) \subseteq B $, $ f_0 $ e $ f_1 $ si dicono omotopicamente equivalenti se esiste
-una funzione continua $ F \colon I \times X \to Y $ tale che $ \forall x \in X $
-$ F(0,x) = f_0(x) $, $ F(1,x) = f_1(x) $ e $ \forall t \in I $ $ F(t,a) \in B $.
-
-\begin{theorem}
-  Siano $ X, Y $ spazi topologici e $ A, B $ sottospazi topologici rispettivamente
-  di $ X $ e $ Y $, e $ f_0, f_1 \colon (X, A) \to (Y, B) $ funzioni continue omotope,
-  allora le mappe indotte da queste funzioni sui gruppi di omologia coincidono,
-  cioè $ (f_0)_\star = (f_1)_\star $, con $ (f_0)_\star, (f_1)_\star \colon H_l(X,A) \to H_k(Y,B) $.
-\end{theorem}
-\begin{proof}
-  L'intervallo $ I $ è omeomorfo al simplesso standard $ \Delta_1 $, introducendo
-  $ \epsilon_1 \colon \Delta_0 \to I $ e $ \epsilon_0 \colon \Delta_0 \to I $ definiti da:
-  $ \epsilon_i(e_0) = i $ con $ i \in \set{0,1} $, allora il bordo dell'intervallo è
-  $ \partial I = \epsilon_1 - \epsilon_0 $. Chiamo $ I $ con abuso di notazione il simplesso che
-  manda $ \Delta_1 $ in $ I $, Sia $ c \in S_q(X) $, cioè $ c \in S_q(X) $
-  allora $ I \times c \in S_{q+1}(I \times X) $, infatti
-  \begin{align*}
-    I \times x \colon \Delta_1 \times \Delta_1 & \to I \times X \\
-    (t,x) & \mapsto (I(t), c(x))
-  \end{align*}
-  Il bordo di questa catena è:
-  \[
-    \partial (I \times c) = \sum_i^{q} (-)^{i+1}(I \times c)^{(i+1)} = (I \times C)^{(0)} - (I \times C)^{(1)} + \dots
-  \]
-  Osservo che:
-  [FIGURA]
-  \[
-    = \epsilon_1 \times c - \epsilon_0 \times c - I \times \partial c
-  \]
-  \begin{definition}
-    Si definisce l'\textbf{operatore prisma}\index{Operatore prisma} definendo
-    la sua azione sui simplessi singolari e poi estendendo per linearità:
-    \begin{align*}
-      D \colon S_q(X) & \to S_{q+1}(X) \\
-      c & \mapsto I \times c
-    \end{align*}
-  \end{definition}
-  \begin{exercise}
-    Verificare che l'operatore prisma è un omomorfismo.
-  \end{exercise}
-  Questo operatore sostanzialmente prende un simplesso e restituisce il prisma
-  in figura.
-  Per quanto detto sopra vale che:
-  \[
-    \partial \circ D (c) + D \circ \partial (c) = \partial (I \times c) + I \times \partial c = \epsilon_1 \times c - \epsilon_0 \times c - \cancel{I \times \partial c}
-    + \cancel{I \times \partial c}
-  \]
-  Cioè:
-  \[
-    \partial \circ D (c) + D \circ \partial (c) = \epsilon_1 \times x - \epsilon_0 \times c
-  \]
-  Nella figura questo sono la faccia superiore e inferiore del prisma.
-  Si definiscono le sezioni del prisma, con $ t \in I $:
-  \begin{align*}
-    \eta_t  \colon X & \to I \times X \\
-    x & \mapsto (t,x)
-  \end{align*}
-  Le sezioni a $ t = 0 $ e a $ t = 1 $ (e anche le altre, ma non interessano)
-  inducono una mappa sulle catene:
-  \begin{align*}
-    (\eta_i)_\sharp \colon S_k(X) & S_k(I \times X) \\
-    c & \mapsto \eta_i \circ c
-  \end{align*}
-  Ma $ (\eta_i \circ c)(x) = (i, c(x)) = \epsilon_i(c) $, quindi
-  $ \partial \circ D (c) + D \circ \partial (c) = (\eta_1)_\sharp - (\eta_0)_\sharp $. Considero la relazione di
-  omotopia $ F \colon I \times X \to Y $, per definizione vale che
-  $ F(i,x) = f_i(x) $, e quindi $ (F \circ \eta_i)(x) = f_i(x) $, cioè $ F \circ \eta_i = f_i $.
-  Essendo una funzione continua $ F $ induce una mappa sulle catene di simplessi:
-  $ F_\sharp \colon S_k(I \times X, I \times A) \to S_k(Y,B) $.
-
-  Considero $ D \colon S_q(X,A) \to S_{q+1}(I \times X, I \times A) $, posso definire
-  $ G = F_\sharp \circ D $, questo è un omomorfismo tra $ S_k(X,A) $ e
-  $ S_k(Y,B) $ in quanto composizione di omomorfismi.
-  Sia $ c \in S_q(X,A) $ allora:
-  \begin{gather*}
-    \partial \circ G (c) = \partial (F_\sharp \circ D)(c) \\
-    G \circ \partial (c) = (F_\sharp \circ D)(\partial c)
-  \end{gather*}
-  $ F_\sharp $ è un'applicazione tra complessi e si verifica che una chain map, cioè
-  i quadrati che determina sono commutativi ($ F_\sharp \circ \partial = \partial \circ F_\sharp $). In questo modo
-  \begin{gather*}
-    \partial (F_\sharp \circ D)(c) + (F_\sharp \circ D)(\partial c) = F_\sharp \circ \partial \circ D (c) + F_\sharp \circ D \circ \partial (c) = \\
-    = F_\sharp \circ ( \partial \circ D (c) + D \circ \partial (c)) = F_\sharp \circ ( (\eta_1)_\sharp - (\eta_0)_\sharp) (c)
-  \end{gather*}
-  Quindi $ \partial \circ G + G \circ \partial = (f_1)_\sharp - (f_0)_\sharp $.
-  Passando a livello di omologia considero $ k $ un $ q $-ciclo in $ (X,A) $, quindi
-  tale che $ \partial k = 0 $. Allora:
-  \[
-    (f_1)_\star(k) = [(f_1)_\sharp(k)]
-  \]
-  Ma:
-  \[
-    (f_1)_\sharp(k) = (f_0)_\sharp (k) + \partial \circ G (k) + \cancel{G \circ \partial (k)}
-  \]
-  Quindi in $ (Y,B) $ $ [(f_1)_\sharp(k)] = [(f_0)_\sharp(k)] $ in quanto differiscono per un bordo.
-  Quindi $ (f_1)_\star(k) = (f_2)_\star(k) $, ma siccome questo è vero per ogni $ k $ allora
-  deve essere $ (f_1)_\star = (f_2)_\star $.
-\end{proof}
-
-La mappa $ G $ è un esempio di omotopia di catena:
-\begin{definition}
-  Siano $ (A_\bullet, \partial^A) $ e $ (B_\bullet, \partial^B) $ complessi, e siano $ \phi, \psi \colon A_\bullet \to B_\bullet $
-  mappe continue tra complessi, $ \phi $ e $ \psi $ si dicono \textbf{omotope}\index{Omotopia di catena}
-  (\emph{chain homotopic}) se esiste una mappa tra complessi $ D \colon A_\bullet \to B_{\bullet + 1} $
-  tale che $ \partial \circ D + D \circ \partial = \phi - \psi $. Si ha quindi il diagramma:
-  \[
-    \begin{tikzcd}
-      \dots \rar & A_{i+1} \rar{\partial^A} & A_i \rar{\partial^A} & A_{i-1} \rar & \dots \\
-      \dots \rar & B_{i+1} \rar{\partial^B} & B_i \rar{\partial^B} & B_{i-1} \rar & \dots
-    \end{tikzcd}
-  \]
-
-\end{definition}
 
 %%% Local Variables:
 %%% ispell-local-dictionary: "italiano"

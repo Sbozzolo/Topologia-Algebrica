@@ -84,12 +84,14 @@ $ A $ e $ B $ lo sono, e l'operazione di somma è:
   bisogna solo verificare che è ben definita.
   Considero un elemento $ c \otimes d $ equivalente a $ a \otimes b $, cioè tali
   che $ (a,b) - (c,d) \in R(A,B) $, devo mostrare che $ \phi(a \otimes b) = \phi(c \otimes d) $,
-  cioè che $ \psi(a,b) = \psi(c,d) $, ovvero che $ \psi(a,b) - \psi(c,d) = 0 $, ma
+  cioè che $ \psi((a,b)) = \psi((c,d)) $, ovvero che $ \psi((a,b)) - \psi((c,d)) = 0 $, ma
   $ (a,b) - (c,d) \in R(A,B) $ e:
   \[
-    \psi((c,d) - (a,b)) = \sum_\alpha \psi((r_\alpha, s_\alpha)) = \sum_\alpha \phi(\pi((r_\alpha, s_\alpha))) = 0
+    \psi((c,d) - (a,b)) = \sum_\alpha \psi((r_\alpha, s_\alpha)) = \sum_\alpha \phi \left(\pi((r_\alpha, s_\alpha))\right) = 0
   \]
-  con $ (r_\alpha,s_\alpha) $ base di $ R(A,B) $, che al quoziente vanno a zero.
+  con $ (r_\alpha,s_\alpha) $ base di $ R(A,B) $, che al quoziente vanno a zero, ma
+  $ \phi $ è un omomorfismo per costruzione (dato che per ipotesi $ \psi $ lo è, e il
+  prodotto tensoriale è bilineare) quindi $ \phi(\pi((r_\alpha, s_\alpha))) = 0 $.
 \end{proof}
 
 Un'altra importante proprietà del prodotto tensore è il suo comportamento
@@ -117,13 +119,14 @@ rispetto agli omomorfismi.
   $ \psi \colon A \times B \to A \otimes B $ allora esiste un omomorfismo
   $ \phi_1 \colon A \otimes B \to B \otimes A $, quindi posso scambiare $ A $ e
   $ B $ e trovare un secondo omomorfismo
-  $ \phi_2 \colon B \otimes A \to A \otimes B $, al che mostrare che $ \phi_1 $ e $ \phi_2 $ sono inverse.
+  $ \phi_2 \colon B \otimes A \to A \otimes B $, e quindi mostrare che $ \phi_1 $ e $ \phi_2 $ sono inverse.
   Sia:
   \begin{align*}
     \psi \colon A \times B & \to B \otimes A \\
     (x,y) & \mapsto y \otimes x
   \end{align*}
-  Questa applicazione è continua e bilineare, allora ho $ \phi_1 $ e $ \phi_2 $, e:
+  Questa applicazione è continua e bilineare, allora per l'universalità sono ben
+  definite $ \phi_1 $ e $ \phi_2 $, e:
   \[
     \begin{tikzcd}[nodes = {row sep=5pt}]
       A \otimes B \rar{\phi_1} & B \otimes A \rar{\phi_2} & A \times B \\
@@ -132,7 +135,7 @@ rispetto agli omomorfismi.
   \]
   Quindi $ \phi_1 \circ \phi_2 = \Id{A \otimes B} $, e analogamente  $ \phi_2 \circ \phi_1 = \Id{B \otimes A} $.
 \end{proof}
-
+\eproof
 Un'ulteriore proprietà da analizzare è il comportamento rispetto alle successioni
 esatte. Considero una successone esatta corta di $ \Z $-moduli:
 \[
@@ -202,8 +205,8 @@ Questa successione è esatta? Per verificarlo utilizzo un lemma:
   Tensorizzo per $ \Z $:
   \[
     \begin{tikzcd}[nodes = {row sep = 3pt}]
-      0 \rar{} & 6 \Z \otimes \Z \rar{\alpha \otimes \Id{}} & \Z \otimes \Z \rar{\beta \otimes \Id{}} & \quot{\Z}{6 \Z} \otimes \Z \rar & 0 \\
-      {}  & 6x \otimes y \rar[mapsto] & x \otimes y \rar[mapsto] & \bar{x} \otimes y
+      6 \Z \otimes \Z \rar{\alpha \otimes \Id{}} & \Z \otimes \Z \rar{\beta \otimes \Id{}} & \quot{\Z}{6 \Z} \otimes \Z  \\
+      6x \otimes y \rar[mapsto] & x \otimes y \rar[mapsto] & \bar{x} \otimes y
     \end{tikzcd}
   \]
   Con $ \bar{x} $ classe modulo 6 di $ x $. La successione è
@@ -246,7 +249,7 @@ Questa successione è esatta? Per verificarlo utilizzo un lemma:
   precedente:
   \begin{align*}
     \Z \otimes \Z_4 & \to \Z_4 \\
-     x \otimes \bar{y} & \mapsto \bar{xy}
+     x \otimes \bar{y} & \mapsto \overline{xy}
   \end{align*}
   E l'elemento $ x = 6 $ e $ y = 2 $ viene mandato in $ \bar{12} $ che è $ 0 $ in $ \Z_4 $.
 
@@ -255,10 +258,9 @@ Questa successione è esatta? Per verificarlo utilizzo un lemma:
   % ad esempio $ 6 \otimes \bar{2} $, infatti va nella classe $ \bar{12} $ che è $ \bar{0} $, ma quindi
   % non è iniettiva.
 \end{example}
-
 Da questi esempi si nota che in generale successioni esatte non vanno in successioni esatte,
-cioè $ R \otimes G \to F \otimes G \to A \otimes G $ non è sempre esatta. Magari riesco comunque a dire qualcosa.
-
+cioè $ R \otimes G \to F \otimes G \to A \otimes G $ non è sempre esatta. Per poter dire qualcosa di generale conviene
+fare la seguente osservazione:
 \begin{osservation}
 Considero $ \alpha \otimes \Id{} \colon R \otimes G \to F \otimes G $ allora:
 \[
@@ -266,7 +268,7 @@ Considero $ \alpha \otimes \Id{} \colon R \otimes G \to F \otimes G $ allora:
 \]
 \end{osservation}
 \begin{proof}
-Infatti costruisco esplicitamente l'isomorfismo:
+Costruisco esplicitamente l'isomorfismo:
 \begin{align*}
   \eta \colon \quot{F}{\alpha(R)} \otimes G & \to \quot{F \otimes G}{(\alpha \otimes \Id{})(R \otimes G)} \\
   [\alpha] \otimes g & \mapsto [\alpha \otimes g]'
@@ -286,44 +288,53 @@ Ma;
 \[
   [\alpha(r) \otimes g]' = [(\alpha \otimes \Id{})(r \otimes g)]' = 0
 \]
-In quanto $ []' $ è nello spazio quoziente rispetto $ (\alpha \otimes \Id{}) $.
+In quanto $ [,]' $ è nello spazio quoziente rispetto $ (\alpha \otimes \Id{}) $.
 L'applicazione è quindi ben definita e lineare, l'inversa è chiaramente la
 mappa $ [a \otimes g]' \mapsto [a] \otimes g $, che è ben definita per il medesimo ragionamento.
 \end{proof}
 
 
-Ma a questo punto $ \quot{F}{\alpha(R)} \otimes G \cong A \otimes G $, infatti per il teorema fondamentale
+Ma a questo punto $ {F} \slash {\alpha(R)} \otimes G \cong A \otimes G $, infatti per il teorema fondamentale
 degli omomorfismi:
 \[
   \quot{F}{\im{\alpha}} = \quot{F}{\ker{\beta}} \cong \im{\beta} = A
 \]
-Quindi $ A \otimes G \cong \quot{F \otimes G}{{(\alpha \otimes \Id{})(R \otimes G)}} $.
-In questo modo posso sempre costruire una successione esatta tensorizzando, rinunciando all'iniettività
-di $ \alpha \otimes \Id{} $, ma mantenendo $ \ker{\beta \otimes \Id{}} = \im{\alpha \otimes \Id{}} $ e $ \beta \otimes \Id{} $ iniettiva:
+Quindi
+$ A \otimes G \cong {F \otimes G} \slash {{(\alpha \otimes \Id{})(R \otimes G)}} $. In questo modo posso sempre
+costruire una successione esatta tensorizzando, rinunciando all'iniettività di
+$ \alpha \otimes \Id{} $, ma mantenendo
+$ \ker{\beta \otimes \Id{}} = \im{\alpha \otimes \Id{}} $ e $ \beta \otimes \Id{} $ suriettiva:
 \[
   \begin{tikzcd}
-    0 \rar & \ker{\alpha \otimes \Id{}} \rar & R \otimes G \rar{\alpha \otimes \Id{}} & F \otimes G \rar{\beta \otimes \Id{}} & A \otimes G \rar & 0
+    0 \rar & \ker{\alpha \otimes \Id{}} \rar{i} & R \otimes G \rar{\alpha \otimes \Id{}} & F \otimes G \rar{\beta \otimes \Id{}} & A \otimes G \rar & 0
   \end{tikzcd}
 \]
+$ i $ è iniettiva perché è un inclusione, mentre $ \beta \otimes \Id{} $ è suriettiva
+in quanto è una proiezione al quoziente. Si mantiene $ \ker{\beta \otimes \Id{}} = \im{\alpha \otimes \Id{}} $
+in quanto tensorizzando si perde l'esattezza solo a sinistra.
 
 \begin{definition}
-  Se $ A, G $ sono $ \Z $-moduli allora esiste una successione esatta corta
-  detta \textbf{risoluzione di $ A $}\index{Risoluzione di $ A $} oppure
-  \textbf{presentazione di $ A $}\index{Presentazione di $ A $!
-    \vedi{Risoluzione di $ A $}} del tipo:
+  Se $ A $ è uno $ \Z $-modulo una successione esatta corta del tipo:
   \[
     \begin{tikzcd}
       0 \rar & R \rar{\alpha} & F \rar{\beta} & A \rar & 0
     \end{tikzcd}
   \]
-  con $ R $ e $ F $ $ \Z $-moduli liberi. Sostanzialmente $ F $ è il gruppo libero generato da $ A $ e
-  $ R $ il gruppo delle relazioni da imporre. Tensorizzando:
+  con $ R $ e $ F $ $ \Z $-moduli liberi è detta \textbf{risoluzione di
+    $ A $}\index{Risoluzione di $ A $} oppure \textbf{presentazione di
+    $ A $}\index{Presentazione di $ A $! \vedi{Risoluzione di $ A $}}.
+\end{definition}
+
+\begin{osservation}
+  Esiste sempre almeno una risoluzione di $ A $ ottenuta prendendo $ F $ è il
+  gruppo libero generato da $ A $ e $ R $ il gruppo delle relazioni da imporre
+  per riottenere $ A $. Tensorizzando:
   \[
     \begin{tikzcd}
       0 \rar & \ker{\alpha \otimes \Id{}} \rar & R \otimes G \rar{\alpha \otimes \Id{}} & F \otimes G \rar{\beta \otimes \Id{}} & A \otimes G \rar & 0
     \end{tikzcd}
   \]
-  Potrebbero esserci altre successioni esatte:
+  Potrebbero comunque esserci altre successioni esatte:
   \[
     \begin{tikzcd}
       0 \rar & R' \rar{\alpha} & F' \rar{\beta} & A \rar & 0
@@ -335,7 +346,8 @@ di $ \alpha \otimes \Id{} $, ma mantenendo $ \ker{\beta \otimes \Id{}} = \im{\al
       0 \rar & \ker{\alpha' \otimes \Id{}} \rar & R' \otimes G \rar{\alpha \otimes \Id{}} & F' \otimes G \rar{\beta \otimes \Id{}} & A \otimes G \rar & 0
     \end{tikzcd}
   \]
-\end{definition}
+\end{osservation}
+
 \newmathsymb{torsion}{\tor{}}{Modulo di torsione}
 \begin{definition}
   Si chiama \textbf{modulo di torsione}\index{Modulo di torsione} di $ A $ e di $ G $ il
@@ -352,44 +364,47 @@ di $ \alpha \otimes \Id{} $, ma mantenendo $ \ker{\beta \otimes \Id{}} = \im{\al
 \end{lemma}
 
 \begin{lemma}
-  Se $ F $ è un gruppo libero allora $ \tor{A,F_1} \cong 0 $.
+  Se $ F_1 $ è un gruppo libero allora $ \tor{A,F_1} \cong 0 $, e quindi il modulo
+  di torsione è dovuto alla parte di torsione di $ G $.
 \end{lemma}
 \begin{proof}
-  Considero la successione esatta:
+  Considero una presentazione di $ A $:
   \[
     \begin{tikzcd}
-      0 \rar & R \rar & F_1 \rar & A \rar & 0
+      0 \rar & R \rar & F \rar & A \rar & 0
     \end{tikzcd}
   \]
-  Tensorizzo:
+  Tensorizzo per $ F_1 $:
   \[
     \begin{tikzcd}
-      0 \rar & \tor{A,F_1} \rar & R \otimes F_1 \rar{\phi} & F \otimes F \rar & A \otimes F_1 \rar & 0
+      0 \rar & \tor{A,F_1} \rar & R \otimes F_1 \rar{\phi} & F \otimes F_1 \rar & A \otimes F_1 \rar & 0
     \end{tikzcd}
   \]
-  La mappa $ \phi $ è iniettiva, infatti $ R \cong \Z^n $, $ F \cong \Z^n $ e $ F_1 \cong \Z^{n_1} $,
-  quindi $ \phi \colon \Z^r \otimes \Z^n_1 \to \Z^r \otimes \Z^{n_1} $, cioè:
+  La mappa $ \phi = \alpha \otimes \Id{} $ è iniettiva, infatti $ R \cong \Z^r $, $ F \cong \Z^n $ e $ F_1 \cong \Z^{n_1} $,
+  quindi $ \phi \colon \Z^r \otimes \Z^{n_1} \to \Z^n \otimes \Z^{n_1} $, cioè:
   \begin{align*}
     \Z^n \otimes \Z^{n_1} & \to  \Z^n \otimes \Z^{n_1} \\
     \vec{v} \otimes \vec{w} & \mapsto \alpha(\vec{v}) \otimes \vec{w}
   \end{align*}
   \begin{exercise}
     Mostrare che $ \Z^s \otimes \Z^r \cong \Z^{sr} $.
+    Hint:  $ \set{e_1 \otimes f_j} $ è una base di $ \Z^s \otimes \Z^r $ se $ \set{e_1} $
+    e $ \set{f_j} $ lo sono per $ \Z^s $ e $ \Z^r $, mostrarlo.
   \end{exercise}
-  Infatti $ \set{e_1 \otimes f_j} $ è una base di $ \Z^s \otimes \Z^r $ se $ \set{e_1} $
-  e $ \set{f_j} $ lo sono per $ \Z^s $ e $ \Z^r $,
-  Quindi">
+  Quindi:
   \begin{align*}
     \phi \colon \Z^{rn_1} & \to \Z^{n n_1} \\
     \vec{v} \otimes \vec{w} & \mapsto \alpha(\vec{v})\otimes \vec{w}
   \end{align*}
+  [TERMINARE QUESTA DIMOSTRAZIONE, (MA COME?)]
+  Essendo $ \phi $ iniettiva per l'esattezza della successione deve essere $ \tor{A, F_1} \cong 0 $.
 \end{proof}
 
 \begin{proposition}
   Se $ A $ e $ B $ sono $ \Z $-moduli allora $ \tor{A,B} \cong \tor{B,A} $.
 \end{proposition}
 \begin{proof}
-  La dimostrazione è un dimagra chase.
+  La dimostrazione è un diagram chase.
   Considero una risoluzione di $ B $ e di $ A $:
   \[
     \begin{tikzcd}
@@ -422,12 +437,48 @@ di $ \alpha \otimes \Id{} $, ma mantenendo $ \ker{\beta \otimes \Id{}} = \im{\al
   noiosa. [MANCA]
 \end{proof}
 
-\begin{corollary}
-  Vale che $ \tor{A, \Z} = 0 $.
-\end{corollary}
+\begin{lemma}
+  Siano $ A, B, C $ gruppi abeliani, vale che $  \tor{A, B} \oplus \tor{A, C} \cong \tor{A, B \oplus C} $.
+\end{lemma}
 \begin{proof}
-  Infatti $ \tor{A, \Z} \cong \tor{\Z, A} $.
-\end{proof}
+  Infatti considero una presentazione di $ A $:
+  \[
+    \begin{tikzcd}
+      0 \rar & R \rar & F \rar & A \rar & 0
+    \end{tikzcd}
+  \]
+  Tensorizzo per $ B \otimes C $:
+  \[
+    \begin{tikzcd}[nodes = {column sep = 15pt}]
+      0 \rar & \tor{A, B \oplus C} \rar & R \otimes (B \oplus C) \rar & F \otimes (B \oplus C)\rar & A \otimes (B \oplus C) \rar & 0
+    \end{tikzcd}
+  \]
+  Ma posso anche tensorizzare separatamente per $ B $ e $ C $:
+  \[
+    \begin{tikzcd}[nodes = {column sep = 15pt, row sep = 10 pt}]
+      0 \rar & \tor{A, B } \rar & R \otimes B \rar & F \otimes B \rar & A \otimes B \rar & 0 \\
+      0 \rar & \tor{A, C} \rar & R \otimes C \rar & F \otimes C \rar & A \otimes C \rar & 0
+    \end{tikzcd}
+  \]
+  Sommandole:
+  \[
+    \begin{tikzcd}[nodes = {column sep = 8pt, inner sep = 2pt, outer sep = 0.5pt}]
+      0 \rar & \tor{A, B} \oplus \tor{A, C} \rar & R \otimes B \oplus R \oplus C \rar & F \otimes B \oplus F \oplus C \rar & A \otimes B \oplus A \otimes C  \rar & 0
+    \end{tikzcd}
+  \]
+  Ma quindi:
+  \[
+    \tor{A, B} \oplus \tor{A, C} \cong \tor{A, B \oplus C}
+  \]
+  Essendo il modulo di torsione unico a meno di isomorfi.
+ \end{proof}
+
+% \begin{corollary}
+%   Vale che $ \tor{A, \Z} = 0 $.
+% \end{corollary}
+% \begin{proof}
+%   Infatti $ \tor{A, \Z} \cong \tor{\Z, A} $.
+% \end{proof}
 
 \begin{example}
   Considero $ \Disk{2} $, ci attacco una $ \Sph{1} $ con la mappa:
@@ -495,13 +546,13 @@ $ (S_\bullet(X) \otimes G, \partial \otimes \Id{G}) $:
     \dots \rar & S_{p+1}(X) \otimes G \rar{\partial \otimes \Id{G}} & S_p(X) \otimes G \rar{\partial \otimes \Id{G}} & S_{p-1}(X) \otimes G \rar & \dots
   \end{tikzcd}
 \]
-Un modo compatto per scrivere il complesso è $ (S_\bullet(X;G), G) $. Ora i coefficienti non
+Un modo compatto per scrivere il complesso è $ (S_\bullet(X;G), \partial) $. Ora i coefficienti non
 sono più in $ \Z $, ma in $ G $. Definisco l'omologia singolare a coefficienti in $ G $
 come l'omologia singolare di questo complesso. Se $ G = \Z $ si torna alla consueta omologia
 singolare.
 
 Mi pongo questa domanda: se $ X $ è uno spazio topologico e $ G $ un gruppo abeliano, che relazione
-c'è tra $ H_k(X) $ e $ H_k(X) $? Vale che $ H_k(X) \oplus G \cong H_k(X;G) $?
+c'è tra $ H_k(X) \oplus G $ e $ H_k(X;G) $? Vale che $ H_k(X) \oplus G \cong H_k(X;G) $?
 
 \begin{example}
   Considero $ X_9 $, so che $ H_1(X_9) \cong \Z_9 $, quindi $ H_1(X_9) \otimes \Z_6 = \Z_9 \otimes \Z_6 $.
@@ -536,12 +587,17 @@ c'è tra $ H_k(X) $ e $ H_k(X) $? Vale che $ H_k(X) \oplus G \cong H_k(X;G) $?
 \begin{theorem}[Teorema dei coefficienti universali\index{Teorema dei coefficienti universali}]
   La successione:
   \[
-    \begin{tikzcd}
-      0 \rar & H_k(S_\bullet(X)) \otimes G \rar & H_k(S_\bullet(X) \otimes G) \rar & \tor{H_{k-1}(S_\bullet{X}), G} \rar & 0
+    \begin{tikzcd}[nodes = {column sep = 10pt}]
+      0 \rar & H_k(S_\bullet(X)) \otimes G \rar & H_k(S_\bullet(X) \otimes G) \rar & \tor{H_{k-1}(S_\bullet(X)), G} \rar & 0
     \end{tikzcd}
   \]
-  spezza in modo non naturale, cioè $ H_k(S_\bullet(X) \otimes G) \not \cong H_k(S_\bullet(X)) \otimes G $ ma c'è un pezzo
-  di torsione.
+  spezza in modo non naturale, cioè non esiste un'unica sezione. Si ha quindi che
+  $ H_k(S_\bullet(X) \otimes G) \not \cong H_k(S_\bullet(X)) \otimes G $ ma c'è un pezzo
+  di torsione, cioè vale che:
+  \begin{gather*}
+    H_k(X;G) = H_k(S_\bullet \otimes G) \cong \\
+    \cong H_k(S_\bullet(X)) \otimes G \oplus \tor{H_k(S_\bullet), G} = H_k(X) \otimes G \oplus \tor{H_k(X), G}
+  \end{gather*}
   Ho le successioni:
   \[
     \begin{tikzcd}[nodes = {column sep = 10pt}]
@@ -555,7 +611,7 @@ c'è tra $ H_k(X) $ e $ H_k(X) $? Vale che $ H_k(X) \oplus G \cong H_k(X;G) $?
   Quando tensorizzo escono fuori delle torsioni.
   \[
     \begin{tikzcd}[nodes = {column sep = 10pt}]
-      {}     & \dots                 & \dots \dar            & 0                 & {} \\
+      {}     & \dots  \dar               & \dots \dar            & 0   \dar              & {} \\
       {}     & B_p \otimes G \dar      & S_{p+1} \otimes G\dar   & \tor{H_{p-1},G} \dar            &    \\
       0 \rar & Z_p \otimes G \dar \rar & S_p \otimes G \dar \rar & B_{p-1} \otimes G \rar \dar & 0  \\
       {}     & H_p \otimes G \dar      & S_p \otimes G \dar      & Z_{p-1} \otimes G \dar      & {} \\
@@ -592,66 +648,39 @@ $ \tor{H_1, G} \cong \tor{\Z_9, \Z_6} \cong \Z-3 $. Quindi:
   Esempi di gruppi di coefficienti che si possono utilizzare sono $ \Z $, $ \Z_n $,
   $ \mathbb{Q} $, $ \RN{} $, $ \mathbb{C} $, $ \mathbb{F} $. In questi casi si ha che:
   \[
-    H_k(X, \mathbb{F}) \cong H_k(X) \otimes F
+    H_k(X, \mathbb{F}) \cong H_k(X) \otimes \mathbb{F}
   \]
   Infatti questi sono moduli liberi e quindi non hanno torsione.
 \end{osservation}
 
 \begin{osservation}
-  In generale se $ G $ è un gruppo abeliano finitamente generati c'è il teorema di struttura
-  per cui $ G \cong \Z^n \oplus T $, quindi $ H_k(X;G) \cong H_k(X) \otimes G \oplus \tor{H_{n-1}(X), G} $, quindi:
-  \[
-    H_n(X) \otimes (\Z^n \oplus T) \oplus \tor{H_{n-1}(X), \Z^n \oplus T}
-  \]
-  Questo in generale dipende da $ X $, ma se in particolare $ X $ è un CW complesso finito,
-  allora anche $ H_n(X) $ è finitamente generato, quindi $ H_n(X) \cong \Z^s \oplus T' $ da cui:
+  In generale se $ G $ è un gruppo abeliano finitamente generato c'è il teorema di struttura
+  per cui $ G \cong \Z^n \oplus T $, per cui dal teorema dei coefficienti universali:
+  \begin{gather*}
+    H_k(X;G) \cong H_k(X) \otimes G \oplus \tor{H_{n-1}(X), G} \cong \\
+    \cong H_n(X) \otimes (\Z^n \oplus T) \oplus \tor{H_{n-1}(X), \Z^n \oplus T}
+  \end{gather*}
+  Usando la bilinearità del prodotto tensore:
   \[
     H_n(X) \otimes (\Z^n \oplus T) \cong H_n(X) \otimes \Z^r \oplus H_n(X) \otimes T
   \]
-  Ma $ H_n(X) \otimes (\Z^r \oplus T) \cong (\Z^s \oplus T') \otimes \Z^r \cong \Z^{sr} \oplus \Z^r \otimes T' $
-  e $ \Z^r \otimes T' = (\Z \otimes \Z \dots ) \otimes T' = (\Z \otimes T')^r = 0 $ in quanto $ T' $ è di torsione.
+  Questo in generale dipende da $ X $, ma se in particolare $ X $ è un CW
+  complesso finito, allora anche $ H_n(X) $ è finitamente generato, quindi
+  $ H_n(X) \cong \Z^{s_n} \oplus T' $ per cui vale che:
+  \begin{gather*}
+    H_n(X) \otimes \Z^{r_n} \cong (\Z^{s_n} \oplus T') \otimes \Z^r \cong \Z^{s_n r_n} \oplus \Z^{r_n} \otimes T' \cong \Z^{sr} \\
+    H_n(X) \otimes T = (\Z^{s_n} \oplus T') \otimes T \cong T' \otimes T
+  \end{gather*}
+  infatti
+  $ \Z^k \otimes T' = (\Z \otimes \Z \dots ) \otimes T' = (\Z \otimes T')^k = 0 $ in quanto
+  $ T' $ è di torsione. [PERCHÉ'????].
 
-  Poi ho $ H_n(X) \otimes T = (\Z^s \oplus T') \otimes T \cong T' \otimes T $.
-  Poi ho $ \tor{H_{n-1}(X), \Z^r \oplus T} = \tor{H_{n-1}(X), \Z^n} \oplus \tor{H_{n-1}, T} $
-  in quanto il modulo di torsione è il nucleo di una applicazione lineare.
-  Infatti se parto da:
-  \[
-    \begin{tikzcd}
-      0 \rar & R \rar & F \rar & A \rar & 0
-    \end{tikzcd}
-  \]
-  Tensorizzo:
-  \[
-    \begin{tikzcd}[nodes = {column sep = 15pt}]
-      0 \rar & \tor{A, \Z^r \oplus T} \rar & R \otimes (\Z^r \oplus T) \rar & F \otimes (\Z^r \oplus T)\rar & A \otimes (\Z^r \oplus T) \rar & 0
-    \end{tikzcd}
-  \]
-  Per l'universalità ho le successioni:
-  \[
-    \begin{tikzcd}[nodes = {column sep = 15pt}]
-      0 \rar & \tor{A, \Z^r } \rar & R \otimes \Z^r \rar & F \otimes \Z^r \rar & A \otimes \Z^r \rar & 0
-    \end{tikzcd}
-  \]
-  E:
-  \[
-    \begin{tikzcd}[nodes = {column sep = 15pt}]
-      0 \rar & \tor{A, T} \rar & R \otimes T \rar & F \otimes T \rar & A \otimes T \rar & 0
-    \end{tikzcd}
-  \]
-  Sommandole:
-  \[
-    \begin{tikzcd}[nodes = {column sep = 0pt}]
-      0 \rar & \tor{A, \Z^r} \oplus \tor{A, T} \rar & R \otimes \Z^r \oplus R \oplus T \rar & F \otimes \Z^r \oplus F \oplus T \rar & A \otimes \Z^r \oplus A \otimes T  \rar & 0
-    \end{tikzcd}
-  \]
-  Ma il modulo di torsione è unico a meno di isomorfi:
-  \[
-     \tor{A, \Z^r} \oplus \tor{A, T} \cong \tor{A, \Z^r \oplus T}
-   \]
-   Quindi in questo caso, siccome $ \Z $ è libero quindi
-   $ \tor{H_{n-1}(X), \Z^r} = (\tor{H_{n-1}(X), \Z})^r = 0 $, allora:
+  Poi ho
+  $ \tor{H_{n-1}(X), \Z^{r_n} \oplus T} = \tor{H_{n-1}(X), \Z^n} \oplus \tor{H_{n-1}(X), T} $
+  per un lemma precedente, quindi in questo caso, siccome $ \Z $ è libero quindi
+  $ \tor{H_{n-1}(X), \Z^{r_n}} = (\tor{H_{n-1}(X), \Z})^{r_n} = 0 $, allora:
    \begin{gather*}
-     \tor{H_{n-1}(X), \Z^r \oplus T} \cong \tor{H_{n-1}(X), \Z^r} \oplus \tor{H_{n-1}(X), T} = \\
+     \tor{H_{n-1}(X), \Z^{r_n} \oplus T} \cong \tor{H_{n-1}(X), \Z^{r_n}} \oplus \tor{H_{n-1}(X), T} = \\
      = \tor{H_{n-1}(X), T} = \tor{\Z^{s_{n-1}} \oplus T'_{n-1}, T}
    \end{gather*}
    Quindi:
@@ -659,7 +688,7 @@ $ \tor{H_1, G} \cong \tor{\Z_9, \Z_6} \cong \Z-3 $. Quindi:
      H_n(X; G) \cong \Z^{s_n r_n} \oplus T_n' \oplus T \oplus \tor{T_{n-1}', T}
    \]
    Dove $ H_k(X) \cong \Z^{s_k} \oplus T_k' $ e $ G \cong \Z^r \oplus T $.
-   $ H_n $ ha quindi una parte libera e delle parti di torsione che si calcolano
+   $ H_n(X;G) $ ha quindi una parte libera e delle parti di torsione che si calcolano
    sapendo fare $ \Z_h \otimes \Z_k $ (infatti $ T $ e $ T' $ sono fatte così).
  \end{osservation}
 
@@ -695,10 +724,10 @@ di omomorfismi:
     \dots \rar & \hom{S_{p-1}(X),G} \rar{\delta} & \hom{S_p(X),G} \rar{\delta} & \hom{S_{p+1}(X),G} \rar & \dots
   \end{tikzcd}
 \]
-Come notazione si pone $ \hom{S_p(X),G} = S^p(X) $. $ \delta $ è il \textbf{cobordo}\index{Cobordo},
+Come notazione si pone $ \hom{S_p(X),G} = S^p(X;G) $. $ \delta $ è il \textbf{cobordo}\index{Cobordo},
 che non è nient'altro che la composizione per il bordo:
 \begin{align*}
-  \delta \colon S^P(X) & \to S^{p+1}(X) \\
+  \delta \colon S^p(X;G) & \to S^{p+1}(X;G) \\
   \phi & \mapsto \phi \circ \partial = \delta(\phi)
 \end{align*}
 Questo è un operatore di bordo, cioè $ \delta^2 = 0 $, infatti:
@@ -709,7 +738,7 @@ Questo è un complesso.
 \begin{definition}
   Si chiama \textbf{coomologia singolare}\index{Coomologia singolare} di uno
   spazio topologico $ X $ con coefficienti in $ G $, e si indica con
-  $ H^p(X; G) $ l'omologia del complesso degli omomorfismi $ S^\bullet $.
+  $ H^p(X; G) $ l'omologia del complesso degli omomorfismi $ S^\bullet(X;G) $.
 \end{definition}
 Quindi per definizione la coomologia singolare è $ H^P(X;G) = H_p(\hom{S_\bullet(X), G}, \delta) $.
 
@@ -751,12 +780,13 @@ due costruzioni sono differenti, cioè:
   Passando agli omomorfismi la successione si gira e si aggiunge il \textbf{conucleo}\index{Conucleo}
   \[
     \begin{tikzcd}
-      0 \rar & \hom{A,B} \rar & \hom{F,B} \rar{\beta} & \hom{R,B} \rar & \coker{\beta} \rar & 0
+      0 \rar & \hom{A,B} \rar & \hom{F,B} \rar{\beta} & \hom{R,B} \rar{\gamma} & \coker{\beta} \rar & 0
     \end{tikzcd}
   \]
-  Il conucleo è infatti definito da:
+  Il conucleo è esattamente quel gruppo che rende esatta la successione, cioè
+  $ \im{\gamma} $, ma per il primo teorema degli isomorfismi:
   \[
-    \coker{\beta} = \quot{\hom{R,B}}{\im{\beta}}
+    \coker{\beta} := \im{\gamma} = \quot{\hom{R,B}}{\ker{\gamma}} \cong \quot{\hom{R,B}}{\im{\beta}}
   \]
   Esistono anche altre presentazioni, ma si dimostra che tutti i conuclei sono isomorfi,
   questo gruppo è proprio il \textbf{modulo di estensione di $ A $ e $ B $}\index{Modulo di estensione}.
@@ -768,52 +798,24 @@ due costruzioni sono differenti, cioè:
   Considero la presentazione:
   \[
     \begin{tikzcd}
-      0 \rar & F \rar & F \rar & 0
+      0 \rar & 0 \rar & F \rar & F \rar & 0
     \end{tikzcd}
   \]
-  Passando agli omomorfismi ho che il conucleo è zero in quanto tra $ F $ e $ F $ c'è un omomorfismo.
+  Passando agli omomorfismi ho che il conucleo è zero infatti:
+  \[
+    \begin{tikzcd}
+      0 \rar & \hom{F,G} \rar & \hom{F,G} \rar & 0 \rar{\gamma} & \ext{F,G} \rar & 0
+    \end{tikzcd}
+  \]
+  Quindi $ \ext{F,G} = \im{\gamma} = 0 $.
 \end{proof}
-
-\begin{theorem}[Teorema dei coefficienti universali]
-  Le successioni:
+\eproof
+Il teorema dei coefficienti universali quindi si riformula anche per la coomologia:
+\begin{theorem}[Teorema dei coefficienti universali\index{Teorema dei coefficienti universali}]
+  Le successioni esatte corte:
   \[
     \begin{tikzcd}[nodes = {column sep = 12 pt}]
-      0 \rar & \ext{H_{p-1}(X), G} \rar & H^n(X;G) \rar & \hom{H_n(X), G} \rar & 0
-    \end{tikzcd}
-  \]
-  E:
-  \[
-    \begin{tikzcd}[nodes = {column sep = 18 pt}]
-      0 \rar & H_n(X) \oplus G \rar & H_n(X; G) \rar & \tor{H_{n-1}(X), G} \rar & 0
-    \end{tikzcd}
-  \]
-  Spezzano, e quindi:
-  \[
-    H_n(X; G) \cong H_n(X) \oplus G \oplus \tor{H_{n-1}(X), G}
-  \]
-  E:
-  \[
-    H^N(X; G) \cong \hom{H_n(X), G} \oplus \ext{H_{n-1}(X), G}
-  \]
-\end{theorem}
-
-% lezione 17
-
-Sia $ X $ spazio topologico e $ G $ gruppo abeliano, ho
-\[
-  \begin{tikzcd}
-    H_\bullet \oplus G \rar & \lar H^\bullet(X;G) \\
-    \hom{H_\bullet(X); G} \rar & \lar H_\bullet(X;G)
-  \end{tikzcd}
-\]
-Quale è esattamente la relazione tra questi gruppi?
-La risposta è data dal teorema dei coefficienti universali.
-\begin{theorem}
-  Esiste una successione esatta spezzante in modo non naturale, cioè possono
-  esistere più sezioni in omologia singolare e in coomologia, queste sono:
-  \[
-    \begin{tikzcd}[nodes = {column sep = 12 pt}]
-      0 \rar & \ext{H_{p-1}(X), G} \rar & \arrow[bend left]{l}{} H^p(X;G) \rar & \hom{H_p(X), G} \rar & 0
+      0 \rar & \ext{H_{n-1}(X), G} \rar & H^n(X;G) \arrow[bend left]{l}{} \rar & \hom{H_n(X), G} \rar & 0
     \end{tikzcd}
   \]
   E:
@@ -822,7 +824,39 @@ La risposta è data dal teorema dei coefficienti universali.
       0 \rar & H_n(X) \oplus G \rar & H_n(X; G) \rar & \arrow[bend left]{l}{} \tor{H_{n-1}(X), G} \rar & 0
     \end{tikzcd}
   \]
+  Spezzano in modo non naturale (cioè non esiste una sola sezione), e quindi:
+  \begin{gather*}
+    H_n(X; G) \cong H_n(X) \oplus G \oplus \tor{H_{n-1}(X), G} \\
+    H^n(X; G) \cong \hom{H_n(X), G} \oplus \ext{H_{n-1}(X), G}
+  \end{gather*}
 \end{theorem}
+%
+% lezione 17
+%
+% Sia $ X $ spazio topologico e $ G $ gruppo abeliano, ho
+% \[
+%   \begin{tikzcd}[nodes={row sep = 5 pt}]
+%     H_\bullet \oplus G \rar & \lar H^\bullet(X;G) \\
+%     \hom{H_\bullet(X); G} \rar & \lar H_\bullet(X;G)
+%   \end{tikzcd}
+% \]
+% Quale è esattamente la relazione tra questi gruppi?
+% La risposta è data dal teorema dei coefficienti universali.
+% \begin{theorem}
+%   Esiste una successione esatta spezzante in modo non naturale, cioè possono
+%   esistere più sezioni in omologia singolare e in coomologia, queste sono:
+%   \[
+%     \begin{tikzcd}[nodes = {column sep = 12 pt}]
+%       0 \rar & \ext{H_{p-1}(X), G} \rar & \arrow[bend left]{l}{} H^p(X;G) \rar & \hom{H_p(X), G} \rar & 0
+%     \end{tikzcd}
+%   \]
+%   E:
+%   \[
+%     \begin{tikzcd}[nodes = {column sep = 18 pt}]
+%       0 \rar & H_n(X) \oplus G \rar & H_n(X; G) \rar & \arrow[bend left]{l}{} \tor{H_{n-1}(X), G} \rar & 0
+%     \end{tikzcd}
+%   \]
+% \end{theorem}
 \begin{proof}
   La dimostrazione per le due successioni è praticamente identica, dimostro quella in coomologia.
   Voglio costruire la successione:
@@ -1130,6 +1164,292 @@ La risposta è data dal teorema dei coefficienti universali.
   \]
 \end{example}
 
+% lezione 18
+
+\section{Prodotto cup}
+
+\begin{example}
+  Sia $ X = \Pjc{2} $ e $ Y = \Sph{2} \vee \Sph{4} $, è vero che $ X $ e $ Y $ sono
+  omotopicamente equivalenti? Mi aspetto che non lo siano in quanto $ X $ è una
+  varietà topologica, mentre $ Y $ no, dato che possiede un punto (quello a cui
+  le due sfere sono incollate, che non possiede un intorno omeomorfo a
+  $ \RN{n} $). Per verificarlo posso usare gli invarianti topologici che
+  conosco.
+  \subsubsection{Gruppo fondamentale}
+  Con Seifert-Van Kampen si trova che $ \pi_1(X) \cong \set{1} $ e
+  $ \pi_1(Y) \cong \set{1} $, e quindi i gruppi fondamentali sono isomorfi.
+  \subsubsection{Gruppi di omologia}
+  Per calcolare i gruppi di omologia utilizzo la struttura di CW complesso,
+  sia $ X $ che $ Y $ sono formati da una $ 0 $-cella, una $ 2 $-cella e una
+  $ 4 $-cella, quindi il complesso delle catene è:
+  \[
+    \begin{tikzcd}
+      0 \rar & S_4^{CW} \rar & S_3^{CW} \rar & S_2^{CW} \rar & S_1^{CW} \rar & S_0^{CW} \rar & 0
+    \end{tikzcd}
+  \]
+  E in entrambi i casi questa si riduce a:
+  \[
+    \begin{tikzcd}
+      0 \rar & \Z \rar & 0 \rar & \Z \rar & \Z \rar & \Z \rar & 0
+    \end{tikzcd}
+  \]
+  Quindi entrambi gli spazi hanno come gruppi di omologia
+  $ H_k(X) \cong H_k(Y) \cong \Z $ per $ k \in \set{0,2,4} $.
+  \subsubsection{Gruppi di coomologia}
+  Con il teorema di coefficienti universali $ H^k(\bullet;G) \cong \hom{H_k(\bullet), G} \oplus \ext{H_{k-1}(\bullet), G} $,
+  quindi essendo uguali i gruppi di omologia:
+  \[
+    H^k(X;G) \cong H^k(Y;G) \cong
+    \begin{cases}
+      G & \text{se } k = 0 \\
+      0 & \text{se } k = 1 \\
+      G & \text{se } k = 2 \\
+      0 & \text{se } k = 3 \\
+      G & \text{se } k = 4 \\
+    \end{cases}
+  \]
+  (Infatti $ H_k(X) \cong \Z $ e quindi $ \hom{\Z, G} \cong G $).
+
+  Ho quindi bisogno di strumenti più fini, per questo e per altri motivi rendo i
+  gruppi di coomologia un anello.
+
+\end{example}
+
+\subsection{Richiami di algebra degli anelli}
+
+\begin{definition}
+  Un anello commutativo $ \R $ si dice \textbf{dominio di integrità}\index{Dominio di integrità}
+  se il prodotto tra qualsiasi coppia di elementi non nulli è un elemento non nullo, cioè
+  vale che se $ ab = 0 $ allora o $ a = 0 $ o $ b = 0 $ $ \forall a, b \in \R $.
+\end{definition}
+
+\begin{proposition}
+  In un dominio di integrità $ \R $ valgono le leggi di cancellazione del prodotto, cioè:
+  \[
+    \forall a,x,y \in \R \quad ax = ay \Rightarrow x = y
+  \]
+\end{proposition}
+
+\begin{definition}
+  Un \textbf{ideale}\index{Ideale} $ I $ di un anello commutativo $ \R $ è un
+  sottoinsieme di $ \R $ tale che $ \forall a,b \in \R $ e $ \forall x,y \in I $ sia
+  $ a x + b y \in I $.
+\end{definition}
+
+\newmathsymb{idgen}{(i)}{Ideale generato da $ i $}
+\begin{definition}
+  Un \textbf{dominio a ideali principali}\index{Dominio a ideali principali}
+  (PID, \emph{principal ideal domain}) è un dominio di integrità in cui ogni
+  ideale è principale\index{Ideale principale}, cioè generato da un solo
+  elemento, cioè $ \forall I $ ideale esista $ i \in A $ tale che
+  $ I = (i) = \set{a i | a \in A} $. Con la scrittura $ (i) $ si indica l'ideale
+  generato.
+\end{definition}
+
+\newmathsymb{pid}{PID}{Dominio a ideali principali}
+\begin{example}
+  Esempi di PID sono $ \Z, \RN{}, \mathbb{F}, \mathbb{K}[x] $.
+\end{example}
+
+\subsection{Prodotto cup}
+
+\newmathsymb{cuppr}{\cup}{Prodotto cup}
+Sia $ H^\star (X,\R) := \bigoplus_k H^k(X,\R) $, il prodotto
+cup $ \cup $ rende $ (H^\star (X,\R), +, \cup) $ un anello.
+
+Sia $ X $ uno spazio spazio topologico, e $ \R $ un PID,
+$ S^k(X, \R) $ e $ S^l(X, \R) $ sono gli insiemi delle cocatene,
+voglio costruire una mappa:
+\begin{align*}
+  \cup \colon S^k(X, \R) \times S^l(X, \R) & \to S^{k+l}(X, \R) \\
+  (\phi, \psi) & \mapsto \phi \cup \psi
+\end{align*}
+E quindi passare a livello di coomologia in modo da fornire la struttura
+ad anello.
+
+Se $ \phi \cup \psi \in S^{k+l}(X, \R) $ significa che $ \phi \cup \psi \in \hom{S_{k+1}(X), \R} $
+e quindi $ \phi \cup \psi \colon S_{k+l}(X) \to \R $, e l'azione di questa mappa può essere
+definita solo sui simplessi singolari e quindi estesa per linearità su tutto
+lo spazio delle catene. Sia $ \sigma \colon \Delta_{k+l} \to X $ un simplesso singolare, si
+può anche vedere il simplesso standard come inviluppo convesso di punti:
+\[
+  \Delta_{k+l} = [v_0, \dots, v_k, v_{k+1}, \dots, v_{k+l}]
+\]
+E quindi si può restringere il simplesso singolare sulla parte generata
+dai primi $ k $ punti e su quella generata dagli ultimi $ l $:
+\[
+  \sigma \lvert_{[v_0, \dots, v_k]} \colon \Delta_k \to X \quad \sigma \lvert_{[v_{k+1}, \dots, v_{k+l}]} \colon \Delta_l \to X
+\]
+A questo punto la definizione dell'azione di $ \phi \cup \psi $ su $ \sigma $ risulta naturale:
+\[
+  (\phi \cup \psi)(\sigma) = \phi \left(\sigma \lvert_{[v_0, \dots, v_k]} \right) \cdot \psi \left(\sigma \lvert_{[v_{k+1}, \dots, v_{k+l}]}\right)
+\]
+Questa definizione è ben posta, il prodotto tra i due termini è infatti il prodotto in $ \R $.
+Per passare a livello di coomologia (indicando con abuso di notazione $ \cup^\star = \cup $):
+\begin{align*}
+  \cup \colon H^k(X, \R) \times H^l(X, \R) & \to H^{k+l}(X, \R) \\
+  (\llbracket \phi \rrbracket, \llbracket \psi \rrbracket) & \mapsto \llbracket \phi \circ \psi \rrbracket
+\end{align*}
+Verifico che questa applicazione è ben definita. Si ha che $ \phi $ e $ \psi $ sono
+cocicli, cioè $ \delta \phi = \delta \psi = 0 $, e tutti gii altri elementi della classe differiscono
+per un cobordo da $ \phi $ e $ \psi $, cioè sono della forma $ \phi + \delta\phi_1 $ e $ \psi + \delta\psi_1 $.
+L'applicazione è ben definita se:
+\begin{enumerate}
+\item $ \phi \cup \psi $ è un bordo
+\item Elementi omologhi in $ H^k(X, \R) \times H^l(X, \R) $ vengono
+  mandati in elementi omologhi in $ H^{k+l}(X, \R) $.
+\end{enumerate}
+Per verificare la prima di queste si utilizza il seguente lemma:
+\begin{lemma}
+  vale che $ \delta(\phi \cup \psi) = \delta \phi \cup \psi + (-)^k \phi \cup \delta \psi $, quindi se $ \phi $ e $ \psi $ sono cocilci,
+  anche $ \phi \cup \psi $ lo è.
+\end{lemma}
+\begin{exercise}
+  Verificare il lemma.
+\end{exercise}
+Per verificare la seconda richiesta mostro che esiste $ \eta \in S^{k+l-1}(X) $ tale che:
+\[
+  (\phi + \delta\phi_1) \cup (\psi + \delta\psi_1) = \phi \cup \psi + \delta \eta
+\]
+Utilizzando il precedente lemma si ha che:
+\begin{gather*}
+  \delta(\phi \cup \psi_1) = \cancel{\delta \phi \cup \psi_1} + (-)^k (\phi \cup \delta\psi_1) \; \Rightarrow \; \phi \cup \delta \psi_1 = (-)^k \delta(\phi \cup \psi_1) = \delta ((-)^k \phi \cup \psi_1) \\
+  \delta(\phi_1 \cup \psi) = \delta \phi_1 \cup \psi + \cancel{(-)^{k-1}(\phi_1 \cup \delta \psi)} \; \Rightarrow \; \delta \phi_1 \cup \psi = \delta(\phi_1 \cup \psi) \\
+  \delta(\phi_1 \cup \delta \psi_1) = \delta \phi_1 \cup \delta \psi_1 + \cancel{(-)^{k-1}\phi_1 \cup \delta^2 \psi_1} \; \Rightarrow \; \delta \phi_1 \cup \delta \psi_1  =  \delta(\phi_1 \cup \delta \psi_1)
+\end{gather*}
+Ma quindi definendo $ \eta = (-)^k \phi \cup \delta \psi_1 + \phi_1 \cup \psi + \phi_1 \cup \delta \psi_1 $:
+\[
+  (\phi + \delta \phi_1) \cup (\psi + \delta \psi_1) = \phi \cup \psi + \phi \cup \delta \Psi_1 + \delta \phi_1 \cup \psi + \delta \phi_1 \cup \delta \psi_1 = \phi \cup \psi + \delta \eta
+\]
+La mappa è quindi ben definita a livello di coomologia e quindi si può dare la struttura
+ad anello a $ H^\star(X,\R) $.
+
+Se in particolare, come da qui in avanti assumo, $ X $ è connesso per archi:
+\[
+  H^0(X, \R) \cong \hom{H_0(X), \R} \cong \hom{\Z, \R} \cong \R
+\]
+Dove $ \hom{\Z, \R} \cong \R $ in quanto per specificare un omomorfismo da
+$ \Z $ a $ \R $ mi basta dire quale è l'immagine di $ 1 $, la quale può essere
+un qualunque elemento di $ \R $. Ma $ \R $ è unitario, quindi possiede un
+elemento unità, e quindi si definisce l'unità in $ H^0(X, \R) $ e quindi in
+tutto $ H^\star0(X, \R) $ come l'elemento che corrisponde a $ \Id{\R} $ e che quindi
+corrisponde anche a $ \Id{\hom{H_0(X), \R}} $, cioè $ \Id{} \colon \llbracket \phi \rrbracket \mapsto \llbracket \phi \rrbracket $.
+Osservo che in $ H^\star(X, \R) $:
+\[
+  \llbracket \phi \rrbracket \cup \llbracket \Id{} \rrbracket = \llbracket \phi \cup \Id{} \rrbracket = \llbracket \phi \rrbracket = \llbracket \Id{} \cup \phi \rrbracket = \llbracket \Id{} \rrbracket \cup \llbracket \phi \rrbracket
+\]
+Quindi $ H^\star(X, \R) $ è un anello unitario, ma in generale non commutativo.
+
+\begin{lemma}
+  Siano $ X $ e $ Y $ spazi topologici omotopicamente equivalenti allora gli
+  anelli di coomologia sono isomorfi (come anelli).
+\end{lemma}
+\begin{proof}
+  Se $ X $ è equivalente a $ Y $ allora i gruppi di omologia sono isomorfi, cioè
+  $ H_\star(X) \cong H_\star(Y) $, per il teorema dei coefficienti universali anche i gruppi
+  di coomologia sono isomorfi come $ \Z $-moduli, cioè $ H^\star(X) \cong H^\star(Y) $,
+  devo mostrare che l'isomorfismo è anche di anelli.
+  Se $ X \sim_H Y $ significa che esiste una mappa continua $ f \colon X \to Y $ e una
+  $ g \colon Y \to X $ tali che $ f \circ g \sim_H \Id{Y} $ e $ g \circ f \sim_H \Id{X} $.
+  Essendo $ f $ continua è ben definita
+  \begin{align*}
+    f_\sharp \colon S_k(X) & \to S_k(Y) \\
+    \sigma & \mapsto f \circ \sigma
+  \end{align*}
+  Ma anche:
+  \begin{align*}
+    f^\sharp \colon S^k(Y) & \to S^X(X) \\
+    \phi & \mapsto f^\sharp(\phi) = \phi(f_\sharp)
+  \end{align*}
+  Quindi si può passare alla coomologia:
+  \begin{align*}
+    f^\star \colon H^k(Y) & \to H^k(X) \\
+    \llbracket \phi \rrbracket & \mapsto \llbracket f^\sharp \circ \phi \rrbracket
+  \end{align*}
+  Questa mappa è un omomorfismo di anelli, cioè:
+  \begin{gather*}
+    f^\star(\llbracket\phi\rrbracket + \llbracket\psi\rrbracket) = f^\star(\llbracket\phi\rrbracket) + f^\star(\llbracket\psi\rrbracket) \\
+    f^\star(\llbracket\phi\rrbracket \cup \llbracket\psi\rrbracket) = f^\star(\llbracket\phi\rrbracket) \cup f^\star(\llbracket\psi\rrbracket)
+  \end{gather*}
+  Infatti, il comportamento rispetto alla somma è vero perché è vero anche come $ \Z $-moduli,
+  mentre per il prodotto:
+  Considero $ \sigma \colon \Delta_{k+l} \to X $ simplesso singolare:
+  \[
+    (f^\sharp(\phi) \cup f^\sharp(\psi))(\sigma) = (f^\sharp(\phi)(\sigma\lvert_{[v_0, \dots, v_k]})) (f^\sharp(\psi)(\sigma\lvert_{[v_{k+1}, \dots, v_{k+l}]}))
+    = \phi(f_\sharp(\sigma\lvert_{[v_o, \dots, v_k]}))\psi(f_\sharp(\sigma\lvert_{[v_{k+1}, \dots, v_{k+l}]})) = \phi \cup \psi (f_\sharp (\sigma)) = (f^\sharp(\phi \cup \psi))(\sigma)
+  \]
+  Si può applicare il medesimo ragionamento anche per $ g $ e per l'assioma omotopico
+  $ (f \circ g)^\star = (\Id{Y})^\star $ e $ (g \circ f)^\star = (\Id{X})^\star $, ma quindi $ f^\star $ e $ g^\star $ sono
+  una l'inversa dell'altra ed essendo anche omomorfismi sono isomorfismi.
+\end{proof}
+
+\begin{example}
+  Se $ X = \Sph{n} $, so che:
+  \[
+    H_k(\Sph{n}) \cong H^k(\Sph{n}) \cong
+    \begin{cases}
+      \Z & \text{se } k \in \set{0,n} \\
+      0 & \text{altrimenti}
+    \end{cases}
+  \]
+  Ho che $ H^0(\Sph{n}) = \langle\Id{}\rangle $ e $ H^n(\Sph{n}) = \langle\alpha\rangle $ con $ \alpha $ opportuno
+  generatore. La tabella di moltiplicazione tra questi generatori è:
+  \[
+    \begin{array}{c|cc}
+      {} & \Id{} & \alpha \\ \hline
+      \Id{} & \Id{} & \alpha \\
+      \alpha  & \alpha & 0 \\
+    \end{array}
+  \]
+  Dove $ \alpha^2 = 0 $ in quanto $ \alpha^2 $ è in $ H^{2n}(X, G) `= 0 $.
+  Quindi $ H^\star(\Sph{n}) = \Z[\Id{}] \oplus \Z[\alpha] $, e il generico elemento è
+  della forma $ a + b \alpha $ con $ a,b \in \Z $ e $ \alpha^2 = 0 $, quindi:
+  \[
+    H^\star(\Sph{n}) \cong \quot{\Z[\alpha]}{(\alpha^2)}
+  \]
+\end{example}
+\begin{example}
+  A questo punto si posseggono gli strumenti necessari per risolvere il problema della
+  distinzione tra $ \Pjc{2} $ e $ \Sph{2} \vee \Sph{4} $.
+  Per Mayer-Vietoris $ H^\star(\Sph{2} \vee \Sph{4}) \cong H^\star(\Sph{2}) \oplus H^\star(\Sph{4}) $, quindi
+  \[
+    H^\star(\Sph{2} \vee \Sph{4}) \cong \quot{\Z[\alpha]}{(\alpha^2)} \oplus \quot{\Z[\beta]}{(\beta^2)}
+  \]
+  Successivamente dimostrerò che:
+  \[
+    H^\star(\Pjc{n}) \cong \quot{Z[x]}{(x^{n+1})}
+  \]
+  Dove $ x $ è un generatore di $ H^{2}(\Pjc{2}) $.
+  Ora mostro quindi che $ \Sph{2} \vee \Sph{4} \not \sim_H \Pjc{2} $.
+  \begin{gather*}
+    H^\star(\Pjc{2}) = \set{a_0 + a_1 x + a_2 x^2 | x^3 = 0} \\
+    H^\star(\Pjc{2}) = \set{(b_0 + b_1 \alpha, a_0 + a_1 \beta) | \alpha^2 = 0, \; \beta^2 = 0}
+  \end{gather*}
+  Se questi gruppi fossero isomorfi ci sarebbe una corrispondenza:
+  \[
+    x \leftrightarrow (b_0 + b_1 \alpha, a_0 + a_1 \beta)
+  \]
+  Ma quindi anche:
+  \[
+    x^3 = 0 \leftrightarrow (b_0^3 + 3 b_0^2 b_1 \alpha, a_0^3 + 3 a_0^2 a_1 \alpha)
+  \]
+  Ma se fosse un isomorfismo $ 0 $ dovrebbe andare in $ 0 $, cioè:
+  \[
+    \begin{cases}
+      b_0^3 + 3 b_0^2 b_1 \alpha = 0 \Rightarrow b_0 = 0  \\
+      a_0^3 + 3 a_0^2 a_1 \beta = 0 \Rightarrow a_0 = 0
+    \end{cases}
+  \]
+  Cioè:
+  \[
+    x \leftrightarrow  (b_1 \alpha, a_1 \beta)
+  \]
+  Ma prendendo il quadrato avrei che:
+  \[
+    x^2 \leftrightarrow  (0, 0)
+  \]
+  Che è assurdo.
+\end{example}
 
 %%% Local Variables:
 %%% ispell-local-dictionary: "italiano"

@@ -68,16 +68,37 @@ Sostanzialmente la nozione di $ \R $-modulo generalizza agli anelli il concetto 
 
 \newmathsymb{groupgen}{\langle\dots\rangle}{Gruppo generato}
 \begin{definition}
-  Un gruppo $ \mathcal{G} $ si dice \textbf{generato}\index{Gruppo generato}
-  dai suoi elementi $ \set{x_1, x_2, \dots} \in \mathcal{G} $ se
-  ogni suo elemento si può scrivere come combinazione lineare a elementi interi di $ x_1, x_2, \dots $.
-  In questo caso si indica $ \mathcal{G} = \langle \{ x_1, x_2, \dots \} \rangle $.
+  Un gruppo $ \mathcal{G} $ si dice \textbf{generato}\index{Gruppo generato} dai
+  suoi elementi $ \set{x_1, x_2, \dots} \in \mathcal{G} $ se ogni suo elemento
+  si può scrivere come combinazione lineare a elementi interi di
+  $ x_1, x_2, \dots $. In questo caso si indica
+  $ \mathcal{G} = \langle \{ x_1, x_2, \dots \} \rangle $. Se l'insieme che
+  genera $ G $ ha cardinalità finita si dice che il gruppo è \textbf{finitamente
+    generato}\index{Gruppo finitamente generato}.
 \end{definition}
 
 \begin{definition}
   Un gruppo abeliano si dice \textbf{libero}\index{$ \Z $-modulo libero} se è generato
   da un numero finito di elementi linearmente indipendenti, il numero di tali elementi
   definisce il \textbf{rango}\index{Rango di gruppo abeliano} del gruppo.
+\end{definition}
+
+\begin{theorem}[Teorema di struttura per gruppi abeliani finitamente generati]
+  Il \textbf{teorema di struttura per gruppi abeliani finitamente
+    generati}\index{Teorema di struttura per gruppi abeliani finitamente
+    generati} afferma che ogni gruppo abeliano finitamente generato $ G $ è isomorfo
+  ad un gruppo della forma:
+  \[
+    G \cong \Z^r \oplus \Z_{p_1} \oplus \dots \Z_{p_n}
+  \]
+  dove $ r $ è il rango di $ G $ e $ p_i $ sono numeri primi non necessariamente
+  distinti. I termini $ \Z_{p_i} $ sono detti di \textbf{torsione} in quanto i suoi
+  elementi sono annullati elementi non nulli di $ \Z $.
+\end{theorem}
+
+\begin{definition}
+  Un gruppo abeliano si dice \textbf{libero}\index{$ \Z $-modulo libero} se è la sua
+  decomposizione non ha fattori di torsione, cioè se è della forma $ G \cong \Z^r $.
 \end{definition}
 
 \begin{definition}

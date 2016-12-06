@@ -25,8 +25,8 @@
     "fig:lez3:proof_homo"
     "fig:lez3:sketch_of_proof"
     "fig:lez3:klein_bottle"
-    "fig:lez7:brouwer_proof_1"
-    "fig:lez14:excision_proof")
+    "fig:lez14:excision_proof"
+    "fig:lez7:brouwer_proof_1")
    (LaTeX-add-index-entries
     "Simplesso standard"
     "Coordinate baricentrali"
@@ -58,17 +58,17 @@
     "Eilenberg ! \\vedi{Teoria omologica}"
     "Somma topologica"
     "Topologia debole"
-    "Gruppo dei coefficienti di una teoria omologica"
-    "Retratto di deformazione"
-    "Retrazione"
-    "Teorema del punto fisso"
-    "Grado di una sfera"
     "$ \\mathcal{U} $-piccolo"
     "Suddivisione
       baricentrica"
     "Terzo teorema degli omomorfismi"
     "Lemma dei cinque"
     "Operatore prisma"
-    "Omotopia di catena"))
+    "Omotopia di catena"
+    "Gruppo dei coefficienti di una teoria omologica"
+    "Retratto di deformazione"
+    "Retrazione"
+    "Teorema del punto fisso"
+    "Grado di una sfera"))
  :latex)
 

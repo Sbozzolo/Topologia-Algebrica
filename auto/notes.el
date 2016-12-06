@@ -70,6 +70,7 @@
     "tr"
     "incl"
     "invamalg"
+    "eproof"
     "ccirc"
     "latexcirc"
     "circ"
