@@ -1451,6 +1451,133 @@ Quindi $ H^\star(X, \R) $ è un anello unitario, ma in generale non commutativo.
   Che è assurdo.
 \end{example}
 
+\begin{theorem}
+  Siano $ x, y $ i generatori rispettivamente di $ H^1(\Pjr{n}; \Z_2) $ e $ H^2(\Pjc{n}; \Z) $,
+  cioè:
+  \[
+    \langle x \rangle = H^1(\Pjr{n}, \Z_2)  \quad \langle y \rangle = H^2(\Pjc{n}, \Z)
+  \]
+  allora vale che:
+  \begin{gather*}
+    H^\star(\Pjr{n}; \Z_2) \cong \quot{\Z_2[x]}{(x^{n+1})} \\
+    H^\star(\Pjc{n}; \Z) \cong \quot{\Z[y]}{(y^{n+1})}
+  \end{gather*}
+\end{theorem}
+\begin{proof}
+  La dimostrazione per i due risultati è la stessa, lo dimostro per il caso
+  reale. La dimostrazione è per induzione, e in ciò che segue è sottinteso che
+  il gruppo di coefficienti è $ \Z_2 $.
+  Per $ n = 1 $ è noto che $ \Pjr{1} \cong \Sph{1} $, e quindi ho già calcolato
+  l'anello di coomologia:
+  \[
+    H^\star(\Pjr{1}) \cong \quot{\Z[x]}{(x^2)}
+  \]
+  Per $ n > 1 $ considero due indici $ i, j $. Mostro che posso restringermi al
+  caso in cui $ i + j = n $. Se $ i + j < n $ considero
+  $ u \colon \Pjr{k} \to \Pjr{n} $, ho che $ u^\star \colon H^l(\Pjr{n}) \homoto H^l(\Pjr{l}) $
+  con $ l \leq j $, ma quindi:
+  \begin{gather*}
+    0 + \alpha_i \in H^i(\Pjr{n}) \mapsto u^\star(\alpha_i) \not = 0 \\
+    0 + \alpha_j \in H^j(\Pjr{n}) \mapsto u^\star(\alpha_j) \not = 0
+  \end{gather*}
+  Ma $ u^\star(\alpha_i \cup \alpha+j) \not = 0 $ e $ \alpha_i \cup \alpha_j \in H^{i+j}(\Pjr{k}) $. Se $
+  u^\star(\alpha_i \cup \alpha_j) = 0 $ quindi $ u^\star(\alpha_i) \cup u^\star(\alpha_j) = 0 $, ma $ u^\star(\alpha_i) = 0 $
+  e $ u^\star(\alpha_j) \not = 0 $ e ili prodotto cup non manda in zero. In altri termini
+  se $ i + j < n $ allora $ \alpha_i \cup \alpha_j $ è generatore di $ H^{i+j}(\Pjr{n}) $ e
+  mi riconduco al caso precedente. Posso quindi fissare $ i, j $ tali che $ i +
+  j = n $, e prendo $ \alpha_i, \alpha_j $ generatori tali che $ \langle\alpha_i\rangle = H^i(\Pjr{n}) $ e
+  $ \langle\alpha_j\rangle = H^j(\Pjr{n}) $.
+
+  Per definizione $ \Sph{n} = \set{(x_0, \dots, x_n) \in \RN{n+1} | \sum x_i^2 = 1} $,
+  considero:
+  \begin{gather*}
+    \Sph{i} = \set{(x_0, \dots, x_{i}, 0, 0, \dots, 0) \in \Sph{n}} \\
+    \Sph{j} = \set{(0, 0, \dots, x_{n-j}, \dots, x_n) \in \Sph{n}}
+  \end{gather*}
+  Se $ i + j = n $ queste due sottosfere si intersecano in due punti:
+  \[
+    \Sph{i} \cap \Sph{j} = \set{(0,\dots,\pm1,\dots,0)}
+  \]
+  \begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+      \draw (0,0) circle (1);
+      \draw[name path=line1]
+      (0,1) to[out=-120, in=150] (0,-1);
+      \draw[name path=line2]
+      (-1,0) to[out=-50, in=-150] (1,0);
+      \draw[dashed, name path=line3]
+      (0,1) to[out=-40, in=60] (0,-1);
+      \draw[dashed, name path=line4]
+      (-1,0) to[out=30, in=130] (1,0);
+      \path [name intersections={of=line1 and line2,by=E}];
+      \node [fill=black,inner sep=1pt] at (E) {};
+      \path [name intersections={of=line3 and line4,by=F}];
+      \node [fill=black,inner sep=1pt] at (F) {};
+    \end{tikzpicture}
+    \caption{Intersezione tra $ \Sph{i} $ e $ \Sph{j} $}
+    \label{fig:lez18:intersection}
+  \end{figure}
+  So che $ \Pjr{n} = \Sph{n} \slash \sim = \Pjr{n-1} \cup_\pi \Disk{n} $, dove $ \sim $ è la
+  relazione antipodale. Quindi $ \Pjr{n} - \set{p} $ è retratto di deformazione
+  di $ \Pjr{n-1} $.
+  Costruisco il seguente diagramma commutativo:
+  \[
+    \begin{tikzcd}[nodes = {column sep = 10pt, outer sep = 0pt, inner sep = 1.5pt}]
+      H^i(\Pjr{n}) \times H^j(\Pjr{n}) \rar{\cup} & H^n(\Pjr{n}) \\
+      H^i(\Pjr{n}, \Pjr{n} \setminus \Pjr{j}) \times H^j(\Pjr{n}, \Pjr{n} \setminus \Pjr{i}) \uar{\cong} \rar{\cup} \dar{\cong} & H^n(\Pjr{n}, \Pjr{n} \setminus \set{p}) \dar{\cong} \uar{\cong} \\
+      H^i(\RN{n}, \RN{n} \setminus \RN{j}) \times H^j(\RN{n}, \RN{n} \setminus \RN{i})  \rar{\cup} & H^n(\RN{n}, \RN{n} \setminus \set{\vec{0}})
+    \end{tikzcd}
+  \]
+  Infatti ho $ \cup \colon H^i(\Pjr{n}) \times H^j(\Pjr{n}) \to H^n(\Pjr{n}) $. Poi ho la successione
+  esatta lunga in omologia:
+  \[
+    \begin{tikzcd}[nodes = {column sep = 5pt, inner sep = 1.5pt}]
+      H^{n-1}(\Pjr{n}) \rar & H^{n-1}(\Pjr{n} \setminus \set{p}) \rar & H^{n-1}(\Pjr{n}, \Pjr{n} \setminus \set{p}) \rar & H^n(\Pjr{n}) \rar & H^n(\Pjr{n} \setminus \set{p})
+    \end{tikzcd}
+  \]
+  Ma $ H^{n-1}(\Pjr{n}) \cong H^{n-1}(\Pjr{n-1}) $ quindi $ H^{n-1}(\Pjr{n} \setminus \set{p}) \cong H^{n-1}(\Pjr{n}) $
+  quindi $ H^n(\Pjr{n}, \Pjr{n} \setminus \set{p}) \cong H^n(\Pjr{n}) $.
+  Poi ho $ \Pjr{i} \cong \Sph{i} \setminus \sim $ e $ \Pjr{j} \cong \Sph{j} \setminus \sim $, quindi
+  $ H^i(\Pjr{n}, \Pjr{n} \setminus \Pjr{j}) \times H^j(\Pjr{n}, \Pjr{n} \setminus \Pjr{i}) $ vanno
+  in $ H^i(\Pjr{n}) \times H^i(\Pjr{n}) $.
+
+  Poi $ \Pjr{n} \setminus (\Pjr{n} \setminus \Pjr{j} \cup \Pjr{n} \setminus \Pjr{i}) = \Pjr{n} \setminus (\Pjr{n} \setminus (\Pjr{j}) \cap \Pjr{i}) = \Pjr{n} \setminus \set{p} $
+  con $ p = [0,\dots,1,0,\dots,0] $.
+
+  Faccio escissione con $ U_i = \set{[x_0, \dots, x_n] | x_i \not = 0} \cong \RN{n} $,
+  ma $ U_i = \left(\frac{x_0}{x_i}, \dots, \frac{x_n}{x_i} \right) $ è contraibile.
+
+  Prendo $ \Pjr{n} \setminus U_i $ e faccio l'escissione in omologia e poi prendo il duale, così
+  ottengo:
+  \begin{gather*}
+    H^n(\Pjr{n}, \Pjr{n} \setminus \set{p}) \cong H^n(\Pjr{n} \setminus (\Pjr{n} \setminus U_i)), (\Pjr{n} \setminus \set{p}) \setminus (\Pjr{n} \setminus U_i) \cong \\
+    \cong H^n(U_i, U_i \setminus \set{p}) = H^n(\RN{n}, \RN{n} \setminus \set{\vec{0}})
+  \end{gather*}
+
+  Poi c'è il prodotto cup in basso in quanto ho la successione esatta:
+  \[
+    \begin{tikzcd}
+      H^{n-1}(\RN{n}) \rar & H^{n-1}(\RN{i} \setminus \RN{j}) \rar & H^n(\RN{n}, \RN{n} \setminus \RN{j}) \rar & H^n(\RN{n})
+    \end{tikzcd}
+  \]
+  Ma $ H^n(\RN{n}) \cong 0 $, quindi la successione è:
+  \[
+    \begin{tikzcd}
+      0 \rar & H^{n-1}(\RN{i} \setminus \RN{j}) \rar & H^n(\RN{n}, \RN{n} \setminus \RN{j}) \rar & 0
+    \end{tikzcd}
+  \]
+  E quindi:
+  \[
+     H^{n-1}(\RN{i} \setminus \RN{j}) \cong  H^n(\RN{n}, \RN{n} \setminus \RN{j}) \cong H^{n-1}(\SPh{n-j-1}) \cong H^{i-1}(\Sph{i-1})
+  \]
+
+  Con l'ipotesi induttiva costruisco gli isomorfismi in alto a sinistra.
+  Mancano da dimostrare delle cose.
+
+\end{proof}
+
+
 %%% Local Variables:
 %%% ispell-local-dictionary: "italiano"
 %%% mode: latex

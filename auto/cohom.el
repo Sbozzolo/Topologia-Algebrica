@@ -8,6 +8,8 @@
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
    (add-to-list 'LaTeX-verbatim-macros-with-delims-local "path")
+   (LaTeX-add-labels
+    "fig:lez18:intersection")
    (LaTeX-add-index-entries
     "Prodotto tensore"
     "Proprietà universale! \\vedi{Prodotto tensore}"
