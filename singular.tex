@@ -2038,8 +2038,9 @@ che mi mancano che sono l'escissione e l'omotopia.
   \begin{definition}
     Un simplesso singolare in $ X $ si dice
     \textbf{$ \mathcal{U} $-piccolo}\index{$ \mathcal{U} $-piccolo} se esiste
-    una suddivisione baricentrica di $ \Delta_k $ tale che abbia immagine in
-    $ U_\alpha $, dove $ \mathcal{U} = \bigcup_\alpha U_\alpha $.
+    una suddivisione baricentrica di $ \Delta_k $ tale che ogni simplesso della
+    suddivisione abbia immagine in un $ U_\alpha $, i quali sono gli insiemi del
+    ricoprimento, cioè $ \mathcal{U} = \bigcup_\alpha U_\alpha $.
   \end{definition}
 
   \begin{definition}
@@ -2049,16 +2050,14 @@ che mi mancano che sono l'escissione e l'omotopia.
     univocamente determinabile) in tanti simplessi tanto piccoli da essere
     completamente contenuti negli insiemi del ricoprimento.
   \end{definition}
-
-  Sostanzialmente $ S_k^\mathcal{U}(X) $ sono le catene somme di simplessi
+  Sostanzialmente $ S_k^\mathcal{U}(X) $ sono le catene somme formali di simplessi
   completamente contenuti in uno degli $ U_\alpha $ che formano il ricoprimento.
-
   \begin{exercise}
     Dimostrare che $ X = \mathrm{int}(A) \cup \mathrm{int}(X \setminus B) $.
   \end{exercise}
-  Sostanzialmente è quindi possibile prendere insiemi aperti per formare il
-  ricoprimento $ \mathcal{U} $, infatti se $ A $ e/o $ X \setminus B $ non fossero
-  aperti potrei considerare il ricoprimento
+  Dal risultato dell'esercizio precedente si trova che è possibile prendere
+  insiemi aperti per formare il ricoprimento $ \mathcal{U} $, infatti se $ A $
+  e/o $ X \setminus B $ non fossero aperti potrei considerare il ricoprimento
   $ \mathcal{U} = \set{ \mathrm{int}(A), \mathrm{int}(X \setminus B)} $.
 
   La dimostrazione del teorema di escissione si basa ora su alcune assunzioni
@@ -2069,7 +2068,7 @@ che mi mancano che sono l'escissione e l'omotopia.
     è ben definita perché i complessi sono $ \Z $-moduli. Per mostrare che
     questa asserzione è vera la verifico sui generatori
     $ \sigma \colon \Delta_k \to X $. Per definizione di $ S_k^\mathcal{U}(X) $ se
-    $ \sigma \in S_k^\mathcal{U}(X) $ o $ \sigma \in S_k(A) $ oppure
+    $ \sigma \in S_k^\mathcal{U}(X) $ allora $ \sigma \in S_k(A) $ oppure
     $ \sigma \in S_k(X\setminus B) $, quindi
     $ S_k^\mathcal{U}(X) \subseteq S_k(A) + S_k(X \setminus B) $. Inoltre se
     $ \sigma_1 \colon \Delta_1 \to A $ e
@@ -2080,27 +2079,28 @@ che mi mancano che sono l'escissione e l'omotopia.
   \end{osservation}
 
   \begin{osservation}[Terzo teorema degli omomorfismi\index{Terzo teorema degli omomorfismi}]
-    Vale che $ S_k(A \setminus B) = S_k(A) \cap S_k(X \setminus B) $, questo è ovvio.
+    Come si osserva dalla figura vale che $ S_k(A \setminus B) = S_k(A) \cap S_k(X \setminus B) $.
   \end{osservation}
 
   \begin{figure}[htbp]
     \centering
-    \begin{tikzpicture}[scale=0.75]
-      \draw plot [smooth cycle] coordinates {(0,0) (2,3) (3,4) (5,2) (2,-1)};
-      \draw plot [smooth cycle] coordinates {(1.5,1) (2,2) (3,3) (4,2) (2,0)};
+    \begin{tikzpicture}[scale=0.66]
+      \draw[pattern=north west lines, pattern color=gray] plot [smooth cycle] coordinates {(0,0) (2,3) (3,4) (5,2) (2,-1)};
+      \fill[white] (2.5,1.5) circle (0.3);
+      \draw[pattern=north east lines, pattern color=gray] plot [smooth cycle] coordinates {(1.5,1) (2,2) (3,3) (4,2) (2,0)};
       \draw (2.5,1.5) circle (0.3);
       \node[above] () at (3,4) {$ X $};
       \node[right] () at (4,2) {$ A $};
       \node[] () at (2.5,1.5) {$ B $};
     \end{tikzpicture}
-    \caption{Situazione}
+    \caption{Terzo teorema degli omomorfismi}
     \label{fig:lez14:excision_proof}
   \end{figure}
 
   \begin{osservation}
     Vale che:
     \[
-      \quot{S_k(X \setminus B)}{A \setminus B} \cong \quot{S_k^\mathcal{U}(X)}{S_k(A)}
+      \quot{S_k(X \setminus B)}{S_k(A \setminus B)} \cong \quot{S_k^\mathcal{U}(X)}{S_k(A)}
     \]
     Infatti \dots
   \end{osservation}
@@ -2210,42 +2210,59 @@ $ F(0,x) = f_0(x) $, $ F(1,x) = f_1(x) $ e $ \forall t \in I $ $ F(t,a) \in B $.
   $ \epsilon_1 \colon \Delta_0 \to I $ e $ \epsilon_0 \colon \Delta_0 \to I $ definiti da:
   $ \epsilon_i(e_0) = i $ con $ i \in \set{0,1} $, allora il bordo dell'intervallo è
   $ \partial I = \epsilon_1 - \epsilon_0 $. Chiamo $ I $ con abuso di notazione il simplesso che
-  manda $ \Delta_1 $ in $ I $, Sia $ c \in S_q(X) $, cioè $ c \in S_q(X) $
-  allora $ I \times c \in S_{q+1}(I \times X) $, infatti
+  manda $ \Delta_1 $ in $ I $. Sia $ \sigma $ simplesso singolare in $ S_q(X) $, allora
+  $ I \times \sigma \in S_{q+1}(I \times X) $, infatti
   \begin{align*}
-    I \times x \colon \Delta_1 \times \Delta_1 & \to I \times X \\
-    (t,x) & \mapsto (I(t), c(x))
+    I \times \sigma \colon \Delta_1 \times \Delta_q & \to I \times X \\
+    (t,x) & \mapsto (I(t), \sigma(x))
   \end{align*}
   Il bordo di questa catena è:
   \[
-    \partial (I \times c) = \sum_i^{q} (-)^{i+1}(I \times c)^{(i+1)} = (I \times C)^{(0)} - (I \times C)^{(1)} + \dots
+    \partial (I \times \sigma) = \sum_{i=0}^{q+1} (-)^{i+1}(I \times \sigma)^{(i+1)} = (I \times \sigma)^{(0)} - (I \times \sigma)^{(1)} + \dots
   \]
   Osservo che:
-  [FIGURA]
+  \begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale = 0.75]
+      \draw[] plot [smooth cycle] coordinates {(2,3) (3,4) (5,2) (2,2)};
+      \fill[gray!10] plot [smooth cycle] coordinates {(2.5,2.5) (3,3.5) (4.5,2.2)};
+      \draw[->] (1,2) -- (3,3);
+      \node[left] () at (1,2) {$ \epsilon_0 \times \sigma $};
+      \draw[dashed] plot [smooth cycle] coordinates {(2.5,2.5) (3,3.5) (4.5,2.2)};
+      \draw[] plot [smooth cycle] coordinates {(2.5,4) (3,5) (4.5,3.7)};
+      \draw
+      (3,3.5) -- (3,5)
+      (4.5,2.2) -- (4.5,3.7)
+      (2.45,2.52) -- (2.45,4.1);
+      \node[right] () at (5,2) {$ X $};
+      \node[below] () at (2.5,2.5) {$ \sigma $};
+      \node[right] () at (4.45,3.3) {$ I $};
+    \end{tikzpicture}
+    \caption{Prisma}
+    \label{fig:lez14:prism}
+  \end{figure}
   \[
-    = \epsilon_1 \times c - \epsilon_0 \times c - I \times \partial c
+    = \epsilon_1 \times \sigma - \epsilon_0 \times \sigma - I \times \partial \sigma
   \]
   \begin{definition}
     Si definisce l'\textbf{operatore prisma}\index{Operatore prisma} definendo
     la sua azione sui simplessi singolari e poi estendendo per linearità:
     \begin{align*}
       D \colon S_q(X) & \to S_{q+1}(X) \\
-      c & \mapsto I \times c
+      \sigma & \mapsto I \times \sigma
     \end{align*}
   \end{definition}
-  \begin{exercise}
-    Verificare che l'operatore prisma è un omomorfismo.
-  \end{exercise}
-  Questo operatore sostanzialmente prende un simplesso e restituisce il prisma
-  in figura.
-  Per quanto detto sopra vale che:
+  L'operatore prisma è un omomorfismo in quanto è definito per linearità. La sua
+  azione è quella di prendere un simplesso e restituire il prisma in figura.
+  % Per  quanto detto sopra vale che:
+  Quindi:
   \[
-    \partial \circ D (c) + D \circ \partial (c) = \partial (I \times c) + I \times \partial c = \epsilon_1 \times c - \epsilon_0 \times c - \cancel{I \times \partial c}
-    + \cancel{I \times \partial c}
+    \partial \circ D (\sigma) + D \circ \partial (\sigma) = \partial (I \times \sigma) + I \times \partial \sigma = (\epsilon_1 \times \sigma - \epsilon_0 \times \sigma - \cancel{I \times \partial \sigma})
+    + \cancel{I \times \partial \sigma}
   \]
   Cioè:
   \[
-    \partial \circ D (c) + D \circ \partial (c) = \epsilon_1 \times x - \epsilon_0 \times c
+    \partial \circ D (\sigma) + D \circ \partial (\sigma) = \epsilon_1 \times c\sigma- \epsilon_0 \times \sigma
   \]
   Nella figura questo sono la faccia superiore e inferiore del prisma.
   Si definiscono le sezioni del prisma, con $ t \in I $:
@@ -2253,14 +2270,14 @@ $ F(0,x) = f_0(x) $, $ F(1,x) = f_1(x) $ e $ \forall t \in I $ $ F(t,a) \in B $.
     \eta_t  \colon X & \to I \times X \\
     x & \mapsto (t,x)
   \end{align*}
-  Le sezioni a $ t = 0 $ e a $ t = 1 $ (e anche le altre, ma non interessano)
-  inducono una mappa sulle catene:
+  Le sezioni a $ t = 0 $ e a $ t = 1 $ (punti indicati successivamente con
+  l'indice $ i \in \set{0,1} $) inducono una mappa sulle catene:
   \begin{align*}
-    (\eta_i)_\sharp \colon S_k(X) & S_k(I \times X) \\
-    c & \mapsto \eta_i \circ c
+    (\eta_i)_\sharp \colon S_k(X) & \to S_k(I \times X) \\
+    \sigma & \mapsto \eta_i \circ \sigma
   \end{align*}
-  Ma $ (\eta_i \circ c)(x) = (i, c(x)) = \epsilon_i(c) $, quindi
-  $ \partial \circ D (c) + D \circ \partial (c) = (\eta_1)_\sharp - (\eta_0)_\sharp $. Considero la relazione di
+  Ma $ (\eta_i \circ \sigma)(x) = (i, \sigma(x)) = \epsilon_i \times \sigma $, quindi
+  $ \partial \circ D (\sigma) + D \circ \partial (\sigma) = (\eta_1)_\sharp - (\eta_0)_\sharp $. Considero la relazione di
   omotopia $ F \colon I \times X \to Y $, per definizione vale che
   $ F(i,x) = f_i(x) $, e quindi $ (F \circ \eta_i)(x) = f_i(x) $, cioè $ F \circ \eta_i = f_i $.
   Essendo una funzione continua $ F $ induce una mappa sulle catene di simplessi:
@@ -2268,7 +2285,7 @@ $ F(0,x) = f_0(x) $, $ F(1,x) = f_1(x) $ e $ \forall t \in I $ $ F(t,a) \in B $.
 
   Considero $ D \colon S_q(X,A) \to S_{q+1}(I \times X, I \times A) $, posso definire
   $ G = F_\sharp \circ D $, questo è un omomorfismo tra $ S_k(X,A) $ e
-  $ S_k(Y,B) $ in quanto composizione di omomorfismi.
+  $ S_{k+1}(Y,B) $ in quanto composizione di omomorfismi.
   Sia $ c \in S_q(X,A) $ allora:
   \begin{gather*}
     \partial \circ G (c) = \partial (F_\sharp \circ D)(c) \\
@@ -2284,17 +2301,19 @@ $ F(0,x) = f_0(x) $, $ F(1,x) = f_1(x) $ e $ \forall t \in I $ $ F(t,a) \in B $.
   Passando a livello di omologia considero $ k $ un $ q $-ciclo in $ (X,A) $, quindi
   tale che $ \partial k = 0 $. Allora:
   \[
-    (f_1)_\star(k) = [(f_1)_\sharp(k)]
+    (f_1)_\star(\llbracket k \rrbracket) = \llbracket(f_1)_\sharp(k)\rrbracket
   \]
   Ma:
   \[
     (f_1)_\sharp(k) = (f_0)_\sharp (k) + \partial \circ G (k) + \cancel{G \circ \partial (k)}
   \]
-  Quindi in $ (Y,B) $ $ [(f_1)_\sharp(k)] = [(f_0)_\sharp(k)] $ in quanto differiscono per un bordo.
-  Quindi $ (f_1)_\star(k) = (f_2)_\star(k) $, ma siccome questo è vero per ogni $ k $ allora
-  deve essere $ (f_1)_\star = (f_2)_\star $.
+  Quindi in $ (Y,B) $ vale che
+  $ \llbracket(f_1)_\sharp(k)\rrbracket = \llbracket(f_0)_\sharp(k)\rrbracket $ in quanto differiscono per il bordo
+  $ \partial(G(k)) $. Quindi
+  $ (f_1)_\star(\llbracket k \rrbracket) = (f_2)_\star(\llbracket k \rrbracket) $, ma siccome questo è vero per ogni
+  $ k $ allora le mappe devono coincidere, cioè $ (f_1)_\star = (f_2)_\star $.
 \end{proof}
-
+\eproof
 La mappa $ G $ è un esempio di omotopia di catena:
 \begin{definition}
   Siano $ (A_\bullet, \partial^A) $ e $ (B_\bullet, \partial^B) $ complessi, e siano $ \phi, \psi \colon A_\bullet \to B_\bullet $
@@ -2303,11 +2322,34 @@ La mappa $ G $ è un esempio di omotopia di catena:
   tale che $ \partial \circ D + D \circ \partial = \phi - \psi $. Si ha quindi il diagramma:
   \[
     \begin{tikzcd}
-      \dots \rar & A_{i+1} \rar{\partial^A} & A_i \rar{\partial^A} & A_{i-1} \rar & \dots \\
+      \dots \rar & A_{i+1} \rar{\partial^A} & A_i \rar{\partial^A} \arrow{dl}{D} \dar{\phi,\psi} & A_{i-1} \rar \arrow{dl}{D}  & \dots \\
       \dots \rar & B_{i+1} \rar{\partial^B} & B_i \rar{\partial^B} & B_{i-1} \rar & \dots
     \end{tikzcd}
   \]
-
+  Schematicamente:
+  \begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[scale = 0.50]
+      \draw
+      (0,0) -- (-2,-2)
+      (-2,-2) -- (0,-2);
+      \draw[-Latex] (0,0) -- (-1,-1);
+      \draw[-Latex] (-2,-2) -- (-1,-2);
+      \node () at (1,-1) {+};
+      \draw
+      (3,0) -- (5,0)
+      (5,0) -- (3,-2);
+      \draw[-Latex] (3,0) -- (4,0);
+      \draw[-Latex] (5,0) -- (4,-1);
+      \node () at (6,-1) {=};
+      \draw
+      (7,0) -- (7,-2)
+      (9,0) -- (9,-2);
+      \draw[-Latex] (7,0) -- (7,-1);
+      \draw[-Latex] (9,0) -- (9,-1);
+      \node () at (8,-1) {-};
+    \end{tikzpicture}
+  \end{figure}
 \end{definition}
 
 \subsection{Omologia ridotta per una qualsiasi teoria omologica}
@@ -2509,7 +2551,7 @@ Un secondo importantissimo corollario è l'omologia delle sfere.
   \begin{gather*}
     \Sph{n} = \set{\vec{x} \in \RN{n+1} | ||\vec{x}||^2 = 1} \\
     \Disk{n} = \set{\vec{x} \in \RN{n} | ||\vec{x}||^2 \leq 1} \\
-    \Disk{n}_+ = \set{\vec{x} \in \RN{n+1} | ||\vec{x}||^2 \leq 1, x_n \geq 0}
+    \Disk{n}_+ = \set{\vec{x} \in \RN{n} | ||\vec{x}||^2 \leq 1, x_n \geq 0}
   \end{gather*}
   Allora in una qualsiasi teoria omologica avente $ \mathcal{G} $ come
   gruppo dei coefficienti:
@@ -2532,10 +2574,9 @@ Un secondo importantissimo corollario è l'omologia delle sfere.
   \end{align*}
   Quindi $ \tilde{H}_k(\Sph{n}) \cong H_k(\Disk{n}, \Sph{n-1}) \cong H_k(\Sph{n}, \Disk{n}_+) $.
 \end{theorem}
-
 \begin{proof}
   Comincio calcolando $ H_k(\Sph{0}, \Disk{0}_+) $.
-  Ho $ \Sph{0} = \set{-1, +1} $ e $ \Disk{0} = \set{+ 1} $.
+  Ho $ \Sph{0} = \set{-1, +1} $ e $ \Disk{0} = \Disk{0}_+ = \set{+ 1} $.
   Siccome $ \Disk{0} \subseteq \Sph{0} $ per l'assioma dell'esattezza esiste
   una successione esatta in omologia:
   \[
@@ -2547,15 +2588,16 @@ Un secondo importantissimo corollario è l'omologia delle sfere.
   la successione diventa:
   \[
     \begin{tikzcd}
-      0 \rar & H_k(\Sph{0}) \rar{i} & H_k(\Sph{0}, \Disk{0}) \rar{j} & 0
+      0 \rar & H_k(\Sph{0}) \rar{i} & H_k(\Sph{0}, \Disk{0}) \rar{} & 0
     \end{tikzcd}
   \]
-  Ma per l'assione di additività, siccome $ \Sph{0} $ è la somma di due punti
-  $ H_k(\Sph{0}) \cong 0 $, siccome $ i $ è iniettiva perché la successione è esatta
-  ed è suriettiva perché essendo la successione esatta $ \im{i} = \ker{j} =  H_k(\Sph{0}, \Disk{0}) $
-  allora è isomorfismo quindi anche $ H_k(\Sph{0}, \Disk{0}) \cong 0 $.
-  Per calcolare i casi $ k = 1 $ e $ k = 0 $
-  considero la successione esatta:
+  Ma per l'assioma di additività, siccome $ \Sph{0} $ è la somma di due punti
+  $ H_k(\Sph{0}) \cong 0 $, essendo la successione esatta
+  % siccome $ i $ è iniettiva perché la successione è esatta
+  % ed è suriettiva perché essendo la successione esatta $ \im{i} = \ker{j} =  H_k(\Sph{0}, \Disk{0}) $
+  $ i $ è isomorfismo quindi anche $ H_k(\Sph{0}, \Disk{0}) \cong 0 $.
+  Per calcolare
+  i casi $ k = 1 $ e $ k = 0 $ considero la successione esatta:
   \[
     \begin{tikzcd}[nodes={column sep=10pt, inner sep=4pt}]
       \dots \rar & H_1(\Disk{0}) \rar & H_1(\Sph{0}) \rar & H_1(\Sph{0}, \Disk{0}) \rar
@@ -2581,7 +2623,7 @@ Un secondo importantissimo corollario è l'omologia delle sfere.
   Da cui $ H_1(\Sph{0},\Disk{0}) = 0 $ per lo stesso ragionamento di prima.
   Infine per definizione $ H_0(\Disk{0}) = \mathcal{G} $ e
   per l'additività $ H_0(\Sph{0}) = \mathcal{G} \oplus \mathcal{G} $ quindi
-  $ H_0(\Sph{0}, \Disk{0}) \cong \quot{\mathcal{G} \oplus \mathcal{G}}{\mathcal{G}} \cong \mathcal{G} $.
+  $ H_0(\Sph{0}, \Disk{0}) \cong {\mathcal{G} \oplus \mathcal{G}} \slash {\mathcal{G}} \cong \mathcal{G} $.
   In conclusione:
   \[
     H_k(\Sph{0}, \Disk{0}) \cong
@@ -2686,6 +2728,30 @@ Un secondo importantissimo corollario è l'omologia delle sfere.
   \]
   Per l'equivalenza omotopica $  H_p(\Sph{n} \setminus U, \Disk{n} \setminus U ) \cong H_p(\Disk{n}, \Sph{n-1}) $, in pratica
   deformo il buco facendolo retrarre.
+
+
+  Ho mostrato che:
+  \[
+    \tilde{H}_k(\Sph{n}) \cong H_{k+1}(\Sph{n+1}, \Disk{n+1}) \cong \tilde{H}_{k+1}(\Sph{n+1})
+  \]
+  Quindi parto da quello che ho calcolato, cioè $ H_k(\Sph{0}, \Disk{0}) $ e salgo:
+  $ H_k(\Sph{0}, \Disk{0}) \cong H_{k+n}(\Sph{n}, \Disk{n}) $, quindi:
+  \[
+    H_{k+n}(\Sph{n}, \Disk{n}) \cong
+    \begin{cases}
+      \mathcal{G} & \text{se } k = 0 \\
+      0 & \text{se } k \not = 0
+    \end{cases}
+  \]
+  Cioè:
+  \[
+    H_{p}(\Sph{n}, \Disk{n}) \cong
+    \begin{cases}
+      \mathcal{G} & \text{se } k = n \\
+      0 & \text{se } k \not = n
+    \end{cases}
+  \]
+
 \end{proof}
 
 % lezione 7
@@ -2714,13 +2780,11 @@ spazi diversi.
 \end{corollary}
 \begin{proof}
   Se $ n = m $ vale che $ \Sph{n} = \Sph{m} $ quindi in particolare
-  $ \Sph{n} \simeq \Sph{m} $ con la mappa identità. Assumo $ n \not = m $
-  e senza perdita di generalità pongo $ n > m $.
-
-  Per assurdo $ \Sph{n} \simeq \Sph{m} $, quindi esiste un omomorfismo
-  $ F: \Sph{n} \homoto \Sph{m} $, quindi esiste anche l'omomorfismo
-  inverso $ G: \Sph{m} \homoto \Sph{n} $.
-  Quindi esistono anche:
+  $ \Sph{n} \simeq \Sph{m} $ con la mappa identità. Assumo $ n \not = m $ e senza
+  perdita di generalità pongo $ n > m $. Per assurdo $ \Sph{n} \simeq \Sph{m} $,
+  quindi esiste un omeomorfismo $ F: \Sph{n} \homoto \Sph{m} $, quindi esiste
+  anche l'omeomorfismo inverso $ G: \Sph{m} \homoto \Sph{n} $. Quindi esistono
+  anche:
   \[
     F_\star: H_k(\Sph{n}) \to H_k(\Sph{m}) \quad \text{e} \quad G_\star: H_k(\Sph{m}) \to H_k(\Sph{n})
   \]
@@ -2743,10 +2807,11 @@ spazi diversi.
 \end{proof}
 
 \begin{corollary}[Invarianza topologica della dimensione]
-  $ \RN{n} \simeq \RN{m} $ se e solo se $ n = m $.
+  Vale che $ \RN{n} \simeq \RN{m} $ se e solo se $ n = m $.
 \end{corollary}
-Come si è visto non si riesce a dimostrare questo corollario
-utilizzano solo il gruppo fondamentale.
+% Come si è visto non si riesce a dimostrare questo corollario
+% utilizzano solo il gruppo fondamentale.
+% \\ \noindent
 \begin{proof}
   Per assurdo esiste un omomorfismo $ f \colon \RN{n} \homoto \RN{m} $ con $ n > m > 2 $.
   Con i vincolo imposti su $ m $ e $ n $ gli spazi sono contraibili, quindi il gruppo
@@ -2756,12 +2821,10 @@ utilizzano solo il gruppo fondamentale.
   Si sa inoltre che per $ s \geq 2 $ vale che $ \RN{s} \setminus \set{q} \simeq \Sph{s-1} \times \RN{} $,
   infatti è sufficiente mandare a $ 0 $ il punto $ q $ con una traslazione
   (che è certamente un omomorfismo) e quindi si ha:
-  \[
-    \begin{aligned}[t]
-      \RN{k} \setminus \set{q} & \to  \Sph{k-1} \times {\RN{}}^+ & \simeq \Sph{k-1} \times \RN{} \\
-      \vec{x} & \mapsto \left( \vec{x}, \frac{\vec{x}}{|| \vec{x} ||} \right) &
-    \end{aligned}
-  \]
+  \begin{align*}
+    \RN{k} \setminus \set{q}  \to  \Sph{k-1} \times {\RN{}}^+  \simeq \Sph{k-1} \times \RN{} \\
+    \vec{x} \mapsto \left(\frac{\vec{x}}{|| \vec{x} ||}, || \vec{x} || \right)
+  \end{align*}
   Quindi:
   \[
     \RN{n} \setminus \set{p} \simeq \RN{m} \setminus \set{f(p)} \iff \Sph{n-1} \times \RN{} \simeq \Sph{m-1} \times \RN{}
@@ -2777,9 +2840,27 @@ utilizzano solo il gruppo fondamentale.
   \]
   Che è assurdo.
 \end{proof}
-
+\eproof
+Un corollario del precedente risultato richiede la definizione di retratto di deformazione:
+\begin{definition}
+  Uno spazio topologico $ Y $ si dice \textbf{retratto di deformazione}\index{Retratto di deformazione} di un altro
+  spazio topologico $ X $ tale che $ Y \incl X $ se esiste una funzione continua $ r\colon X \to Y $ che inverte a meno di omotopia
+  la mappa di inclusione $ i\colon Y \to X $, cioè tale che soddisfa:
+  \begin{enumerate}
+  \item $ r\colon X \to Y $ continua
+  \item $ i \circ r \sim \Id{X} $
+  \item $ r \circ i = \Id{Y} $
+  \end{enumerate}
+  Una mappa che soddisfa queste condizioni è detta \textbf{retrazione}\index{Retrazione}.
+\end{definition}
+\begin{osservation}
+  Se $ Y $ è un retratto di deformazione di $ X $ allora $ X $ e $ Y $ sono
+  omotopicamente equivalenti e la mappa di equivalenza omotopica è proprio
+  l'inclusione.
+\end{osservation}
 \begin{corollary}
-  $ \Sph{n-1} $ non è un retratto di deformazione di $ \Disk{n} $ per $ n \geq 2 $
+  $ \Sph{n-1} $ non è un retratto di deformazione di $ \Disk{n} $ per $ n \geq 2 $,
+  cioè il disco non è retraibile sul suo bordo.
 \end{corollary}
 \begin{proof}
   Si ricorda che:
@@ -2787,17 +2868,6 @@ utilizzano solo il gruppo fondamentale.
     \Disk{n} = \set{ \vec{x} \in \RN{n} | || \vec{x} || \leq 1} \quad \Sph{n-1} = \partial \Disk{n} = \set{ \vec{x} \in \RN{n} | || \vec{x} || = 1}
   \]
   Chiaramente esiste $ i \colon \Sph{n-1} \incl \Disk{n} $.
-  \begin{definition}
-    Uno spazio topologico $ Y $ si dice \textbf{retratto di deformazione}\index{Retratto di deformazione} di un altro
-    spazio topologico $ X $ tale che $ Y \incl X $ se esiste una funzione continua $ r\colon X \to Y $ che inverte a meno di omotopia
-    la mappa di inclusione $ i\colon Y \to X $, cioè tale che soddisfa:
-    \begin{enumerate}
-    \item $ r\colon X \to Y $ continua
-    \item $ i \circ r \sim \Id{X} $
-    \item $ r \circ i = \Id{Y} $
-    \end{enumerate}
-    Una mappa che soddisfa queste condizioni è detta \textbf{retrazione}\index{Retrazione}.
-  \end{definition}
   Suppongo per assurdo che $ \Sph{n-1} $ è un retratto di deformazione di $ \Disk{n} $, cioè che
   esiste una retrazione $ r $. Passando all'omologia:
   \begin{gather*}
@@ -2805,14 +2875,14 @@ utilizzano solo il gruppo fondamentale.
     r_\star \colon H_k(\Disk{n}) \to H_k(\Sph{n-1}) \\
     \left( i \circ r \right)_\star = (\Id{\Disk{n}})_\star \text{ e }  \left( r \circ i \right)_\star = (\Id{\Sph{n-1}})_\star
   \end{gather*}
-  Quindi:
+  Quindi per la funtorialità:
   \[
     i_\star \circ r_\star = \Id{H_k(\Disk{n})} \text{ e } r_\star \circ i_\star = \Id{H_k(\Sph{n-1})} \; \forall k \in \mathbb{N}
   \]
   In particolare considero $ k = n - 1 $:
   \begin{gather*}
-    i_\star \colon H_n-1(\Sph{n-1}) \to H_n-1(\Disk{n}) \\
-    r_\star \colon H_n-1(\Disk{n}) \to H_n-1(\Sph{n-1})
+    i_\star \colon H_{n-1}(\Sph{n-1}) \to H_{n-1}(\Disk{n}) \\
+    r_\star \colon H_{n-1}(\Disk{n}) \to H_{n-1}(\Sph{n-1})
   \end{gather*}
   Cioè: $ i_\star \colon \Z \to 0 $. Considero un generatore $ \alpha $ di $ H_{n-1}(\Sph{n-1}) \cong \Z $, cioè tale
   che $ \langle\alpha\rangle = H_{n-1}(\Sph{n-1}) $ allora $ i_\star(\alpha) = 0 $ quindi $ r_\star \circ i_\star = 0 $, ma
@@ -2820,17 +2890,16 @@ utilizzano solo il gruppo fondamentale.
   cioè che $ \alpha = 0 $, che è assurdo perché $ \Z \not = \langle0\rangle $.
 \end{proof}
 
-\begin{theorem}[Teorema del punto fisso di Brouwer\index{Teorema del punto fisso}]
+\begin{theorem}[Punto fisso di Brouwer\index{Teorema del punto fisso}]
   Ogni funzione continua $ g \colon \Disk{n} \to \Disk{n} $ con $ n \geq 2 $ ammette almeno un punto fisso
   in $ \Disk{n} $, cioè:
   \[
-    \exists \vec{x_o} \in \Disk{n} \; | \; g(\vec{x_0}) = \vec{x_0}
+    \exists \vec{x_0} \in \Disk{n} \; | \; g(\vec{x_0}) = \vec{x_0}
   \]
 \end{theorem}
-
 \begin{proof}
-  Per assurdo $ g $ non ammette punto fisso cioè esisto $ \vec{x} \in \Disk{n} $
-  tale che $ g(\vec{x}) \not = \vec{x} $. Sicuramente tuttavia $ g(\vec{x}) \in \Disk{n} $.
+  Per assurdo $ g $ non ammette punto fisso ogni punto $ \vec{x} \in \Disk{n} $ è
+  tale che $ g(\vec{x}) \not = \vec{x} $ con  $ g(\vec{x}) \in \Disk{n} $.
   Considero la retta $ l $ passante per $ \vec{x} $ e $ g(\vec{x}) $. Questa retta
   interseca il bordo di $ \Disk{n} $ in due punti $ \set{p_1, p_2} $:
   \[
@@ -2881,8 +2950,8 @@ utilizzano solo il gruppo fondamentale.
   \begin{itemize}
   \item $ G $ è continua
   \item $ G(t, \vec{x}) \in \Disk{n} $
-  \item $ G(0, \vec{X}) = \vec{x} $
-  \item $ G(1, \vec{X}) = r(\vec{x}) $
+  \item $ G(0, \vec{x}) = \vec{x} $
+  \item $ G(1, \vec{x}) = r(\vec{x}) $
   \end{itemize}
   Quindi $ r $ è retrazione ma questo è assurdo.
 \end{proof}

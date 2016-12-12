@@ -26,6 +26,7 @@
     "fig:lez3:sketch_of_proof"
     "fig:lez3:klein_bottle"
     "fig:lez14:excision_proof"
+    "fig:lez14:prism"
     "fig:lez7:brouwer_proof_1")
    (LaTeX-add-index-entries
     "Simplesso standard"

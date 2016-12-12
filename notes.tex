@@ -26,7 +26,7 @@
 \usepackage[makeroom]{cancel}
 
 \usetikzlibrary{intersections}
-
+\usetikzlibrary{patterns}
 
 \input{titlepage}
 
@@ -55,8 +55,8 @@
 \newcommand{\ext}[1]{\mathrm{Ext^1}( #1)}
 \newcommand{\tor}[1]{\mathrm{Tor_1}( #1)}
 \newcommand{\RN}[1][]{\mathbb{R}^#1}
-\newcommand{\Pjr}[1]{\mathrm{P}^#1 (\mathbb{R})}
-\newcommand{\Pjc}[1]{\mathrm{P}^#1 (\mathbb{C})}
+\newcommand{\Pjr}[1]{\mathbb{P}^#1 (\mathbb{R})}
+\newcommand{\Pjc}[1]{\mathbb{P}^#1 (\mathbb{C})}
 \newcommand{\Id}[1][]{\mathbb{I}_#1}
 \newcommand{\Sph}[1][]{\mathcal{S}^#1}
 \newcommand{\Disk}[1][]{\mathcal{D}^#1}
@@ -100,8 +100,8 @@
 
 \graphicspath{{./images/}}
 
-% \includeonly{intro,singular,cellular,cohom}
-\includeonly{cohom}
+\includeonly{intro,singular,cellular,cohom}
+% \includeonly{cellular}
 
 \begin{document}
 
