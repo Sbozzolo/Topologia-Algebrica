@@ -38,7 +38,7 @@ identifico il bordo del disco con il punto.
     il loro interno è detto cella aperta) per ciascuno si definice una mappa
     continua di attaccamento $ \phi_\alpha \colon \partial\Disk{k}_\alpha \to X^{(k-1)} $, quindi si definisce:
     \[
-      X^{(k)} = X^{(k-1)} \cup_\phi \bigcup_\alpha \Disk{k}_\alpha = \bigcup_\alpha \quot{ X^{(k-1)} \sqcup \Disk{k}_\alpha}{x \sim \phi_\alpha(x)} \quad \forall \alpha \text{ e }
+      X^{(k)} = X^{(k-1)} \cup_\phi \bigcup_\alpha \Disk{k}_\alpha =\quot{ X^{(k-1)} \sqcup_\alpha \Disk{k}_\alpha}{x \sim \phi_\alpha(x)} \quad \forall \alpha \text{ e }
       \forall x \in \partial \Disk{k}_\alpha
     \]
     [CONTROLLARE LA MAPPA DI ATTACCAMENTO]
@@ -213,12 +213,20 @@ può essere vista come CW complesso formato da un punto e una sola cella.
 
 \begin{lemma}
   Si dimostra che $ \Pjr{n} \cong {\Sph{n}} \slash {H} $ con $ H = \set{\Id{\Sph{n}}, a_{\Sph{n}}} $, dove
-  $ a $ è la mappa antipodale.
+  $ a $ è la mappa antipodale, cioè $ x \sim y \iff x = y \vee x = - y $.
 \end{lemma}
-
-Si trova che:
+\begin{proof}[Sketch]
+  La mappa che realizza questo omeomorfismo è:
+  \begin{align*}
+    f \colon \Pjr{n} & \to \quot{\Sph{n}}{\sim}\\
+    [\vec{x}]_{\Pjr{n}} & \mapsto \left[\frac{\vec{x}}{||\vec{x}||}\right]_\sim
+  \end{align*}
+  La dimostrazione che questa è un omeomorfismo è piuttosto laboriosa.
+\end{proof}
+\eproof
+Si trova quindi che:
 \begin{itemize}
-\item $ \Pjr{1} = \Sph{1} = \RN{} \cup {\infty} $
+\item $ \Pjr{1} \simeq \Sph{1} \slash \sim \Sph{1} \simeq \RN{} \cup {\infty} $
 \item $ \Pjr{2} = \mathbb{P}^1(\RN{}) \cup_\phi \Disk{2} $
   Ho $ \quot{\Sph{2}}{H} $, l'emisfero sud della sfera si identifica con quello
   nord per l'applicazione di antipodalità.
@@ -249,7 +257,7 @@ Si trova che:
   \]
   Cioè scelgo $ \phi $ come la proiezione sul quoziente da $ \Sph{k} $ a $ \mathbb{P}^k(\RN{}) = \quot{\Sph{k+1}}{H} $,
   questo è uno spazio compatto.
-  $ \mathbb{P}^k(\RN{}) $ è uno spazio di Hausdorf, voglio mostrare che $ X^{(k+1)} \cong \mathbb{P}^{k+1}(\RN{}) $.
+  $ \mathbb{P}^k(\RN{}) $ è uno spazio di Hausdorff, voglio mostrare che $ X^{(k+1)} \cong \mathbb{P}^{k+1}(\RN{}) $.
   Cerco un'applicazione continua biunivoca e chiusa $ \Phi \colon X^{(k+1)} \to  \mathbb{P}^{k+1}(\RN{}) $,
   cioè un omeomorfismo. Ho il digramma:
   \[
@@ -319,7 +327,7 @@ Dove $ \C^\star = \C \setminus \set{0} $. Cioè lo spazio proiettivo complesso
 \[
   (z_0, \dots, z_n) \sim (w_0, \dots, w_n) \iff \exists \lambda_i \in \C^\star \text{ tali che } z_i = \lambda w_i \; \forall i \in \set{0, \dots, n}
 \]
-Questo è uno spazio compatto, connesso, di Hausdorf, ed
+Questo è uno spazio compatto, connesso, di Hausdorff, ed
 è una varietà topologia di dimensione reale $ 2n $.
 Se $ p \in \Pjc{n} $ allora $ p = [z_0, \dots, z_n] $ e sicuramente
 esiste $ j \in \set{0, \dots, n} $ tale che $ z_j \not = 0 $, quindi
@@ -345,7 +353,7 @@ Esempi:
   Ma la proeizione stereografica manda la sfera senza polo Nord in $ \RN{2} $,
   cioè $ \Sph{2} \setminus \set{N} \to \RN{2} $, quindi $ \Pjc{1} \setminus \set{\infty} \simeq \RN{2} $
   e quindi $ \Pjc{1} \setminus \set{\infty} \simeq \Sph{2} \setminus \set{N} $. Questi sono spazi non compatti
-  ma di Hausdorf, so che la compattificazione di Alexander sono spazi omeomorfi, ma
+  ma di Hausdorff, so che la compattificazione di Alexander sono spazi omeomorfi, ma
   quindi: $ \Pjc{1} \simeq \Sph{2} $.
 \end{example}
 
@@ -414,7 +422,7 @@ Quindi ho una $ 0 $-cella, una $ 1 $-cella, \dots, una $ 2n $-cella.
   \]
   Dove $ \tau = h \big \lvert_{\partial \Disk{2n}} $, con $ P((z_0, \dots, z_{n-1})) = ([z_0, \dots, z_{n-1}]) $.
   $ F $ manda $ \Pjc{n-1} $ in $ \Pjc{n} $ banalmente e raccorda bene i dischi.
-  $ F $ è iniettiva e suriettiva da uno spazio compatto a uno spazio di Hausdorf,
+  $ F $ è iniettiva e suriettiva da uno spazio compatto a uno spazio di Hausdorff,
   quindi è un omeomorfismo.
 \end{proof}
 
@@ -538,7 +546,7 @@ Ho calcolato l'omologia di una sfera generica:
   \end{cases}
 \]
 In particolare ho $ H_0(\Sph{n}) \cong \Z $ ed è generato dalla classe di
-omologia di un punto qualsiasi, mentre $ H_n(\Sph{n}) \cong \Z $ è generatodalla
+omologia di un punto qualsiasi, mentre $ H_n(\Sph{n}) \cong \Z $ è generato dalla
 classe di omologia di un $ n $-simplesso singolare $ \tau_n \colon \Delta_n \to \Sph{n} $.
 
 Per $ n = 2 $ ho $ \Sph{2} $ è una $ 2 $-varietà topologica compatta e connessa
@@ -1822,9 +1830,9 @@ $ \RN{2} $ allora $ C $ divide $ \RN{2} $ in due componenti connesse.
   Se $ K = \Sph{2} \setminus C $ allora:
   \begin{gather*}
     (K \setminus D') \cup D = K \\
-    (K \setminus D') \cap D' \sim \Sph{1} \; (\text{infatti è una corona circolare})
+    (K \setminus D') \cap D' \sim_H \Sph{1} \; (\text{infatti è una corona circolare})
   \end{gather*}
-  Inoltre $ D \sim \set{q} $ quindi $ K \setminus D' \sim K \setminus \set{q} $.
+  Inoltre $ D \sim_H \set{q} $ quindi $ K \setminus D' \sim K \setminus \set{q} $.
   [FIGURA]
   % So che
   % \[
@@ -1901,6 +1909,10 @@ $ \RN{2} $ allora $ C $ divide $ \RN{2} $ in due componenti connesse.
   \[
     H_i(M, M \setminus \set{x}) \cong H_i(\Disk{m}(x), \Disk{m}(x) \setminus \set{x}) \cong H_i(\Disk{m}, \Disk{m} \setminus \set{\vec{0}})
   \]
+  In particolare passando all'omologia ridotta:
+  \[
+    \tilde{H}_i(M, M \setminus \set{x}) \cong  \tilde{H}_i(\Disk{m}, \Disk{m} \setminus \set{\vec{0}})
+  \]
   \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
@@ -1917,22 +1929,36 @@ $ \RN{2} $ allora $ C $ divide $ \RN{2} $ in due componenti connesse.
     \caption{Situazione}
     \label{fig:lez13:dimension_topological_invariance}
   \end{figure}
+
   L'immersione di $ \Disk{m} \setminus \set{\vec{0}} $ in $ \Disk{m} $ induce una
-  successione esatta lunga in omologia relativa ridotta, da cui si trova
-  facilmente che:
+  successione esatta lunga in omologia relativa ridotta:
   \[
-    H_i(\Disk{m}, \Disk{m} \setminus \set{\vec{0}}) \cong \tilde{H}_{i-1}(\Disk{m} \setminus \set{\vec{0}})
+    \begin{tikzcd}[nodes = {column sep = 4pt, inner sep = 1 pt}]
+      \dots \rar & \tilde{H}_k(\Disk{m} \setminus \set{\vec{0}}) \rar & \tilde{H}_k(\Disk{m}) \rar & \tilde{H}_k(\Disk{m}, \Disk{m} \setminus \set{0}) \rar &
+      \tilde{H}_{k-1}(\Disk{m} \setminus \set{0}) \rar & \tilde{H}_{k-1}(\Disk{m}) \rar & \dots
+    \end{tikzcd}
   \]
-  Ma $ \Disk{m} \setminus \set{\vec{0}} \sim_h \Sph{m-1} $ quindi
+  Cioè essendo l'omologia ridotta dei dischi sempre nulla:
+  \[
+    \begin{tikzcd}[nodes = {column sep = 10pt}]
+      0 \rar & \tilde{H}_k(\Disk{m}) \rar & \tilde{H}_k(\Disk{m}, \Disk{m} \setminus \set{0}) \rar &
+      0
+    \end{tikzcd}
+  \]
+  Per cui:
+  \[
+     \tilde{H}_i(\Disk{m}, \Disk{m} \setminus \set{\vec{0}}) \cong \tilde{H}_{i-1}(\Disk{m} \setminus \set{\vec{0}})
+  \]
+  Ma $ \Disk{m} \setminus \set{\vec{0}} \sim_H \Sph{m-1} $ quindi
   $ \tilde{H}_i(\Disk{m} \setminus \set{\vec{0}}) \cong \tilde{H}_i(\Sph{m-1}) $
   e perciò:
   \[
-    H_i(M, M \setminus \set{x}) \cong \tilde{H}_i(\Sph{m-1})
+    \tilde{H}_i(M, M \setminus \set{x}) \cong \tilde{H}_i(\Sph{m-1})
   \]
   A questo punto diventa semplice collegare due varietà differenti: se $ M \simeq N $
   allora:
   \[
-    H_i(M, M \setminus \set{x}) \cong H_i(N, N \setminus \set{y})
+    \tilde{H}_i(M, M \setminus \set{x}) \cong \tilde{H}_i(N, N \setminus \set{y})
   \]
   Cioè:
   \[

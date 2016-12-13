@@ -1,12 +1,12 @@
 (TeX-add-style-hook
  "cohom"
  (lambda ()
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "nolinkurl")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperbaseurl")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperimage")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperref")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperimage")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperbaseurl")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "nolinkurl")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
    (add-to-list 'LaTeX-verbatim-macros-with-delims-local "path")
    (LaTeX-add-labels
     "fig:lez18:intersection")
@@ -24,6 +24,12 @@
     "Dominio di integrità"
     "Ideale"
     "Dominio a ideali principali"
-    "Ideale principale"))
+    "Ideale principale"
+    "Varietà differenziabile"
+    "Carta di varietà differenziabile"
+    "Forma differenziali"
+    "Prodotto wedge"
+    "Derivata esterna"
+    "Complesso di de Rham"))
  :latex)
 

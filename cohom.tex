@@ -1577,6 +1577,108 @@ Quindi $ H^\star(X, \R) $ è un anello unitario, ma in generale non commutativo.
 
 \end{proof}
 
+\section{Coomologia di de Rham}
+
+\begin{definition}
+  Uno spazio topologico $ \M $ è una \textbf{varietà differenziabile}\index{Varietà differenziabile}
+  di dimensione $ n $ se ogni punto $ p \in \M $ ammette un intorno aperto $ A $ omeomorfo a $ \RN{n} $
+  con omeomorfismo realizzato da una \textbf{carta}\index{Carta di varietà differenziabile}
+  $ \phi \colon A \to \RN{n} $ con $ \phi \in \mathcal{C}^\infty $, e tale che i cambiamenti di carte siano buoni, cioè
+  date due carte $ \phi \colon A_1 \to \RN{n} $, $ \phi_2 \colon A_2 \to \RN{n} $ con $ A_1 \cap A_2 \not = 0 $ allora:
+  \[
+    \phi_2 \circ \phi_1^{-1} \colon \phi_1(A_1 \cap A_2) \to \phi_2(A_1 \cap A_2) \in \mathcal{C}^\infty(\phi_1(A_1 \cap A_2) \subseteq \RN{n})
+  \]
+\end{definition}
+In ciò che segue considero $ \M $ varietà differenziabile connessa (in caso non sia connessa mi restringo
+alle componenti connesse) e con base numerabile (questo è una richiesta puramente tecnica).
+\newmathsymb{formdiff}{\Omega^k(\M)}{Spazio delle $ k $-forme differenziali su $ \M $}
+\begin{definition}
+  Su $ \M $ si definisce una \textbf{$ k $-forma differenziale}\index{Forma differenziali} come
+  una applicazione multilineare antisimmetrica $ \omega $ tale che
+  \[
+    \omega(x) \colon \underbrace{\mathcal{T}_x\M \times \dots \times \mathcal{T}_x\M}_{k} \to \RN{}
+  \]
+  Dove $ \mathcal{T}_x\M $ è lo \textbf{spazio tangente} a $ \M $ in $ x $.
+  In generale una $ k $-forma si scrive, usando la convenzione di Einstein, come:
+  \[
+    \omega = a_{i_1\dots i_k}(x) \d x^{i_1} \dots \d x^{i_k}
+  \]
+  Lo spazio delle $ k $-forme su $ \M $ si denota con $ \Omega^k(\M) $.
+\end{definition}
+\begin{example}\hfill
+  \begin{itemize}
+  \item Le $ 0 $-forme sono funzioni ordinarie
+  \item Le $ 1 $-forme sono variabili di Grassmann
+  \end{itemize}
+\end{example}
+\newmathsymb{wedge}{\alpha\wedge\beta}{Prodotto wedge tra $ \alpha $ e $ \beta $}
+\begin{definition}
+  Lo spazio delle forme differenziali può essere reso un'algebra con il \textbf{prodotto wedge}\index{Prodotto wedge}
+  che associa a una $ p $-forma e a una $ q $-forma una $ (p+q) $-forma:
+  \begin{align*}
+    \Omega^p(\M) \times \Omega^q(\M) & \to \Omega^{p+q}(\M) \\
+    (\omega_1, \omega_2) & \mapsto \omega_1 \wedge \omega_2
+  \end{align*}
+  In componenti il prodotto wedge di due forme si ottiene usando le proprietà di anello dell'algebra
+  considerando però che si richiede che:
+  \[
+    \forall i,j \; \d x^i \wedge \d x^j = - \d x^j \wedge \d x^i
+  \]
+\end{definition}
+\newmathsymb{derest}{\d{\omega}}{Derivata esterna di $ \omega $}
+\begin{definition}
+  Si definisce la \textbf{derivata esterna}\index{Derivata esterna}:
+  \begin{align*}
+    \d{} \colon \Omega^k(\M) & \to \Omega^{k+1}(\M) \\
+    \omega & \mapsto \d \omega
+  \end{align*}
+  Con:
+  \[
+    \d \omega = \frac{\partial a_{i_1\dots i_k}(x )}{\partial x^j} \d x^j \d x^{i_1} \dots \d x^{i_k}
+  \]
+\end{definition}
+\begin{definition}
+  Si definisce il \textbf{complesso di de Rham}\index{Complesso di de Rham}
+  il complesso $ (\Omega^\bullet, \d{}) $.
+\end{definition}
+\newmathsymb{rot}{\nabla\times}{Rotore}
+\newmathsymb{rot}{\nabla\cdot}{Divergenza}
+\begin{example}
+  Considero $ \M = \RN{3} $, questa è una varietà differenziabile avente come carta la mappa identità.
+  considero il complesso di de Rham:
+  \[
+    \begin{tikzcd}[nodes = {column sep = 10 pt}]
+      0 \rar & \Omega^0(\M) \rar & \Omega^1(\M) \rar & \Omega^2(\M) \rar & \Omega^3(\M) \rar & 0
+    \end{tikzcd}
+  \]
+  La prima derivata esterna corrisponde ad un gradiente, in quanto le $ 0 $-forme sono funzioni ordinarie.
+  Considero $ \omega = a \d x + b \d y + c \d z $ con $ (x,y,z) $ coordinate di $ \RN{3} $, e $ a, b, c \in \Omega^0(\M) $
+  allora:
+  \begin{align*}
+    \d \omega & =          \frac{\partial a}{\partial y} \d y \wedge \d x + \frac{\partial a}{\partial z} \d z \wedge \d x + \frac{\partial b}{\partial x} \d x \wedge \d y +
+             \frac{\partial b}{\partial z} \d z \wedge \d y + \frac{\partial c}{\partial x} \d x \wedge \d z + \frac{\partial c}{\partial y} \d y \wedge \d z = \\
+         & =      \left[ - \frac{\partial a}{\partial y} + \frac{\partial b}{\partial x} \right] \d x \wedge \d y +
+                 \left[ - \frac{\partial a}{\partial z} + \frac{\partial c}{\partial x} \right] \d x \wedge \d z +
+                 \left[ - \frac{\partial b}{\partial z} + \frac{\partial c}{\partial y} \right] \d y \wedge \d z =                      \\
+         & =  \nabla \times (a \d x + b \d y + c \d y)
+  \end{align*}
+  Dove con $ \nabla \times $ si intende il rotore. Ma è noto che il rotore del gradiente di una funzione è nullo,
+  cioè $ \nabla \times \nabla f = 0 $, cioè $ d^2 = 0 $ per $ k = 0 $ e $ k = 1 $.
+  Faccio il passo successivo. Sia $ \eta \in \Omega^2(\M) $:
+  \[
+    \eta = p \d x \wedge \d y - q \d x \wedge \d z + r \d y \wedge \d z
+  \]
+  Il bordo è:
+  \begin{align*}
+    \d \eta & = \frac{\partial p}{\partial z} \d z \wedge \d x \wedge \d y - \frac{\partial q}{\partial y} \d y \wedge \d x \wedge \d z + \frac{\partial r}{\partial x} \d x \wedge \d y \wedge \d z = \\
+    & = \left( \frac{\partial r}{\partial x} + \frac{\partial q}{\partial y} + \frac{\partial p}{\partial z} \right) \d x \wedge \d y \wedge \d z\\
+    & = \nabla \cdot \eta \d x \wedge \d y \wedge \d z
+  \end{align*}
+  Dove con $ \nabla \cdot $ si intende la divergenza. Ma è noto che la divergenza di un rotore è nulla,
+  cioè $ \nabla \cdot \nabla \times f = 0 $, cioè $ d^2 = 0 $ per $ k = 1 $ e $ k = 2 $.
+\end{example}
+
+
 
 %%% Local Variables:
 %%% ispell-local-dictionary: "italiano"
