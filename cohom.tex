@@ -1589,9 +1589,11 @@ Quindi $ H^\star(X, \R) $ è un anello unitario, ma in generale non commutativo.
     \phi_2 \circ \phi_1^{-1} \colon \phi_1(A_1 \cap A_2) \to \phi_2(A_1 \cap A_2) \in \mathcal{C}^\infty(\phi_1(A_1 \cap A_2) \subseteq \RN{n})
   \]
 \end{definition}
-In ciò che segue considero $ \M $ varietà differenziabile connessa (in caso non sia connessa mi restringo
-alle componenti connesse) e con base numerabile (questo è una richiesta puramente tecnica).
-\newmathsymb{formdiff}{\Omega^k(\M)}{Spazio delle $ k $-forme differenziali su $ \M $}
+In ciò che segue considero $ \M $ varietà differenziabile connessa (in caso non
+sia connessa mi restringo alle componenti connesse), con base numerabile
+(questo è una richiesta puramente tecnica), senza bordo e orientata.
+\newmathsymb{formdiff}{\Omega^k(\M)}{Spazio delle $ k $-forme differenziali su
+  $ \M $}
 \begin{definition}
   Su $ \M $ si definisce una \textbf{$ k $-forma differenziale}\index{Forma differenziali} come
   una applicazione multilineare antisimmetrica $ \omega $ tale che
@@ -1603,7 +1605,7 @@ alle componenti connesse) e con base numerabile (questo è una richiesta puramen
   \[
     \omega = a_{i_1\dots i_k}(x) \d x^{i_1} \dots \d x^{i_k}
   \]
-  Lo spazio delle $ k $-forme su $ \M $ si denota con $ \Omega^k(\M) $.
+  Lo spazio delle $ k $-forme su $ \M $ si denota con $ \Omega^k(\M) $ ed è uno spazio vettoriale.
 \end{definition}
 \begin{example}\hfill
   \begin{itemize}
@@ -1644,16 +1646,17 @@ alle componenti connesse) e con base numerabile (questo è una richiesta puramen
 \newmathsymb{rot}{\nabla\times}{Rotore}
 \newmathsymb{rot}{\nabla\cdot}{Divergenza}
 \begin{example}
-  Considero $ \M = \RN{3} $, questa è una varietà differenziabile avente come carta la mappa identità.
-  considero il complesso di de Rham:
+  Considero $ \M = \RN{3} $, questa è una varietà differenziabile avente come
+  carta la mappa identità. considero il complesso di de Rham:
   \[
     \begin{tikzcd}[nodes = {column sep = 10 pt}]
       0 \rar & \Omega^0(\M) \rar & \Omega^1(\M) \rar & \Omega^2(\M) \rar & \Omega^3(\M) \rar & 0
     \end{tikzcd}
   \]
-  La prima derivata esterna corrisponde ad un gradiente, in quanto le $ 0 $-forme sono funzioni ordinarie.
-  Considero $ \omega = a \d x + b \d y + c \d z $ con $ (x,y,z) $ coordinate di $ \RN{3} $, e $ a, b, c \in \Omega^0(\M) $
-  allora:
+  La prima derivata esterna corrisponde ad un gradiente, in quanto le
+  $ 0 $-forme sono funzioni ordinarie. Considero
+  $ \omega = a \d x + b \d y + c \d z $ con $ (x,y,z) $ coordinate di
+  $ \RN{3} $, e $ a, b, c \in \Omega^0(\M) $ allora:
   \begin{align*}
     \d \omega & =          \frac{\partial a}{\partial y} \d y \wedge \d x + \frac{\partial a}{\partial z} \d z \wedge \d x + \frac{\partial b}{\partial x} \d x \wedge \d y +
              \frac{\partial b}{\partial z} \d z \wedge \d y + \frac{\partial c}{\partial x} \d x \wedge \d z + \frac{\partial c}{\partial y} \d y \wedge \d z = \\
@@ -1677,8 +1680,210 @@ alle componenti connesse) e con base numerabile (questo è una richiesta puramen
   Dove con $ \nabla \cdot $ si intende la divergenza. Ma è noto che la divergenza di un rotore è nulla,
   cioè $ \nabla \cdot \nabla \times f = 0 $, cioè $ d^2 = 0 $ per $ k = 1 $ e $ k = 2 $.
 \end{example}
+\begin{definition}
+  Si chiama \textbf{coomologia di de Rham}\index{Coomologia di de Rham} la
+  coomologia del complesso di de Rham $ (\Omega^\bullet, \d{}) $:
+  \[
+    H^p_{dR}(\M) = \quot{\ker{ \d{} \colon \Omega^p(\M) \to \Omega^{p+1}(\M)}}{\im{\d{} \colon \Omega^{p-1}(\M) \to \Omega^p(\M)}}
+  \]
+  Indicando con:
+  \begin{gather*}
+    Z^p(\M) = \ker{ \d{} \colon \Omega^p(\M) \to \Omega^{p+1}(\M)} = \set{\omega \in \Omega^p(\M) | \d \omega = 0} \\
+    B^p(\M) = \im{\d{} \colon \Omega^{p-1}(\M) \to \Omega^p(\M)} = \set{\gamma \in \Omega^p(\M) | \exists \rho \in \Omega^{p+1}(\M) | \gamma = \d \rho}
+  \end{gather*}
+  Si ha che $ Z^p(\M) $ sono le  \textbf{$ p $-forme chiuse}\index{Forme chiuse} e $ B^p(\M) $ sono
+  le \textbf{ $ p $-forme esatte}\index{Forme esatte}.
+\end{definition}
+Il generico elemento di $ H^p_{dR}(\M) $ è $ [\omega] $ con $ \omega $ chiusa. Se
+$ H^p_{dR}(\M) $ è banale significa che tutte le forme sono esatte, in quanto
+non ci sono forme chiuse che non siano anche esatte (cioè elementi di
+$ B^p(\M) $ che non sono in $ Z^p(\M) $).
+\begin{osservation}
+  Se $ \M $ è anche compatto la coomologia di de Rham è uno spazio vettoriale
+  sui reali finitamente generato. Se $ \M $ non è compatto si costruisce la
+  \textbf{coomologia a supporto compatto}\index{Coomologia a supporto compatto}
+  $ H^p_c(\M) $ in cui si lavora con le forme differenziali a \textbf{supporto
+    compatto}\index{Supporto compatto}, cioè tali che la chiusura dell'insieme
+  su cui tali forme sono non nulle è un insieme compatto. Chiaramente se $ \M $ è
+  compatta ogni forma differenziale è a supporto compatto.
+\end{osservation}
+\begin{lemma}
+  Si dimostra che, a differenza della coomologia di de Rham, la coomologia a supporto
+  compatto è covariante e non controvariante.
+\end{lemma}
 
+\subsection{Dualità di Poincaré}
+\begin{osservation}
+  Se $ b \colon V \times W \to \mathbb{F} $ è un funzionale biliare su $ V,W $ spazi
+  vettoriali e $ \mathbb{F} $ campo, allora questo induce un'applicazione:
+  \begin{align*}
+    B \colon V & \to W^* = \hom{W, \mathbb{F}} \\
+    v & \mapsto B(v)
+  \end{align*}
+  Con:
+  \begin{align*}
+    B(v) \colon W & \to \mathbb{F} \\
+    w & \mapsto b(v,w)
+  \end{align*}
+  Cioè $ B(v) = b(v, \cdot) $. Si dimostra che se $ b \colon V \times V \to \mathbb{F} $
+  è non degenere (cioè se $ b(v,w) = 0 \; \forall w \in V $ implica che $ v = 0$) allora
+  $ B \colon V \to V^* $ è un isomorfismo, e quindi esiste un accoppiamento canonico tra
+  $ V $ e il suo duale.
+\end{osservation}
+Costruisco l'applicazione $ b $ per gli spazi $ \Omega $. Sia $ k \leq \dim \M $ definisco:
+\begin{align*}
+  I \colon \Omega^k(\M) \times \Omega^{n-k}(\M) & \to \RN{} \\
+  (\alpha,\beta) & \mapsto \int_\M \alpha \wedge \beta
+\end{align*}
+Se $ \M $ è compatto l'integrale è ben definito, se $ \M $ non è compatto si
+deve lavorare con forme differenziali a supporto compatto. Assumo $ \M $
+compatto, definisco una mappa $ I $ sulla coomologia di de Rham:
+\begin{align*}
+  I \colon H^k_{dR}(\M) \times H^{n-k}(\M) & \to \RN{} \\
+  ([\alpha], [\beta]) & \mapsto \int_\M \alpha \wedge \beta
+\end{align*}
+Questa mappa è ben definita, infatti considero altri due rappresentanti per le
+classi $ [\alpha] $ e $ [\beta] $ $ \alpha + \d \alpha' $ e $ \beta + \d \beta' $. Ho che:
+\[
+  \int_\M (\alpha + \d \alpha') \wedge (\beta + \d \beta') = \int_\M \alpha \wedge \beta + \int_\M \d \alpha' \wedge \beta + \int_\M \d \alpha' \wedge \d \beta' + \int_\M \alpha \wedge \d \beta'
+\]
+Ma considerando che $ \alpha $ e $ \beta $ sono chiuse, cioè $ \d \alpha = \d \beta = 0 $:
+\begin{gather*}
+  \d (\alpha' \wedge \beta) = \d \alpha' \wedge \beta + \cancel{(-)^{k-1} \alpha' \wedge \d \beta} \Rightarrow  \d \alpha' \wedge \beta = \d (\alpha' \wedge \beta) \\
+  \d (\alpha \wedge \beta') = \cancel{\d \alpha \wedge \beta'} + (-)^{k} \alpha \wedge \d \beta' \Rightarrow  \alpha \wedge \d \beta' = (-)^k  \d (\alpha \wedge \beta') \\
+  \d (\alpha' \wedge \d \beta') = \d \alpha' \wedge \d \beta' + \cancel{\d \alpha' \wedge \d {\d \beta}} \Rightarrow \d \alpha' \wedge \d \beta' =  \d (\alpha' \wedge \d \beta')
+\end{gather*}
+Quindi:
+\[
+  \int_\M (\alpha + \d \alpha') \wedge (\beta + \d \beta') = \int_\M \alpha \wedge \beta + \int_\M \d {(\alpha' \wedge \beta)} + \int_\M \d {(\alpha' \wedge \d \beta')} + \int_\M \d {(\alpha \wedge \d \beta')}
+\]
+Per il teorema di Stokes le forme esatte integrate su $ \M $ sono nulle non essendoci termini di bordo,
+quindi la mappa è ben definita in quanto:
+\[
+  \int_\M (\alpha + \d \alpha') \wedge (\beta + \d \beta') = \int_\M \alpha \wedge \beta
+\]
+\begin{theorem}[Teorema di isomorfismo di Poincaré\index{Teorema di isomorfismo di Poincaré}]
+  Se $ \M $ è una varietà differenziabile senza bordo e orientata (in modo che
+  la mappa $ I $ sia ben definita anche se $ \M $ non è compatta), allora la
+  mappa:
+  \begin{align*}
+    D \colon H^k_{dR}(\M) & \to (H_c^{n-k}(\M))^* \\
+    [\alpha] & \mapsto D([\alpha])
+  \end{align*}
+  con:
+  \begin{align*}
+    D([\alpha]) \colon H^{n-k}_c(\M) & \to \RN{} \\
+    [\beta] & \mapsto \int_\M \alpha \wedge \beta
+  \end{align*}
+  è un isomorfismo di gruppi abeliani, cioè $ H^k_{dR}(\M) \cong (H^{n-k}_c(\M))^* $.
+\end{theorem}
+\begin{proof}
+  La dimostrazione è piuttosto articolata e si svolge per passi:
+  \begin{enumerate}
+  \item Dimostrazione del teorema per $ \M = \RN{n} $
+  \item Dimostrazione del teorema per $ U $ aperto in $ \M $ tale che sia diffeomorfo a $ \RN{n} $
+    e con $ D $ ristretta a $ U $
+  \item Dimostrazione del teorema per qualsiasi aperto di $ \RN{n} $
+  \item Dimostrazione del teorema per qualsiasi aperto proprio di $ \M $
+  \item Dimostrazione del teorema per $ \M $
+  \end{enumerate}
 
+  \subparagraph{Dimostrazione del punto uno} Bisogna dimostrare che
+  $ D \colon H^k_{dR}(\RN{n}) \to (H^{n-k}(\RN{n}))^* $ è un isomorfismo. Siccome
+  $ \RN{n} $ è semplicemente connesso tutte le forme chiuse sono esatte (lemma
+  di Poincaré) e quindi tutti i gruppi di coomologia di de Rham per $ k > 0 $
+  sono banali in quanto esiste solo la classe $ [0] $, l'unico gruppo non nullo
+  è $ H^0_{dR}(\RN{n}) $. Ma
+  \[
+    H^0_{dR}(\RN{n}) = \quot{Z^0(\RN{n})}{B^0(\RN{n})} = {\set{\text{funzioni costanti}}} \cong \RN{}
+  \]
+  In quanto $ B^0(\RN{n}) $ è banale, e $ Z^0(\RN{n}) $ è formato dalle
+  $ 0 $-forme, cioè le funzioni il cui gradiente è nullo, ovvero le funzioni
+  costanti. Quindi:
+  \[
+    H^0_{dR}(\RN{n}) \cong
+    \begin{cases}
+      \RN{} & \text{se } k = 0 \\
+      0 & \text{altrimenti}
+    \end{cases}
+  \]
+  Ma anche $ H^{n-k}_c(\RN{n}) $ ha gli stessi gruppi di coomologia:
+  \[
+    H^{n-k}(\RN{n}) \cong
+    \begin{cases}
+      \RN{} & \text{se } k = 0 \\
+      0 & \text{altrimenti}
+    \end{cases}
+  \]
+  infatti $ \RN{n} $ è semplicemente connesso, mentre
+  $ H^{n}(\RN{n}) \cong \RN{n} $ in quanto considero una $ n $-forma a supporto compatto:
+  \[
+    \omega = \phi(x_1, \dots, x_n) \d x^1 \wedge \dots \wedge \d x^n
+  \]
+  Con $ \phi \in \mathcal{C}^\infty $ a supporto compatto. Mostro che questa è esatta.
+  Nel caso $ n = 1 $ ho $ \omega = \phi(t) \d t $, ponendo:
+  \[
+    \psi(x) = \int_{-\infty}^x \phi(t) \d t
+  \]
+  Ho che $ \psi'(x) = \phi(x) $ quindi la forma è esatta. Per $ n $ generico integro
+  una alla volta tutte le variabili e ottengo il medesimo risultato.
+
+  Per mostrare che $ D $ è isomorfismo devo quindi solo mostrarlo per
+  $ D \colon H^0_{dR}(\RN{n}) \to (H^n_c(\RN{n}))^* $ è un isomorfismo, ma:
+  \begin{align*}
+    D \colon \RN{} & \to {\RN{n}}^* \cong \RN{} \\
+    1 & \mapsto D(1)
+  \end{align*}
+  Se dimostro che $ D(1) $ è un generatore di $ \RN{} $ ho finito. Per mostrare
+  che $ D(1) $ è un generatore è sufficiente che controllo che non sia $ 0 $,
+  ma il funzionale $ 0 $ è quella mappa che manda tutte le funzioni in $ 0 $:
+  cioè è tale che $ D(1)(\phi) = 0 $ $ \forall \phi $, per mostrare che $ D(1) $ non è $ 0 $
+  basta quindi trovare una funziona $ \phi $ tale che $ D(1)(\phi) \not = 0 $, ma
+  \[
+    D(1)(\phi) = \int_{\RN{n}} \phi \d x^1 \wedge \dots \wedge \d x^n
+  \]
+  Ma questa è facilmente costruibile, basta prendere una funzione tipo
+  mollificatore
+
+  \subparagraph{Dimostrazione del punto due} Se $ U $ è un aperto in $ \M $
+  diffeomorfo a $ \RN{n} $ siccome i gruppi di coomologia sono invarianti per
+  diffeomorfismi allora la mappa
+  $ D_U \colon H^k_{dR}(U) \to (H^{n-k}_c(U))^\star $ è un isomorfismo.
+
+  \subparagraph{Dimostrazione del punto tre}
+  \subparagraph{Dimostrazione del punto quattro}
+
+  \subparagraph{Dimostrazione del punto cinque} Siano $ U_1, U_2 $ aperti propri
+  in $ \M $ tali che $ \M = U_1 \cup U_2 $, allora per il teorema di Mayer-Vietoris:
+  \[
+    \begin{tikzcd}[nodes = {column sep = 6 pt, inner sep = 1.5pt}]
+       H_{dR}^{k-1}(U_1) \oplus H_{dR}^{k-1}(U_2) \rar{\psi_0} \dar{D_{U_1} \oplus D_{U_2}} & H^{k-1}_{dR}(U_1 \cap U_2) \dar{D_{U_1 \cap U_2}} \rar &H^k_{dR}(\M) \rar{\psi_1} \dar{D_{U_1 \cap U_2}} & H_{dR}^{k}(U_1) \oplus H_{dR}^{k}(U_2) \rar{\psi_2}  \dar{D_{U_1} \oplus D_{U_2}} & H^k_{dR}(U_1 \cap U_2) \dar{D_{U_1 \cap U_2}}  \\
+       (H_{dR}^{k-1}(U_1))^* \oplus (H_{dR}^{k-1}(U_2))^* \rar{\psi_0} & (H^{k-1}_{dR}(U_1 \cap U_2))^* \rar  &(H^k_{dR}(\M))^* \rar{\psi_1} & (H_{dR}^{k}(U_1))^* \oplus (H_{dR}^{k}(U_2))^* \rar{\psi_2} & (H^k_{dR}(U_1 \cap U_2))^*
+    \end{tikzcd}
+  \]
+  Per i punti dimostrati in precedenza tutte le mappe $ D $ sono isomorfismi, a parte
+  quella centrale, se dimostro che i quadrati sono commutativi per il lemma dei cinque
+  $ D $ deve essere un isomorfismo.
+  \begin{osservation}
+    L'esistenza di queste successioni è dovuta al fatto che ci sono delle mappe
+    di inclusione $ \tau \colon U_i \to \M $, Nel caso della successione in coomologia di
+    de Rham l'associazione è contravariante e quindi si scambia il verso, nel caso
+    della coomologia a supporto compatto l'associazione è covariante, ma si scambia il verso
+    in quanto si prende il duale.
+  \end{osservation}
+  Bisogna dimostrare che i quadrati sono commutativi. Quello in mezzo è semplice,
+  considero $ [\alpha] \in H^k_{dR}(\M) $:
+  \begin{gather*}
+    [\alpha_1] = [\tau_1^\star(\alpha)] \in H^k_{dR}(U_1) \\
+    [\alpha_2] = [\tau_2^\star(\alpha)] \in H^k_{dR}(U_2)
+  \end{gather*}
+  Cioè $ \alpha = \alpha_1 + \alpha_2 $, ma:
+  \begin{gather*}
+    D(\alpha) \colon \beta \to \int_\M \alpha \wedge \beta =  \int_\M (\alpha_1 + \alpha_2) \wedge \beta =  \int_{U_1} \alpha_1 \wedge \beta + \int_{U_2} \alpha_2 \wedge \beta \\
+    (D(\alpha_1) + D(\alpha_2)) \colon \beta \to  \int_{U_1} \alpha_1 \wedge \beta +  \int_{U_2} \alpha_2 \wedge \beta
+  \end{gather*}
+  Quindi giustamente è commutativo.
+\end{proof}
 
 %%% Local Variables:
 %%% ispell-local-dictionary: "italiano"

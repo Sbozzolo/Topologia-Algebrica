@@ -30,6 +30,12 @@
     "Forma differenziali"
     "Prodotto wedge"
     "Derivata esterna"
-    "Complesso di de Rham"))
+    "Complesso di de Rham"
+    "Coomologia di de Rham"
+    "Forme chiuse"
+    "Forme esatte"
+    "Coomologia a supporto compatto"
+    "Supporto compatto"
+    "Teorema di isomorfismo di Poincaré"))
  :latex)
 
