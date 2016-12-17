@@ -27,6 +27,7 @@
     "Ideale principale"
     "Varietà differenziabile"
     "Carta di varietà differenziabile"
+    "Varietà differenziabile orientata"
     "Forma differenziali"
     "Prodotto wedge"
     "Derivata esterna"

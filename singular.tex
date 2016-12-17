@@ -2175,18 +2175,94 @@ che mi mancano che sono l'escissione e l'omotopia.
       Considerato il seguente diagramma formato da successioni esatte corte in cui ogni quadrato è commutativo:
       \[
         \begin{tikzcd}
-          A \rar{i} \dar{\alpha} & B \rar{j} \dar{\beta} & C \rar{k} \dar{\gamma} & D \rar{l} \dar{\delta} & E \dar{\epsilon} \\
-          A' \rar{i} & B' \rar{j} & C' \rar{k} & D' \rar{l} & E'
+          A_1 \rar{\alpha_1} \dar{\phi_1} & A_2 \rar{\alpha_2} \dar{\phi_2} & A_3 \rar{\alpha_3} \dar{\phi_3} & A_4 \rar{\alpha_4} \dar{\phi_4} & A_5 \dar{\phi_5} \\
+          B_1 \rar{\beta_1} & B_2 \rar{\beta_2} & B_3 \rar{\beta_3} & B_4 \rar{\beta_4} & B_5
         \end{tikzcd}
       \]
-      Se $ \alpha, \beta, \delta, \epsilon $ sono isomorfismi allora anche $ \gamma $ lo è.
+      Se $ \phi_1, \phi_2, \phi_4, \phi_5 $ sono isomorfismi allora anche $ \phi_3 $ lo è.
     \end{lemma}
     \begin{proof}
-      [MANCA LA PROVA (HATCHER 129)]
+      Per ipotesi $ \phi_3 $ è un omomorfismo, quindi è sufficiente mostrare che è iniettivo e suriettivo.
+
+      \subparagraph{Iniettività} Sia $ \alpha_3 \in A_3 $ tale che $ \phi_3(a_3) = 0 $, bisogna mostrare che $ a_3 = 0 $,
+      in questo modo $ \ker{\phi_3} = 0 $ e quindi $ \phi_3 $ è iniettivo.
+      Applico $ \alpha_3 $ ad $ a_3 $:
+      \[
+        \alpha_3(a_3) \in A_4
+      \]
+      Applicando $ \phi_4 $:
+      \[
+        \phi_4 \circ \alpha_3 (a_3) \in B_4
+      \]
+      Per la commutatività:
+      \[
+        \phi_4 \circ \alpha_3 (a_3) = \beta_3 \circ \phi_3 (a_3) = 0 \;\text{in quanto } \phi_3 (a_3) = 0 \; \text{e } \beta_3 \text{ è omomorfismo}
+      \]
+      Ma $ \phi_4 $ è omomorfismo quindi $ \alpha_3(a_3) = 0 $, quindi $ a_3 \in \ker{\alpha_3} $, ma la successione è
+      esatta, quindi $ \ker{\alpha_3} = \im{\alpha_2} $, cioè $ \exists a_2 \in A_2 $ tale che $ \alpha_2(a_2) = a_3 $.
+      Applicando $ \phi_3 $:
+      \[
+        \phi_3 \circ \alpha_2(a_2) = \phi_3(a_3) = 0
+      \]
+      Ma per la commutatività:
+      \[
+        \beta_2 \circ \phi_2 (a_2) = \phi_3 \circ \alpha_3 (a_3) = 0
+      \]
+      Quindi $ \phi_2(a_2) \in \ker{\beta_2} $, ma la successione è esatta, quindi
+      $ \ker{\beta_2} = \im{\beta_1} $ e quindi $ \exists b_1 \in B_1 $ tale che
+      $ \beta_1(b_1) = \phi_2(a_2) $. Ma $ \phi_1 $ è un isomorfismo quindi è suriettivo e
+      quindi $ \exists a_1 \in A_1 $ tale che $ \phi_1(a_1) = b_1 $. Quindi applicando
+      $ \phi_2 $ a $ \alpha_1(a_1) $ e usando la commutatività:
+      \[
+        \phi_2 (\alpha_1 (a_1)) = \beta_1 \circ \phi_1(a_1) = \beta_1(b_1) = \phi_2(a_2)
+      \]
+      Siccome $ \phi_2 $ è un omomorfismo allora $ \alpha_1(a_1) = a_2 $, ma $ a_3 = \alpha_2(a_2) $,
+      e quindi:
+      \[
+        a_3 = \alpha_2(a_2) = \alpha_2 \circ \alpha_1 (a_2) = 0
+      \]
+      In quanto la successione è esatta.
+
+      \subparagraph{Suriettività} Sia $ b_3 \in B_3 $ mostro che
+      $ \exists \tilde{a}_3 \in A_3 $ tale che $ b_3 = \phi_3(a_3) $. Vale che
+      $ \beta_3(b_3) \in B_4 $, ma $ \phi_4 $ è un isomorfismo, quindi è suriettivo, e
+      quindi $ \exists a_4 $ tale che $ \phi_4(a_4) = \beta_3(b_3) $. Inoltre applico $ \phi_5 $
+      a $ \alpha_4(a_4) \in A_5 $, usando la commutatività:
+      \[
+        \phi_5 \circ \alpha_4 (a_4) = \beta_4 \circ \phi_4 (a_4) = \beta_4 \circ \beta_3 (b_3) = 0
+      \]
+      Per l'esattezza della successione.
+      Siccome $ \phi_5 $ è omomorfismo $ \alpha_4(a_4) = 0 $, cioè $ a_4 \in \ker{\alpha_4} $,
+      ma la successione è esatta, quindi $ \ker{\alpha_4} = \im{\alpha_3} $, quindi
+      $ \exists a_3 \in A_3 $ (non è lo stesso di prima) tale che $ \alpha_3(a_3) = a_4 $.
+      Applicando $ \phi_4 $:
+      \[
+        \phi_4 (\alpha_3(a_3)) = \phi_4(a_4)
+      \]
+      Quindi:
+      \[
+        \phi_4 (\alpha_3(a_3)) = \phi_4(a_4) = \beta_3(b_3)
+      \]
+      Ma per la commutatività:
+      \[
+        \phi_4 (\alpha_3(a_3)) = \beta_3(\phi_3(a_3))
+      \]
+      Quindi essendo $ \beta_3 $ un omomorfismo $ \phi_3(a_3) - b_3 \in \ker{\beta_3} $,
+      siccome la successione è esatta $ \ker{\beta_3} = \im{\beta_2} $ e quindi
+      $ \exists b_2 \in B_2 $ tale che $ \beta_2(b_2) = \phi_3(a_3) - b_3 $. Siccome $ \phi_2 $
+      è un isomorfismo è suriettivo quindi $ \exists a_2 \in A_2 $ tale che $ \phi_2(a_2) = b_2 $.
+      Quindi usando la commutatività:
+      \[
+        \phi_3(a_3) - b_3 = \beta_2 \circ \phi_2 (a_2) = \phi_3(\alpha_2(a_2))
+      \]
+      Quindi:
+      \[
+        \phi_3(a_3 - \alpha_2(a_2)) = b_3
+      \]
+      Cioè esiste un elemento di $ \tilde{a}_3 = a_3 - \alpha_2(a_2) \in A_3 $ tale che
+      venga mandato in $ b_3 $ da $ \phi_3 $.
     \end{proof}
-
   \end{osservation}
-
 \end{proof}
 
 % lezione 14 parte 2

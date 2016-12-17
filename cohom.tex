@@ -1592,6 +1592,11 @@ Quindi $ H^\star(X, \R) $ è un anello unitario, ma in generale non commutativo.
 In ciò che segue considero $ \M $ varietà differenziabile connessa (in caso non
 sia connessa mi restringo alle componenti connesse), con base numerabile
 (questo è una richiesta puramente tecnica), senza bordo e orientata.
+\begin{definition}
+  Una varietà differenziabile $ \M $ di dimensione $ n $ si dice
+  \textbf{orientata}\index{Varietà differenziabile orientata} se esiste una
+  $ n $-forma $ \omega $ tale che $ \omega(p) = 0 \; \forall p \in \M $.
+\end{definition}
 \newmathsymb{formdiff}{\Omega^k(\M)}{Spazio delle $ k $-forme differenziali su
   $ \M $}
 \begin{definition}
@@ -1850,23 +1855,57 @@ quindi la mappa è ben definita in quanto:
   diffeomorfismi allora la mappa
   $ D_U \colon H^k_{dR}(U) \to (H^{n-k}_c(U))^\star $ è un isomorfismo.
 
-  \subparagraph{Dimostrazione del punto tre}
+  \subparagraph{Dimostrazione del punto tre} Considero una base $ \mathcal{B} $
+  della topologia usuale di $ \RN{n} $ tale che:
+  \begin{enumerate}
+  \item L'intersezione di due aperti in $ \mathcal{B} $ è ancora in $ \mathcal{B} $
+  \item Il teorema vale per ogni aperto in $ \mathcal{B} $
+  \end{enumerate}
+  Una possibile scelta di questa base è quella dei polirettangoli aperti i quali
+  essendo diffeomorfi a $ \RN{n} $ soddisfano il teorema di dualità di Poincaré,
+  come si è dimostrato precedentemente.
+  Si dimostrano i seguenti lemmi:
+  \begin{lemma}
+    Il teorema è valido per ogni unione finita di aperti di $ \mathcal{B} $.
+  \end{lemma}
+  \begin{lemma}
+    Il teorema è valido per ogni unione non necessariamente finita di elementi di $ \mathcal{B} $.
+  \end{lemma}
+  Siccome ogni aperto è unione, al più infinita di elementi di $ \mathcal{B} $ essendo $ \mathcal{B} $
+  una base il punto è dimostrato.
+
   \subparagraph{Dimostrazione del punto quattro}
 
-  \subparagraph{Dimostrazione del punto cinque} Siano $ U_1, U_2 $ aperti propri
-  in $ \M $ tali che $ \M = U_1 \cup U_2 $, allora per il teorema di Mayer-Vietoris:
+  \subparagraph{Dimostrazione del punto cinque} Siano $ V_1, V_2 $ aperti propri
+  in $ \M $ tali che $ \M = V_1 \cup V_2 $, introducendo l'abbreviazione
+  $ V_{12} = V_1 \cap V_2 $ allora per il teorema di Mayer-Vietoris la successione corta
+  di complessi:
   \[
-    \begin{tikzcd}[nodes = {column sep = 6 pt, inner sep = 1.5pt}]
-       H_{dR}^{k-1}(U_1) \oplus H_{dR}^{k-1}(U_2) \rar{\psi_0} \dar{D_{U_1} \oplus D_{U_2}} & H^{k-1}_{dR}(U_1 \cap U_2) \dar{D_{U_1 \cap U_2}} \rar &H^k_{dR}(\M) \rar{\psi_1} \dar{D_{U_1 \cap U_2}} & H_{dR}^{k}(U_1) \oplus H_{dR}^{k}(U_2) \rar{\psi_2}  \dar{D_{U_1} \oplus D_{U_2}} & H^k_{dR}(U_1 \cap U_2) \dar{D_{U_1 \cap U_2}}  \\
-       (H_{dR}^{k-1}(U_1))^* \oplus (H_{dR}^{k-1}(U_2))^* \rar{\psi_0} & (H^{k-1}_{dR}(U_1 \cap U_2))^* \rar  &(H^k_{dR}(\M))^* \rar{\psi_1} & (H_{dR}^{k}(U_1))^* \oplus (H_{dR}^{k}(U_2))^* \rar{\psi_2} & (H^k_{dR}(U_1 \cap U_2))^*
+    \begin{tikzcd}[nodes = {row sep = 1 pt}]
+      0 \rar & \Omega^\bullet(\M) \rar & \Omega^\bullet(V_1) \oplus \Omega^\bullet(V_2) \rar & \Omega^\bullet(V_{12}) \rar & 0 \\
+      {} & \omega \rar[mapsto] & \omega\lvert_{V_1} \oplus\; \omega\lvert_{V_2} & {} & {} \\
+      {} & {} & (\eta_1, \eta_2) \rar[mapsto] & \eta_1\lvert_{V_{12}} - \;\eta_2\lvert_{V_{12}} & {}
     \end{tikzcd}
   \]
+  Induce quella lunga in coomologia:
+  \[
+    \begin{tikzcd}[nodes = {column sep = 6 pt, inner sep = 1.5pt}]
+      H_{dR}^{k-1}(V_1) \oplus H_{dR}^{k-1}(V_2) \rar{\alpha_1} \dar{D_{V_1} \oplus D_{V_2}} & H^{k-1}_{dR}(V_{12}) \dar{D_{V_{12}}} \rar{\alpha_2} &
+      H^k_{dR}(\M) \rar{\alpha_3} \dar{D_{V_{12}}} & H_{dR}^{k}(V_1) \oplus H_{dR}^{k}(V_2) \rar{\alpha_4}  \dar{D_{V_1} \oplus D_{V_2}} & H^k_{dR}(V_{12}) \dar{D_{V_{12}}}  \\
+      (H_{dR}^{k-1}(V_1))^* \oplus (H_{dR}^{k-1}(V_2))^* \rar{\beta_1} &
+      (H^{k-1}_{dR}(V_{12}))^* \rar{\beta_2} &(H^k_{dR}(\M))^* \rar{\beta_3} &
+      (H_{dR}^{k}(V_1))^* \oplus (H_{dR}^{k}(V_2))^* \rar{\beta_4} & (h^k_{dR}(V_{12}))^*
+    \end{tikzcd}
+  \]
+  Nella seconda riga si è usato il fatto che il duale di una somma diretta di spazi finitamente
+  generati è la somma dei duali.
   Per i punti dimostrati in precedenza tutte le mappe $ D $ sono isomorfismi, a parte
   quella centrale, se dimostro che i quadrati sono commutativi per il lemma dei cinque
-  $ D $ deve essere un isomorfismo.
+  $ D $ deve essere un isomorfismo. Per comodità chiamo $ \phi_1 = D_{V_1} \oplus D_{V_2} $,
+  $ \phi_2 = D_{V_{12}} $, $ \phi_3 = D $, $ \phi_5 = D_{V_1} \oplus D_{V_2} $ t $ \phi_5 = D_{V_{12}} $.
   \begin{osservation}
     L'esistenza di queste successioni è dovuta al fatto che ci sono delle mappe
-    di inclusione $ \tau \colon U_i \to \M $, Nel caso della successione in coomologia di
+    di inclusione $ \tau \colon V_i \to \M $, Nel caso della successione in coomologia di
     de Rham l'associazione è contravariante e quindi si scambia il verso, nel caso
     della coomologia a supporto compatto l'associazione è covariante, ma si scambia il verso
     in quanto si prende il duale.
@@ -1874,15 +1913,70 @@ quindi la mappa è ben definita in quanto:
   Bisogna dimostrare che i quadrati sono commutativi. Quello in mezzo è semplice,
   considero $ [\alpha] \in H^k_{dR}(\M) $:
   \begin{gather*}
-    [\alpha_1] = [\tau_1^\star(\alpha)] \in H^k_{dR}(U_1) \\
-    [\alpha_2] = [\tau_2^\star(\alpha)] \in H^k_{dR}(U_2)
+    [\alpha_1] = [\tau_1^\star(\alpha)] \in H^k_{dR}(V_1) \\
+    [\alpha_2] = [\tau_2^\star(\alpha)] \in H^k_{dR}(V_2)
   \end{gather*}
   Cioè $ \alpha = \alpha_1 + \alpha_2 $, ma:
   \begin{gather*}
-    D(\alpha) \colon \beta \to \int_\M \alpha \wedge \beta =  \int_\M (\alpha_1 + \alpha_2) \wedge \beta =  \int_{U_1} \alpha_1 \wedge \beta + \int_{U_2} \alpha_2 \wedge \beta \\
-    (D(\alpha_1) + D(\alpha_2)) \colon \beta \to  \int_{U_1} \alpha_1 \wedge \beta +  \int_{U_2} \alpha_2 \wedge \beta
+    D(\alpha) \colon \beta \to \int_\M \alpha \wedge \beta =  \int_\M (\alpha_1 + \alpha_2) \wedge \beta =  \int_{V_1} \alpha_1 \wedge \beta + \int_{V_2} \alpha_2 \wedge \beta \\
+    (D(\alpha_1) + D(\alpha_2)) \colon \beta \to  \int_{V_1} \alpha_1 \wedge \beta +  \int_{V_2} \alpha_2 \wedge \beta
   \end{gather*}
   Quindi giustamente è commutativo.
+  Poi ho:
+  \[
+    \begin{tikzcd}
+      H^{k-1}_{dR}(V_{12}) \rar & H^k_{dR}(\M) \\
+      (H^{n-k+1}_{c}(V_{12}))^* \rar{\Phi} & (H^{n-k}_{c}(\M))^*
+    \end{tikzcd}
+  \]
+  Considero $ [\rho] \in H^{k-1}_{dR}(V_{12}) $ quindi con $ \d \rho = 0 $. Ho che
+  $ \rho = (\rho_1 - \rho_2) \lvert_{V_{12}} $ con
+  $ \rho_1 \in \Omega^{k-1}(V_1) $ e $ \rho_2 \in \Omega^{k-1}(V_2) $ infatti
+  $ \rho $ è a supporto compatto quindi posso estenderla fuori dall'insieme.
+  L'omomorfismo di connessione è $ \rho \mapsto \rho' \in \Omega^k(\M) $ tale che $ \rho'\lvert_{V_1} = \d \rho_1 $
+  e $ \rho' \lvert_{V_2} = \d \rho_2 $. Quindi:
+  \[
+    \begin{tikzcd}
+      \rho \rar \dar & \rho' \dar \\
+      D([\rho]) & D([\rho'])
+    \end{tikzcd}
+  \]
+  Devo mostrare che $ \Phi(D[\rho]) = D([\rho']) $, in questo modo il diagramma è commutativo.
+  Ma $ \Phi = F^* $ con $ F \colon H^{n-k}_c(\M) \to H^{n-k=1}(V_{12}) $. Sia $ \tau \in \Omega_c^{n-k}(\M) $
+  con $ \d \tau = 0 $ allora $ \tau = \tau_1 + \tau_2 $ con $ \tau_1 = \tau \lvert_{V_1} $ e $ \tau_2 = \tau_{V_2} $
+  quindi:
+  \[
+    \d \tau = \d \tau_1 + \d \tau_2 \Rightarrow 0 = \d \tau_1 + \d \tau_2 \Rightarrow \d \tau_1 = - \d \tau_2
+  \]
+  Ma $ \tau_1 $ è definito su $ V_1 $ e $ \tau_2 $ su $ V_2 $, quindi devono necessariamente
+  essere entrambi definiti su $ V_{12} $.
+  Poi ho $ \rho \in H^k_{dR}(\M) $ e $ \tau \in H^{n-k}_c(\M) $:
+  \[
+    D([\rho'])([\tau]) = \int_\M \rho' \wedge \tau = \int_\M \rho' \wedge (\tau_1 + \tau_2) = \int_{V_1} \rho' \wedge \tau_1 + \int_{V_2} \rho' \wedge \tau_2
+  \]
+  Ma essendo $ \rho $ chiusa:
+  \begin{gather*}
+    \d {(\rho \wedge \tau_1)} = \cancel{\d \rho \wedge \tau_1} + (-)^k \rho \wedge \d \tau_1 \; \Rightarrow \; \d {(\rho \wedge \tau_1)} = (-)^k \rho \wedge \d \tau_1 \\
+    \d {(\rho \wedge \tau_2)} = \cancel{\d \rho \wedge \tau_2} + (-)^k \rho \wedge \d \tau_2 \; \Rightarrow \; \d {(\rho \wedge \tau_2)} = (-)^k \rho \wedge \d \tau_2
+  \end{gather*}
+  E:
+  \[
+    \rho' \lvert_{V_1} = \d \rho_1 \;   \rho' \lvert_{V_2} = \d \rho_2 \; \Rightarrow \;  \int_{\M} \rho' \wedge \tau = \int_{V_1} \d \rho_1 \wedge \tau_1 + \int_{V_2} \d \rho_2 \wedge \tau_2
+  \]
+  Quindi:
+  \begin{gather*}
+    D([\rho'])([\tau]) = \int_{\M} \rho' \wedge \tau = \int_{V_1} \d \rho_1 \wedge \tau_1 + \int_{V_2} \d \rho_2 \wedge \tau_2 = \\
+    = \cancel{\int_{V_1} \d{(\rho_1 \wedge \tau)}} + (-)^{k+1} \int_{V_1} \rho_1 \wedge \d \tau_1 + \cancel{\int_{V_2} \d {(\rho_2 \wedge \tau_2)}} + (-)^{k+1} \int_{V_2} \rho_2 \wedge \d \tau_2 =
+  \end{gather*}
+  Cioè:
+  \[
+    (-)^{k+1} \int_{\M} \rho' \wedge \tau = \int_{V_1} \rho_1 \wedge \d \tau_1 + \int_{V_2} \rho_2 \wedge \tau_2 = \int_{V_12} (\rho_1 - \rho_2) \wedge \d \tau_1 = \int_{V_12} \rho \wedge \d \tau
+  \]
+  Quindi usando Stokes:
+  \[
+    (-)^{k+1} \int_{\M} \rho' \wedge \tau = \int_{\M} \rho \wedge \d \tau
+  \]
+  Anche gli altri quadrati si dimostrano in maniera analoga, in modo ancora più laborioso.
 \end{proof}
 
 %%% Local Variables:

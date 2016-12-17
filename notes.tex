@@ -6,6 +6,7 @@
 \usepackage{graphicx}
 % \usepackage{lmodern}
 \usepackage{libertine}
+\usepackage[scaled=0.73]{beramono}
 \usepackage{tikz}
 \usepackage{epigraph}
 \usepackage{lipsum}
@@ -101,8 +102,8 @@
 
 \graphicspath{{./images/}}
 
-\includeonly{intro,singular,cellular,cohom}
-% \includeonly{cohom}
+% \includeonly{intro,singular,cellular,cohom}
+\includeonly{cohom}
 
 \begin{document}
 
@@ -128,28 +129,33 @@
   \titlepagedecoration
 \end{titlepage}
 
+\afterpage{\thispagestyle{empty}\null\newpage}
 
-\vspace*{150pt}
+\vspace*{180pt}
 
-Ho scritto queste note come strumento personale per lo studio
-della topologia algebrica, e per questo motivo solo lontane dall'essere rigorose
-e sicuramente saranno ricche di errori e imprecisioni. Molte definizioni o
+Ho scritto queste note come strumento personale per lo studio della topologia
+algebrica, e per questo motivo sono molto lontane dall'essere rigorose e
+sicuramente saranno ricche di errori e imprecisioni. Molte definizioni o
 concetti sono qui riportati perché, essendo uno studente di fisica, inizialmente
 ero a digiuno in merito ad argomenti che per gli studenti di matematica sono
 banalità. Queste note sono basate sulle lezioni del Professor Gilberto Bini
 dell'anno accademico 2016/2017, ma sono riportate in un ordine differente
 rispetto a quello cronologico, e alcune dimostrazioni sono state sistemate da me
-prima di essere scritte. I file {\small \texttt{.tex} }di questo documento sono
-tutti disponibili su GitHub all'indirizzo
-\href{https://github.com/Sbozzolo/Topologia-Algebrica}{\small
+prima di essere scritte. I file \texttt{.tex} di questo documento sono tutti
+disponibili su GitHub all'indirizzo
+\href{https://github.com/Sbozzolo/Topologia-Algebrica}{
   \texttt{https://github.com/Sbozzolo/Topologia-Algebrica}}, chiunque lo
 desideri può forkarli e modificarli a piacere, correggendo i numerosi errori qui
 presenti.
 \\ \\
 {
-  \flushright{Milano, \today}
-  \flushright{Gabriele Bozzola}
+  \begin{flushright}
+    Milano, \today \\
+    Gabriele Bozzola
+  \end{flushright}
 }
+
+\newpage
 
 \chapter*{Syllabus 2016-2017}
 \begin{itemize}
@@ -166,13 +172,13 @@ presenti.
 \item \textbf{10 November 2016}: The cellular homology complex. Singular homology is isomorphic to Cellular homology
 \item \textbf{15 November 2016}: Examples of cellular homology: closed and compact topological surfaces, complex projective space and real projective space
 \item \textbf{17 November 2016}: Some consequences of the generalized Jordan curve theorem. The invariance of dimension
-\item \textbf{22 November 2016}:
-\item \textbf{24 November 2016}:
-\item \textbf{29 November 2016}:
-\item \textbf{1 December 2016}:
-\item \textbf{6 December 2016}:
-\item \textbf{13 December 2016}:
-\item \textbf{15 December 2016}:
+\item \textbf{22 November 2016}: Tensor products and Hom functor
+\item \textbf{24 November 2016}: The homology module with coefficients
+\item \textbf{29 November 2016}: The singular cohomology with G coefficients
+\item \textbf{1 December 2016}: The universal coeffcient theorem (for homology and cohomology theory)
+\item \textbf{6 December 2016}: Cup product. The cohomology ring. Examples. The cohomology ring of complex projective space and real projective space (with $ \Z_2 $ coefficients)
+\item \textbf{13 December 2016}: A review on differential forms on differentiable manifolds. The de Rham cohomology Theorem. Poincaré duality
+\item \textbf{15 December 2016}: The proof of Poincaré duality
 \item \textbf{20 December 2016}:
 \item \textbf{10 January 2016}:
 \end{itemize}
