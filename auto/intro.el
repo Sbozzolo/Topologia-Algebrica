@@ -42,6 +42,7 @@
     "Insiemi aperti"
     "Topologia discreta"
     "Topologia indotta"
+    "Base di uno spazio topologico"
     "Inclusione"
     "Spazio connesso"
     "Arco"
