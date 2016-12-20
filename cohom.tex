@@ -2091,6 +2091,296 @@ quindi la mappa è ben definita in quanto:
   Anche gli altri quadrati si dimostrano in maniera analoga, in modo ancora più laborioso.
 \end{proof}
 
+% lezione 21
+
+\section{Teorema di de Rham}
+
+Sia $ X $ varietà differenziabile di dimensione $ n $, sono ben definiti i
+gruppi di coomologia singolare a valori in $ \RN{} $ $ H^p(X) $ e il gruppo di
+coomologia di de Rham. Questi sono spazi vettoriali reali di dimensione finita
+su $ \RN{} $. Questi due spazi sono strutturalmente differenti, il primo è
+formato da classi di equivalenza di omomorfismi, mentre il secondo da classi di
+equivalenza di forme differenziali. Nonostante la differenza esiste un importante
+risultato che li collega:
+\begin{theorem}[Teorema di de Rham\index{Teorema di de Rham}]
+  Sia $ X $ varietà differenziale di dimensione $ n $, allora:
+  \[
+    \forall p \in \set{0, \dots, n} \; H^p_{dR}(X) \cong H^p(X;\RN{})
+  \]
+\end{theorem}
+Questo teorema offre una rappresentazione esplicita dei gruppi di coomologia
+singolare in termini di forme differenziali, per le quali è disponibile un corposo
+set di tecniche.
+
+Per dimostrare il teorema di de Rham bisogna prima costruire un omomorfismo
+$ \rho \colon H^p_{dR}(X) \to H^p(X;\RN{}) $ e dopodiché dimostrare che è un isomorfismo.
+Per costruire $ \rho $ definisco un omomorfismo $ \rho \colon \Omega^p(X) \to \hom{S_p(X), \RN{}} $
+e poi passo a livello di omologia, infatti per il teorema dei coefficienti
+universali l'omologia del complesso degli omomorfismi è isomorfa alla coomologia.
+Quindi definirò $ \rho $ tramite:
+\[
+  \begin{tikzcd}
+    Z^p(X) \rar{r} \dar{\pi_1} & \hom{S_p(X), \RN{}} \dar{\pi_2} \\
+    H^p_{dR}(X) \rar{\rho} & H^p(X, \RN{})
+  \end{tikzcd}
+\]
+Sia $ \omega \in \Omega^p(X) $, allora $ r(\omega) \in \hom{S_p(X), \RN{}} $, quindi $ r(\omega) $ agisce
+sui $ p $-simplessi singolari $ \sigma \colon \Delta_p \to X $ e produce un numero reale.
+Se $ \sigma^\star $ è il \textbf{pullback}\index{Pullback} di $ \sigma $, cioè la mappa:
+\begin{align*}
+  \sigma^\star \colon \Omega^p(X) & \to \Omega^p(\Delta_p) \\
+  \omega & \mapsto \sigma^\star = \omega \circ \sigma
+\end{align*}
+Si è tentati di definire:
+\[
+  r(\omega)(\sigma) = \int_{\Delta_p} \sigma^\star(\omega)
+\]
+Tuttavia questo non sarebbe sensato, in quanto $ \sigma $ è solo continua, ma per
+avere una forma differenziale liscia con il pullback $ \sigma $ dovrebbe essere $ \mathcal{C}^\infty $.
+Per questo motivo si introduce un gruppo intermedio.
+\begin{definition}
+  Un $ p $-simplesso singolare $ \sigma $ si dice \textbf{liscio}\index{Simplesso singolare liscio}
+  se $ \sigma $ è $ \mathcal{C}^\infty $.
+\end{definition}
+\begin{osservation}
+  I $ p $-simplessi singolari sono definiti su $ \Delta_p $ la quale è una varietà
+  non differenziabile, per questo si dice che $ \sigma $ è
+  $ \mathcal{C}^\infty $ se considerato un intorno aperto $ U $ di $ \Delta_p $ e una
+  mappa $ F \colon U \to X $ tale che $ F\lvert_{\Delta_p} = \sigma $ risulta che
+  $ F $ è $ \mathcal{C}^\infty $ su $ U $.
+\end{osservation}
+\begin{definition}
+  Si definisce il \textbf{complesso delle $ p $-catene singolari
+    lisce}\index{Complesso delle catene singolari} come il gruppo libero
+  generato dai $ p $-simplessi singolari lisci su $ X $ con il bordo ottenuto
+  restringendo l'operatore di bordo del complesso delle catene ai simplessi
+  singolari lisci. Questo sin indica con $ (S^\infty_p(X), \partial) $, e il generico
+  elemento $ c \in S^\infty_p(X) $ si può scrivere come:
+  \[
+    c = \sum_\sigma n_\sigma \sigma \text{ con $ \sigma $ $ p $-simplesso singolare liscio}
+  \]
+  Esplicitamente l'azione dell'operatore di bordo è:
+  \begin{align*}
+    \partial = \partial \lvert_{S^\infty_p} \colon S_p^\infty(X) & \to S^\infty_{p-1}(X) \\
+    \sigma & \mapsto \partial \sigma = \sum_{i=0}^p (-)^i \sigma \circ F_i^{\; p}
+  \end{align*}
+  Questa operazione è ben definita in quanto la composizione di applicazioni
+  $ \mathcal{C}^\infty $ è ancora $ \mathcal{C}^\infty $.
+\end{definition}
+Si può calcolare la coomologia di questo complesso, che è:
+\[
+  H^p_\infty(X, \RN{}) = \quot{\ker{ \delta \colon \hom{S^\infty_p(X), \RN{}} \to \hom{S^\infty_{p+1}(X), \RN{}}}}{\im{\hom{S^\infty_{p-1}(X), \RN{}} \to  \hom{S^\infty_p(X), \RN{}}}}
+\]
+Dove $ \delta $ è il cobordo.
+\begin{osservation}
+  Se $ F \colon X \to Y $ è una mappa liscia tra varietà differenziabili
+  questa induce una mappa $ F^\star $:
+  \begin{align*}
+    F^\star \colon H^p_\infty(Y, \RN{}) & \to H^p_\infty(X, \RN{}) \\
+    \llbracket c \rrbracket & \mapsto \llbracket F \circ c \rrbracket
+  \end{align*}
+  Questa è sensata in quanto $ F \circ c $ è $ \mathcal{C}^\infty $ in quanto
+  composizione di funzioni $ \mathcal{C}^\infty $.
+\end{osservation}
+Con questo nuovo gruppo si può definire un omomorfismo $ r $ come ero tentato
+di fare, ma solo sui simplessi singolari lisci, dopodiché si estende
+la definizione alle catene di simplessi singolari lisci:
+\begin{align*}
+  r \colon \Omega^p(X) & \to \hom{S_p^\infty(X), \RN{}} \\
+  \omega & \mapsto r(\omega)
+\end{align*}
+Con
+\begin{align*}
+  r(\omega) \colon S_p^\infty(X) & \to \RN{} \\
+  \sigma & \mapsto \int_{\Delta_p} \sigma^\star(\omega)
+\end{align*}
+Come notazione si pone:
+\[
+  \int_{\Delta_p} \sigma^\star(\omega) = \int_\sigma \omega
+\]
+Estendendo alle catene:
+\begin{align*}
+  r(\omega) \colon S_p^\infty(X) & \to \RN{} \\
+  c = \sum n_\sigma \sigma & \mapsto \int_c \omega = \sum n_\sigma \int_\sigma \omega
+\end{align*}
+Questo è un omomorfismo per la linearità dell'integrale infatti:
+\begin{gather*}
+  r(\lambda \omega_1 + \mu \omega_2)(c) = \int_c \lambda \omega_1 + \mu \omega_2 = \lambda \int_c \omega_1 + \mu \int_c \omega_2
+\end{gather*}
+Bisogna tuttavia fare attenzione che $ \Delta_p $ è una varietà topologica con bordo
+che deve essere orientata. Questo si può fare induttivamente: si orienta il
+punto, dopodiché si orienta il segmento in modo compatibile al punto, e così
+via. La dimostrazione dettaglia è piuttosto tecnica.
+
+A questo punto ho due complessi: $ (\Omega^\bullet, \d{}) $ e $ (\hom{(S^\infty_p(X), \RN{})}, \delta) $:
+\[
+  \begin{tikzcd}[nodes = {column sep = 10 pt}]
+    \dots \rar{\d{}} & \Omega^p(X) \dar{r} \rar{\d{}} & \Omega^{p+1}(X)  \dar{r} \rar{\d{}} & \Omega^{p+2}(X)  \dar{r} \rar{\d{}} & \dots \\
+    \dots \rar{\delta} & \hom{S^\infty_p(X), \RN{}} \rar{\delta} & \hom{S^\infty_{p+1}(X), \RN{}} \rar{\delta} &\hom{S^\infty_{p+2}(X), \RN{}} \rar{\delta} & \dots
+  \end{tikzcd}
+\]
+
+\begin{lemma}
+  La mappa
+  $ r \colon (\Omega^\bullet(X), \d{}) \to (\hom{(S^\infty_\bullet(X), \RN{})}, \delta) $ precedentemente definita
+  à una mappa di cocatene, cioè $ r \circ d = \delta \circ r $.
+\end{lemma}
+\begin{proof}
+  Sia $ \omega \in \Omega^p(X) $ allora $ r(\omega) \in \hom{S^\infty_p(X), \RN{}} $, applicando $ \delta $
+  e valutandolo su un simplesso singolare liscio $ \sigma $:
+  \[
+    \delta \circ r(\omega)(\sigma) = r(\omega)(\partial \sigma) = \int_{\partial \sigma} \omega
+  \]
+  Ma $ \partial \sigma $ è $ (p-1) $-catena e:
+  \[
+    \partial \sigma = \sum_{i=0}^p(-)^i\sigma \circ F_i^{\; p}
+  \]
+  Quindi:
+  \[
+    \int_{\partial \sigma} \omega = \sum_{i=0}^p \int_{\sigma \circ F_i^{\; p}} \omega = \sum_{i=0}^p(-)^i \int_{\Delta_{p-1}} (\sigma \circ F_i^{\; p})^\star (\omega) =
+  \]
+  Ma il pullback è controvariante cioè $ (f \circ g)^\star = g^\star \circ f^\star $ e quini:
+  \[
+    =\sum_{i=0}^p (-)^p \int_{A_{p-1}} (F_i^{\; p})^\star \circ \sigma^\star (\omega) =
+  \]
+  Dopo numerosi conti tediosi:
+  \[
+    = \int_{\bigcup_{i=0}^p F_i^{\; p}(\Delta_{p-1})} \sigma^\star(\omega) = \int_{\partial(\Delta_p)} \sigma^\star(\omega) =
+  \]
+  Per il teorema di Stokes:
+  \[
+    = \int_{\Delta_p} \d{(\sigma^\star(\omega))}
+  \]
+  Quindi:
+  \[
+    (\delta \circ r)(\omega)(\sigma) = \int_{\Delta_p} \d{(\sigma^\star(\omega))}
+  \]
+  Ma si dimostra che il pullback commuta con la derivata esterna e quindi:
+  \[
+    = \int_{\Delta_p} \sigma^\star(\d \omega) = \int_\sigma \d \omega = r (\d \omega) (\sigma) = (r \circ d)(\omega)(\sigma)
+  \]
+  Quindi il quadrato è commutativo.
+\end{proof}
+Siccome $ r $ è una mappa di cocatene induce una mappa a livello di coomologia
+e quindi esiste ben definita:
+\begin{align*}
+  \rho \colon H^p_{dR}(X) & \to H^p_\infty (X, \RN{}) \\
+  \llbracket \omega \rrbracket & \mapsto \llbracket r(\omega) \rrbracket
+\end{align*}
+\begin{lemma}
+  Se $ F \colon X \to Y $ è un'applicazione liscia tra varietà differenziali allora
+  il seguente diagramma commuta:
+  \[
+    \begin{tikzcd}
+      H^p_{dR}(Y) \rar{F^\star} \dar{\rho_Y} & H^p_{dR}(X) \dar{\rho_X} \\
+      H^p_\infty(Y, \RN{}) \rar{F^\star} & H^p_\infty(X, \RN{})
+    \end{tikzcd}
+  \]
+\end{lemma}
+\begin{proof}
+  Sia $ \omega \in Z^p(Y) $, cioè $ \omega $ forma differenziale chiusa ($ \d \omega = 0 $)
+  e sia $ \sigma $ un $ p $-simplesso singolare liscio in $ X $. Devo
+  mostrare che $ \rho_X \circ F^\star = F^\star \circ \rho_Y $. Li valuto:
+  \begin{gather*}
+    (\rho_X \circ F^\star)(\omega)(\sigma) = \int_\sigma F^\star(\omega) = \int_{\Delta_p} \sigma^\star \circ F^\star (\omega) = \int_{\Delta_p} (F \circ \sigma)^\star(\omega) = \\
+    = \int_{F \circ \sigma} \omega = \rho_Y(\omega)(F \circ \sigma)
+  \end{gather*}
+  Quindi $ (\rho_X \circ F^\star)(\omega)(\sigma) = \rho_Y(\omega)(F \circ \sigma) $ ma $ \rho_Y(\omega)(F \circ \sigma) = (F^\star \circ \rho_Y)(\omega)(\sigma) $
+  per la definizione di pullback.
+  Ora mostro che $ (\rho_X \circ F^\star)([\omega]_{dR}) = (F^\star \circ \rho_Y)([\omega]_{dR}) $ con $ [w]_{dR} = \omega + \d \eta $.
+  \[
+    (\rho_X \circ F^\star)(\omega + \d \eta) = (\rho \circ F^\star)(\omega) + (\rho_X \circ F^\star)(\d \eta)
+  \]
+  La prima parte ho già che è ok, la seconda:
+  \[
+    \rho_X(F^\star \d \eta)(\sigma) = \int_\sigma F^\star \d \nu = \int_{F \circ \sigma} \d \eta
+  \]
+  Ma
+  \[
+    (F^\star \circ \rho_Y)(\d \eta)(\sigma) = \rho_Y(\d \eta)(F \circ \sigma) = \int_{F \circ \sigma} \d \eta
+  \]
+  Quindi tutto va bene.
+\end{proof}
+\begin{definition}
+  Sia $ X $ una varietà differenziale, questa si dice \textbf{de Rham}\index{Varietà differenziabile de Rham}
+  se l'applicazione $ \rho $ è un isomorfismo.
+\end{definition}
+\begin{lemma}
+  Essere de Rham è invariante per diffeomorfismi, cioè se $ X $ è de Rham e $ F \colon X \to Y $
+  è diffeomorfismo, allora anche $ Y $ è de Rham.
+\end{lemma}
+\begin{proof}
+  Siccome $ F \colon X \to Y $ è diffeomorfismo allora esiste $ G \colon Y \to X $ diffeomorfismo
+  inverso, quindi $ H^p_{dR}(X) \cong H^p_{dR}(Y) $ per la funtorialità del pullback,
+  e anche $ F^\star_\infty $ lo è per motivo analogo.
+  Quindi ho il diagramma:
+  \[
+    \begin{tikzcd}
+      H^p_{dR}(Y) \dar{\rho_Y} \rar{F^\star_{dR}} & H^p_{dR}(X) \dar{\rho_X} \\
+      H^p_\infty(Y, \RN{}) \rar{F^\star_\infty} & H^p_\infty(X, \RN{})
+    \end{tikzcd}
+  \]
+  Siccome il diagramma commuta $ \rho_Y = (F^\star_\infty)^{-1} \circ \rho_X \circ F^\star_{dR} $ è
+  isomorfismo essendo composizione di isomorfismi.
+\end{proof}
+\eproof
+A questo punto il teorema di de Rham si può scrivere esprimere come:
+\begin{theorem}[Teorema di de Rham\index{Teorema di de Rham}]
+  Ogni varietà differenziale è de Rham inoltre soddisfa la condizione
+  \[
+    H^p(X, \RN{}) \cong H^p_{dR}(X) \; \forall p
+  \]
+\end{theorem}
+\begin{proof}
+  La dimostrazione è per passi. Bisogna dimostrare
+  \begin{itemize}
+  \item Se $ \set{X_j} $ è una famiglia numerabile di varietà de Rham
+    allora la loro unione disgiunta è una varietà de Rham.
+  \item Ogni aperto convesso di $ \RN{n} $ è de Rham.
+  \item Se $ X $ è una varietà differenziale che ammette un ricoprimento
+    finito di aperti de Rham allora è de Rham.
+  \item Se $ X $ ha una base di aperti de Rham allora è de Rham.
+  \item Ogni aperto di $ \RN{n} $ è de Rham.
+  \item Ogni varietà differenziale è de Rham.
+  \item Ogni varietà soddisfa $  H^p(X, \RN{}) \cong H^p_{dR}(X) \; \forall p $.
+  \end{itemize}
+
+  \subparagraph{Dimostrazione del punto sei} Siccome $ X $ è una varietà
+  differenziabile ammette un atlante formato da insiemi $ U_\alpha $ (con relative
+  carte) che sono diffeomorfi ad aperti $ V_\alpha $ in $ \RN{n} $. Per il punto
+  cinque $ V_\alpha $ sono de Rham, quindi per il lemma precedente $ U_\alpha $ sono
+  de Rham. Ora basta mostrare che $ X $ammette una base di aperti costruiti
+  a partire da questi $ U_\alpha $ in questo modo per il punto quattro $ X $ è de
+  Rham.
+  [MANCA QUALCOSA]
+\end{proof}
+
+\subsection{Duale di Poincaré}
+
+
+Se $ X $ è una varietà differenziabile compatta orientata senza bordo
+allora ho il teorema di Poincaré e quello di de Rham. Quindi ho:
+\[
+  \begin{tikzcd}
+    {} & (H^{n-p}_{dR}(X))^* \\
+    H^p_{dR}(X) \arrow{ur}{D} \arrow{dr}{\rho} & {} \\
+    {} & H^p(X, \RN{})
+  \end{tikzcd}
+\]
+\begin{definition}
+  Dato $ \llbracket \sigma \rrbracket \in H_p(X) $ si definisce il \textbf{duale di Poincaré}\index{Duale di Poincaré}
+  $ \llbracket\mathcal{P}(\sigma)\rrbracket \in H^p_{dR}(X) $ tale che:
+  \[
+    \int_\sigma \omega = \int_X \mathcal{P}(\sigma) \wedge \omega
+  \]
+  Cioè è quella forma differenziale che tramite la dualità di Poincaré
+  produce una forma che per de Rham finisce in $ \sigma $.
+\end{definition}
+Questo si costruisce prendendo un $ \llbracket \tilde{\sigma} \rrbracket \in H^p(X, \RN{}) $ poi
+con de Rham viene mandato in $  \mathcal{P}(\sigma)  $ tale che $ \rho(\llbracket\mathcal{P}(\sigma) \rrbracket) = \tilde{\sigma} $
+e quindi con Poincaré $ D(\llbracket\mathcal{P}(\sigma) \rrbracket) = \int_X \omega_{\tilde{\sigma}} \wedge \eta $
+
+
 %%% Local Variables:
 %%% ispell-local-dictionary: "italiano"
 %%% mode: latex

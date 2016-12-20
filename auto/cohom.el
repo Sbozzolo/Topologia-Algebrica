@@ -39,6 +39,12 @@
     "Forme esatte"
     "Coomologia a supporto compatto"
     "Supporto compatto"
-    "Teorema di isomorfismo di Poincaré"))
+    "Teorema di isomorfismo di Poincaré"
+    "Teorema di de Rham"
+    "Pullback"
+    "Simplesso singolare liscio"
+    "Complesso delle catene singolari"
+    "Varietà differenziabile de Rham"
+    "Duale di Poincaré"))
  :latex)
 

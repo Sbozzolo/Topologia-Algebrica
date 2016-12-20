@@ -203,6 +203,7 @@ può essere vista come CW complesso formato da un punto e una sola cella.
 
 \section{Spazi proiettivi}
 
+\newmathsymb{proreal}{\Pjr{n}}{Spazio proiettivo reale}
 \begin{definition}
   Si definice lo \textbf{spazio proiettivo reale}\index{Spazio proiettivo reale}
   $ \Pjr{n}= {\RN{n+1} \setminus \set{0}} \slash {\sim} $ con
@@ -1345,20 +1346,21 @@ Poi $ 2 g $ $ 1 $-celle $ \alpha_1, \dots, \alpha_g, \beta_1, \dots, \beta_g $ c
 $ \alpha_i = \pi(a_i) $ e $ \beta_i = \pi(b_1) $. La funzione di attaccamento
 è:
 \begin{align*}
-  f_1 \colon \partial \Disk{2} & \to X^{(0)} \\
+  f_1 \colon \partial \Disk{1} = \set{-1, +1} & \to X^{(0)} \\
   \pm 1 & \mapsto x
 \end{align*}
 Infine una $ 2 $-cella
 che è l'immagine dell'interno, cioè ottenuta con la mappa
-di attaccamento
+di attaccamento costante:
 \[
-  f \colon \Sph{1} \to X^{(1)} = \Sph{1}_1 \vee \dots \vee \Sph{1}_{2g}
+  f \colon \partial \Disk{2} = \Sph{1} \to X^{(1)} = \Sph{1}_1 \vee \dots \vee \Sph{1}_{2g}
 \]
-Calcolo l'omologia di $ V_g $ con $ g \geq 1 $, il complesso
-è:
+Un esempio concreto è il toro: si attaccano due circonferenze su un punto, e
+quindi si completa il toro attaccando su queste circonferenze un disco. \\
+Calcolol'omologia di $ V_g $ con $ g \geq 1 $, il complesso è:
 \[
   \begin{tikzcd}
-    0 \rar & S^{CW}_2(V_g) \rar & S^{CW}_(V_g) \rar & S^{CW}_0(V_g) \rar & 0
+    0 \rar & S^{CW}_2(V_g) \rar & S^{CW}_1(V_g) \rar & S^{CW}_0(V_g) \rar & 0
   \end{tikzcd}
 \]
 Ma:
