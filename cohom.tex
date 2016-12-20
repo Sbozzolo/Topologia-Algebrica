@@ -29,12 +29,13 @@ cartesiano:
 \[
   A \times B = \set{(a,b) | a \in A, b \in B}
 \]
-Sia $ F(A,B) $ il gruppo libero generato dalle coppie $ (a, b) \in A \times B $
-in notazione additiva. Il gruppo $ F(A,B) $ è abeliano in quanto
-$ A $ e $ B $ lo sono, e l'operazione di somma è:
-\[
-  (a_1, b_1 ) + (a_2, b_2) = (a_1 + a_2, b_1 + b_2)
-\]
+Sia $ F(A,B) $ il gruppo libero generato dalle coppie $ (a, b) \in A \times B $.
+% in notazione additiva.
+% Il gruppo $ F(A,B) $ è abeliano in quanto
+% $ A $ e $ B $ lo sono, e l'operazione di somma è:
+% \[
+%   (a_1, b_1 ) + (a_2, b_2) = (a_1 + a_2, b_1 + b_2)
+% \]
 \newmathsymb{tensprod}{\otimes}{Prodotto tensore}
 \begin{definition}
   Se $ A, B $ sono $ \Z $-moduli si definisce il \textbf{prodotto
@@ -42,16 +43,17 @@ $ A $ e $ B $ lo sono, e l'operazione di somma è:
   \[
     A \otimes B = \quot{F(A,B)}{R(A,B)}
   \]
-  Dove $ F(A,B) $ è il gruppo libero generato da $ A \times B $ con operazione
-  $ (a_1, b_1) + (a_2, b_2) = (a_1 + a_2, b_1 + b_2) $, e $ R(A,B) $ il gruppo
-  generato in $ F(A,B) $ dalle espressioni:
+  Dove $ F(A,B) $ è il gruppo libero generato da $ A \times B $
+  % con operazione $ (a_1, b_1) + (a_2, b_2) = (a_1 + a_2, b_1 + b_2) $,
+  e $ R(A,B) $ il gruppo generato in $ F(A,B) $ dalle espressioni:
   \begin{gather*}
     (a_1 + a_2, b) - (a_1, b) - (a_2, b) \\
     (a, b_1 + b_2) - (a, b_1) - (a, b_2) \\
     n (a, b) - (na, b) \\
     n (a, b) - (a, nb)
   \end{gather*}.
-  Gli elementi di $ A \otimes B $ sono $ a \otimes b $ con $ a \in A $ e $ b \in B $ e vale che:
+  Gli elementi di $ A \otimes B $ sono generati dai simboli
+  $ a \otimes b $ con $ a \in A $ e $ b \in B $ imponendo le relazioni:
   \begin{gather*}
     (a_1 + a_2) \otimes b = a_1 \otimes b + a_2 \otimes b \\
     a \otimes (b_1 + b_2) = a \otimes b_1 + a \otimes b_2 \\
@@ -60,7 +62,26 @@ $ A $ e $ B $ lo sono, e l'operazione di somma è:
   \end{gather*}
   Infatti il quoziente manda a zero le espressioni in $ R(A,B) $.
 \end{definition}
-
+\begin{osservation}
+  Il generico elemento di $ A \otimes B $ non è della forma $ a \otimes b $, m
+  a è una combinazione lineare di oggetti di questo tipo, detti
+  tensori puri, i quali generano $ A \otimes B $ come modulo.
+\end{osservation}
+\begin{example}
+  Si parla di cambiamento di coefficienti in questo senso: considero
+  $ \RN{3} \otimes \mathbb{C} $, una base di questo spazio è data da:
+  \[
+    \set{e \otimes 1, e \otimes i, f \otimes 1, f \otimes i, g \otimes 1, g \otimes i}
+  \]
+  Il generico elemento di $ \RN{3} \otimes \mathbb{C} $ è:
+  \begin{gather*}
+    a_1(e \otimes 1) + a_2(e \otimes i) + a_3(f \otimes 1) + a_4(f \otimes i) + a_5(g \otimes 1) + a_6(g \otimes i) = \\
+    = (a_1e + a_3f + a_5g) \otimes 1 + (a_2e + a_4f + a_6g) \otimes i = \\
+    = e \otimes (a_1 + a_2i) + f \otimes (a_3 + a_4i) + g \otimes (a_5 + a_6i)
+  \end{gather*}
+  Nell'ultima riga si vede che ora si hanno dei vettori nella base di partenza
+  ma con coefficienti complessi. Questa è la complessificazione di $ \RN{3} $.
+\end{example}
 \begin{proposition}[Proprietà universale\index{Proprietà universale! \vedi{Prodotto tensore}}]
   Sia $ G $ un gruppo abeliano e $ \psi \colon A \times B \to G $ un'applicazione bilineare continua,
   allora esiste un unico omomorfismo $ \phi \colon A \otimes B \to G $ tale che il diagramma:
@@ -77,7 +98,11 @@ $ A $ e $ B $ lo sono, e l'operazione di somma è:
   \end{align*}
   In pratica $ \psi $ fattorizza per il prodotto tensoriale
   ($ \psi = \phi \circ \pi $). La proprietà è detta universale perché esiste mostra che
-  esiste un solo prodotto tensoriale.
+  esiste un solo prodotto tensoriale, ed è equivalente a dire
+  che:
+  \[
+    \hom{A,B} \cong A^* \otimes B
+  \]
 \end{proposition}
 \begin{proof}
   La costruzione di $ \phi $ è banale, è tale che $ \phi(a \otimes b) = \phi(\pi(a,b)) = \psi(a,b) $,
@@ -93,23 +118,27 @@ $ A $ e $ B $ lo sono, e l'operazione di somma è:
   $ \phi $ è un omomorfismo per costruzione (dato che per ipotesi $ \psi $ lo è, e il
   prodotto tensoriale è bilineare) quindi $ \phi(\pi((r_\alpha, s_\alpha))) = 0 $.
 \end{proof}
-
+\begin{example}
+  Siano $ V, W $ spazi vettoriali reali, gli spazi
+  $ \tilde{V} = V \otimes \mathbb{C} $, $ \tilde{W} = W \otimes \mathbb{C} $ sono spazi
+  vettoriali complessi. La proprietà universale permette di estendere in modo
+  univoco le funzioni lineari $ f \colon V \to W $ a funzioni lineari
+  $ \tilde{f} : \tilde{V} \to \tilde{W} $ e quindi lavorare con $ \tilde{V} $ e
+  $ \tilde{W} $ esattamente come se fossero usuali spazi vettoriali complessi.
+\end{example}
 Un'altra importante proprietà del prodotto tensore è il suo comportamento
 rispetto agli omomorfismi.
 
 \begin{proposition}
-  Siano $ f \colon A \to B $ e $ g \colon A' \to B' $ omomorfismi, posso definire:
+  Siano $ f \colon A \to B $ e $ g \colon A' \to B' $ omomorfismi, posso definire l'azione di
+  sui generatori di $ A \otimes A' $:
   \begin{align*}
     f \otimes g \colon A \otimes A' & \to B \otimes B' \\
     a \otimes a' & \to f(a) \otimes g(a')
   \end{align*}
-  Allora $ f \otimes g $ è omomorfismo di gruppi abeliani.
+  Estendendo per linearità si definisce $ f \otimes g $ su tutto $ A \otimes A' $, il quale è
+  per definizione omomorfismo di gruppi abeliani.
 \end{proposition}
-\begin{proof}
-  \begin{gather*}
-    Proof.
-  \end{gather*}
-\end{proof}
 
 \begin{proposition}
   Vale che $ A \otimes B \cong B \otimes A $, cioè il prodotto tensore è simmetrico.
@@ -716,7 +745,7 @@ $ \hom{S_k(X), G} $. A questo punto posso considerare il duale del complesso del
   \end{tikzcd}
 \]
 Un elemento di $ \hom{S_p(X), G} $ è un omomorfismo $ \phi \colon S_p(X) \to G $, componendo $ \phi $
-con $ \partial \colon S_{p+1} \to S_p $ ottengo  $ \phi' = \phi \circ \partial \colon S_{p+1}(X) \to G $, quindi la composizione
+con $ \partial \colon S_{p+1}(X) \to S_p(X) $ ottengo  $ \phi' = \phi \circ \partial \colon S_{p+1}(X) \to G $, quindi la composizione
 per il bordo è un'operazione controvariante perché inverte il verso. Ho il complesso degli spazi
 di omomorfismi:
 \[
@@ -740,7 +769,7 @@ Questo è un complesso.
   spazio topologico $ X $ con coefficienti in $ G $, e si indica con
   $ H^p(X; G) $ l'omologia del complesso degli omomorfismi $ S^\bullet(X;G) $.
 \end{definition}
-Quindi per definizione la coomologia singolare è $ H^P(X;G) = H_p(\hom{S_\bullet(X), G}, \delta) $.
+Quindi per definizione la coomologia singolare è $ H^p(X;G) = H_p(\hom{S_\bullet(X), G}, \delta) $.
 
 A questo punto ho due possibilità: costruire i gruppi di omologia singolare
 $ H_p(X) $ e considerare gli omomorfismi tra tali gruppi e $ G $, oppure
@@ -768,7 +797,9 @@ due costruzioni sono differenti, cioè:
       0 \rar & \hom{\Z_4, \Z_6} \rar & \hom{\Z, \Z_6} \rar & \hom{4\Z, \Z_6} \rar & \ext{\Z_4, \Z_6} \rar & 0
     \end{tikzcd}
   \]
-  La presenza di questi moduli è responsabile della non uguaglianza di $ \hom{H_p(X), G} $ e $ H^p(X ; G) $.
+  La presenza di questi moduli è responsabile della non uguaglianza tra i gruppi
+  $ \hom{H_p(X), G} $ e $ H^p(X ; G) $, come formalizza il teorema dei
+  coefficienti universali.
 \end{example}
 \begin{definition}
   Siano $ A, B $ $ \Z $-moduli, considero una risoluzione di $ A $:
@@ -786,8 +817,9 @@ due costruzioni sono differenti, cioè:
   Il conucleo è esattamente quel gruppo che rende esatta la successione, cioè
   $ \im{\gamma} $, ma per il primo teorema degli isomorfismi:
   \[
-    \coker{\beta} := \im{\gamma} = \quot{\hom{R,B}}{\ker{\gamma}} \cong \quot{\hom{R,B}}{\im{\beta}}
+    \coker{\beta} := \im{\gamma} \cong \quot{\hom{R,B}}{\ker{\gamma}} \cong \quot{\hom{R,B}}{\im{\beta}}
   \]
+  Quindi il conucleo rende esatta a destra la successione.
   Esistono anche altre presentazioni, ma si dimostra che tutti i conuclei sono isomorfi,
   questo gruppo è proprio il \textbf{modulo di estensione di $ A $ e $ B $}\index{Modulo di estensione}.
 \end{definition}
@@ -865,12 +897,17 @@ Il teorema dei coefficienti universali quindi si riformula anche per la coomolog
       0 \rar & \ext{H_{p-1}(X), G} \rar & \arrow[bend left]{l}{} H^p(X;G) \rar & \hom{H_p(X), G} \rar & 0
     \end{tikzcd}
   \]
-  Per definizione $ H^P(X;G) $ è l'omologia del complesso delle cocatene $ S^p $ con il cobordo,
+  Per definizione $ H^p(X;G) $ è l'omologia del complesso delle cocatene $ S^p $ con il cobordo,
   dove $ S^p(X;G) = \hom{S_p(X), G} $ e il cobordo è:
   \begin{align*}
     \delta \colon S^p(X;G) & \to S^{p+1}(X;G) \\
     \phi & \mapsto \phi \circ \partial
   \end{align*}
+  La dimostrazione richiede che si costruisca un diagramma, quindi elenco alcune
+  successioni esatte, omettendo per concisione l'esplicita dipendenza dallo spazio
+  topologico, che si intende essere $ X $.
+
+  \noindent
   Per definizione $ H_p(X) = Z_p \slash B_p $ (cicli modulo i bordi), quindi ho:
   \[
     \begin{tikzcd}
@@ -885,7 +922,13 @@ Il teorema dei coefficienti universali quindi si riformula anche per la coomolog
     \end{tikzcd}
   \]
   Questa spezza perché tra le catene singolari ci sono quelle che si esprimono
-  come bordo e quindi c'è una sezione, e $ B_{p-1} $ è libero.
+  come bordo e quindi c'è una sezione, che sui generatori (sono entrambi gruppi
+  liberi) agisce come:
+  \begin{align*}
+    i \colon B_{p-1} \to S_p \\
+    \partial c & \mapsto c
+  \end{align*}
+  In questo modo$ \partial \circ i = \Id{B_{p-1}} $.
   Poi ho a partire da:
   \[
     \begin{tikzcd}
@@ -900,7 +943,7 @@ Il teorema dei coefficienti universali quindi si riformula anche per la coomolog
   \]
   Per definizione ho che:
   \[
-    \ext{H_p,G} = \quot{\hom{B_p,G}}{\im{t_p}}
+    \ext{H_p,G} \cong \quot{\hom{B_p,G}}{\im{t_p}}
   \]
   Oltre a ciò ho la successione:
   \[
@@ -914,13 +957,13 @@ Il teorema dei coefficienti universali quindi si riformula anche per la coomolog
       0 \rar & \hom{B_p, G } \rar & \hom{S_{p+1}, G} \rar & \dots
     \end{tikzcd}
   \]
-  Oltre a ciò ho la successione:
+  Poi ho la successione:
   \[
     \begin{tikzcd}
       0 \rar & Z_{p-1} \rar & S_{p-1} \rar & B_{p-2} \rar & 0
     \end{tikzcd}
   \]
-  Prendendo gli omomorfismi:
+  Prendendo gli omomorfismi (non c'è il modulo di estensione in quanto i gruppi sono liberi):
   \[
     \begin{tikzcd}
       0 \rar & \hom{B_{p-2}, G} \rar & \hom{S_{p-1}, G} \rar & \hom{Z_{p-1}, G} \rar & 0
@@ -932,19 +975,20 @@ Il teorema dei coefficienti universali quindi si riformula anche per la coomolog
       0 \rar & Z_p \rar & S_p \arrow[bend left]{l}{\phi} \rar & B_{p-1} \rar & 0
     \end{tikzcd}
   \]
-  Ho quindi la mappa:
+  È ben definita la sezione, e quindi posso definire la mappa:
   \begin{align*}
     \Phi \colon \hom{Z_p, G} & \to \hom{S_p, G} \\
-    \alpha \colon Z_p \to G & \mapsto \phi \circ \alpha \colon S_p \to G
+    \alpha \colon Z_p \to G & \mapsto \alpha \circ \phi \colon S_p \to G
   \end{align*}
   cioè $ \Phi = \alpha \circ \phi $.
   Il mio obiettivo è trovare la successione esatta:
   \[
     \begin{tikzcd}
-      0 \rar & \ext{H_{p-1}, G} \rar{\beta_2} & H^p(X; G) \rar{\beta_1} & \hom{H_p, G} \rar & 0
+      0 \rar & \ext{H_{p-1}, G} \rar{\beta_1} & H^p(X; G) \rar{\beta_2} & \hom{H_p, G} \rar & 0
     \end{tikzcd}
   \]
-  Faccio diagram chase:
+  Mettendo insieme le successioni costruite ottengo un diagramma su cui posso
+  fare diagram chase:
   \[
     \begin{tikzcd}
       {} & 0 & \dots & \dots & {} \\
@@ -954,43 +998,48 @@ Il teorema dei coefficienti universali quindi si riformula anche per la coomolog
       {} & \dots \uar & \dots \uar & 0 \uar{} & {}
     \end{tikzcd}
   \]
-  Costruisco $ \beta_1 $.
+  Costruisco $ \beta_2 $.
   Per definizione:
   \[
     H^p(X;G) = \quot{\ker{\delta\colon S^p(X;G) \to S^{p+1}(X;G)}}{\im{\delta \colon S^{p-1}(X;G) \to S^p(X;G)}}
   \]
-  Se $ f \in H^p(X; G) $ allora $ f \in S^p $ quindi $ \delta(f) = 0 $, cioè $ f \in \hom{\delta_p, G} = S^p $.
-  Considero
+  Se $ \llbracket f \rrbracket \in H^p(X; G) $ allora $ f \in S^p $ e $ \delta(f) = 0 $. Applicando
+  $ \sigma \circ \tau_2 \circ \alpha_2 $ a $ f $ e usando la commutatività:
   \[
-    f \mapsto \alpha_2(f) \mapsto \tau_2 \circ \alpha_2 (f) \mapsto \sigma \circ \tau_2 \circ \alpha_2 (f) = \delta(f) = 0
+    \sigma \circ \tau_2 \circ \alpha_2 (f) = \delta(f) = 0
   \]
   Quindi $ \sigma \circ \tau_2 \circ \alpha_2 (f) = 0 $, ma $ \sigma $ è iniettiva e quindi
   $ \tau_2(\alpha_2(f)) = 0 $, cioè
-  $ \alpha_2(f) \in \ker{\tau_2} = \im{\tau_1} $ e quindi
-  $ \exists g \in \hom{H_p, G} $ tale che $ \tau_1(g) = \alpha_2(f) $, e quindi ho trovato
-  $ g $ a partire da $ f $. Pongo $ \beta_1(f) = g_f $. Ma $ f $ è un elemento del
-  quoziente, quindi considero gli elementi al denominatore.
-  Se $ h \in S^{p-1} $ se $ \beta_1(\delta(h)) = 0 $ l'applicazione è ben definita in quanto
-  manda tutto il denominatore in zero. Ma:
+  $ \alpha_2(f) \in \ker{\tau_2} = \im{\tau_1} $ per l'esattezza della successione e quindi
+  $ \exists g \in \hom{H_p, G} $ tale che $ \tau_1(g) = \alpha_2(f) $, e quindi ho trovato un
+  elemento $ g $ a partire da $ f $. Pongo $ \beta_2(f) = g_f $. Per verificare che
+  l'applicazione sia ben definita devo controllare che cambiando rappresentante
+  della classe di equivalenza $ \llbracket f \rrbracket $ si ottenga il medesimo
+  $ g_f $, equivalentemente posso verificare che l'associazione che ho definito
+  mandi tutto il modulo $ \im{\delta \colon S^{p-1}(X;G) \to S^p(X;G)} $ in zero. Sia
+  $ \delta (h) \in \im{\delta \colon S^{p-1}(X;G) \to S^p(X;G)} \subseteq S^p $ devo verificare che
+  $ \beta_2(\delta(h)) = 0 $. Per trovare l'elemento $ g_{\delta(h)} $ applico $ \sigma \circ \tau_2 \circ \alpha_2 $
+  e uso la commutatività:
   \[
-    \alpha_2(\delta(h)) \mapsto \sigma \circ \tau_2 \circ \alpha_2 (\delta(h)) = 0
+    \sigma \circ \tau_2 \circ \alpha_2 (\delta(h)) = \delta \circ \delta (h) = 0
   \]
-  Quindi $ \tau_2(\alpha_2(\delta(h))) = 0 $ perciò esiste $ v \in \hom{} $ tale
-  che $ \alpha_2(\delta(h)) = \tau_1(v) $ e quindi $ \beta_1(\delta(h)) = v $.
-  Devo mostrare che $ v = 0 $
-  $ \tau_1 $ è iniettivo, devo mostrare che $ \alpha_2 \circ \delta (h) = 0 $, quindi
-  ho:
+  Quindi per l'iniettivita di $ \sigma $ $ \tau_2(\alpha_2(\delta(h))) = 0 $ perciò
+  $ \alpha_2(\delta(h)) \in \ker{\tau_2} = \im{\tau_1} $ e quindi esiste
+  $ v \in \hom{H_p,G} $ tale che $ \alpha_2(\delta(h)) = \tau_1(v) $ e quindi si definisce
+  $ \beta_2(\delta(h)) = v $. Devo mostrare che $ v = 0 $ per mostrare che
+  $ \beta_2 $ è ben definita, ma $ \tau_1 $ è iniettiva, quindi posso mostrare che
+  $ \alpha_2 \circ \delta (h) = 0 $ per mostrare che $ v = 0 $. Ma ho:
   \[
     \begin{tikzcd}
-      S_p \rar{\partial} & S_{p-1} \rar{h} & G \rar & {}
+      S_p \rar{\partial} & S_{p-1} \rar{h} & G
     \end{tikzcd}
   \]
   \[
     \begin{tikzcd}
-      SZ_p \rar{i} & S_{p} \rar{h \circ \partial} & G \rar & {}
+      Z_p \rar{i} & S_{p} \rar{h \circ \partial} & G
     \end{tikzcd}
   \]
-  Ma $ \alpha(\delta(h)) = \alpha_2(h \circ \partial) $ quindi $ \alpha_2(h \circ \partial) = h \circ \partial \circ i \colon Z_p \to G $
+  Quindi $ \alpha_2(\delta(h)) = \alpha_2(h \circ \partial) $ e $ \alpha_2(h \circ \partial) = h \circ \partial \circ i \colon Z_p \to G $.
   Ma in $ Z_p $ ci sono solo quelli di bordo nullo, cioè se $ c \in Z_p $:
   \[
     (h \circ \partial \circ i)(c) = h \circ \partial(c) = h(0) = 0
@@ -1000,29 +1049,37 @@ Il teorema dei coefficienti universali quindi si riformula anche per la coomolog
     \alpha_2 \circ \delta(h) = 0 \quad \Rightarrow \quad \tau_1(v) = 0
   \]
   Ma quindi $ v = 0 $ in quando $ \tau_1 $ è iniettiva. Ma questo significa
-  che $ \beta_1 $ è ben definita.
+  che $ \beta_2 $ è ben definita:
   \begin{align*}
-    \beta_1 \colon H^p(X;G) & \to \hom{H_p,G} \\
-    \llbracket f \rrbracket & \mapsto g_f \; | |; \tau_1(g_f) = \alpha_2(f)
+    \beta_2 \colon H^p(X;G) & \to \hom{H_p,G} \\
+    \llbracket f \rrbracket & \mapsto g_f \; | \; \tau_1(g_f) = \alpha_2(f)
   \end{align*}
 
-  Ora costruisco $ \beta_2 $. Parto da $ u \in \ext{H_{p-1}, G} $.
-  $ \lambda_2 $ è suriettiva, quindi esiste $ \tilde{u} $ tale che
-  $ \lambda(\tilde{u}) = u $, poi ho che $ \alpha_1(\tilde{u}) \in \hom{S_p, G} = S^p $,
-  quindi:
+  Ora costruisco $ \beta_1 \colon \ext{H_{p-1}, G} \to H^p(X;G) $. Parto da $ u \in \ext{H_{p-1}, G} $,
+  $ \lambda_2 $ è suriettiva, quindi esiste $ \tilde{u} \in \hom{B_{p-1}.G} $ tale che
+  $ \lambda_2(\tilde{u}) = u $, poi ho che $ \alpha_1(\tilde{u}) \in \hom{S_p, G} = S^p $,
+  quindi posso definire:
   \begin{align*}
-    \beta_2 \colon \ext{H_{p-1}, G} & \to H^p(X,G) \\
-    u & \mapsto \alpha_1(\tilde{u})
+    \beta_1 \colon \ext{H_{p-1}, G} & \to H^p(X,G) \\
+    u & \mapsto \llbracket\alpha_1(\tilde{u})\rrbracket \; | \; \lambda_2(\tilde{u}) = u
   \end{align*}
-  $ \beta_2 $ è ben definita? Se $ \tilde{u} $ non fosse unico, ma se esistessero
-  $ \tilde{u}_1, \tilde{u}_2 $ tali che
-  $ \lambda_2(\tilde{u}_1) = \lambda(\tilde{u}_1) = u $, siccome $ \lambda $ è un
+  Per poter scendere a livello di omologia devo mostrare che se
+  $ u \in \ext{H_{p-1},G} $ allora $ \alpha_1(\tilde{u}) \in S^p $ è un cociclo, cioè
+  $ \delta(\alpha_1(\tilde{u})) = 0 $, ma per la commutatività:
+  \[
+    \delta \circ \alpha_1 = (\sigma \circ \tau_2 \circ \alpha_2)(\alpha_1) = \sigma \circ \tau_2 \circ \alpha_2 \circ \alpha_1 = 0
+  \]
+  In quanto $ \alpha_2 \circ \alpha_1 = 0 $ perché la successione è esatta, e quindi
+  $ \delta(\alpha_1(\tilde{u})) = 0 $. Bisogna mostrare che $ \beta_1 $ è ben definita, cioè
+  comunque scelga la preimmagine $ \tilde{u} $ ottengo sempre la medesima classe
+  di equivalenza in $ H^p(X,G) $. Se $ \tilde{u} $ non fosse unico, ma se
+  esistessero $ \tilde{u}_1, \tilde{u}_2 $ tali che
+  $ \lambda_2(\tilde{u}_1) = \lambda_2(\tilde{u}_1) = u $, siccome $ \lambda_2 $ è un omomorfismo
   $ \lambda_2(\tilde{u}_1 - \tilde{u}_2) = 0 $, quindi
-  $ \tilde{u}_1 - \tilde{u}_2 \in \ker{\lambda_2} = \im{\lambda_1} $, quindi esiste
-  $ V \in \hom{Z_{p-1}, G} $ tale che $ \lambda_1(V) = \tilde{u}_1 - \tilde{u}_2 $
-  ma $ \Delta $ è suriettiva, quindi esiste $ w \in \hom{S_{p-1}, G} $ tale
-  che $ \Delta(w) = V $.
-  Quindi:
+  $ \tilde{u}_1 - \tilde{u}_2 \in \ker{\lambda_2} = \im{\lambda_1} $ per l'esattezza della
+  successione, quindi esiste $ V \in \hom{Z_{p-1}, G} $ tale che
+  $ \lambda_1(V) = \tilde{u}_1 - \tilde{u}_2 $. Ma $ \Delta $ è suriettiva, quindi esiste
+  $ w \in \hom{S_{p-1}, G} $ tale che $ \Delta(w) = V $. Quindi per la commutatività:
   \[
     \delta(w) = \alpha_1 \circ \lambda_1 \circ \Delta (w) = \alpha_1 \circ \lambda_1 (V) = \alpha_1 ( \tilde{u}_1 - \tilde{u}_2 )
   \]
@@ -1030,64 +1087,96 @@ Il teorema dei coefficienti universali quindi si riformula anche per la coomolog
   \[
     \alpha_1(\tilde{u}_1) - \alpha_2(\tilde{u}_2) = \delta(w)
   \]
-  Le immagini differiscono per un cobordo, quindi $ \beta_2 $ è ben definita.
-
-  Devo mostrare che se $ u \in \ext{H_{p-1},G} $ allora $ \alpha_1(\tilde{u}) \in S^p $
-  è un cociclo, cioè $ \delta(\alpha_1(\tilde{u})) = 0 $, infatti
-  \[
-    \delta \circ \alpha_1 = (\sigma \circ \tau_2 \circ \alpha_2)(\alpha_1) = \sigma \circ \tau_2 \circ \alpha_2 \circ \alpha_1 = 0
-  \]
-  In quanto $ \alpha_2 \circ \alpha_1 = 0 $ perché la successione è esatta.
-  Quindi $ \delta(\alpha_1(\tilde{u})) = 0 $ e quindi $ \alpha_1(\tilde{u}) \in Z^p $.
+  Le immagini differiscono per un cobordo quindi danno origine alla stessa
+  classe di equivalenza e perciò $ \beta_1 $ è ben definita.
+  \\ \\
   Così ho costruito le due applicazione che mi servivano, ma non ho ancora
-  finito, devo mostrare che $ \beta_2 $ è suriettiva, $ \beta_1 $ iniettiva, e tutto
-  il resto.
-  Se $ \beta_2(u) = 0 $ allora $ \alpha_1(\tilde{u}) = 0 $ ma $ \alpha $ è iniettiva quindi
-  $ \tilde{u} = 0 $, quindi $ \lambda(\tilde{u}) = u $ quindi $ u = 0 $, e perciò
-  $ \ker{\beta_2} = 0 $, e quindi $ \beta_2 $ è iniettiva.
-  $ \beta_1 $ è suriettiva infatti se $ v \in \hom{H_p, G} $ allora $ \Phi(\tau_1(v)) \in \hom{S_p,G} $
-  ma $ \delta \circ \Phi(\tau_1(v)) = (\sigma \circ \tau_2 \circ \alpha_2) \circ \Phi \circ \tau_1 (v) = \sigma \circ \tau_2 (\alpha_2 \circ \Phi) \circ \tau_1 (v) $,
-  ma ho:
+  finito, devo mostrare che $ \beta_2 $ è suriettiva, $ \beta_1 $ iniettiva, che
+  $ \im{\beta_2} = \ker{\beta_1} $ e che la successione spezza.
+
+  Dimostro che $ \beta_1 $ è iniettiva mostrando che il suo nucleo è banale.
+  Considero $ u \in \ker{\beta_1} $, quindi tale che $ \beta_1(u) = 0 $, allora
+  $ \llbracket\alpha_1(\tilde{u})\rrbracket = 0 $. Questo è vero se
+  $ \alpha_1(\tilde{u}) $ è un cobordo, cioè esiste $ z $ tale che
+  $ \alpha_1(\tilde{u}) = \delta z $. Applicando $ \alpha_1 $ e usando la commutatività:
+  \[
+    \alpha_1 \circ \alpha_1 (\tilde{u}) = \delta \circ \tau_2 \circ \alpha_2 \circ \alpha_1 (\tilde{u}) = 0
+  \]
+  Ma $ \alpha_1 $ è iniettiva quindi $ \tilde{u} = 0 $, ma
+  $ u = \lambda_2(\tilde{u})$ quindi $ u = 0 $ siccome $ \lambda_2 $ è omomorfismo, e perciò
+  $ \ker{\beta_1} = 0 $, e quindi $ \beta_1 $ è iniettiva.
+
+  Per dimostrare che $ \beta_2 $ è suriettiva considero $ v \in \hom{H_p, G} $, allora
+  $ \Phi(\tau_1(v)) \in \hom{S_p,G} $ applicando $ \delta $ e usando la commutatività:
+  \[
+    \delta \circ \Phi(\tau_1(v)) = (\sigma \circ \tau_2 \circ \alpha_2) \circ \Phi \circ \tau_1 (v) = \sigma \circ \tau_2 \circ (\alpha_2 \circ \Phi) \circ \tau_1 (v)
+  \]
+  Per trovare l'azione di $ \alpha_2 $ considero la successione spezzante:
   \[
     \begin{tikzcd}
       0 \rar & Z_p \rar{\psi} & S_p \arrow[bend left]{l}{\phi} \rar & B_{p-1} \rar & 0
     \end{tikzcd}
   \]
-  Questa è spezzante, quindi $ \phi \circ \psi = \Id{Z_p} $, ma
-  $ \alpha_2 = \hom{\psi, \Id{G}} $ e $ \Phi = \hom{\phi, \Id{G}} $
-  quindi se $ h \in \hom{Z_p, G} $ allora;
+  Quindi ho:
+  \begin{align*}
+    \alpha_2 \colon \hom{S_p, G} & \to \hom{Z_p, G} \\
+    \omega \colon S_p \to G & \mapsto \omega \circ \psi \colon Z_p \to G
+  \end{align*}
+  E quindi:
   \[
-    (\alpha_2 \circ \Phi)(h) = \alpha_2(h \circ \phi) - h \circ \phi \circ \psi = h
+    (\alpha_2 \circ \Phi)(\omega) = \alpha_2(\omega \circ \phi) = \omega \circ \phi \circ \psi = \omega
   \]
-  Quindi $ \alpha_2 \in \Phi = \Id{} $ e quindi $ \sigma \circ \tau_2 \circ \tau_2 (v) = 0 $ in quanto
-  $ \tau_2 \circ \tau_1 = 0 $, dato che la colonna è esatta, quindi $ \Phi(\tau_1(v)) $ è un cociclo.
-  Ora devo mostrare che $ \beta_1(\Phi(\tau_1(v))) = v $, prendo la preimmagine attraverso $ \tau_1 $
-  di
+  Quindi $ \alpha_2 \circ \Phi = \Id{\hom{Z_p,G}} $ e quindi
+  $ \sigma \circ \tau_2 \circ \tau_2 (v) = 0 $ in quanto
+  $ \tau_2 \circ \tau_1 = 0 $, dato che la colonna è esatta, quindi
+  $ \delta(\Phi(\tau_1(v))) = 0 $, cioè $ \Phi(\tau_1(v) $ è un cociclo in
+  $ S_p $ ed è tale che $ \beta_2(\llbracket\Phi(\tau_1(v))\rrbracket) = v $. Faccio
+  agire $ \beta_2 $:
   \[
-    \beta_1(\Phi(\tau_1(v)))  = \alpha_2 \circ \Phi (\tau_1(v)) = \Id{}(\tau_1(v)) = \tau_1(v)
+    \beta_2 \colon \llbracket \Phi(\tau_1(v)) \rrbracket \mapsto x \; | \; \tau_1(x) = \alpha_2 \circ \Phi(\tau_1(v)))= \tau_1(v)
   \]
-  Quindi è proprio $ v $.
-  ora devo mostrare che $ \im{\beta_2} \ker{\beta_1} $.
-  Mostro che $ \im{\beta_2} \subseteq \ker{\beta_1} $:
-  Se $ u \in \ext{H_{p-1},G} $ allora $ \beta_2(u) = \alpha_1(\tilde{u}) $, è vero che
-  $ \beta_1(\alpha_1(\tilde{u})) = 0 $, ma $ \alpha_2 (\alpha_1(\tilde{u})) = 0 $, ma poi devo prendere
-  la preimmagine quindi ho proprio $ 0 $.
+  Essendo $ \tau_1 $ iniettivo ho che $ x = v $ quindi $ \beta_2(\llbracket\Phi(\tau_1(v))\rrbracket) = v $.
 
-  Ora mostro che $ \ker{\beta_1} \subseteq \im{\beta_2} $, sia $ \llbracket f \rrbracket \in H^p(X;G) $, se $ \beta_1(\llbracket f \rrbracket) = 0 $
-  allora $ \alpha_2(f) = \tau_1(0) $ quindi $ \alpha_2(f) = 0 $, ma la successione è esatta e quindi
-  esiste $ f' \in \hom{B_{p-1}, G} $ tale che $ \alpha_1(f') = f $. Voglio fare vedere che $ \llbracket f \rrbracket = \beta_2 (u) $
-  con $ u \in \ext{H_p, G} $. Definisco $ u = \lambda_2(f') $, ma allora $ \beta_2(u) = \llbracket f \rrbracket $ per definizione.
+  Ora devo mostrare che $ \im{\beta_1} = \ker{\beta_2} $. Mostro che
+  $ \im{\beta_1} \subseteq \ker{\beta_2} $. Sia $ u \in \ext{H_{p-1},G} $ allora
+  $ \beta_1(u) = \llbracket\alpha_1(\tilde{u})\rrbracket $, applicando $ \beta_2 $:
+  \[
+    \beta_2 \colon \llbracket \alpha_1(\tilde{u}) \rrbracket \mapsto k \; | \; \tau_1(k) = \alpha_2 \circ \alpha_1(k) = 0
+  \]
+  Ma $ \tau_1 $ è iniettivo quindi $ \beta_2(\llbracket \alpha_1(\tilde{u}) \rrbracket) = 0 $
+  e quindi $ \beta_1(u) = \llbracket \alpha_1(\tilde{u}) \rrbracket \in \ker{\beta_2} $.
 
-  La successione è quindi esatta.
-
-  Mi rimane da vedere che spezza:
+  Ora mostro che $ \ker{\beta_2} \subseteq \im{\beta_1} $, sia
+  $ \llbracket f \rrbracket \in H^p(X;G) $, se
+  $ \beta_2(\llbracket f \rrbracket) = 0 $ allora $ \alpha_2(f) = \tau_1(0) $ quindi
+  $ \alpha_2(f) = 0 $, quindi $ f \in \ker{\alpha_2} = \im{\alpha_1} $ per l'esattezza della
+  successione, e quindi esiste $ f' \in \hom{B_{p-1}, G} $ tale che
+  $ \alpha_1(f') = f $. Definendo $ u = \lambda_2(f') $ si ha:
+  \[
+    \beta_1 \colon u \mapsto \llbracket \alpha_1(\tilde{u}) \rrbracket \; | \; \lambda_2(\tilde{u}) = u = \lambda_2(f')
+  \]
+  Quindi $ \tilde{u} - f' \in \ker{\lambda_2} = \im{\lambda_1} $, quindi esiste $ \eta \in \hom{Z_{p-1}, G} $
+  tale che $ \lambda_1(\eta) = \tilde{u} - f' $, ma $ \Delta $ è suriettivo, quindi esiste
+  $ \chi \in \hom{S_{p-1},G} $ tale che $ \Delta(\chi) = \eta $, quindi per la commutatività:
+  \[
+    \alpha_1(\tilde{u}) = \alpha_1(f' + \lambda_1(\eta)) = \alpha_1 \circ f' + \alpha_1 \circ \lambda_1 \circ \Delta (\chi) = \alpha_1 \circ f' + \delta \chi
+  \]
+  Passando alla classe di equivalenza in coomologia:
+  \[
+    \llbracket \alpha_1(\tilde{u}) \rrbracket = \llbracket \alpha_1 \circ f' \rrbracket
+  \]
+  E quindi $ \beta_1(u) = \llbracket \alpha_1 \circ f' \rrbracket = \llbracket f \rrbracket $, cioè $ \llbracket f \rrbracket \in \im{\beta_1} $.
+  \\ \\ \noindent
+  La successione è quindi esatta, ma bisogna ancora verificare che spezza:
   \[
     \begin{tikzcd}
-      0 \rar & \ext{H_{p-1}(X), G} \rar{\beta_2} & H^p(X,G) \rar{\beta_1} & \hom{H_p(X), G} \rar & 0
+      0 \rar & \ext{H_{p-1}(X), G} \rar{\beta_1} & H^p(X;G) \rar{\beta_2} & \hom{H_p(X), G} \rar \arrow[bend left]{l}{\rho} & 0
     \end{tikzcd}
   \]
-  Sia $ y \in \hom{H_p, G} $, definisco $ \rho(y) $ come $ \rho(y) = \Phi(\tau_1(y)) $, in questo modo
-  $ \beta_1 \circ \rho = \Id{\hom{}} $.
+  Sia $ y \in \hom{H_p, G} $, definisco $ \rho(y) $ come
+  $ \rho(y) = \llbracket \Phi(\tau_1(y)) \rrbracket$, in questo modo per costruzione
+  $ \beta_2 \circ \rho = \Id{\hom{H_p,G}} $, infatti $ \rho $ percorre
+  il diagramma in modo inverso a $ \beta_2 $.
 \end{proof}
 
 \begin{example}[Coomologia dello spazio proiettivo reale]
@@ -1110,7 +1199,7 @@ Il teorema dei coefficienti universali quindi si riformula anche per la coomolog
     H^0(\Pjr{3}, \Z_2) \cong \hom{\Z, \Z_2} \\
     H^1(\Pjr{3}, \Z_2) \cong \hom{\Z_2, \Z_2} \oplus \ext{\Z, \Z_2} \\
     H^2(\Pjr{3}, \Z_2) \cong \hom{, \Z_2} \oplus \ext{\Z_2, \Z_2} \cong \ext{\Z_2, \Z_2} \\
-    H^3(\Pjr{3}, \Z_2) \cong \hom{\Z, \Z_2} \oplus \ext{0, \Z_2} \cong \hom{\Z, \Z_2} \\
+    H^3(\Pjr{3}, \Z_2) \cong \hom{\Z, \Z_2} \oplus \ext{0, \Z_2} \cong \hom{\Z, \Z_2}
   \end{gather*}
   Calcolo i gruppi che mi mancano:
   \[
@@ -1301,7 +1390,7 @@ L'applicazione è ben definita se:
 \end{enumerate}
 Per verificare la prima di queste si utilizza il seguente lemma:
 \begin{lemma}
-  vale che $ \delta(\phi \cup \psi) = \delta \phi \cup \psi + (-)^k \phi \cup \delta \psi $, quindi se $ \phi $ e $ \psi $ sono cocilci,
+  vale che $ \delta(\phi \cup \psi) = \delta \phi \cup \psi + (-)^k \phi \cup \delta \psi $, quindi se $ \phi $ e $ \psi $ sono cocicli,
   anche $ \phi \cup \psi $ lo è.
 \end{lemma}
 \begin{exercise}
@@ -1374,10 +1463,10 @@ Quindi $ H^\star(X, \R) $ è un anello unitario, ma in generale non commutativo.
   Infatti, il comportamento rispetto alla somma è vero perché è vero anche come $ \Z $-moduli,
   mentre per il prodotto:
   Considero $ \sigma \colon \Delta_{k+l} \to X $ simplesso singolare:
-  \[
-    (f^\sharp(\phi) \cup f^\sharp(\psi))(\sigma) = (f^\sharp(\phi)(\sigma\lvert_{[v_0, \dots, v_k]})) (f^\sharp(\psi)(\sigma\lvert_{[v_{k+1}, \dots, v_{k+l}]}))
+  \begin{gather*}
+    (f^\sharp(\phi) \cup f^\sharp(\psi))(\sigma) = (f^\sharp(\phi)(\sigma\lvert_{[v_0, \dots, v_k]})) (f^\sharp(\psi)(\sigma\lvert_{[v_{k+1}, \dots, v_{k+l}]})) = \\
     = \phi(f_\sharp(\sigma\lvert_{[v_o, \dots, v_k]}))\psi(f_\sharp(\sigma\lvert_{[v_{k+1}, \dots, v_{k+l}]})) = \phi \cup \psi (f_\sharp (\sigma)) = (f^\sharp(\phi \cup \psi))(\sigma)
-  \]
+  \end{gather*}
   Si può applicare il medesimo ragionamento anche per $ g $ e per l'assioma omotopico
   $ (f \circ g)^\star = (\Id{Y})^\star $ e $ (g \circ f)^\star = (\Id{X})^\star $, ma quindi $ f^\star $ e $ g^\star $ sono
   una l'inversa dell'altra ed essendo anche omomorfismi sono isomorfismi.
@@ -1583,19 +1672,11 @@ Quindi $ H^\star(X, \R) $ è un anello unitario, ma in generale non commutativo.
   Uno spazio topologico $ \M $ è una \textbf{varietà differenziabile}\index{Varietà differenziabile}
   di dimensione $ n $ se ogni punto $ p \in \M $ ammette un intorno aperto $ A $ omeomorfo a $ \RN{n} $
   con omeomorfismo realizzato da una \textbf{carta}\index{Carta di varietà differenziabile}
-  $ \phi \colon A \to \RN{n} $ con $ \phi \in \mathcal{C}^\infty $, e tale che i cambiamenti di carte siano buoni, cioè
+  $ \phi \colon A \to \RN{n} $ con $ \phi \in \mathcal{C}^\infty $, e tale che i cambiamenti di coordinate siano buoni, cioè
   date due carte $ \phi \colon A_1 \to \RN{n} $, $ \phi_2 \colon A_2 \to \RN{n} $ con $ A_1 \cap A_2 \not = 0 $ allora:
   \[
     \phi_2 \circ \phi_1^{-1} \colon \phi_1(A_1 \cap A_2) \to \phi_2(A_1 \cap A_2) \in \mathcal{C}^\infty(\phi_1(A_1 \cap A_2) \subseteq \RN{n})
   \]
-\end{definition}
-In ciò che segue considero $ \M $ varietà differenziabile connessa (in caso non
-sia connessa mi restringo alle componenti connesse), con base numerabile
-(questo è una richiesta puramente tecnica), senza bordo e orientata.
-\begin{definition}
-  Una varietà differenziabile $ \M $ di dimensione $ n $ si dice
-  \textbf{orientata}\index{Varietà differenziabile orientata} se esiste una
-  $ n $-forma $ \omega $ tale che $ \omega(p) = 0 \; \forall p \in \M $.
 \end{definition}
 \newmathsymb{formdiff}{\Omega^k(\M)}{Spazio delle $ k $-forme differenziali su
   $ \M $}
@@ -1608,16 +1689,11 @@ sia connessa mi restringo alle componenti connesse), con base numerabile
   Dove $ \mathcal{T}_x\M $ è lo \textbf{spazio tangente} a $ \M $ in $ x $.
   In generale una $ k $-forma si scrive, usando la convenzione di Einstein, come:
   \[
-    \omega = a_{i_1\dots i_k}(x) \d x^{i_1} \dots \d x^{i_k}
+    \omega = a_{i_1\dots i_k}(x) \d x^{i_1} \wedge \dots \wedge \d x^{i_k}
   \]
-  Lo spazio delle $ k $-forme su $ \M $ si denota con $ \Omega^k(\M) $ ed è uno spazio vettoriale.
+  dove $ \wedge $ indica il prodotto wedge, definito a breve. Lo spazio delle
+  $ k $-forme su $ \M $ si denota con $ \Omega^k(\M) $ ed è uno spazio vettoriale.
 \end{definition}
-\begin{example}\hfill
-  \begin{itemize}
-  \item Le $ 0 $-forme sono funzioni ordinarie
-  \item Le $ 1 $-forme sono variabili di Grassmann
-  \end{itemize}
-\end{example}
 \newmathsymb{wedge}{\alpha\wedge\beta}{Prodotto wedge tra $ \alpha $ e $ \beta $}
 \begin{definition}
   Lo spazio delle forme differenziali può essere reso un'algebra con il \textbf{prodotto wedge}\index{Prodotto wedge}
@@ -1632,6 +1708,13 @@ sia connessa mi restringo alle componenti connesse), con base numerabile
     \forall i,j \; \d x^i \wedge \d x^j = - \d x^j \wedge \d x^i
   \]
 \end{definition}
+Il prodotto wedge è bilineare e associativo.
+\begin{example}\hfill
+  \begin{itemize}
+  \item Le $ 0 $-forme sono funzioni ordinarie
+  \item Le $ 1 $-forme sono variabili di Grassmann
+  \end{itemize}
+\end{example}
 \newmathsymb{derest}{\d{\omega}}{Derivata esterna di $ \omega $}
 \begin{definition}
   Si definisce la \textbf{derivata esterna}\index{Derivata esterna}:
@@ -1641,9 +1724,36 @@ sia connessa mi restringo alle componenti connesse), con base numerabile
   \end{align*}
   Con:
   \[
-    \d \omega = \frac{\partial a_{i_1\dots i_k}(x )}{\partial x^j} \d x^j \d x^{i_1} \dots \d x^{i_k}
+    \d \omega = \frac{\partial a_{i_1\dots i_k}(x )}{\partial x^j} \d x^j \wedge \d x^{i_1} \wedge \dots \wedge \d x^{i_k}
   \]
 \end{definition}
+\begin{osservation}
+  Si può verificare esplicitamente che $ \d{}^2 = 0 $.
+\end{osservation}
+In ciò che segue considero $ \M $ varietà differenziabile connessa (in caso non
+sia connessa mi restringo alle componenti connesse), con base numerabile
+(questo è una richiesta puramente tecnica), senza bordo e orientata.
+\begin{definition}
+  Una varietà differenziabile $ \M $ di dimensione $ n $ si dice
+  \textbf{orientata}\index{Varietà differenziabile orientata} se esiste una
+  $ n $-forma $ \omega $ tale che $ \omega(p) \not= 0 \; \forall p \in \M $. Una forma con tale proprietà
+  è detta \textbf{forma di volume}\index{Forma di volume}. Equivalentemente si può
+  dire che una varietà differenziabile è orientata se tutte i cambiamenti
+  di coordinate hanno determinante Jacobiano positivo.
+\end{definition}
+\begin{osservation}
+  La richiesta di orientazione serve affinché gli integrali di forme differenziabili
+  siano ben definiti, infatti la forma di volume dà origine alla misura di integrazione
+  alla Lebesgue.
+\end{osservation}
+Per le forme differenziali vale inoltre il teorema di Stokes:
+\begin{theorem}[Teorema di Stokes\index{Teorema di Stokes}]
+  Se $ \M $ è una varietà differenziabile di dimensione $ n $ con bordo $ \partial \M $
+  e $ \omega $ una $ (n-1) $-forma differenziabile su $ \M $ con supporto compatto, allora:
+  \[
+    \int_\M \d \omega = \int_{\partial \M} \omega
+  \]
+\end{theorem}
 \begin{definition}
   Si definisce il \textbf{complesso di de Rham}\index{Complesso di de Rham}
   il complesso $ (\Omega^\bullet, \d{}) $.
@@ -1652,7 +1762,7 @@ sia connessa mi restringo alle componenti connesse), con base numerabile
 \newmathsymb{rot}{\nabla\cdot}{Divergenza}
 \begin{example}
   Considero $ \M = \RN{3} $, questa è una varietà differenziabile avente come
-  carta la mappa identità. considero il complesso di de Rham:
+  carta la mappa identità. Considero il complesso di de Rham:
   \[
     \begin{tikzcd}[nodes = {column sep = 10 pt}]
       0 \rar & \Omega^0(\M) \rar & \Omega^1(\M) \rar & \Omega^2(\M) \rar & \Omega^3(\M) \rar & 0
@@ -1686,8 +1796,8 @@ sia connessa mi restringo alle componenti connesse), con base numerabile
   cioè $ \nabla \cdot \nabla \times f = 0 $, cioè $ d^2 = 0 $ per $ k = 1 $ e $ k = 2 $.
 \end{example}
 \begin{definition}
-  Si chiama \textbf{coomologia di de Rham}\index{Coomologia di de Rham} la
-  coomologia del complesso di de Rham $ (\Omega^\bullet, \d{}) $:
+  Si chiama \textbf{coomologia di de Rham}\index{Coomologia di de Rham}
+  l'omologia del complesso di de Rham $ (\Omega^\bullet, \d{}) $:
   \[
     H^p_{dR}(\M) = \quot{\ker{ \d{} \colon \Omega^p(\M) \to \Omega^{p+1}(\M)}}{\im{\d{} \colon \Omega^{p-1}(\M) \to \Omega^p(\M)}}
   \]
@@ -1719,7 +1829,7 @@ $ B^p(\M) $ che non sono in $ Z^p(\M) $).
 
 \subsection{Dualità di Poincaré}
 \begin{osservation}
-  Se $ b \colon V \times W \to \mathbb{F} $ è un funzionale biliare su $ V,W $ spazi
+  Se $ b \colon V \times W \to \mathbb{F} $ è un funzionale bilineare su $ V,W $ spazi
   vettoriali e $ \mathbb{F} $ campo, allora questo induce un'applicazione:
   \begin{align*}
     B \colon V & \to W^* = \hom{W, \mathbb{F}} \\
@@ -1744,7 +1854,7 @@ Se $ \M $ è compatto l'integrale è ben definito, se $ \M $ non è compatto si
 deve lavorare con forme differenziali a supporto compatto. Assumo $ \M $
 compatto, definisco una mappa $ I $ sulla coomologia di de Rham:
 \begin{align*}
-  I \colon H^k_{dR}(\M) \times H^{n-k}(\M) & \to \RN{} \\
+  I \colon H^k_{dR}(\M) \times H^{n-k}_{dR}(\M) & \to \RN{} \\
   ([\alpha], [\beta]) & \mapsto \int_\M \alpha \wedge \beta
 \end{align*}
 Questa mappa è ben definita, infatti considero altri due rappresentanti per le
@@ -1768,8 +1878,7 @@ quindi la mappa è ben definita in quanto:
   \int_\M (\alpha + \d \alpha') \wedge (\beta + \d \beta') = \int_\M \alpha \wedge \beta
 \]
 \begin{theorem}[Teorema di isomorfismo di Poincaré\index{Teorema di isomorfismo di Poincaré}]
-  Se $ \M $ è una varietà differenziabile senza bordo e orientata (in modo che
-  la mappa $ I $ sia ben definita anche se $ \M $ non è compatta), allora la
+  Se $ \M $ è una varietà differenziabile senza bordo e orientata, allora la
   mappa:
   \begin{align*}
     D \colon H^k_{dR}(\M) & \to (H_c^{n-k}(\M))^* \\
@@ -1800,11 +1909,12 @@ quindi la mappa è ben definita in quanto:
   sono banali in quanto esiste solo la classe $ [0] $, l'unico gruppo non nullo
   è $ H^0_{dR}(\RN{n}) $. Ma
   \[
-    H^0_{dR}(\RN{n}) = \quot{Z^0(\RN{n})}{B^0(\RN{n})} = {\set{\text{funzioni costanti}}} \cong \RN{}
+    H^0_{dR}(\RN{n}) = \quot{Z^0(\RN{n})}{B^0(\RN{n})} = Z^0(\RN{n}) =
+    {\set{\text{funzioni costanti}}} \cong \RN{}
   \]
   In quanto $ B^0(\RN{n}) $ è banale, e $ Z^0(\RN{n}) $ è formato dalle
-  $ 0 $-forme, cioè le funzioni il cui gradiente è nullo, ovvero le funzioni
-  costanti. Quindi:
+  $ 0 $-forme chiuse, cioè le funzioni il cui gradiente è nullo, ovvero le
+  funzioni costanti. Quindi:
   \[
     H^0_{dR}(\RN{n}) \cong
     \begin{cases}
@@ -1814,29 +1924,31 @@ quindi la mappa è ben definita in quanto:
   \]
   Ma anche $ H^{n-k}_c(\RN{n}) $ ha gli stessi gruppi di coomologia:
   \[
-    H^{n-k}(\RN{n}) \cong
+    H^{n-k}_c(\RN{n}) \cong
     \begin{cases}
       \RN{} & \text{se } k = 0 \\
       0 & \text{altrimenti}
     \end{cases}
   \]
   infatti $ \RN{n} $ è semplicemente connesso, mentre
-  $ H^{n}(\RN{n}) \cong \RN{n} $ in quanto considero una $ n $-forma a supporto compatto:
+  $ H^{n}_c(\RN{n}) \cong \RN{} $ in quanto è generato da $ n $-forme a supporto compatto del tipo:
   \[
     \omega = \phi(x_1, \dots, x_n) \d x^1 \wedge \dots \wedge \d x^n
   \]
-  Con $ \phi \in \mathcal{C}^\infty $ a supporto compatto. Mostro che questa è esatta.
-  Nel caso $ n = 1 $ ho $ \omega = \phi(t) \d t $, ponendo:
+  con $ \phi \in \mathcal{C}^\infty $ a supporto compatto. Queste forma è esatta, infatti
+  nel caso $ n = 1 $ ho $ \omega = \phi(t) \d t $, ponendo:
   \[
     \psi(x) = \int_{-\infty}^x \phi(t) \d t
   \]
-  Ho che $ \psi'(x) = \phi(x) $ quindi la forma è esatta. Per $ n $ generico integro
-  una alla volta tutte le variabili e ottengo il medesimo risultato.
+  Ho che $ \psi $ è una $ 0 $-forma tale che
+  $ \d \psi (x) = \psi'(x) \d x = \phi(x) \d x $, quindi $ \omega $ è esatta ed è perciò il
+  generatore del gruppo di coomologia. Per $ n $ generico integro una alla volta
+  tutte le variabili e ottengo il medesimo risultato.
 
-  Per mostrare che $ D $ è isomorfismo devo quindi solo mostrarlo per
-  $ D \colon H^0_{dR}(\RN{n}) \to (H^n_c(\RN{n}))^* $ è un isomorfismo, ma:
+  Per mostrare che $ D $ è isomorfismo è sufficiente mostrarlo per
+  $ D \colon H^0_{dR}(\RN{n}) \to (H^n_c(\RN{n}))^* $, ma:
   \begin{align*}
-    D \colon \RN{} & \to {\RN{n}}^* \cong \RN{} \\
+    D \colon \RN{} & \to {\RN{}}^* \cong \RN{} \\
     1 & \mapsto D(1)
   \end{align*}
   Se dimostro che $ D(1) $ è un generatore di $ \RN{} $ ho finito. Per mostrare
@@ -1848,7 +1960,7 @@ quindi la mappa è ben definita in quanto:
     D(1)(\phi) = \int_{\RN{n}} \phi \d x^1 \wedge \dots \wedge \d x^n
   \]
   Ma questa è facilmente costruibile, basta prendere una funzione tipo
-  mollificatore
+  mollificatore.
 
   \subparagraph{Dimostrazione del punto due} Se $ U $ è un aperto in $ \M $
   diffeomorfo a $ \RN{n} $ siccome i gruppi di coomologia sono invarianti per

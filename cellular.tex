@@ -41,7 +41,6 @@ identifico il bordo del disco con il punto.
       X^{(k)} = X^{(k-1)} \cup_\phi \bigcup_\alpha \Disk{k}_\alpha =\quot{ X^{(k-1)} \sqcup_\alpha \Disk{k}_\alpha}{x \sim \phi_\alpha(x)} \quad \forall \alpha \text{ e }
       \forall x \in \partial \Disk{k}_\alpha
     \]
-    [CONTROLLARE LA MAPPA DI ATTACCAMENTO]
   \item Esiste $ N \in \mathbb{N} $ tale che $ X^{(0)} \subseteq X^{(1)} \subseteq \dots \subseteq X^{(N)} =: X $
   \end{enumerate}
 \end{definition}
@@ -210,6 +209,17 @@ può essere vista come CW complesso formato da un punto e una sola cella.
   $ \vec{x} \sim \vec{y} $ se e solo se $ \vec{x} $ e $ \vec{y} $ sono multipli,
   cioè se esiste $ \lambda \in \RN{} \setminus \set{0} $ tale che $ \vec{x} = \lambda \vec{y} $.
 \end{definition}
+Fissato $ j \in \set{0, \dots, n} $ e definito
+$ U_j = \set{[x_0 : \dots : x_n] \in \Pjr{n} | x_j \not = 0 } $ si definisce la mappa:
+\begin{align*}
+  \phi_j \colon U_j & \to \RN{n} \\
+  [x_0 : \dots : xz_n] & \mapsto \left(\frac{x_0}{x_j}, \dots, \frac{x_n}{x_j}\right)
+\end{align*}
+Si dimostra che $ \phi_j $ è omeomorfismo. Queste mappe permettono di definire la
+topologia dello spazio proiettivo: un sotto insieme di $ U_i $ è aperto se lo è
+in $ \RN{n} $ attraverso $ \phi_i $, e un insieme generico $ A $ è aperto se lo
+sono tutte le intersezioni con gli insiemi $ U_i $. In questo modo $ \Pjr{n} $ è
+una varietà topologica di dimensione $ n $.
 
 \begin{lemma}
   Si dimostra che $ \Pjr{n} \cong {\Sph{n}} \slash {H} $ con $ H = \set{\Id{\Sph{n}}, a_{\Sph{n}}} $, dove
@@ -221,14 +231,17 @@ può essere vista come CW complesso formato da un punto e una sola cella.
     f \colon \Pjr{n} & \to \quot{\Sph{n}}{\sim}\\
     [\vec{x}]_{\Pjr{n}} & \mapsto \left[\frac{\vec{x}}{||\vec{x}||}\right]_\sim
   \end{align*}
-  La dimostrazione che questa è un omeomorfismo è piuttosto laboriosa.
+  La dimostrazione che questa è un omeomorfismo è piuttosto laboriosa. Il motivo è
+  comunque intuitivo: lo spazio proiettivo reale è formato dalle rette che passano
+  per l'origine, le quali possono tutte essere identificate da un vettore di modulo
+  1 su una semisfera.
 \end{proof}
 \eproof
 Si trova quindi che:
 \begin{itemize}
-\item $ \Pjr{1} \simeq \Sph{1} \slash \sim \Sph{1} \simeq \RN{} \cup {\infty} $
+\item $ \Pjr{1} \simeq \Sph{1} \slash \sim \simeq \Sph{1} \simeq \RN{} \cup {\infty} $
 \item $ \Pjr{2} = \mathbb{P}^1(\RN{}) \cup_\phi \Disk{2} $
-  Ho $ \quot{\Sph{2}}{H} $, l'emisfero sud della sfera si identifica con quello
+  Ho $ {\Sph{2}} \slash {\sim} $, l'emisfero sud della sfera si identifica con quello
   nord per l'applicazione di antipodalità.
   $ \phi = a \big \lvert_{\Sph{1}} $ e $ \Sph{1} = \Pjr{1} $ e $ \Sph{1} = \partial \Disk{2} $,
   quindi:
@@ -293,25 +306,26 @@ Si trova quindi che:
   $ \Pjr(j-2) $ come iperpiano all'infinito, ad esempio $ z_{j-1} = 0 $. Poi a
   $ \Pjr{j-2} $ incollo $ \Sph{j-2} $ tramite la mappa antipodale. Ad esempio
   per $ n = 2 $ $ \Pjr{2} $ contiene
-  $ \Pjr{1} = \set{ [z_0, z_1 : 0] | (z_0, z_1) \not = 0 } $. Attacco
-  $ \Disk{2} $ su $ \Pjr{1} $ Ho:
+  $ \Pjr{1} = \set{ [z_0 : z_1 : 0] | (z_0, z_1) \not = 0 } $. Attacco
+  $ \Disk{2} $ su questo $ \Pjr{1} $ con:
   \begin{align*}
-    f \colon \Sph{1} & \to \Pjr{1} \\
+    f \colon \Sph{1} = \partial \Disk{2} & \to \Pjr{1} \\
     z & \mapsto [z]
   \end{align*}
-  Che è la proiezione sul quoziente, infatti $ \Pjr{1} = \quot{\Sph{1}}{H} $. Quindi
-  $ \Pjr{2} = \Pjr{1} \cup_f \Disk{2} $.
+  Che è la proiezione sul quoziente (mappa antipodale), infatti
+  $ \Pjr{1} = \quot{\Sph{1}}{H} $. %Quindi $ \Pjr{2} = \Pjr{1} \cup_f \Disk{2} $.
   \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
       \fill[gray!20] (0,0) circle (1);
       \draw (0,0) circle (1);
       \draw[-Latex] (0.1,1) -- (0.1001,1);
-      \draw[-Latex] (-0.0999,-1) -- (-0.1,-1);
+      \draw[-Latex] (-0.0999,-1) -- (-0.101,-1);
       \node () at (1,0) {-};
       \node () at (-1,0) {-};
     \end{tikzpicture}
-    \caption{$ \Pjr{1} $}
+    \caption{$ \Pjr{1} $, attacco al disco una circonferenza con la mappa $ f $,
+      che quindi identifica i punti antipodali.}
     \label{fig:lez10:projective}
   \end{figure}
 \end{example}
@@ -320,59 +334,58 @@ Si trova quindi che:
 \newmathsymb{cstar}{\C^\star}{Piano complesso privato dell'origine}
 Lo \textbf{spazio proiettivo complesso}\index{Spazio proiettivo complesso} invece è:
 \[
-  \Pjc{n} = \quot{\C \setminus \set{\vec{0}}}{\C^\star}
+  \Pjc{n} = \quot{\C^{n+1} \setminus \set{\vec{0}}}{\sim}
 \]
-Dove $ \C^\star = \C \setminus \set{0} $. Cioè lo spazio proiettivo complesso
-è dato dal quoziente con la relazione:
+con la relazione:
 \[
-  (z_0, \dots, z_n) \sim (w_0, \dots, w_n) \iff \exists \lambda_i \in \C^\star \text{ tali che } z_i = \lambda w_i \; \forall i \in \set{0, \dots, n}
+  (z_0, \dots, z_n) \sim (w_0, \dots, w_n) \iff \exists \lambda \in \C^\star= \C \setminus \set{0} \text{ tali che } z_i = \lambda w_i \; \forall i \in \set{0, \dots, n}
 \]
-Questo è uno spazio compatto, connesso, di Hausdorff, ed
-è una varietà topologia di dimensione reale $ 2n $.
-Se $ p \in \Pjc{n} $ allora $ p = [z_0, \dots, z_n] $ e sicuramente
-esiste $ j \in \set{0, \dots, n} $ tale che $ z_j \not = 0 $, quindi
-si può costruire:
-\[
-  U_j = \set{[z_0, \dots, z_j] \in \Pjc{n} | z_j \not = 0 }
-\]
-Si ha la mappa:
-\begin{align*}
-  \phi_j \colon U_j & \to \C^n \simeq \RN{2n} \\
-  [z_0, \dots, z_n] & \mapsto \left(\frac{z_0}{z_j}, \dots, \frac{z_n}{z_j}\right)
-\end{align*}
-Si dimostra che $ \phi_j $ è omeomorfismo e quindi ogni aperto
-è omeomorfo a $ \RN{2n} $ e perciò la dimensione topologica è $ 2n $.
-
-Esempi:
+Questo è uno spazio compatto, connesso, di Hausdorff i cui punti si indicano con
+$ p = [z_0 : \dots : z_n] $. Utilizzando la stessa costruzione dello spazio proiettivo
+reale si rende $ \Pjc{n} $ una varietà topologica di dimensione reale $ 2n $.
+% Fissato $ j \in \set{0, \dots, n} $ e definito
+% $ U_j = \set{[z_0, \dots, z_n] \in \Pjc{n} | z_j \not = 0 } $ si definisce la mappa:
+% \begin{align*}
+%   \phi_j \colon U_j & \to \C^n \simeq \RN{2n} \\
+%   [z_0, \dots, z_n] & \mapsto \left(\frac{z_0}{z_j}, \dots, \frac{z_n}{z_j}\right)
+% \end{align*}
+% Si dimostra che $ \phi_j $ è omeomorfismo. Queste mappe permettono di definire la
+% topologia dello spazio proiettivo: un sotto insieme di $ U_i $ è aperto se lo è
+% in $ \RN{2n} $ attraverso $ \phi_i $, e un insieme generico $ A $ è aperto se lo
+% sono tutte le intersezioni con gli insiemi $ U_i $. In questo modo $ \Pjc{n} $ è
+% una varietà topologica di dimensione $ 2n $.
 \begin{example}[$ n = 1 $]
-  $ \Pjc{1} $ è nota come retta complessa o sfera di Riemann, in quanto
-  si trova che $ \Pjc{1} \simeq \Sph{2} $, infatti:
+  $ \Pjc{1} $ è noto come retta complessa o sfera di Riemann, in quanto
+  si trova che $ \Pjc{1} \simeq \Sph{2} $, infatti usando le mappe di isomorfismo $ \phi_i $:
   \[
-    \Pjc{1} = \set{ [0:1] } \cup U = \set{\infty} \cup U
+    \Pjc{1} = \set{ [0:1] } \cup U =: \set{\infty} \cup U
   \]
-  Ma la proeizione stereografica manda la sfera senza polo Nord in $ \RN{2} $,
-  cioè $ \Sph{2} \setminus \set{N} \to \RN{2} $, quindi $ \Pjc{1} \setminus \set{\infty} \simeq \RN{2} $
-  e quindi $ \Pjc{1} \setminus \set{\infty} \simeq \Sph{2} \setminus \set{N} $. Questi sono spazi non compatti
-  ma di Hausdorff, so che la compattificazione di Alexander sono spazi omeomorfi, ma
-  quindi: $ \Pjc{1} \simeq \Sph{2} $.
+  Con $ U $ intorno aperto omeomorfo a $ \RN{2} $. Ma la proiezione
+  stereografica manda la sfera senza polo Nord in $ \RN{2} $, cioè
+  $ \Sph{2} \setminus \set{N} \simeq \RN{2} $, quindi
+  $ \Pjc{1} \setminus \set{\infty} \simeq \RN{2} $ e quindi
+  $ \Pjc{1} \setminus \set{\infty} \simeq \Sph{2} \setminus \set{N} $. Questi sono spazi non compatti ma
+  di Hausdorff, so che la compattificazione di Alexandroff\footnotemark sono spazi omeomorfi,
+  ma la compattificazione di uno spazio meno un punto è lo spazio stesso: $ \Pjc{1} \simeq \Sph{2} $.
 \end{example}
+\footnotetext{\index{Compattificazione di Alexandroff}La compattificazione di
+  Alexandroff consiste nell'aggiungere un punto ad uno spazio topologico per
+  renderlo compatto.}
 
-In merito al generico spazio proiettivo complesso $ \Pjc{n} $ vorrei sapere
-quale è la struttura di CW complesso, quale è il suo gruppo fondamentale e quali
-sono i suoi gruppi di omologia.
+% In merito al generico spazio proiettivo complesso $ \Pjc{n} $ vorrei sapere
+% quale è la struttura di CW complesso, quale è il suo gruppo fondamentale e quali
+% sono i suoi gruppi di omologia.
 
-Inizio cercando la struttura di CW complesso, questa è simile a quella
-dello spazio proiettivo reale.
-
-$ K^{(0)} $ è un punto $ \Pjc{0} $, poi $ K^{(2)} = K^{(0)} \cup_f \Disk{2} = \Sph{2} \simeq \Pjc{1} $
-con $ f $ mappa che fa collassare il bordo in un punto.
-
-Poi $ K^{(4)} = K^{(2)} \cup_g \Disk{4} $ infatti $ K^{(2)} = \Pjc{1} $, poi prendo $ \Disk{4} $
-so che $ \partial \Disk{4} = \Sph{3} $ e la mappa al quoziente è $ \pi \colon \Sph{3} \to \Pjc{1} $
-che è fatta così:
+Anche gli spazi proiettivi complessi ammettono struttura di CW complesso.
+$ K^{(0)} $ è un punto $ \Pjc{0} $, poi si può costruire
+$ K^{(2)} = K^{(0)} \cup_f \Disk{2} = \Sph{2} \simeq \Pjc{1} $ con $ f $ mappa costante,
+che quindi fa collassare il bordo in un punto. Successivamente si ha
+$ K^{(4)} = K^{(2)} \cup_g \Disk{4} $ infatti $ K^{(2)} = \Pjc{1} $, poi prendo
+$ \Disk{4} $ so che $ \partial \Disk{4} = \Sph{3} $ e la mappa al quoziente è
+$ \pi \colon \Sph{3} \to \Pjc{1} $ che è fatta così:
 \begin{align*}
   \pi \colon \Sph{3} & \mapsto \Pjc{1} \\
-  (z_0, z_1) & \mapsto [z_0, z_1]
+  (z_0, z_1) & \mapsto [z_0 : z_1]
 \end{align*}
 Posso fare agire $ \Sph{1} $:
 \begin{align*}
@@ -522,18 +535,20 @@ la composizione della coppia allora uso un trucco.
 
 Costruisco un'applicazione. FORSE
 
-Sia $ X $ un CW complesso e $ Y $ un CW complesso, è
-possibile dare una struttura di CW complesso anche a $ Z = X \times Y  $.
-Se $ \set{e_\alpha} $ sono le celle di $ X $ e $ \set{f_\beta} $
-quelle di $ Y $, allora $ \set{e_\alpha \times f_\beta} $ sono
-celle di $ Z $. Bisogna solo capire come sono fatte le
-mappe di attaccamento.
+% Sia $ X $ un CW complesso e $ Y $ un CW complesso, è
+% possibile dare una struttura di CW complesso anche a $ Z = X \times Y  $.
+% Se $ \set{e_\alpha} $ sono le celle di $ X $ e $ \set{f_\beta} $
+% quelle di $ Y $, allora $ \set{e_\alpha \times f_\beta} $ sono
+% celle di $ Z $. Bisogna solo capire come sono fatte le
+% mappe di attaccamento.
 
     %     lezione 8
 
-\section{Congettura di Poincaré}
+\section{(ex-)Congettura di Poincaré}
 
-Ho calcolato l'omologia di una sfera generica:
+Per $ n = 2 $ ho $ \Sph{2} $ è una $ 2 $-varietà topologica compatta e connessa
+il cui gruppo fondamentale è banale e i gruppi di omologia noti, infatti ho
+calcolato l'omologia di una sfera generica:
 \[
   H_k(\Sph{n}) \cong
   \begin{cases}
@@ -545,17 +560,15 @@ In particolare ho $ H_0(\Sph{n}) \cong \Z $ ed è generato dalla classe di
 omologia di un punto qualsiasi, mentre $ H_n(\Sph{n}) \cong \Z $ è generato dalla
 classe di omologia di un $ n $-simplesso singolare $ \tau_n \colon \Delta_n \to \Sph{n} $.
 
-Per $ n = 2 $ ho $ \Sph{2} $ è una $ 2 $-varietà topologica compatta e connessa
-il cui gruppo fondamentale è banale e i gruppi di omologia noti.
-
 \begin{proposition}
   Se $ \M $ è una $ 2 $-varietà topologica compatta e connessa tale che $ \forall k \geq 2 $
   $ H_k(\M) \cong H_k(\Sph{2}) $ allora $ \M \simeq \Sph{2} $.
 \end{proposition}
 \begin{proof}
-  Esiste un teorema di classificazione delle varietà topologiche di dimensione $ 2 $
-  compatte e connesse, questo dice che $ \M \simeq V_g $ oppure $ \M \simeq U_n $.
-  Dove:
+  Esiste un teorema di classificazione delle varietà topologiche di dimensione
+  $ 2 $ compatte e connesse, questo dice che una varietà topologia $ \M $
+  compatta e connessa di dimensione $ 2 $ è omeomorfa a una delle seguenti tre
+  categorie: $ \Sph{2} \simeq V_0 $, $ V_g $ oppure $ U_n $. Dove:
   \[
     V_g =
     \begin{cases}
@@ -568,17 +581,16 @@ il cui gruppo fondamentale è banale e i gruppi di omologia noti.
   \[
     U_n =
     \begin{cases}
-      \mathbb{P}^2(\RN) & \text{se } n = 0 \\
-      \quot{P_{2g}}{\sim} & \text{se } n \geq 1
+      \mathbb{P}^2(\RN{}) & \text{se } n = 1 \\
+      \quot{P_{2n}}{\sim} & \text{se } n \geq 2
     \end{cases}
   \]
-  Con $ \sim $ è l'identificazione $ a_1 a_1 \dots a_n a_n $, come ad esempio
-  la bottiglia di Klein.
-  Tutti i $ V_g $ non sono omeomorfi tra loro, e similmente gli $ U_n $, e neppure
-  gli $ U_n $ e i $ V_g $ sono vicendevolmente omeomorfi in quanto i primi sono
-  non orientabili, mentre i secondi si.
-
-  Ho calcolato:
+  Con $ \sim $ è l'identificazione $ a_1 a_1 \dots a_n a_n $, come ad esempio la
+  bottiglia di Klein ($ abab^{-1} = aabb $). Tutti i $ V_g $ non sono omeomorfi
+  tra loro, e similmente gli $ U_n $, e neppure gli $ U_n $ e i $ V_g $ sono
+  vicendevolmente omeomorfi in quanto i primi sono non orientabili, mentre i
+  secondi si. Escludo queste due possibilità confrontando i primi gruppi di
+  omologia. So che:
   \[
     H_1(V_g) \cong
     \begin{cases}
@@ -586,31 +598,42 @@ il cui gruppo fondamentale è banale e i gruppi di omologia noti.
       \Z^{2g} & \text{se } g \geq 1
     \end{cases}
   \]
-  $ V_g $ con $ g \geq 1 $ non hanno lo stesso tipo di omologia di $ \Sph{2} $ perché
-  $ H_1(V_g) $ è non banale, mentre il gruppo fondamentale di $ \Sph{2} $ lo è.
-  Similmente $ H_1(\mathbb{P}^2(\RN)) \cong \pi_1(\mathbb{P}^2(\RN)) \cong \Z_2 $, che non è
-  banale, e $ H_1(U_n) \cong \Ab{\pi_1(U_n)} $, ma per Seifert-van Kampen:
-  \[
-    \pi_1(U_n) = \langle a_t, \dots, a_n \; | \; a_1^2\dots a_n^2 = 1 \rangle \Rightarrow \Ab{\pi_1(U_n)} = \langle a_t, \dots, a_n, c = a_1 \dots a_n \; | \; a_1^2\dots a_n^2 = 1 \rangle =
-    \Z_2 \oplus \Z^{n-1}
-  \]
-  Dove $ \Z_2 $ viene dal fatto che abelianizzando $ a_1^2\dots a_n^2 = (a_1 \dots a_n)^2 = 1 $ quindi
-  $ c = \pm 1 $, mentre $ \Z^{n-1} $ è il gruppo libero generato dai rimanenti.
-  Questo non è banale, quindi l'unico spazio possibile è proprio $ \Sph{2} $.
+  Gli spazi $ V_g $ con $ g \geq 1 $ non hanno lo stesso tipo di omologia di
+  $ \Sph{2} $ perché $ H_1(V_g) $ è non banale, mentre il gruppo fondamentale di
+  $ \Sph{2} $ lo è. Similmente
+  $ H_1(\mathbb{P}^2(\RN{})) \cong \pi_1(\mathbb{P}^2(\RN{})) \cong \Z_2 $, che non è
+  banale, e $ H_1(U_n) \cong \Ab{\pi_1(U_n)} $, ma usando Seifert-van Kampen si trova che:
+  \begin{gather*}
+    \pi_1(U_n) = \langle a_1, \dots, a_n \; | \; a_1^2\dots a_n^2 = 1 \rangle \; \Rightarrow \\
+    \Ab{\pi_1(U_n)} = \langle a_1, \dots, a_n \; | \;  c = a_1 \dots a_n = \pm 1 \rangle = \Z_2 \oplus \Z^{n-1}
+  \end{gather*}
+  Dove $ \Z_2 $ viene dal fatto che abelianizzando si ha
+  $ c = a_1^2\dots a_n^2 = (a_1 \dots a_n)^2 = 1 $ quindi $ c = \pm 1 $, mentre
+  $ \Z^{n-1} $ è il gruppo libero generato dai rimanenti. Questo non è banale,
+  quindi l'unico spazio possibile è proprio $ \Sph{2} $.
 \end{proof}
-
-Cosa si può invece dire su $ \Sph{3} $? Vale la seguente proposizione:
+\eproof
+Per $ \Sph{3} $ vale il seguente risultato, dimostrato da Perelman nel
+2003, precedentemente noto come congettura di Poincaré:
+\begin{proposition}[ex-Congettura di Poincaré]
+  Se $ \M $ è una $ 3 $-varietà topologica compatta, connessa e semplicemente
+  connessa tale che $ \forall k \geq 3 $ $ H_k(\M) \cong H_k(\Sph{3}) $ allora $ \M \simeq \Sph{3} $.
+\end{proposition}
+Se rinuncio alla richiesta di semplice connessione il risultato non vale più, ma
+vale la seguente proposizione:
 \begin{proposition}
   Se $ \M $ è una $ 3 $-varietà topologica compatta e connessa tale che $ \forall k \geq 3 $
   $ H_k(\M) \cong H_k(\Sph{3}) $ allora non si può concludere che $ \M \simeq \Sph{3} $.
 \end{proposition}
+\newmathsymb{mat}{M_n(\mathbb{F})}{Matrici quadrate di ordine $ n $ sul campo $ \mathbb{F} $}
 \begin{proof}
-  Costruisco un controesempio, noto come \textbf{spazio dodecaedrico di Poincaré}\index{Spazio dodecaedrico},
-  o anche spazio a omologia razionale\index{Spazio a omologia razionale ! \vedi{Spazio dodecaedrico}}.
-  Costruisco $ P $ $ 3 $-varietà topologica compatta e connessa con lo stesso tipo di omologia di
-  una $ 3 $-sfera ma non omeomorfa a $ \Sph{3} $ in quanto il gruppo fondamentale è finito
-  non abeliano di ordine 120.
-  Parto da $ \Sph{3} $, posso scrivere:
+  Costruisco un controesempio, noto come \textbf{spazio dodecaedrico di
+    Poincaré}\index{Spazio dodecaedrico}, o anche spazio a omologia
+  razionale\index{Spazio a omologia razionale ! \vedi{Spazio dodecaedrico}}.
+  Costruirò una $ 3 $-varietà topologica compatta e connessa $ P $ con lo stesso
+  tipo di omologia di una $ 3 $-sfera ma non omeomorfa a $ \Sph{3} $ in quanto
+  il gruppo fondamentale è finito non abeliano di ordine 120. Parto da
+  $ \Sph{3} $, posso scrivere:
   \[
     \Sph{3} \subseteq \mathbb{C}^2 \qquad \Sph{3} = \set{ (z_0, z_1) \in \mathbb{C}^2 | |z_0|^2 + |z_1|^2 = 1}
   \]
@@ -633,10 +656,10 @@ Cosa si può invece dire su $ \Sph{3} $? Vale la seguente proposizione:
     \end{pmatrix}
     \text{ con } \alpha,\beta \in \mathbb{C} \text{ e } |\alpha|^2 + |\beta|^2 = 1
   \]
-  Quello che sto dicendo è che i vettori in $ \mathbb{C}^2 $ $ (\alpha, \beta) $ e $ (-\beta^\star, \alpha^\star) $ sono
-  normalizzati e sono tra di loro ortogonali.
-
-  Si costruisce immediatamente la corrispondenza buinivoca tra SU(2) e $ \Sph{3} $:
+  % Questo significa che i vettori in $ \mathbb{C}^2 $ $ (\alpha, \beta) $ e
+  % $ (-\beta^\star, \alpha^\star) $ sono normalizzati e sono tra di loro ortogonali.
+  In questo modo si costruisce immediatamente la corrispondenza buinivoca tra
+  SU(2) e $ \Sph{3} $:
   \begin{align*}
     \mathrm{SU(2)} & \leftrightarrow \Sph{3} \\
     \begin{pmatrix}
@@ -644,19 +667,25 @@ Cosa si può invece dire su $ \Sph{3} $? Vale la seguente proposizione:
       \beta & \alpha^\star \\
     \end{pmatrix} & \leftrightarrow (\alpha,\beta)
   \end{align*}
-  In questo modo si può definire un prodotto su $ \Sph{3} $ rappresentanto
-  $ x,y,t,w $ come numeri complessi e passando alla controparte matriciale, dove
-  il prodotto è definito naturalmente come prodotto riga per colonna, quindi
-  una volta svolto il prodotto si torna alla notazione a quattro reali. A questo
-  punto è triviale trovare l'identità e l'elemento inverso che permettono di dare
-  a $ \Sph{3} $ la struttura di gruppo.
-
-  SU(2) può essere visto come spazio topologico con topologia indotta da $ \mathbb{C}^4 $,
-  in questo senso SU(2) e $ \Sph{3} $ sono sia isomorfi come gruppi che omeomorfi
-  come spazi topologici.
+  In questo modo si può definire un prodotto su $ \Sph{3} $ rappresentando
+  $ (x,y,t,w) \in \RN{4} $ come numeri complessi e passando alla controparte
+  matriciale, dove il prodotto è definito naturalmente come prodotto riga per
+  colonna, quindi una volta svolto il prodotto si torna alla notazione a quattro
+  reali. A questo punto è triviale trovare l'identità e l'elemento inverso che
+  permettono di dare a $ \Sph{3} $ la struttura di gruppo. Inoltre vedendo SU(2)
+  come spazio topologico con topologia indotta da $ \mathbb{C}^4 $ SU(2) e
+  $ \Sph{3} $ sono sia isomorfi come gruppi che omeomorfi come spazi topologici.
 
   La costruzione dello spazio dodecaedrico si basa sulle isometrie del dodecaedro $ D_{12} $,
   questo è un solido regolare con 12 facce, 30 spigoli e 20 vertici.
+  \begin{figure*}[htbp]
+    \centering
+    \def\svgwidth{0.26\textwidth}
+    \input{images/Dodecahedron.pdf_tex}
+    \caption{Dodecaedro}
+  \end{figure*}
+
+  \noindent
   Il gruppo di isometrie del dodecaedro, cioè:
   \[
     \mathrm{Isom}(D_{12}) = \set{ g \colon \RN{3} \to \RN{3} | g \text{ regolare e } g(D_{12}) = D_{12}}
@@ -683,8 +712,9 @@ Cosa si può invece dire su $ \Sph{3} $? Vale la seguente proposizione:
   \[
     \rho \colon \Sph{3} = \mathrm{SU(2)} \to \mathrm{GL}(V)
   \]
-  Dove $ V $ è uno spazio vettoriale di dimensione 3, quindi $ V \cong \RN{3} $, scelgo
-  lo spazio delle matrici antihermitiane a traccia nulla:
+  Con GL gruppo generale lineare e $ V $ è uno spazio vettoriale di dimensione
+  3 (quindi $ V \cong \RN{3} $) scelgo lo spazio delle matrici antihermitiane a
+  traccia nulla:
   \[
     V = \set{H \in M_2(\mathbb{C}) | H + H^\dagger = 0, \; \tr H  = 0}
   \]
@@ -708,24 +738,26 @@ Cosa si può invece dire su $ \Sph{3} $? Vale la seguente proposizione:
       0 & -i \\
     \end{pmatrix}
   \]
-  Perché $ \rho $ sia una rappresentazione dovrei verificare:
+  Allora scelgo $ \rho(T) \colon H \mapsto THT^\dagger $.
+  Perché $ \rho $ sia una rappresentazione bisogna verificare che se $ T \in \mathrm{SU(2)} $
+  e $ H \in V $:
   \begin{enumerate}
-  \item $ \rho(T) $ lineare
-  \item $ \rho(T)(H) \in V $
   \item $ \rho $ omomorfismo
-  \item $ \rho(T) $ inveribile
+  \item $ \rho(T) $ lineare
+  \item $ \rho(T) $ invertibile
+  \item $ \rho(T)(H) \in V $
   \end{enumerate}
-  Verifico ad esempoi che $ \rho(T)(H) \in V $:
+  Verifico ad esempio che $ \rho(T)(H) \in V $:
   \begin{gather*}
     THT^\dagger + TH^\dagger T^\dagger = 0 \iff T(H + H^\dagger)T^\dagger = 0 \iff H \in V \\
     \tr(THT^\dagger) = \tr(THT^{-1}) \overset{\text{ciclicità}}{=} \tr(H) = 0 \iff H \in V
   \end{gather*}
-  Ho quindi $ \rho \colon \Sph{3} \to \mathrm{GL}(V) $, vorrei cercare di restringere
-  la questione a O($ V $) al posto di $ \mathrm{GL}(V) $.
-
-  Per parlare di isometria bisogna prima definire un prodotto scalare definito
-  positivo, e una possibile forma quadratrica naturale è in questo caso il determinante, infatti
-  se $ H \in V $ allora:
+  Ho quindi $ \rho \colon \Sph{3} \to \mathrm{GL}(V) $, vorrei cercare di restringere a
+  O($ V $) al posto di $ \mathrm{GL}(V) $. Per far ciò bisogna prima definire un
+  prodotto scalare definito positivo, in modo da poter definire il concetto di
+  isometria e considerare quindi O($ V $) come il gruppo di isometrie di $ \RN{3} $.
+  Una possibile forma quadratrica naturale è in questo caso il determinante,
+  infatti se $ H \in V $ allora:
   \[
     H =
     \begin{pmatrix}
@@ -737,64 +769,68 @@ Cosa si può invece dire su $ \Sph{3} $? Vale la seguente proposizione:
   prodotto scalare in $ \RN{3} $. In questo modo $ V $ diventa uno spazio euclideo
   con prodotto scalare $ q = \det $.
 
-  Mi chiedo $ \rho(T) \colon V \to V $ è isometria? Questo è vero se $ q(\rho(T)(H)) = q(H) $
-  cioè se $ \det(THT^\dagger) = \det{H} $, ma per Binet questo equivale a
-  $ \det{T}\det{H}\det{T^\dagger} = \det{H} $, utilizzando il fatto che il determinante
-  di una matrice è un numero complesso e quindi commuta questo equivale a
-  $ \det{T}\det{T^\dagger}\det{H} = \det{H} $, sempre per Binet  $ \det(TT^\dagger)\det{H} = \det{H} $,
-  ma per ipotesi $ TT^\dagger = \Id{} $ quindi effettivamente $ \rho(T) $ è isometria, perciò:
+  Con questa definizione $ \rho(T) \colon V \to V $ è un'isometria. Questo è vero se
+  $ q(\rho(T)(H)) = q(H) $ cioè se $ \det(THT^\dagger) = \det{H} $, ma per Binet questo
+  equivale a $ \det{T}\det{H}\det{T^\dagger} = \det{H} $, utilizzando il fatto che il
+  determinante di una matrice è un numero complesso e quindi commuta questo
+  equivale a $ \det{T}\det{T^\dagger}\det{H} = \det{H} $, sempre per Binet
+  $ \det(TT^\dagger)\det{H} = \det{H} $, ma per ipotesi $ TT^\dagger = \Id{} $ quindi
+  effettivamente $ \rho(T) $ è isometria, perciò:
   \[
-    \rho \colon \Sph{3} \to \mathrm{O}_3(V)
+    \rho \colon \Sph{3} \to \mathrm{O}_3(V) \; \text{cioè } \rho(T) \in \mathrm{O}_3(V)
   \]
+  \vspace*{-20pt}
   \begin{exercise}
-    Verificare che $ \rho $ è continuo come applicazione tra spazi topologici
+    Verificare che $ \rho $ è continua come applicazione tra spazi topologici
     equipaggiando $ \mathrm{O}_3(V) $ con la topologia indotta da $ \RN{9} $.
   \end{exercise}
-  Essendo $ \rho $ continua manda compatti in compatti e connessi in connessi, quindi
-  $ \rho(\Sph{3}= \mathrm{SU(2)}) $ è connesso in $ \mathrm{O}_3(V) $.
-  Ma $ \mathrm{O}_3(V) $ non è connesso, e anzi è formato da due componenti connesse,
-  una è SO(3), l'altra è SO(3) moltiplicata per una qualunque matrice di determinante
-  $ - 1 $. Siccome $ \rho $ è omomorfismo $ \rho(\Id{}) = \Id{} $, quindi $ \rho(\Sph{3}) =  \mathrm{SO(3)}) $,
-  in questo modo rappresento la $ 3 $-sfera come rotazioni in $ \RN{3} $.
-  Si dimostra che $ \rho $ è suriettiva e $ \ker{\rho} = \set{(1,0,0,0), (-1,0,0,0)} $ elementi
-  che corrispondono a $ \Id{} $ e $ -\Id{} $.
-
-  Quindi come gruppi:
+  Essendo $ \rho $ continua manda compatti in compatti e connessi in connessi,
+  quindi $ \rho(\Sph{3}= \mathrm{SU(2)}) $ è connesso in $ \mathrm{O}_3(V) $. Ma
+  $ \mathrm{O}_3(V) $ non è connesso, e anzi è formato da due componenti
+  connesse, una è SO(3), l'altra è SO(3) moltiplicata per una qualunque matrice
+  di determinante $ - 1 $. Siccome $ \rho $ è omomorfismo
+  $ \rho(\Id{}) = \Id{} $, quindi $ \rho(\Sph{3}) = \mathrm{SO(3)} $, in questo modo
+  rappresento la $ 3 $-sfera come rotazioni in $ \RN{3} $. Si dimostra che
+  $ \rho $ è suriettiva e $ \ker{\rho} = \set{(1,0,0,0), (-1,0,0,0)} $ elementi che
+  corrispondono a $ \Id{} $ e $ -\Id{} $. A livello di gruppi per il primo
+  teorema di omomorfismo:
   \[
     \quot{\Sph{3}}{\ker{\rho}} \cong \mathrm{SO(3)}
   \]
   Ad una rotazione in $ \RN{3} $ corrispondono due punti sulla $ 3 $-sfera che sono
   uno l'antipodale dell'altro.
 
-  Ora ho $ A_5 \subseteq \mathrm{SO(3)} $ definisco $ G = \set{ T \in \Sph{3} | \rho(T) \in A_5} $,
-  cioè sono tutti i punti della sfera a cui corrispondono le rotazioni in $ A_5 $.
-  $ G $ è un gruppo, infatti se $ T, S \in G $ allora $ \rho(T), \rho(S) \in A_5 $ e
-  $ \rho(TS) = \rho(T)\rho(S) \in A_5 $ in quanto $ A_5 $ gruppo. Inoltre $ \Id{} \in G $ in quanto
-  $ \rho(\Id{}) \in A_5 $.
-
-  Definisco $ \phi = \rho \big \lvert_G $, per costruzione $ \phi \colon G \to A $ ed è suriettiva.
-  Inoltre $ \ker{\phi} = \set{ T \in G | \phi(T) = \Id{}} $, ma $ \phi(T) = \rho(T) $, quindi
-  $ T = \pm \Id{} $, cioè $ \ker{\phi} = \set{- \Id{}, + \Id{}} $. Ho perciò la succession
-  esatta di gruppi:
+  Ora ho $ A_5 \subseteq \mathrm{SO(3)} $ definisco
+  $ G = \set{ T \in \Sph{3} | \rho(T) \in A_5} $, cioè sono tutti i punti della sfera a
+  cui corrispondono le rotazioni in $ A_5 $. $ G $ è un gruppo, infatti se
+  $ T, S \in G $ allora $ \rho(T), \rho(S) \in A_5 $ e
+  $ \rho(TS) = \rho(T)\rho(S) \in A_5 $ in quanto $ A_5 $ gruppo e $ \rho $ omomorfismo.
+  Inoltre $ \Id{} \in G $ in quanto $ \rho(\Id{}) \in A_5 $. Si definisce
+  $ \phi = \rho \lvert_G \colon G \to A $, la quale per costruzione è suriettiva. Inoltre
+  $ \ker{\phi} = \set{ T \in G | \phi(T) = \Id{}} $, ma $ \phi(T) = \rho(T) $, quindi
+  $ T = \pm \Id{} $, cioè $ \ker{\phi} = \set{- \Id{}, + \Id{}} $. Si può costruire
+  la successione esatta di gruppi:
   \[
     \begin{tikzcd}
-      \Id{} \arrow{r}{} & \ker{\phi} \arrow{r}{} & G \arrow{r}{} & A \arrow{r}{} & \Id{}
+      \Id{} \arrow{r}{} & \ker{\phi} \arrow{r}{} & G \arrow{r}{} & A_5 \arrow{r}{} & \Id{}
     \end{tikzcd}
   \]
-  Quindi $ A = \quot{G}{\ker{\phi}} $.
-  $ G \subseteq \Sph{3} $ e ha ordine 120, inoltre $ \ker{\phi} $ è normale in $ G $.
-  Quello che si trova è $ G \simeq A_5 \times \ker{\phi} $. Questo si verifica formalmente, ma lo si
-  intuisce per il fatto che sostanzialmente $ G $ e formato da $ (A, + \Id{}) $ e  $ (A, - \Id{}) $.
-
-  A questo punto posso definire l'azione del gruppo su $ \Sph{3} $:
+  Essendo la successione esatta vale che $ A = {G} \slash {\ker{\phi}} $.
+  $ G \subseteq \Sph{3} $ e ha ordine 120, inoltre $ \ker{\phi} $ è normale in
+  $ G $. Si verifica formalmente che la successione spezza, quindi
+  $ G \cong A_5 \oplus \ker{\phi} \cong \mathrm{Isom}(D_{12}) $, questo lo si intuisce per il fatto che sostanzialmente
+  $ G $ e formato da $ (A_5, + \Id{}) $ e $ (A_5, - \Id{}) $.
+  Definendo l'azione del gruppo su $ \Sph{3} $:
   \begin{align*}
     G \times \Sph{3} & \to \Sph{3} \\
     (g,x) & \to gx
   \end{align*}
-  A questo punto è sensato fare $ \pi \colon \Sph{3} \to \quot{\Sph{3}}{G} $.
-  Quello che si trova è che lo spazio dodecaedrico è $ P \cong \quot{\Sph{3}}{G} $, infatti
-  $ P $ è connesso e compatto perché quoziente di uno spazio connesso e compatto, bisogna
-  verificare:
+  Il prodotto $ gx $ va inteso in questo modo: sia $ g $ che $ x $ sono punti di
+  $ \Sph{3} $, quindi sono rappresentabili come matrici di SU(2) per cui è ben
+  definito il prodotto. Considerando la proiezione sul quoziente
+  $ \pi \colon \Sph{3} \to {\Sph{3}} \slash {G} $ si trova lo spazio dodecaedrico
+  $ P := {\Sph{3}} \slash {G} $, il quale è connesso e compatto in quanto quoziente
+  di uno spazio connesso e compatto. Bisogna verificare:
   \begin{enumerate}
   \item $ P $ è una $ 3 $-varietà
   \item $ \pi_1(P) $ non è banale
@@ -806,15 +842,14 @@ Cosa si può invece dire su $ \Sph{3} $? Vale la seguente proposizione:
   \begin{exercise}
     Dimostrare che $ \pi $ è rivestimento universale di $ P $ su $ \Sph{3} $.
   \end{exercise}
-  Siccome $ P $ è rivestito da $ \Sph{3} $ localmente è di dimensione 3 perché localmente
-  è fatto come $ \Sph{3} $.
-  Dalla teoria generale dei rivestimenti si trova che $ \pi_1(P) \cong G $, quindi $ \pi_1(P) $ è non banale.
-
-  $ P $ è connesso per archi perché passaggio al quoziente di insieme connesso per archi
-  quindi $ H_0(P) \cong \Z $ e quindi $ H_0(P) \cong H_0(\Sph{3}) $.
-
-  Calcolo il gruppo di omologia per $ k = 1 $ e $ k = 2 $, sia $ \sigma \colon \Delta_k \to P $ un
-  simplesso singolare.
+  Siccome $ P $ è rivestito da $ \Sph{3} $ è di dimensione 3 perché localmente è
+  fatto come $ \Sph{3} $ che è una varietà $ 3 $-dimensionale. Dalla teoria
+  generale dei rivestimenti si trova che $ \pi_1(P) \cong G $, quindi
+  $ \pi_1(P) $ è non banale. Inoltre, $ P $ è connesso per archi perché passaggio
+  al quoziente di insieme connesso per archi quindi $ H_0(P) \cong \Z $ cioè
+  $ H_0(P) \cong H_0(\Sph{3}) $. Rimangono da calcolare i gruppi di omologia per
+  $ k = 1 $ e $ k = 2 $, per far ciò considero $ \sigma \colon \Delta_k \to P $ un simplesso
+  singolare, si ha il diagramma:
   \[
     \begin{tikzcd}
       {} & \Sph{3} \dar{\pi} \\
@@ -826,8 +861,9 @@ Cosa si può invece dire su $ \Sph{3} $? Vale la seguente proposizione:
   ma per $ k = 1 $ e per $ k = 2 $ l'omologia è nulla, quindi non può esserci
   qualcosa di non banale, per questo $ H_1(P) = 0 $ e $ H_2(P) = 0 $.
 
-  Per calcolare $ H_3(P) $ si usa un barbatrucco.
-  $ \Sph{3} $ ha una struttura di CW-complesso, quella di una $ 0 $-cella e una $ 3 $-cella.
+  Per calcolare $ H_3(P) $ si usa una tecnica geometrica basata
+  sull'osservazione che $ \Sph{3} $ ha una struttura di CW-complesso, quella di
+  una $ 0 $-cella e una $ 3 $-cella.
 
   \newmathsymb{eulerc}{e(X)}{Caratteristica di Eulero di $ X $}
   \begin{definition}
@@ -852,27 +888,17 @@ Cosa si può invece dire su $ \Sph{3} $? Vale la seguente proposizione:
   \[
     e(P) = \rank{H_0(P)} - \rank{H_1(P)} + \rank{H_2(P)} - \rank{H_3(P)} = 0
   \]
-  Da cui $ \rank{H_3(P)} = 1 $ e quindi $ H_3(P) \cong \Z \oplus T $ dove $ T $ è una parte
-  di torsione. Mostro che $ T $ è nulla.
+  Da cui $ \rank{H_3(P)} = 1 $ e quindi $ H_3(P) \cong \Z \oplus T $ dove $ T $ è una
+  parte di torsione per il teorema di struttura, ma si dimostra che $ T $ è
+  nulla. In questo modo si è costruito uno spazio che non soddisfa le ipotesi
+  della congettura di Poincaré e per il quale non si può dedurre se sia o meno
+  omeomorfo a una sfera.
 \end{proof}
-
-Vale tuttavia il seguente risultato, dimostrato da Perelman nel 2003,
-noto come congettura di Poincaré:
-\begin{proposition}[ex-Congettura di Poincaré]
-  Se $ \M $ è una $ 3 $-varietà topologica compatta, connessa e semplicemente
-  connessa tale che $ \forall k \geq 3 $ $ H_k(\M) \cong H_k(\Sph{3}) $ allora $ \M \simeq \Sph{3} $.
-\end{proposition}
+\eproof
 Questo mostra che il gruppo fondamentale è uno strumento più fine
 dei gruppi di omologia.
 
-
-
 %     lezione 11
-%  _     _____ ________ ___  _   _ _____   _ _
-% | |   | ____|__  /_ _/ _ \| \ | | ____| / / |
-% | |   |  _|   / / | | | | |  \| |  _|   | | |
-% | |___| |___ / /_ | | |_| | |\  | |___  | | |
-
 
 \section{Costruzione dell'omologia cellulare}
 
@@ -908,7 +934,7 @@ dei gruppi di omologia.
       H_n(\quot{Y}{A}, \quot{A}{A}) \cong \tilde{H}_n(Y,A) \rar & H_n(\quot{Y}{A}, \quot{V}{A})
     \end{tikzcd}
   \]
-  $  H_n(\quot{Y}{A}, \quot{A}{A}) \cong \tilde{H}_n(\quot{Y}{A}) $ in quanto il quoziente
+  $  H_n({Y} \slash {A}, {A} \slash {A}) \cong \tilde{H}_n({Y} \slash {A}) $ in quanto il quoziente
   di $ A $ con sé stesso fa collassare $ A $ in un punto, quindi il gruppo di omologia
   è relativo ad un punto, e quindi è l'omologia ridotta.
   Ho la terna $ (A, V, Y) $ tale che $ A \subseteq V \subseteq Y $ allora c'è l'inclusione
@@ -918,7 +944,7 @@ dei gruppi di omologia.
       \dots \rar & H_{n+1}(V, A) \rar & H_n(Y, A) \rar & H_n(Y,V) \rar & H_{n}(V,A) \rar & \dots
     \end{tikzcd}
   \]
-  Ma $ V $ è omotopa ad $ A $ quindi $ H_n(V,A) \cong H_n(A,A) $ per l'assioma dell'omotopia
+  Ma $ V $ è omotopa ad $ A $ quindi $ H_n(V,A) \cong H_n(A,A) $ per l'assioma dell'omotopia.
   Ma $ H_n(A,A) \cong 0 $, infatti:
   $ H_n(A,A) \cong 0 \; \forall k $ in quanto il gruppo di omologia relativa
   di $ A $ con $ A $ stesso è definito dalla successione:
@@ -1290,7 +1316,7 @@ $ d^{CW} $ è un operatore di bordo.
       {} & \quot{X^{(k-1)}}{X^{(k-2)}} = \bigvee_\alpha \Sph{k-1}_\alpha \rar{u_\beta} & \Sph{k-1}_\beta
     \end{tikzcd}
   \]
-  Allora $ A_{jb} = \deg{u_\beta \circ \eta_j} $.
+  Allora $ A_{jb} = \deg{(u_\beta \circ \eta_j)} $.
 \end{osservation}
 
  % lezione 12
@@ -1905,9 +1931,9 @@ $ \RN{2} $ allora $ C $ divide $ \RN{2} $ in due componenti connesse.
   \[
     H_i(M, M \setminus \set{x}) \cong H_i(\Disk{m}(x), \Disk{m}(x) \setminus \set{x}) \cong H_i(\Disk{m}, \Disk{m} \setminus \set{\vec{0}})
   \]
-  In particolare passando all'omologia ridotta:
+  In particolare passando all'omologia ridotta, indicando con $ \Disk{m}_0 =  \Disk{m} \setminus \set{\vec{0}}$:
   \[
-    \tilde{H}_i(M, M \setminus \set{x}) \cong  \tilde{H}_i(\Disk{m}, \Disk{m} \setminus \set{\vec{0}})
+    \tilde{H}_i(M, M \setminus \set{x}) \cong  \tilde{H}_i(\Disk{m}, \Disk{m}_0)
   \]
   \begin{figure}[htbp]
     \centering
@@ -1926,11 +1952,11 @@ $ \RN{2} $ allora $ C $ divide $ \RN{2} $ in due componenti connesse.
     \label{fig:lez13:dimension_topological_invariance}
   \end{figure}
 
-  L'immersione di $ \Disk{m} \setminus \set{\vec{0}} $ in $ \Disk{m} $ induce una
+  L'immersione di $ \Disk{m}_0 $ in $ \Disk{m} $ induce una
   successione esatta lunga in omologia relativa ridotta:
   \[
-    \begin{tikzcd}[nodes = {column sep = 4pt, inner sep = 1 pt}]
-      \dots \rar & \tilde{H}_k(\Disk{m} \setminus \set{\vec{0}}) \rar & \tilde{H}_k(\Disk{m}) \rar & \tilde{H}_k(\Disk{m}, \Disk{m} \setminus \set{0}) \rar &
+    \begin{tikzcd}[nodes = {column sep = 7pt}]
+      \dots \rar & \tilde{H}_k(\Disk{m}_0) \rar & \tilde{H}_k(\Disk{m}) \rar & \tilde{H}_k(\Disk{m}, \Disk{m}_0) \rar &
       \tilde{H}_{k-1}(\Disk{m} \setminus \set{0}) \rar & \tilde{H}_{k-1}(\Disk{m}) \rar & \dots
     \end{tikzcd}
   \]
@@ -1943,10 +1969,10 @@ $ \RN{2} $ allora $ C $ divide $ \RN{2} $ in due componenti connesse.
   \]
   Per cui:
   \[
-     \tilde{H}_i(\Disk{m}, \Disk{m} \setminus \set{\vec{0}}) \cong \tilde{H}_{i-1}(\Disk{m} \setminus \set{\vec{0}})
+     \tilde{H}_i(\Disk{m}, \Disk{m}_0) \cong \tilde{H}_{i-1}(\Disk{m}_0)
   \]
-  Ma $ \Disk{m} \setminus \set{\vec{0}} \sim_H \Sph{m-1} $ quindi
-  $ \tilde{H}_i(\Disk{m} \setminus \set{\vec{0}}) \cong \tilde{H}_i(\Sph{m-1}) $
+  Ma $ \Disk{m}_0 \sim_H \Sph{m-1} $ quindi
+  $ \tilde{H}_i(\Disk{m}_0) \cong \tilde{H}_i(\Sph{m-1}) $
   e perciò:
   \[
     \tilde{H}_i(M, M \setminus \set{x}) \cong \tilde{H}_i(\Sph{m-1})

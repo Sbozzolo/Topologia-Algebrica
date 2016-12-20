@@ -534,7 +534,7 @@ La mappa che realizza questo isomorfismo è nota come grado.
     H_0(X) = \quot{S_0(X)}{B_0(X)} \cong \Z
   \]
 \end{proposition}
-Dimostro quindi questa proposizione.
+Dimostro quindi questa proposizione. \\
 \begin{proof}
   \begin{enumerate}
   \item
@@ -2078,7 +2078,7 @@ che mi mancano che sono l'escissione e l'omotopia.
     l'uguaglianza.
   \end{osservation}
 
-  \begin{osservation}[Terzo teorema degli omomorfismi\index{Terzo teorema degli omomorfismi}]
+  \begin{osservation}
     Come si osserva dalla figura vale che $ S_k(A \setminus B) = S_k(A) \cap S_k(X \setminus B) $.
   \end{osservation}
 
@@ -2097,172 +2097,182 @@ che mi mancano che sono l'escissione e l'omotopia.
     \label{fig:lez14:excision_proof}
   \end{figure}
 
-  \begin{osservation}
-    Vale che:
+  \begin{osservation}[Terzo teorema degli omomorfismi\index{Terzo teorema degli omomorfismi}]
+    Il terzo teorema degli omomorfismi afferma che se $ R $ e $ T $ sono sottogruppi
+    liberi di $ G $:
+    \[
+      \quot{R + T}{T} \cong \quot{R}{R \cap T}
+    \]
+    In questo caso ponendo $ R = S_k(X \setminus B) $ e $ T = S_k(A) $:
+    \[
+      \quot{S_k(X \setminus B)}{S_k(X \setminus B) \cap S_k(A} \cong \quot{S_k(X \setminus B) + S_k(A}{S_k(A)}
+    \]
+    Cioè usando i risultati precedenti:
     \[
       \quot{S_k(X \setminus B)}{S_k(A \setminus B)} \cong \quot{S_k^\mathcal{U}(X)}{S_k(A)}
     \]
-    Infatti \dots
   \end{osservation}
+
+  Con le inclusioni e le proiezioni al quoziente si costruisce il diagramma:
+  \[
+    \begin{tikzcd}
+      S_k(X \setminus B) \rar \dar & S_k(X) \dar \\
+      \quot{S_k(X \setminus B)}{S_k(A \setminus B)} \rar & \quot{S_k(X)}{S_k(A)}
+    \end{tikzcd}
+  \]
+  Quindi usando le osservazioni precedenti è ben definito il diagramma:
+  \[
+    \begin{tikzcd}
+      \quot{S_k(X \setminus B)}{S_k(A \setminus B)} \arrow{rd}{} \arrow{rr}{\cong} & {} & \quot{S_k^\mathcal{U}(X)}{S_K(A)} \arrow{ld}{}\\
+      {} & \quot{S_k(X)}{S_k(A)} & {}
+    \end{tikzcd}
+  \]
+  Passando all'omologia della coppia:
+  \[
+    \begin{tikzcd}
+      H_p(X \setminus B, A \setminus B) \arrow{rd}{\phi} \arrow{rr}{\cong} & {} & H_p^\mathcal{U}(X,A) \arrow{ld}{\psi} \\
+      {} & H_p(X,A) & {}
+    \end{tikzcd}
+  \]
+  Per dimostrare l'escissione bisogna mostrare che $ \phi $ è un isomorfismo, e questo può essere
+  ottenuto mostrando che $ \psi $ è isomorfismo (così sarebbe $ \phi $ composizione di isomorfismi),
+  cioè devo dimostrare che $ H_p^\mathcal{U}(X, A) \cong H_p(X,A) $.
 
   \begin{osservation}
-    Vale che:
-    \[
-      \begin{tikzcd}
-        S_k(X \setminus B) \rar \dar & S_k(X) \dar \\
-        \quot{S_k(X \setminus B)}{S_k(A \setminus B)} \rar & \quot{S_k(X)}{S_k(A)}
-      \end{tikzcd}
-    \]
-    Quindi usando le osservazioni precedenti è ben definito il diagramma:
-    \[
-      \begin{tikzcd}
-        \quot{S_k(X \setminus B)}{S_k(A \setminus B)} \arrow{rd}{} \arrow{rr}{\cong} & {} & \quot{S_k^\mathcal{U}(X)}{S_K(A)} \arrow{ld}{}\\
-        {} & \quot{S_k(X)}{S_k(A)} & {}
-      \end{tikzcd}
-    \]
-    Passando all'omologia della coppia:
-    \[
-      \begin{tikzcd}
-        H_p(X \setminus B, A \setminus B) \arrow{rd}{\phi} \arrow{rr}{\cong} & {} & H_P^\mathcal{U}(X,A) \arrow{ld}{\psi} \\
-        {} & H_p(X,A) & {}
-      \end{tikzcd}
-    \]
-    Per dimostrare l'escissione bisogna mostrare che $ \phi $ è un isomorfismo, e questo può essere
-    ottenuto mostrando che $ \psi $ è isomorfismo (così sarebbe $ \phi $ composizione di isomorfismi),
-    cioè devo dimostrare che $ H_p^\mathcal{U}(X, A) \cong H_p(X,A) $.
-
-    Questo risultato dipende da altre due osservazioni:
-    \begin{osservation}
-      Se $ X $ è uno spazio topologico e $ \mathcal{U} = \set{U_\alpha} $ un suo ricoprimento di aperti
-      allora $ H_p^\mathcal{U}(X) \cong H_p(X) $.
-    \end{osservation}
-    A questo punto voglio passare all'omologia relativa. Considero $ \mathcal{U} \cap A = \set{U_\alpha \cap A} $,
-    questo è un ricoprimento aperto di $ A $. Definisco:
-    \[
-      S_k^\mathcal{U}(X,A) = \quot{S_k^\mathcal{U}(X)}{S_k^{\mathcal{U} \cap A}(A)}
-    \]
-    Ho quindi la successione esatta corta:
-    \[
-      \begin{tikzcd}
-        0 \rar & S_k^{\mathcal{U} \cap A}(A) \rar & S_k^{\mathcal{U}}(X) \rar & S_k^{\mathcal{U}}(X,A) \rar & 0
-      \end{tikzcd}
-    \]
-    Ma c'è anche la successione esatta corta:
-    \[
-      \begin{tikzcd}
-        0 \rar & S_k(A) \rar & S_k(X) \rar & S_k(X,A) \rar & 0
-      \end{tikzcd}
-    \]
-    Quindi è ben definita la mappa tra successioni corte:
-    \[
-      \begin{tikzcd}
-        0 \rar & S_k^{\mathcal{U} \cap A}(A) \rar \dar & S_k^{\mathcal{U}}(X) \rar \dar & S_k^{\mathcal{U}}(X,A) \rar \dar & 0 \\
-        0 \rar & S_k(A) \rar & S_k(X) \rar & S_k(X,A) \rar & 0
-      \end{tikzcd}
-    \]
-    Queste successioni esatte corte ne inducono una esatta lunga in omologia:
-    \[
-      \begin{tikzcd}[nodes={column sep = 7 pt}]
-        \dots \rar & H_i^{\mathcal{U} \cap A}(A) \rar \dar{\cong} & H_i^{\mathcal{U}}(X) \rar \dar{\cong} & H_i^{\mathcal{U}}(X,A) \rar \dar{?} &  H_{i_1}^{\mathcal{U} \cap A}(A) \rar
-        \dar{\cong} & H_{i-1}^{\mathcal{U}}(X) \rar \dar{\cong} & \dots \\
-        \dots \rar & H_i(A) \rar & H_i(X) \rar & H_i(X,A) \rar &  H_{i_1}(A) \rar & H_{i-1}(X) \rar & \dots
-      \end{tikzcd}
-    \]
-    In queste condizioni si può applicare il lemma dei cinque con il quale si trova immediatamente
-    che  $ H_p^\mathcal{U}(X, A) \cong H_p(X,A) $.
-
-    \begin{lemma}[Lemma dei cinque\index{Lemma dei cinque}]
-      Considerato il seguente diagramma formato da successioni esatte corte in cui ogni quadrato è commutativo:
-      \[
-        \begin{tikzcd}
-          A_1 \rar{\alpha_1} \dar{\phi_1} & A_2 \rar{\alpha_2} \dar{\phi_2} & A_3 \rar{\alpha_3} \dar{\phi_3} & A_4 \rar{\alpha_4} \dar{\phi_4} & A_5 \dar{\phi_5} \\
-          B_1 \rar{\beta_1} & B_2 \rar{\beta_2} & B_3 \rar{\beta_3} & B_4 \rar{\beta_4} & B_5
-        \end{tikzcd}
-      \]
-      Se $ \phi_1, \phi_2, \phi_4, \phi_5 $ sono isomorfismi allora anche $ \phi_3 $ lo è.
-    \end{lemma}
-    \begin{proof}
-      Per ipotesi $ \phi_3 $ è un omomorfismo, quindi è sufficiente mostrare che è iniettivo e suriettivo.
-
-      \subparagraph{Iniettività} Sia $ \alpha_3 \in A_3 $ tale che $ \phi_3(a_3) = 0 $, bisogna mostrare che $ a_3 = 0 $,
-      in questo modo $ \ker{\phi_3} = 0 $ e quindi $ \phi_3 $ è iniettivo.
-      Applico $ \alpha_3 $ ad $ a_3 $:
-      \[
-        \alpha_3(a_3) \in A_4
-      \]
-      Applicando $ \phi_4 $:
-      \[
-        \phi_4 \circ \alpha_3 (a_3) \in B_4
-      \]
-      Per la commutatività:
-      \[
-        \phi_4 \circ \alpha_3 (a_3) = \beta_3 \circ \phi_3 (a_3) = 0 \;\text{in quanto } \phi_3 (a_3) = 0 \; \text{e } \beta_3 \text{ è omomorfismo}
-      \]
-      Ma $ \phi_4 $ è omomorfismo quindi $ \alpha_3(a_3) = 0 $, quindi $ a_3 \in \ker{\alpha_3} $, ma la successione è
-      esatta, quindi $ \ker{\alpha_3} = \im{\alpha_2} $, cioè $ \exists a_2 \in A_2 $ tale che $ \alpha_2(a_2) = a_3 $.
-      Applicando $ \phi_3 $:
-      \[
-        \phi_3 \circ \alpha_2(a_2) = \phi_3(a_3) = 0
-      \]
-      Ma per la commutatività:
-      \[
-        \beta_2 \circ \phi_2 (a_2) = \phi_3 \circ \alpha_3 (a_3) = 0
-      \]
-      Quindi $ \phi_2(a_2) \in \ker{\beta_2} $, ma la successione è esatta, quindi
-      $ \ker{\beta_2} = \im{\beta_1} $ e quindi $ \exists b_1 \in B_1 $ tale che
-      $ \beta_1(b_1) = \phi_2(a_2) $. Ma $ \phi_1 $ è un isomorfismo quindi è suriettivo e
-      quindi $ \exists a_1 \in A_1 $ tale che $ \phi_1(a_1) = b_1 $. Quindi applicando
-      $ \phi_2 $ a $ \alpha_1(a_1) $ e usando la commutatività:
-      \[
-        \phi_2 (\alpha_1 (a_1)) = \beta_1 \circ \phi_1(a_1) = \beta_1(b_1) = \phi_2(a_2)
-      \]
-      Siccome $ \phi_2 $ è un omomorfismo allora $ \alpha_1(a_1) = a_2 $, ma $ a_3 = \alpha_2(a_2) $,
-      e quindi:
-      \[
-        a_3 = \alpha_2(a_2) = \alpha_2 \circ \alpha_1 (a_2) = 0
-      \]
-      In quanto la successione è esatta.
-
-      \subparagraph{Suriettività} Sia $ b_3 \in B_3 $ mostro che
-      $ \exists \tilde{a}_3 \in A_3 $ tale che $ b_3 = \phi_3(a_3) $. Vale che
-      $ \beta_3(b_3) \in B_4 $, ma $ \phi_4 $ è un isomorfismo, quindi è suriettivo, e
-      quindi $ \exists a_4 $ tale che $ \phi_4(a_4) = \beta_3(b_3) $. Inoltre applico $ \phi_5 $
-      a $ \alpha_4(a_4) \in A_5 $, usando la commutatività:
-      \[
-        \phi_5 \circ \alpha_4 (a_4) = \beta_4 \circ \phi_4 (a_4) = \beta_4 \circ \beta_3 (b_3) = 0
-      \]
-      Per l'esattezza della successione.
-      Siccome $ \phi_5 $ è omomorfismo $ \alpha_4(a_4) = 0 $, cioè $ a_4 \in \ker{\alpha_4} $,
-      ma la successione è esatta, quindi $ \ker{\alpha_4} = \im{\alpha_3} $, quindi
-      $ \exists a_3 \in A_3 $ (non è lo stesso di prima) tale che $ \alpha_3(a_3) = a_4 $.
-      Applicando $ \phi_4 $:
-      \[
-        \phi_4 (\alpha_3(a_3)) = \phi_4(a_4)
-      \]
-      Quindi:
-      \[
-        \phi_4 (\alpha_3(a_3)) = \phi_4(a_4) = \beta_3(b_3)
-      \]
-      Ma per la commutatività:
-      \[
-        \phi_4 (\alpha_3(a_3)) = \beta_3(\phi_3(a_3))
-      \]
-      Quindi essendo $ \beta_3 $ un omomorfismo $ \phi_3(a_3) - b_3 \in \ker{\beta_3} $,
-      siccome la successione è esatta $ \ker{\beta_3} = \im{\beta_2} $ e quindi
-      $ \exists b_2 \in B_2 $ tale che $ \beta_2(b_2) = \phi_3(a_3) - b_3 $. Siccome $ \phi_2 $
-      è un isomorfismo è suriettivo quindi $ \exists a_2 \in A_2 $ tale che $ \phi_2(a_2) = b_2 $.
-      Quindi usando la commutatività:
-      \[
-        \phi_3(a_3) - b_3 = \beta_2 \circ \phi_2 (a_2) = \phi_3(\alpha_2(a_2))
-      \]
-      Quindi:
-      \[
-        \phi_3(a_3 - \alpha_2(a_2)) = b_3
-      \]
-      Cioè esiste un elemento di $ \tilde{a}_3 = a_3 - \alpha_2(a_2) \in A_3 $ tale che
-      venga mandato in $ b_3 $ da $ \phi_3 $.
-    \end{proof}
+    Se $ X $ è uno spazio topologico e $ \mathcal{U} = \set{U_\alpha} $ un suo
+    ricoprimento di aperti allora $ H_p^\mathcal{U}(X) \cong H_p(X) $. Questo è
+    conseguenza della costruzione di $ H^\mathcal{U}_p(X) $, ma la dimostrazione
+    è piuttosto articolata e poco istruttiva.
   \end{osservation}
+  A questo punto voglio passare all'omologia relativa. Considero $ \mathcal{U} \cap A = \set{U_\alpha \cap A} $,
+  questo è un ricoprimento aperto di $ A $. Definisco:
+  \[
+    S_k^\mathcal{U}(X,A) = \quot{S_k^\mathcal{U}(X)}{S_k^{\mathcal{U} \cap A}(A)}
+  \]
+  Ho quindi la successione esatta corta:
+  \[
+    \begin{tikzcd}
+      0 \rar & S_k^{\mathcal{U} \cap A}(A) \rar & S_k^{\mathcal{U}}(X) \rar & S_k^{\mathcal{U}}(X,A) \rar & 0
+    \end{tikzcd}
+  \]
+  Ma c'è anche la successione esatta corta:
+  \[
+    \begin{tikzcd}
+      0 \rar & S_k(A) \rar & S_k(X) \rar & S_k(X,A) \rar & 0
+    \end{tikzcd}
+  \]
+  Quindi è ben definita la mappa tra successioni corte:
+  \[
+    \begin{tikzcd}
+      0 \rar & S_k^{\mathcal{U} \cap A}(A) \rar \dar & S_k^{\mathcal{U}}(X) \rar \dar & S_k^{\mathcal{U}}(X,A) \rar \dar & 0 \\
+      0 \rar & S_k(A) \rar & S_k(X) \rar & S_k(X,A) \rar & 0
+    \end{tikzcd}
+  \]
+  Queste successioni esatte corte ne inducono una esatta lunga in omologia:
+  \[
+    \begin{tikzcd}[nodes={column sep = 10 pt}]
+      \dots \rar & H_i^{\mathcal{U} \cap A}(A) \rar \dar{\cong} & H_i^{\mathcal{U}}(X) \rar \dar{\cong} & H_i^{\mathcal{U}}(X,A) \rar \dar{?} &  H_{i-1}^{\mathcal{U} \cap A}(A) \rar
+      \dar{\cong} & H_{i-1}^{\mathcal{U}}(X) \rar \dar{\cong} & \dots \\
+      \dots \rar & H_i(A) \rar & H_i(X) \rar & H_i(X,A) \rar &  H_{i-1}(A) \rar & H_{i-1}(X) \rar & \dots
+    \end{tikzcd}
+  \]
+  In queste condizioni si può applicare il lemma dei cinque con il quale si trova immediatamente
+  che  $ H_p^\mathcal{U}(X, A) \cong H_p(X,A) $.
+
+  \begin{lemma}[Lemma dei cinque\index{Lemma dei cinque}]
+    Considerato il seguente diagramma formato da successioni esatte corte in cui ogni quadrato è commutativo:
+    \[
+      \begin{tikzcd}
+        A_1 \rar{\alpha_1} \dar{\phi_1} & A_2 \rar{\alpha_2} \dar{\phi_2} & A_3 \rar{\alpha_3} \dar{\phi_3} & A_4 \rar{\alpha_4} \dar{\phi_4} & A_5 \dar{\phi_5} \\
+        B_1 \rar{\beta_1} & B_2 \rar{\beta_2} & B_3 \rar{\beta_3} & B_4 \rar{\beta_4} & B_5
+      \end{tikzcd}
+    \]
+    Se $ \phi_1, \phi_2, \phi_4, \phi_5 $ sono isomorfismi allora anche $ \phi_3 $ lo è.
+  \end{lemma}
+  \begin{proof}
+    Per ipotesi $ \phi_3 $ è un omomorfismo, quindi è sufficiente mostrare che è iniettivo e suriettivo.
+
+    \subparagraph{Iniettività} Sia $ \alpha_3 \in A_3 $ tale che $ \phi_3(a_3) = 0 $, bisogna mostrare che $ a_3 = 0 $,
+    in questo modo $ \ker{\phi_3} = 0 $ e quindi $ \phi_3 $ è iniettivo.
+    Applico $ \alpha_3 $ ad $ a_3 $:
+    \[
+      \alpha_3(a_3) \in A_4
+    \]
+    Applicando $ \phi_4 $:
+    \[
+      \phi_4 \circ \alpha_3 (a_3) \in B_4
+    \]
+    Per la commutatività:
+    \[
+      \phi_4 \circ \alpha_3 (a_3) = \beta_3 \circ \phi_3 (a_3) = 0 \;\text{in quanto } \phi_3 (a_3) = 0 \; \text{e } \beta_3 \text{ è omomorfismo}
+    \]
+    Ma $ \phi_4 $ è omomorfismo quindi $ \alpha_3(a_3) = 0 $, quindi $ a_3 \in \ker{\alpha_3} $, ma la successione è
+    esatta, quindi $ \ker{\alpha_3} = \im{\alpha_2} $, cioè $ \exists a_2 \in A_2 $ tale che $ \alpha_2(a_2) = a_3 $.
+    Applicando $ \phi_3 $:
+    \[
+      \phi_3 \circ \alpha_2(a_2) = \phi_3(a_3) = 0
+    \]
+    Ma per la commutatività:
+    \[
+      \beta_2 \circ \phi_2 (a_2) = \phi_3 \circ \alpha_3 (a_3) = 0
+    \]
+    Quindi $ \phi_2(a_2) \in \ker{\beta_2} $, ma la successione è esatta, quindi
+    $ \ker{\beta_2} = \im{\beta_1} $ e quindi $ \exists b_1 \in B_1 $ tale che
+    $ \beta_1(b_1) = \phi_2(a_2) $. Ma $ \phi_1 $ è un isomorfismo quindi è suriettivo e
+    quindi $ \exists a_1 \in A_1 $ tale che $ \phi_1(a_1) = b_1 $. Quindi applicando
+    $ \phi_2 $ a $ \alpha_1(a_1) $ e usando la commutatività:
+    \[
+      \phi_2 (\alpha_1 (a_1)) = \beta_1 \circ \phi_1(a_1) = \beta_1(b_1) = \phi_2(a_2)
+    \]
+    Siccome $ \phi_2 $ è un omomorfismo allora $ \alpha_1(a_1) = a_2 $, ma $ a_3 = \alpha_2(a_2) $,
+    e quindi:
+    \[
+      a_3 = \alpha_2(a_2) = \alpha_2 \circ \alpha_1 (a_2) = 0
+    \]
+    In quanto la successione è esatta.
+
+    \subparagraph{Suriettività} Sia $ b_3 \in B_3 $ mostro che
+    $ \exists \tilde{a}_3 \in A_3 $ tale che $ b_3 = \phi_3(a_3) $. Vale che
+    $ \beta_3(b_3) \in B_4 $, ma $ \phi_4 $ è un isomorfismo, quindi è suriettivo, e
+    quindi $ \exists a_4 $ tale che $ \phi_4(a_4) = \beta_3(b_3) $. Inoltre applico $ \phi_5 $
+    a $ \alpha_4(a_4) \in A_5 $, usando la commutatività:
+    \[
+      \phi_5 \circ \alpha_4 (a_4) = \beta_4 \circ \phi_4 (a_4) = \beta_4 \circ \beta_3 (b_3) = 0
+    \]
+    Per l'esattezza della successione.
+    Siccome $ \phi_5 $ è omomorfismo $ \alpha_4(a_4) = 0 $, cioè $ a_4 \in \ker{\alpha_4} $,
+    ma la successione è esatta, quindi $ \ker{\alpha_4} = \im{\alpha_3} $, quindi
+    $ \exists a_3 \in A_3 $ (non è lo stesso di prima) tale che $ \alpha_3(a_3) = a_4 $.
+    Applicando $ \phi_4 $:
+    \[
+      \phi_4 (\alpha_3(a_3)) = \phi_4(a_4)
+    \]
+    Quindi:
+    \[
+      \phi_4 (\alpha_3(a_3)) = \phi_4(a_4) = \beta_3(b_3)
+    \]
+    Ma per la commutatività:
+    \[
+      \phi_4 (\alpha_3(a_3)) = \beta_3(\phi_3(a_3))
+    \]
+    Quindi essendo $ \beta_3 $ un omomorfismo $ \phi_3(a_3) - b_3 \in \ker{\beta_3} $,
+    siccome la successione è esatta $ \ker{\beta_3} = \im{\beta_2} $ e quindi
+    $ \exists b_2 \in B_2 $ tale che $ \beta_2(b_2) = \phi_3(a_3) - b_3 $. Siccome $ \phi_2 $
+    è un isomorfismo è suriettivo quindi $ \exists a_2 \in A_2 $ tale che $ \phi_2(a_2) = b_2 $.
+    Quindi usando la commutatività:
+    \[
+      \phi_3(a_3) - b_3 = \beta_2 \circ \phi_2 (a_2) = \phi_3(\alpha_2(a_2))
+    \]
+    Quindi:
+    \[
+      \phi_3(a_3 - \alpha_2(a_2)) = b_3
+    \]
+    Cioè esiste un elemento di $ \tilde{a}_3 = a_3 - \alpha_2(a_2) \in A_3 $ tale che
+    venga mandato in $ b_3 $ da $ \phi_3 $.
+  \end{proof}
+  In questo caso si è potuto applicare il lemma in quanto i quadrati sono commutativi
+  perché derivanti da una successione esatta corta con il teorema dell'omomorfismo
+  di connessione.
 \end{proof}
 
 % lezione 14 parte 2
@@ -2457,9 +2467,11 @@ Per il teorema fondamentale degli omomorfismi:
 \[
   \quot{H_0(X)}{\ker{\epsilon_\star}} \cong \im{\epsilon_\star} = H_0(P)
 \]
-Se ora considero la mappa iniettiva $ \alpha \colon \ker{\epsilon_\star} \incl H_0(X) $, quindi tale che
-$ \im{\alpha} = \ker{\epsilon_\star} $, la successione corta è automaticamente esatta (infatti $ \epsilon_\star \circ \alpha = 0 $, dato
-che in $ H_0(P) $ $ \ker{\epsilon_\star} $ è ridotto al solo $ 0 $):
+Se ora considero la mappa iniettiva
+$ \alpha \colon \ker{\epsilon_\star} \incl H_0(X) $, quindi tale che
+$ \im{\alpha} = \ker{\epsilon_\star} $, la successione corta è automaticamente esatta (infatti
+$ \epsilon_\star \circ \alpha = 0 $, dato che in $ H_0(P) $ il gruppo
+$ \ker{\epsilon_\star} $ è ridotto al solo $ 0 $ essendo al quoziente):
 \[
   \begin{tikzcd}
     0 \arrow{r}{} & \ker{\epsilon_\star} \arrow{r}{\alpha} & H_0(X) \arrow{r}{\epsilon_\star} & \arrow[bend left]{l}{i_\star} H_0(P) \arrow{r}{} & 0
@@ -2474,9 +2486,12 @@ che in $ H_0(P) $ $ \ker{\epsilon_\star} $ è ridotto al solo $ 0 $):
 % \]
 Inoltre, siccome $ \epsilon_\star \circ i_\star = \Id{H_0(p)} $, la successione spezza perché
 esiste una sezione $ i_\star $, perciò
-$ H_0(X) \cong \ker{\epsilon_\star} \oplus H_0(P) $. Si ha quindi che per qualsiasi teoria omologia
-che soddisfa gli assiomi di Eilenberg e Steenrod (infatti ho utilizzato solo gli
-assiomi), e quindi in particolare per l'omologia singolare relativa, si ha che
+$ H_0(X) \cong \ker{\epsilon_\star} \oplus H_0(P) $. Questo spezzamento non è naturale e dipende
+dalla scelta dell'inclusione $ i $.
+
+Si ha quindi che per qualsiasi teoria omologia che soddisfa gli assiomi di
+Eilenberg e Steenrod (infatti ho utilizzato solo gli assiomi), e quindi in
+particolare per l'omologia singolare relativa, si ha che
 $ H_0(X) \cong \ker{\epsilon_\star} \oplus H_0(P) $.
 
 \newmathsymb{coefgrup}{\mathcal{G}}{Gruppo dei coefficienti}
@@ -2486,11 +2501,12 @@ Inoltre si definisce $ \ker{\epsilon_\star} = \tilde{H}_0(X) $ \textbf{gruppo di
 ho trovato che $ H_0(X) \cong \tilde{H}_0(X) \oplus \mathcal{G} $.
 
 Cosa sono invece gli $ \tilde{H}_k(X) $? Vorrei che fossero proprio $ H_k(X) $,
-così come nel solo nel caso dell'omologia singolare.
+così come nel caso dell'omologia singolare.
 
 \begin{proposition}
-  In qualsiasi teoria omologica di Eilenberg e Steenrod, se $ \tilde{H}_k(X) $ sono
-  i gruppi di omologia ridotta allora:
+  In qualsiasi teoria omologica di Eilenberg e Steenrod in cui si definiscono i
+  gruppi di omologia ridotta come $ \tilde{H}_k(X) = \ker{\epsilon_X} $ dove
+  $ \epsilon_X \colon X \to P $ con $ X $ spazio topologico e $ P = \set{p \in X} $ si ha che:
   \[
     H_k(X) \cong
     \begin{cases}
@@ -2498,38 +2514,43 @@ così come nel solo nel caso dell'omologia singolare.
       \tilde{H}_k(X) & \text{se } k \not= 0
     \end{cases}
   \]
-  Con $ \epsilon \colon X \to P $ dove $ P = \set{p} $ con $ p \in X $.
 \end{proposition}
 \begin{proof}
-  Considero $ F \colon (X, A) \to (P,P) $ con:
-  \[
-    F =
-    \begin{cases}
-      \epsilon_X \colon X \to P \\
-      \epsilon_A \colon A \to P
-    \end{cases}
-  \]
-  % Posso fare:
+  % Considero $ F \colon (X, A) \to (P,P) $ con:
+  % \[
+  %   F =
+  %   \begin{cases}
+  %     \epsilon_X \colon X \to P \\
+  %     \epsilon_A \colon A \to P
+  %   \end{cases}
+  % \]
+  % In generale:
   % \[
   %   \begin{tikzcd}
   %     0 \arrow{r}{}        & \ker{\epsilon_X} \arrow{r}{} & H_k(X) \arrow{r}{\epsilon_\star} & H_k(P) \arrow{r}{}    & 0
   %   \end{tikzcd}
   % \]
-  In generale:
+  % Per $ k \geq 1 $ $ \ker{\epsilon_X} = H_k(X) $, in quanto per gli assiomi $ H_k(P) \cong 0 $ se $ k \geq 1 $, quindi
+  % la successione si riduce a:
+  % \[
+  %   \begin{tikzcd}
+  %     0 \rar & \ker{\epsilon_X} \rar & H_k(X) \rar & 0
+  %   \end{tikzcd}
+  % \]
+  % Mentre per $ k = 0 $ ho che $ H_0(X) \cong \tilde{H}_0(X) \oplus \mathcal{G} $,
+  Considero la successione esatta corta:
   \[
     \begin{tikzcd}
-      0 \arrow{r}{}        & \ker{\epsilon_X} \arrow{r}{} & H_k(X) \arrow{r}{\epsilon_\star} & H_k(P) \arrow{r}{}    & 0
+      0 \rar & \tilde{H}_k(X) := \ker{\epsilon_X} \rar & H_k(X) \rar & H_k(P) \rar & 0
     \end{tikzcd}
   \]
-  Per $ k \geq 1 $ $ \ker{\epsilon_X} = H_k(X) $, in quanto per gli assiomi $ H_k(P) \cong 0 $ se $ k \geq 1 $, quindi
-  la successione si riduce a:
-  \[
-    \begin{tikzcd}
-      0 \rar & \ker{\epsilon_X} \rar & H_k(X) \rar & 0
-    \end{tikzcd}
-  \]
-  Mentre per $ k = 0 $ ho che $ H_0(X) \cong \tilde{H}_0(X) \oplus \mathcal{G} $,
-  quindi:
+  Questa spezza in quanto $ \epsilon_X \colon X \to P $ ammette un'inversa
+  $ i_X \colon P \to X $ e quindi a livello di omologia esiste
+  $ (i_X)_\star \colon H_k(P) \to H_k(X) $ inversa di
+  $ (\epsilon_X)_\star \colon H_k(X) \to H_k(P) $. Ma per gli assiomi i gruppi
+  di omologia di un punto sono banali per $ k > 0 $, mentre
+  per $ k = 0 $ si pone $ H_0(P) = \mathcal{G} $ con $ \mathcal{G} $ gruppo dei coefficienti.
+  Quindi siccome $ H_k(X) = \tilde{H}_k(X) \oplus G $:
   \[
     \tilde{H}_k(X) =
     \begin{cases}
@@ -2537,23 +2558,46 @@ così come nel solo nel caso dell'omologia singolare.
       \tilde{H}_0(X) \oplus \mathcal{G} & \text{per } k = 0 \\
     \end{cases}
   \]
-  Questo lo posso fare anche nel caso di una coppia.
+  Sostanzialmente l'omologia ridotta elimina dallo $ 0 $-esimo
+  gruppo di omologia un fattore $ \mathcal{G} $.
+  % \[
+  %   \begin{tikzcd}[nodes={column sep=10pt, row sep=5pt}]
+  %      {} & {} & 0  \arrow{dr}{} & {} & {}  & 0 \arrow{dr}{} & {} & {}  & {}    \\
+  %      0 \rar & H_1(P,P) \arrow{rr}{}  \arrow{ur}{}  & {}  & H_{0}(P) \rar &  H_{0}(P) \arrow{rr}{}  \arrow{ur}{}
+  %     & {} & H_{0}(P,P) \rar & 0
+  %   \end{tikzcd}
+  % \]
+  % E quindi $ H_1(P,P) = 0 $ e $ H_0(P,P) = 0 $.
+\end{proof}
+\eproof
+Questo lo posso fare anche nel caso di una coppia se $ A $ è sottospazio
+  topologico di $ X $ definendo $ F \colon (X, A) \to (P,P) $ con:
+  \[
+    F =
+    \begin{cases}
+      \epsilon_X \colon X \to P \\
+      \epsilon_A \colon A \to P
+    \end{cases}
+  \]
+  Si ha la successione esatta corta:
   \[
     \begin{tikzcd}
-      0 \arrow{r}{}        & \ker{F_\star} \arrow{r}{} & H_k(X, A) \arrow{r}{} & H_k(p, p) \arrow{r}{} & 0
+      0 \arrow{r}{}        & \ker{F_\star} \arrow{r}{} & H_k(X, A) \arrow{r}{} & H_k(P, P) \arrow{r}{} & 0
     \end{tikzcd}
   \]
   E si definisce $ \tilde{H}_k(X,A) = \ker{F_\star} $.
-  Calcolo $ H_k(P,P) $ con $ P $ spazio formato da un solo punto in $ X $.
-  So che c'è una successione esatta lunga per gli assiomi:
+  % Calcolo $ H_k(P,P) $ con $ P $ spazio formato da un solo punto in $ X $.
+  Gli assiomi richiedono l'esistenza di una successione esatta lunga per coppie $ (X,A) $,
+  ponendo $ X = A = P $ si ottiene:
   \[
     \begin{tikzcd}
       \dots \arrow{r}{}        & H_k(P) \arrow{r}{}    & H_k(P) \arrow{r}{}    & H_k(P,P) \arrow{r}{}  & H_{k-1}(P) \arrow{r}{} & \dots
     \end{tikzcd}
   \]
-  Cioè ho posto $ X = P $ e $ A = P $. Ma io conosco l'omologia di un punto, che è nulla
-  per $ k \geq 1 $ mentre vale il gruppo dei coefficienti per $ k = 0 $.
-  Supponendo $ k \geq 2 $ la successione diventa:
+  % Cioè ho posto $ X = P $ e $ A = P $.
+  Sempre gli assiomi richiedono che l'omologia di un punto sia nulla per
+  $ k \geq 1 $ mentre valga il gruppo dei coefficienti per $ k = 0 $. Supponendo
+  $ k \geq 2 $ la successione diventa:
   \[
     \begin{tikzcd}
        0 \arrow{r}{} & H_k(P,P) \arrow{r}{}  & 0
@@ -2572,26 +2616,20 @@ così come nel solo nel caso dell'omologia singolare.
        0 \arrow{r}{}         & H_1(P,P) \arrow{r}{i}  & H_{0}(P) \arrow{r}{j}   & H_{0}(P) \arrow{r}{k} & H_{0}(P,P) \rar       & 0
     \end{tikzcd}
   \]
-  Ma quindi ho $ H_0(P) \to H_0(P) $ che sarebbe $ H_0(A) \to H_0(X) $ e quindi la mappa che li collega è quella
-  indotta dall'inclusione, che per $ X = A = P $ e l'indentità, ma per la funtorialità viene mandata nell'indentità,
-  quindi $ j $ è isomorfismo. Per l'esattezza della successione $ \ker{j} = \im{i} $, quindi posso
-  riscrivere la prima parte della successione come:
+  Ma quindi ho $ H_0(P) \to H_0(P) $ che sarebbe $ H_0(A) \to H_0(X) $ e quindi la
+  mappa che li collega è quella indotta dall'inclusione, che per $ X = A = P $ e
+  l'identità, ma per la funtorialità viene mandata nell'identità, quindi $ j $ è
+  isomorfismo. Per l'esattezza della successione $ \im{i} = \ker{j} = 0 $ in
+  quanto $ j $ è iniettiva, e quindi posso riscrivere la prima parte della
+  successione come:
   \[
     \begin{tikzcd}
       0 \rar & H_1(P,P) \rar & 0
     \end{tikzcd}
   \]
   Da cui $ H_1(P,P) = 0 $. Similmente $ \ker{k} = \im{j} = H_0(P) $ quindi $ H_0(P,P) = 0 $ perché
-  $ H_0(P,P) \cong \quot{H_0(P)}{\ker{k}} \cong \quot{H_0(P)}{H_0(P)} = 0 $.
-  % \[
-  %   \begin{tikzcd}[nodes={column sep=10pt, row sep=5pt}]
-  %      {} & {} & 0  \arrow{dr}{} & {} & {}  & 0 \arrow{dr}{} & {} & {}  & {}    \\
-  %      0 \rar & H_1(P,P) \arrow{rr}{}  \arrow{ur}{}  & {}  & H_{0}(P) \rar &  H_{0}(P) \arrow{rr}{}  \arrow{ur}{}
-  %     & {} & H_{0}(P,P) \rar & 0
-  %   \end{tikzcd}
-  % \]
-  % E quindi $ H_1(P,P) = 0 $ e $ H_0(P,P) = 0 $.
-\end{proof}
+  $ H_0(P,P) \cong {H_0(P)} \slash {\ker{k}} \cong {H_0(P)} \slash {H_0(P)} = 0 $.
+  Avendo trovato che $ \forall k $ $ H_k(P,P) = 0 $ allora si ha che $ \ker{F_\star} \cong H_k(X,A) $.
 
 \begin{corollary}
   Se $ X $ è uno spazio topologico contraibile allora $ \tilde{H}_k(X) = 0 $.
@@ -2604,19 +2642,23 @@ così come nel solo nel caso dell'omologia singolare.
   $ f_\star \circ g_\star = \Id{H_k(P)} $ e  $ g_\star \circ f_\star = \Id{H_k(X)} $
   % con $ f_\star \colon H_k(X) \to H_k(P) $  e  $ g_\star \colon H_k(P) \to H_k(X) $,
   quindi $ f_\star $ e $ g_\star $ sono inversi l'una dell'altra, ma sempre per la funtorialità:
-  $ (f \circ g)_\star = \left( \Id{P} \right)_\star $ e $ (g \circ f)_\star = \left( \Id{X} \right)_\star $.
-
+  $ (f \circ g)_\star = \left( \Id{P} \right)_\star $ e $ (g \circ f)_\star = \left( \Id{X} \right)_\star $,
+  quindi $ f_\star $ e $ g_\star $ realizzano un isomorfismo tra i gruppi di omologia:
   \[
    H_k(X) \cong H_k(P) \cong
     \begin{cases}
-      \tilde{H}_k(X) = 0 & \text{se } k \geq 1 \\
-      \tilde{H}_0(X) \oplus \mathcal{G} = \mathcal{G} & \text{se } k = 0
+      0 & \text{se } k \geq 1 \\
+      \mathcal{G} & \text{se } k = 0
     \end{cases}
   \]
-  Ma quindi $ \mathcal{G} = H_0(P) = \tilde{H}_0(X) \oplus \mathcal{G} $ e quindi $ \tilde{H}_0(X) = 0 $.
+  Quindi $ \tilde{H}_k(X) = 0 $ per $ k \geq 1 $ e per $ k = 0 $ vale che
+  $ \mathcal{G} = H_0(P) = \tilde{H}_0(X) \oplus \mathcal{G} $ e quindi
+  $ \tilde{H}_0(X) = 0 $.
 \end{proof}
-
-Un secondo importantissimo corollario è l'omologia delle sfere.
+\begin{corollary}
+  La sfera la non è contraibile, infatti come si vedrà a breve i suoi gruppi di
+  omologia ridotta non sono sempre banali.
+\end{corollary}
 
 \newmathsymb{spheres}{\Sph{n}}{$ n $-sfera}
 \newmathsymb{disks}{\Disk{n}}{$ n $-disco}
@@ -3044,14 +3086,14 @@ Un corollario del precedente risultato richiede la definizione di retratto di de
   con $ \alpha $ generatore.
 \end{definition}
 
-Si ha che $ H_n(\Sph{n}) \cong \Z $, quindi $ H_n(\Sph{n}) $ è il gruppo
-libero di rango 1 generato da un singolo $ n $-ciclo che non è un bordo,
-cioè esiste una mappa $ f \colon \Z \to H_n(\Sph{n}) $ tale che $ f(1) = \alpha $,
-$ \alpha $ generatore, in questo modo $ H_n(\Sph{n}) = \langle\alpha\rangle $.
-Considero $ \phi \colon \Sph{n} \to \Sph{n} $ continua con $ n \geq 1 $, questa induce
+Si ha che $ H_n(\Sph{n}) \cong \Z $, quindi $ H_n(\Sph{n}) $ è il gruppo libero di
+rango 1 generato da un singolo $ n $-ciclo che non è un bordo, cioè esiste un
+isomorfismo $ f \colon \Z \to H_n(\Sph{n}) $ tale che $ f(1) = \alpha $, questo elemento è
+il generatore, cioè $ H_n(\Sph{n}) = \langle\alpha\rangle $. Considero
+$ \phi \colon \Sph{n} \to \Sph{n} $ continua con $ n \geq 1 $, questa induce
 $ \phi_\star \colon H_n(\Sph{n}) \to H_n(\Sph{n}) $.
 % Per $ n = 0 $ $ \phi_\star $ manda punti in punti, per $ n \geq 1 $:
-L'azione di $ \phi_\star $ si calcola facilmente, infatti sia $ c \in H_n(\Sph{n}) $
+L'azione di $ \phi_\star $ si calcola facilmente, infatti se $ c \in H_n(\Sph{n}) $
 allora $ c = p \alpha $ con $ p \in \Z $, quindi:
 \[
   \phi_\star (c) = \phi_\star (p \alpha) = \phi_\star (\underbrace{\alpha + \alpha + \alpha + \dots}_{\text{|p| volte}}) =
@@ -3061,8 +3103,8 @@ Ma $ \phi_\star(\alpha) \in H_n(\Sph{n}) $ quindi si deve poter scrivere come mu
 $ \phi_\star (\alpha) = d \alpha $ da cui: $ \phi_\star (c) = p d \alpha = d c $ con $ d \in \Z $.
 
 \begin{osservation}
-  Questo numero $ d $ viene fuori dall'immagine di un generatore, ma non dipende dalla
-  scelta del generatore, infatti:
+  Questo numero $ d $ è il coefficiente che moltiplica il generatore sotto
+  l'azione di $ \phi $, ma è indipendente dalla scelta del generatore.
 \end{osservation}
 \begin{proof}
   Sia $ \beta $ un altro generatore, siccome $ \alpha $ è un generatore si può scrivere $ \beta = m \alpha $
@@ -3112,12 +3154,11 @@ $ \phi_\star (\alpha) = d \alpha $ da cui: $ \phi_\star (c) = p d \alpha = d c $
   Siccome $ \alpha $ è generatore: $ \deg{(g \circ f)} = \deg{(f)} \deg{(g)} $.
 \end{proof}
 
-Voglio usare la teoria del grado per un'applcazione del teorema della palla pelosa.
 \begin{proposition}
   Considero riflessione rispetto al sottospazio $ x_{n+1} = 0 $ in $ \RN{n+1} $
   \begin{align*}
     \rho \colon \Sph{n} & \to \Sph{n} \\
-    (x_1, \dots, x_{n+1}) & \mapsto (x_1, \dots, - x_{n+1})
+    (x_0, \dots, x_{n}) & \mapsto (x_0, \dots, - x_{n})
   \end{align*}
   Il grado di questa applicazione è $ - 1 $.
 \end{proposition}
@@ -3128,7 +3169,7 @@ Voglio usare la teoria del grado per un'applcazione del teorema della palla pelo
     \rho \colon \Sph{1} & \to \Sph{1} \\
     (x_0,x_1) & \mapsto (x_0, -x_1)
   \end{align*}
-  Considero il generatore $ \sigma $:
+  Considero il simplesso singolare $ \sigma $, generatore di $ H^1(\Sph{1}) $:
   \begin{align*}
     \sigma \colon \Delta_1 & \to \Sph{1} \\
     t & \mapsto \left(\cos(2 \pi t), \sin(2 \pi t)\right)
@@ -3143,9 +3184,9 @@ Voglio usare la teoria del grado per un'applcazione del teorema della palla pelo
     \left(\cos(2 \pi t), -\sin(2 \pi t))\right) = \left(\cos(-2 \pi t), \sin(-2 \pi t))\right) = \left(\cos(2 \pi (1-t)), \sin(2 \pi (1-t)))\right)
   \]
   Quindi $ \rho \circ \sigma = \bar{\sigma} = - \sigma $ e quindi il grado è $ - 1 $.
-
+  \\ \\ \noindent
   Suppongo che il risultato sia vero per $ \Sph{n-1} $ mostro che è vero anche per $ \Sph{n} $.
-
+  %
   % In $ \Sph{n} $ ho dei sottoinsiemi naturali:
   % \begin{gather*}
   %   \Disk{n}_+ = \set{ (x_1, \dots, x_{n+1}) \in \Sph{n} | x_1 \geq 0 } \\
@@ -3173,7 +3214,7 @@ Voglio usare la teoria del grado per un'applcazione del teorema della palla pelo
   \]
   Ma per ipotesi induttiva per $ n - 1 $ il grado è $ - 1 $, quindi anche per $ n $ il grado è $ - 1 $.
 \end{proof}
-\hfill\newline\newline
+\eproof
 % lezione 8
 
 % Ho $ \Sph{n} = \set{ (x_1, \dots, x_{n+1}) \in \RN{n+1} | \sum_{i=1}^{n+1} x_i^2 = 1 } \subset \RN{n+1} $
@@ -3208,12 +3249,13 @@ Voglio usare la teoria del grado per un'applcazione del teorema della palla pelo
 Considero l'applicazione antipodale che è quella che scambia di segno tutte le componenti:
 \begin{align*}
   A \colon \RN{n} & \to \RN{n} \\
-  (x_1, \dots, x_{n}) & \mapsto (-x_, \dots, -x_n)
+  (x_1, \dots, x_{n}) & \mapsto (-x_1, \dots, -x_n)
 \end{align*}
-Questa è continua e vale che $ A^2 = \Id{\RN{n}}$. Definisco per $ n \geq 2 $ la restrizione della trasformazione
-antipodale su $ \Sph{n-1} $: $ a = A \lvert_{\Sph{n-1}} $, vale che $ a \colon \Sph{n-1} \to \Sph{n-1} $, infatti
-$ \im{a} = \Sph{n-1} $. Quanto vale $ \deg{(a)} $?
-Scrivo $ a $ come composizione di riflessioni:
+Questa è continua e vale che $ A^2 = \Id{\RN{n}}$. Definisco per $ n \geq 2 $ la
+restrizione della trasformazione antipodale su $ \Sph{n-1} $:
+$ a = A \lvert_{\Sph{n-1}} $, vale che $ a \colon \Sph{n-1} \to \Sph{n-1} $, infatti
+$ \im{a} = \Sph{n-1} $. Per calcolare il grado di $ a $ si può scrivere come
+composizione di riflessioni:
 \[
   a = \rho_n \circ \dots \circ \rho_1
 \]
@@ -3233,7 +3275,7 @@ Quindi $ \deg{(a)} = (-)^n $ e perciò cambia se $ n $ è pari o dispari.
   \]
   Questo è vero solo se $ n + 1 $ è pari, ma se $ n $ è pari $ n + 1 $ non può esserlo.
 \end{proof}
-
+\eproof
 Ciò non dimostra che per $ n $ pari invece le due applicazioni sono omotope. Questa è una
 dimostrazione avanzata che richiede i gruppi di omotopia superiori con i quali si dimostra
 che se due applicazioni definite su $ \Sph{n} $ hanno lo stesso grado allora sono omotope.
@@ -3248,26 +3290,29 @@ che se due applicazioni definite su $ \Sph{n} $ hanno lo stesso grado allora son
   \[
     F(\vec{x}, t) = \frac{t f(\vec{x}) + (1-t)\vec{x}}{|| t f(\vec{x}) + (1-t)\vec{x} ||}
   \]
-  $ \forall \vec{x}, t $ vale che $ F(\vec{x}, t) \in \Sph{n} $.
-  La norma al denominatore non è mai nulla per ipotesi, infatti $ || t f(\vec{x}) + (1-t) \vec{x} || = 0 $
-  significa che $ t f(\vec{x}) = (1-t)\vec{x} $, quindi se $ t = 0 $ allora $ 0 = - \vec{x} $ ma $ \vec{x} = 0 \not \in \Sph{n} $,
-  se $ t \not = 0 $ allora $ f(\vec{x}) = \left(\frac{t-1}{t}\right)\vec{x} $, ma $ \vec{x}, f(\vec{x}) \in \Sph{n} $
-  quindi $ || f(\vec{x}) || = || \vec{x} || = 1 $ e quindi $ 1 = \big \rvert \frac{t-1}{t}\big \lvert $,
-  ma $ t \in (0,1] $, quindi non è possibile trovare $ t $.
+  $ \forall \vec{x}, t $ vale che $ F(\vec{x}, t) \in \Sph{n} $, infatti il modulo è
+  unitario. La norma al denominatore non è mai nulla per ipotesi, infatti
+  $ || t f(\vec{x}) + (1-t) \vec{x} || = 0 $ significa che
+  $ t f(\vec{x}) = (1-t)\vec{x} $, quindi se $ t = 0 $ allora $ 0 = - \vec{x} $
+  ma $ \vec{x} = 0 \not \in \Sph{n} $, se $ t \not = 0 $ allora
+  $ f(\vec{x}) = \left(\frac{t-1}{t}\right)\vec{x} $, ma
+  $ \vec{x}, f(\vec{x}) \in \Sph{n} $ quindi
+  $ || f(\vec{x}) || = || \vec{x} || = 1 $ e quindi
+  $ 1 = \big \rvert \frac{t-1}{t}\big \lvert $, ma $ t \in (0,1] $, quindi non è
+  possibile trovare $ t $. Inoltre $ F(\vec{x}, 0) = \vec{x} $ e
+  $ F(\vec{x}, 1) = f(\vec{x}) $ quindi $ F $ è una relazione di omotopia tra
+  $ f $ e l'identità.
 
-  Inoltre $ F(\vec{x}, 0) = \vec{x} $ e $ F(\vec{x}, 1) = f(\vec{x}) $ quindi $ F $ è una relazione di omotopia
-  tra $ f $ e l'identità.
-
-  Mostro che $ f $ è anche omotopa all'applicazione antipodale, così per la transitività della
-  relazione di omotopia trovo l'assurdo.
-
-  Si definisce  $ G\colon \Sph{n} \times I \to \Sph{n} $:
+  Mostrando che $ f $ è anche omotopa all'applicazione antipodale, per la
+  transitività della relazione di omotopia, si trova un assurdo. Si definisce
+  $ G\colon \Sph{n} \times I \to \Sph{n} $:
   \[
     G(\vec{x}, t) = \frac{-t \vec{x} + (1-t)f(\vec{x})}{|| -t \vec{x} + (1-t)f(\vec{x}) ||}
   \]
-  Con i medesimi ragionamenti si trova che   $ \forall \vec{x}, t $ vale che $ G(\vec{x}, t) \in \Sph{n} $, e inoltre
-  $ G(\vec{x}, 0) = f(\vec{x}) $ e $ G(\vec{x}, 1) = - \vec{x} $ quindi $ G $ realizza
-  l'omotopia con l'applicazione antipodale.
+  Con i medesimi ragionamenti si trova che $ \forall \vec{x}, t $ vale che
+  $ G(\vec{x}, t) \in \Sph{n} $, e inoltre $ G(\vec{x}, 0) = f(\vec{x}) $ e
+  $ G(\vec{x}, 1) = - \vec{x} $ quindi $ G $ realizza l'omotopia con
+  l'applicazione antipodale.
 \end{proof}
 
 

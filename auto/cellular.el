@@ -1,13 +1,17 @@
 (TeX-add-style-hook
  "cellular"
  (lambda ()
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperref")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperimage")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperbaseurl")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "nolinkurl")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "nolinkurl")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperbaseurl")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperimage")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperref")
    (add-to-list 'LaTeX-verbatim-macros-with-delims-local "path")
+   (TeX-run-style-hooks
+    "images/Dodecahedron")
+   (TeX-add-symbols
+    "svgwidth")
    (LaTeX-add-labels
     "fig:lez10:projective"
     "fig:lez13:dimension_topological_invariance")
@@ -18,6 +22,7 @@
     "Cella"
     "Spazio proiettivo reale"
     "Spazio proiettivo complesso"
+    "Compattificazione di Alexandroff"
     "Spazio dodecaedrico"
     "Spazio a omologia razionale ! \\vedi{Spazio dodecaedrico}"
     "Rappresentazione spinoriale di SO(3)"
