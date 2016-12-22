@@ -71,7 +71,7 @@ Sostanzialmente la nozione di $ \R $-modulo generalizza agli anelli il concetto 
   Un gruppo $ \mathcal{G} $ si dice \textbf{generato}\index{Gruppo generato} dai
   suoi elementi $ \set{x_1, x_2, \dots} \in \mathcal{G} $ se ogni suo elemento
   si può scrivere come combinazione lineare a elementi interi di
-  $ x_1, x_2, \dots $. In questo caso si indica
+  $ x_1, x_2, \dots $, e in questo caso si indica
   $ \mathcal{G} = \langle \{ x_1, x_2, \dots \} \rangle $. Se l'insieme che
   genera $ G $ ha cardinalità finita si dice che il gruppo è \textbf{finitamente
     generato}\index{Gruppo finitamente generato}.
@@ -93,17 +93,22 @@ Sostanzialmente la nozione di $ \R $-modulo generalizza agli anelli il concetto 
   \]
   dove $ r $ è il rango di $ G $ e $ p_i $ sono numeri primi non necessariamente
   distinti. I termini $ \Z_{p_i} $ sono detti di \textbf{torsione} in quanto i suoi
-  elementi sono annullati elementi non nulli di $ \Z $.
+  elementi sono annullati da elementi non nulli di $ \Z $.
 \end{theorem}
+\begin{example}
+  $ \Z_2 $ è di torsione in quanto l'elemento $ \bar{1} \in \Z_2 $ è annullato
+  dalla moltiplicazione per qualunque numero pari in $ \Z $.
+\end{example}
 
-\begin{definition}
-  Un gruppo abeliano si dice \textbf{libero}\index{$ \Z $-modulo libero} se è la sua
+\begin{osservation}
+  Un gruppo abeliano è \textbf{libero}\index{$ \Z $-modulo libero} se è la sua
   decomposizione non ha fattori di torsione, cioè se è della forma $ G \cong \Z^r $.
-\end{definition}
+\end{osservation}
 
 \begin{definition}
-  Siano $ (X, \cdot) $ e $ (Y, \star) $ due gruppi, un \textbf{omomorfismo} \index{Omomorfismo} è un'applicazione $ f $
-  tra $ X $ e $ Y $ che preserva la struttura di gruppo, cioè tale che:
+  Siano $ (X, \cdot) $ e $ (Y, \star) $ due gruppi, un \textbf{omomorfismo}
+  \index{Omomorfismo} è un'applicazione continua $ f $ tra $ X $ e $ Y $ che
+  preserva la struttura di gruppo, cioè tale che:
   \[
     \forall u,v \in X \quad f(u \cdot v) = f(u) \star f(v)
   \]
@@ -114,19 +119,28 @@ Sostanzialmente la nozione di $ \R $-modulo generalizza agli anelli il concetto 
   confronti dell'inverso, cioè $ \forall v \in X $ vale che $ f(v^{-1}) = {f(v)}^{-1} $.
 \end{osservation}
 
+\newmathsymb{isom}{\cong}{Gruppi isomorfi}
+\begin{definition}
+  Un omomorfismo di gruppi abeliani biunivoco è detto
+  \textbf{isomorfismo}\index{Isomorfismo}. Se tra due gruppi abeliani $ A, B $
+  esiste un isomorfismo di gruppi abeliani allora si indica $ A \cong B $ e si
+  dice che i gruppi sono isomorfi.
+\end{definition}
+
+\newmathsymb{quoz}{\quot{A}{B}}{Spazio quoziente tra $ A $ e $ B $}
 \begin{definition}
   Siano $ \M $ un $ \R $-modulo e $ \N $ un suo sottomodulo, allora il \textbf{modulo
     quoziente} \index{Modulo quoziente} di $ \M $ con $ \N $ e definito da:
   \[
     \quot{\M}{\N} := \quot{\M}{\sim} \quad \text{dove } \sim \text{ è definita da: } x \sim y \Leftrightarrow x - y \in \N
   \]
-  $ \quot{\M}{\sim} $ è l'insieme delle classi di equivalenza di $ \sim $ equipaggiate
-  con operazioni indotte dall'$ \R $-modulo, cioè se $ [u], [w] \in \quot{\M}{\sim} $ e $ a \in \R $:
+  $ {\M} \slash {\sim} $ è l'insieme delle classi di equivalenza di $ \sim $ equipaggiate
+  con operazioni indotte dall'$ \R $-modulo, cioè se $ [u], [w] \in {\M} \slash {\sim} $ e $ a \in \R $:
   \begin{itemize}
   \item $ [u] + [w] = [u + w] $
   \item $ a [u] = [au] $
   \end{itemize}
-  In questo caso gli elementi di $ \quot{\M}{\N} $ sono le classi di equivalenza
+  In questo caso gli elementi di $ {\M} \slash {\N} $ sono le classi di equivalenza
   $ [m] = \set{ m + n | n \in \N } $.
 \end{definition}
 
@@ -171,7 +185,7 @@ Siano $ M_i $ $ \R $-moduli allora posso fare composizioni di omomorfismi, come:
   Se $ u \in \im {\phi_1} $ allora $ \exists v \in \M_2 $ tale che $ \phi_1(v) = u $,
   ma $ \phi_2(u) = \phi_2(\phi_1(v)) = (\phi_2 \circ \phi_1)(v) = 0 $ per ipotesi, quindi $ u \in \ker{\phi_2} $.
 \end{proof}
-\hfill \newline \noindent
+\eproof
 % Mi interessano questi morfismi perché hanno un preciso significato geometrico che
 % sarà chiaro successivamente.
 Siccome $ \im{\phi} $ è sottomodulo di $ \ker{\phi} $ allora posso prendere
@@ -655,7 +669,7 @@ Tuttavia si sa che:
 \item $ \pi_m(\Sph{m}) \simeq \Z \quad \text{per} \quad k = m $
 \item $ \pi_1(\Sph{2}) = 1 $
 \item $ \pi_2(\Sph{2}) \simeq \Z $
-\item $ \pi_3(\Sph{2}) \simeq \Z $\footnote[$\dagger$]{Questo da origine alla fibrazione di Hopf che ha molte applicazioni in fisica.}
+\item $ \pi_3(\Sph{2}) \simeq \Z $\footnote[$\dagger$]{Questo dà origine alla fibrazione di Hopf che ha molte applicazioni in fisica.}
 \end{enumerate}
 
 % Anche se non so calcolare i gruppi di omotopia superiore non vorrei buttarli via \dots

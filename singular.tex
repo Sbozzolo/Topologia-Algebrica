@@ -651,7 +651,7 @@ il primo gruppo di omologia, che quindi è sostanzialmente formato dai lacci
   dove nell'ultimo passaggio ho utilizzato che il gruppo è abeliano.
   Si nota che questa osservazione dipende crucialmente dal fatto che il gruppo è abeliano.
 \end{proof}
-\hfill\newline\newline
+\eproof
 Per dimostrare che $ \Ab{\pi_1(X)} \cong H_1(X) $ mi serve prima un lemma:
 \begin{lemma}
   Se $ f \sim_H g $ allora $ f \sim_{hom} g $, cioè se $ f $ e $ g $ sono lacci che
@@ -661,54 +661,56 @@ Per dimostrare che $ \Ab{\pi_1(X)} \cong H_1(X) $ mi serve prima un lemma:
 \begin{proof}
   Siccome $ f \sim_{H} g $ allora $ \exists F $ continua tale $ F: I \times I \to X $ tale che $ F(0,x) = f(x) $,
   $ F(1,x) = g(x) $ e $ F(t,0) = F(t, 1) = x_0 $.
-  \begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}
-      \draw (0, 0) rectangle (3,3);
-      \draw[-Latex] (-0.5, 1) -- (-0.5, 2);
-      \draw[-Latex] (1, -0.5) -- (2, -0.5);
-      \node[left] () at (-0.5, 1.5) {$ t $};
-      \node[below] () at (1.5, -0.5) {$ x $};
-      \node[right] () at (0, 1.5) {$ C_{x_0} $};
-      \node[left] () at (3, 1.5) {$ C_{x_0} $};
-      \node[above] () at (1.5, 0) {$ f(x) $};
-      \node[below] () at (1.5, 3) {$ g(x) $};
-      \draw (0,2) -- (3,2);
-      \draw[-Latex] (0, 2) -- (1.5, 2);
-      \node[below] () at (1.5, 2) {$ F(t,x) $};
-    \end{tikzpicture}
-    \caption{Omotopia: deforma $ f $ in $ g $ in modo continuo.}
-    \label{fig:lez3:homotopy_f_g}
-  \end{figure}
-
   Voglio mostrare che $ f - g $ è bordo di un $ 2 $-simplesso.
   Identificando tutti i punti di un uno dei due intervalli con l'equivalenza $ {I \times I} \slash {\set{0} \times I} $
   si ottiene qualcosa che è omeomorfo a $ \Delta_2 $, $ F $ sullo spigolo $ \set{0} \times I $
   assume sempre lo stesso valore.
-  \begin{figure}[htbp]
+  \begin{figure}[htb]
     \centering
-    \begin{tikzpicture}
-      \draw (0, 0) rectangle (3,3);
-      \fill[gray!15] (0, 0) rectangle (3,3);
-      \draw[ultra thick] (0,0) -- (0,3);
-      % \node[right] () at (0, 1.5) {$ C_{x_0} $};
-      % \node[left] () at (3, 1.5) {$ C_{x_0} $};
-      \node[above] () at (1.5, 0) {$ f(x) $};
-      \node[below] () at (1.5, 3) {$ g(x) $};
-      \draw[-Latex] (4,1.5) -- (5,1.5);
-      \fill[gray!15] (6,0) -- (7.7, 3) -- (9.4,0) -- cycle;
-      \draw (6,0) -- (7.7, 3) -- (9.4,0) -- cycle;
-      \node[above, rotate = 60] () at (6.7, 1.3) {$ g(x) $};
-      \node[above, rotate = -58] () at (8.7, 1.3) {$ K(x) = C_{x_0} $};
-      \node[below] () at (7.7, 0) {$ f(x) $};
-      \node[left] () at (6,0) {$ e_0 $};
-      \node[] () at (6,0) {$ \bullet $};
-      \node[right] () at (9.4,0) {$ e_1 $};
-      \node[above] () at (7.7,3) {$ e_2 $};
-    \end{tikzpicture}
-    \caption{La relazione di equivalenza fa passare da un quadrato a un triangolo
-      in quanto fa collassare un intervallo nel punto $ e_0 $}
-    \label{fig:lez3:homotopy_f_g_to_triangle}
+    \begin{subfigure}[t]{1.0\linewidth}
+      \centering
+      \begin{tikzpicture}
+        \draw (0, 0) rectangle (3,3);
+        \draw[-Latex] (-0.5, 1) -- (-0.5, 2);
+        \draw[-Latex] (1, -0.5) -- (2, -0.5);
+        \node[left] () at (-0.5, 1.5) {$ t $};
+        \node[below] () at (1.5, -0.5) {$ x $};
+        \node[right] () at (0, 1.5) {$ C_{x_0} $};
+        \node[left] () at (3, 1.5) {$ C_{x_0} $};
+        \node[above] () at (1.5, 0) {$ f(x) $};
+        \node[below] () at (1.5, 3) {$ g(x) $};
+        \draw (0,2) -- (3,2);
+        \draw[-Latex] (0, 2) -- (1.5, 2);
+        \node[below] () at (1.5, 2) {$ F(t,x) $};
+      \end{tikzpicture}
+      \subcaption{Omotopia: deforma $ f $ in $ g $ in modo continuo.}
+      \label{fig:lez3:homotopy_f_g}
+    \end{subfigure}
+    \begin{subfigure}[t]{1.0\linewidth}
+      \centering
+      \begin{tikzpicture}
+        \draw (0, 0) rectangle (3,3);
+        \fill[gray!15] (0, 0) rectangle (3,3);
+        \draw[ultra thick] (0,0) -- (0,3);
+        % \node[right] () at (0, 1.5) {$ C_{x_0} $};
+        % \node[left] () at (3, 1.5) {$ C_{x_0} $};
+        \node[above] () at (1.5, 0) {$ f(x) $};
+        \node[below] () at (1.5, 3) {$ g(x) $};
+        \draw[-Latex] (4,1.5) -- (5,1.5);
+        \fill[gray!15] (6,0) -- (7.7, 3) -- (9.4,0) -- cycle;
+        \draw (6,0) -- (7.7, 3) -- (9.4,0) -- cycle;
+        \node[above, rotate = 60] () at (6.7, 1.3) {$ g(x) $};
+        \node[above, rotate = -58] () at (8.7, 1.3) {$ K(x) = C_{x_0} $};
+        \node[below] () at (7.7, 0) {$ f(x) $};
+        \node[left] () at (6,0) {$ e_0 $};
+        \node[] () at (6,0) {$ \bullet $};
+        \node[right] () at (9.4,0) {$ e_1 $};
+        \node[above] () at (7.7,3) {$ e_2 $};
+      \end{tikzpicture}
+      \subcaption{La relazione di equivalenza fa passare da un quadrato a un triangolo
+        in quanto fa collassare un intervallo nel punto $ e_0 $}
+      \label{fig:lez3:homotopy_f_g_to_triangle}
+    \end{subfigure}
   \end{figure}
   [NON VA BENE, SISTEMARE!]
   Siccome $ F $ rimane costante sul sottospazio su cui su quozienta,
@@ -2694,6 +2696,19 @@ Questo lo posso fare anche nel caso di una coppia se $ A $ è sottospazio
   Quindi $ \tilde{H}_k(\Sph{n}) \cong H_k(\Disk{n}, \Sph{n-1}) \cong H_k(\Sph{n}, \Disk{n}_+) $.
 \end{theorem}
 \begin{proof}
+  La dimostrazione è per passi:
+  \begin{enumerate}
+  \item Dimostro che
+    \[
+      H_k(\Sph{0}, \Disk{0}_+) = H_k(\Sph{0}, \Disk{0}) \cong
+      \begin{cases}
+        \mathcal{G} & \text{se $ k = 0 $} \\
+        0 & \text{se $ k \not = 0 $}
+      \end{cases}
+    \]
+  \end{enumerate}
+
+  \subparagraph{Dimostrazione del punto uno}
   Comincio calcolando $ H_k(\Sph{0}, \Disk{0}_+) $.
   Ho $ \Sph{0} = \set{-1, +1} $ e $ \Disk{0} = \Disk{0}_+ = \set{+ 1} $.
   Siccome $ \Disk{0} \subseteq \Sph{0} $ per l'assioma dell'esattezza esiste

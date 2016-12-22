@@ -205,7 +205,7 @@ può essere vista come CW complesso formato da un punto e una sola cella.
 
 \newmathsymb{proreal}{\Pjr{n}}{Spazio proiettivo reale}
 \begin{definition}
-  Si definice lo \textbf{spazio proiettivo reale}\index{Spazio proiettivo reale}
+  Si definisce lo \textbf{spazio proiettivo reale}\index{Spazio proiettivo reale}
   $ \Pjr{n}= {\RN{n+1} \setminus \set{0}} \slash {\sim} $ con
   $ \vec{x} \sim \vec{y} $ se e solo se $ \vec{x} $ e $ \vec{y} $ sono multipli,
   cioè se esiste $ \lambda \in \RN{} \setminus \set{0} $ tale che $ \vec{x} = \lambda \vec{y} $.
@@ -954,7 +954,7 @@ dei gruppi di omologia.
       0 \rar   & H_k(A) \rar  & H_k(A) \rar  & H_k(A,A) \rar & 0
     \end{tikzcd}
   \]
-  Ma $ H_k(A) \cong H_k(A) $ quindi  $ H_k(A,A) \cong \quot{H_k(A)}{H_k(A)} \cong 0 $.
+  Ma $ H_k(A) \cong H_k(A) $ quindi  $ H_k(A,A) \cong {H_k(A)} \slash {H_k(A)} \cong 0 $.
   La successione diventa:
   \[
     \begin{tikzcd}
@@ -962,32 +962,32 @@ dei gruppi di omologia.
     \end{tikzcd}
   \]
   Quindi $ H_k(Y,A) \cong H_n(Y,V) $.
-  Se mostro che anche $ \quot{A}{A} $ è retratto di $ \quot{V}{A} $
+  Se mostro che anche $ {A} \slash {A} $ è retratto di $ {V} \slash {A} $
   allora per  gli stessi motivi sono isomorfi
-  $ H_n(\quot{Y}{A}, \quot{A}{A}) $ e $ H_n(\quot{Y}{A}, \quot{V}{A}) $.
+  $ H_n({Y} \slash {A}, {A} \slash {A}) $ e $ H_n({Y} \slash {A}, {V} \slash {A}) $.
   % siccome $ V $ ha lo stesso tipo di omotopia di $ A $.
   Quindi ho:
   \begin{align*}
     i \colon A & \to V \\
     r \colon V & \to A
   \end{align*}
-  E $ \quot{A}{A} $ è retratto di $ \quot{V}{A} $,
+  E $ {A} \slash {A} $ è retratto di $ {V} \slash {A} $,
   Infatti compongo $ i $ e $ r $ con le proiezioni al quoziente:
   \begin{align*}
     j \colon \quot{A}{A} & \to \quot{V}{A} \\
     \rho \colon \quot{V}{A} & \to \quot{A}{A}
   \end{align*}
-  Sono tali che $ \rho \circ j = \Id{\quot{A}{A}} $ e $ j \circ \rho = \Id{\quot{V}{A}} $,
+  Sono tali che $ \rho \circ j = \Id{{A} \slash {A}} $ e $ j \circ \rho = \Id{{V} \slash {A}} $,
   in quanto per ipotesi $ r $ è retrazione per $ i $ e
   quindi $ \rho $ è retrazione per $ j $.
-  Io ho $ A \subseteq V \subseteq Y $, faccio l'escissione di $ A $:
+  A questo punto ho $ A \subseteq V \subseteq Y $, e posso fare l'escissione di $ A $:
   \[
     \begin{tikzcd}
       H_n(Y,A) \rar{\cong} \dar{q_\star} & H_n(Y,V)  \dar{q_\star}& H_n({Y} \setminus {A}, {V} \setminus {A}) \lar{\cong} \dar{q_\star} \\
       H_n(\quot{Y}{A}, \quot{A}{A}) \rar{\cong} & H_n(\quot{Y}{A}, \quot{V}{A}) & H_n(\quot{Y}{A} \setminus \quot{A}{A}, \quot{V}{A} \setminus \quot{A}{A}) \lar{\cong}
     \end{tikzcd}
   \]
-  Ho $ \quot{A}{A} \subseteq \quot{V}{A} \subseteq \quot{Y}{A} $.
+  Ho $ {A} \slash {A} \subseteq {V} \slash {A} \subseteq {Y} \slash {A} $.
   Inoltre
   \[
     H_k(\quot{Y}{A}, \quot{V}{A}) \cong H_n(\quot{Y}{A} \setminus \quot{A}{A}, \quot{V}{A} \setminus \quot{A}{A})
@@ -1318,6 +1318,15 @@ $ d^{CW} $ è un operatore di bordo.
     \end{tikzcd}
   \]
   Allora $ A_{jb} = \deg{(u_\beta \circ \eta_j)} $.
+  I coefficienti si trovano calcolando il grado della mappa:
+  \[
+    \begin{tikzcd}
+      \Sph{n-1}_\alpha \rar{\phi_\alpha} & X^{n-1} \rar{q} & \quot{X^{n-1}}{X^{n-2}} = \bigvee_\alpha \Sph{n-1}_\alpha  \rar{q_\beta} & \Sph{n-1}_\beta
+    \end{tikzcd}
+  \]
+  Prima si attacca una cella al $ (n-1) $-scheletro, poi si fa collassare tutto
+  l'$ (n-2) $-scheletro, quindi si fanno collassare tutte le sfere lasciando
+  quella di interesse.
 \end{osservation}
 
  % lezione 12
@@ -1349,21 +1358,23 @@ $ \alpha_i = \pi(a_i) $ e $ \beta_i = \pi(b_1) $. La funzione di attaccamento
   f_1 \colon \partial \Disk{1} = \set{-1, +1} & \to X^{(0)} \\
   \pm 1 & \mapsto x
 \end{align*}
-Infine una $ 2 $-cella
-che è l'immagine dell'interno, cioè ottenuta con la mappa
-di attaccamento costante:
+Si ottiene quindi $ X^{(1)} = \Sph{1}_1 \vee \dots \vee \Sph{1}_{2g} $, a cui si attacca
+una $ 2 $-cella che è l'immagine dell'interno del poligono, attaccata tramite
+i bordi alle circonferenze presenti nell' $ 1 $-scheletro:
 \[
-  f \colon \partial \Disk{2} = \Sph{1} \to X^{(1)} = \Sph{1}_1 \vee \dots \vee \Sph{1}_{2g}
+  f \colon \partial \Disk{2} = \Sph{1} \to X^{(1)}
 \]
 Un esempio concreto è il toro: si attaccano due circonferenze su un punto, e
 quindi si completa il toro attaccando su queste circonferenze un disco. \\
-Calcolol'omologia di $ V_g $ con $ g \geq 1 $, il complesso è:
+Calcolo l'omologia di $ V_g $ con $ g \geq 1 $, il complesso la cui omologia
+è l'omologia cellulare è dato da:
 \[
   \begin{tikzcd}
     0 \rar & S^{CW}_2(V_g) \rar & S^{CW}_1(V_g) \rar & S^{CW}_0(V_g) \rar & 0
   \end{tikzcd}
 \]
-Ma:
+Ma questi gruppi sono isomorfi a $ \Z^{a_n} $ dove $ a_n $ è il numero di
+$ n $-celle:
 \begin{gather*}
   S^{CW}_0(V_g) = H_0(X^{(0)}, X^{(-1)}) = H_0(X^{(0)}, \emptyset) = H_0(X^{(0)}) = H_0(X) \cong Z \\
   S^{CW}_1(V_g) = H_1(X^{(1)}, X^{(0)}) \cong \Z^{2g} \\
@@ -1378,46 +1389,40 @@ Quindi il complesso è:
 Voglio calcolare i gruppi di omologia di questo complesso a partire dalla
 definizione di omologia e so che questi gruppi sono isomorfi ai gruppi di
 omologia singolare. $ d_0 $ è la mappa nulla per costruzione quindi
-$ \ker{d_0} \cong \Z $, mentre cosa è $ d_1 \colon \Z^{2g} \to \Z $? $ \Z^{2g} $ è in
-corrispondenza con le celle, quindi posso prende come generatori $ e_n $ celle
-in $ X^{(1)} $. $ e_n $ è una $ 1 $-cella, quindi
-$ e_n \in H_1(X^{(1)}, X^{(0)}) $, ma
-$ H_1(X^{(1)}, X^{(0)}) \cong H_1(\quot{X^{(1)}}{X^{(0)}}) $, inoltre
-$ X^{(1)} = X^{(0)} \cup_{f_1} \Disk{1}_1 \dots \cup_{f_{2g}} \Disk{1}_{2g} $. Quando
-collasso i bordi ad un punto mi rimane un bouquet:
-\[
-  = h_1(\Sph{1}_1 \vee \dots \vee \Sph{1}_{4g}) \cong \bigoplus_n H_1(\Sph{1}_n)
-\]
-Quindi $ e_n \in H_1(\Sph{1}_n) $ per qualche $ n $. Poi ho:
-\[
-  \begin{tikzcd}
-    \Sph{1}_n \rar{r} \arrow{dr}{} & X^{(1)} \dar{s} \\
-    \quot{X^{(1)}}{X^{(0)}} & {}
-  \end{tikzcd}
-\]
-E $ d_1(e_n) = \sum A_{kn}f_k $, con  $ A_{kn} = \deg {(r \circ s)} $.
-[...]
-Quello che trovo è $ \im{d} = 0 $, quindi:
-\[
-  H_0^{CW}(V_g) = \quot{\ker{d_}}{\im{d_1}} = \Z
-\]
+$ \ker{d_0} \cong \Z $
+% , mentre cosa è $ d_1 \colon \Z^{2g} \to \Z $? $ \Z^{2g} $ è in
+% corrispondenza con le celle, quindi posso prende come generatori $ e_n $ celle
+% in $ X^{(1)} $. $ e_n $ è una $ 1 $-cella, quindi
+% $ e_n \in H_1(X^{(1)}, X^{(0)}) $, ma
+% $ H_1(X^{(1)}, X^{(0)}) \cong H_1(\quot{X^{(1)}}{X^{(0)}}) $, inoltre
+% $ X^{(1)} = X^{(0)} \cup_{f_1} \Disk{1}_1 \dots \cup_{f_{2g}} \Disk{1}_{2g} $. Quando
+% collasso i bordi ad un punto mi rimane un bouquet:
+% \[
+%   = H_1(\Sph{1}_1 \vee \dots \vee \Sph{1}_{4g}) \cong \bigoplus_n H_1(\Sph{1}_n)
+% \]
+% Quindi $ e_n \in H_1(\Sph{1}_n) $ per qualche $ n $. Poi ho:
+% \[
+%   \begin{tikzcd}
+%     \Sph{1}_n \rar{r} \arrow{dr}{} & X^{(1)} \dar{s} \\
+%     \quot{X^{(1)}}{X^{(0)}} & {}
+%   \end{tikzcd}
+% \]
+% E $ d_1(e_n) = \sum A_{kn}f_k $, con  $ A_{kn} = \deg {(r \circ s)} $.
+% [...]
+% Quello che trovo è $ \im{d} = 0 $, quindi:
+% \[
+%   H_0^{CW}(V_g) = \quot{\ker{d_}}{\im{d_1}} = \Z
+% \]
 Faccio la stessa cosa con $ d_2 $, ho $ \im{d_2} = 0 $ e $ \ker{d_2} = \Z^{2g} $.
-Considero:
+I coefficienti sono dati dal grado della mappa ottenuta dalla composizione:
 \[
   \begin{tikzcd}
-    \partial \Disk{2} \rar{f} & X^{(1)} \dar  \\
-    {} & \quot{X^{(1)}}{X^{(0)}}
+    \partial \Disk{2}_i = \Sph{1}_i \rar{f} & X^{(1)} \rar{q} & \quot{X^{(1)}}{X^{(0)}} = \bigvee_k \Sph{1}_k \rar{q_j} & \Sph{1}_j
   \end{tikzcd}
 \]
-La mappa verticale non fa nulla in quanto fa collassare un punto in un punto.
-Quindi ho:
-\[
-  \begin{tikzcd}
-    \Sph{1} \rar{f} & \Sph{1} \vee \dots \Sph{1} \\
-    {} & \Sph{1}
-  \end{tikzcd}
-\]
-xHo $ d_2 \colon S^{CW}_2(V_g) \to S_1^{CW}(V_g) $ cioè:
+La mappa $ q $ non fa nulla in quanto fa collassare punti in punti, infatti
+$ X^{1} = \bigvee_k \Sph{1}_k $.
+Ho $ d_2 \colon S^{CW}_2(V_g) \to S_1^{CW}(V_g) $ cioè:
 $ d_2 \colon H_2(X^{(2)}, X^{(1)}) \to H_1(X^{(1)}, X^{(0)}) $,
 ma:
 \[
@@ -1441,7 +1446,7 @@ Questa è la caratteristica di Eulero di $ V_g $: $ \chi(V_g) = 2 - 2g $.
 
 \begin{osservation}
   Se $ X $ è un CW complesso finito allora $ H_k(X) = 0 $ se non ci sono $ k $-celle,
-  infatti $ H_k(X) \cong H_k^{CW} \cong 0 $ se non ci sono $ k $-celle.
+  infatti $ H_k(X) \cong H_k^{CW}(X) \cong 0 $ se non ci sono $ k $-celle.
 \end{osservation}
 
 \begin{osservation}
@@ -1467,54 +1472,37 @@ Questa è la caratteristica di Eulero di $ V_g $: $ \chi(V_g) = 2 - 2g $.
 \end{theorem}
 
 \begin{definition}[Numero di Betti e caratteristica di Eulero]
-  Se $ X $ è un CW complesso allora si definisce il $ k $-esimo
-  numero di Betti come $ b_k(X) = \rank{H_k(X)} $, e si definisce
-  la caratteristica di Eulero di $ X $ come:
+  Se $ X $ è un CW complesso finito avente al più un $ N $-scheletro allora si
+  definisce il $ k $-esimo numero di Betti come $ b_k(X) = \rank{H_k(X)} $, e si
+  definisce la caratteristica di Eulero di $ X $ come:
   \[
     \chi(X) = \sum_{k=0}^{N} (-)^k b_k(X)
   \]
 \end{definition}
 
-\subsubsection{Spazi proiettivi}
+\subsubsection{Spazi proiettivi complessi}
 
 \begin{osservation}
-  Se $ X $ è un CW complesso che non ha celle in indici consecutivi
-  allora $ H_k(X) $è abeliano libero con una base in corrispondenza
+  Se $ X $ è un CW complesso che non ha celle in indici consecutivi,
+  cioè la struttura di $ S_\bullet^{CW}(X) $ è del tipo:
+  \[
+    \begin{tikzcd}[nodes = {column sep = 12pt}]
+      \dots \rar & \rar 0 & \rar S_k^{CW}(X) \rar & 0 \rar &   S_{k-2}^{CW}(X) \rar & 0 \rar & 0 \rar & S_{k-4}^{CW}(X) \rar & \dots
+    \end{tikzcd}
+  \]
+  allora $ H_k(X) $ è abeliano libero con una base in corrispondenza
   con le $ k $-celle.
 \end{osservation}
 \begin{proof}
-  Infatti ho il complesso:
-  \[
-    \begin{tikzcd}
-      \dots \rar & S^{CW}_{k+1}(X) \rar & S_k^{CW}(X) \rar & S_{k-1}^{CW}(X) \rar & \dots
-    \end{tikzcd}
-  \]
-  Cioè:
-  \[
-    \begin{tikzcd}
-      \dots \rar & \Z^{a_{n=1}} \rar & \Z^{a_n} \rar & \Z^{a_{n-1}} \rar & \dots
-    \end{tikzcd}
-  \]
-  Almeno alcuni di questi sono zeri, quindi alcuni differenziali sono zero.
+  Per complessi di questo tipo l'omologia è facilmente calcolabile
+  con la definizione, infatti se $ S_k^{CW}(X) \not = 0 $ allora
+  $ S_{k-1}^{CW}(X) = S_{k-+}^{CW}(X) = 0 $:
+  \begin{gather*}
+    H^{CW}_k(X) = \quot{\ker{d \colon  S_k^{CW}(X) \to  S_{k+1}^{CW}(X)}}{\im{d \colon  S_{k-1}^{CW}(X) \to  S_{k1}^{CW}(X)}} = \\
+    =   \quot{\ker{d \colon  S_k^{CW}(X) \to \set{0}}}{\im{d \colon  \set{0} \to  S_{k1}^{CW}(X)}} = \quot{S_k^{CW}(X)}{\set{0}} = S_k^{CW}(X)
+  \end{gather*}
+  Quindi $ H^{CW}_k(X) \cong S_k^{CW}(X) \cong \Z^{a_k} $.
 \end{proof}
-
-Ad esempio se $ Y = \Pjc{n} $ ho una $ 0 $-cella, una $ 1 $-cella, \dots, e una
-$ n $-cella, quindi la struttura del complesso è:
-\[
-  \begin{tikzcd}
-    \dots \rar & S^{CW}_{2n}(Y) \rar & 0 \rar & S_{2n - 2}^{CW}(X) \rar & \dots \rar & 0
-  \end{tikzcd}
-\]
-Quindi $ H_{2n}^{CW}(Y) = \quot{S^{CW}_{2n}(Y)}{\set{0}} \cong S_{2n}^{CW}(Y) \cong \Z $,
-ecc, cioè:
-\[
-  H_{2k}^{CW}(Y) \cong \Z \text{ per } k \in \set{0, \dots, n}
-\]
-La caratteristica di Eulero è:
-\[
-  \chi(Y) = \sum_{k=0}^N (-)^{2k} = n + 1
-\]
-
 \begin{example}
   Sia $ X_1 = \Sph{n} $, $ X_2 = \Sph{n} $ e $ Z = X_1 \times X_2 $, $ Z $ è un CW
   complesso finito, e siccome $ \Sph{n} $ ha una $ 0 $-cella e una $ n $-cella,
@@ -1535,6 +1523,24 @@ La caratteristica di Eulero è:
     \end{cases}
   \]
 \end{example}
+
+Questa osservazione si applica anche nel caso degli spazi
+proiettivi complessi $ \Pjc{n} $ dove ho una $ 0 $-cella, una $ 2 $-cella, \dots, e
+una $ 2n $-cella, quindi la struttura del complesso è:
+\[
+  \begin{tikzcd}
+    \dots \rar & S^{CW}_{2n}(\Pjc{n}) \rar & 0 \rar & S_{2n - 2}^{CW}(\Pjc{n}) \rar & \dots \rar & 0
+  \end{tikzcd}
+\]
+Quindi $ H_{2n}^{CW}(\Pjc{n}) = {S^{CW}_{2n}(\Pjc{n})} \slash {\set{0}} \cong S_{2n}^{CW}(\Pjc{n}) \cong \Z $,
+ecc, cioè:
+\[
+  H_{2k}^{CW}(\Pjc{n}) \cong \Z \text{ per } k \in \set{0, \dots, n}
+\]
+La caratteristica di Eulero è:
+\[
+  \chi(\Pjc{n}) = \sum_{k=0}^n (-)^{2k} = n + 1
+\]
 
 \subsubsection{Spazi proiettivi reali}
 Lo spazio proiettivo reale è più complicato. So che
