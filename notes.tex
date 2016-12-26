@@ -103,16 +103,18 @@
 \graphicspath{{./images/}}
 
 \includeonly{intro,singular,cellular,cohom}
-% \includeonly{cellular}
+% \includeonly{cohom}
 
 \begin{document}
 
 \begin{titlepage}
 
   \noindent
-  \titlefont Topologia Algebrica
-  \epigraph{Topologia portami via.}%
-  {\textit{Parigi 1905}\\ \textsc{H.\ Poincaré}}
+  \centering \textsc{appunti del corso di} \\
+  \vspace{0.75cm}
+  \titlefont \hspace*{0.5cm} Topologia Algebrica
+  % \epigraph{Topologia portami via.}%
+  % {\textit{Parigi 1905}\\ \textsc{H.\ Poincaré}}
   \null\vfill
   \vspace*{1cm}
   \noindent
@@ -131,7 +133,14 @@
 
 % \afterpage{\thispagestyle{empty}\null\newpage}
 
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+
+
 \vspace*{180pt}
+\thispagestyle{empty}
 
 Ho scritto queste note come strumento personale per lo studio della topologia
 algebrica, e per questo motivo sono molto lontane dall'essere rigorose e
@@ -176,7 +185,7 @@ presenti.
 \item \textbf{24 November 2016}: The homology module with coefficients
 \item \textbf{29 November 2016}: The singular cohomology with G coefficients
 \item \textbf{1 December 2016}: The universal coeffcient theorem (for homology and cohomology theory)
-\item \textbf{6 December 2016}: Cup product. The cohomology ring. Examples. The cohomology ring of complex projective space and real projective space (with $ \Z_2 $ coefficients)
+\item \textbf{6 December 2016}: Cup product. The cohomology ring. Examples. The cohomology ring of complex projective space and real projective space with $ \Z_2 $ coefficients)
 \item \textbf{13 December 2016}: A review on differential forms on differentiable manifolds. The de Rham cohomology Theorem. Poincaré duality
 \item \textbf{15 December 2016}: The proof of Poincaré duality
 \item \textbf{20 December 2016}:
@@ -198,7 +207,7 @@ presenti.
 \newmathsymb{dual}{V^*}{Spazio duale a $ V $}
 \printsymblist
 
-\include{intro}
+\include{intro}                             .
 \include{singular}
 \include{cellular}
 \include{cohom}

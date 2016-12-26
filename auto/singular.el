@@ -70,6 +70,7 @@
     "Retratto di deformazione"
     "Retrazione"
     "Teorema del punto fisso"
-    "Grado di una sfera"))
+    "Grado di una sfera"
+    "Teorema della palla pelosa"))
  :latex)
 

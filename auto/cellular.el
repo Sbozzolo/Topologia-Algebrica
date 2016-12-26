@@ -31,6 +31,8 @@
     "Omologia cellulare"
     "Teorema di struttura per gruppi abeliani liberi finitamente generati"
     "Successione di Mayer-Vietoris"
+    "Fox-Artin wild arc"
+    "Disco cornuto di Alexander"
     "Teorema di Jordan generalizzato"
     "Embedding"
     "Teorema di Jordan"

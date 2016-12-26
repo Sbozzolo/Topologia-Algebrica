@@ -26,6 +26,7 @@
     "Dominio a ideali principali"
     "Ideale principale"
     "Varietà differenziabile"
+    "Atlante"
     "Carta di varietà differenziabile"
     "Forma differenziali"
     "Prodotto wedge"

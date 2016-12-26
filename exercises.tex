@@ -413,39 +413,29 @@ Per risolvere velocemente questo esercizio sono utili alcuni lemmi:
     = \left(\cos(2 \pi (1-t)), \sin(2 \pi (1-t)))\right)
   \end{gather*}
   Quindi $ \rho \circ \sigma = \bar{\sigma} = - \sigma $ e quindi il grado è $ - 1 $.
-
+  \\ \\ \noindent
   Suppongo che il risultato sia vero per $ \Sph{n-1} $ mostro che è vero anche per $ \Sph{n} $.
-  Indico con $ \rho^{(k)} $ la riflessione in generica dimensione $ k $.
-  % In $ \Sph{n} $ ho dei sottoinsiemi naturali:
-  % \begin{gather*}
-  %   \Disk{n}_+ = \set{ (x_1, \dots, x_{n+1}) \in \Sph{n} | x_1 \geq 0 } \\
-  %   \Disk{n}_- = \set{ (x_1, \dots, x_{n+1}) \in \Sph{n} | x_1 \leq 0 }
-  % \end{gather*}
-  % Vale che $ \Disk{n}_+ \cap \Disk{n}_- = \set{ (x_1, \dots, x_{n+1}) \in \Sph{n} | x_1 \leq 0 } = \Sph{n-1} $.
-  \noindent
-  L'omologia di dischi e sfere è nota, e si sa che:
-  \[
-    \tilde{H}_p(\Sph{n}) \cong H_p(\Disk{n}, \Sph{n-1}) \cong H_p(\Sph{n}, \Disk{n})
-  \]
-  Siccome $ \rho $ induce una mappa $ \rho_\star $ a livello di omologia:
+
+  Calcolando l'omologia delle sfere ho mostrato che per $ n > 1 $ risulta che $ H_n(\Sph{n}) \cong H_{n-1}(\Sph{n-1}) $,
+  quindi esiste il diagramma commutativo:
   \[
     \begin{tikzcd}
-      H_n(\Sph{n}) \rar{\rho^{(n)}_\star} \arrow[leftrightarrow]{d}{\cong} & H_n(\Sph{n})  \arrow[leftrightarrow]{d}{\cong} \\
-      H_n(\Disk{n}, \Sph{n-1}) &  H_n(\Disk{n}, \Sph{n-1})
-    \end{tikzcd}
-  \]
-  Ma vale anche che $ H_n(\Disk{n}, \Sph{n-1}) \cong H_{n-1}(\Sph{n-1}) $, quindi il diagramma diventa:
-  \[
-    \begin{tikzcd}
-      H_n(\Sph{n}) \rar{\rho^{(n)}_\star} \arrow[leftrightarrow]{d}{\cong} & H_n(\Sph{n})  \arrow[leftrightarrow]{d}{\cong} \\
+      H_n(\Sph{n}) \rar{\rho_\star} \arrow[leftrightarrow]{d}{\cong} & H_n(\Sph{n})  \arrow[leftrightarrow]{d}{\cong} \\
       H_{n-1}(\Sph{n-1}) \rar{\rho_\star^{(n-1)}} &  H_{n-1}(\Sph{n-1})
     \end{tikzcd}
   \]
-  Quindi il grado di $ \rho^{(n)} $ è $ - 1 $ in quanto per ipotesi induttiva il grado di $ \rho^{(n-1)} $ è $ - 1 $.
-  % Siccome per ipotesi induttiva per $ n - 1 $ il grado di $ \rho $ è $ - 1 $ allora anche per $ n $ il grado è $ \rho $ è $ - 1 $,
-  % a causa degli isomorfismi del precedente diagramma.
-  % Si nota che in tutto ciò non si è usato da nessuna parte il fatto che la riflessione è rispetto
-  % al piano definito da $ \set{x_{n+1} = 0} $, quindi la presente dimostrazione vale per ogni riflessione.
+  Ma per ipotesi induttiva per $ n - 1 $ il grado è $ - 1 $ ma nominando
+  $ \phi $ gli isomorfismi da $ H_{n-1}(\Sph{n-1}) $ a $ H_n(\Sph{n}) $:
+  \[
+    \deg{(\rho_\star^{(n)})} = \deg{(\phi \circ \rho_\star^{(n-1)} \circ \phi^{-1})}
+  \]
+  L'azione su un generatore è:
+  \[
+    \begin{tikzcd}
+      x \rar[mapsto]{\phi^{-1}} & \tilde{x} = \phi^{(-1)}(x) \rar[mapsto]{\rho_\star^{(n-1)}} & - \tilde{x} \rar[mapsto]{\phi} & - \phi(\tilde{x}) = -x
+    \end{tikzcd}
+  \]
+  Quindi anche per $ n $ il grado è $ - 1 $.
 \end{proof}
 \begin{lemma}
   \label{lemma:composizione_grado}

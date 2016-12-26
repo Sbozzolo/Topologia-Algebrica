@@ -1002,13 +1002,13 @@ dei gruppi di omologia.
   in $ Y $ è un omeomorfismo. Per la commutatività del diagramma $ q_\star $ è isomorfismo.
 \end{proof}
 \begin{corollary}
-  Se $ (Y,A) $ è una coppia buona allora vale che $ \tilde{H}_k(\quot{Y}{A}) \cong H_k(Y,A) $.
+  Se $ (Y,A) $ è una coppia buona allora vale che $ \tilde{H}_k({Y} \slash {A}) \cong H_k(Y,A) $.
 \end{corollary}
 
 \begin{lemma}
   Vale che:
   \[
-    \tilde{H}_k(\Sph{n}_{\alpha_1} \vee \dots \vee \Sph{n}_{\alpha_t}) \cong \bigoplus \tilde{H}_k(\Sph{n}_{\alpha_j}) \cong
+    \tilde{H}_k(\Sph{n}_{\alpha_1} \vee \dots \vee \Sph{n}_{\alpha_t}) \cong \bigoplus_j \tilde{H}_k(\Sph{n}_{\alpha_j}) \cong
     \begin{cases}
       \Z^t & \text{se $ k = n $} \\
       0 & \text{se $ k \not =  n $}
@@ -1017,7 +1017,7 @@ dei gruppi di omologia.
   dove $ t $ è il numero di sfere.
 \end{lemma}
 \begin{proof}
-  Lavoro con $ n $ fissato, conosco l'omologia delle sfere,
+  Considero $ n $ fissato, conosco l'omologia delle sfere,
   in particolare quella ridotta è:
   \[
     \tilde{H}_k(\Sph{n}) \cong
@@ -1026,15 +1026,16 @@ dei gruppi di omologia.
       0      & \text{se } k \not = n
     \end{cases}
   \]
-  Per $ k = 0 $ e $ k = 1 $ so calcolare i gruppi di omologia perché sono
-  il gruppo fondamentale è il suo abelianizzato,
-  mi metto quindi nel caso $ k \geq 2 $.
-  Nel caso $ k \geq 2 $ omologia ridotta coincide con quella usuale.
-  So anche calcolare i gruppi di omologia nel caso di una sfera,
-  cioè $ t = 1 $.
+  Per $ k = 0 $ e $ k = 1 $ il lemma è vero in quanto
+  $ \Sph{n}_{\alpha_1} \vee \dots \vee \Sph{n}_{\alpha_t} $ ha $ t $ componenti connesse ed è
+  semplicemente connesso (per $ n > 1 $), per questo motivo posso assumere
+  $ k \geq 2 $, dove omologia ridotta coincide con omologia usuale.
 
-  La dimostrazione è per induzione:
-  suppongo di conoscere $ \tilde{H}_k(\Sph{n}_1 \vee \dots \Sph{n}_{t-1}) $
+  In questo caso la dimostrazione procede per induzione su $ t $.
+  Per $ t = 1 $ il lemma è banale in quanto il bouquet di una sfera
+  è una sfera.
+
+   di conoscere $ \tilde{H}_k(\Sph{n}_1 \vee \dots \Sph{n}_{t-1}) $
   voglio calcolare $ \tilde{H}_k(\Sph{n}_1 \vee \dots \Sph{n}_t) $.
   Come notazione pongo $ Z_t = \Sph{n}_1 \vee \dots \Sph{n}_t $ e $ B = \Sph{n}_t $,
   cioè vale che $ Z_t = Z_{t-1} \vee B $.
@@ -1051,7 +1052,7 @@ dei gruppi di omologia.
   la successione esatta lunga in omologia relativa:
   \[
     \begin{tikzcd}[nodes={column sep=10pt}]
-      \dots \rar & H_k(Z_{t-1}) \rar & H_k(Z_t) \rar & H_k(Z_t, Z_{t-1}) \rar & H_{k-1}(Z_{t-1}) \rar & \dots
+      \dots \rar & H_k(Z_{t-1}) \rar & H_k(Z_t) \rar & H_k(Z_t, Z_{t-1}) \rar & \dots %H_{k-1}(Z_{t-1}) \rar & \dots
     \end{tikzcd}
   \]
   Se $ k \not = n $ e siccome $ k \geq 2 $ allora $ H_k(Z_{t-1}) \cong 0 $ per ipotesi induttiva.
@@ -1094,8 +1095,13 @@ dei gruppi di omologia.
       0 \rar   & \Z^{t-1} \rar & H_n(Z_t) \rar & \Z \rar & 0
     \end{tikzcd}
   \]
-  Quindi siccome la successione è spezzante $ H_n(Z_t) \cong \Z^t $.
-  [PERCHÈ LA SUCCESSIONE SPEZZA?]
+  Necessariamente $ H_n(Z_t) $ è finitamente generato, quindi per il teorema
+  di struttura deve essere della forma $ Z_t = \Z^k \oplus Z_{p_1} \dots $, ma la successione
+  è esatta quindi deve risultare:
+  \[
+    \Z = \quot{H_n(Z_t)}{\Z^{t-1}}
+  \]
+  L'unica possibilità è che $ H_n(Z_t) \cong \Z^t $.
 \end{proof}
 
 \begin{lemma}
@@ -1763,11 +1769,23 @@ Si ha l'alternanza di applicazione costante e moltiplicazione per 2.
   $ X = \mathrm{int} A \cup \mathrm{int} B $, tuttavia questa possibilità si rivela
   necessaria solo in casi patologici.
 \end{osservation}
+
+\subsection{Teorema di Jordan generalizzato}
+
 Nel dimostrare il seguente teorema si dà per noto il seguente risultato, la cui
 dimostrazione è noiosa e poco istruttiva:
 \begin{lemma}
-  Se $ f \colon \Disk{n} \to \Sph{n} $ è un embedding allora $ \tilde{H}_k(\Sph{r} \setminus f(\Disk{r})) = 0 $.
+  Se $ f \colon \Disk{r} \to \Sph{n} $ è un embedding allora
+  $ \tilde{H}_k(\Sph{n} \setminus f(\Disk{r})) = 0 $, cioè lo spazio
+  $ \Sph{n} \setminus f(\Disk{r}) $ è contraibile.
 \end{lemma}
+\begin{osservation}
+  Questo non è un risultato banale perché si dimostra che il complementare in
+  $ \Sph{n} $ dell'immagine tramite $ f $ di $ \Disk{r} $ può non essere
+  contraibile se $ f $ non è un embedding, come mostrano gli esempi patologici
+  del \textbf{Fox-Artin wild arc}\index{Fox-Artin wild arc} o del \textbf{disco
+    cornuto di Alexander}\index{Disco cornuto di Alexander}.
+\end{osservation}
 
 \begin{theorem}[Teorema di Jordan generalizzato\index{Teorema di Jordan generalizzato}]
   Sia $ f \colon \Sph{r} \to \Sph{n} $ un \textbf{embedding}\index{Embedding}, cioè una funzione
@@ -1826,11 +1844,13 @@ dimostrazione è noiosa e poco istruttiva:
       0 \rar & H_{i+1}(\Sph{n} - f(\Sph{r-1})) \rar & H_i(\Sph{n} \setminus f(\Sph{r})) \rar & 0
     \end{tikzcd}
   \]
-  Da cui passando all'omologia ridotta
-  $ \tilde{H}_i(\Sph{n} \setminus f(\Sph{r})) \cong \tilde{H}_{i+1}(\Sph{n} - f(\Sph{r-1})) \cong \tilde{H}_{i+1}(\Sph{n-r}) \cong \tilde{H}_i(\Sph{n-r-1}) $
+  Da cui passando all'omologia ridotta:
+  \[
+    \tilde{H}_i(\Sph{n} \setminus f(\Sph{r})) \cong \tilde{H}_{i+1}(\Sph{n} - f(\Sph{r-1})) \cong \tilde{H}_{i+1}(\Sph{n-r}) \cong \tilde{H}_i(\Sph{n-r-1})
+  \]
   per ipotesi induttiva.
 \end{proof}
-
+\eproof
 Questo risultato generalizza il teorema di Jordan\index{Teorema di Jordan} che
 dice che se $ C $ è una curva semplice (cioè che non si autointerseca) chiusa in
 $ \RN{2} $ allora $ C $ divide $ \RN{2} $ in due componenti connesse.
@@ -1850,20 +1870,49 @@ $ \RN{2} $ allora $ C $ divide $ \RN{2} $ in due componenti connesse.
   Il teorema di Jordan generalizzato implica il teorema di Jordan.
 \end{proposition}
 \begin{proof}
-  Ho $ \Sph{2} \setminus \set{p} \cong \RN{2} $, per proiezione stereografica, sia
-  $ f \colon \Sph{1} \to \Sph{2} $ embedding, $ f(\Sph{1}) $ è una curva chiusa
-  semplice, la denoto con $ C = f(\Sph{1})$. Mostro che
-  $ H_0(\RN{2} \setminus \set{q}) = \Z^2 $ e quindi
-  $ \RN{2} \setminus \set{q} $ ha due componenti connesse. Siccome $ \Sph{2} $ è una
-  varietà topologica ammette un intorno di $ q $ che denoto con $ D $ che è
-  omeomorfo a $ \Disk{2} $. Poi prendo un intorno $ D' $ contenuto in $ D $.
-  Se $ K = \Sph{2} \setminus C $ allora:
+  Sia $ f \colon \Sph{1} \to \Sph{2} $ embedding, $ f(\Sph{1}) $ è una curva chiusa
+  semplice, la denoto con $ C = f(\Sph{1})$. Per proiezione stereografica
+  $ \Sph{2} \setminus \set{q} \simeq \RN{2} $, dove $ q \not \in C $ definendo
+  $ K = \Sph{2} \setminus C $ e $ K' = K - \set{q} $ si ha che
+  $ K' \simeq \RN{2} \setminus C $. bisogna mostrare che $ K' $ ha due componenti connesse, e
+  questo può essere ottenuto mostrando che
+  $ H_0(\RN{2} \setminus \set{q}) = \Z^2 $ e utilizzando il fatto che connessione per
+  archi implica connessione.
+  % Ho $ \Sph{2} \setminus \set{p} \cong \RN{2} $, per proiezione stereografica, sia
+  % $ f \colon \Sph{1} \to \Sph{2} $ embedding, $ f(\Sph{1}) $ è una curva chiusa
+  % semplice, la denoto con $ C = f(\Sph{1})$. Mostro che
+  % $ H_0(\RN{2} \setminus \set{q}) = \Z^2 $ e quindi
+  % $ \RN{2} \setminus \set{q} $ ha due componenti connesse.
+  Siccome $ \Sph{2} $ è una varietà topologica esiste un intorno aperto di $ q $,
+  denotato $ D $, che è omeomorfo a $ \Disk{2} $, si può sempre scegliere
+  questo intorno in modo che non intersechi $ C $. Considerando $ D' $
+  intorno aperto di $ q $ si ha che:
+  % Poi prendo un intorno $ D' $
+  % contenuto in $ D $. Se $ K = \Sph{2} \setminus C $ allora:
   \begin{gather*}
     (K \setminus D') \cup D = K \\
-    (K \setminus D') \cap D' \sim_H \Sph{1} \; (\text{infatti è una corona circolare})
+    (K \setminus D') \cap D \sim_H \Sph{1} \; (\text{infatti è una corona circolare})
   \end{gather*}
-  Inoltre $ D \sim_H \set{q} $ quindi $ K \setminus D' \sim K \setminus \set{q} $.
-  [FIGURA]
+  % Inoltre $ D \sim_H \set{q} $ quindi $ K \setminus D' \sim K \setminus \set{q} $.
+  \begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+      \draw (0,0) circle (2);
+      \draw (-2,0) to[out=-50, in=-150] (2,0);
+      \draw[dashed] (-2,0) to[out=30, in=130] (2,0);
+      \draw plot [smooth cycle, tension = 1]
+      coordinates {(-1,0) (0.7, 1.3) (1.4,-0.5)};
+      \node[above] () at (0.7, 1.3) {$ C $};
+      \fill[gray!20] (0, -1.3) ellipse (0.4 and 0.3);
+      \node () at (0,-1.3) {$ \bullet $};
+      \node[left] () at (0,-1.3) {$ q $};
+      \draw (0, -1.3) ellipse (0.42 and 0.3);
+      \draw (0, -1.3) ellipse (0.65 and 0.5);
+      \node[right] () at (0.55, -1.3) {$ D $};
+      \node[right] () at (-.1, -1.3) {$ D' $};
+    \end{tikzpicture}
+    \caption{Teorema di Jordan}
+  \end{figure}
   % So che
   % \[
   %   \tilde{H}_i(\Sph{2} \setminus C ) \cong
@@ -1890,11 +1939,11 @@ $ \RN{2} $ allora $ C $ divide $ \RN{2} $ in due componenti connesse.
   % [FIGURA]
   % Uso Mayer-Vietoris $ K = (K \setminus D') \cup D $. So che $ D \sim P $ punto e
   % $ (K \setminus D') \cap D \sim \Sph{1} $ (è una corona circolare).
-  Quindi per Mayers-Vietoris ho la successione esatta lunga ($ P $ è l'insieme
-  formato da un solo punto):
+  Inoltre $ D \sim_H P $, dove $ P $ è l'insieme formato da un solo punto. Quindi
+  per Mayers-Vietoris con $ K \setminus D' $ e $ D $ ho la successione esatta lunga:
   \[
-    \begin{tikzcd}[nodes={column sep=3pt, outer sep = 1pt, inner sep = 1pt}]
-      \dots \rar & H_1(\Sph{1}) \rar & H_1(K \setminus \set{q}) \oplus H_1(P) \rar & H_1(K) \rar & H_0(\Sph{1}) \rar & H_0(K \setminus \set{q})
+    \begin{tikzcd}[nodes={column sep=7pt, inner sep = 1.5pt}]
+      \dots \rar & H_1(\Sph{1}) \rar & H_1(K') \oplus H_1(P) \rar & H_1(K) \rar & H_0(\Sph{1}) \rar & H_0(K')
       \oplus H_0(P) \rar & H_0(K) \rar & 0
     \end{tikzcd}
   \]
@@ -1902,16 +1951,16 @@ $ \RN{2} $ allora $ C $ divide $ \RN{2} $ in due componenti connesse.
   quindi la successione si riduce a:
   \[
     \begin{tikzcd}%[nodes={column sep=3pt, outer sep = 1pt, inner sep = 1pt}]
-      0 \rar & H_0(\Sph{1}) \rar & H_0(K \setminus \set{q}) \oplus H_0(P) \rar & H_0(K) \rar & 0
+      0 \rar & H_0(\Sph{1}) \rar & H_0(K') \oplus H_0(P) \rar & H_0(K) \rar & 0
     \end{tikzcd}
   \]
   Cioè:
   \[
     \begin{tikzcd}%[nodes={column sep=3pt, outer sep = 1pt, inner sep = 1pt}]
-      0 \rar & \Z \rar & H_0(K \setminus \set{q}) \oplus \Z \rar & \Z^2 \rar & 0
+      0 \rar & \Z \rar & H_0(K') \oplus \Z \rar & \Z^2 \rar & 0
     \end{tikzcd}
   \]
-  E quindi $ H_0(K \setminus \set{q}) \cong \Z^2 $.
+  E quindi $ H_0(K') \cong \Z^2 $.
 \end{proof}
 
 \begin{theorem}[Invarianza topologica della dimensione]\index{Invarianza topologica della dimensione}

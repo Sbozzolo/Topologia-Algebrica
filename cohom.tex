@@ -2,9 +2,7 @@
 
 % Lezione 15
 
-\section{Prodotto tensore}
-
-Ho trovato che per $ n $ pari:
+Si è trovato che per $ n $ pari:
 \[
   H_i(\Pjr{n}) \cong
   \begin{cases}
@@ -22,7 +20,11 @@ Mentre per $ n $ dispari:
     0 & \text{altrimenti}
   \end{cases}
 \]
-Non mi piace. Voglio cambiare i coefficienti.
+Queste espressioni sono poco simmetriche, ma è possibile
+migliorarne l'estetica cambiando i coefficienti con il
+prodotto tensore.
+
+\section{Prodotto tensore}
 
 Sia $ A, B $ gruppi abeliani, è ben definito il prodotto
 cartesiano:
@@ -105,18 +107,19 @@ Sia $ F(A,B) $ il gruppo libero generato dalle coppie $ (a, b) \in A \times B $.
   \]
 \end{proposition}
 \begin{proof}
-  La costruzione di $ \phi $ è banale, è tale che $ \phi(a \otimes b) = \phi(\pi(a,b)) = \psi(a,b) $,
-  bisogna solo verificare che è ben definita.
-  Considero un elemento $ c \otimes d $ equivalente a $ a \otimes b $, cioè tali
-  che $ (a,b) - (c,d) \in R(A,B) $, devo mostrare che $ \phi(a \otimes b) = \phi(c \otimes d) $,
-  cioè che $ \psi((a,b)) = \psi((c,d)) $, ovvero che $ \psi((a,b)) - \psi((c,d)) = 0 $, ma
+  Si costruisce $ \phi $ in modo tale che
+  $ \phi(a \otimes b) = \phi(\pi(a,b)) = \psi(a,b) $, e quindi bisogna solo verificare che sia ben
+  definita. Considero un elemento $ c \otimes d $ equivalente a $ a \otimes b $, cioè tali
+  che $ (a,b) - (c,d) \in R(A,B) $, devo mostrare che
+  $ \phi(a \otimes b) = \phi(c \otimes d) $, cioè che
+  $ \psi((a,b)) = \psi((c,d)) $, ovvero che $ \psi((a,b)) - \psi((c,d)) = 0 $, ma
   $ (a,b) - (c,d) \in R(A,B) $ e:
   \[
     \psi((c,d) - (a,b)) = \sum_\alpha \psi((r_\alpha, s_\alpha)) = \sum_\alpha \phi \left(\pi((r_\alpha, s_\alpha))\right) = 0
   \]
-  con $ (r_\alpha,s_\alpha) $ base di $ R(A,B) $, che al quoziente vanno a zero, ma
-  $ \phi $ è un omomorfismo per costruzione (dato che per ipotesi $ \psi $ lo è, e il
-  prodotto tensoriale è bilineare) quindi $ \phi(\pi((r_\alpha, s_\alpha))) = 0 $.
+  con $ (r_\alpha,s_\alpha) $ base di $ R(A,B) $. Tali elementi al quoziente vanno a zero,
+  ma $ \phi $ è un omomorfismo per costruzione (dato che per ipotesi $ \psi $ lo è, e
+  il prodotto tensoriale è bilineare) quindi $ \phi(\pi((r_\alpha, s_\alpha))) = 0 $.
 \end{proof}
 \begin{example}
   Siano $ V, W $ spazi vettoriali reali, gli spazi
@@ -197,6 +200,7 @@ Questa successione è esatta? Per verificarlo utilizzo un lemma:
   \[
     \tau(a + b) \otimes 1 = a \otimes 1 + b \otimes 1 = \tau(a) + \tau(b)
   \]
+  E:
   \begin{gather*}
     \sigma(\tilde{a} \otimes n + \tilde{b} \otimes m ) = \sigma(n \tilde{a} \otimes 1 + m \tilde{b} \otimes
     1) = \sigma ((n \tilde{a} + m\tilde{b}) \otimes 1) = \\ = n \tilde{a} + m \tilde{b} =
@@ -231,15 +235,17 @@ Questa successione è esatta? Per verificarlo utilizzo un lemma:
       0 \rar{} & 6 \Z \rar{\alpha} & \Z \rar{\beta} & \quot{\Z}{6 \Z} \rar & 0
     \end{tikzcd}
   \]
-  Tensorizzo per $ \Z $:
+  L'applicazione $ \alpha $ è la moltiplicazione per $ 6 $, mentre $ \beta $ è il passaggio
+  alla classe modulo $ 6 $, in questo modo $ \beta \circ \alpha = 0 $. Tensorizzando per $ \Z $:
   \[
     \begin{tikzcd}[nodes = {row sep = 3pt}]
       6 \Z \otimes \Z \rar{\alpha \otimes \Id{}} & \Z \otimes \Z \rar{\beta \otimes \Id{}} & \quot{\Z}{6 \Z} \otimes \Z  \\
-      6x \otimes y \rar[mapsto] & x \otimes y \rar[mapsto] & \bar{x} \otimes y
+      x \otimes y \rar[mapsto] & 6x \otimes y  & {} \\
+      {} & x \otimes y \rar[mapsto] & \bar{x} \otimes y \\
     \end{tikzcd}
   \]
-  Con $ \bar{x} $ classe modulo 6 di $ x $. La successione è
-  esatta perché passando all'isomorfismo la successione è:
+  Con $ \bar{x} $ classe modulo 6 di $ x $. La successione è esatta perché
+  passando all'isomorfismo descritto nel precedente lemma la successione è:
   \[
     \begin{tikzcd}[nodes = {row sep = 3pt}]
       0 \rar{} & 6 \Z \rar{\alpha} & \Z \rar{\beta} & \Z_6 \rar & 0 \\
@@ -262,25 +268,27 @@ Questa successione è esatta? Per verificarlo utilizzo un lemma:
   % quindi è vera anche l'inclusione inversa. La successione è quindi esatta.
 \end{example}
 \begin{example}
-  Considero la stessa successione di prima, ma ora tensorizzo per $ \quot{\Z}{4 \Z}  \cong \Z_4 $:
+  Considero la stessa successione di prima, ma ora tensorizzo per $ {\Z} \slash {4 \Z}  \cong \Z_4 $:
   \[
     \begin{tikzcd}[nodes = {row sep = 3pt}]
-      0 \rar{} & 6 \Z \otimes \Z_4 \rar{\alpha \otimes \Id{}} & \Z \otimes \Z_4 \rar{\beta \otimes \Id{}} & \Z_6 \otimes \Z_4 \rar & 0 \\
-      {}  & 6x \otimes \bar{y} \rar[mapsto] & x \otimes \bar{y} \rar[mapsto] & \bar{x} \otimes \bar{y}
+       6 \Z \otimes \Z_4 \rar{\alpha \otimes \Id{}} & \Z \otimes \Z_4 \rar{\beta \otimes \Id{}} & \Z_6 \otimes \Z_4  \\
+       x \otimes \bar{y} \rar[mapsto] & 6x \otimes \bar{y} & {}\\
+       {} & x \otimes \bar{y} \rar[mapsto] & \bar{x} \otimes \bar{y}
     \end{tikzcd}
   \]
   Considero in particolare l'applicazione:
   \begin{align*}
     6 \Z \otimes \Z_4 & \to \Z \otimes \Z_4 \\
-    6 x \otimes \bar{y} & \mapsto x \otimes \bar{y}
+     x \otimes \bar{y} & \mapsto 6x \otimes \bar{y}
   \end{align*}
   Questa ha un nucleo non banale, usando il lemma
   precedente:
   \begin{align*}
     \Z \otimes \Z_4 & \to \Z_4 \\
-     x \otimes \bar{y} & \mapsto \overline{xy}
+     6x \otimes \bar{y} & \mapsto \overline{6xy}
   \end{align*}
-  E l'elemento $ x = 6 $ e $ y = 2 $ viene mandato in $ \bar{12} $ che è $ 0 $ in $ \Z_4 $.
+  E l'elemento $ x = 1 $ e $ y = 2 $, che non è nullo, viene mandato in
+  $ \overline{12} $ che è $ 0 $ in $ \Z_4 $.
 
   % ad esempio l'elemento $ 6 \otimes \bar{2} $ finisce in
   % Cerco il nucleo in isomorfismo: $ 6 x \bar{k} = \bar{0} $, ma questo ha soluzioni non banali,
@@ -297,32 +305,22 @@ Considero $ \alpha \otimes \Id{} \colon R \otimes G \to F \otimes G $ allora:
 \]
 \end{osservation}
 \begin{proof}
-Costruisco esplicitamente l'isomorfismo:
-\begin{align*}
-  \eta \colon \quot{F}{\alpha(R)} \otimes G & \to \quot{F \otimes G}{(\alpha \otimes \Id{})(R \otimes G)} \\
-  [\alpha] \otimes g & \mapsto [\alpha \otimes g]'
-\end{align*}
-Questa mappa è ben definita, infatti se $ b \sim a $, cioè se $ [b] = [a] $ allora
-$ -b + a \in \alpha(R) $, quindi:
-\begin{gather*}
-  [b] \otimes g \mapsto [b \otimes g]' \\
-  [a] \otimes g \mapsto [a \otimes g]'
-\end{gather*}
-Ma $ b = a + \alpha(r) $ con $ r \in R $ quindi $ b \otimes g = (a + \alpha(r)) \otimes g = a \otimes g + \alpha(r) \otimes g $
-e quindi:
-\[
-  [b \otimes g]' = [a \otimes g + \alpha(r) \otimes g]' = [a \otimes g]' + [\alpha(r) \otimes g]'
-\]
-Ma;
-\[
-  [\alpha(r) \otimes g]' = [(\alpha \otimes \Id{})(r \otimes g)]' = 0
-\]
-In quanto $ [,]' $ è nello spazio quoziente rispetto $ (\alpha \otimes \Id{}) $.
-L'applicazione è quindi ben definita e lineare, l'inversa è chiaramente la
-mappa $ [a \otimes g]' \mapsto [a] \otimes g $, che è ben definita per il medesimo ragionamento.
+  Costruisco esplicitamente l'isomorfismo. Sia $ \eta $ l'omomorfismo definito da:
+  \begin{align*}
+    \eta \colon \quot{F}{\alpha(R)} \otimes G & \to \quot{F \otimes G}{(\alpha \otimes \Id{})(R \otimes G)} \\
+    [\alpha] \otimes g & \mapsto [\alpha \otimes g]'
+  \end{align*}
+  Questa mappa è ben definita, infatti considero un elemento $ b $ equivalente
+  ad $ a $, cioè tale che $ b = a + \alpha(r) $ con $ r \in R $. Ma quindi
+  $ b \otimes g = (a + \alpha(r)) \otimes g = a \otimes g + \alpha(r) \otimes g $ e quindi
+  $ a \otimes g $ e $ b \otimes g $ differiscono per un elemento
+  $ \alpha(r) \otimes g \in (\alpha \otimes \Id{})(R \otimes G) $ e perciò sono equivalenti, verificando che
+  $ \eta $ è ben definita in quanto manda elementi equivalenti in elementi
+  equivalenti. L'applicazione è quindi ben definita e lineare, l'inversa è
+  chiaramente la mappa $ [a \otimes g]' \mapsto [a] \otimes g $, che è ben definita per il
+  medesimo ragionamento.
 \end{proof}
-
-
+\eproof
 Ma a questo punto $ {F} \slash {\alpha(R)} \otimes G \cong A \otimes G $, infatti per il teorema fondamentale
 degli omomorfismi:
 \[
@@ -415,18 +413,24 @@ in quanto tensorizzando si perde l'esattezza solo a sinistra.
     \Z^n \otimes \Z^{n_1} & \to  \Z^n \otimes \Z^{n_1} \\
     \vec{v} \otimes \vec{w} & \mapsto \alpha(\vec{v}) \otimes \vec{w}
   \end{align*}
+  \vspace*{-20pt}
   \begin{exercise}
     Mostrare che $ \Z^s \otimes \Z^r \cong \Z^{sr} $.
     Hint:  $ \set{e_1 \otimes f_j} $ è una base di $ \Z^s \otimes \Z^r $ se $ \set{e_1} $
     e $ \set{f_j} $ lo sono per $ \Z^s $ e $ \Z^r $, mostrarlo.
   \end{exercise}
-  Quindi:
-  \begin{align*}
-    \phi \colon \Z^{rn_1} & \to \Z^{n n_1} \\
-    \vec{v} \otimes \vec{w} & \mapsto \alpha(\vec{v})\otimes \vec{w}
-  \end{align*}
-  [TERMINARE QUESTA DIMOSTRAZIONE, (MA COME?)]
-  Essendo $ \phi $ iniettiva per l'esattezza della successione deve essere $ \tor{A, F_1} \cong 0 $.
+  Quindi se $ \set{g_k} $ è una base per $ \Z^{rn_1} $ e $ \set{h_l} $ per $ \Z^{nn_1} $
+  si può scrivere:
+  \begin{gather*}
+     \vec{v} \otimes \vec{w} \; \mapsto \; \sum_k \mu_k g_k \\
+     \alpha{\vec{v}} \otimes \vec{w} \; \mapsto \; \sum_l \nu_l h_l
+   \end{gather*}
+   Considerando $ \vec{u} \otimes \vec{w} $ con $ \vec{u} \not = \vec{w} $ questo
+   elemento ha una espansione su $ \set{g_k} $ ma $ \alpha $ è iniettiva quindi
+   necessariamente anche $ \alpha({\vec{u}}) \otimes \vec{w} $ ha un'espansione diversa su
+   $ \set{h_l} $ e quindi corrisponde ad un elemento diverso in quanto
+   $ \set{h_l} $ è una base, questo significa che $ \phi $ è iniettiva e quindi per
+   l'esattezza della successione deve essere $ \tor{A, F_1} \cong 0 $.
 \end{proof}
 
 \begin{proposition}
@@ -467,7 +471,10 @@ in quanto tensorizzando si perde l'esattezza solo a sinistra.
 \end{proof}
 
 \begin{lemma}
-  Siano $ A, B, C $ gruppi abeliani, vale che $  \tor{A, B} \oplus \tor{A, C} \cong \tor{A, B \oplus C} $.
+  Siano $ A, B, C $ gruppi abeliani, vale che:
+  \[
+    \tor{A, B} \oplus \tor{A, C} \cong \tor{A, B \oplus C}
+  \]
 \end{lemma}
 \begin{proof}
   Infatti considero una presentazione di $ A $:
@@ -575,13 +582,12 @@ $ (S_\bullet(X) \otimes G, \partial \otimes \Id{G}) $:
     \dots \rar & S_{p+1}(X) \otimes G \rar{\partial \otimes \Id{G}} & S_p(X) \otimes G \rar{\partial \otimes \Id{G}} & S_{p-1}(X) \otimes G \rar & \dots
   \end{tikzcd}
 \]
-Un modo compatto per scrivere il complesso è $ (S_\bullet(X;G), \partial) $. Ora i coefficienti non
-sono più in $ \Z $, ma in $ G $. Definisco l'omologia singolare a coefficienti in $ G $
-come l'omologia singolare di questo complesso. Se $ G = \Z $ si torna alla consueta omologia
-singolare.
-
-Mi pongo questa domanda: se $ X $ è uno spazio topologico e $ G $ un gruppo abeliano, che relazione
-c'è tra $ H_k(X) \oplus G $ e $ H_k(X;G) $? Vale che $ H_k(X) \oplus G \cong H_k(X;G) $?
+Un modo compatto per scrivere il complesso è $ (S_\bullet(X;G), \partial) $. Ora i
+coefficienti non sono più in $ \Z $, ma in $ G $. Definisco l'omologia singolare
+a coefficienti in $ G $ come l'omologia singolare di questo complesso. Se
+$ G = \Z $ si torna alla consueta omologia singolare. La domanda che sorge spontanea è
+% se $ X $ è uno spazio topologico e $ G $ un gruppo abeliano,
+che relazione c'è tra $ H_k(X) \oplus G $ e $ H_k(X;G) $? Vale che $ H_k(X) \oplus G \cong H_k(X;G) $?
 
 \begin{example}
   Considero $ X_9 $, so che $ H_1(X_9) \cong \Z_9 $, quindi $ H_1(X_9) \otimes \Z_6 = \Z_9 \otimes \Z_6 $.
@@ -1670,13 +1676,21 @@ Quindi $ H^\star(X, \R) $ è un anello unitario, ma in generale non commutativo.
 
 \begin{definition}
   Uno spazio topologico $ \M $ è una \textbf{varietà differenziabile}\index{Varietà differenziabile}
-  di dimensione $ n $ se ogni punto $ p \in \M $ ammette un intorno aperto $ A $ omeomorfo a $ \RN{n} $
-  con omeomorfismo realizzato da una \textbf{carta}\index{Carta di varietà differenziabile}
-  $ \phi \colon A \to \RN{n} $ con $ \phi \in \mathcal{C}^\infty $, e tale che i cambiamenti di coordinate siano buoni, cioè
-  date due carte $ \phi \colon A_1 \to \RN{n} $, $ \phi_2 \colon A_2 \to \RN{n} $ con $ A_1 \cap A_2 \not = 0 $ allora:
-  \[
-    \phi_2 \circ \phi_1^{-1} \colon \phi_1(A_1 \cap A_2) \to \phi_2(A_1 \cap A_2) \in \mathcal{C}^\infty(\phi_1(A_1 \cap A_2) \subseteq \RN{n})
-  \]
+  se è una varietà topologica di dimensione $ n $ e possiede un \textbf{atlante}\index{Atlante},
+  ovvero una collezione di coppie $ (U_\alpha, \phi_\alpha) $ tale che:
+  \begin{enumerate}
+  \item $ U_\alpha $ sono intorni aperti omeomorfi a intorni in $ \RN{n} $, e l'omeomorfismo
+    è realizzato dalla mappa $ \phi_\alpha $, detta \textbf{carta}\index{Carta di varietà differenziabile}.
+  \item Ogni punto $ p \in \M $ possiede almeno un intorno $ U_\alpha $ che lo contiene.
+  \item I cambiamenti di coordinate siano buoni, cioè date due carte
+    $ \phi \colon A_1 \to \RN{n} $, $ \phi_2 \colon A_2 \to \RN{n} $ con
+    $ A_1, A_2 $ intorni aperti $ A_1 \cap A_2 \not = 0 $ allora:
+    \[
+      \phi_2 \circ \phi_1^{-1} \colon \phi_1(A_1 \cap A_2) \to \phi_2(A_1 \cap A_2) \in \mathcal{C}^\infty(\phi_1(A_1 \cap A_2) \subseteq \RN{n})
+    \]
+  \end{enumerate}
+  Inoltre si richiede per questioni tecniche che l'atlante sia massimale\footnote{Si può sempre
+    estendere in modo univoco un atlante in modo che l'estensione sia massimale.}.
 \end{definition}
 \newmathsymb{formdiff}{\Omega^k(\M)}{Spazio delle $ k $-forme differenziali su
   $ \M $}
