@@ -205,10 +205,11 @@ può essere vista come CW complesso formato da un punto e una sola cella.
 
 \newmathsymb{proreal}{\Pjr{n}}{Spazio proiettivo reale}
 \begin{definition}
-  Si definisce lo \textbf{spazio proiettivo reale}\index{Spazio proiettivo reale}
-  $ \Pjr{n}= {\RN{n+1} \setminus \set{0}} \slash {\sim} $ con
+  Si definisce lo \textbf{spazio proiettivo reale}\index{Spazio proiettivo
+    reale} come lo spazio quoziente $ \Pjr{n} = {\RN{n+1} \setminus \set{0}} \slash {\sim} $ con
   $ \vec{x} \sim \vec{y} $ se e solo se $ \vec{x} $ e $ \vec{y} $ sono multipli,
   cioè se esiste $ \lambda \in \RN{} \setminus \set{0} $ tale che $ \vec{x} = \lambda \vec{y} $.
+  Gli elementi di $ \Pjr{n} $ si indicano con $ [x_0 : \dots : x_n] $.
 \end{definition}
 Fissato $ j \in \set{0, \dots, n} $ e definito
 $ U_j = \set{[x_0 : \dots : x_n] \in \Pjr{n} | x_j \not = 0 } $ si definisce la mappa:
@@ -240,7 +241,7 @@ una varietà topologica di dimensione $ n $.
 \eproof
 Si trova quindi che:
 \begin{itemize}
-\item $ \Pjr{1} \simeq \Sph{1} \slash \sim \simeq \Sph{1} \simeq \RN{} \cup {\infty} $
+\item $ \Pjr{1} \simeq \Sph{1} \slash \sim \; \simeq \Sph{1} \simeq \RN{} \cup {\infty} $
 \item $ \Pjr{2} = \mathbb{P}^1(\RN{}) \cup_\phi \Disk{2} $
   Ho $ {\Sph{2}} \slash {\sim} $, l'emisfero sud della sfera si identifica con quello
   nord per l'applicazione di antipodalità.
@@ -333,7 +334,8 @@ Si trova quindi che:
 
 \newmathsymb{pjc}{\Pjc{n}}{Spazio proiettivo complesso}
 \newmathsymb{cstar}{\C^\star}{Piano complesso privato dell'origine}
-Lo \textbf{spazio proiettivo complesso}\index{Spazio proiettivo complesso} invece è:
+\begin{definition}
+Lo \textbf{spazio proiettivo complesso}\index{Spazio proiettivo complesso} invece è definito da :
 \[
   \Pjc{n} = \quot{\C^{n+1} \setminus \set{\vec{0}}}{\sim}
 \]
@@ -341,9 +343,34 @@ con la relazione:
 \[
   (z_0, \dots, z_n) \sim (w_0, \dots, w_n) \iff \exists \lambda \in \C^\star= \C \setminus \set{0} \text{ tali che } z_i = \lambda w_i \; \forall i \in \set{0, \dots, n}
 \]
+\end{definition}
 Questo è uno spazio compatto, connesso, di Hausdorff i cui punti si indicano con
 $ p = [z_0 : \dots : z_n] $. Utilizzando la stessa costruzione dello spazio proiettivo
 reale si rende $ \Pjc{n} $ una varietà topologica di dimensione reale $ 2n $.
+\begin{lemma}
+  Equivalentemente si ha che lo spazio proiettivo complesso è:
+  \[
+    \Pjc{n} \simeq \quot{\Sph{2n+1}}{{\sim}}
+  \]
+  Dove $ z \sim w $ se $ z $ e $ w $ sono numeri complessi che differiscono per al
+  più una fase, cioè se $ \exists \lambda \in \mathbb{C} $ con
+  $ | \lambda | = 1 $ tale che $ z = \lambda w $. Equivalentemente si può dire che
+  $ \sim $ è l'azione di $ \Sph{1} $ su $ \Sph{2n+1} $ e quindi si può vedere
+  $ \Pjc{n} $ come le orbite di $ \Sph{2n+1} $ sotto l'azione di $ \Sph{1} $.
+\end{lemma}
+\begin{proof}
+  L'isomorfismo è realizzato da:
+  \begin{align*}
+    \Pjc{n} = \quot{\mathbb{C}^{n+1}}{\sim} & \to  \quot{\Sph{2n+1}}{\sim} \\
+    [z]_{\Pjc{n}} & \mapsto \left[\frac{x}{|| x ||}\right]_\sim
+  \end{align*}
+  Come si può verificare con tediosi calcoli.
+\end{proof}
+\begin{osservation}
+  Si osserva che $ \Pjr{n} $ è lo spazio dei possibili sottospazi di dimensione
+  $ 1 $ in $ \RN{n+1} $ mentre $ \Pjc{n} $ è lo spazio dei possibili sottospazi
+  di dimensione $ 1 $ in $ \mathbb{C}^{n+1} $.
+\end{osservation}
 % Fissato $ j \in \set{0, \dots, n} $ e definito
 % $ U_j = \set{[z_0, \dots, z_n] \in \Pjc{n} | z_j \not = 0 } $ si definisce la mappa:
 % \begin{align*}
@@ -410,18 +437,21 @@ Quindi ho una $ 0 $-cella, una $ 1 $-cella, \dots, una $ 2n $-cella.
   Vale che $ K^{(2n)} \simeq \Pjc{n} $.
 \end{proposition}
 \begin{proof}
-  La dimostrazione è per induzione. Assumo che $ K^{2t} = \Pjc{t} $ per $ 0 \leq t \leq n-1 $.
+  La dimostrazione è per induzione. Per $ t = 1 $ l'ho già verificato, assumo
+  che $ K^{(2t)} = \Pjc{t} $ per $ 0 \leq t \leq n-1 $.
 
   Sia
   \begin{align*}
     h \colon \Disk{2n} & \to \Pjc{n} \\
-    (z_0, \dots, z_{n-1}) & \mapsto \left(z_0,\dots, \sqrt{1 - \sum_{i < n}|z_i|^2} \right)
+    (z_0, \dots, z_{n-1}) & \mapsto \left[z_0:\dots: z_{n-1}:\sqrt{1 - \sum_{i < n}|z_i|^2} \right]
   \end{align*}
   So che $ \partial \Disk{2n} = \Sph{2n-1} = \set{|z_0|^2 + \dots + |z_{n-1}|^2 = 1} $
   quindi $ h $ è ben definita in quanto la radice esiste, ed è continua.
+  Restringendo $ h $ su $ \partial \Disk{2n} $ si ha che $ \sum_{i < n}|z_i|^2 = 1 $,
+  quindi:
   \begin{align*}
     h \big \lvert_{\partial \Disk{2n}} \colon \Sph{2n-1} & \to \Pjc{n-1} \\
-    (z_0, \dots, z_{n}) & \mapsto [z_0, \dots, z_{n-1}, 0] = P
+    (z_0, \dots, z_{n}) & \mapsto [z_0: \dots: z_{n-1}: 0] = P
   \end{align*}
   Vale che:
   \[
@@ -439,7 +469,7 @@ Quindi ho una $ 0 $-cella, una $ 1 $-cella, \dots, una $ 2n $-cella.
   $ F $ è iniettiva e suriettiva da uno spazio compatto a uno spazio di Hausdorff,
   quindi è un omeomorfismo.
 \end{proof}
-
+\eproof
 Ho che $ \pi_1(\Pjc{n}) = \set{1} $ $ \forall n \geq 1 $
 infatti per $ n = 1 $ $ \pi_1(\Pjc{1}) \cong \pi_1(\Sph[1]) = \set{1} $.
 Per induzione suppongo che $ \pi_1(\Pjc{n-1}) = \set{1} $, voglio

@@ -820,12 +820,18 @@ due costruzioni sono differenti, cioè:
       0 \rar & \hom{A,B} \rar & \hom{F,B} \rar{\beta} & \hom{R,B} \rar{\gamma} & \coker{\beta} \rar & 0
     \end{tikzcd}
   \]
-  Il conucleo è esattamente quel gruppo che rende esatta la successione, cioè
-  $ \im{\gamma} $, ma per il primo teorema degli isomorfismi:
+  \newmathsymb{coker}{\coker{f}}{Conucleo di $ f $}
+  Dove il conucleo di una mappa continua tra spazi topologici $ f \colon X \to Y $ è definito
+  da:
   \[
-    \coker{\beta} := \im{\gamma} \cong \quot{\hom{R,B}}{\ker{\gamma}} \cong \quot{\hom{R,B}}{\im{\beta}}
+    \coker{f} := \quot{Y}{\im{f}}
   \]
-  Quindi il conucleo rende esatta a destra la successione.
+  Il conucleo è esattamente quel gruppo che rende esatta la successione, infatti
+  usando il primo teorema degli isomorfismi e l'esattezza della successione:
+  \[
+    \coker{\beta} = \quot{\hom{R,B}}{\im{\beta}} \cong \quot{\hom{R,B}}{\ker{\gamma}} \cong \im{\gamma}
+  \]
+  Quindi automaticamente $ \gamma $ è suriettiva e perciò la successione diventa esatta.
   Esistono anche altre presentazioni, ma si dimostra che tutti i conuclei sono isomorfi,
   questo gruppo è proprio il \textbf{modulo di estensione di $ A $ e $ B $}\index{Modulo di estensione}.
 \end{definition}
@@ -1186,9 +1192,9 @@ Il teorema dei coefficienti universali quindi si riformula anche per la coomolog
 \end{proof}
 
 \begin{example}[Coomologia dello spazio proiettivo reale]
-  So che l'omologia dello spazio proiettivo reale con $ n = 3 $ è:
+  Soche l'omologia dello spazio proiettivo reale con $ n = 3 $ è:
   \[
-    H_p(\Pjr{3}, \Z_2) \cong
+    H_p(\Pjr{3}) \cong
     \begin{cases}
       \Z & \text{se } p = 0 \\
       \Z_2 & \text{se } p = 1 \\
@@ -1198,13 +1204,13 @@ Il teorema dei coefficienti universali quindi si riformula anche per la coomolog
   \]
   Applico il teorema dei coefficienti universali, per ogni $ p \in \mathbb{N} $:
   \[
-    H^p(\Pjr{3}, \Z_2) \cong \hom{H_p(\Pjr{3}, \Z_2)} \oplus \ext{H_{p-1}(\Pjr{3}, \Z_2)}
+    H^p(\Pjr{3}, \Z_2) \cong \hom{H_p(\Pjr{3}), \Z_2} \oplus \ext{H_{p-1}(\Pjr{3}), \Z_2}
   \]
   Quindi:
   \begin{gather*}
     H^0(\Pjr{3}, \Z_2) \cong \hom{\Z, \Z_2} \\
     H^1(\Pjr{3}, \Z_2) \cong \hom{\Z_2, \Z_2} \oplus \ext{\Z, \Z_2} \\
-    H^2(\Pjr{3}, \Z_2) \cong \hom{, \Z_2} \oplus \ext{\Z_2, \Z_2} \cong \ext{\Z_2, \Z_2} \\
+    H^2(\Pjr{3}, \Z_2) \cong \hom{0, \Z_2} \oplus \ext{\Z_2, \Z_2} \cong \ext{\Z_2, \Z_2} \\
     H^3(\Pjr{3}, \Z_2) \cong \hom{\Z, \Z_2} \oplus \ext{0, \Z_2} \cong \hom{\Z, \Z_2}
   \end{gather*}
   Calcolo i gruppi che mi mancano:
@@ -1218,20 +1224,21 @@ Il teorema dei coefficienti universali quindi si riformula anche per la coomolog
     \hom{\Z_2, \Z_2} = \set{\phi \colon \Z_2 \to \Z_2 } \cong \Z_2
   \]
   Infatti $ 0 $ deve andare in $ 0 $ essendo un omomorfismo.
-  Per calcolare $ \ext{\Z, \Z_2} $ considero la risoluzione:
-  \[
-    \begin{tikzcd}
-      0 \rar & 0 \rar & \Z \rar & \Z \rar & 0
-    \end{tikzcd}
-  \]
-  Passando agli omomorfismi:
-  \[
-    \begin{tikzcd}
-      0 \rar & \hom{\Z, \Z_2} \rar & \hom{\Z, \Z_2} \rar & 0 \rar & 0
-    \end{tikzcd}
-  \]
-  Quindi $ \ext{\Z, \Z_2} \cong 0 $.
-  Invece per $ \ext{\Z, \Z_2} $ considero la risoluzione:
+  $ \ext{\Z, \Z_2} \cong 0 $ in quanto $ \Z $ è libero.
+  % Per calcolare $ \ext{\Z, \Z_2} $ considero la risoluzione:
+  % \[
+  %   \begin{tikzcd}
+  %     0 \rar & 0 \rar & \Z \rar & \Z \rar & 0
+  %   \end{tikzcd}
+  % \]
+  % Passando agli omomorfismi:
+  % \[
+  %   \begin{tikzcd}
+  %     0 \rar & \hom{\Z, \Z_2} \rar & \hom{\Z, \Z_2} \rar & 0 \rar & 0
+  %   \end{tikzcd}
+  % \]
+  % Quindi $ \ext{\Z, \Z_2} \cong 0 $.
+  Invece per $ \ext{\Z_2, \Z_2} $ considero la risoluzione:
   \[
     \begin{tikzcd}
       0 \rar & 2 \Z \rar{i} & \Z \rar{\pi} & \Z_2 \rar & 0
@@ -1267,8 +1274,8 @@ Il teorema dei coefficienti universali quindi si riformula anche per la coomolog
   Sia $ X = \Pjc{2} $ e $ Y = \Sph{2} \vee \Sph{4} $, è vero che $ X $ e $ Y $ sono
   omotopicamente equivalenti? Mi aspetto che non lo siano in quanto $ X $ è una
   varietà topologica, mentre $ Y $ no, dato che possiede un punto (quello a cui
-  le due sfere sono incollate, che non possiede un intorno omeomorfo a
-  $ \RN{n} $). Per verificarlo posso usare gli invarianti topologici che
+  le due sfere sono incollate) che non possiede un intorno omeomorfo a
+  $ \RN{n} $. Per verificarlo posso usare gli invarianti topologici che
   conosco.
   \subsubsection{Gruppo fondamentale}
   Con Seifert-Van Kampen si trova che $ \pi_1(X) \cong \set{1} $ e
@@ -1349,20 +1356,20 @@ Il teorema dei coefficienti universali quindi si riformula anche per la coomolog
 \subsection{Prodotto cup}
 
 \newmathsymb{cuppr}{\cup}{Prodotto cup}
-Sia $ H^\star (X,\R) := \bigoplus_k H^k(X,\R) $, il prodotto
-cup $ \cup $ rende $ (H^\star (X,\R), +, \cup) $ un anello.
+Sia $ H^\star (X,\R) := \bigoplus_k H^k(X,\R) $, definisco il prodotto
+cup $ \cup $ tale che renda $ (H^\star (X,\R), +, \cup) $ un anello.
 
 Sia $ X $ uno spazio spazio topologico, e $ \R $ un PID,
-$ S^k(X, \R) $ e $ S^l(X, \R) $ sono gli insiemi delle cocatene,
+$ S^k(X; \R) $ e $ S^l(X; \R) $ sono gli insiemi delle cocatene,
 voglio costruire una mappa:
 \begin{align*}
-  \cup \colon S^k(X, \R) \times S^l(X, \R) & \to S^{k+l}(X, \R) \\
+  \cup \colon S^k(X; \R) \times S^l(X; \R) & \to S^{k+l}(X, \R) \\
   (\phi, \psi) & \mapsto \phi \cup \psi
 \end{align*}
 E quindi passare a livello di coomologia in modo da fornire la struttura
 ad anello.
 
-Se $ \phi \cup \psi \in S^{k+l}(X, \R) $ significa che $ \phi \cup \psi \in \hom{S_{k+1}(X), \R} $
+Se $ \phi \cup \psi \in S^{k+l}(X; \R) $ significa che $ \phi \cup \psi \in \hom{S_{k+1}(X), \R} $
 e quindi $ \phi \cup \psi \colon S_{k+l}(X) \to \R $, e l'azione di questa mappa può essere
 definita solo sui simplessi singolari e quindi estesa per linearità su tutto
 lo spazio delle catene. Sia $ \sigma \colon \Delta_{k+l} \to X $ un simplesso singolare, si
@@ -1382,7 +1389,7 @@ A questo punto la definizione dell'azione di $ \phi \cup \psi $ su $ \sigma $ ri
 Questa definizione è ben posta, il prodotto tra i due termini è infatti il prodotto in $ \R $.
 Per passare a livello di coomologia (indicando con abuso di notazione $ \cup^\star = \cup $):
 \begin{align*}
-  \cup \colon H^k(X, \R) \times H^l(X, \R) & \to H^{k+l}(X, \R) \\
+  \cup \colon H^k(X; \R) \times H^l(X; \R) & \to H^{k+l}(X; \R) \\
   (\llbracket \phi \rrbracket, \llbracket \psi \rrbracket) & \mapsto \llbracket \phi \circ \psi \rrbracket
 \end{align*}
 Verifico che questa applicazione è ben definita. Si ha che $ \phi $ e $ \psi $ sono
@@ -1390,13 +1397,13 @@ cocicli, cioè $ \delta \phi = \delta \psi = 0 $, e tutti gii altri elementi del
 per un cobordo da $ \phi $ e $ \psi $, cioè sono della forma $ \phi + \delta\phi_1 $ e $ \psi + \delta\psi_1 $.
 L'applicazione è ben definita se:
 \begin{enumerate}
-\item $ \phi \cup \psi $ è un bordo
-\item Elementi omologhi in $ H^k(X, \R) \times H^l(X, \R) $ vengono
-  mandati in elementi omologhi in $ H^{k+l}(X, \R) $.
+\item $ \phi \cup \psi $ è un cociclo
+\item Elementi omologhi in $ H^k(X; \R) \times H^l(X; \R) $ vengono
+  mandati in elementi omologhi in $ H^{k+l}(X; \R) $.
 \end{enumerate}
 Per verificare la prima di queste si utilizza il seguente lemma:
 \begin{lemma}
-  vale che $ \delta(\phi \cup \psi) = \delta \phi \cup \psi + (-)^k \phi \cup \delta \psi $, quindi se $ \phi $ e $ \psi $ sono cocicli,
+  Vale che $ \delta(\phi \cup \psi) = \delta \phi \cup \psi + (-)^k \phi \cup \delta \psi $, quindi se $ \phi $ e $ \psi $ sono cocicli,
   anche $ \phi \cup \psi $ lo è.
 \end{lemma}
 \begin{exercise}
@@ -1421,15 +1428,15 @@ ad anello a $ H^\star(X,\R) $.
 
 Se in particolare, come da qui in avanti assumo, $ X $ è connesso per archi:
 \[
-  H^0(X, \R) \cong \hom{H_0(X), \R} \cong \hom{\Z, \R} \cong \R
+  H^0(X; \R) \cong \hom{H_0(X), \R} \cong \hom{\Z, \R} \cong \R
 \]
 Dove $ \hom{\Z, \R} \cong \R $ in quanto per specificare un omomorfismo da
 $ \Z $ a $ \R $ mi basta dire quale è l'immagine di $ 1 $, la quale può essere
 un qualunque elemento di $ \R $. Ma $ \R $ è unitario, quindi possiede un
-elemento unità, e quindi si definisce l'unità in $ H^0(X, \R) $ e quindi in
-tutto $ H^\star0(X, \R) $ come l'elemento che corrisponde a $ \Id{\R} $ e che quindi
+elemento unità, e quindi si definisce l'unità in $ H^0(X; \R) $ e quindi in
+tutto $ H^\star(X, \R) $ come l'elemento che corrisponde a $ \Id{\R} $ e che quindi
 corrisponde anche a $ \Id{\hom{H_0(X), \R}} $, cioè $ \Id{} \colon \llbracket \phi \rrbracket \mapsto \llbracket \phi \rrbracket $.
-Osservo che in $ H^\star(X, \R) $:
+Osservo che in $ H^\star(X; \R) $:
 \[
   \llbracket \phi \rrbracket \cup \llbracket \Id{} \rrbracket = \llbracket \phi \cup \Id{} \rrbracket = \llbracket \phi \rrbracket = \llbracket \Id{} \cup \phi \rrbracket = \llbracket \Id{} \rrbracket \cup \llbracket \phi \rrbracket
 \]
@@ -1441,12 +1448,18 @@ Quindi $ H^\star(X, \R) $ è un anello unitario, ma in generale non commutativo.
 \end{lemma}
 \begin{proof}
   Se $ X $ è equivalente a $ Y $ allora i gruppi di omologia sono isomorfi, cioè
-  $ H_\star(X) \cong H_\star(Y) $, per il teorema dei coefficienti universali anche i gruppi
-  di coomologia sono isomorfi come $ \Z $-moduli, cioè $ H^\star(X) \cong H^\star(Y) $,
-  devo mostrare che l'isomorfismo è anche di anelli.
-  Se $ X \sim_H Y $ significa che esiste una mappa continua $ f \colon X \to Y $ e una
-  $ g \colon Y \to X $ tali che $ f \circ g \sim_H \Id{Y} $ e $ g \circ f \sim_H \Id{X} $.
-  Essendo $ f $ continua è ben definita
+  $ \forall k \; H_k(X) \cong H_k(Y) $, per il teorema dei coefficienti universali anche i
+  gruppi di coomologia sono isomorfi come $ \Z $-moduli, infatti tale teorema
+  afferma che:
+  \[
+    H^k(X; \R) \cong \tor{H_k(X), \R} \oplus \hom{H_{k-1}(X), \R}
+  \]
+  E siccome i gruppi di omologia sono isomorfi anche $ H^k(X; \R) $ lo sono,
+  cioè $ H^\star(X) \cong H^\star(Y) $ come gruppi, devo mostrare che l'isomorfismo è anche
+  di anelli. Se $ X \sim_H Y $ significa che esiste una mappa continua
+  $ f \colon X \to Y $ e una $ g \colon Y \to X $ tali che
+  $ f \circ g \sim_H \Id{Y} $ e $ g \circ f \sim_H \Id{X} $. Essendo $ f $ continua è ben
+  definita
   \begin{align*}
     f_\sharp \colon S_k(X) & \to S_k(Y) \\
     \sigma & \mapsto f \circ \sigma
@@ -1496,12 +1509,14 @@ Quindi $ H^\star(X, \R) $ è un anello unitario, ma in generale non commutativo.
       \alpha  & \alpha & 0 \\
     \end{array}
   \]
-  Dove $ \alpha^2 = 0 $ in quanto $ \alpha^2 $ è in $ H^{2n}(X, G) `= 0 $.
-  Quindi $ H^\star(\Sph{n}) = \Z[\Id{}] \oplus \Z[\alpha] $, e il generico elemento è
-  della forma $ a + b \alpha $ con $ a,b \in \Z $ e $ \alpha^2 = 0 $, quindi:
+  Dove $ \alpha^2 = 0 $ in quanto $ \alpha^2 $ è in $ H^{2n}(X, G) `= 0 $. Quindi e il
+  generico elemento è della forma $ a + b \alpha $ con $ a,b \in \Z $ e
+  $ \alpha^2 = 0 $, cioè:
   \[
     H^\star(\Sph{n}) \cong \quot{\Z[\alpha]}{(\alpha^2)}
   \]
+  Questo significa che $ H^\star(\Sph{n}) $ è formato da polinomi in $ \alpha $ in cui
+  tutti i monomi che contengono un fattore $ \alpha^2 $ sono nulli.
 \end{example}
 \begin{example}
   A questo punto si posseggono gli strumenti necessari per risolvere il problema della
@@ -1562,7 +1577,7 @@ Quindi $ H^\star(X, \R) $ è un anello unitario, ma in generale non commutativo.
   La dimostrazione per i due risultati è la stessa, lo dimostro per il caso
   reale. La dimostrazione è per induzione, e in ciò che segue è sottinteso che
   il gruppo di coefficienti è $ \Z_2 $.
-  Per $ n = 1 $ è noto che $ \Pjr{1} \cong \Sph{1} $, e quindi ho già calcolato
+  Per $ n = 1 $ è noto che $ \Pjr{1} \simeq \Sph{1} $, e quindi ho già calcolato
   l'anello di coomologia:
   \[
     H^\star(\Pjr{1}) \cong \quot{\Z[x]}{(x^2)}
@@ -1613,7 +1628,7 @@ Quindi $ H^\star(X, \R) $ è un anello unitario, ma in generale non commutativo.
     \caption{Intersezione tra $ \Sph{i} $ e $ \Sph{j} $}
     \label{fig:lez18:intersection}
   \end{figure}
-  So che $ \Pjr{n} = \Sph{n} \slash \sim = \Pjr{n-1} \cup_\pi \Disk{n} $, dove $ \sim $ è la
+  So che $ \Pjr{n} = \Sph{n} \slash \sim \; = \Pjr{n-1} \cup_\pi \Disk{n} $, dove $ \sim $ è la
   relazione antipodale. Quindi $ \Pjr{n} - \set{p} $ è retratto di deformazione
   di $ \Pjr{n-1} $.
   Costruisco il seguente diagramma commutativo:
@@ -1700,7 +1715,8 @@ Quindi $ H^\star(X, \R) $ è un anello unitario, ma in generale non commutativo.
   \[
     \omega(x) \colon \underbrace{\mathcal{T}_x\M \times \dots \times \mathcal{T}_x\M}_{k} \to \RN{}
   \]
-  Dove $ \mathcal{T}_x\M $ è lo \textbf{spazio tangente} a $ \M $ in $ x $.
+  Dove $ \mathcal{T}_x\M $ è lo \textbf{spazio tangente} a $ \M $ in $ x $, cioè lo spazio
+  dei vettori in $ x $
   In generale una $ k $-forma si scrive, usando la convenzione di Einstein, come:
   \[
     \omega = a_{i_1\dots i_k}(x) \d x^{i_1} \wedge \dots \wedge \d x^{i_k}
@@ -2183,7 +2199,7 @@ Per questo motivo si introduce un gruppo intermedio.
 \end{definition}
 Si può calcolare la coomologia di questo complesso, che è:
 \[
-  H^p_\infty(X, \RN{}) = \quot{\ker{ \delta \colon \hom{S^\infty_p(X), \RN{}} \to \hom{S^\infty_{p+1}(X), \RN{}}}}{\im{\hom{S^\infty_{p-1}(X), \RN{}} \to  \hom{S^\infty_p(X), \RN{}}}}
+  H^p_\infty(X, \RN{}) = \frac{\ker{ \delta \colon \hom{S^\infty_p(X), \RN{}} \to \hom{S^\infty_{p+1}(X), \RN{}}}}{ \im{\delta : \hom{S^\infty_{p-1}(X), \RN{}} \to  \hom{S^\infty_p(X), \RN{}}}}
 \]
 Dove $ \delta $ è il cobordo.
 \begin{osservation}

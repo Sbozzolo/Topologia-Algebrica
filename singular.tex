@@ -2706,11 +2706,15 @@ Questo lo posso fare anche nel caso di una coppia se $ A $ è sottospazio
         0 & \text{se $ k \not = 0 $}
       \end{cases}
     \]
+  \item Mostro che $ H_k(\Sph{n}, \Disk{n}) \cong \tilde{H}_k(\Sph{n}) $
+  \item Mostro che $ H_k(\Disk{n}, \Sph{n-1}) \cong \tilde{H}_k(\Sph{n}, \Disk{n}) $
+  \item Mostro che $ H_k(\Disk{n}, \Sph{n-1}) \cong \tilde{H}_{k-1}(\Sph{n01}) $
+  \item A partire dai punti precedenti calcolo tutti i gruppi di omologia
   \end{enumerate}
 
   \subparagraph{Dimostrazione del punto uno}
-  Comincio calcolando $ H_k(\Sph{0}, \Disk{0}_+) $.
-  Ho $ \Sph{0} = \set{-1, +1} $ e $ \Disk{0} = \Disk{0}_+ = \set{+ 1} $.
+  % Comincio calcolando $ H_k(\Sph{0}, \Disk{0}_+) $.
+  Si ha che $ \Sph{0} = \set{-1, +1} $ e $ \Disk{0} = \Disk{0}_+ = \set{+ 1} $.
   Siccome $ \Disk{0} \subseteq \Sph{0} $ per l'assioma dell'esattezza esiste
   una successione esatta in omologia:
   \[
@@ -2745,18 +2749,20 @@ Questo lo posso fare anche nel caso di una coppia se $ A $ è sottospazio
       & H_0(\Disk{0}) \rar{j} & H_{0}(\Sph{0}) \rar & H_0(\Sph{0}, \Disk{0}) \rar & 0
     \end{tikzcd}
   \]
-  Siccome $ \Disk{0} \incl \Sph{0} $ in quanto $ \set{+1} \incl \set{-1, +1} $ è inieittiva
-  a livello di omologia per l'assioma di addittività $ j \colon H_0(\set{+1}) \to H_0(\set{-1}) \oplus H_0(\set{+1}) $
-  è iniettiva, quindi $ \ker{j} = \im{i} = 0 $ quindi posso riscrivere la prima
-  parte della successione come:
-  \[
-    \begin{tikzcd}
-      0 \rar & H_1(\Sph{0},\Disk{0}) \rar & 0
-    \end{tikzcd}
-  \]
-  Da cui $ H_1(\Sph{0},\Disk{0}) = 0 $ per lo stesso ragionamento di prima.
+  Siccome $ \Disk{0} \incl \Sph{0} $ in quanto $ \set{+1} \incl \set{-1, +1} $ è
+  inieittiva a livello di omologia per l'assioma di additività
+  $ j \colon H_0(\set{+1}) \to H_0(\set{-1}) \oplus H_0(\set{+1}) $ è iniettiva, quindi
+  $ \ker{j} = \im{i} = 0 $, ma $ i $ è iniettiva quindi manda solo lo zero
+  in zero e perciò $ H_1(\Sph{0},\Disk{0}) \cong 0 $.
+  % quindi posso riscrivere la prima  parte della successione come:
+  % \[
+  %   \begin{tikzcd}
+  %     0 \rar & H_1(\Sph{0},\Disk{0}) \rar & 0
+  %   \end{tikzcd}
+  % \]
+  % Da cui $ H_1(\Sph{0},\Disk{0}) = 0 $ per lo stesso ragionamento di prima.
   Infine per definizione $ H_0(\Disk{0}) = \mathcal{G} $ e
-  per l'additività $ H_0(\Sph{0}) = \mathcal{G} \oplus \mathcal{G} $ quindi
+  per l'assioma di additività $ H_0(\Sph{0}) = \mathcal{G} \oplus \mathcal{G} $ quindi
   $ H_0(\Sph{0}, \Disk{0}) \cong {\mathcal{G} \oplus \mathcal{G}} \slash {\mathcal{G}} \cong \mathcal{G} $.
   In conclusione:
   \[
@@ -2766,7 +2772,69 @@ Questo lo posso fare anche nel caso di una coppia se $ A $ è sottospazio
       0 & \text{se } k \not =  0
     \end{cases}
   \]
-  Mostro che $ \tilde{H}_k(\Sph{n}) \cong H_k(\Disk{n}, \Sph{n-1}) $.
+
+  \subparagraph{Dimostrazione del punto due}
+  % Mi rimane da verificare l'ultimo, osservo intanto che $ \Disk{n}_+ \simeq \Disk{n} $,
+  % quindi in quello che segue sostanzialmente ometto il $ + $.
+
+  Considero la successione esatta indotta dall'inclusione $ \Disk{n} \incl \Sph{n} $:
+  \[
+    \begin{tikzcd}
+      \dots \rar & H_k(\Disk{n}) \rar & H_k(\Sph{n}) \rar & H_k(\Sph{n}, \Disk{n}) \rar & H_{k-1}(\Disk{n}) \rar & \dots
+    \end{tikzcd}
+  \]
+  Per $ k \geq 2 $ ho che $ H_k(\Disk{n}) \cong 0 $ e che $ H_{k-1}(\Disk{n}) \cong 0 $ quindi
+  la successione diventa:
+  \[
+    \begin{tikzcd}
+      0 \rar & H_k(\Sph{n}) \rar & H_k(\Sph{n}, \Disk{n}) \rar & 0
+    \end{tikzcd}
+  \]
+  Quindi
+  $ H_k(\Sph{n}, \Disk{n}) \cong H_k(\Sph{n}) \cong \tilde{H}_k(\Sph{n}) $ per
+  $ k \geq 2 $. Per $ k = 1 $ e $ n \not = 1 $ la successione è:
+  \[
+    \begin{tikzcd}[nodes={column sep=10pt}]
+      0 \rar & H_1(\Sph{n}) \rar & H_1(\Sph{n}, \Disk{n}) \rar & H_0(\Disk{n}) \rar & H_0(\Sph{n}) \rar & H_0(\Sph{n}, \Disk{n}) \rar & 0
+    \end{tikzcd}
+  \]
+  Ma $ H_0(X) $ conta le componenti connesse per archi di $ X $ quindi
+  $ H_0(\Disk{n}) \cong H_0(\Sph{n}) $ e quindi per lo stesso motivo di prima
+  $ H_1(\Sph{n}, \Disk{n}) \cong H_0(\Sph{n}, \Disk{n}) \cong 0 $
+  \[
+    H_k(\Sph{n}, \Disk{n}) \cong
+    \begin{cases}
+      \tilde{H}_k(\Sph{n}) & \text{se } k \geq 2 \\
+      0 & \text{se } k \in \set{0,1}
+    \end{cases}
+  \]
+  Se $ n \geq 2 $ allora $ \tilde{H}_k(\Sph{n}) = 0 $ per $ k \in \set{0,1} $
+  $ \Sph{n} $ sono semplicemente connesse quindi
+  $ \tilde{H}_1(\Sph{n}) = H_1(\Sph{n}) = 0 $, e c'è una sola componente
+  connessa per archi quindi $ H_0(\Sph{n}) = 0 $ e perciò
+  $ H_k(\Sph{n}, \Disk{n}) \cong \tilde{H}_k(\Sph{n}) $. Nel caso $ n = 1 $ vale che
+  $ H_1(\Sph{1}, \Disk{1}) = \mathcal{G} $ ma anche
+  $ \tilde{H}_1(\Sph{1}) = \mathcal{G} $ e quindi anche in questo caso
+  $ H_k(\Sph{n}, \Disk{n}) \cong \tilde{H}_k(\Sph{n}) $.
+
+  \subparagraph{Dimostrazione del  punto tre}
+  Considero $ U $ intorno chiuso del polo nord di $ \Sph{n} $,
+  per il teorema di escissione:
+  \[
+    H_p(\Sph{n}, \Disk{n}) \cong H_p(\Sph{n} \setminus U, \Disk{n} \setminus U )
+  \]
+  Per l'equivalenza omotopica
+  $ H_p(\Sph{n} \setminus U, \Disk{n} \setminus U ) \cong H_p(\Disk{n}, \Sph{n-1}) $, infatti
+  \[
+    \Sph{n} \setminus U \sim_H \Disk{n} \text{ e } \Disk{n} \setminus U \sim_H \Sph{n-1}
+  \]
+  In quanto dalla sfera tolgo una calotta intorno al polo Nord e quello che rimane
+  è omeomoerfo ad un disco, se dal disco tolgo un dischetto intorno al centro
+  quello che rimane è omeomorfo al bordo del disco.
+
+  \subparagraph{Dimostrazione del punto quattro}
+
+  % Mostro che $ \tilde{H}_{k-1}(\Sph{n-1}) \cong H_k(\Disk{n}, \Sph{n-1}) $.
   % \[
   %   \tilde{H}_k(\Sph{n}) \cong
   %   \begin{cases}
@@ -2775,7 +2843,7 @@ Questo lo posso fare anche nel caso di una coppia se $ A $ è sottospazio
   %   \end{cases}
   % \]
   Ho che $ \Sph{n-1} $ è il bordo di $ \Disk{n} $ quindi c'è una mappa naturale di inclusione
-  e ponendo $ X = \Disk{n} $ e $ A = \Sph{n-1} $ è ben definita la successione esatta lunga:
+  ed è ben definita la successione esatta lunga:
   \[
     \begin{tikzcd}[nodes={column sep=4.5pt, inner sep=0.5pt}]
       \dots \rar & H_k(\Sph{n-1}) \rar & H_k(\Disk{n}) \rar & H_k(\Disk{n}, \Sph{n-1}) \rar
@@ -2802,8 +2870,8 @@ Questo lo posso fare anche nel caso di una coppia se $ A $ è sottospazio
       0 \rar & H_1(\Disk{n}, \Sph{n-1}) \rar & H_0(\Sph{n-1}) \rar & H_0(\Disk{n}) \rar & H_0(\Disk{n}, \Sph{n-1}) \rar & 0
     \end{tikzcd}
   \]
-  Utilizzando le medesime argomentazioni del punto precedente si trova che
-  $ H_k(\Disk{n}, \Sph{n-1}) = 0 $ per $ k \in \set{0,1} $.
+  Utilizzando  le stesse argomentazioni del punto precedente si trova che
+  $ \forall k \geq 0 \text{ e } \forall n > 0 $ $ H_k(\Disk{n}, \Sph{n-1}) = \tilde{H}_{k-1}(\Sph{n-1}) $ .
   % Quindi $ H_1(\Disk{n}, \Sph{n-1}) = 0 $ per i soliti motivi.
   % Ma esiste $ i \colon \Sph{n-1} \incl \Disk{n} $ iniettiva, quindi esiste $ i_\star \colon H_0(\Sph{n-1}) \to H_0(\Disk{n}) $.
   % Ma $ \Disk{n} $ è contraibile quindi posso prendere come generatore un punto di $ \Disk{n} $, e ne prendo
@@ -2815,60 +2883,25 @@ Questo lo posso fare anche nel caso di una coppia se $ A $ è sottospazio
   % Quindi $ H_0(\Disk{n}, \Sph{n-1}) = 0 $ in quanto $ H_0(\Sph{n-1}) \to H_0(\Disk{n}) $ è iniettiva
   % e suriettiva e $ H_0(\Disk{n}, \Sph{n-1}) \cong \quot{H_0(\Disk{n})}{H_0(\Sph{n-1})} \cong 0 $.
   % In conclusione ho trovato che $ H_k(\Disk{n}, \Sph{n-1}) = 0 $ per $ k \in \set{0,1} $.
-  Mi rimane da verificare l'ultimo, osservo intanto che $ \Disk{n}_+ \simeq \Disk{n} $,
-  quindi in quello che segue sostanzialmente ometto il $ + $.
 
-  Considero la successione esatta ($ \Disk{n} \subseteq \Sph{n} $):
-  \[
-    \begin{tikzcd}
-      \dots \rar & H_k(\Disk{n}) \rar & H_k(\Sph{n}) \rar & H_k(\Sph{n}, \Disk{n}) \rar & H_{k-1}(\Disk{n}) \rar & \dots
-    \end{tikzcd}
-  \]
-  Per $ k \geq 2 $ ho che $ H_k(\Disk{n}) \cong 0 $ e che $ H_{k-1}(\Disk{n}) \cong 0 $ quindi
-  la successione diventa:
-  \[
-    \begin{tikzcd}
-      0 \rar & H_k(\Sph{n}) \rar & H_k(\Sph{n}, \Disk{n}) \rar & 0
-    \end{tikzcd}
-  \]
-  Quindi $ H_k(\Sph{n}, \Disk{n}) \cong H_k(\Sph{n}) \cong \tilde{H}_k(\Sph{n}) $ per $ k \geq 2 $.
-  Per $ k = 1 $ la successione è:
-  \[
-    \begin{tikzcd}[nodes={column sep=10pt}]
-      0 \rar & H_1(\Sph{n}) \rar & H_1(\Sph{n}, \Disk{n}) \rar & H_0(\Disk{n}) \rar & H_0(\Sph{n}) \rar & H_0(\Sph{n}, \Disk{n}) \rar & 0
-    \end{tikzcd}
-  \]
-  Ma $ H_0(X) $ conta le componenti connesse per archi di $ X $ quindi $ H_0(\Disk{n}) \cong H_0(\Sph{n}) $
-  e per lo stesso motivo di prima $ H_0(\Sph{n}, \Disk{n}) \cong 0$
-  \[
-    H_k(\Sph{n}, \Disk{n}) =
-    \begin{cases}
-      H_k(\Sph{n}) & \text{se } k \geq 1 \\
-      0 & \text{se } k = 0
-    \end{cases}
-  \]
-  Rimane da vedere come si comportano i gruppi di omologia
-  $ \tilde{H}_k(\Sph{n}) $ con $ k \geq 1 $. Per $ n = 0 $ è noto perché sono
-  $ \Sph{0} $ sono due punti, per $ k = 0 $ anche perché sono connessi per
-  archi, infine so che: $ H_k(\Sph{n}) \cong \tilde{H}_k(\Sph{n}) $ per
-  $ k \geq 1 $, ma anche che $ H_k(\Sph{n}, \Disk{n}) \cong H_k(\Sph{n}) $, se mostro
-  che $ H_p(\Sph{n}, \Disk{n}) \cong H_p(\Disk{n}, \Sph{n-1}) $ allora
-  $ H_k(\Sph{n}, \Disk{n}) \cong H_k(\Disk{n}, \Sph{n-1}) $. Ma ho mostrato che
-  $ H_k(\Disk{n}, \Sph{n-1}) \cong H_{k-1}(\Sph{n-1}) $, quindi posso procedere per
-  induzione:
-  \[
-    \tilde{H}_k(\Sph{n}) \cong H_k(\Sph{n}) \cong H_k(\Sph{n}, \Disk{n}) \cong H_k(\Disk{n}, \Sph{n-1}) \cong H_{k-1}(\Sph{n-1}) \cong \dots
-  \]
-  Per far vedere che $ H_p(\Sph{n}) \cong H_p(\Disk{n}, \Sph{n-1}) $ uso l'escissione:
-  considero $ U $ intorno opportuno del polo nord di $ \Sph{n} $, per l'escissione:
-  \[
-    H_p(\Sph{n}, \Disk{n}) \cong H_p(\Sph{n} \setminus U, \Disk{n} \setminus U )
-  \]
-  Per l'equivalenza omotopica
-  $ H_p(\Sph{n} \setminus U, \Disk{n} \setminus U ) \cong H_p(\Disk{n}, \Sph{n-1}) $, infatti dalla
-  sfera tolgo una calotta intorno al polo Nord quello che rimane è omeomoerfo
-  ad un disco, se dal disco tolgo un dischetto intorno al centro quello
-  che rimane è omeomorfo al bordo del disco.
+  % Rimane da vedere come si comportano i gruppi di omologia
+  % $ \tilde{H}_k(\Sph{n}) $ con $ k \geq 1 $. Per $ n = 0 $ è noto perché sono
+  % $ \Sph{0} $ sono due punti, per $ k = 0 $ anche perché sono connessi per
+  % archi, infine so che: $ H_k(\Sph{n}) \cong \tilde{H}_k(\Sph{n}) $ per
+  % $ k \geq 1 $, ma anche che $ H_k(\Sph{n}, \Disk{n}) \cong H_k(\Sph{n}) $, se mostro
+  % che $ H_p(\Sph{n}, \Disk{n}) \cong H_p(\Disk{n}, \Sph{n-1}) $ allora
+  % $ H_k(\Sph{n}, \Disk{n}) \cong H_k(\Disk{n}, \Sph{n-1}) $.
+
+  % Per far vedere che $ H_p(\Sph{n}) \cong H_p(\Disk{n}, \Sph{n-1}) $ uso l'escissione:
+
+  \subparagraph{Dimostrazione del punto cinque}
+  % Ma ho mostrato che
+  % $ H_k(\Disk{n}, \Sph{n-1}) \cong H_{k-1}(\Sph{n-1}) $, quindi posso procedere per
+  % induzione:
+  % \[
+  %   \tilde{H}_k(\Sph{n}) \cong H_k(\Sph{n}) \cong H_k(\Sph{n}, \Disk{n}) \cong H_k(\Disk{n}, \Sph{n-1}) \cong H_{k-1}(\Sph{n-1}) \cong \dots
+  % \]
+
   Ho mostrato che:
   \[
     \tilde{H}_k(\Sph{n}) \cong H_{k+1}(\Sph{n+1}, \Disk{n+1}) \cong \tilde{H}_{k+1}(\Sph{n+1})
@@ -2890,7 +2923,28 @@ Questo lo posso fare anche nel caso di una coppia se $ A $ è sottospazio
       0 & \text{se } k \not = n
     \end{cases}
   \]
-
+  Quindi gli isomorfismi che ho trovato trovo che:
+  \begin{align*}
+    \tilde{H}_p(\Sph{n}) & \cong
+    \begin{cases}
+      \mathcal{G} & \text{se } p = n \\
+      0 & \text{se } p \not = n
+    \end{cases} \\
+    H_p(\Disk{n}, \Sph{n-1}) & \cong
+    \begin{cases}
+      \mathcal{G} & \text{se } p = n \\
+      0 & \text{se } p \not = n
+    \end{cases}
+  \end{align*}
+  E inoltre:
+  \[
+    H_{p}(\Sph{n}, \Disk{n}_+) \cong
+    \begin{cases}
+      \mathcal{G} & \text{se } p = n \\
+      0 & \text{se } p \not = n
+    \end{cases}
+  \]
+  Dove si è usato che $ \Disk{n}_+ \simeq \Disk{n} $.
 \end{proof}
 
 % lezione 7
