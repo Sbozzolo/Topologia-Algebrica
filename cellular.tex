@@ -393,8 +393,27 @@ reale si rende $ \Pjc{n} $ una varietà topologica di dimensione reale $ 2n $.
   $ \Sph{2} \setminus \set{N} \simeq \RN{2} $, quindi
   $ \Pjc{1} \setminus \set{\infty} \simeq \RN{2} $ e quindi
   $ \Pjc{1} \setminus \set{\infty} \simeq \Sph{2} \setminus \set{N} $. Questi sono spazi non compatti ma
-  di Hausdorff, so che la compattificazione di Alexandroff\footnotemark sono spazi omeomorfi,
-  ma la compattificazione di uno spazio meno un punto è lo spazio stesso: $ \Pjc{1} \simeq \Sph{2} $.
+  di Hausdorff, so che la compattificazione di Alexandroff\footnotemark sono
+  spazi omeomorfi, ma la compattificazione di uno spazio meno un punto è lo
+  spazio stesso: $ \Pjc{1} \simeq \Sph{2} $. Questo spazio ammette una costruzione di
+  CW complesso. $ K^{(0)} $ è un punto $ \Pjc{0} $, poi si può costruire
+  $ K^{(2)} = K^{(0)} \cup_f \Disk{2} = \Sph{2} \simeq \Pjc{1} $ con $ f $ mappa
+  costante, che quindi fa collassare il bordo in un punto. Successivamente si ha
+  $ K^{(4)} = K^{(2)} \cup_\pi \Disk{4} $ infatti $ K^{(2)} = \Pjc{1} $, poi prendo
+  $ \Disk{4} $ so che $ \partial \Disk{4} = \Sph{3} $ e la mappa al quoziente è
+  $ \pi \colon \Sph{3} \to \Pjc{1} $ che è fatta così:
+  \begin{align*}
+    \pi \colon \Sph{3} & \mapsto \Pjc{1} \\
+    (z_0, z_1) & \mapsto [z_0 : z_1]
+  \end{align*}
+  Posso fare agire $ \Sph{1} $:
+  \begin{align*}
+    \Sph{1} \times \Sph{3} & \to \Sph{3} \\
+    (\lambda, (z_0, z_1)) & \mapsto (\lambda z_0, \lambda z_1)
+  \end{align*}
+  Siccome $ \lambda \in \Sph{1} $ allora $ | \lambda | = 1 $ e quindi $ | \lambda z_0 |^2 + | \lambda z_1 |^2 = 1 $.
+  Faccio il quoziente $ \Pjc{1} = \quot{\Sph{3}}{\Sph{1}} $ e $ \pi $ è la proiezione al
+  quoziente.
 \end{example}
 \footnotetext{\index{Compattificazione di Alexandroff}La compattificazione di
   Alexandroff consiste nell'aggiungere un punto ad uno spazio topologico per
@@ -404,33 +423,14 @@ reale si rende $ \Pjc{n} $ una varietà topologica di dimensione reale $ 2n $.
 % quale è la struttura di CW complesso, quale è il suo gruppo fondamentale e quali
 % sono i suoi gruppi di omologia.
 
-Anche gli spazi proiettivi complessi ammettono struttura di CW complesso.
-$ K^{(0)} $ è un punto $ \Pjc{0} $, poi si può costruire
-$ K^{(2)} = K^{(0)} \cup_f \Disk{2} = \Sph{2} \simeq \Pjc{1} $ con $ f $ mappa costante,
-che quindi fa collassare il bordo in un punto. Successivamente si ha
-$ K^{(4)} = K^{(2)} \cup_g \Disk{4} $ infatti $ K^{(2)} = \Pjc{1} $, poi prendo
-$ \Disk{4} $ so che $ \partial \Disk{4} = \Sph{3} $ e la mappa al quoziente è
-$ \pi \colon \Sph{3} \to \Pjc{1} $ che è fatta così:
-\begin{align*}
-  \pi \colon \Sph{3} & \mapsto \Pjc{1} \\
-  (z_0, z_1) & \mapsto [z_0 : z_1]
-\end{align*}
-Posso fare agire $ \Sph{1} $:
-\begin{align*}
-  \Sph{1} \times \Sph{3} & \to \Sph{3} \\
-  (\lambda, (z_0, z_1)) & \mapsto (\lambda z_0, \lambda z_1)
-\end{align*}
-Siccome $ \lambda \in \Sph{1} $ allora $ | \lambda | = 1 $ e quindi $ | \lambda z_0 |^2 + | \lambda z_1 |^2 = 1 $.
-Faccio il quoziente $ \Pjc{1} = \quot{\Sph{3}}{\Sph{1}} $ e $ \pi $ è la proiezione al
-quoziente. Allora $ K^{(4)} = K^{(2)} \cup_\pi \Disk{4} \simeq \Pjc{2} $.
-
 In generale $ K^{(2n - 2)} $ si costruisce prendendo $ \Disk{2n} $ e con la mappa
 di proiezione $ \pi \colon \partial \Disk{2n} = \Sph{n-1} \to \Pjc{n-1} $, quindi $ K^{(2n -2)} \cup_\pi \Disk{2n} $.
 $ \Pjc{n} $ è un CW complesso ottenuto attaccando celle di dimensione $ 2j $ per $ 0 \leq j \leq n $
-Quindi ho una $ 0 $-cella, una $ 1 $-cella, \dots, una $ 2n $-cella.
+Quindi ho una $ 0 $-cella, una $ 2 $-cella, \dots, una $ 2n $-cella.
 
 \begin{osservation}
-  In generale $ \Pjc{n} = \Pjc{n-} \cup \C^n $ quindi si può srotolare.
+  In generale $ \Pjc{n} = \Pjc{n-1} \cup \C^n $. Procedendo induttivamente:
+  $ \Pjc{n} = \Pjc{n-1} \cup \C^n = \Pjc{n-2} \cup \C^{n-1} \cup \C^{n} = \dots $.
 \end{osservation}
 
 \begin{proposition}
@@ -451,17 +451,19 @@ Quindi ho una $ 0 $-cella, una $ 1 $-cella, \dots, una $ 2n $-cella.
   quindi:
   \begin{align*}
     h \big \lvert_{\partial \Disk{2n}} \colon \Sph{2n-1} & \to \Pjc{n-1} \\
-    (z_0, \dots, z_{n}) & \mapsto [z_0: \dots: z_{n-1}: 0] = P
+    (z_0, \dots, z_{n}) & \mapsto [z_0: \dots: z_{n-1}: 0]
   \end{align*}
-  Vale che:
+  Ma se $ P $ è un punto in $ \Pjc{n-1} $ allora:
   \[
-    \left( h \big \lvert_{\partial \Disk{2n}}\right)^{-1}(P) = \set{ (\lambda_{z_0}, \dots, \lambda_{z_{n-1}}) | |\lambda| = 1} \simeq \Sph{1}
+    \left( h \big \lvert_{\partial \Disk{2n}}\right)^{-1}(P) = \set{ (\lambda_{z_0}, \dots, \lambda_{z_{n-1}}) | |\lambda| = 1, \sum|z_i|^2 = 1} %\simeq \Sph{1}
   \]
-  Queste sono le preimmagini. $ h $ non è iniettiva.
+  Quindi $ h $ non è iniettiva (infatti tutti si possono scalare tutte le
+  coordinate nello spazio proiettivo di un medesimo fattore e si ottiene sempre
+  lo stesso punto). Quindi:
   \[
     \begin{tikzcd}
-      \Disk{2n} \rar{h} & \Pjc{n} \\
-      \Pjc{n-1} \cup_\tau \Disk{n} \arrow{ur}{F} & {}
+      \Disk{2n} \rar{h} \dar{P} & \Pjc{n} \\
+      \Pjc{n-1} \cup_\tau \Disk{2n} \arrow{ur}{F} & {}
     \end{tikzcd}
   \]
   Dove $ \tau = h \big \lvert_{\partial \Disk{2n}} $, con $ P((z_0, \dots, z_{n-1})) = ([z_0, \dots, z_{n-1}]) $.
@@ -1020,17 +1022,21 @@ dei gruppi di omologia.
   Ho $ {A} \slash {A} \subseteq {V} \slash {A} \subseteq {Y} \slash {A} $.
   Inoltre
   \[
-    H_k(\quot{Y}{A}, \quot{V}{A}) \cong H_n(\quot{Y}{A} \setminus \quot{A}{A}, \quot{V}{A} \setminus \quot{A}{A})
+    H_k(Y \setminus A, V \setminus A) \cong H_n(\quot{Y}{A} \setminus \quot{A}{A}, \quot{V}{A} \setminus \quot{A}{A})
   \]
-  per l'assioma di escissione che posso applicare in quanto vale che $ \bar{A} \subset \mathrm{int}(V) $.
-  In questo è necessario che la coppia sia buona, ma nei CW complessi è sempre così, come si può
-  verificare.
-  \begin{exercise}
-    Dimostrare che la coppia formata da un $ k $-scheletro e un $ k-1 $-scheletro è buona.
-  \end{exercise}
-  La $ q_\star $ di destra è un isomorfismo perché la sua restrizione sul complementare di $ A $
-  in $ Y $ è un omeomorfismo. Per la commutatività del diagramma $ q_\star $ è isomorfismo.
+  In quanto:
+  \[
+    Y \setminus A \simeq \quot{Y}{A} \setminus \quot{A}{A}
+  \]
+  Perché nel membro a destra si fa collassare tutto $ A $ in un punto, e poi si
+  rimuove questo punto, quindi ciò che resta è proprio $ Y \setminus A $. Siccome $ q_\star $
+  si può esprimere come composizione di isomorfismi è un isomorfismo.
 \end{proof}
+  \begin{exercise}
+    In questa dimostrazione è stato necessario che la coppia sia buona, ma nei
+    CW complessi è sempre così, dimostrare che la coppia formata da un
+    $ k $-scheletro e un $ k-1 $-scheletro è buona.
+  \end{exercise}
 \begin{corollary}
   Se $ (Y,A) $ è una coppia buona allora vale che $ \tilde{H}_k({Y} \slash {A}) \cong H_k(Y,A) $.
 \end{corollary}
@@ -1279,28 +1285,29 @@ $ d^{CW} $ è un operatore di bordo.
   L'omologia cellulare è isomorfa all'omologia singolare.
 \end{proposition}
 \begin{proof}
-  Ora voglio mostrare che l'omologia è isomorfa a quella singolare, devo mostrare
-  che:
+  Voglio mostrare che:
   \[
     H_k(X) \cong H^{CW}_k(X) := \quot{\ker{d_k^{CW}}}{\im{d_{k+1}^{CW}}}
   \]
-  Avevo mostrato che
-  $ H_k(X^{(k-1))}) = 0 $ quindi se $ n = k - 1 $ allora $ H_k(X^{(k-1)}) = 0 $ quindi
-  $ j_k $ è iniettiva in quanto $ \ker{j_k} = \im{\sigma} = 0 $.
-  Osservo che siccome $ \tau $ è suriettiva $ \im{\tau} = H_k(X^{(k+1)}) $, ma per
-  il teorema fondamentale degli omeomorfismi $ \quot{H_k(X^{(k)})}{\ker{\tau}} \cong \im{\tau} $
-  quindi $ H_k(X^{(k+1)}) \cong \quot{H_k(X^{(k)})}{\ker{\tau}} $. Ma $ H_k(X^{(k+1)}) \cong H_k(X) $,
-  quindi ho che: $ \quot{H_k(X^{(k)})}{\ker{\tau}} \cong H_k(X) $. Inoltre siccome
-  la successione è esatta $ \ker{\tau} = \im{\delta_{k+1}} $ quindi
-  nel complesso ho che
+  Per $ n = k - 1 $ si ha che $ H_n(X^{(k-1)}) = 0 $ quindi $ H_k(X^{(k-1)}) = 0 $ e
+  perciò $ j_k $ è iniettiva in quanto $ \ker{j_k} = \im{\sigma} = 0 $.
+  Siccome $ \tau $ è suriettiva $ \im{\tau} = H_k(X^{(k+1)}) $, ma per il
+  teorema fondamentale degli omeomorfismi
+  $ {H_k(X^{(k)})} \slash {\ker{\tau}} \cong \im{\tau} $ quindi:
+  \[
+    H_k(X^{(k+1)}) \cong \quot{H_k(X^{(k)})}{\ker{\tau}}
+  \]
+  Ma $ H_k(X^{(k+1)}) \cong H_k(X) $, quindi
+  $ {H_k(X^{(k)})} \slash {\ker{\tau}} \cong H_k(X) $. Inoltre siccome la successione è
+  esatta $ \ker{\tau} = \im{\delta_{k+1}} $ e perciò ho che
   \[
     H_k(X) \cong \quot{H_k(X^{(k)})}{\im{\delta_{k+1}}}
   \]
-  Inoltre ho $ j_k \colon H_k(X^{(k)}) \to H_k(X^{(k)}, X^{(k-1)}) $ che è tale che:
+  Inoltre vale che considerato $ j_k \colon H_k(X^{(k)}) \to H_k(X^{(k)}, X^{(k-1)}) $:
   \[
     j_k\left(\im{\delta_{k+1}}\right) = \im{j_k \circ \delta_{k+1}}
   \]
-  infatti se $ z \in j_k\left(\im{\delta_{k+1}}\right) $ allora esiste $ u $ tale che
+  Infatti se $ z \in j_k\left(\im{\delta_{k+1}}\right) $ allora esiste $ u $ tale che
   $ z = j_k(\delta_{k+1}(u)) = j_k \circ \delta_{k+1}(u) $, e se $ w \in \im{j_k \circ \delta_{k+1}} $ allora esiste $ r $ tale che
   $ w = j_k \circ \delta_{k+1}(r) = j_k(\delta_{k+1}(r)) $.
   Quindi $ j_k\left(\im{\delta_{k+1}}\right) = \im{d_{k+1}^{CW}} $, e perciò\footnote{Usando il fatto che se

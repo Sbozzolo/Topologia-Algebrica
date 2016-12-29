@@ -1691,14 +1691,16 @@ Quindi $ H^\star(X, \R) $ è un anello unitario, ma in generale non commutativo.
 
 \begin{definition}
   Uno spazio topologico $ \M $ è una \textbf{varietà differenziabile}\index{Varietà differenziabile}
-  se è una varietà topologica di dimensione $ n $ e possiede un \textbf{atlante}\index{Atlante},
+  se è una varietà topologica di dimensione $ n $ e possiede un \textbf{atlante differenziabile}\index{Atlante},
   ovvero una collezione di coppie $ (U_\alpha, \phi_\alpha) $ tale che:
   \begin{enumerate}
   \item $ U_\alpha $ sono intorni aperti omeomorfi a intorni in $ \RN{n} $, e l'omeomorfismo
     è realizzato dalla mappa $ \phi_\alpha $, detta \textbf{carta}\index{Carta di varietà differenziabile}.
-  \item Ogni punto $ p \in \M $ possiede almeno un intorno $ U_\alpha $ che lo contiene.
+  \item Ogni punto $ p \in \M $ possiede almeno un intorno $ U_\alpha $ che lo
+    contiene. Questo significa in particolare che $ \set{U_\alpha} $ è un
+    ricoprimento per $ \M $.
   \item I cambiamenti di coordinate siano buoni, cioè date due carte
-    $ \phi \colon A_1 \to \RN{n} $, $ \phi_2 \colon A_2 \to \RN{n} $ con
+    $ \phi_1\colon A_1 \subseteq U_1 \to \RN{n} $, $ \phi_2 \colon A_2 \subseteq U_2 \to \RN{n} $ con
     $ A_1, A_2 $ intorni aperti $ A_1 \cap A_2 \not = 0 $ allora:
     \[
       \phi_2 \circ \phi_1^{-1} \colon \phi_1(A_1 \cap A_2) \to \phi_2(A_1 \cap A_2) \in \mathcal{C}^\infty(\phi_1(A_1 \cap A_2) \subseteq \RN{n})
@@ -1711,18 +1713,19 @@ Quindi $ H^\star(X, \R) $ è un anello unitario, ma in generale non commutativo.
   $ \M $}
 \begin{definition}
   Su $ \M $ si definisce una \textbf{$ k $-forma differenziale}\index{Forma differenziali} come
-  una applicazione multilineare antisimmetrica $ \omega $ tale che
+  una applicazione multilineare completamente antisimmetrica $ \omega $ tale che
   \[
-    \omega(x) \colon \underbrace{\mathcal{T}_x\M \times \dots \times \mathcal{T}_x\M}_{k} \to \RN{}
+    \omega_x \colon \underbrace{\mathcal{T}_x\M \times \dots \times \mathcal{T}_x\M}_{k} \to \RN{}
   \]
   Dove $ \mathcal{T}_x\M $ è lo \textbf{spazio tangente} a $ \M $ in $ x $, cioè lo spazio
-  dei vettori in $ x $
+  dei vettori in $ x $.
   In generale una $ k $-forma si scrive, usando la convenzione di Einstein, come:
   \[
-    \omega = a_{i_1\dots i_k}(x) \d x^{i_1} \wedge \dots \wedge \d x^{i_k}
+    \omega_x = a_{i_1\dots i_k}(x) \d x^{i_1} \wedge \dots \wedge \d x^{i_k}
   \]
   dove $ \wedge $ indica il prodotto wedge, definito a breve. Lo spazio delle
-  $ k $-forme su $ \M $ si denota con $ \Omega^k(\M) $ ed è uno spazio vettoriale.
+  $ k $-forme su $ \M $ si denota con $ \Omega^k(\M) $ ed è uno spazio vettoriale
+  con la naturale operazione di somma e prodotto per uno scalare.
 \end{definition}
 \newmathsymb{wedge}{\alpha\wedge\beta}{Prodotto wedge tra $ \alpha $ e $ \beta $}
 \begin{definition}
@@ -1738,7 +1741,11 @@ Quindi $ H^\star(X, \R) $ è un anello unitario, ma in generale non commutativo.
     \forall i,j \; \d x^i \wedge \d x^j = - \d x^j \wedge \d x^i
   \]
 \end{definition}
-Il prodotto wedge è bilineare e associativo.
+Il prodotto wedge è bilineare e associativo e non commutativo, ma vale che:
+\[
+  \omega_1 \wedge \omega_2 = (-)^{pq} \omega_2 \wedge \omega_1
+\]
+Con il quale si ritrova giustamente che $ \d x^i \wedge \d x^j = - \d x^j \wedge \d x^i $.
 \begin{example}\hfill
   \begin{itemize}
   \item Le $ 0 $-forme sono funzioni ordinarie
@@ -1844,13 +1851,14 @@ $ H^p_{dR}(\M) $ è banale significa che tutte le forme sono esatte, in quanto
 non ci sono forme chiuse che non siano anche esatte (cioè elementi di
 $ B^p(\M) $ che non sono in $ Z^p(\M) $).
 \begin{osservation}
-  Se $ \M $ è anche compatto la coomologia di de Rham è uno spazio vettoriale
-  sui reali finitamente generato. Se $ \M $ non è compatto si costruisce la
-  \textbf{coomologia a supporto compatto}\index{Coomologia a supporto compatto}
-  $ H^p_c(\M) $ in cui si lavora con le forme differenziali a \textbf{supporto
-    compatto}\index{Supporto compatto}, cioè tali che la chiusura dell'insieme
-  su cui tali forme sono non nulle è un insieme compatto. Chiaramente se $ \M $ è
-  compatta ogni forma differenziale è a supporto compatto.
+  La coomologia di de Rham può essere strutturata in modo naturale a spazio
+  vettoriale sui reali, e se $ \M $ è anche compatto lo spazio è sui reali. Se
+  $ \M $ non è compatto si costruisce la \textbf{coomologia a supporto
+    compatto}\index{Coomologia a supporto compatto} $ H^p_c(\M) $ in cui si
+  lavora con le forme differenziali a \textbf{supporto compatto}\index{Supporto
+    compatto}, cioè tali che la chiusura dell'insieme su cui tali forme sono non
+  nulle è un insieme compatto. Chiaramente se $ \M $ è compatta ogni forma
+  differenziale è a supporto compatto.
 \end{osservation}
 \begin{lemma}
   Si dimostra che, a differenza della coomologia di de Rham, la coomologia a supporto
@@ -1882,7 +1890,8 @@ Costruisco l'applicazione $ b $ per gli spazi $ \Omega $. Sia $ k \leq \dim \M $
 \end{align*}
 Se $ \M $ è compatto l'integrale è ben definito, se $ \M $ non è compatto si
 deve lavorare con forme differenziali a supporto compatto. Assumo $ \M $
-compatto, definisco una mappa $ I $ sulla coomologia di de Rham:
+compatto, definisco una mappa $ I $ sulla coomologia di de Rham, la quale è uno
+spazio vettoriale sui reali e quindi suscettibile dell'osservazione precedente:
 \begin{align*}
   I \colon H^k_{dR}(\M) \times H^{n-k}_{dR}(\M) & \to \RN{} \\
   ([\alpha], [\beta]) & \mapsto \int_\M \alpha \wedge \beta
@@ -1902,8 +1911,8 @@ Quindi:
 \[
   \int_\M (\alpha + \d \alpha') \wedge (\beta + \d \beta') = \int_\M \alpha \wedge \beta + \int_\M \d {(\alpha' \wedge \beta)} + \int_\M \d {(\alpha' \wedge \d \beta')} + \int_\M \d {(\alpha \wedge \d \beta')}
 \]
-Per il teorema di Stokes le forme esatte integrate su $ \M $ sono nulle non essendoci termini di bordo,
-quindi la mappa è ben definita in quanto:
+Per il teorema di Stokes le forme esatte integrate su $ \M $ sono nulle non
+essendoci termini di bordo, quindi la mappa è ben definita in quanto:
 \[
   \int_\M (\alpha + \d \alpha') \wedge (\beta + \d \beta') = \int_\M \alpha \wedge \beta
 \]
@@ -1921,7 +1930,7 @@ quindi la mappa è ben definita in quanto:
   \end{align*}
   è un isomorfismo di gruppi abeliani, cioè $ H^k_{dR}(\M) \cong (H^{n-k}_c(\M))^* $.
 \end{theorem}
-\begin{proof}
+\begin{proof}\emph{Idee della dimostrazione.}
   La dimostrazione è piuttosto articolata e si svolge per passi:
   \begin{enumerate}
   \item Dimostrazione del teorema per $ \M = \RN{n} $
@@ -2142,12 +2151,12 @@ Questo teorema offre una rappresentazione esplicita dei gruppi di coomologia
 singolare in termini di forme differenziali, per le quali è disponibile un corposo
 set di tecniche.
 
-Per dimostrare il teorema di de Rham bisogna prima costruire un omomorfismo
-$ \rho \colon H^p_{dR}(X) \to H^p(X;\RN{}) $ e dopodiché dimostrare che è un isomorfismo.
-Per costruire $ \rho $ definisco un omomorfismo $ \rho \colon \Omega^p(X) \to \hom{S_p(X), \RN{}} $
-e poi passo a livello di omologia, infatti per il teorema dei coefficienti
-universali l'omologia del complesso degli omomorfismi è isomorfa alla coomologia.
-Quindi definirò $ \rho $ tramite:
+Per dimostrare il teorema di de Rham bisogna prima costruire un omomorfismo di
+gruppi abeliani $ \rho \colon H^p_{dR}(X) \to H^p(X;\RN{}) $ e dopodiché dimostrare che è
+anche isomorfismo di gruppi abeliani. Per costruire $ \rho $ definisco un omomorfismo
+$ \rho \colon \Omega^p(X) \to \hom{S_p(X), \RN{}} $ e poi passo a livello di omologia, infatti
+per il teorema dei coefficienti universali l'omologia del complesso degli
+omomorfismi è isomorfa alla coomologia. Quindi definirò $ \rho $ tramite:
 \[
   \begin{tikzcd}
     Z^p(X) \rar{r} \dar{\pi_1} & \hom{S_p(X), \RN{}} \dar{\pi_2} \\
@@ -2159,7 +2168,7 @@ sui $ p $-simplessi singolari $ \sigma \colon \Delta_p \to X $ e produce un nume
 Se $ \sigma^\star $ è il \textbf{pullback}\index{Pullback} di $ \sigma $, cioè la mappa:
 \begin{align*}
   \sigma^\star \colon \Omega^p(X) & \to \Omega^p(\Delta_p) \\
-  \omega & \mapsto \sigma^\star = \omega \circ \sigma
+  \omega & \mapsto \sigma^\star(\omega) = \omega \circ \sigma
 \end{align*}
 Si è tentati di definire:
 \[
@@ -2184,7 +2193,7 @@ Per questo motivo si introduce un gruppo intermedio.
     lisce}\index{Complesso delle catene singolari} come il gruppo libero
   generato dai $ p $-simplessi singolari lisci su $ X $ con il bordo ottenuto
   restringendo l'operatore di bordo del complesso delle catene ai simplessi
-  singolari lisci. Questo sin indica con $ (S^\infty_p(X), \partial) $, e il generico
+  singolari lisci. Questo si indica con $ (S^\infty_p(X), \partial) $, e il generico
   elemento $ c \in S^\infty_p(X) $ si può scrivere come:
   \[
     c = \sum_\sigma n_\sigma \sigma \text{ con $ \sigma $ $ p $-simplesso singolare liscio}
@@ -2207,9 +2216,9 @@ Dove $ \delta $ è il cobordo.
   questa induce una mappa $ F^\star $:
   \begin{align*}
     F^\star \colon H^p_\infty(Y, \RN{}) & \to H^p_\infty(X, \RN{}) \\
-    \llbracket c \rrbracket & \mapsto \llbracket F \circ c \rrbracket
+    \llbracket \phi \rrbracket & \mapsto \llbracket \phi \circ F \rrbracket
   \end{align*}
-  Questa è sensata in quanto $ F \circ c $ è $ \mathcal{C}^\infty $ in quanto
+  Questa è sensata in quanto $ \phi \circ F $ è $ \mathcal{C}^\infty $ in quanto
   composizione di funzioni $ \mathcal{C}^\infty $.
 \end{osservation}
 Con questo nuovo gruppo si può definire un omomorfismo $ r $ come ero tentato
@@ -2228,7 +2237,11 @@ Come notazione si pone:
 \[
   \int_{\Delta_p} \sigma^\star(\omega) = \int_\sigma \omega
 \]
-Estendendo alle catene:
+La notazione rende chiara la costruzione che si sta facendo: un simplesso
+singolare può essere immaginato come la sua immagine in $ X $, quindi
+$ \int_\sigma \omega $ non è altro che l'integrale di $ \omega $ sulla regione di spazio
+$ \sigma(\Delta_p) $. Estendendo alle catene si ottiene l'integrale su spazi che
+non sono immagini di simplessi standard:
 \begin{align*}
   r(\omega) \colon S_p^\infty(X) & \to \RN{} \\
   c = \sum n_\sigma \sigma & \mapsto \int_c \omega = \sum n_\sigma \int_\sigma \omega
@@ -2250,11 +2263,23 @@ A questo punto ho due complessi: $ (\Omega^\bullet, \d{}) $ e $ (\hom{(S^\infty_
   \end{tikzcd}
 \]
 
-\begin{lemma}
-  La mappa
+% \begin{lemma}
+%   La mappa
+%   $ r \colon (\Omega^\bullet(X), \d{}) \to (\hom{(S^\infty_\bullet(X), \RN{})}, \delta) $ precedentemente definita
+%   à una mappa di cocatene, cioè $ r \circ d = \delta \circ r $.
+% \end{lemma}
+\begin{theorem}[Teorema di Stokes\index{Teorema di Stokes}]
+  Il \textbf{teorema di Stokes} è equivalente ad affermare che la mappa
   $ r \colon (\Omega^\bullet(X), \d{}) \to (\hom{(S^\infty_\bullet(X), \RN{})}, \delta) $ precedentemente definita
-  à una mappa di cocatene, cioè $ r \circ d = \delta \circ r $.
-\end{lemma}
+  è una mappa di cocatene, cioè $ r \circ d = \delta \circ r $ e il seguente diagramma è
+  commutativo:
+  \[
+    \begin{tikzcd}
+      \Omega^p(X) \rar{\d{}} \dar{r} & \Omega^{p+1}(X) \dar{r} \\
+      \hom{S^\infty_p(X), \RN{}} \rar{\delta} & \hom{S^\infty_{p+1}(X), \RN{}}
+    \end{tikzcd}
+  \]
+\end{theorem}
 \begin{proof}
   Sia $ \omega \in \Omega^p(X) $ allora $ r(\omega) \in \hom{S^\infty_p(X), \RN{}} $, applicando $ \delta $
   e valutandolo su un simplesso singolare liscio $ \sigma $:
@@ -2269,11 +2294,11 @@ A questo punto ho due complessi: $ (\Omega^\bullet, \d{}) $ e $ (\hom{(S^\infty_
   \[
     \int_{\partial \sigma} \omega = \sum_{i=0}^p \int_{\sigma \circ F_i^{\; p}} \omega = \sum_{i=0}^p(-)^i \int_{\Delta_{p-1}} (\sigma \circ F_i^{\; p})^\star (\omega) =
   \]
-  Ma il pullback è controvariante cioè $ (f \circ g)^\star = g^\star \circ f^\star $ e quini:
+  Ma il pullback è controvariante cioè $ (f \circ g)^\star = g^\star \circ f^\star $ e quindi:
   \[
-    =\sum_{i=0}^p (-)^p \int_{A_{p-1}} (F_i^{\; p})^\star \circ \sigma^\star (\omega) =
+    =\sum_{i=0}^p (-)^p \int_{\Delta_{p-1}} (F_i^{\; p})^\star \circ \sigma^\star (\omega) =
   \]
-  Dopo numerosi conti tediosi:
+  Dopo conti tediosi:
   \[
     = \int_{\bigcup_{i=0}^p F_i^{\; p}(\Delta_{p-1})} \sigma^\star(\omega) = \int_{\partial(\Delta_p)} \sigma^\star(\omega) =
   \]
@@ -2289,14 +2314,17 @@ A questo punto ho due complessi: $ (\Omega^\bullet, \d{}) $ e $ (\hom{(S^\infty_
   \[
     = \int_{\Delta_p} \sigma^\star(\d \omega) = \int_\sigma \d \omega = r (\d \omega) (\sigma) = (r \circ d)(\omega)(\sigma)
   \]
-  Quindi il quadrato è commutativo.
+  Quindi il quadrato è commutativo. Al contrario, se il quadrato è commutativo
+  segue immediatamente il teorema di Stokes.
 \end{proof}
+\eproof
 Siccome $ r $ è una mappa di cocatene induce una mappa a livello di coomologia
 e quindi esiste ben definita:
 \begin{align*}
   \rho \colon H^p_{dR}(X) & \to H^p_\infty (X, \RN{}) \\
   \llbracket \omega \rrbracket & \mapsto \llbracket r(\omega) \rrbracket
 \end{align*}
+Sostanzialmente qui si sta utilizzando il teorema dell'omomorfismo di connessione.
 \begin{lemma}
   Se $ F \colon X \to Y $ è un'applicazione liscia tra varietà differenziali allora
   il seguente diagramma commuta:
@@ -2308,41 +2336,66 @@ e quindi esiste ben definita:
   \]
 \end{lemma}
 \begin{proof}
-  Sia $ \omega \in Z^p(Y) $, cioè $ \omega $ forma differenziale chiusa ($ \d \omega = 0 $)
+  Considero il diagramma:
+  \[
+    \begin{tikzcd}
+      Z^p(Y) \rar{F^\star} \dar{r_Y} & Z^{p+1}(X) \dar{r_x} \\
+      S^p_\infty(Y, \RN{}) \rar{F^\star} & S^p_\infty(X, \RN{})
+    \end{tikzcd}
+  \]
+  Devo mostrare che $ F^\star \circ r_Y = r_X \circ F^\star $ e che è ben definito il passaggio
+  all'omologia, cioè  $ (F^\star \circ \rho_Y)([\omega]_{dR}) = (\rho_X \circ F^\star)([\omega]_{dR}) $.
+
+  Sia $ \omega \in \Omega^p(Y) $, %cioè $ \omega $ forma differenziale chiusa ($ \d \omega = 0 $)
   e sia $ \sigma $ un $ p $-simplesso singolare liscio in $ X $. Devo
-  mostrare che $ \rho_X \circ F^\star = F^\star \circ \rho_Y $. Li valuto:
+  mostrare che $ r_X \circ F^\star = F^\star \circ r_Y $. Li valuto:
   \begin{gather*}
-    (\rho_X \circ F^\star)(\omega)(\sigma) = \int_\sigma F^\star(\omega) = \int_{\Delta_p} \sigma^\star \circ F^\star (\omega) = \int_{\Delta_p} (F \circ \sigma)^\star(\omega) = \\
-    = \int_{F \circ \sigma} \omega = \rho_Y(\omega)(F \circ \sigma)
+    (r_X \circ F^\star)(\omega)(\sigma) = \int_\sigma F^\star(\omega) = \int_{\Delta_p} \sigma^\star \circ F^\star (\omega) = \int_{\Delta_p} (F \circ \sigma)^\star(\omega) = \\
+    = \int_{F \circ \sigma} \omega = r_Y(\omega)(F \circ \sigma)
   \end{gather*}
-  Quindi $ (\rho_X \circ F^\star)(\omega)(\sigma) = \rho_Y(\omega)(F \circ \sigma) $ ma $ \rho_Y(\omega)(F \circ \sigma) = (F^\star \circ \rho_Y)(\omega)(\sigma) $
-  per la definizione di pullback.
-  Ora mostro che $ (\rho_X \circ F^\star)([\omega]_{dR}) = (F^\star \circ \rho_Y)([\omega]_{dR}) $ con $ [w]_{dR} = \omega + \d \eta $.
+  Quindi $ (r_X \circ F^\star)(\omega)(\sigma) = r_Y(\omega)(F \circ \sigma) $ ma per la definizione di pullback
+  \begin{align*}
+    F^\star \colon S^p_\infty(Y, \RN{}) & \to S^p_\infty(X, \RN{}) \\
+    \phi & \mapsto F^*(\phi) = F \circ \phi
+  \end{align*}
+  E quindi:
   \[
-    (\rho_X \circ F^\star)(\omega + \d \eta) = (\rho \circ F^\star)(\omega) + (\rho_X \circ F^\star)(\d \eta)
+    F^\star \left(\int_\bullet \omega \right) = \int_{F(\bullet)} \omega \; \text{ cioè }\; (F^\star \circ r_Y)(\omega)(\bullet) = r_Y(\omega)(F (\bullet))
   \]
-  La prima parte ho già che è ok, la seconda:
+  Cioe:
   \[
-    \rho_X(F^\star \d \eta)(\sigma) = \int_\sigma F^\star \d \nu = \int_{F \circ \sigma} \d \eta
+    r_Y(\omega)(F \circ \sigma) = (F^\star (r_Y(\omega))(\sigma) = (F^\star \circ r_Y)(\omega)(\sigma)
   \]
-  Ma
-  \[
-    (F^\star \circ \rho_Y)(\d \eta)(\sigma) = \rho_Y(\d \eta)(F \circ \sigma) = \int_{F \circ \sigma} \d \eta
-  \]
-  Quindi tutto va bene.
+  Si può quindi passare alla coomologia senza problemi, infatti ho mostrato che
+  la commutatività vale per tutte le forme, sia per quelle chiuse che per quelle
+  esatte.
+  % Ora mostro che $ (\rho_X \circ F^\star)([\omega]_{dR}) = (F^\star \circ \rho_Y)([\omega]_{dR}) $ con $ [\omega]_{dR} = \omega + \d \eta $.
+  % \[
+  %   (\rho_X \circ F^\star)(\omega + \d \eta) = (\rho_X \circ F^\star)(\omega) + (\rho_X \circ F^\star)(\d \eta)
+  % \]
+  % La prima parte ho già che è ok, la seconda:
+  % \[
+  %   \rho_X(F^\star \d \eta)(\sigma) = \int_\sigma F^\star \d \nu = \int_{F \circ \sigma} \d \eta
+  % \]
+  % Ma
+  % \[
+  %   (F^\star \circ \rho_Y)(\d \eta)(\sigma) = \rho_Y(\d \eta)(F \circ \sigma) = \int_{F \circ \sigma} \d \eta
+  % \]
+  % Quindi tutto va bene.
 \end{proof}
 \begin{definition}
   Sia $ X $ una varietà differenziale, questa si dice \textbf{de Rham}\index{Varietà differenziabile de Rham}
-  se l'applicazione $ \rho $ è un isomorfismo.
+  se l'applicazione $ \rho \colon H^p_{dR}(X) \to H^p_\infty(X, \RN{}) $ è un isomorfismo.
 \end{definition}
 \begin{lemma}
-  Essere de Rham è invariante per diffeomorfismi, cioè se $ X $ è de Rham e $ F \colon X \to Y $
-  è diffeomorfismo, allora anche $ Y $ è de Rham.
+  Essere de Rham è invariante per diffeomorfismi, cioè se $ X $ è una varietà
+  differenziabile de Rham e $ F \colon X \to Y $ è diffeomorfismo di varietà
+  differenziabili, allora anche $ Y $ è de Rham.
 \end{lemma}
 \begin{proof}
   Siccome $ F \colon X \to Y $ è diffeomorfismo allora esiste $ G \colon Y \to X $ diffeomorfismo
   inverso, quindi $ H^p_{dR}(X) \cong H^p_{dR}(Y) $ per la funtorialità del pullback,
-  e anche $ F^\star_\infty $ lo è per motivo analogo.
+  e anche $ F^\star_\infty $ è isomorfismo per lo stesso motivo.
   Quindi ho il diagramma:
   \[
     \begin{tikzcd}
@@ -2354,16 +2407,20 @@ e quindi esiste ben definita:
   isomorfismo essendo composizione di isomorfismi.
 \end{proof}
 \eproof
-A questo punto il teorema di de Rham si può scrivere esprimere come:
+A questo punto il teorema di de Rham si può esprimere come:
 \begin{theorem}[Teorema di de Rham\index{Teorema di de Rham}]
-  Ogni varietà differenziale è de Rham inoltre soddisfa la condizione
+  Ogni varietà differenziale è de Rham e soddisfa la condizione
+  \[
+    H^p_\infty(X, \RN{}) \cong H^p(X, \RN{}) \; \forall p
+  \]
+  Cioè vale che:
   \[
     H^p(X, \RN{}) \cong H^p_{dR}(X) \; \forall p
   \]
 \end{theorem}
-\begin{proof}
+\begin{proof} \emph{Idee della dimostrazione}.
   La dimostrazione è per passi. Bisogna dimostrare
-  \begin{itemize}
+  \begin{enumerate}
   \item Se $ \set{X_j} $ è una famiglia numerabile di varietà de Rham
     allora la loro unione disgiunta è una varietà de Rham.
   \item Ogni aperto convesso di $ \RN{n} $ è de Rham.
@@ -2373,7 +2430,7 @@ A questo punto il teorema di de Rham si può scrivere esprimere come:
   \item Ogni aperto di $ \RN{n} $ è de Rham.
   \item Ogni varietà differenziale è de Rham.
   \item Ogni varietà soddisfa $  H^p(X, \RN{}) \cong H^p_{dR}(X) \; \forall p $.
-  \end{itemize}
+  \end{enumerate}
 
   \subparagraph{Dimostrazione del punto sei} Siccome $ X $ è una varietà
   differenziabile ammette un atlante formato da insiemi $ U_\alpha $ (con relative
@@ -2387,28 +2444,30 @@ A questo punto il teorema di de Rham si può scrivere esprimere come:
 
 \subsection{Duale di Poincaré}
 
+\begin{definition}
+  Sia $ X $ una varietà differenziabile compatta orientata senza bordo di
+  dimensione $ n $ e sia $ \sigma $ un $ p $-simplesso singolare liscio, allora si
+  definisce il \textbf{duale di Poincaré}\index{Duale di Poincaré} la
+  $ p $-forma $ \mathcal{P}(\sigma) $ tale che $ \forall \omega \in \Omega^{n-p}(X) $ valga:
+  \[
+    \int_\sigma \omega = \int_X \mathcal{P}(\sigma) \wedge \omega
+  \]
 
+\end{definition}
 Se $ X $ è una varietà differenziabile compatta orientata senza bordo
 allora ho il teorema di Poincaré e quello di de Rham. Quindi ho:
 \[
   \begin{tikzcd}
-    {} & (H^{n-p}_{dR}(X))^* \\
+    {} & (H^{n-p}_{dR}(X))^* \arrow{dl}{\cong} \\
     H^p_{dR}(X) \arrow{ur}{D} \arrow{dr}{\rho} & {} \\
-    {} & H^p(X, \RN{})
+    {} & H^p(X, \RN{}) \arrow{ul}{\cong}
   \end{tikzcd}
 \]
-\begin{definition}
-  Dato $ \llbracket \sigma \rrbracket \in H_p(X) $ si definisce il \textbf{duale di Poincaré}\index{Duale di Poincaré}
-  $ \llbracket\mathcal{P}(\sigma)\rrbracket \in H^p_{dR}(X) $ tale che:
-  \[
-    \int_\sigma \omega = \int_X \mathcal{P}(\sigma) \wedge \omega
-  \]
-  Cioè è quella forma differenziale che tramite la dualità di Poincaré
-  produce una forma che per de Rham finisce in $ \sigma $.
-\end{definition}
 Questo si costruisce prendendo un $ \llbracket \tilde{\sigma} \rrbracket \in H^p(X, \RN{}) $ poi
-con de Rham viene mandato in $  \mathcal{P}(\sigma)  $ tale che $ \rho(\llbracket\mathcal{P}(\sigma) \rrbracket) = \tilde{\sigma} $
-e quindi con Poincaré $ D(\llbracket\mathcal{P}(\sigma) \rrbracket) = \int_X \omega_{\tilde{\sigma}} \wedge \eta $
+con de Rham viene mandato in $  \mathcal{P}(\sigma)  $ tale che $ \rho(\llbracket\mathcal{P}(\sigma) \rrbracket) = \llbracket\tilde{\sigma}\rrbracket $
+e quindi con Poincaré $ D(\llbracket\mathcal{P}(\sigma) \rrbracket) = \int_X P(\sigma) \wedge \bullet $.
+Cioè è quella forma differenziale che tramite la dualità di Poincaré
+produce una forma che per de Rham finisce in $ \sigma $.
 
 
 %%% Local Variables:
