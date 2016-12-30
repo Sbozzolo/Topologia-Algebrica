@@ -2054,11 +2054,10 @@ $ \RN{2} $ allora $ C $ divide $ \RN{2} $ in due componenti connesse.
       \tilde{H}_{k-1}(\Disk{m} \setminus \set{0}) \rar & \tilde{H}_{k-1}(\Disk{m}) \rar & \dots
     \end{tikzcd}
   \]
-  Cioè essendo l'omologia ridotta dei dischi sempre nulla:
+  Cioè essendo l'omologia ridotta dei dischi sempre nulla in quanto sono contraibili:
   \[
     \begin{tikzcd}[nodes = {column sep = 10pt}]
-      0 \rar & \tilde{H}_k(\Disk{m}) \rar & \tilde{H}_k(\Disk{m}, \Disk{m} \setminus \set{0}) \rar &
-      0
+      0 \rar & \tilde{H}_k(\Disk{m}, \Disk{m} \setminus \set{0}) \rar &  \tilde{H}_{k-1}(\Disk{m}_0) \rar & 0
     \end{tikzcd}
   \]
   Per cui:

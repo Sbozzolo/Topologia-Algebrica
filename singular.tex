@@ -1767,7 +1767,7 @@ $ k $-catene in $ \set{x_0} $
   \]
   Ma $ c = k \sigma_0 $, quindi:
   \[
-    k i \circ \sigma_0 = \partial u \Rightarrow k \circ \sigma_0 = \partial u \Rightarrow c = \partial u
+    k i \circ \sigma_0 = \partial u \Rightarrow k \sigma_0 = \partial u \Rightarrow c = \partial u
   \]
   Ma quindi $ c $ e $ 0 $ differiscono per un bordo, quindi $ c $ è nella stessa classe
   di equivalenza di $ 0 $, cioè $ \llbracket c \rrbracket = \llbracket 0 \rrbracket $ e quindi $ \ker{i_\star} = 0 $, cioè $ i_\star $ è
@@ -2031,7 +2031,7 @@ che mi mancano che sono l'escissione e l'omotopia.
   l'inclusione $ i \colon (X \setminus B, A \setminus B) \incl (X,A) $ induce un isomorfismo a livello
   di omologia $ i_\star \colon H_k(X \setminus B, A \setminus B) \homoto H_k(X,A) $.
 \end{theorem}
-\begin{proof}
+\begin{proof} \emph{Sketch of proof, alcuni dettagli sono tecnici.}
   Sia $ \mathcal{U} = \set{A, X \setminus B} $ un ricoprimento per $ X $ (infatti
   $ X = A \cup X \setminus B $). Considero le $ k $-catene singolari in $ A $ $ S_k(A) $,
   le $ k $-catene singolari in $ X \setminus B $ $ S_k(X \setminus B) $ e definisco
@@ -2277,22 +2277,25 @@ che mi mancano che sono l'escissione e l'omotopia.
   perché derivanti da una successione esatta corta con il teorema dell'omomorfismo
   di connessione.
 \end{proof}
-
+\eproof
 % lezione 14 parte 2
 
-Ora verifico l'assioma di omotopia. Riepilogo alcuni concetti: Siano $ X, Y $
-spazi topologici e $ A, B $ sottospazi topologici di $ X $ e $ Y $
-rispettivamente, siano $ f_0 \colon (X, A) \to (Y,B) $ e
+Siano $ X, Y $ spazi topologici e $ A, B $ sottospazi topologici di $ X $ e
+$ Y $ rispettivamente, siano $ f_0 \colon (X, A) \to (Y,B) $ e
 $ f_1 \colon (X,A) \to (Y,B) $ mappe continue con $ f_0(A) \subseteq B $ e
 $ f_1(A) \subseteq B $, $ f_0 $ e $ f_1 $ si dicono omotopicamente equivalenti se esiste
-una funzione continua $ F \colon I \times X \to Y $ tale che $ \forall x \in X $
-$ F(0,x) = f_0(x) $, $ F(1,x) = f_1(x) $ e $ \forall t \in I $ $ F(t,a) \in B $.
+una funzione continua $ F \colon I \times X \to Y $ tale che:
+\begin{itemize}
+\item $ \forall x \in X $ risulti che $ F(0,x) = f_0(x) $
+\item $ \forall x \in X $ risulti che $ F(1,x) = f_1(x) $
+\item $ \forall t \in I, \forall a \in A $ risulti che  $ F(t,a) \in B $
+\end{itemize}
 
 \begin{theorem}
   Siano $ X, Y $ spazi topologici e $ A, B $ sottospazi topologici rispettivamente
   di $ X $ e $ Y $, e $ f_0, f_1 \colon (X, A) \to (Y, B) $ funzioni continue omotope,
   allora le mappe indotte da queste funzioni sui gruppi di omologia coincidono,
-  cioè $ (f_0)_\star = (f_1)_\star $, con $ (f_0)_\star, (f_1)_\star \colon H_l(X,A) \to H_k(Y,B) $.
+  cioè $ (f_0)_\star = (f_1)_\star $, con $ (f_0)_\star, (f_1)_\star \colon H_k(X,A) \to H_k(Y,B) $.
 \end{theorem}
 \begin{proof}
   L'intervallo $ I $ è omeomorfo al simplesso standard $ \Delta_1 $, introducendo
