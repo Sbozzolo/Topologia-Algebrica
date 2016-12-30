@@ -1044,7 +1044,7 @@ dei gruppi di omologia.
 \begin{lemma}
   Vale che:
   \[
-    \tilde{H}_k(\Sph{n}_{\alpha_1} \vee \dots \vee \Sph{n}_{\alpha_t}) \cong \bigoplus_j \tilde{H}_k(\Sph{n}_{\alpha_j}) \cong
+    \tilde{H}_k(\Sph{n}_{1} \vee \dots \vee \Sph{n}_{t}) \cong \bigoplus_j \tilde{H}_k(\Sph{n}_{j}) \cong
     \begin{cases}
       \Z^t & \text{se $ k = n $} \\
       0 & \text{se $ k \not =  n $}
@@ -1065,16 +1065,13 @@ dei gruppi di omologia.
   Per $ k = 0 $ e $ k = 1 $ il lemma è vero in quanto
   $ \Sph{n}_{\alpha_1} \vee \dots \vee \Sph{n}_{\alpha_t} $ ha $ t $ componenti connesse ed è
   semplicemente connesso (per $ n > 1 $), per questo motivo posso assumere
-  $ k \geq 2 $, dove omologia ridotta coincide con omologia usuale.
-
-  In questo caso la dimostrazione procede per induzione su $ t $.
-  Per $ t = 1 $ il lemma è banale in quanto il bouquet di una sfera
-  è una sfera.
-
-   di conoscere $ \tilde{H}_k(\Sph{n}_1 \vee \dots \Sph{n}_{t-1}) $
-  voglio calcolare $ \tilde{H}_k(\Sph{n}_1 \vee \dots \Sph{n}_t) $.
-  Come notazione pongo $ Z_t = \Sph{n}_1 \vee \dots \Sph{n}_t $ e $ B = \Sph{n}_t $,
-  cioè vale che $ Z_t = Z_{t-1} \vee B $.
+  $ k \geq 2 $, dove omologia ridotta coincide con omologia usuale. In questo caso
+  la dimostrazione procede per induzione su $ t $. Per $ t = 1 $ il lemma è
+  banale in quanto il bouquet di una sfera è una sfera. Assumo di
+  conoscere $ \tilde{H}_k(\Sph{n}_1 \vee \dots \Sph{n}_{t-1}) $ voglio calcolare
+  $ \tilde{H}_k(\Sph{n}_1 \vee \dots \Sph{n}_t) $. Come notazione pongo
+  $ Z_t = \Sph{n}_1 \vee \dots \Sph{n}_t $ e $ B = \Sph{n}_t $, cioè vale che
+  $ Z_t = Z_{t-1} \vee B $.
 
   L'ipotesi induttiva è:
   \[
@@ -1091,7 +1088,7 @@ dei gruppi di omologia.
       \dots \rar & H_k(Z_{t-1}) \rar & H_k(Z_t) \rar & H_k(Z_t, Z_{t-1}) \rar & \dots %H_{k-1}(Z_{t-1}) \rar & \dots
     \end{tikzcd}
   \]
-  Se $ k \not = n $ e siccome $ k \geq 2 $ allora $ H_k(Z_{t-1}) \cong 0 $ per ipotesi induttiva.
+  Se $ k \not \in \set{n, n+1} $ e siccome $ k \geq 2 $ allora $ H_k(Z_{t-1}) \cong 0 $ per ipotesi induttiva.
   % e $  H_{k-1}(Z_{t-1}) \cong 0 $
   Ma come dimostrato nel lemma precedente vale che
   \[
@@ -1110,7 +1107,14 @@ dei gruppi di omologia.
     \end{tikzcd}
   \]
   e quindi $ H_{k}(Z_t) = 0 $ siccome la successione è esatta.
-
+  Se $ k = n + 1 $ non cambia il risultato, infatti la successione diventa:
+  \[
+    \begin{tikzcd}
+      0 \rar & H_k(Z_t) \rar{j} & 0 \rar & \Z^{t-1}
+    \end{tikzcd}
+  \]
+  Ma la successione è esatta, quindi $ j $ è iniettiva e quindi $ j(H_k(Z_t)) \cong H_k(Z_t) $,
+  ma $ j(H_k(Z_t)) = 0 $, quindi $ H_k(Z_t) $.
   Se invece $ k = n $ allora vale la successione esatta:
   \[
     \begin{tikzcd}[nodes={column sep=7pt}]
@@ -1178,21 +1182,21 @@ dei gruppi di omologia.
     \]
     Ma
     \[
-      X^{(n)} = X^{(n-1)} \cup_f \Disk{n}_{\alpha_i} \cup_{f_1} \dots \cup_{f_t} \Disk{n}_{\alpha_t} = \Sph{n}_{\alpha_1} \vee \dots \vee \Sph{n}_{\alpha_t}
+      X^{(n)} = X^{(n-1)} \cup_f \Disk{n}_{i} \cup_{f_1} \dots \cup_{f_t} \Disk{n}_{t} = \Sph{n}_{1} \vee \dots \vee \Sph{n}_{t}
     \]
-    L'identificazione $ \quot{X^{(n)}}{X^{(n-1)}} $ fa collassare i bordi in un punto, quindi ottengo
+    L'identificazione $ {X^{(n)}} \slash {X^{(n-1)}} $ fa collassare i bordi in un punto, quindi ottengo
     un bouquet.
     Per il lemma precedente:
     \[
-      \tilde{H}_k(\Sph{n}_{\alpha_1} \vee \dots \vee \Sph{n}_{\alpha_t}) \cong \bigoplus \tilde{H}_k(\Sph{n}_{\alpha_j})
+      \tilde{H}_k(\Sph{n}_{1} \vee \dots \vee \Sph{n}_{t}) \cong \bigoplus \tilde{H}_k(\Sph{n}_{j})
     \]
     % Quindi ho automaticamente il risultato che volevo mostrare.
-    Se $ k > n $ l'omologia di ogni sfera è nulla, mentre
-    se $ k < n $ è $ \Z $ per ogni cella.
+    Se $ k \not = n $ l'omologia di ogni sfera è nulla, mentre se $ k = n $ è
+    $ \Z $ per ogni cella.
   \item
     Considero la successione esatta della coppia $ (X^{(n)}, X^{(n-1)}) $:
     \[
-      \begin{tikzcd}[nodes={column sep=7pt}]
+      \begin{tikzcd}[nodes={column sep=7pt, inner sep = 2 pt }]
         \dots \rar & H_{k+1}(X^{(n)}, X^{(n-1)}) \rar & H_k(X^{(n-1)}) \rar & H_k(X^{(n)}) \rar & H_{k}(X^{(n)}, X^{(n-1)}) \rar & \dots
       \end{tikzcd}
     \]
@@ -1215,7 +1219,7 @@ dei gruppi di omologia.
 
     Se $ k < n $ considero la successione esatta lunga della coppia $ (X^{(n+1)}, X^{(n)}) $:
     \[
-      \begin{tikzcd}[nodes={column sep=7pt}]
+      \begin{tikzcd}[nodes={column sep=7pt, inner sep = 2 pt}]
         \dots \rar & H_{k+1}(X^{(n+1)}, X^{(n)}) \rar & H_k(X^{(n)}) \rar & H_k(X^{(n+1)}) \rar & H_{k}(X^{(n+1)}, X^{(n)}) \rar & \dots
       \end{tikzcd}
     \]
@@ -1232,9 +1236,11 @@ dei gruppi di omologia.
     \[
       H_k(X^{(n)}) \cong H_k(X^{(n+1)}) \dots \cong H_k(X^{(N)}) = H_k(X)
     \]
+    Si nota che nel caso $ k = n $ non si può affermare nulla di generale.
   \end{enumerate}
+  \vspace*{-15pt}
 \end{proof}
-
+\eproof
 Sia $ X $ un CW complesso di tipo finito, voglio costruire un complesso $ (S_\bullet^{CW}, d^{CW}) $ e
 voglio mostrare che l'omologia di questo complesso, detta omologia cellulare, è isomorfa con
 l'omologia singolare:

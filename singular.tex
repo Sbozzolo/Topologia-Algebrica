@@ -691,24 +691,34 @@ Per dimostrare che $ \Ab{\pi_1(X)} \cong H_1(X) $ mi serve prima un lemma:
       \begin{tikzpicture}
         \draw (0, 0) rectangle (3,3);
         \fill[gray!15] (0, 0) rectangle (3,3);
-        \draw[ultra thick] (0,0) -- (0,3);
+        \draw[ultra thick] (3,0) -- (3,3);
         % \node[right] () at (0, 1.5) {$ C_{x_0} $};
         % \node[left] () at (3, 1.5) {$ C_{x_0} $};
         \node[above] () at (1.5, 0) {$ f(x) $};
         \node[below] () at (1.5, 3) {$ g(x) $};
         \draw[-Latex] (4,1.5) -- (5,1.5);
-        \fill[gray!15] (6,0) -- (7.7, 3) -- (9.4,0) -- cycle;
-        \draw (6,0) -- (7.7, 3) -- (9.4,0) -- cycle;
-        \node[above, rotate = 60] () at (6.7, 1.3) {$ g(x) $};
-        \node[above, rotate = -58] () at (8.7, 1.3) {$ K(x) = C_{x_0} $};
-        \node[below] () at (7.7, 0) {$ f(x) $};
-        \node[left] () at (6,0) {$ e_0 $};
-        \node[] () at (6,0) {$ \bullet $};
-        \node[right] () at (9.4,0) {$ e_1 $};
-        \node[above] () at (7.7,3) {$ e_2 $};
+        \fill[gray!15] (6,0) -- (6, 3) -- (8.5,1.5) -- cycle;
+        % \fill[gray!15] (6,0) -- (7.7, 3) -- (9.4,0) -- cycle;
+        \draw (6,0) -- (6, 3) -- (8.5,1.5) -- cycle;
+        % \draw (6,0) -- (7.7, 3) -- (9.4,0) -- cycle;
+        \node[above, rotate = -30] () at (7.3, 2.2) {$ g(x) $};
+        % \node[above, rotate = 60] () at (6.7, 1.3) {$ g(x) $};
+        \node[above, rotate = 90] () at (6,1.5) {$ K(x) = C_{x_0} $};
+        % \node[above, rotate = -58] () at (8.7, 1.3) {$ K(x) = C_{x_0} $};
+        \node[rotate = 30] () at (7.3, 0.45) {$ f(x) $};
+        % \node[below] () at (7.7, 0) {$ f(x) $};
+        % \node[left] () at (6,0) {$ e_0 $};
+        \node[right] () at (8.5,1.5) {$ e_0 $};
+        \node[] () at (8.5,1.5) {$ \bullet $};
+        % \node[] () at (6,0) {$ \bullet $};
+        % \node[right] () at (9.4,0) {$ e_1 $};
+        \node[below] () at (6,0) {$ e_1 $};
+        % \node[above] () at (7.7,3) {$ e_2 $};
+        \node[above] () at (6,3) {$ e_2 $};
       \end{tikzpicture}
       \subcaption{La relazione di equivalenza fa passare da un quadrato a un triangolo
-        in quanto fa collassare un intervallo nel punto $ e_0 $}
+        in quanto fa collassare un intervallo nel punto $ e_0 $. La rappresentazione
+      non è fedele in quanto in effetti $ e_0 $ è il punto $ (1,0) $.}
       \label{fig:lez3:homotopy_f_g_to_triangle}
     \end{subfigure}
   \end{figure}
@@ -2280,30 +2290,21 @@ che mi mancano che sono l'escissione e l'omotopia.
 \eproof
 % lezione 14 parte 2
 
-Siano $ X, Y $ spazi topologici e $ A, B $ sottospazi topologici di $ X $ e
-$ Y $ rispettivamente, siano $ f_0 \colon (X, A) \to (Y,B) $ e
-$ f_1 \colon (X,A) \to (Y,B) $ mappe continue con $ f_0(A) \subseteq B $ e
-$ f_1(A) \subseteq B $, $ f_0 $ e $ f_1 $ si dicono omotopicamente equivalenti se esiste
-una funzione continua $ F \colon I \times X \to Y $ tale che:
-\begin{itemize}
-\item $ \forall x \in X $ risulti che $ F(0,x) = f_0(x) $
-\item $ \forall x \in X $ risulti che $ F(1,x) = f_1(x) $
-\item $ \forall t \in I, \forall a \in A $ risulti che  $ F(t,a) \in B $
-\end{itemize}
-
 \begin{theorem}
-  Siano $ X, Y $ spazi topologici e $ A, B $ sottospazi topologici rispettivamente
-  di $ X $ e $ Y $, e $ f_0, f_1 \colon (X, A) \to (Y, B) $ funzioni continue omotope,
-  allora le mappe indotte da queste funzioni sui gruppi di omologia coincidono,
-  cioè $ (f_0)_\star = (f_1)_\star $, con $ (f_0)_\star, (f_1)_\star \colon H_k(X,A) \to H_k(Y,B) $.
+  Siano $ X, Y $ spazi topologici e $ A, B $ sottospazi topologici
+  rispettivamente di $ X $ e $ Y $, e $ f_0, f_1 \colon (X, A) \to (Y, B) $ funzioni
+  continue omotope tali che $ f_0(A) \subseteq B $ e $ f_1(A) \subseteq B $, allora le mappe
+  indotte da queste funzioni sui gruppi di omologia singolare coincidono, cioè
+  $ (f_0)_\star = (f_1)_\star $, con $ (f_0)_\star, (f_1)_\star \colon H_k(X,A) \to H_k(Y,B) $.
 \end{theorem}
 \begin{proof}
-  L'intervallo $ I $ è omeomorfo al simplesso standard $ \Delta_1 $, introducendo
-  $ \epsilon_1 \colon \Delta_0 \to I $ e $ \epsilon_0 \colon \Delta_0 \to I $ definiti da:
-  $ \epsilon_i(e_0) = i $ con $ i \in \set{0,1} $, allora il bordo dell'intervallo è
-  $ \partial I = \epsilon_1 - \epsilon_0 $. Chiamo $ I $ con abuso di notazione il simplesso che
-  manda $ \Delta_1 $ in $ I $. Sia $ \sigma $ simplesso singolare in $ S_q(X) $, allora
-  $ I \times \sigma \in S_{q+1}(I \times X) $, infatti
+  L'intervallo $ I $ è omeomorfo al simplesso standard $ \Delta_1 $, chiamando
+  $ I $ con abuso di notazione il simplesso che manda $ \Delta_1 $ in $ I $ e
+  introducendo $ \epsilon_1 \colon \Delta_0 \to I $ e
+  $ \epsilon_0 \colon \Delta_0 \to I $ definiti da: $ \epsilon_i(e_0) = i $ con
+  $ i \in \set{0,1} $, allora il bordo di $ I $ è
+  $ \partial I = \epsilon_1 - \epsilon_0 $. Sia $ \sigma $ simplesso singolare in
+  $ S_q(X) $, allora $ I \times \sigma \in S_{q+1}(I \times X) $, infatti
   \begin{align*}
     I \times \sigma \colon \Delta_1 \times \Delta_q & \to I \times X \\
     (t,x) & \mapsto (I(t), \sigma(x))
@@ -2336,6 +2337,7 @@ una funzione continua $ F \colon I \times X \to Y $ tale che:
   \[
     = \epsilon_1 \times \sigma - \epsilon_0 \times \sigma - I \times \partial \sigma
   \]
+  Questa costruzione geometrica corrisponde all'azione dell'operatore prisma:
   \begin{definition}
     Si definisce l'\textbf{operatore prisma}\index{Operatore prisma} definendo
     la sua azione sui simplessi singolari e poi estendendo per linearità:
@@ -2354,7 +2356,7 @@ una funzione continua $ F \colon I \times X \to Y $ tale che:
   \]
   Cioè:
   \[
-    \partial \circ D (\sigma) + D \circ \partial (\sigma) = \epsilon_1 \times c\sigma- \epsilon_0 \times \sigma
+    \partial \circ D (\sigma) + D \circ \partial (\sigma) = \epsilon_1 \times \sigma - \epsilon_0 \times \sigma
   \]
   Nella figura questo sono la faccia superiore e inferiore del prisma.
   Si definiscono le sezioni del prisma, con $ t \in I $:
@@ -2369,11 +2371,19 @@ una funzione continua $ F \colon I \times X \to Y $ tale che:
     \sigma & \mapsto \eta_i \circ \sigma
   \end{align*}
   Ma $ (\eta_i \circ \sigma)(x) = (i, \sigma(x)) = \epsilon_i \times \sigma $, quindi
-  $ \partial \circ D (\sigma) + D \circ \partial (\sigma) = (\eta_1)_\sharp - (\eta_0)_\sharp $. Considero la relazione di
-  omotopia $ F \colon I \times X \to Y $, per definizione vale che
-  $ F(i,x) = f_i(x) $, e quindi $ (F \circ \eta_i)(x) = f_i(x) $, cioè $ F \circ \eta_i = f_i $.
-  Essendo una funzione continua $ F $ induce una mappa sulle catene di simplessi:
-  $ F_\sharp \colon S_k(I \times X, I \times A) \to S_k(Y,B) $.
+  $ \partial \circ D (\sigma) + D \circ \partial (\sigma) = (\eta_1)_\sharp(\sigma) - (\eta_0)_\sharp(\sigma) $.
+
+  Per ipotesi $ f_0 $ e $ f_1 $ sono omotopicamente equivalenti quindi esiste
+  una funzione continua $ F \colon I \times X \to Y $ tale che:
+  \begin{itemize}
+  \item $ \forall x \in X $ risulti che $ F(0,x) = f_0(x) $
+  \item $ \forall x \in X $ risulti che $ F(1,x) = f_1(x) $
+  \item $ \forall t \in I, \forall a \in A $ risulti che  $ F(t,a) \in B $
+  \end{itemize}
+  Considero la relazione di omotopia $ F \colon I \times X \to Y $, per definizione vale che
+  $ F(i,x) = f_i(x) $, e quindi $ (F \circ \eta_i)(x) = f_i(x) $, cioè
+  $ F \circ \eta_i = f_i $. Essendo una funzione continua $ F $ induce una mappa sulle
+  catene di simplessi: $ F_\sharp \colon S_k(I \times X, I \times A) \to S_k(Y,B) $.
 
   Considero $ D \colon S_q(X,A) \to S_{q+1}(I \times X, I \times A) $, posso definire
   $ G = F_\sharp \circ D $, questo è un omomorfismo tra $ S_k(X,A) $ e
@@ -2391,7 +2401,7 @@ una funzione continua $ F \colon I \times X \to Y $ tale che:
   \end{gather*}
   Quindi $ \partial \circ G + G \circ \partial = (f_1)_\sharp - (f_0)_\sharp $.
   Passando a livello di omologia considero $ k $ un $ q $-ciclo in $ (X,A) $, quindi
-  tale che $ \partial k = 0 $. Allora:
+  tale che $ \partial k = 0 $. Allora per la definizione di $ f_\sharp $:
   \[
     (f_1)_\star(\llbracket k \rrbracket) = \llbracket(f_1)_\sharp(k)\rrbracket
   \]
@@ -2443,6 +2453,8 @@ La mappa $ G $ è un esempio di omotopia di catena:
     \end{tikzpicture}
   \end{figure}
 \end{definition}
+Mappe tra complessi omotope danno origine alla medesima applicazione a livello
+di omologia.
 
 \subsection{Omologia ridotta per una qualsiasi teoria omologica}
 
