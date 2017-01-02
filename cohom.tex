@@ -436,7 +436,7 @@ in quanto tensorizzando si perde l'esattezza solo a sinistra.
 \begin{proposition}
   Se $ A $ e $ B $ sono $ \Z $-moduli allora $ \tor{A,B} \cong \tor{B,A} $.
 \end{proposition}
-\begin{proof}
+\begin{proof}\emph{Sketch of proof. La dimostrazione completa è lunga e articolata}
   La dimostrazione è un diagram chase.
   Considero una risoluzione di $ B $ e di $ A $:
   \[
@@ -459,15 +459,43 @@ in quanto tensorizzando si perde l'esattezza solo a sinistra.
   \[
     \begin{tikzcd}[nodes={column sep= 10 pt}]
       {} & {} & {} & {} & 0 \dar & {} \\
-      {} & {} & \dots \dar & \dots \dar & \tor{B,A} \dar & {} \\
-      {} & 0 \rar & R_A \otimes R_B \rar \dar & F_A \otimes R_B \dar \rar & A \otimes R_B \dar  \rar & 0 \\
-      {} & 0 \rar & R_A \otimes F_B \rar \dar & F_A \otimes F_B \dar \rar & A \otimes F_B \dar  \rar & 0 \\
-      0 \rar & \tor{A,B} \rar & R_A \otimes B \rar \dar & F_A \otimes B \rar \dar & A \otimes B  \rar \dar & 0 \\
+      {} & {} & \dots \dar & \dots \dar & \tor{B,A} \dar{\rho} & {} \\
+      {} & 0 \rar & R_A \otimes R_B \rar \dar & F_A \otimes R_B \dar{\eta} \rar{\sigma} & A \otimes R_B \dar{\tau}  \rar & 0 \\
+      {} & 0 \rar & R_A \otimes F_B \rar{\psi} \dar{\phi} & F_A \otimes F_B \dar{\beta} \rar & A \otimes F_B \dar  \rar & 0 \\
+      0 \rar & \tor{A,B} \rar{\alpha} & R_A \otimes B \rar \dar & F_A \otimes B \rar \dar & A \otimes B  \rar \dar & 0 \\
       {} & {} & 0 & 0 & 0 & {} \\
     \end{tikzcd}
   \]
-  Bisogna risalire da $ \tor{A,B} $ a $ \tor{B,A} $ e viceversa. Questa operazione è piuttosto
-  noiosa. [MANCA]
+  Bisogna risalire da $ \tor{A,B} $ a $ \tor{B,A} $ e viceversa, dopodichè bisogna mostrare
+  che le mappe così costruite sono omomorfismi e sono tra di loro inverse.
+  Costruisco questa scaletta:
+  \[
+    \begin{tikzcd}[nodes={column sep= 10 pt}]
+      {} & {} & {} & t \in \tor{B,A}   \\
+      {} & {} & y' \in F_A \otimes R_B \rar & y'' \in A \otimes R_B  \uar  \\
+      {} & y \in R_A \otimes F_B \rar  & \tilde{y} \in F_A \otimes F_B \uar  &  {}  \\
+      x \in \tor{A,B} \rar & x' \in R_A \otimes B \uar & {} & {} \\
+    \end{tikzcd}
+  \]
+  \begin{enumerate}
+  \item Sia $ x \in \tor{A,B} $
+  \item Si definisce $ x' = \alpha(x) $, che è unico e non nullo
+    siccome $ \alpha $ è iniettiva
+  \item Siccome $ \phi $ è suriettiva è ben definito non nullo $ y $,
+    ma non è detto che sia unico
+  \item Si definisce $ \tilde{y} = \psi(y) $ che è unico e non nullo
+    siccome $ \psi $ è iniettiva
+  \item Usando la commutatività del quadrato si trova che
+    $ \tilde{y} \in \ker{\beta} $, ma la successione è esatta, quindi
+    $ \ker{\beta} = \im{\eta} $ e perciò $ \exists y' $ tale che
+    $ \eta(y') = \tilde{y} $. Potrebbe non essere unico
+  \item Si definisce $ y'' = \sigma(y') $. Potrebbe essere nullo
+  \item Utilizzando ancora la commutatività si ha che $ y'' \in \ker{\tau} = \im{\rho} $
+    e quindi esiste $ t $ in $ \tor{B, A} $
+  \end{enumerate}
+  Rimane da verificare che tutto sia ben definito. Se ad ogni passaggio si trova
+  sempre un solo elemento allora naturalmente la scaletta può essere percorsa in
+  salita e in discesa e quindi è un isomorfismo.
 \end{proof}
 
 \begin{lemma}

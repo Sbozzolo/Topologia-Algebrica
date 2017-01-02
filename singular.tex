@@ -654,17 +654,18 @@ il primo gruppo di omologia, che quindi è sostanzialmente formato dai lacci
 \eproof
 Per dimostrare che $ \Ab{\pi_1(X)} \cong H_1(X) $ mi serve prima un lemma:
 \begin{lemma}
-  Se $ f \sim_H g $ allora $ f \sim_{hom} g $, cioè se $ f $ e $ g $ sono lacci che
-  definiscono lo stesso elemento nel gruppo fondamentale allora differiscono per
-  un bordo ($ f \sim_H g \Rightarrow f \sim_{hom} g $).
+  Siano $ f, g \colon \Delta_1 \to X $ lacci omotopi in uno spazio topologico, allora
+  $ f $ e $ g $ sono omologhi, cioè differiscono per un bordo.
 \end{lemma}
 \begin{proof}
-  Siccome $ f \sim_{H} g $ allora $ \exists F $ continua tale $ F: I \times I \to X $ tale che $ F(0,x) = f(x) $,
-  $ F(1,x) = g(x) $ e $ F(t,0) = F(t, 1) = x_0 $.
-  Voglio mostrare che $ f - g $ è bordo di un $ 2 $-simplesso.
-  Identificando tutti i punti di un uno dei due intervalli con l'equivalenza $ {I \times I} \slash {\set{0} \times I} $
-  si ottiene qualcosa che è omeomorfo a $ \Delta_2 $, $ F $ sullo spigolo $ \set{0} \times I $
-  assume sempre lo stesso valore.
+  Siccome $ f \sim_{H} g $ allora $ \exists F $ continua tale
+  $ F: I \times I \to X $ tale che $ F(0,x) = f(x) $, $ F(1,x) = g(x) $ e
+  $ F(t,0) = F(t, 1) = x_0 $. Voglio mostrare che $ f - g $ è bordo di un
+  $ 2 $-simplesso. Con l'identificazione
+  $ {I \times I} \slash {I \times \set{0}} $ si ottiene uno spazio che è omeomorfo a
+  $ \Delta_2 $, infatti l'identificazione non fa nulla sul secondo intervallo, mentre
+  sul primo identifica due punti $ a $ e $ b $ se $ a - b \in I $, quindi $ a $
+  viene identificato con tutti i punti $ b $ tali che $ a - b \geq 0 $.
   \begin{figure}[htb]
     \centering
     \begin{subfigure}[t]{1.0\linewidth}
@@ -722,32 +723,41 @@ Per dimostrare che $ \Ab{\pi_1(X)} \cong H_1(X) $ mi serve prima un lemma:
       \label{fig:lez3:homotopy_f_g_to_triangle}
     \end{subfigure}
   \end{figure}
-  [NON VA BENE, SISTEMARE!]
-  Siccome $ F $ rimane costante sul sottospazio su cui su quozienta,
-  dove vale sempre $ x_0 $,
-  $ F $ induce $ F' \colon \Delta_2 \to X $ continua in cui $ e_0 $ viene mandato in $ x_0 $:
+  Siccome $ F $ rimane costante sul sottospazio su cui su quozienta, dove vale
+  sempre $ x_0 $, $ F $ induce $ F' \colon \Delta_2 \to X $ continua ben definita in cui
+  $ e_0 $ viene mandato in $ x_0 $:
   \[
     \begin{tikzcd}
       I \times I \arrow{r}{F} \arrow{d}{P} & X \\
-      \quot{I \times I}{\set{0} \times I} \simeq \Delta_2 \arrow{ur}{F'}
+      \quot{I \times I}{I \times \set{0}} \simeq \Delta_2 \arrow{ur}{F'}
     \end{tikzcd}
   \]
-  Calcolo il bordo: $ \partial F' = F'^{(0)} - F'^{(1)} + F'^{(2)} = K - g + f $
-  dove $ K $ è il cammino costante per definizione di omotopia, cioè è
-  $ C_{x_0}$. Se $ K $ fosse il bordo di qualcosa avrei finito, ma $ K $ è il
-  $ 2 $-simplesso singolare costante uguale a $ x_0 $, cioè
-  $ K \colon \Delta_2 \to \set{x_0} $, quindi il suo bordo:
-  \[
-    \partial K = K^{(0)} - K^{(1)} + K^{(2)} =  K^{(2)}
+  Il bordo di $ F' $ è
+  $ \partial F' = F'^{(0)} - F'^{(1)} + F'^{(2)} = C_{x_0} - g + f $. Definendo il
+  $ 2 $-simplesso singolare $ K \colon \Delta_2 \to \set{x_0} $, il suo bordo è
+  $ \partial K = K^{(0)} - K^{(1)} + K^{(2)} $. Ma $ \forall i \in \set{0,1,2} $
+  $ K^{(i)} \colon \Delta_1 \to \set{x_0} $, quindi sono tutti uguali a $ C_{x_0} $
+  e perciò $ \partial K = C_{x_0} $. In questo modo
+    \[
+    \partial F' = \partial K - F'^{(1)} + F'^{(2)} \Rightarrow \partial F' - \partial K = f - g \Rightarrow \partial(F' - K) = f - g
   \]
-  in quanto tutti i tre termini sono uguali a $ k \colon \Delta_1 \to \set{x_0} $, quindi $ \partial K = K^{(2)} = k $,
-  cioè $ k $ è un bordo, perciò:
-  \[
-    \partial F' = \partial k - F'^{(1)} + F'^{(2)} \Rightarrow \partial F' - \partial k = f - g \Rightarrow \partial(F' - k) = f - g
-  \]
-  $ F' - k $ è $ 2 $-simplesso singolare, lo chiamo $ \sigma $ ed è tale che $ \partial \sigma = f - g $, quindi
-  $ f $ e $ g $ sono omologhi e $ \sigma $ è il $ 2 $-simplesso singolare che realizza
-  l'omologia.
+  Quindi $ f $ e $ g $ differiscono per un bordo $ \partial (F' - K) $ e perciò
+  sono omologhi.
+  % dove $ K $ è il cammino costante per definizione
+  % di omotopia, cioè è $ C_{x_0}$. Se $ K $ fosse il bordo di qualcosa avrei
+  % finito, ma $ K $ è il $ 2 $-simplesso singolare costante uguale a $ x_0 $,
+  % cioè $ K \colon \Delta_2 \to \set{x_0} $, quindi il suo bordo:
+  % \[
+  %   \partial K = K^{(0)} - K^{(1)} + K^{(2)} =  K^{(2)}
+  % \]
+  % in quanto tutti i tre termini sono uguali a $ k \colon \Delta_1 \to \set{x_0} $, quindi $ \partial K = K^{(2)} = k $,
+  % cioè $ k $ è un bordo, perciò:
+  % \[
+  %   \partial F' = \partial k - F'^{(1)} + F'^{(2)} \Rightarrow \partial F' - \partial k = f - g \Rightarrow \partial(F' - k) = f - g
+  % \]
+  % $ F' - k $ è $ 2 $-simplesso singolare, lo chiamo $ \sigma $ ed è tale che $ \partial \sigma = f - g $, quindi
+  % $ f $ e $ g $ sono omologhi e $ \sigma $ è il $ 2 $-simplesso singolare che realizza
+  % l'omologia.
 \end{proof}
 
 \begin{proposition}
@@ -3168,12 +3178,15 @@ Un corollario del precedente risultato richiede la definizione di retratto di de
 \subsection{Grado}
 \begin{definition}
   Ad ogni applicazione continua $ \phi \colon \Sph{n} \to \Sph{n} $ continua è possibile
-  associare in modo univoco un numero intero, questo è il \textbf{grado}\index{Grado di una sfera}:
+  associare in modo univoco un numero intero, questo è il
+  \textbf{grado}\index{Grado di una sfera}:
   \begin{align*}
     \phi_\star \colon H_n(\Sph{n}) & \to H_n(\Sph{n}) \\
     \alpha & \mapsto  \deg{(\phi)} \alpha
   \end{align*}
-  con $ \alpha $ generatore.
+  con $ \alpha $ generatore. Si nota infatti che essendo
+  $ H_n(\Sph{n}) \cong \Z $ le mappe $ \phi_\star $ non sono altro che moltiplicazioni per
+  un intero, questo intero è il grado.
 \end{definition}
 
 Si ha che $ H_n(\Sph{n}) \cong \Z $, quindi $ H_n(\Sph{n}) $ è il gruppo libero di
@@ -3242,6 +3255,29 @@ $ \phi_\star (\alpha) = d \alpha $ da cui: $ \phi_\star (c) = p d \alpha = d c $
     \deg{(f)}\deg{(g)}\alpha = (g \circ f)_\star (\alpha) = \deg{(g \circ f)} \alpha
   \]
   Siccome $ \alpha $ è generatore: $ \deg{(g \circ f)} = \deg{(f)} \deg{(g)} $.
+\end{proof}
+\begin{corollary}
+  Se $ f \colon \Sph{n} \to \Sph{n} $ non è suriettiva allora il suo grado è nullo.
+\end{corollary}
+\begin{proof}
+  Se $ f $ non è suriettiva allora posso spezzarla in due parti:
+  \[
+    \begin{tikzcd}
+      \Sph{n} \rar{g} \arrow[bend left]{rr}{f} & \Sph{n} \ P \rar{h} & \Sph{n}
+    \end{tikzcd}
+  \]
+  Con $ P $ insieme formato da un solo punto in $ \Sph{n} $. Ma
+  $ \Sph{n} \setminus P $ è omeomorfo a $ \RN{n} $ per proiezione stereografica e quindi
+  $ H_n(\Sph{n} \setminus P) = 0 $ essendo $ \RN{n} $ contraibile e sfruttando l'assioma
+  di omotopia.
+  Quindi:
+  \[
+    \begin{tikzcd}
+      H_n(\Sph{n}) \rar{g_\star} \arrow[bend left]{rr}{f_\star} & 0 \rar{h_\star} & H_n(\Sph{n})
+    \end{tikzcd}
+  \]
+  Quindi necessariamente il grado di $ g $ è zero, e quindi anche quello di
+  $ f $ essendo il prodotto del grado di $ g $ con quello di $ h $.
 \end{proof}
 
 \begin{proposition}

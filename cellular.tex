@@ -159,6 +159,28 @@ può essere vista come CW complesso formato da un punto e una sola cella.
     \psi \colon \Sph{1}  \to X^{(1)} \\
     aba^{-1}b^{-1}
   \end{gather*}
+  \begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+      \node () at (1,0) {$ \bullet $};
+      \node () at (2,0.5) {$ \bullet $};
+      \node () at (3,0.5) {$ \bullet $};
+      \node () at (2,-0.5) {$ \bullet $};
+      \node () at (3,-0.5) {$ \bullet $};
+      \draw[dashed] (3,0.5) -- (2,0.5);
+      \draw[thick] (3,-0.5) -- (2,-0.5);
+      \node () at (4,0) { $ \Rightarrow $};
+      \node () at (7.55,-0.2) {$ \bullet $};
+      \draw[dashed] (7.775,-0.5) to[out=30, in=30] (7.775,0.5);
+      \draw[dashed] (7.775,-0.5) to[out=210, in=-150] (7.775,0.5);
+      \draw[thick] (7.5,0) to[out=120, in=60] (5,0);
+      \draw[thick] (7.5,0) to[out=-60, in=-120] (5,0);
+    \end{tikzpicture}
+    \caption{Primo attaccamento per la costruzione del toro. Successivamente
+      si attacca un disco deformato a forma di rettangolo identificando due lati
+      opposti con la linea solida e gli altri due lati con la linea tratteggiata.
+      Il risultato è, con un minimo di immaginazione, un toro.}
+  \end{figure}
 \end{example}
 
 \begin{example}[Prodotto di sfere]
@@ -594,7 +616,7 @@ omologia di un punto qualsiasi, mentre $ H_n(\Sph{n}) \cong \Z $ è generato dal
 classe di omologia di un $ n $-simplesso singolare $ \tau_n \colon \Delta_n \to \Sph{n} $.
 
 \begin{proposition}
-  Se $ \M $ è una $ 2 $-varietà topologica compatta e connessa tale che $ \forall k \geq 2 $
+  Se $ \M $ è una $ 2 $-varietà topologica compatta e connessa tale che $ \forall k \leq 2 $
   $ H_k(\M) \cong H_k(\Sph{2}) $ allora $ \M \simeq \Sph{2} $.
 \end{proposition}
 \begin{proof}
@@ -650,7 +672,7 @@ Per $ \Sph{3} $ vale il seguente risultato, dimostrato da Perelman nel
 2003, precedentemente noto come congettura di Poincaré:
 \begin{proposition}[ex-Congettura di Poincaré]
   Se $ \M $ è una $ 3 $-varietà topologica compatta, connessa e semplicemente
-  connessa tale che $ \forall k \geq 3 $ $ H_k(\M) \cong H_k(\Sph{3}) $ allora $ \M \simeq \Sph{3} $.
+  connessa tale che $ \forall k \leq 3 $ $ H_k(\M) \cong H_k(\Sph{3}) $ allora $ \M \simeq \Sph{3} $.
 \end{proposition}
 Se rinuncio alla richiesta di semplice connessione il risultato non vale più, ma
 vale la seguente proposizione:
@@ -746,7 +768,7 @@ vale la seguente proposizione:
     \rho \colon \Sph{3} = \mathrm{SU(2)} \to \mathrm{GL}(V)
   \]
   Con GL gruppo generale lineare e $ V $ è uno spazio vettoriale di dimensione
-  3 (quindi $ V \cong \RN{3} $) scelgo lo spazio delle matrici antihermitiane a
+  3 (quindi $ V \simeq \RN{3} $) scelgo lo spazio delle matrici antihermitiane a
   traccia nulla:
   \[
     V = \set{H \in M_2(\mathbb{C}) | H + H^\dagger = 0, \; \tr H  = 0}
@@ -841,18 +863,19 @@ vale la seguente proposizione:
   Inoltre $ \Id{} \in G $ in quanto $ \rho(\Id{}) \in A_5 $. Si definisce
   $ \phi = \rho \lvert_G \colon G \to A $, la quale per costruzione è suriettiva. Inoltre
   $ \ker{\phi} = \set{ T \in G | \phi(T) = \Id{}} $, ma $ \phi(T) = \rho(T) $, quindi
-  $ T = \pm \Id{} $, cioè $ \ker{\phi} = \set{- \Id{}, + \Id{}} $. Si può costruire
-  la successione esatta di gruppi:
+  $ T = \pm \Id{} $, cioè $ \ker{\phi} = \ker{\rho} = \set{- \Id{}, + \Id{}} $. Si può
+  costruire la successione esatta di gruppi:
   \[
     \begin{tikzcd}
       \Id{} \arrow{r}{} & \ker{\phi} \arrow{r}{} & G \arrow{r}{} & A_5 \arrow{r}{} & \Id{}
     \end{tikzcd}
   \]
-  Essendo la successione esatta vale che $ A = {G} \slash {\ker{\phi}} $.
+  Essendo la successione esatta vale che $ A_5 = {G} \slash {\ker{\phi}} $.
   $ G \subseteq \Sph{3} $ e ha ordine 120, inoltre $ \ker{\phi} $ è normale in
   $ G $. Si verifica formalmente che la successione spezza, quindi
-  $ G \cong A_5 \oplus \ker{\phi} \cong \mathrm{Isom}(D_{12}) $, questo lo si intuisce per il fatto che sostanzialmente
-  $ G $ e formato da $ (A_5, + \Id{}) $ e $ (A_5, - \Id{}) $.
+  $ G \cong A_5 \oplus \ker{\phi} \cong \mathrm{Isom}(D_{12}) $, questo lo si intuisce per il
+  fatto che sostanzialmente $ G $ e formato da $ (A_5, + \Id{}) $ e
+  $ (A_5, - \Id{}) $. Ho quindi rappresentato $ A_5 $ in $ \Sph{3} $.
   Definendo l'azione del gruppo su $ \Sph{3} $:
   \begin{align*}
     G \times \Sph{3} & \to \Sph{3} \\
@@ -861,13 +884,17 @@ vale la seguente proposizione:
   Il prodotto $ gx $ va inteso in questo modo: sia $ g $ che $ x $ sono punti di
   $ \Sph{3} $, quindi sono rappresentabili come matrici di SU(2) per cui è ben
   definito il prodotto. Considerando la proiezione sul quoziente
-  $ \pi \colon \Sph{3} \to {\Sph{3}} \slash {G} $ si trova lo spazio dodecaedrico
+  $ \pi \colon \Sph{3} \to {\Sph{3}} \slash {G} $ si definisce lo spazio dodecaedrico
   $ P := {\Sph{3}} \slash {G} $, il quale è connesso e compatto in quanto quoziente
-  di uno spazio connesso e compatto. Bisogna verificare:
+  di uno spazio connesso e compatto. Lo spazio dodecaedrico è quindi la sfera
+  con identificati tutti i punti che sono trasformabili l'uno nell'altro tramite
+  l'azione di $ G $, che è il gruppo delle simmetrie del dodecaedro rappresentato
+  sulla $ 3 $-sfera.
+  Bisogna verificare:
   \begin{enumerate}
   \item $ P $ è una $ 3 $-varietà
   \item $ \pi_1(P) $ non è banale
-  \item $ H_k(P) \cong H_k(\Sph{3}) \; \forall k \in \mathbb{N}$
+  \item $ H_k(P) \cong H_k(\Sph{3}) \; \forall k \leq 3$
   \end{enumerate}
   Si dimostra che $ \pi $ è un rivestimento, cioè comunque si prenda un punto $ p \in P $
   esiste intorno di $ p $ a cui corrispondono 120 intorni disgiunti su $ \Sph{3} $.
@@ -889,10 +916,15 @@ vale la seguente proposizione:
       \Delta_k \rar{\sigma} \arrow{ru}{} & P
     \end{tikzcd}
   \]
-  Per il teorema di sollevamento siccome il rivestimento è universale
-  $ \sigma $ si solleva e quindi vuol dire che c'è un elemento non banale in $ H_k(\Sph{3}) $,
-  ma per $ k = 1 $ e per $ k = 2 $ l'omologia è nulla, quindi non può esserci
-  qualcosa di non banale, per questo $ H_1(P) = 0 $ e $ H_2(P) = 0 $.
+  Per il teorema di sollevamento $ \sigma \colon \Delta_k \to P $ induce una mappa
+  $ \sigma' \colon \Delta_k \to \Sph{3} $. Se $ \sigma $ dà origine a un elemento non banale in
+  $ H_k(P) $ anche $ \sigma' $ lo fa in $ H_k(\Sph{3}) $, ma per $ k \in \set{1,2} $
+  $ H_k(\Sph{3}) = 0 $ quindi anche $ H_k(P) $ deve esserlo.
+
+  % Per il teorema di sollevamento siccome il rivestimento è universale
+  % $ \sigma $ si solleva e quindi vuol dire che c'è un elemento non banale in $ H_k(\Sph{3}) $,
+  % ma per $ k = 1 $ e per $ k = 2 $ l'omologia è nulla, quindi non può esserci
+  % qualcosa di non banale, per questo $ H_1(P) = 0 $ e $ H_2(P) = 0 $.
 
   Per calcolare $ H_3(P) $ si usa una tecnica geometrica basata
   sull'osservazione che $ \Sph{3} $ ha una struttura di CW-complesso, quella di
@@ -910,7 +942,7 @@ vale la seguente proposizione:
   Si dimostra che
   \begin{enumerate}
   \item La caratteristica di Eulero non dipende dalla scelta della struttura
-    di CW-complesso.
+    di CW-complesso ma solo dallo spazio topologico.
   \item Vale la formula:
     \[
       e(X) = \sum_{i\geq0}(-)^i \rank{H_i(X)}
@@ -919,7 +951,7 @@ vale la seguente proposizione:
   \end{enumerate}
   Per $ P $:
   \[
-    e(P) = \rank{H_0(P)} - \rank{H_1(P)} + \rank{H_2(P)} - \rank{H_3(P)} = 0
+    e(P) = \rank{H_0(P)} - \rank{H_1(P)} + \rank{H_2(P)} - \rank{H_3(P)} = 120 \cdot e(\Sph{3}) = 0
   \]
   Da cui $ \rank{H_3(P)} = 1 $ e quindi $ H_3(P) \cong \Z \oplus T $ dove $ T $ è una
   parte di torsione per il teorema di struttura, ma si dimostra che $ T $ è
@@ -1941,8 +1973,8 @@ $ \RN{2} $ allora $ C $ divide $ \RN{2} $ in due componenti connesse.
     \centering
     \begin{tikzpicture}
       \draw (0,0) circle (2);
-      \draw (-2,0) to[out=-50, in=-150] (2,0);
-      \draw[dashed] (-2,0) to[out=30, in=130] (2,0);
+      \draw (-2,0) to[out=-50, in=-130] (2,0);
+      \draw[dashed] (-2,0) to[out=30, in=150] (2,0);
       \draw plot [smooth cycle, tension = 1]
       coordinates {(-1,0) (0.7, 1.3) (1.4,-0.5)};
       \node[above] () at (0.7, 1.3) {$ C $};
