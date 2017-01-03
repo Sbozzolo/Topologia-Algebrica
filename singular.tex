@@ -2,21 +2,21 @@
 
 \section{Introduzione}
 
-Si introduce la teoria dell'omologia per semplificare problemi, infatti la
-teoria dell'omologia serve ad associare agli spazi topologici oggetti
-algebrici meno complicati dei gruppi di omotopia. Sono stati sviluppati diversi
-tipi di omologia:
+Si introduce la teoria dell'omologia per avere uno strumento più maneggiabile
+per trattare problemi topologici, infatti la teoria dell'omologia serve ad
+associare agli spazi topologici oggetti algebrici meno complicati dei gruppi di
+omotopia. Sono stati sviluppati diversi tipi di omologia:
 \begin{itemize}
 \item Omologia singolare
 \item Omologia cellulare
 \item Omologia persistente\footnote{Questa ha numerose applicazioni pratiche, come la ricostruzione di immagini.}
 \item Omologia simpliciale
 \end{itemize}
-Quello che farò sarà associare ad ogni spazio topologico (anche patologico)
-gruppi abeliani e omomorfismi a partire da applicazioni continue tra due spazi
-topologici. Fino a quando non sarà espressamente indicato, lavoro sempre con
-anello di base $ \Z $, che quindi rimane sottinteso a meno di scriverlo
-esplicitamente.
+% Quello che farò sarà associare ad ogni spazio topologico (anche patologico)
+% gruppi abeliani e omomorfismi a partire da applicazioni continue tra due spazi
+% topologici.
+Fino a quando non sarà espressamente indicato, lavoro sempre con anello di base
+$ \Z $, che quindi rimane sottinteso a meno di scriverlo esplicitamente.
 
 \section{Simplessi singolari}
 
@@ -85,30 +85,29 @@ esplicitamente.
 \end{figure}
 
 \begin{definition}
-  Dato uno spazio topologico $ X $ si definisce il \textbf{$ k $-simplesso singolare}\index{$ k $-simplesso singolare}
+  Dato uno spazio topologico $ X $ si definisce un \textbf{$ k $-simplesso singolare}\index{Simplesso singolare}
   in $ X $ come un'applicazione continua $ \sigma: \Delta_k \to X $.
 \end{definition}
-Spesso conviene identificare il $ k $-simplesso con la sua immagine in $ X $.
-In questo modo uno $ 0 $-simplesso è un punto in $ X $, mentre un $ 1 $-simplesso singolare potrebbe
-essere sia un segmento che un punto (se la mappa è costante).
-Siccome non c'è relazione tra la dimensione dello spazio di partenza e lo spazio di arrivo
-(ad esempio la curva di Peano) il simplesso può deformare, ed è per questo che è detto singolare.
+Spesso conviene identificare il $ k $-simplesso con la sua immagine in $ X $. In
+questo modo uno $ 0 $-simplesso è un punto in $ X $, mentre un $ 1 $-simplesso
+singolare potrebbe essere sia un segmento che un punto (se la mappa è costante).
+Il simplesso è singolare appunto perché può deformare.
 
 \begin{example}
   Un esempio di $ k $-simplesso singolare in cui è particolarmente evidente la possibilità di fare l'identificazione
   è la mappa identità: $ \Id{} \colon \Delta_k \to \Delta_k $.
 \end{example}
-\begin{osservation}
-  Quando è possibile faccio un abuso di notazione e identifico la mappa con la sua immagine
-  nello spazio topologico.
-\end{osservation}
+% \begin{osservation}
+%   Quando è possibile faccio un abuso di notazione e identifico la mappa con la sua immagine
+%   nello spazio topologico.
+% \end{osservation}
 
-Voglio costruire un complesso di gruppi abeliani e definire l'omologia singolare
-come l'omologia di tale complesso.
+% Voglio costruire un complesso di gruppi abeliani e definire l'omologia singolare
+% come l'omologia di tale complesso.
 
 \begin{definition}
   Si definisce lo spazio delle $ k $-\textbf{catene
-    singolari}\index{$ k $-catene singolari} come il gruppo generato da tutte le
+    singolari}\index{Catene singolari} per $ k > 0 $ come il gruppo generato da tutte le
   possibili applicazioni continue da $ \Delta_k $ a $ X $, cioè:
   \[
     S_k(X) = \langle \set{g | g \text{ $ k $-simplesso singolare in $ X $}} \rangle
@@ -118,22 +117,26 @@ come l'omologia di tale complesso.
   S_k(X) ={}& \{\text{combinazioni lineari finite a coefficienti interi: } \\
             & \sum_g n_g g \;|\; n_g \in \Z, g \; k-\text{simplessi singolari di } X \}
   \end{align*}
+  Per $ k < 0 $ si pone $ S_k(X) = 0 $.
 \end{definition}
 $ S_k(X) $ è un gruppo abeliano con l'operazione somma definita naturalmente:
 \[
   \sum_g n_g g + \sum_h n_h h =   \sum_g n_g g + \sum_g n_g^\star g = \sum_g (n_g + n_g^\star)g
 \]
-Inoltre $ \forall k < 0 $ si pone $ S_k(X) = 0 $. Un elemento generico di $ S_k(X) $
-è una somma formale finita (cioè con un numero finito di coefficienti non nulli)
-su tutti i possibili $ k $-simplessi singolari in $ X $.
+Lo zero di questa operazione è la catena con tutti i coefficienti nulli, mentre
+l'inverso è la catena con i coefficienti opposti. Un elemento generico di
+$ S_k(X) $ è una somma formale finita (cioè con un numero finito di coefficienti
+non nulli) su tutti i possibili $ k $-simplessi singolari in $ X $. Si nota in
+particolare che le catene sono somme formali di mappe e non sono esse stesse
+mappe.
+
 % \begin{example}
 %   \[
 %     (n_1 g_1 + n_2 g_2 + 2 n_3 g_3) + (m_1 g_1 + m_4 g_4) = (n_1 + m_1)g_1 + n_2 g_2 + 2 n_3 g_3 + m_4 g_4
 %   \]
 % \end{example}
-Questa è una somma con tutte le giuste proprietà. Lo zero è la catena con tutti
-i coefficienti nulli, mentre l'inverso è la catena con i coefficienti opposti.
-Si nota che le catene sono somme formali di mappe e non sono esse stesse mappe.
+% Questa è una somma con tutte le giuste proprietà. Lo zero è la catena con tutti
+% i coefficienti nulli, mentre l'inverso è la catena con i coefficienti opposti.
 
 \begin{example}[$ k = 0$]
   Se $ k = 0 $ allora $ S_0(X) $ sono catene di punti ($ g_0 : \Delta_0 \to X $,
@@ -143,17 +146,16 @@ Si nota che le catene sono somme formali di mappe e non sono esse stesse mappe.
     S_0(X) = \set { \sum n_i p_i | n_i \in \Z, \; p_i \in X}
   \]
 \end{example}
-
-A questo punto considero la successione $ S_\bullet $ ($ S $ sta per singolare), cioè:
+Considero la successione $ S_\bullet $ ($ S $ sta per singolare), cioè:
 \[
   \dots \to S_{k+1}(X) \to S_k(X) \to S_{k-1}(X) \to \dots \to S_0(X)
 \]
-Per rendere $ S_\bullet $ un complesso bisogna le applicazioni tra i vari
-$ S_k $, queste applicazioni saranno il bordo. A questo scopo noto
-$ h: \Delta_1 \to X $ è arco, e posso ottenere una $ 0 $-catena prendendo i punti
-estremi dell'arco, infatti il bordo di un $ 1 $-simplesso è uno $ 0 $-simplesso.
-L'idea è quindi ottenere simplessi di ordine più piccolo prendendo il bordo dei
-simplessi. Questa operazione si generalizza con l'operatore faccia.
+per renderla un complesso bisogna le applicazioni tra i vari $ S_k $. A questo
+scopo noto che $ h: \Delta_1 \to X $ è arco, e posso ottenere una $ 0 $-catena
+prendendo i punti estremi dell'arco, infatti il bordo di un $ 1 $-simplesso è
+uno $ 0 $-simplesso. Per costruire l'applicazione si parte dall'idea di ottenere
+simplessi di ordine più piccolo prendendo il bordo dei simplessi.
+% Questa operazione si generalizza con l'operatore faccia.
 
 \begin{figure}[htbp]
   \centering
@@ -173,19 +175,25 @@ simplessi. Questa operazione si generalizza con l'operatore faccia.
 \end{figure}
 
 \begin{definition}
-  Sia $ \Delta_k $ un $ k $-simplesso standard con $ k \geq 0 $ si definisce l'operatore \textbf{faccia}\index{Operatore faccia}
-  come la mappa $ F_i^{\;k}: \Delta_{k-1} \to \Delta_k $ tale che $ F_i^{\;k}(\Delta_{k-1}) $ è una faccia di $ \Delta_k $.
+  Sia $ \Delta_k $ un $ k $-simplesso standard con $ k \geq 0 $ si definisce l'operatore
+  \textbf{faccia}\index{Operatore faccia} come la mappa
+  $ F_i^{\;k}: \Delta_{k-1} \to \Delta_k $ tale che $ F_i^{\;k}(\Delta_{k-1}) $ è una faccia di
+  $ \Delta_k $.
 \end{definition}
-L'operatore faccia prende un $ k $-simplesso standard e lo immerge in un qualche senso in un
-simplesso più grande, ad esempio manda un punto in uno degli estremi di un segmento (nel caso $ k = 0 $),
+L'operatore faccia prende un $ k $-simplesso standard e lo immerge in un
+simplesso più grande, ad esempio manda un punto in uno degli estremi di un
+segmento (nel caso $ k = 0 $),
 
 \begin{example}[$ k = 2 $]
   Per $ k = 2 $ vale che:
   \[
     \Delta_2 = \set{ (x_1,x_2,x_3) \in \RN{3} | x_1 + x_2 + x_3 = 1, \; 0 \leq x_i \leq 1 \; \forall i}
   \]
-  Si definisce la base $ e_0 = (1,0,0) \; e_1 = (0,1,0) \; e_2 = (0,0,1) $, voglio vedere il bordo del triangolo
-  come facce.
+  Si definisce la base $ e_0 = (1,0,0) \; e_1 = (0,1,0) \; e_2 = (0,0,1) $,
+  voglio vedere il bordo del triangolo come facce. Per far ciò definisco il
+  segmento faccia $ i $-esimo come quello che non contiene il vertice
+  $ i $-esimo. Per ottenere l'azione dell'operatore faccia \emph{dimentico} un
+  punto e gli altri punti diventano vertici della faccia.
 
   \begin{figure}[htbp]
     \centering
@@ -213,10 +221,6 @@ simplesso più grande, ad esempio manda un punto in uno degli estremi di un segm
     \label{fig:lez1:standard_simplex_faces}
   \end{figure}
 \end{example}
-
-Il segmento faccia $ i $-esimo è quello che non contiene il vertice $ i $-esimo, cioè
-\emph{dimentico} un punto e gli altri punti diventano vertici del simplesso.
-
 In generale se $ \Delta_k $ è un simplesso standard si definisce la base canonica come (si noti
 che la base canonica è ordinata):
 \begin{gather*}
@@ -254,11 +258,11 @@ come:
 \end{definition}
 
 \begin{definition}
-  Dato un $ k $-simplesso singolare $ \sigma: \Delta_k \to X $ una sua faccia è data dalla
-  mappa $ \sigma^{(i)} \colon \Delta_{k-1} \to X $ cioè la restrizione di
+  Dato un $ k $-simplesso singolare $ \sigma: \Delta_k \to X $ si definisce una sua faccia
+  come la mappa $ \sigma^{(i)} \colon \Delta_{k-1} \to X $ cioè la restrizione di
   $ \sigma $ sulla faccia $ i $-esima del simplesso, cioè
-  $ \sigma^{(i)} = \sigma \circ F_i^{\; k} $, si definisce quindi il
-  \textbf{bordo}\index{Bordo} come la mappa:
+  $ \sigma^{(i)} = \sigma \circ F_i^{\; k} $. Si definisce il \textbf{bordo}\index{Bordo} come
+  la mappa:
   \begin{align*}
     \partial \colon \Sigma_k(X) & \to \Sigma_{k-1}(X) \\
     \sigma & \mapsto  \sum_{i=0}^{k}(-)^i \sigma^{(i)}
@@ -302,15 +306,16 @@ Il bordo sostanzialmente corrisponde alla somma alterna delle facce.
   $ \partial_1 \sigma = \sigma^{(1)} - \sigma^{(0)} $ dove l'azione di queste due mappe è quella di
   mandare un estremo dell'intervallo $ [0,1] $ in $ p_0 $ o $ p_1 $.
 \end{example}
-
-Si è quindi definito il bordo sui simplessi singolari, ma si può generalizzare
-la definizione sull'intero gruppo di catene
-$ \partial_k: S_k(X) \to S_{k-1}(X) $ estendendo la definizione per linearità
-$ \partial_k \left( \sum_g n_g g\right) = \sum_g n_g \partial_k g $, dove $ g $ sono simplessi
-singolari, che sono i generatori di $ S $. A questo punto si
+Si è definita l'azione del bordo sui simplessi, ma è estendendola per linearità
+si definisce $ \partial \colon S_k(X) \ to S_{k-1}(X) $. In questo modo
 $ (S_\bullet, \partial) $ è una successione di gruppi abeliani, per mostrare che è un
-complesso bisogna verificare che $ \partial_k $ è un omomorfismo e che
-soddisfa $ \partial_k \circ \partial_{k+1} = 0 $.
+complesso bisogna verificare che $ \partial_k $ è un omomorfismo e che soddisfa
+$ \partial_k \circ \partial_{k+1} = 0 $.
+% Si è quindi definito il bordo sui simplessi singolari, ma si può generalizzare
+% la definizione sull'intero gruppo di catene
+% $ \partial_k: S_k(X) \to S_{k-1}(X) $ estendendo la definizione per linearità
+% $ \partial_k \left( \sum_g n_g g\right) = \sum_g n_g \partial_k g $, dove $ g $ sono simplessi
+% singolari, che sono i generatori di $ S $.
 
 \begin{proposition}
   La mappa $ \partial \colon S_k(X) \to S_{k-1}(X) $ è un omomorfismo.
@@ -335,8 +340,8 @@ il complesso sarà:
   Vale che $ \partial_k \circ \partial_{k+1} = 0 $.
 \end{proposition}
 \begin{proof}
-  È sufficiente verificare la proprietà sui generatori, quindi se $ \sigma $ è un
-  $ k $-complesso singolare, cioè $ \sigma : \Delta_k \to X $ continua:
+  È sufficiente verificare la proprietà sui generatori di $ S_k(X) $, quindi se
+  $ \sigma $ è un $ k $-complesso singolare, cioè $ \sigma : \Delta_k \to X $ continua:
   \begin{gather*}
     \partial_k \circ \partial_{k+1} \sigma = \partial_k \left( \sum_{j=0}^{k+1}(-)^j (\sigma \circ F_j^{\; k+1}) \right) =  \sum_{j=0}^{k+1}(-)^j \partial_k (\sigma \circ F_j^{\; k+1}) = \\
     = \sum_{j=0}^{k+1} (-)^j \sum_{i=0}^k (-)^i (\sigma \circ F_j^{\; k+1}) \circ F_i^{\; k} = \sum_{j = 0}^{k+1} \sum_{i = 0}^{k} (-)^{j+i} \sigma \circ F_j^{\; k+1} \circ F_{i}^{\; k} =
@@ -402,13 +407,13 @@ il complesso sarà:
 
 \begin{definition}
   Sia $ (S_\bullet(X),\partial) $ un complesso di moduli, gli elementi di $ \ker{\partial_k} $ sono detti
-  \textbf{$ k $-cicli}\index{$ k $-ciclo}. Un $ k $-ciclo è quindi una $ k $-catena
+  \textbf{$ k $-cicli}\index{Ciclo}. Un $ k $-ciclo è quindi una $ k $-catena
   con bordo nullo:
   \[
     c \text{ ciclo } \Leftrightarrow \partial c = 0
   \]
   L'insieme dei $ k $-cicli è indicato con $ Z_k(X) $, cioè: $ Z_k(X) = \ker{\partial_k} $.
-  Si indica invece con $ B_k(X) $ l'insieme dei \textbf{bordi}\index{$ k $-bordo}, cioè le $ k $-catene singolari
+  Si indica invece con $ B_k(X) $ l'insieme dei \textbf{bordi}\index{Bordo}, cioè le $ k $-catene singolari
   che sono immagini di $ k+1 $-catene, cioè esplicitamente:
   \[
     B_k(X) = \set{\eta \in S_k(X) | \exists b \in S_{k+1}(X), \partial b = \eta}
@@ -1169,25 +1174,43 @@ si comporta bene rispetto all'identità e alla composizione.
 
 \section{Successioni esatte}
 
-Considero due complessi $ (C_\bullet, \partial) $ e $ (C'_\bullet, \partial') $, considero l'omomorfismo
-di gruppi abeliani $ F \colon (C_\bullet, \partial) \to (C'_\bullet, \partial') $ tale che
-$ \forall k $ si formi un diagramma commutativo, cioè valga $ F \circ \partial = \partial' \circ F $
-\[
-  \begin{tikzcd}
-    \dots \arrow{r}{\partial} &  C_{k+1}  \arrow{r}{\partial} \arrow{d}{F} &  C_{k}  \arrow{r}{\partial} \arrow{d}{F} & C_{k-1}  \arrow{r}{\partial} \arrow{d}{F} & \dots \\
-    \dots \arrow{r}{\partial'} &  C'_{k+1}  \arrow{r}{\partial'} &  C'_{k}  \arrow{r}{\partial'}  &  C'_{k-1} \arrow{r}{\partial'} & \dots
-  \end{tikzcd}
-\]
-Tutti i quadrati che si formano devono essere
-commutativi. Si pone questa richiesta di commutatività
-in quanto considerando $ f \colon X \to Y $ e quindi
-$ F = f_\sharp \colon (S_\bullet(X), \partial) \to  (S_\bullet(Y), \partial') $ la condizione
-di commutatività è $ f_\sharp \circ \partial = \partial' \circ f_\sharp $ che è
-proprio quella che ho utilizzato prima per mostrare
-che l'applicazione è ben definita a livello
-di omologia (avevo usato $ g_\sharp \circ \partial = \partial \circ g_\sharp $).
-Una funzione $ F $ fatta in questo modo è detta
-\textbf{mappa tra complessi}\index{Mappa tra complessi}.
+
+\begin{definition}
+  Considero due complessi $ (C_\bullet, \partial) $ e $ (C'_\bullet, \partial') $, e un omomorfismo di
+  gruppi abeliani $ F \colon (C_\bullet, \partial) \to (C'_\bullet, \partial') $ tale che soddisfi
+  $ F \circ \partial = \partial' \circ F $ e quindi i quadrati del seguente diagramma siano commutativi.
+  \[
+    \begin{tikzcd}
+      \dots \arrow{r}{\partial} &  C_{k+1}  \arrow{r}{\partial} \arrow{d}{F} &  C_{k}  \arrow{r}{\partial} \arrow{d}{F} & C_{k-1}  \arrow{r}{\partial} \arrow{d}{F} & \dots \\
+      \dots \arrow{r}{\partial'} &  C'_{k+1}  \arrow{r}{\partial'} &  C'_{k}  \arrow{r}{\partial'}  &  C'_{k-1} \arrow{r}{\partial'} & \dots
+    \end{tikzcd}
+  \]
+  La mappa $ F $ è detta \textbf{mappa tra complessi}\index{Mappa tra
+    complessi}.
+\end{definition}
+\begin{example}
+  Sia $ f \colon X \to Y $ mappa continua tra spazi topologici, $ f_\sharp $ è una
+  mappa i complessi delle catene singolari in $ X $ e in $ Y $.
+\end{example}
+
+% Considero due complessi $ (C_\bullet, \partial) $ e $ (C'_\bullet, \partial') $, e un omomorfismo di
+% gruppi abeliani $ F \colon (C_\bullet, \partial) \to (C'_\bullet, \partial') $ tale che soddisfi
+% $ F \circ \partial = \partial' \circ F $ e quindi i quadrati del seguente diagramma siano commutativi.
+% \[
+%   \begin{tikzcd}
+%     \dots \arrow{r}{\partial} &  C_{k+1}  \arrow{r}{\partial} \arrow{d}{F} &  C_{k}  \arrow{r}{\partial} \arrow{d}{F} & C_{k-1}  \arrow{r}{\partial} \arrow{d}{F} & \dots \\
+%     \dots \arrow{r}{\partial'} &  C'_{k+1}  \arrow{r}{\partial'} &  C'_{k}  \arrow{r}{\partial'}  &  C'_{k-1} \arrow{r}{\partial'} & \dots
+%   \end{tikzcd}
+% \]
+% Una mappa di questo tipo è la mappa $ f_\sharp $ del
+
+% Si pone questa richiesta di commutatività in quanto considerando
+% $ f \colon X \to Y $ e quindi
+% $ F = f_\sharp \colon (S_\bullet(X), \partial) \to (S_\bullet(Y), \partial') $ la condizione di commutatività è
+% $ f_\sharp \circ \partial = \partial' \circ f_\sharp $ che è proprio quella che ho utilizzato prima per mostrare
+% che l'applicazione è ben definita a livello di omologia (avevo usato
+% $ g_\sharp \circ \partial = \partial \circ g_\sharp $). Una funzione $ F $ fatta in questo modo è detta
+% \textbf{mappa tra complessi}\index{Mappa tra complessi}.
 
 \begin{definition}
   Si definisce una \textbf{successione esatta corta}\index{Successione esatta corta} di
@@ -1205,14 +1228,15 @@ Una funzione $ F $ fatta in questo modo è detta
       0 \arrow{r}{} & A \arrow{r}{\alpha} & B\arrow{r}{\beta} & C \arrow{r}{} & 0
     \end{tikzcd}
   \]
-  Infatti indicando le mappe sottointese con $ i \colon 0 \to A $ e $ j \colon C \to 0 $
-  allora per l'esattezza vale che $ \ker{\alpha} = \im{i} = 0 $ in quanto $ i $ è
-  omomorfismo, ma $ \ker{\alpha} = 0 $ signfiica che $ \alpha $ è iniettiva, inoltre
-  $ \ker{j} = \im{\beta} = C $, quindi $ \beta $ è suriettiva. Quindi automaticamente
+  Infatti indicando le mappe sottointese con $ i \colon 0 \to A $ e
+  $ j \colon C \to 0 $ allora per l'esattezza vale che
+  $ \ker{\alpha} = \im{i} = 0 $ in quanto $ i $ è omomorfismo, ma
+  $ \ker{\alpha} = 0 $ implica che $ \alpha $ è iniettiva, mentre
+  $ \ker{j} = \im{\beta} = C $, quindi $ \beta $ è suriettiva. Inoltre
   $ C \cong {B} \slash {A} $ infatti per il teorema fondamentale degli omomorfismi
   $ {B} \slash {\ker{\beta}} \cong \im{\beta} \overset{\text{suriettività}}{=} C $, ma per
-  l'esattezza $ \ker{\beta} = \im{\alpha} $ quindi $ \ker{\beta} = \alpha(A) $ ed essendo $ \alpha $
-  iniettiva $ \alpha(A) \cong A $.
+  l'esattezza $ \ker{\beta} = \im{\alpha} $ quindi $ \ker{\beta} = \alpha(A) $ ed essendo
+  $ \alpha $ iniettiva $ \alpha(A) \cong A $.
 \end{definition}
 
 \begin{definition}
@@ -1229,8 +1253,8 @@ Una funzione $ F $ fatta in questo modo è detta
 \end{definition}
 
                                                                                                          %                                                                                                          lezione 4 parte 2
-
-In modo più esteso questo significa:
+Un modo più esteso per indicare una sessione esatta corta è con il seguente
+diagramma in cui ogni quadrato è commutativo:
 \[
   \begin{tikzcd}
     {} & 0 \arrow{d}{} & 0 \arrow{d}{} & 0 \arrow{d}{} & {} \\
@@ -1283,9 +1307,10 @@ indurre una successione esatta lunga:
   \]
 \end{theorem}
 \begin{proof}
+  \emph{Sketch of proof, la dimostrazione è lunga e noiosa.}
   Per dimostrare il teorema bisogna:
   \begin{enumerate}
-  \item Dimostrare che $ \alpha_\star $ e $ \beta_\star $ sono ben definite
+  \item Dimostrare che $ \alpha_\star $ e $ \beta_\star $ sono mappe tra complessi ben definite
   \item Costruire l'omomorfismo di connessione e verificare che sia effettivamente un omomorfismo
   \item Mostare che la successione è esatta, cioè che
     \begin{gather*}
@@ -1294,7 +1319,12 @@ indurre una successione esatta lunga:
       \im{\delta} = \ker{\alpha_\star}
     \end{gather*}
   \end{enumerate}
-  \emph{Sketch of proof, la dimostrazione è lunga e noiosa.}
+
+  \subparagraph{Dimostrazione del punto uno} Fissato $ k $ $ \alpha $ e
+  $ \beta $ sono mappe continue tra spazi topologici e quindi inducono delle mappe
+  ben definite tra i gruppi di omologia. Bisogna verificare la commutatività.
+
+  \subparagraph{Dimostrazione del punto due}
 
   Per costruire l'omomorfismo di connessione devo trovare un
   elemento in $ A_{k-1} $ a partire da uno in $ C_k $.
@@ -1320,7 +1350,7 @@ indurre una successione esatta lunga:
   perciò $ \exists a \in A_{k-1} $ tale che $ \alpha_{k-1}(a) = \partial b $, quindi
   a partire da $ c \in C_k $ ho associato un elemento $ a \in A_{k-1} $.
   Per scendere a livello di omologia $ a $ deve essere un ciclo,
-  cioè $ \partial a = 0 $, per verificarlo apllico $ \alpha_{k-2} $ a $ \partial a $
+  cioè $ \partial a = 0 $, per verificarlo applico $ \alpha_{k-2} $ a $ \partial a $
   e uso la commutatività:
   \[
     \alpha_{k-2}(\partial a) = \partial \alpha_{k-1}(a) = \partial \partial b = 0
@@ -1366,7 +1396,7 @@ indurre una successione esatta lunga:
     c'' \sim_{hom} c \iff \exists c_0 \in C_{k+1} \; | \; c'' - c = \partial c_0
   \]
   Ma per la suriettività $ \exists b, b'' $ tale che $ c = \beta_k(b) $,
-  $ c'' = \beta_k(b'') $ e $ c_0 = \beta_{k+1}(c_0) $, quindi:
+  $ c'' = \beta_k(b'') $ e $ c_0 = \beta_{k+1}(b_0) $, quindi:
   \[
     \beta_k(b'') - \beta_k(b) = \partial c_0 \Rightarrow \beta_k(b'' - b) = \partial c_0  \Rightarrow
     \beta_k(b''-b) = \partial\left( \beta_{k+1}(b_0)\right) = \beta_{k}(\partial b_0)
@@ -1384,12 +1414,15 @@ indurre una successione esatta lunga:
   Ma $ \alpha_{k-1} $ è omomorfismo iniettivo quindi
   $ a'' - a - \partial \tilde{a} = 0 $ cioè $ a'' - a = \partial \tilde{a} $,
   quindi siccome $ a'' $ e $ a $ differiscono per un bordo sono omologhi.
-
-  Si può quindi definire $ \delta $ su $ \llbracket c \rrbracket \in H_p(C_k) $:
+  \\ \\ \noindent
+  Avendo dimostrato che non ci sono ambiguità si può passare a livello di
+  omologia e definire l'omomorfismo di connessione $ \delta $ su
+  $ \llbracket c \rrbracket \in H_p(C_k) $:
   \[
     \delta(\llbracket c \rrbracket) = \llbracket \alpha \circ \partial \circ \beta^{-1}(c) \rrbracket
   \]
-  Questa è ben definita.
+  Questa mappa è ben definita. Rimane da verificare che la successione sia
+  esatta.
 \end{proof}
 
 \section{Omologia singolare relativa}
@@ -1713,9 +1746,8 @@ $ k $-catene in $ \set{x_0} $
     \partial_k \colon S_k(\set{x_0}) & \to S_{k-1}(\set{x_0}) \\
     \sigma_k & \mapsto 0
   \end{align*}
-  Quindi l'immagine è solo $ 0 $.
-
-  A questo punto se $ k \geq 2 $ $ \im{\partial_{k+1}} = \ker{\partial_k} $, quindi:
+  Quindi l'immagine è solo $ 0 $. Per questi motivi se $ k \geq 2 $
+  $ \im{\partial_{k+1}} = \ker{\partial_k} $ e quindi:
   \[
     H_k(X) = \quot{\ker{\partial_{k}}}{\im{\partial_{k+1}}} \cong 0
   \]
@@ -1835,26 +1867,26 @@ $ k $-catene in $ \set{x_0} $
   spezza. Questo è sempre vero, a meno di casi eccezionalmente patologici.
 \end{proof}
 
-\begin{example}
-  Considero ad esempio $ H_k(\Sph{n}) $ con $ n \geq 1 $:
-  \[
-    H_k(\Sph{n}) \cong
-    \begin{cases}
-      \Z & \text{se } k \in \set{0,n} \\
-      0 & \text{se } k \not \in \set{0,n}
-    \end{cases}
-  \]
-  Fin ora so che:
-  \[
-    H_1(\Sph{n}) \cong
-    \begin{cases}
-      \Z & \text{se } n = 1 \\
-      0 & \text{se } n \geq 2
-    \end{cases}
-  \]
-  E che $ H_0(\Sph{n}) \cong \Z $ per $ n \geq 1 $, vorrei calcolare gli altri gruppi di omologia,
-  ma per farlo mi servono altri strumenti.
-\end{example}
+% \begin{example}
+%   Considero ad esempio $ H_k(\Sph{n}) $ con $ n \geq 1 $:
+%   \[
+%     H_k(\Sph{n}) \cong
+%     \begin{cases}
+%       \Z & \text{se } k \in \set{0,n} \\
+%       0 & \text{se } k \not \in \set{0,n}
+%     \end{cases}
+%   \]
+%   Fin ora so che:
+%   \[
+%     H_1(\Sph{n}) \cong
+%     \begin{cases}
+%       \Z & \text{se } n = 1 \\
+%       0 & \text{se } n \geq 2
+%     \end{cases}
+%   \]
+%   E che $ H_0(\Sph{n}) \cong \Z $ per $ n \geq 1 $, vorrei calcolare gli altri gruppi di omologia,
+%   ma per farlo mi servono altri strumenti.
+% \end{example}
 
 \section{Assiomi di una teoria omologica}
 

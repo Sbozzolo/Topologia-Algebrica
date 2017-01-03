@@ -1386,6 +1386,8 @@ Il teorema dei coefficienti universali quindi si riformula anche per la coomolog
 \newmathsymb{cuppr}{\cup}{Prodotto cup}
 Sia $ H^\star (X,\R) := \bigoplus_k H^k(X,\R) $, definisco il prodotto
 cup $ \cup $ tale che renda $ (H^\star (X,\R), +, \cup) $ un anello.
+Gli elementi di $ H^\star (X,\R) $ sono somme formali finite
+del tipo $ \sum_i \alpha^i $ con $ \alpha^i \in H^i(X, \R) $.
 
 Sia $ X $ uno spazio spazio topologico, e $ \R $ un PID,
 $ S^k(X; \R) $ e $ S^l(X; \R) $ sono gli insiemi delle cocatene,
@@ -1522,17 +1524,26 @@ Quindi $ H^\star(X, \R) $ è un anello unitario, ma in generale non commutativo.
 \begin{example}
   Se $ X = \Sph{n} $, so che:
   \[
-    H_k(\Sph{n}) \cong H^k(\Sph{n}) \cong
+    H_k(\Sph{n}) \cong
     \begin{cases}
       \Z & \text{se } k \in \set{0,n} \\
       0 & \text{altrimenti}
+    \end{cases}
+  \]
+  Ma $ \ext{H_k(\Sph{n}), \Z} \cong 0 $ dato che $ H_k(\Sph{n}) $ è libero, e quindi
+  per il teorema dei coefficienti universali:
+  \[
+    H^k(\Sph{n}) \cong \hom{H_k(\Sph{n}), \Z} \cong
+    \begin{cases}
+      \hom{\Z, \Z} \cong \Z & \text{se } k \in \set{0,n} \\
+      \hom{0, \Z} \cong 0 & \text{altrimenti}
     \end{cases}
   \]
   Ho che $ H^0(\Sph{n}) = \langle\Id{}\rangle $ e $ H^n(\Sph{n}) = \langle\alpha\rangle $ con $ \alpha $ opportuno
   generatore. La tabella di moltiplicazione tra questi generatori è:
   \[
     \begin{array}{c|cc}
-      {} & \Id{} & \alpha \\ \hline
+      \cup & \Id{} & \alpha \\ \hline
       \Id{} & \Id{} & \alpha \\
       \alpha  & \alpha & 0 \\
     \end{array}
@@ -1593,7 +1604,7 @@ Quindi $ H^\star(X, \R) $ è un anello unitario, ma in generale non commutativo.
   Siano $ x, y $ i generatori rispettivamente di $ H^1(\Pjr{n}; \Z_2) $ e $ H^2(\Pjc{n}; \Z) $,
   cioè:
   \[
-    \langle x \rangle = H^1(\Pjr{n}, \Z_2)  \quad \langle y \rangle = H^2(\Pjc{n}, \Z)
+    \langle x \rangle = H^1(\Pjr{n}, \Z_2) \cong \Z_2 \quad \langle y \rangle = H^2(\Pjc{n}, \Z) \cong \Z
   \]
   allora vale che:
   \begin{gather*}

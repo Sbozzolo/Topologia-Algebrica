@@ -1,12 +1,12 @@
 (TeX-add-style-hook
  "singular"
  (lambda ()
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperref")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperimage")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperbaseurl")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "nolinkurl")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "nolinkurl")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperbaseurl")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperimage")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperref")
    (add-to-list 'LaTeX-verbatim-macros-with-delims-local "path")
    (TeX-run-style-hooks
     "images/Tetrahedron"
@@ -31,21 +31,21 @@
    (LaTeX-add-index-entries
     "Simplesso standard"
     "Coordinate baricentrali"
-    "$ k $-simplesso singolare"
-    "$ k $-catene singolari"
+    "Simplesso singolare"
+    "Catene singolari"
     "Operatore faccia"
     "Inviluppo convesso"
     "Insieme convesso"
     "Bordo"
     "Omologia singolare"
-    "$ k $-ciclo"
-    "$ k $-bordo"
+    "Ciclo"
     "Elementi omologhi"
     "Grado"
     "Gruppo derivato"
     "Teorema di Hurewicz"
     "Bouquet"
-    "Mappa tra complessi"
+    "Mappa tra
+    complessi"
     "Successione esatta corta"
     "Omomorfismo di connessione"
     "Omologia singolare relativa"

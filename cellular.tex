@@ -225,6 +225,9 @@ può essere vista come CW complesso formato da un punto e una sola cella.
 
 \section{Spazi proiettivi}
 
+\subsection{Spazi proiettivi reali}
+
+
 \newmathsymb{proreal}{\Pjr{n}}{Spazio proiettivo reale}
 \begin{definition}
   Si definisce lo \textbf{spazio proiettivo reale}\index{Spazio proiettivo
@@ -237,10 +240,10 @@ Fissato $ j \in \set{0, \dots, n} $ e definito
 $ U_j = \set{[x_0 : \dots : x_n] \in \Pjr{n} | x_j \not = 0 } $ si definisce la mappa:
 \begin{align*}
   \phi_j \colon U_j & \to \RN{n} \\
-  [x_0 : \dots : xz_n] & \mapsto \left(\frac{x_0}{x_j}, \dots, \frac{x_n}{x_j}\right)
+  [x_0 : \dots : x_n] & \mapsto \left(\frac{x_0}{x_j}, \dots, \frac{x_n}{x_j}\right)
 \end{align*}
-Si dimostra che $ \phi_j $ è omeomorfismo. Queste mappe permettono di definire la
-topologia dello spazio proiettivo: un sotto insieme di $ U_i $ è aperto se lo è
+Si dimostra che $ \phi_j $ è un omeomorfismo. Queste mappe permettono di definire la
+topologia dello spazio proiettivo: un sottoinsieme di $ U_i $ è aperto se lo è
 in $ \RN{n} $ attraverso $ \phi_i $, e un insieme generico $ A $ è aperto se lo
 sono tutte le intersezioni con gli insiemi $ U_i $. In questo modo $ \Pjr{n} $ è
 una varietà topologica di dimensione $ n $.
@@ -249,7 +252,7 @@ una varietà topologica di dimensione $ n $.
   Si dimostra che $ \Pjr{n} \cong {\Sph{n}} \slash {H} $ con $ H = \set{\Id{\Sph{n}}, a_{\Sph{n}}} $, dove
   $ a $ è la mappa antipodale, cioè $ x \sim y \iff x = y \vee x = - y $.
 \end{lemma}
-\begin{proof}[Sketch]
+\begin{proof} \emph{Sketch of proof.}
   La mappa che realizza questo omeomorfismo è:
   \begin{align*}
     f \colon \Pjr{n} & \to \quot{\Sph{n}}{\sim}\\
@@ -261,83 +264,21 @@ una varietà topologica di dimensione $ n $.
   1 su una semisfera.
 \end{proof}
 \eproof
-Si trova quindi che:
+Per i primi spazi proiettivi reali:
 \begin{itemize}
-\item $ \Pjr{1} \simeq \Sph{1} \slash \sim \; \simeq \Sph{1} \simeq \RN{} \cup {\infty} $
-\item $ \Pjr{2} = \mathbb{P}^1(\RN{}) \cup_\phi \Disk{2} $
+\item
+  $ \Pjr{1} \simeq \Sph{1} \slash \sim \; \simeq \Sph{1} \simeq \RN{} \cup {\infty} $. Questa è una
+  $ 1 $-cella e una $ 0 $-cella.
+\item $ \Pjr{2} = \Sph{2} \slash \sim $, cioè si identifica l'emisfero Sud con quello
+  Nord. Si può quindi costruire questo spazio attaccando una $ 2 $-cella
+  ad una $ \Sph{1} $ e quindi facendo l'identificazione di antipodalità.
+  Ma $ \Sph{1} = \Pjr{1} $ quindi $ \Pjr{2} = \mathbb{P}^1(\RN{}) \cup_\phi \Disk{2} $
   Ho $ {\Sph{2}} \slash {\sim} $, l'emisfero sud della sfera si identifica con quello
-  nord per l'applicazione di antipodalità.
-  $ \phi = a \big \lvert_{\Sph{1}} $ e $ \Sph{1} = \Pjr{1} $ e $ \Sph{1} = \partial \Disk{2} $,
-  quindi:
+  con:
   \begin{align*}
-    \phi \colon \Sph{1} & \to \Sph{1} \\
+    \phi \colon \partial \Disk{2} = \Sph{1} & \to \Pjr{1} = \Sph{1} \\
     (x,y) & \mapsto (-x,-y)
   \end{align*}
-\item Se considero $ \Pjr{2} \cup_\phi \Disk{3} $ con:
-  \[
-    \phi \colon \partial \Disk{3}  \to \Pjr{2}
-  \]
-  cioè il passaggio al quoziente:
-  \[
-    \phi \colon \Sph{2}  \to \quot{\Sph{1}}{H}
-  \]
-\end{itemize}
-
-\begin{example}[Spazi proiettivi]
-  Se $ X^{(k)} = \Pjr{k} \cup_\phi \Disk{k+1} $ con
-  \[
-    \phi \colon \partial \Disk{k+1}  \to \Pjr{k}
-  \]
-  Cioè:
-  \[
-    \phi \colon \Sph{k}  \to \Pjr{k}
-  \]
-  Cioè scelgo $ \phi $ come la proiezione sul quoziente da $ \Sph{k} $ a $ \mathbb{P}^k(\RN{}) = \quot{\Sph{k+1}}{H} $,
-  questo è uno spazio compatto.
-  $ \mathbb{P}^k(\RN{}) $ è uno spazio di Hausdorff, voglio mostrare che $ X^{(k+1)} \cong \mathbb{P}^{k+1}(\RN{}) $.
-  Cerco un'applicazione continua biunivoca e chiusa $ \Phi \colon X^{(k+1)} \to  \mathbb{P}^{k+1}(\RN{}) $,
-  cioè un omeomorfismo. Ho il digramma:
-  \[
-    \begin{tikzcd}
-      \mathbb{P}^{k}(\RN{}) \sqcup \Disk{k+1} \arrow{r}{\eta} \arrow{d}{} &  \mathbb{P}^{k+1}(\RN{}) \\
-      X^{(k+1)} \arrow{ru}{\Phi}
-    \end{tikzcd}
-  \]
-  \begin{exercise}
-    Dimostrare che $ \eta $ è continua e gode di tutte le buone proprietà.
-  \end{exercise}
-  So che $ i \colon  \mathbb{P}^{k}(\RN{}) \incl \mathbb{P}^{k+1}(\RN{}) $ (è un iperpiano all'infinito),
-  quindi posso usare l'inclusione.
-
-  Devo trovare una mappa $ j \colon \Disk{k+1} \to \mathbb{P}^{k+1}(\RN{}) $. $ i $ è ovvia:
-  $ i([z_0, \dots, z_k]) = [z_0, \dots, z_k; 0] $, mentre $ j $:
-  \[
-    j \colon [z_0, \dots, z_k] \mapsto  \left[z_0, \dots, z_{k+1} = \sqrt{1 - \sum_{j=1}^k z_i^2}\right]
-  \]
-  Siccome $ \sum_{j=1}^k z_i^2 \leq 1 $ l'applicazione è ben definita, quindi $ \eta = (i,j) $.
-\end{example}
-
-\begin{example}
-  Lo spazio proiettivo reale di dimensione $ n $ $ \Pjr{n} $ possiede una
-  struttura di CW complesso con una $ 0 $-cella, una $ 1 $-cella, \dots, una
-  $ n $-cella. Lo $ 0 $-scheletro è un punto, l'$ 1 $-scheletro è
-  $ K^{(1)} = K^{(0)} \cup_{f_0} \Disk{1} \cong \Pjr{1} $ che è una retta proiettiva
-  reale, il $ 2 $-scheletro è
-  $ K^{(2)} = K^{(1)} \cup_{f_1} \Disk{1} \cong \Pjr{2} $ che è un piano proiettivo
-  reale, e cosí via con $ f_j \colon \partial \Disk{j} \to K^{(j-1)} $ per
-  $ j \geq 1 $. In generale ho
-  $ \phi_j \colon \Disk{j} \to K^{(j-1)} \cong \Pjr{j-1} $. $ \Pjr{j-1} $ contiene
-  $ \Pjr(j-2) $ come iperpiano all'infinito, ad esempio $ z_{j-1} = 0 $. Poi a
-  $ \Pjr{j-2} $ incollo $ \Sph{j-2} $ tramite la mappa antipodale. Ad esempio
-  per $ n = 2 $ $ \Pjr{2} $ contiene
-  $ \Pjr{1} = \set{ [z_0 : z_1 : 0] | (z_0, z_1) \not = 0 } $. Attacco
-  $ \Disk{2} $ su questo $ \Pjr{1} $ con:
-  \begin{align*}
-    f \colon \Sph{1} = \partial \Disk{2} & \to \Pjr{1} \\
-    z & \mapsto [z]
-  \end{align*}
-  Che è la proiezione sul quoziente (mappa antipodale), infatti
-  $ \Pjr{1} = \quot{\Sph{1}}{H} $. %Quindi $ \Pjr{2} = \Pjr{1} \cup_f \Disk{2} $.
   \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
@@ -348,16 +289,85 @@ Si trova quindi che:
       \node () at (1,0) {-};
       \node () at (-1,0) {-};
     \end{tikzpicture}
-    \caption{$ \Pjr{1} $, attacco al disco una circonferenza con la mappa $ f $,
+    \caption{$ \Pjr{2} $, attacco al disco una circonferenza con la mappa $ f $,
       che quindi identifica i punti antipodali.}
     \label{fig:lez10:projective}
   \end{figure}
-\end{example}
+\item Attaccando un ulteriore cella $ \Disk{3} $ si costruisce lo spazio $ \Pjr{3} $.
+  In questo modo $ \Pjr{3} = \Pjr{2} \cup_\phi \Disk{3} $ con:
+  \[
+    \phi \colon \partial \Disk{3} = \Sph{2} \to \Pjr{2} = \quot{\Sph{2}}{\sim}
+  \]
+  Si sceglie come mappa $ \phi $ la proiezione al quoziente su
+  $ \Sph{2} \slash \sim $ in questo modo è automaticamente realizzata l'identificazione
+  antipodale che definisce gli spazi proiettivi.
+\end{itemize}
+Continuando ad aggiungere una cella alla volta e scegliendo sempre
+la mappa di proiezione al quoziente si ottengono tutti gli spazi proiettivi reali.
+\begin{lemma}%[Struttura CW complessa degli spazi proiettivi reali]
+  Sia $ X^{(k+1)} = \Pjr{k} \cup_\phi \Disk{k+1} $ con
+  \[
+    \phi \colon \partial \Disk{k+1} = \Sph{k} \to \Pjr{k} = \quot{\Sph{k}}{\sim}
+  \]
+  mappa di proiezione al quoziente, allora $ X^{(k+1)} \simeq \Pjr{k+1} $.
+\end{lemma}
+\begin{proof}
+  Costruisco esplicitamente un omeomorfismo $ \Phi \colon X^{(k+1)} \to \mathbb{P}^{k+1}(\RN{}) $,
+  per far ciò definisco una mappa $ \eta :  \mathbb{P}^{k}(\RN{}) \sqcup \Disk{k+1} \to \Pjr{\RN{}} $
+  che si porta al quoziente:
+  \[
+    \begin{tikzcd}
+      \mathbb{P}^{k}(\RN{}) \sqcup \Disk{k+1} \arrow{r}{\eta} \arrow{d}{P} &  \mathbb{P}^{k+1}(\RN{}) \\
+      X^{(k+1)} \arrow{ru}{\Phi}
+    \end{tikzcd}
+  \]
+  Una possibile costruzione di $ \eta $ è con le mappe
+  \begin{align*}
+    i \colon \mathbb{P}^{k}(\RN{}) & \to \mathbb{P}^{k+1}(\RN{})  \\
+    [z_0 : \dots : z_k] & \mapsto [z_0: \dots: z_k: 0]
+  \end{align*}
+  E:
+  \begin{align*}
+    j \colon \Disk{k+1} & \to \mathbb{P}^{k+1}(\RN{}) \\
+    (z_0, \dots, z_k) & \mapsto  \left[z_0: \dots: z_{k+1} = \sqrt{1 - \sum_{j=1}^k z_i^2}\right]
+  \end{align*}
+  Siccome $ \sum_{j=1}^k z_i^2 \leq 1 $ l'applicazione è ben definita, quindi $ \eta = (i,j) $.
+  % \begin{exercise}
+  %   Dimostrare che $ \eta $ è continua e gode di tutte le buone proprietà che le
+  %   sono richieste.
+  % \end{exercise}
+  Rimane da dimostrare che $ \eta $ è continua e gode di tutte le buone proprietà che le
+    sono richieste.
+\end{proof}
+
+  % Lo spazio proiettivo reale di dimensione $ n $ $ \Pjr{n} $ possiede una
+  % struttura di CW complesso con una $ 0 $-cella, una $ 1 $-cella, \dots, una
+  % $ n $-cella. Lo $ 0 $-scheletro è un punto, l'$ 1 $-scheletro è
+  % $ K^{(1)} = K^{(0)} \cup_{f_0} \Disk{1} \cong \Pjr{1} $ che è una retta proiettiva
+  % reale, il $ 2 $-scheletro è
+  % $ K^{(2)} = K^{(1)} \cup_{f_1} \Disk{1} \cong \Pjr{2} $ che è un piano proiettivo
+  % reale, e cosí via con $ f_j \colon \partial \Disk{j} \to K^{(j-1)} $ per
+  % $ j \geq 1 $. In generale ho
+  % $ \phi_j \colon \Disk{j} \to K^{(j-1)} \cong \Pjr{j-1} $. $ \Pjr{j-1} $ contiene
+  % $ \Pjr(j-2) $ come iperpiano all'infinito, ad esempio $ z_{j-1} = 0 $. Poi a
+  % $ \Pjr{j-2} $ incollo $ \Sph{j-2} $ tramite la mappa antipodale. Ad esempio
+  % per $ n = 2 $ $ \Pjr{2} $ contiene
+  % $ \Pjr{1} = \set{ [z_0 : z_1 : 0] | (z_0, z_1) \not = 0 } $. Attacco
+  % $ \Disk{2} $ su questo $ \Pjr{1} $ con:
+  % \begin{align*}
+  %   f \colon \Sph{1} = \partial \Disk{2} & \to \Pjr{1} \\
+  %   z & \mapsto [z]
+  % \end{align*}
+  % Che è la proiezione sul quoziente (mappa antipodale), infatti
+  % $ \Pjr{1} = \quot{\Sph{1}}{H} $. %Quindi $ \Pjr{2} = \Pjr{1} \cup_f \Disk{2} $.
+
+
+\subsection{Spazi proiettivi complessi}
 
 \newmathsymb{pjc}{\Pjc{n}}{Spazio proiettivo complesso}
 \newmathsymb{cstar}{\C^\star}{Piano complesso privato dell'origine}
 \begin{definition}
-Lo \textbf{spazio proiettivo complesso}\index{Spazio proiettivo complesso} invece è definito da :
+Lo \textbf{spazio proiettivo complesso}\index{Spazio proiettivo complesso} è definito da :
 \[
   \Pjc{n} = \quot{\C^{n+1} \setminus \set{\vec{0}}}{\sim}
 \]
@@ -400,7 +410,7 @@ reale si rende $ \Pjc{n} $ una varietà topologica di dimensione reale $ 2n $.
 %   [z_0, \dots, z_n] & \mapsto \left(\frac{z_0}{z_j}, \dots, \frac{z_n}{z_j}\right)
 % \end{align*}
 % Si dimostra che $ \phi_j $ è omeomorfismo. Queste mappe permettono di definire la
-% topologia dello spazio proiettivo: un sotto insieme di $ U_i $ è aperto se lo è
+% topologia dello spazio proiettivo: un sottoinsieme di $ U_i $ è aperto se lo è
 % in $ \RN{2n} $ attraverso $ \phi_i $, e un insieme generico $ A $ è aperto se lo
 % sono tutte le intersezioni con gli insiemi $ U_i $. In questo modo $ \Pjc{n} $ è
 % una varietà topologica di dimensione $ 2n $.
@@ -520,82 +530,82 @@ Si trova che:
 \]
 Con $ k = 1 $ è il gruppo fondamentale, quindi è nullo, e poi torna per $ n = 1 $.
 
-Per comodità si introduce l'omologia cellulare di $ X $.
+% Per comodità si introduce l'omologia cellulare di $ X $.
 
-Se $ X $ è spazio topologico con struttura di CW complesso si introduce
-l'omologia cellulare $ H_k^{CW}(X) $.
+% Se $ X $ è spazio topologico con struttura di CW complesso si introduce
+% l'omologia cellulare $ H_k^{CW}(X) $.
 
-Si trova che $ H_k^{CW}(X) \cong H_k(X) $ e c'è un algoritmo per calcolare $ H_k^{CW}(X) $.
+% Si trova che $ H_k^{CW}(X) \cong H_k(X) $ e c'è un algoritmo per calcolare $ H_k^{CW}(X) $.
 
-So che $ \Pjc{n} = \Pjc{n-1} \cup_\pi \Disk{2n} $. Fisso $ n $ voglio calcolare
-$ H_s(\Pjc{n}^{(t)}, \Pjc{n}^{(t-1)}) $.
-Calcolo per induzione.
-So che $ H_k(\Pjc{1}) $ è a posto, voglio calcolare $ H_k(\Sph{m}) $ per induzione.
+% So che $ \Pjc{n} = \Pjc{n-1} \cup_\pi \Disk{2n} $. Fisso $ n $ voglio calcolare
+% $ H_s(\Pjc{n}^{(t)}, \Pjc{n}^{(t-1)}) $.
+% Calcolo per induzione.
+% So che $ H_k(\Pjc{1}) $ è a posto, voglio calcolare $ H_k(\Sph{m}) $ per induzione.
 
-Mi piacerebbe che:
-\[
-  H_s(\Pjc{c}^{(t)}, \Pjc{n}^{(t-1)}) \cong H_s(\quot{\Pjc{n}^{(t)}}{\Pjc{n}^{(t-1)}})
-\]
+% Mi piacerebbe che:
+% \[
+%   H_s(\Pjc{c}^{(t)}, \Pjc{n}^{(t-1)}) \cong H_s(\quot{\Pjc{n}^{(t)}}{\Pjc{n}^{(t-1)}})
+% \]
 
-Questo è vero in generale, se $ A \subseteq X $ CW complessi allora:
-\[
-  H_k(X,A) \cong H_k(\quot{X}{A})
-\]
-Ma $ \Pjc{n}^{(t)} = \Pjc{n}^{(t-1)} \cup_\pi \Disk{2t} $, è come se collassa
-quello che è in comune alle celle, cioè il bordo del dei dischi ad un punto,
-cioè:
-\[
-  \quot{\Pjc{n}^{(t)}}{\Pjc{n}^{(t-1)}} \simeq \Sph{2t}
-\]
-Se $ s \not = 2 t $ allora $ H_s(\quot{\Pjc{n}^{(t)}}{\Pjc{n}^{(t-1)}}) = 0 $.
-\[
-  H_{2t}(\Pjc{n}^{(t)}, \Pjc{n}^{(t-1)}) \cong \Z
-\]
-E gli altri sono zero.
+% Questo è vero in generale, se $ A \subseteq X $ CW complessi allora:
+% \[
+%   H_k(X,A) \cong H_k(\quot{X}{A})
+% \]
+% Ma $ \Pjc{n}^{(t)} = \Pjc{n}^{(t-1)} \cup_\pi \Disk{2t} $, è come se collassa
+% quello che è in comune alle celle, cioè il bordo del dei dischi ad un punto,
+% cioè:
+% \[
+%   \quot{\Pjc{n}^{(t)}}{\Pjc{n}^{(t-1)}} \simeq \Sph{2t}
+% \]
+% Se $ s \not = 2 t $ allora $ H_s(\quot{\Pjc{n}^{(t)}}{\Pjc{n}^{(t-1)}}) = 0 $.
+% \[
+%   H_{2t}(\Pjc{n}^{(t)}, \Pjc{n}^{(t-1)}) \cong \Z
+% \]
+% E gli altri sono zero.
 
-In generale $ X^{(k)}- X^{(k-1)} \cup_{f_1} \Disk{k}_{\alpha_1} \cup \dots \cup_{f_n} \Disk{k}_{\alpha_N} $
-cosa è $ H_s(X^{(k)}, X^{(k-1)}) $.
-\[
-  H_s(X^{(k)}, X^{(k-1)}) \cong H_s(\quot{X^{(k)}}{X^{(k-1)}})
-\]
-Ma $ \quot{X^{(k)}}{X^{(k-1)}} $ è un bouquet, in quanto tutte le sfere hanno in comune
-il punto a cui si è contratto $ X^{(k-1)} $.
-Quindi:
-\[
-  H_s(X^{(k)}, X^{(k-1)}) \cong
-  \begin{cases}
-    \Z^N & \text{se } k = s \\
-    0 & \text{se } k \not = s
-  \end{cases}
-\]
+% In generale $ X^{(k)}- X^{(k-1)} \cup_{f_1} \Disk{k}_{\alpha_1} \cup \dots \cup_{f_n} \Disk{k}_{\alpha_N} $
+% cosa è $ H_s(X^{(k)}, X^{(k-1)}) $.
+% \[
+%   H_s(X^{(k)}, X^{(k-1)}) \cong H_s(\quot{X^{(k)}}{X^{(k-1)}})
+% \]
+% Ma $ \quot{X^{(k)}}{X^{(k-1)}} $ è un bouquet, in quanto tutte le sfere hanno in comune
+% il punto a cui si è contratto $ X^{(k-1)} $.
+% Quindi:
+% \[
+%   H_s(X^{(k)}, X^{(k-1)}) \cong
+%   \begin{cases}
+%     \Z^N & \text{se } k = s \\
+%     0 & \text{se } k \not = s
+%   \end{cases}
+% \]
 
-Considero $ \Pjc{n} $ ho che:
-\[
-  \Pjc{n-2} \incl \Pjc{n-1} \incl \Pjc{n}
-\]
-Quindi:
-\[
-  (\Pjc{n-1}, \Pjc{n-2}) \to (\Pjc{n}, \Pjc{n-1})
-\]
-e quindi
-\[
-  H_s(\Pjc{n-1}, \Pjc{n-2}) \to H_s(\Pjc{n}, \Pjc{n-1})
-\]
-Ma il primo è diverso da zero se $ s = 2n - 2 $ e
-il secondo è diverso da zero se $ s = 2n $.
+% Considero $ \Pjc{n} $ ho che:
+% \[
+%   \Pjc{n-2} \incl \Pjc{n-1} \incl \Pjc{n}
+% \]
+% Quindi:
+% \[
+%   (\Pjc{n-1}, \Pjc{n-2}) \to (\Pjc{n}, \Pjc{n-1})
+% \]
+% e quindi
+% \[
+%   H_s(\Pjc{n-1}, \Pjc{n-2}) \to H_s(\Pjc{n}, \Pjc{n-1})
+% \]
+% Ma il primo è diverso da zero se $ s = 2n - 2 $ e
+% il secondo è diverso da zero se $ s = 2n $.
 
-Da qui non ottengo informazioni di carattere generale,
-cioè quello che sto dicendo è che non è semplicemente
-la composizione della coppia allora uso un trucco.
+% Da qui non ottengo informazioni di carattere generale,
+% cioè quello che sto dicendo è che non è semplicemente
+% la composizione della coppia allora uso un trucco.
 
-Costruisco un'applicazione. FORSE
+% Costruisco un'applicazione. FORSE
 
-% Sia $ X $ un CW complesso e $ Y $ un CW complesso, è
-% possibile dare una struttura di CW complesso anche a $ Z = X \times Y  $.
-% Se $ \set{e_\alpha} $ sono le celle di $ X $ e $ \set{f_\beta} $
-% quelle di $ Y $, allora $ \set{e_\alpha \times f_\beta} $ sono
-% celle di $ Z $. Bisogna solo capire come sono fatte le
-% mappe di attaccamento.
+% % Sia $ X $ un CW complesso e $ Y $ un CW complesso, è
+% % possibile dare una struttura di CW complesso anche a $ Z = X \times Y  $.
+% % Se $ \set{e_\alpha} $ sono le celle di $ X $ e $ \set{f_\beta} $
+% % quelle di $ Y $, allora $ \set{e_\alpha \times f_\beta} $ sono
+% % celle di $ Z $. Bisogna solo capire come sono fatte le
+% % mappe di attaccamento.
 
     %     lezione 8
 
@@ -1199,8 +1209,7 @@ dei gruppi di omologia.
   \end{enumerate}
 \end{lemma}
 \begin{proof}
-  \begin{enumerate}
-  \item
+  \subparagraph{Dimostrazione del punto uno}
     % Considero $ q \colon (Y,A) \to \left( \quot{Y}{A}, \quot{A}{A} \right) $ (lo spazio di arrivo
     % è uno spazio puntato in cui il quoziente rispetto $ A $ fa collassare $ A $ in un punto).
     % Si ha il risultato che dimostro dopo:
@@ -1225,7 +1234,8 @@ dei gruppi di omologia.
     % Quindi ho automaticamente il risultato che volevo mostrare.
     Se $ k \not = n $ l'omologia di ogni sfera è nulla, mentre se $ k = n $ è
     $ \Z $ per ogni cella.
-  \item
+
+    \subparagraph{Dimostrazione del punto due}
     Considero la successione esatta della coppia $ (X^{(n)}, X^{(n-1)}) $:
     \[
       \begin{tikzcd}[nodes={column sep=7pt, inner sep = 2 pt }]
@@ -1255,9 +1265,9 @@ dei gruppi di omologia.
         \dots \rar & H_{k+1}(X^{(n+1)}, X^{(n)}) \rar & H_k(X^{(n)}) \rar & H_k(X^{(n+1)}) \rar & H_{k}(X^{(n+1)}, X^{(n)}) \rar & \dots
       \end{tikzcd}
     \]
-    Se $ k < n $ sicuramente $ k + 1 \not = n + 1 $ quindi $ H_{k+1}(X^{(n+1)}, X^{(n)}) \cong 0 $,
-    ma anche $ H_k(X^{(n+1)}, X^{(n)}) \cong 0 $
-    quindi ho la successione:
+    Se $ k < n $ allora $ k \not = n $ quindi
+    $ H_{k+1}(X^{(n+1)}, X^{(n)}) \cong 0 $ e
+    $ H_k(X^{(n+1)}, X^{(n)}) \cong 0 $. Esiste perciò la successione:
     \[
       \begin{tikzcd}
        0\rar & H_k(X^{(n)}) \rar & H_k(X^{(n+1)}) \rar & 0
@@ -1269,8 +1279,6 @@ dei gruppi di omologia.
       H_k(X^{(n)}) \cong H_k(X^{(n+1)}) \dots \cong H_k(X^{(N)}) = H_k(X)
     \]
     Si nota che nel caso $ k = n $ non si può affermare nulla di generale.
-  \end{enumerate}
-  \vspace*{-15pt}
 \end{proof}
 \eproof
 Sia $ X $ un CW complesso di tipo finito, voglio costruire un complesso $ (S_\bullet^{CW}, d^{CW}) $ e
@@ -1618,11 +1626,19 @@ ecc, cioè:
 \[
   H_{2k}^{CW}(\Pjc{n}) \cong \Z \text{ per } k \in \set{0, \dots, n}
 \]
+Estesamente:
+\[
+  H_k(\Pjc{n}) \cong
+  \begin{cases}
+    \Z & \text{se $ k $ pari e $ k \leq 2n $} \\
+    0  & \text{se $ k $ dispari} \\
+    0  & \text{se $ k > 2n $ }
+  \end{cases}
+\]
 La caratteristica di Eulero è:
 \[
   \chi(\Pjc{n}) = \sum_{k=0}^n (-)^{2k} = n + 1
 \]
-
 \subsubsection{Spazi proiettivi reali}
 Lo spazio proiettivo reale è più complicato. So che
 $ \Sph{1} \simeq \Pjr{1} $ e $ U_1 \simeq \Pjr{2} $.
