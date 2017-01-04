@@ -105,8 +105,8 @@ un lemma:
   $ k \circ f \sim h \circ g $.
 \end{lemma}
 \begin{proof}
-  Siccome $ f \circ g $ significa che esiste una funzione
-  continua $ F \colon X \times I \to Y $ (con $ I = [0,1] $) tale che:
+  Siccome $ f \sim g $ allora esiste una funzione continua
+  $ F \colon X \times I \to Y $ (con $ I = [0,1] $) tale che:
   \begin{align*}
     F(x, 0) = f(x) \\
     F(x, 1) = g(x)
@@ -391,7 +391,7 @@ Per risolvere velocemente questo esercizio sono utili alcuni lemmi:
   % consistono in una riparametrizzazione dei generatori del gruppo di omologia.
   e quindi è sufficiente dimostrare che una riflessione in $\Sph{n} $
   ha grado $ - 1 $ per dimostrare che anche tutte le altre hanno grado $ - 1 $.
-
+  Lo dimostro per la riflessione rispetto all'iperpiano $ x_{n+1} = 0 $.
   Tale dimostrazione è per induzione, per $ n = 1 $:
   \begin{align*}
     \rho \colon \Sph{1} & \to \Sph{1} \\
@@ -412,12 +412,13 @@ Per risolvere velocemente questo esercizio sono utili alcuni lemmi:
     \left(\cos(2 \pi t), -\sin(2 \pi t))\right) = \left(\cos(-2 \pi t), \sin(-2 \pi t))\right) = \\
     = \left(\cos(2 \pi (1-t)), \sin(2 \pi (1-t)))\right)
   \end{gather*}
-  Quindi $ \rho \circ \sigma = \bar{\sigma} = - \sigma $ e quindi il grado è $ - 1 $.
+  Quindi $ \rho \circ \sigma = \bar{\sigma} = - \sigma $ e quindi il grado è
+  $ - 1 $.
   \\ \\ \noindent
-  Suppongo che il risultato sia vero per $ \Sph{n-1} $ mostro che è vero anche per $ \Sph{n} $.
-
-  Calcolando l'omologia delle sfere ho mostrato che per $ n > 1 $ risulta che $ H_n(\Sph{n}) \cong H_{n-1}(\Sph{n-1}) $,
-  quindi esiste il diagramma commutativo:
+  Suppongo che il risultato sia vero per $ \Sph{n-1} $
+  mostro che è vero anche per $ \Sph{n} $.
+  Ma $ H_n(\Sph[n]) \cong H_{n-1}(\Sph{n-1}) = \Z $, quindi esiste il diagramma
+  commutativo:
   \[
     \begin{tikzcd}
       H_n(\Sph{n}) \rar{\rho_\star} \arrow[leftrightarrow]{d}{\cong} & H_n(\Sph{n})  \arrow[leftrightarrow]{d}{\cong} \\
@@ -540,24 +541,30 @@ Sia:
   q_2 \colon  \Sph{1} & \to \Sph{1} \\
   z & \mapsto \bar{z}
 \end{align*}
-Dove $ \bar{z} $ indica il cammino inverso. Allora
-considerando lo stesso generatore:
-\begin{align*}
-  q_2 \circ \sigma \colon  \Delta_1 & \to \Sph{1} \\
-  t & \mapsto \mathrm{e}^{2 \pi i (1 - t)} = \mathrm{e}^{-2 \pi i t}
-\end{align*}
-Quindi a livello di gruppi di omologia:
-\begin{align*}
-  (q_2)_\star \colon H_1(\Sph{1}) & \to H_1(\Sph{1}) \\
-  1 & \mapsto -1
-\end{align*}
-E quindi il grado è $ -1 $.
+Dove $ \bar{z} $ indica il coniugato di $ z $. L'operazione di coniugazione
+corrisponde ad una riflessione rispetto alla retta reale, infatti rappresentando
+$ z $ come somma di reali (e come coppia in $ \mathbb{R}^{2} $) $ z = x + i y = (x, y) $
+allora $ \bar{z} = x - i y = (x, -y) $. Per questo motivo,
+utilizzando il risultato dell'esercizio \ref{esercizio:grado_sfere}, $ q_2 $ ha grado
+$ -1 $.
+% Allora
+% considerando lo stesso generatore:
+% \begin{align*}
+%   q_2 \circ \sigma \colon  \Delta_1 & \to \Sph{1} \\
+%   t & \mapsto \mathrm{e}^{2 \pi i (1 - t)} = \mathrm{e}^{-2 \pi i t}
+% \end{align*}
+% Quindi a livello di gruppi di omologia:
+% \begin{align*}
+%   (q_2)_\star \colon H_1(\Sph{1}) & \to H_1(\Sph{1}) \\
+%   1 & \mapsto -1
+% \end{align*}
+% E quindi il grado è $ -1 $.
 \hfill $ \square $
 
 \section[4.2.27 (v)]{Esercizio 4.2.27 (v)}
 
 \subsubsection*{Testo}
-Calcola il grado di ogni riflessione in un piano, cioè $ r \colon \Sph{n} \to \Sph{n} $
+Calcola il grado di ogni riflessione rispetto un iperpiano, cioè $ r \colon \Sph{n} \to \Sph{n} $
 definita da:
 \[
   \rho_0 \colon (x_0, \dots, x_{n+1}) \mapsto (-x_0, \dots, x_{n+1})
@@ -572,7 +579,7 @@ Più in generale calcola il grado di una mappa  $ f_k \colon \Sph{n} \to \Sph{n}
 Il grado delle riflessioni è già stato calcolato nell'esercizio
 \ref{esercizio:grado_sfere}. Utilizzando i risultati di tale esercizio e le
 medesima notazione, la funzione $ f_k $ si può scrivere come
-$ f_k = \rho_k \circ \dots \circ \rho_1 $, quindi usando il lemma \ref{lemma:composizione_grado}:
+$ f_k = \rho_k \circ \dots \circ \rho_0 $, quindi usando il lemma \ref{lemma:composizione_grado}:
 \[
   \deg {f_k} =
   \begin{cases}
@@ -586,6 +593,7 @@ $ f_k = \rho_k \circ \dots \circ \rho_1 $, quindi usando il lemma \ref{lemma:com
 \end{document}
 
 %%% Local Variables:
+%%% ispell-local-dictionary: "italiano"
 %%% mode: latex
 %%% TeX-master: t
 %%% End:

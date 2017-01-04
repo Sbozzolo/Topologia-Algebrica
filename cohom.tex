@@ -455,7 +455,8 @@ in quanto tensorizzando si perde l'esattezza solo a sinistra.
       0 \rar{} & \tor{A,B} \rar & R_A \otimes B \rar{\alpha} & F_A \otimes B \rar{\beta} & A \otimes B \rar & 0
     \end{tikzcd}
   \]
-  Tensorizzo altre cose e le metto in verticale, usando la simmetria:
+  Tensorizzo $ B $ per $ F_A $ e $ R_A $ e $ A $ per $ R_B $ e $ F_B $, usando
+  la simmetria di può costruire il diagramma:
   \[
     \begin{tikzcd}[nodes={column sep= 10 pt}]
       {} & {} & {} & {} & 0 \dar & {} \\
@@ -499,13 +500,14 @@ in quanto tensorizzando si perde l'esattezza solo a sinistra.
 \end{proof}
 
 \begin{lemma}
-  Siano $ A, B, C $ gruppi abeliani, vale che:
+  Siano $ A, B, C $ gruppi abeliani, per la bilinearità del prodotto tensore
+  vale che:
   \[
     \tor{A, B} \oplus \tor{A, C} \cong \tor{A, B \oplus C}
   \]
 \end{lemma}
 \begin{proof}
-  Infatti considero una presentazione di $ A $:
+  considero una presentazione di $ A $:
   \[
     \begin{tikzcd}
       0 \rar & R \rar & F \rar & A \rar & 0
@@ -536,73 +538,66 @@ in quanto tensorizzando si perde l'esattezza solo a sinistra.
   \]
   Essendo il modulo di torsione unico a meno di isomorfi.
  \end{proof}
+ \begin{corollary}
+   Se $ G $ è un gruppo libero $ \tor{A, G} \cong 0 $.
+\end{corollary}
+\begin{proof}
+  Infatti $ \tor{A, G} \cong \tor{G, A} \cong 0 $ perché $ G $ libero.
+\end{proof}
 
-% \begin{corollary}
-%   Vale che $ \tor{A, \Z} = 0 $.
-% \end{corollary}
-% \begin{proof}
-%   Infatti $ \tor{A, \Z} \cong \tor{\Z, A} $.
-% \end{proof}
+\section{Cambiamento di coefficienti}
 
 \begin{example}
-  Considero $ \Disk{2} $, ci attacco una $ \Sph{1} $ con la mappa:
+  Considero lo spazio $ X_n = \Disk{2} \cup_{f_n} \Sph{1} $ dove la mappa di attaccamento è:
   \begin{align*}
     f_n \colon \partial \Disk{2} = \Sph{1} & \to \Sph{1} \\
     z & \mapsto z^n
   \end{align*}
-  sia $ X_n = \Disk{2} \cup_{f_n} \Sph{1} $ lo spazio topologico preso in considerazione.
-  Usando l'omologia cellulare trovo che:
-  \[
-    H_k(X_n) \cong
-    \begin{cases}
-      \Z & \text{se } k = 0 \\
-      ? & \text{se } k \in \set{1,2} \\
-      0 & \text{se } k \geq 3
-    \end{cases}
-  \]
-  Infatti $ X_n $ è un CW complesso con una $ 0 $-cella, una $ 1 $-cella e una $ 2 $-cella,
-  quindi la successione è:
+  $ X_n $ è un CW complesso con una $ 0 $-cella, una $ 1 $-cella e una $ 2 $-cella,
+  quindi il complesso $ S_\bullet^{CW}(X) $ è:
   \[
     \begin{tikzcd}
       0 \rar{d_3} & \Z \rar{d_2} & \Z \rar{d_1} & \Z \rar{d_0} & 0
     \end{tikzcd}
   \]
-  Ho che $ \ker{d_0} = \Z $ e $ \im{d_1} = 0 $ in quanto $ H_0(X_n) = \quot{\ker{d_0}}{\im{d_1}} $
-  ma so che $ \ker{d_0} = \Z $ e $ H_0(X_n) = \Z $ quindi $ \im{d_1} = 0 $.
-
-  Ora calcolo $ H_1(X_n) = \quot{\ker{d_1}}{\im{d_2}} $. Siccome $ \im{d_1} = 0 $ allora $ d_1 \colon \Z \to 0 $,
-  quindi $ \ker{d_1} = \Z $, mi rimane da calcolare $ \im{d_2} $, ma:
-  $ d_2 \colon S_2^{CW}(X_n) \to S_1^{CW}(X_n) $, per calcolarla:
-  \[
-    \begin{tikzcd}
-      \partial \Disk{2} \rar{f_n} \arrow{rd}{\phi} & X^{(1)} \dar \\
-      {} & \quot{X^{(1)}}{X^{(0)}} = X^{(1)}
-    \end{tikzcd}
-  \]
-  Quindi $ \deg{\phi} = \deg{f} = n $ data la definizione di $ f $, per questo $ d_2 $ è la moltiplicazione
-  per $ n $:
-  \begin{align*}
-    d_2 \colon \Z \to \Z \\
-    x & \mapsto n x
-  \end{align*}
-  E quindi $ \ker{d_2} = 0 $ e $ \im{d_2} = \ Z $, da cui: $ H_1(X_n) = \quot{\Z}{n \Z} = \Z_n $.
-  Invece $ H_2(X_n) = \quot{\ker{d_2}}{\im{d_3}} = 0 $, per cui:
+  Per calcolare l'omologia bisogna conoscere le mappe di bordo.
+  \begin{itemize}
+  \item $ d_0 $ è la moltiplicazione per $ 0 $ in quanto manda
+    tutto $ \Z $ in $ 0 $ per questo $ \ker{d_0} = \Z $
+  \item Per ottenere $ d_1 $ osservo che $ X_n $ è connesso per archi in quanto
+    quoziente di uno spazio connesso per archi e quindi deve risultare che
+    $ H_0(X_n) = \Z $. Siccome $ H_0(X) = \ker{d_0} \slash \im{d_1} $ e
+    $ \ker{d_0} = 0 $ allora $ \im{d_1} = 0 $ e quindi $ d_1 $ è anch'esso la
+    moltiplicazione per zero.
+  \item Per determinare $ d_2 $ uso la consueta formula: $ d_2 $ è la
+    moltiplicazione per la somma dei gradi della mappe ottenuta attaccando
+    $ \Disk{2} $, facendo collassare il complesso in un bouquet di sfere e
+    selezionando una a una queste sfere. In questo caso l'operazione di collasso
+    non fa nulla, e siccome c'è una sola cella la seleziona della sfera è unica:
+    \[
+      \begin{tikzcd}
+        \partial \Disk{2} = \Sph{1} \rar{f_n} \arrow{rd}{\phi} & X^{(1)} \dar{\pi}  & {} \\
+        {} & \quot{X^{(1)}}{X^{(0)}} = X^{(1)} \rar{\eta} & {}
+      \end{tikzcd}
+    \]
+    $ d_2 $ è la moltiplicazione per $ \deg{(\phi)} $, ma $ \pi $ e $ \eta $ sono
+    identità, quindi $ \deg{(f_n \circ \pi \circ \eta)} = \deg{(f_n)} = n $.
+    Per questo $ \ker{d_2} = 0 $ e $ \im{d_2} = n\Z $.
+  \end{itemize}
+  In questo modo
   \[
     H_k(X_n) =
     \begin{cases}
-      \Z & \text{se } k = 0 \\
-      \Z_n & \text{se } k = 1 \\
-      0 & \text{se } k = 2 \\
+      \quot{\Z}{0} \cong \Z & \text{se } k = 0 \\
+      \quot{\Z}{n \Z} \cong \Z_n & \text{se } k = 1 \\
+      \quot{0}{0} & \text{se } k = 2 \\
       0 & \text{se } k \geq 3
     \end{cases}
   \]
-
+  Siccome non sono soddisfatto dalla estetica di questa soluzione vorrei cambiare
+  coefficienti.
 \end{example}
-
-Ora vorrei cambiare coefficienti.
-
-\section{Cambiamento di coefficienti}
-
+\eproof
 Sia $ G $ un gruppo abeliano e $ X $ uno spazio topologico, considero il complesso
 $ (S_\bullet(X) \otimes G, \partial \otimes \Id{G}) $:
 \[
@@ -617,6 +612,43 @@ $ G = \Z $ si torna alla consueta omologia singolare. La domanda che sorge spont
 % se $ X $ è uno spazio topologico e $ G $ un gruppo abeliano,
 che relazione c'è tra $ H_k(X) \oplus G $ e $ H_k(X;G) $? Vale che $ H_k(X) \oplus G \cong H_k(X;G) $?
 
+\begin{theorem}[Teorema dei coefficienti universali\index{Teorema dei coefficienti universali}]
+  La successione:
+  \[
+    \begin{tikzcd}[nodes = {column sep = 10pt}]
+      0 \rar & H_k(S_\bullet(X)) \otimes G \rar & H_k(S_\bullet(X) \otimes G) \rar & \tor{H_{k-1}(S_\bullet(X)), G} \rar & 0
+    \end{tikzcd}
+  \]
+  spezza in modo non naturale, cioè non esiste un'unica sezione. Si ha quindi che
+  $ H_k(S_\bullet(X) \otimes G) \not \cong H_k(S_\bullet(X)) \otimes G $ ma c'è un pezzo
+  di torsione. % cioè vale che:
+  % \begin{gather*}
+  %   H_k(X;G) = H_k(S_\bullet \otimes G) \cong \\
+  %   \cong H_k(S_\bullet(X)) \otimes G \oplus \tor{H_k(S_\bullet), G} = H_k(X) \otimes G \oplus \tor{H_k(X), G}
+  % \end{gather*}
+  % Ho le successioni:
+  % \[
+  %   \begin{tikzcd}[nodes = {column sep = 10pt}]
+  %     {} & 0 \dar & \dots \dar & {} & {} \\
+  %     {} & B_p \dar & S_{p+1} \dar & \dots \dar &  \\
+  %     0 \rar & Z_p \dar \rar & S_p \dar \rar & B_{p-1} \rar \dar  & 0 \\
+  %     {} & H_p \dar & S_p \dar & Z_{p-1} \dar & {} \\
+  %     {} & 0 & \dots & \dots & {}
+  %   \end{tikzcd}
+  % \]
+  % Quando tensorizzo escono fuori delle torsioni.
+  % \[
+  %   \begin{tikzcd}[nodes = {column sep = 10pt}]
+  %     {}     & \dots  \dar               & \dots \dar            & 0   \dar              & {} \\
+  %     {}     & B_p \otimes G \dar      & S_{p+1} \otimes G\dar   & \tor{H_{p-1},G} \dar            &    \\
+  %     0 \rar & Z_p \otimes G \dar \rar & S_p \otimes G \dar \rar & B_{p-1} \otimes G \rar \dar & 0  \\
+  %     {}     & H_p \otimes G \dar      & S_p \otimes G \dar      & Z_{p-1} \otimes G \dar      & {} \\
+  %     {}     & 0                 & \dots                 & \dots                 & {}
+  %   \end{tikzcd}
+  % \]
+  % La successione orizzontale è esatta in quanto $ B_{p-1} $ è libero e quindi
+  % $ \tor{B_{p-1}, G} \cong \tor{G, B_{p-1}} \cong 0 $.
+\end{theorem}
 \begin{example}
   Considero $ X_9 $, so che $ H_1(X_9) \cong \Z_9 $, quindi $ H_1(X_9) \otimes \Z_6 = \Z_9 \otimes \Z_6 $.
   Gli elementi di $ \Z_9 \otimes \Z_6 $ sono del tipo $ [n]_9 \otimes [m]_6 $, questi sono 54 elementi,
@@ -632,84 +664,58 @@ che relazione c'è tra $ H_k(X) \oplus G $ e $ H_k(X;G) $? Vale che $ H_k(X) \op
       [a]_n \otimes [b]_m & \mapsto [ab]_d
     \end{align*}
   \end{exercise}
-  Considero le successioni:
+  Cambiando i coefficienti ottengo quindi:
   \[
-    \begin{tikzcd}
-      0 \rar & Z_1(X_9) \rar & S_1(X_9) \rar & B_0(X_9) \rar & 0
-    \end{tikzcd}
+    H_k(X_9; \Z_6) \cong
+    \begin{cases}
+      H_0(X_9) \otimes \Z_6 \cong Z_6 & \text{se } k = 0 \\
+      H_1(X_9) \otimes \Z_6 \cong Z_3 & \text{se } k = 1 \\
+      H_2(X_9) \otimes \Z_6 \cong 0 & \text{se } k = 2 \\
+      H_3(X_9) \otimes \Z_6 \cong 0 & \text{se } k \geq 3
+    \end{cases}
   \]
-  E
+  % Considero le successioni:
+  % \[
+  %   \begin{tikzcd}
+  %     0 \rar & Z_1(X_9) \rar & S_1(X_9) \rar & B_0(X_9) \rar & 0
+  %   \end{tikzcd}
+  % \]
+  % E
+  % \[
+  %   \begin{tikzcd}
+  %     0 \rar & B_1(X_9) \rar & Z_1(X_9) \rar & H_1(X_9) \rar & 0
+  %   \end{tikzcd}
+  % \]
+  % Questa non è esatta, ma anzi definisce l'omologia, e in questo caso non spezza
+  % perché $ H_1(X_9) $ ha torsione.
+  Mentre con il teorema dei coefficienti universali:
   \[
-    \begin{tikzcd}
-      0 \rar & B_1(X_9) \rar & Z_1(X_9) \rar & H_1(X_9) \rar & 0
-    \end{tikzcd}
+    H_k(X_9; \Z_6) \cong
+    \begin{cases}
+      H_0(X) \otimes G \oplus \tor{H_{-1}(X),G} & \text{se } k = 0 \\
+      H_1(X) \otimes G \oplus \tor{H_0(X),G} & \text{se } k = 1 \\
+      H_2(X) \otimes G \oplus \tor{H_1(X),G} & \text{se } k = 2
+    \end{cases}
   \]
-  Questa non è esatta, ma anzi definisce l'omologia, e in questo caso non spezza
-  perché $ H_1(X_9) $ ha torsione.
+  Ma $ \tor{H_{-1}(X), G} \cong 0 $ in quanto $ H_{-1} \cong 0 $, quindi
+  $ H_0(X_9, \Z_6) \cong \Z_6 $. Poi $ \tor{H_0(X), G} = \tor{\Z, \Z_6} = 0 $ in quanto
+  $ \Z $ è libero, quindi $ H_1(X_9, \Z_6) \cong \Z_9 \otimes \Z_6 \cong \Z_3 $. Infine
+  $ \tor{H_1(X), G} \cong \tor{\Z_9, \Z_6} \cong \Z_3 $. Quindi:
+  \[
+    H_k(X_9, \Z_6) \cong
+    \begin{cases}
+      \Z_6 & \text{se } k = 0 \\
+      \Z_3 & \text{se } k = 1 \\
+      \Z_3 & \text{se } k = 2
+    \end{cases}
+  \]
+  Come si nota i gruppi sono differenti.
 \end{example}
-\begin{theorem}[Teorema dei coefficienti universali\index{Teorema dei coefficienti universali}]
-  La successione:
-  \[
-    \begin{tikzcd}[nodes = {column sep = 10pt}]
-      0 \rar & H_k(S_\bullet(X)) \otimes G \rar & H_k(S_\bullet(X) \otimes G) \rar & \tor{H_{k-1}(S_\bullet(X)), G} \rar & 0
-    \end{tikzcd}
-  \]
-  spezza in modo non naturale, cioè non esiste un'unica sezione. Si ha quindi che
-  $ H_k(S_\bullet(X) \otimes G) \not \cong H_k(S_\bullet(X)) \otimes G $ ma c'è un pezzo
-  di torsione, cioè vale che:
-  \begin{gather*}
-    H_k(X;G) = H_k(S_\bullet \otimes G) \cong \\
-    \cong H_k(S_\bullet(X)) \otimes G \oplus \tor{H_k(S_\bullet), G} = H_k(X) \otimes G \oplus \tor{H_k(X), G}
-  \end{gather*}
-  Ho le successioni:
-  \[
-    \begin{tikzcd}[nodes = {column sep = 10pt}]
-      {} & 0 \dar & \dots \dar & {} & {} \\
-      {} & B_p \dar & S_{p+1} \dar & \dots \dar &  \\
-      0 \rar & Z_p \dar \rar & S_p \dar \rar & B_{p-1} \rar \dar  & 0 \\
-      {} & H_p \dar & S_p \dar & Z_{p-1} \dar & {} \\
-      {} & 0 & \dots & \dots & {}
-    \end{tikzcd}
-  \]
-  Quando tensorizzo escono fuori delle torsioni.
-  \[
-    \begin{tikzcd}[nodes = {column sep = 10pt}]
-      {}     & \dots  \dar               & \dots \dar            & 0   \dar              & {} \\
-      {}     & B_p \otimes G \dar      & S_{p+1} \otimes G\dar   & \tor{H_{p-1},G} \dar            &    \\
-      0 \rar & Z_p \otimes G \dar \rar & S_p \otimes G \dar \rar & B_{p-1} \otimes G \rar \dar & 0  \\
-      {}     & H_p \otimes G \dar      & S_p \otimes G \dar      & Z_{p-1} \otimes G \dar      & {} \\
-      {}     & 0                 & \dots                 & \dots                 & {}
-    \end{tikzcd}
-  \]
-  La successione orizzontale è esatta in quanto $ B_{p-1} $ è libero e quindi
-  $ \tor{B_{p-1}, G} \cong \tor{G, B_{p-1}} \cong 0 $.
-\end{theorem}
-
-In particolare nell'esempio:
-\[
-  H_k(X_9; \Z_6) \cong
-  \begin{cases}
-    H_0(X) \otimes G \oplus \tor{H_1,G} & \text{se } k = 0 \\
-    H_1(X) \otimes G \oplus \tor{H_0,G} & \text{se } k = 1 \\
-    H_2(X) \otimes G \oplus \tor{H_1,G} & \text{se } k = 2
-  \end{cases}
-\]
-Ma $ \tor{H_{-1}, G} \cong 0 $ in quanto $ H_{-1} \cong 0 $, quindi
-$ H_0(X_9, \Z_6) \cong \Z_6 $. Poi $ \tor{H_0, G} = \tor{\Z, \Z_6} = 0 $ in quanto
-$ \Z $ è libero, quindi $ H_1(X_9, \Z_6) \cong \Z_9 \otimes \Z_6 \cong \Z_3 $. Infine
-$ \tor{H_1, G} \cong \tor{\Z_9, \Z_6} \cong \Z-3 $. Quindi:
-\[
-  H_k(X_9, \Z_6) \cong
-  \begin{cases}
-    \Z_6 & \text{se } k = 0 \\
-    \Z_3 & \text{se } k = 1 \\
-    \Z_3 & \text{se } k = 2
-  \end{cases}
-\]
 
 \begin{osservation}
-  Esempi di gruppi di coefficienti che si possono utilizzare sono $ \Z $, $ \Z_n $,
-  $ \mathbb{Q} $, $ \RN{} $, $ \mathbb{C} $, $ \mathbb{F} $. In questi casi si ha che:
+  Esempi di gruppi di coefficienti che si possono utilizzare senza problemi sono
+  $ \Z $, $ \Z_n $, $ \mathbb{Q} $, $ \RN{} $, $ \mathbb{C} $, $ \mathbb{F} $.
+  In questi casi si ha che:
   \[
     H_k(X, \mathbb{F}) \cong H_k(X) \otimes \mathbb{F}
   \]
@@ -804,37 +810,6 @@ Questo è un complesso.
   $ H^p(X; G) $ l'omologia del complesso degli omomorfismi $ S^\bullet(X;G) $.
 \end{definition}
 Quindi per definizione la coomologia singolare è $ H^p(X;G) = H_p(\hom{S_\bullet(X), G}, \delta) $.
-
-A questo punto ho due possibilità: costruire i gruppi di omologia singolare
-$ H_p(X) $ e considerare gli omomorfismi tra tali gruppi e $ G $, oppure
-costruire il gruppo di coomologia, cioè prima considerare gli omomorfismi, e
-quindi costruire l'omologia. Quello che si trova è che in generale queste
-due costruzioni sono differenti, cioè:
-\[
-  \hom{H_p(X), G} \not \cong H^p(X ; G)
-\]
-
-\begin{example}
-  Considero la successione esatta corta:
-  \[
-    \begin{tikzcd}
-      0 \rar & 4 \Z \rar & \Z \rar & \quot{\Z}{4\Z} \rar & 0
-    \end{tikzcd}
-  \]
-  E scelgo come gruppo $ G = \Z_6 $.
-  Quando prendo il duale la successione si inverte essendo controvariante,
-  e rimane esatta solo a sinistra. Per renderla esatta anche a destra bisogna
-  aggiungere un termine analogo al modulo di torsione, in modo che la successione
-  sia:
-  \[
-    \begin{tikzcd}[nodes = {column sep = 18 pt}]
-      0 \rar & \hom{\Z_4, \Z_6} \rar & \hom{\Z, \Z_6} \rar & \hom{4\Z, \Z_6} \rar & \ext{\Z_4, \Z_6} \rar & 0
-    \end{tikzcd}
-  \]
-  La presenza di questi moduli è responsabile della non uguaglianza tra i gruppi
-  $ \hom{H_p(X), G} $ e $ H^p(X ; G) $, come formalizza il teorema dei
-  coefficienti universali.
-\end{example}
 \begin{definition}
   Siano $ A, B $ $ \Z $-moduli, considero una risoluzione di $ A $:
   \[
@@ -882,7 +857,36 @@ due costruzioni sono differenti, cioè:
   Quindi $ \ext{F,G} = \im{\gamma} = 0 $.
 \end{proof}
 \eproof
-Il teorema dei coefficienti universali quindi si riformula anche per la coomologia:
+A questo punto ho due possibilità: costruire i gruppi di omologia singolare
+$ H_p(X) $ e considerare gli omomorfismi tra tali gruppi e $ G $, oppure
+costruire il gruppo di coomologia, cioè prima considerare gli omomorfismi, e
+quindi costruire l'omologia. Quello che si trova è che in generale queste
+due costruzioni sono differenti, cioè:
+\[
+  \hom{H_p(X), G} \not \cong H^p(X ; G)
+\]
+
+\begin{example}
+  Considero la successione esatta corta:
+  \[
+    \begin{tikzcd}
+      0 \rar & 4 \Z \rar & \Z \rar & \quot{\Z}{4\Z} \rar & 0
+    \end{tikzcd}
+  \]
+  E scelgo come gruppo $ G = \Z_6 $.
+  Quando prendo il duale la successione si inverte essendo controvariante,
+  e rimane esatta solo a sinistra. Per renderla esatta anche a destra bisogna
+  aggiungere un termine analogo al modulo di torsione, in modo che la successione
+  sia:
+  \[
+    \begin{tikzcd}[nodes = {column sep = 18 pt}]
+      0 \rar & \hom{\Z_4, \Z_6} \rar & \hom{\Z, \Z_6} \rar & \hom{4\Z, \Z_6} \rar & \ext{\Z_4, \Z_6} \rar & 0
+    \end{tikzcd}
+  \]
+  La presenza di questi moduli è responsabile della non uguaglianza tra i gruppi
+  $ \hom{H_p(X), G} $ e $ H^p(X ; G) $, come formalizza il teorema dei
+  coefficienti universali.
+\end{example}
 \begin{theorem}[Teorema dei coefficienti universali\index{Teorema dei coefficienti universali}]
   Le successioni esatte corte:
   \[
@@ -930,8 +934,9 @@ Il teorema dei coefficienti universali quindi si riformula anche per la coomolog
 %   \]
 % \end{theorem}
 \begin{proof}
-  La dimostrazione per le due successioni è praticamente identica, dimostro quella in coomologia.
-  Voglio costruire la successione:
+  La dimostrazione per le due successioni è praticamente identica, dimostro
+  quella in coomologia. In quello che segue spesso ometto per brevità lo spazio
+  topologico $ X $ come argomento. Voglio costruire la successione:
   \[
     \begin{tikzcd}[nodes = {column sep = 12 pt}]
       0 \rar & \ext{H_{p-1}(X), G} \rar & \arrow[bend left]{l}{} H^p(X;G) \rar & \hom{H_p(X), G} \rar & 0
