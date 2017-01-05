@@ -1640,119 +1640,151 @@ La caratteristica di Eulero è:
   \chi(\Pjc{n}) = \sum_{k=0}^n (-)^{2k} = n + 1
 \]
 \subsubsection{Spazi proiettivi reali}
-Lo spazio proiettivo reale è più complicato. So che
-$ \Sph{1} \simeq \Pjr{1} $ e $ U_1 \simeq \Pjr{2} $.
+La struttura di CW complesso dello spazio proiettivo reale non permette
+di utilizzare lo stesso trucco usato per quello complesso, infatti $ \Pjr{n} $
+ha una cella in ogni dimensione fino a $ n $. Lo spazio è infatti:
+\[
+  \Pjr{k+1} = = \Pjr{k} \cup_f \Disk{k+1} \text{ con } f \colon \partial \Disk{k+1} \to X^{(k)}
+\]
+Dove $ f \colon \Sph{k} \to X^{(k)} = \Pjr{k} \cong {\Sph{k}} \slash {\sim} $ è la proiezione
+al quoziente e $ \sim $ la relazione che identifica punti antipodali.
 
-Le celle del proiettivo reale sono una $ 0 $-cella, una $ 1 $-cella, \dots, una
-$ n $-cella, e siccome non ci sono buchi non si può usare lo stesso ragionamento
-di prima. So che;
-\[
-  X^{(k+1)} = X^{(k)} \cup_f \Disk{k+1} \text{ con } f \colon \partial \Disk{k+1} \to X^{(k)}
-\]
-Cioè $ f \colon \Sph{k} \to X^{(k)} = \Pjr{k} \cong \quot{\Sph{k}}{\sim} $ quindi
-$ f $ è la proiezione. Ho il complesso per $ \Pjr{2} $:
-\[
-  \begin{tikzcd}
-    0 \rar & S^{CW}_{2}(\Pjr{2}) \rar & S_1^{CW}(\Pjr{2}) \rar & S_{0}^{CW}(\Pjr{2}) \rar & 0
-  \end{tikzcd}
-\]
-Cioè:
-\[
-  \begin{tikzcd}
-    0 \rar{t_3} & \Z \rar{t_2} & \Z \rar{t_1} & \Z \rar{t_0} & 0
-  \end{tikzcd}
-\]
-Devo calcolare nuclei e immagini. So che:
-\[
-  \begin{cases}
-    \im{t_3} = 0 \\
-    \ker{t_3} = 0
-  \end{cases}
-\]
-E:
-\[
-  \begin{cases}
-    \im{t_0} = 0\\
-    \ker{t_0} = \Z
-  \end{cases}
-\]
-Trovo che:
-\begin{align*}
-  t_2 \colon & \Z \to \Z \\
-  x & \mapsto 2 x
-\end{align*}
-Ho il diagramma:
-\[
-  \begin{tikzcd}
-    \Sph{1} = \partial \Disk{2} \rar{\mathcal{A}} \dar{\mathcal{A}} & \Pjr{1} \dar{\Id{}} \\
-    {} & \Pjr{1}
-  \end{tikzcd}
-\]
-La mappa $ \mathcal{A} $ è la proiezione sul gruppo generato dalla mappa antipodale.
-Siccome è una mappa 2 a 1 viene quello che ho scritto.
-So che $ H_1(\Pjr{2}) \cong \quot{\Z}{2 \Z} $ quindi:
-\[
-  \quot{\ker{t_1}}{\im{t_2}} \cong \quot{\Z}{2 \Z}
-\]
-$ t_1 \colon \Z \to \Z $ viene da:
-\[
-  \begin{tikzcd}
-    \Sph{0} \rar{\Id{}} \arrow{rd}{} & \Pjr{0} \dar{\Id{}} \\
-    {} & \Pjr{0}
-  \end{tikzcd}
-\]
-Quindi il grado è zero.
+% Lo spazio proiettivo reale è più complicato. So che
+% $ \Sph{1} \simeq \Pjr{1} $ e $ U_1 \simeq \Pjr{2} $.
 
-Nel complesso ho che:
-\[
-  \begin{tikzcd}
-    0 \rar{0} & \Z \rar{2} & \Z \rar{0} & \Z \rar{0} & 0
-  \end{tikzcd}
-\]
-Trovo che: $ H_0 \cong \Z $, $ H_1 \cong \quot{\Z}{2 \Z} $, $ H_2 \cong 0 $.
-In generale ho:
-\[
-  \begin{tikzcd}
-    \Sph{k} \rar \arrow{rd}{} & \Pjr{k} \\
-    {} & \quot{\Pjr{k}}{\Pjr{k-1}} \cong \Sph{k}
-  \end{tikzcd}
-\]
-Cioè ho che:
-\[
-  \begin{tikzcd}
-    0 \rar{0} & \Z \rar{t_n} & \Z \rar{t_{n-1}} & \dots \rar{t_1 }& \Z \rar{t_0} & 0
-  \end{tikzcd}
-\]
-In generale il comportamento è differente per $ n $ pari o per $ n $
-dispari, nel caso $ n = 3 $:
-\[
-  \begin{tikzcd}
-    0 \rar{0} & \Z \rar{t_3} & \Z \rar{t_{2}} & \Z \rar{t_1}& \Z \rar{t_0} & 0
-  \end{tikzcd}
-\]
-$ d_4 \colon 0 \to \Z $, quindi $ \im{t_4} = 0 $ e $ \ker{t_4} = 0 $,
-mentre $ d_3 \colon \Z \to \Z $ e ho:
-\[
-  \begin{tikzcd}
-    \Sph{2} = \partial \Disk{3} \rar \arrow{rd}{\mathcal{A}} & \Pjr{3} \\
-    {} & \quot{\Pjr{3}}{\Pjr{2}} \cong \Sph{2}
-  \end{tikzcd}
-\]
-Si trova che il grado di $ \mathcal{A} $ è zero e:
-\begin{align*}
-  t_3 \colon \Z & \to \Z \\
-  x & \mapsto \deg{t_3} x
-\end{align*}
-Alla fine si ha che:
-\[
-  H_k(\Pjr{3}) =
-  \begin{cases}
-    \Z & \text{se } k = 0 \\
-    \Z_2 & \text{se } k = 1 \\
-    0 & \text{se } k = 2 \\
-    \Z & \text{se } k = 3
-  \end{cases}
-\]
+% Le celle del proiettivo reale sono una $ 0 $-cella, una $ 1 $-cella, \dots, una
+% $ n $-cella, e siccome non ci sono buchi non si può usare lo stesso ragionamento
+% di prima. So che;
+% \[
+%   X^{(k+1)} = X^{(k)} \cup_f \Disk{k+1} \text{ con } f \colon \partial \Disk{k+1} \to X^{(k)}
+% \]
+% Cioè $ f \colon \Sph{k} \to X^{(k)} = \Pjr{k} \cong \quot{\Sph{k}}{\sim} $ quindi
+% $ f $ è la proiezione.
+\begin{example}[$\Pjr{2}$]
+  Per $ \Pjr{2} $:
+  \[
+    \begin{tikzcd}
+      0 \rar & S^{CW}_{2}(\Pjr{2}) \rar & S_1^{CW}(\Pjr{2}) \rar & S_{0}^{CW}(\Pjr{2}) \rar & 0
+    \end{tikzcd}
+  \]
+  È il complesso:
+  \[
+    \begin{tikzcd}
+      0 \rar{t_3} & \Z \rar{t_2} & \Z \rar{t_1} & \Z \rar{t_0} & 0
+    \end{tikzcd}
+  \]
+  Per calcolare l'omologia cellulare bisogna calcolare nuclei e immagini
+  delle varie applicazioni.
+  Le mappe $ t_0 $ e $ t_3 $ sono immediate:
+  \[
+    \begin{cases}
+      \im{t_3} = 0 \\
+      \ker{t_3} = 0
+    \end{cases}
+  \]
+  E:
+  \[
+    \begin{cases}
+      \im{t_0} = 0\\
+      \ker{t_0} = \Z
+    \end{cases}
+  \]
+  Per calcolare le altre due mappe bisogna utilizzare la formula.
+  Per $ t_2 $ ho il diagramma:
+  \[
+    \begin{tikzcd}
+      \Sph{1} = \partial \Disk{2} \rar{f} \arrow{dr}{\phi} & \Pjr{1} \dar{} & {} \\
+      {} & \quot{\Pjr{1}}{\Pjr{0}} = \Pjr{1} \rar{\eta} & \Pjr{1}
+    \end{tikzcd}
+  \]
+  Bisogna calcolare il grado di $ \phi \circ \eta $, ma $ \eta $ e la proiezione su
+  $ {\Pjr{1}} \slash {\Pjr{0}} $ sono identità, quindi
+  $ \deg{(\phi \circ \eta)} = \deg{f} $. Ma $ f $ è la proiezione sul gruppo generato
+  dalla mappa antipodale e ha grado 2, quindi $ t_2 $ è la moltiplicazione
+  per 2.
+  \begin{align*}
+    t_2 \colon & \Z \to \Z \\
+    x & \mapsto 2 x
+  \end{align*}
+  Ho il diagramma:
+  \[
+    \begin{tikzcd}
+      \Sph{1} = \partial \Disk{2} \rar{\mathcal{A}} \dar{\mathcal{A}} & \Pjr{1} \dar{\Id{}} \\
+      {} & \Pjr{1}
+    \end{tikzcd}
+  \]
+  La mappa $ \mathcal{A} $ è la proiezione sul gruppo generato dalla mappa antipodale.
+  Siccome è una mappa 2 a 1 viene quello che ho scritto.
+
+  Mentre per $ t_1 \colon \Z \to \Z $. [MANCA]
+  % \[
+  %   \begin{tikzcd}
+  %     \Sph{0} \rar{\Id{}} \arrow{rd}{} & \Pjr{0} \dar{\Id{}} \\
+  %     {} & \Pjr{0}
+  %   \end{tikzcd}
+  % \]
+  Quindi il grado è zero.
+
+  Nel complesso ho che:
+  \[
+    \begin{tikzcd}
+      0 \rar{0} & \Z \rar{2} & \Z \rar{0} & \Z \rar{0} & 0
+    \end{tikzcd}
+  \]
+  Quindi:
+  \[
+    \begin{cases}
+      H_0(\Pjr{2}) = \quot{\ker{t_o}}{\im{t_1}} = \Z \\
+      H_1(\Pjr{2}) = \quot{\ker{t_1}}{\im{t_2}} = \quot{\Z}{2\Z} \\
+      H_2(\Pjr{2}) = \quot{\ker{t_2}}{\im{t_3}} = 0
+    \end{cases}
+  \]
+  % In generale ho:
+  % \[
+  %   \begin{tikzcd}
+  %     \Sph{k} \rar \arrow{rd}{} & \Pjr{k} \\
+  %     {} & \quot{\Pjr{k}}{\Pjr{k-1}} \cong \Sph{k}
+  %   \end{tikzcd}
+  % \]
+  % Cioè ho che:
+  % \[
+  %   \begin{tikzcd}
+  %     0 \rar{0} & \Z \rar{t_n} & \Z \rar{t_{n-1}} & \dots \rar{t_1 }& \Z \rar{t_0} & 0
+  %   \end{tikzcd}
+  % \]
+\end{example}
+\begin{example}[$\Pjr{3}$]
+  In generale il comportamento è differente per $ n $ pari o per $ n $
+  dispari, nel caso $ n = 3 $ si trova:
+  % \[
+  %   \begin{tikzcd}
+  %     0 \rar{0} & \Z \rar{t_3} & \Z \rar{t_{2}} & \Z \rar{t_1}& \Z \rar{t_0} & 0
+  %   \end{tikzcd}
+  % \]
+  % $ d_4 \colon 0 \to \Z $, quindi $ \im{t_4} = 0 $ e $ \ker{t_4} = 0 $,
+  % mentre $ d_3 \colon \Z \to \Z $ e ho:
+  % \[
+  %   \begin{tikzcd}
+  %     \Sph{2} = \partial \Disk{3} \rar \arrow{rd}{\mathcal{A}} & \Pjr{3} \\
+  %     {} & \quot{\Pjr{3}}{\Pjr{2}} \cong \Sph{2}
+  %   \end{tikzcd}
+  % \]
+  % Si trova che il grado di $ \mathcal{A} $ è zero e:
+  % \begin{align*}
+  %   t_3 \colon \Z & \to \Z \\
+  %   x & \mapsto \deg{t_3} x
+  % \end{align*}
+  % Alla fine si ha che:
+  \[
+    H_k(\Pjr{3}) =
+    \begin{cases}
+      \Z & \text{se } k = 0 \\
+      \Z_2 & \text{se } k = 1 \\
+      0 & \text{se } k = 2 \\
+      \Z & \text{se } k = 3
+    \end{cases}
+  \]
+\end{example}
 
          %          lezione 13
 Sia $ \Pjr{n} $ ho il complesso:
@@ -1779,9 +1811,46 @@ $ H_2(\Sph{2}) $ allora si definisce il grado di $ \Delta $ con
 $ \Delta_\star(\alpha) = \deg{\Delta} \alpha $. Un generatore di $ \Sph{2} $ è
 $ \tau_2 \colon \Disk{2} \to \Sph{2} $ mappa proiezione sul bordo.
 
-[FIGURA]
-
-Poi ho $ \tau' \colon \Disk{2} \to \Sph{2} $ identificazione.
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}[t]{0.45\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=0.75]
+      \fill[gray!25] (0,0) circle (0.5);
+      \draw (0,0) circle (0.5);
+      \draw (2.5,0) circle (1.5);
+      \draw (1,0) to[out=-50, in=-130] (4,0);
+      \draw (0.2,0.46) -- (1,0);
+      \draw (0.2,-0.46) -- (1,0);
+      \draw[dashed] (1,0) to[out=30, in=150] (4,0);
+      \node () at (1,0) {$ \bullet $};
+      \node () at (4.5,0) { $ \Rightarrow $};
+      \draw (6.5,0) circle (1.5);
+      \fill[white] (4.9,-0.0) rectangle (8.1, -1.51);
+      \draw (5,0) to[out=-50, in=-130] (8,0);
+      \draw[dashed] (5,0) to[out=30, in=150] (8,0);
+      \draw[-Latex] (6.45, -0.66) -- (6.55, -0.66);
+      \draw[Latex-] (6.35, 0.43) -- (6.45, 0.43);
+    \end{tikzpicture}
+    \subcaption{$ \tau_2 $}
+  \end{subfigure}
+  \begin{subfigure}[t]{0.45\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=0.75]
+      \fill[gray!25] (0,0) circle (0.5);
+      \draw (0,0) circle (0.5);
+      \draw (2.5,0) circle (1.5);
+      \draw (1,0) to[out=-50, in=-130] (4,0);
+      \draw (0.2,0.46) -- (1,0);
+      \draw (0.2,-0.46) -- (1,0);
+      \draw[dashed] (1,0) to[out=30, in=150] (4,0);
+      \node () at (1,0) {$ \bullet $};
+    \end{tikzpicture}
+    \subcaption{$ \tau' $}
+  \end{subfigure}
+  \caption{Mappe $ \tau_2 $ e $ \tau $}
+\end{figure}
+    Poi ho $ \tau' \colon \Disk{2} \to \Sph{2} $ identificazione.
 \[
   [\tau'] \in H_2(\Sph{2}) \Rightarrow [\tau'] = m[\tau_2] = \deg{\Delta_\star}[\tau-2]
 \]

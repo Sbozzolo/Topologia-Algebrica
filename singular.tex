@@ -282,6 +282,7 @@ Il bordo sostanzialmente corrisponde alla somma alterna delle facce.
     \draw (-1,-1) -- (2,0);
     \draw (0,2) -- (2,0);
     \draw (0,2) -- (-1,-1);
+    \fill[gray!25] plot [smooth cycle] coordinates {(5,2) (6,3) (7,3) (6.5,0) (4,0)};
     \draw plot [smooth cycle] coordinates {(5,2) (6,3) (7,3) (6.5,0) (4,0)};
     \node () at (7.5,1) {$ X $};
     \draw plot [smooth, tension = 1] coordinates {(6,2) (5,1) (5.5,0.5)};
@@ -327,7 +328,7 @@ $ \partial_k \circ \partial_{k+1} = 0 $.
   \end{gather*}
   Dove si è usato che la mappa di bordo è lineare.
 \end{proof}
-\hfill \newline \newline \noindent
+\eproof
 Una volta verificato che $ \partial_k \circ \partial_{k+1} = 0 $ (spesso come notazione si pone $ \partial^2 = 0 $)
 il complesso sarà:
 \[
@@ -463,36 +464,42 @@ esplicitamente i gruppi di omologia, come nel caso dell'omologia cellulare.
       \dots \arrow{r}{} & S_1(X) \arrow{r}{\partial_1} & S_0(X) \arrow{r}{\partial_0}  & 0
     \end{tikzcd}
   \]
-  Quindi $ Z_0 = \ker{\partial_0} = S_0(X) $ in quanto ogni elemento di $ S_0(X) $ viene
-  mandato in $ 0 $.
+  Quindi $ Z_0 = \ker{\partial_0} = S_0(X) $ in quanto ogni elemento di
+  $ S_0(X) $ viene mandato in $ 0 $. Siccome è possibile connettere tutti i
+  punti attraverso un arco, il quale non è altro che un $ 1 $-simplesso, il
+  quoziente di $ Z_0 $ con $ B_0 $ contiene una sola classe di equivalenza non
+  banale, che è quella di un punto generico $ x_0 \in X $. Tutti gli altri punti
+  sono omologhi a $ x_0 $ dato che esiste un arco che li connette e quindi
+  sono bordo di un $ 1 $-simplesso.
 
   % Ma $ Z_0(X) = \set{ c \in S_o(X) | \partial_0 c = 0} $ e $ S_0(X) = \set{ \sum n_i p_i | n_i \in \mathbb{N}, p_i \in X} $.
   % % Tecnicamente uno $ 0 $-simplesso singolare è una mappa $ \sigma_0 : \Delta_0 \to X $ tale che manda $ \Delta_0 = 1 $ in $ \sigma_0(1) = p_0 $ e per
   % % questo è naturale l'identificazione con i punti immagine dello spazio topologico.
   % Sia $ c \in S_0(X) $ allora $ c = \sum n_i p_i $, e vale che $ \partial_0(c) = \sum n_i \partial_0 (p_i) = 0 $, infatti
   % $ \partial_0 : S_0(X) \to S_{-1}(X) $, ma per $ k < 0 $ $ S_{k} = 0 $ per definizione.
-  Quindi per ora ho che:
-  \[
-    Z_0(X) = \ker{\partial_0} = S_0(X) \; \Rightarrow \; H_0(X) = \quot{S_0(X)}{B_0(X)}
-  \]
-  Per definizione
-  $ B_0(X) = \im{\partial_1} = \set{ x \in S_0(X) | \exists \alpha \in S_1(X), \; \partial_1(\alpha) = x}
-  $. % $ \alpha $ è una catena.
-  Ma $ S_0(X) $ è il gruppo libero generato dagli $ 0 $-simplessi singolari, che
-  sono mappe $ \Delta_0 \to X $, e siccome $ \Delta_0 $ è un punto si possono identificare
-  con i punti di $ X $, perciò si può immaginare formalmente $ S_0(X) $ come il
-  gruppo libero generato dai punti di $ X $. $ B_0(X) $ è l'insieme delle coppie
-  di punti di $ X $ che sono bordo di un $ 1 $-simplesso singolare, il quale è
-  una mappa $ \Delta_1 \cong I \to X $, cioè è un arco. Siccome lo spazio è connesso per
-  archi ogni coppia di punti è bordo di qualcosa, fissando un punto $ x \in X $
-  sostanzialmente $ B_0(X) $ lo si può immaginare come $ X $ stesso e quindi
-  $ H_0(X) \cong \Z $ in quanto quoziente tra un gruppo libero generato da un
-  insieme di punti e l'insieme di punti stessi, quindi esiste un'unica classe di
-  equivalenza che è quella di un punto, in quanto ogni coppia di punti è omologa
-  essendo collegata da un arco.
 
-  Se ci sono più componenti connesse per archi posso ripetere il ragionamento senza connettere componenti
-  distinte, quindi trovo che:
+  % Quindi per ora ho che:
+  % \[
+  %   Z_0(X) = \ker{\partial_0} = S_0(X) \; \Rightarrow \; H_0(X) = \quot{S_0(X)}{B_0(X)}
+  % \]
+  % Per definizione
+  % $ B_0(X) = \im{\partial_1} = \set{ x \in S_0(X) | \exists \alpha \in S_1(X), \; \partial_1(\alpha) = x}
+  % $. % $ \alpha $ è una catena.
+  % Ma $ S_0(X) $ è il gruppo libero generato dagli $ 0 $-simplessi singolari, che
+  % sono mappe $ \Delta_0 \to X $, e siccome $ \Delta_0 $ è un punto si possono identificare
+  % con i punti di $ X $, perciò si può immaginare formalmente $ S_0(X) $ come il
+  % gruppo libero generato dai punti di $ X $. $ B_0(X) $ è l'insieme delle coppie
+  % di punti di $ X $ che sono bordo di un $ 1 $-simplesso singolare, il quale è
+  % una mappa $ \Delta_1 \cong I \to X $, cioè è un arco. Siccome lo spazio è connesso per
+  % archi ogni coppia di punti è bordo di qualcosa, fissando un punto $ x \in X $
+  % sostanzialmente $ B_0(X) $ lo si può immaginare come $ X $ stesso e quindi
+  % $ H_0(X) \cong \Z $ in quanto quoziente tra un gruppo libero generato da un
+  % insieme di punti e l'insieme di punti stessi, quindi esiste un'unica classe di
+  % equivalenza che è quella di un punto, in quanto ogni coppia di punti è omologa
+  % essendo collegata da un arco.
+
+  Se ci sono più componenti connesse si può ripetere il ragionamento senza connettere
+  componenti tra loro non connesse e quindi si trova che:
   \[
     H_0(X) \cong \Z^{N_c}
   \]
@@ -512,7 +519,7 @@ esplicitamente i gruppi di omologia, come nel caso dell'omologia cellulare.
   % Esiste quindi un'unica classe di equivalenza che è la classe di equivalenza di un punto.
   % Per questo il gruppo è omomorfo a $ \Z $.
 \end{proof}
-\hfill\newline\newline \noindent
+\eproof
 La mappa che realizza questo isomorfismo è nota come grado.
 \begin{definition}
   Si definisce la mappa \textbf{grado} \index{Grado} come l'applicazione che manda una catena in $ S_0(X) $ nella somma
@@ -564,7 +571,7 @@ Dimostro quindi questa proposizione. \\
     La mappa è suriettiva, è sufficiente prendere un punto $ p \in X $
     e la controimmagine di $ m \in \Z $ è $ \deg^{-1}(m) = mp $
   \item
-    Mostro che $ \ker{\deg} = B_0(X) $, e lo faccio msotrando che $ \ker{\deg} \subseteq B_0(X) $
+    Mostro che $ \ker{\deg} = B_0(X) $, e lo faccio mostrando che $ \ker{\deg} \subseteq B_0(X) $
     e che  $ \ker{\deg} \supseteq B_0(X) $.
 
     Inizio con $ \ker{\deg} \subseteq B_0(X) $: sia $ c \in \ker{\deg} $ cioè tale che $ \deg(c) = 0 $,
@@ -3129,15 +3136,19 @@ Un corollario del precedente risultato richiede la definizione di retratto di de
   \[
     i_\star \circ r_\star = \Id{H_k(\Disk{n})} \text{ e } r_\star \circ i_\star = \Id{H_k(\Sph{n-1})} \; \forall k \in \mathbb{N}
   \]
-  In particolare considero $ k = n - 1 $:
-  \begin{gather*}
-    i_\star \colon H_{n-1}(\Sph{n-1}) \to H_{n-1}(\Disk{n}) \\
-    r_\star \colon H_{n-1}(\Disk{n}) \to H_{n-1}(\Sph{n-1})
-  \end{gather*}
-  Cioè: $ i_\star \colon \Z \to 0 $. Considero un generatore $ \alpha $ di $ H_{n-1}(\Sph{n-1}) \cong \Z $, cioè tale
-  che $ \langle\alpha\rangle = H_{n-1}(\Sph{n-1}) $ allora $ i_\star(\alpha) = 0 $ quindi $ r_\star \circ i_\star = 0 $, ma
-  $ \left( r \circ i \right)_\star = \Id{\Sph{n-1}_\star} $ quindi significherebbe $ \Id{\Sph{n-1}_\star}(\alpha) = 0 $,
-  cioè che $ \alpha = 0 $, che è assurdo perché $ \Z \not = \langle0\rangle $.
+  Quindi $ \tilde{H}_k(\Sph{n-1}) \cong \tilde{H}_k(\Disk{n}) $. Per $ k = n - 1 $,
+  $ \tilde{H}_{n-1}(\Sph{n-1}) \cong \tilde{H}_{n-1}(\Disk{n}) $ ma $ \tilde{H}_k(\Disk{n}) = 0 $
+  in quanto $ \Disk{n} $ è contraibile e $ \tilde{H}_{k-1}(\Sph{n-1}) \cong \Z $. Avendo
+  trovato che $ \Z \cong 0 $ ho trovato l'assurdo.
+  % In particolare considero $ k = n - 1 $:
+  % \begin{gather*}
+  %   i_\star \colon H_{n-1}(\Sph{n-1}) \to H_{n-1}(\Disk{n}) \\
+  %   r_\star \colon H_{n-1}(\Disk{n}) \to H_{n-1}(\Sph{n-1})
+  % \end{gather*}
+  % Cioè: $ i_\star \colon \Z \to 0 $. Considero un generatore $ \alpha $ di $ H_{n-1}(\Sph{n-1}) \cong \Z $, cioè tale
+  % che $ \langle\alpha\rangle = H_{n-1}(\Sph{n-1}) $ allora $ i_\star(\alpha) = 0 $ quindi $ r_\star \circ i_\star = 0 $, ma
+  % $ \left( r \circ i \right)_\star = \Id{\Sph{n-1}_\star} $ quindi significherebbe $ \Id{\Sph{n-1}_\star}(\alpha) = 0 $,
+  % cioè che $ \alpha = 0 $, che è assurdo perché $ \Z \not = \langle0\rangle $.
 \end{proof}
 
 \begin{theorem}[Punto fisso di Brouwer\index{Teorema del punto fisso}]
