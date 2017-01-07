@@ -282,9 +282,10 @@ Il bordo sostanzialmente corrisponde alla somma alterna delle facce.
     \draw (-1,-1) -- (2,0);
     \draw (0,2) -- (2,0);
     \draw (0,2) -- (-1,-1);
-    \fill[gray!25] plot [smooth cycle] coordinates {(5,2) (6,3) (7,3) (6.5,0) (4,0)};
     \draw plot [smooth cycle] coordinates {(5,2) (6,3) (7,3) (6.5,0) (4,0)};
     \node () at (7.5,1) {$ X $};
+    \fill[gray!25] plot [smooth, tension = 1] coordinates {(6,2) (5,1) (5.5,0.5)};
+    \fill[gray!25] plot [smooth, tension = 1] coordinates {(6,2) (6.2,0.7) (5.5,0.5)};
     \draw plot [smooth, tension = 1] coordinates {(6,2) (5,1) (5.5,0.5)};
     \draw plot [smooth, tension = 1] coordinates {(6,2) (6.2,0.7) (5.5,0.5)};
     \draw[->] (0.75,0.5) -- (4.75,1);
@@ -2442,8 +2443,9 @@ che mi mancano che sono l'escissione e l'omotopia.
     \partial \circ G (c) = \partial (F_\sharp \circ D)(c) \\
     G \circ \partial (c) = (F_\sharp \circ D)(\partial c)
   \end{gather*}
-  $ F_\sharp $ è un'applicazione tra complessi e si verifica che una chain map, cioè
-  i quadrati che determina sono commutativi ($ F_\sharp \circ \partial = \partial \circ F_\sharp $). In questo modo
+  $ F_\sharp $ è una mappa tra complessi (in quanto è un'applicazione indotta da una
+  funzione continua) e quindi i quadrati che determina sono commutativi
+  ($ F_\sharp \circ \partial = \partial \circ F_\sharp $). In questo modo
   \begin{gather*}
     \partial (F_\sharp \circ D)(c) + (F_\sharp \circ D)(\partial c) = F_\sharp \circ \partial \circ D (c) + F_\sharp \circ D \circ \partial (c) = \\
     = F_\sharp \circ ( \partial \circ D (c) + D \circ \partial (c)) = F_\sharp \circ ( (\eta_1)_\sharp - (\eta_0)_\sharp) (c)
