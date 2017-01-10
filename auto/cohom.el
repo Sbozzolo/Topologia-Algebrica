@@ -47,6 +47,10 @@
     "Simplesso singolare liscio"
     "Complesso delle catene singolari"
     "Varietà differenziabile de Rham"
+    "Ricoprimento de Rham"
+    "Base de Rham"
+    "Lemma di Poincaré"
+    "Esaustione in compatti"
     "Duale di Poincaré"))
  :latex)
 

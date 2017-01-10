@@ -2471,20 +2471,146 @@ A questo punto il teorema di de Rham si può esprimere come:
   \item Ogni aperto convesso di $ \RN{n} $ è de Rham.
   \item Se $ X $ è una varietà differenziale che ammette un ricoprimento
     finito di aperti de Rham allora è de Rham.
+    \begin{definition}
+      Si dice che $ X $ varietà differenziabile ha un \textbf{ricoprimento de
+        Rham}\index{Ricoprimento de Rham} se ammette un ricoprimento $ \set{U_j} $
+      tale che ogni insieme $ U_j $ è de Rham e ogni intersezione finita
+      tra $ U_j $ è de Rham.
+    \end{definition}
+    Con questa definizione questo punto diventa equivalente a mostrare che ogni
+    varietà differenziabile che ammette un ricoprimento finito de Rham è de
+    Rham.
   \item Se $ X $ ha una base di aperti de Rham allora è de Rham.
+    \begin{definition}
+      Si dice che $ X $ varietà differenziabile ammette una \textbf{base} $ \mathcal{B} $
+      \textbf{de Rham}\index{Base de Rham} se $ \mathcal{B} $ è un ricoprimento
+      de Rham per $ X $ e $ \mathcal{B} $ è una base per la topologia di $ X $.
+    \end{definition}
+    Con questa definizione il punto diventa equivalente a mostrare che ogni
+      insieme con una base de Rham è de Rham.
   \item Ogni aperto di $ \RN{n} $ è de Rham.
   \item Ogni varietà differenziale è de Rham.
   \item Ogni varietà soddisfa $  H^p(X, \RN{}) \cong H^p_{dR}(X) \; \forall p $.
   \end{enumerate}
 
+  \subparagraph{Dimostrazione del punto uno}
+  Utilizzando le proprietà di additività dei gruppi di omologia
+  e il fatto che per ipotesi $ H^p_{dR}(X_j) \cong H^p_\infty(X_j) $:
+  \begin{gather*}
+    H^p_{dR} = H^p_{dR}(\sqcup_j X_j) = \Pi H^p_{dR}(X_j) = \Pi H^p_\infty(X_j) \\
+    \cong H^p_\infty(\sqcup_j, \RN{}) = H^p_\infty(X, \RN{})
+  \end{gather*}
+  Quindi $ H^p_\infty(X) \cong H^p_\infty(X, \RN{}) $.
+
+  \subparagraph{Dimostrazione del punto due}
+  Sia $ U $ aperto convesso in $ \RN{n} $.
+  Si ricorda il lemma di Poincaré:
+  \begin{theorem}[Lemma di Poincaré\index{Lemma di Poincaré}]
+    Se $ U $ è un aperto convesso in $ \RN{n} $ allora
+    $ H^p_{dR}(U) = 0 $ $ \forall p > 0 $.
+  \end{theorem}
+  Inoltre la coomologia è invariante per omotopia quindi
+  $ H^p_\infty(U) \cong H^p_\infty(P) $ con $ P $ insieme formato da un solo punto e quindi
+  per $ p > 0 $ i due gruppi sono certamente isomorfi. Bisogna verificarlo per
+  $ p = 0 $, ma $ H^0_\infty(U) = \RN{} $ perché è la coomologia di un punto, e
+  $ H^0_{dR}(U) = \RN{} $ in quanto $ U $ aperto convesso di $ \RN{} $.
+  Bisogna controllare che l'omomorfismo $ \rho $ tra questi due spazi non sia nullo,
+  in questo caso è automaticamente un isomorfismo.
+  Ma:
+  \begin{align*}
+    \rho \colon H^o_{dR}(X) & \to H^p_\infty(X, \RN{}) \\
+    f & \mapsto \int_\bullet f
+  \end{align*}
+  Scegliendo $ f = 1 $ si ottiene che $ \rho(f) $ non è nulla e quindi è
+  isomorfismo.
+
+  \subparagraph{Dimostrazione del punto tre}
+
+  Siano $ \set{V_1, V_2} $ un ricoprimento di aperti de Rham, in cui si denota
+  $ V_{12} = V_1 \cap V_2 $ per comodità. Per Mayer-Vietoris esiste la successione
+  esatta:
+  \[
+    \begin{tikzcd}[nodes = {column sep = 6 pt, inner sep = 1.5pt}]
+      H_{dR}^{k-1}(V_1) \oplus H_{dR}^{k-1}(V_2) \rar{} \dar{\rho_{V_1} \oplus \rho_{V_2}} &
+      H^{k-1}_{dR}(V_{12}) \dar{\rho_{V_{12}}} \rar{} &
+      H^k_{dR}(X) \rar{} \dar{\rho_{V_{12}}} & H_{dR}^{k}(V_1) \oplus H_{dR}^{k}(V_2) \rar{}  \dar{\rho_{V_1} \oplus \rho_{V_2}} & H^k_{dR}(V_{12}) \dar{\rho_{V_{12}}}  \\
+      qH_{dR}^{k-1}(V_1) \oplus H_{dR}^{k-1}(V_2) \rar{} & H^{k-1}_{dR}(V_{12})
+      \rar{} & H^k_{dR}(X) \rar{} & H_{dR}^{k}(V_1) \oplus H_{dR}^{k}(V_2)
+      \rar{} & H^k_{dR}(V_{12})
+    \end{tikzcd}
+  \]
+  Siccome per i punti precedenti tutti i $ \rho $ sono isomorfismi eccetto quello
+  centrale, se dimostro che i quadrati sono commutativi per il lemma dei cinque
+  ho dimostrato il punto. Con una certa fatica si dimostra che in effetti
+  i quadrati commutano.
+
+  Nel caso il ricoprimento sia $ \set{U_1, U_2, \dots, U_k} $ si definisce
+  $ V_1 = U_1 \cup \dots U_{k-1} $ e $ V_2 = U_k $. Siccome sia $ V_1 $ che
+  $ V_2 $ sono de Rham (in quanto unione di de Rham è de Rham) si può applicare
+  il ragionamento precedente se mostro che $ V_1 \cap V_2 $ è de Rham.
+  Ma:
+  \[
+    V_1 \cap V_2 = (U_1 \cup \dots U_{k-1}) \cap U_k = (U_1 \cap U_k) \cup \dots (U_{k-1} \cap U_k)
+  \]
+  Siccome $ U_i \cap U_k $ sono de Rham e unione di de Rham è de Rham $ V_1 \cap V_2 $
+  è de Rham.
+
+  \subparagraph{Dimostrazione del punto quattro}
+
+  \begin{definition}
+    Sia $ X $ è una varietà differenziabile, una funzione continua $ f \colon X \to \RN{} $
+    si dice \textbf{esaustione in compatti}\index{Esaustione in compatti} di $ X $
+    se $ f^{-1}((-\infty, c]) $ è compatto $ \forall c \in \RN{} $.
+  \end{definition}
+
+  Si dimostra che ogni varietà differenziabile ammette un'esaustione in compatti
+  positiva e liscia.
+
+  Considero questa esaustione $ f $ per $ X $ varietà differenziabile, si definiscono
+  gli insiemi compatti $ \tilde{A}_n = f^{-1}((-\infty, n])  $ e gli insiemi
+  \[
+    A_m = \set{ x \in X | m \leq f(x) \leq m + 1}
+  \]
+  Gli $ A_m $ sono chiusi in $ \tilde{A}_{m+1} $ che sono compatti quindi sono compatti.
+  Definendo:
+  \[
+    A'_m = \set{x \in X \ m - \frac{1}{2} < f(x) < m + \frac{3}{2} }
+  \]
+  Questi sono aperti. Siccome esiste una base de Rham $ \forall x \in A'_m $ esiste un elemento
+  della basa $ U^x_m $ che contiene $ x $ e sta in $ A'_m $ (per la definizione di base).
+
+  L'insieme $ \set{U_m^x}_{x \in A_m} $ è quindi ben definito e si ha che
+  $ A_m \subseteq \bigcup_{x\in A_m} U^x_m $, ma $ A_m $ è compatto quindi per definizione il
+  ricoprimento è finito. Sia $ B_m = \bigcup^n_i U^i_m $, essendo
+  $ \set{U_m^i} $ ricoprimento finito de Rham di $ B_m $ allora $ B_m $ è de
+  Rham. Ho quindi un'infinità numerabile di $ B_m $ de Rham.
+  Siano:
+  \[
+    \mathcal{U} = \bigcup_{m = 1 \mathrm{mod} 2} B_m \quad  \mathcal{V} = \bigcup_{m = 0 \mathrm{mod} 2} B_m
+  \]
+  Questi insiemi sono tali che $ \mathcal{U} \cup \mathcal{V} = X $ in quanto per
+  ipotesi prendo tutti gli $ A_n $ che coprono $ X $. Verificando che
+  $ \mathcal{U} $ e $ \mathcal{V} $ e $ \mathcal{U} \cap \mathcal{V} $ sono de Rham
+  si dimostra il punto.
+
+  \subparagraph{Dimostrazione del punto cinque} Sia $ U $ aperto di $ \RN{n} $,
+  può essere ricoperto da palle aperte, infatti una base $ \mathcal{B} $ della
+  topologica $ \RN{n} $ è fornita dalle palle aperte $ B_r(X) $. Per il punto
+  precedente se mostro che $ \mathcal{B} $ è una base de Rham allora $ U $ è
+  de Rham. L'unica cosa che bisogna mostrare è che l'intersezione di elementi
+  di $ \mathcal{B} $ sono de Rham, ma l'intersezione di palle è un insieme convesso
+  quindi è de Rham.
+
   \subparagraph{Dimostrazione del punto sei} Siccome $ X $ è una varietà
   differenziabile ammette un atlante formato da insiemi $ U_\alpha $ (con relative
   carte) che sono diffeomorfi ad aperti $ V_\alpha $ in $ \RN{n} $. Per il punto
-  cinque $ V_\alpha $ sono de Rham, quindi per il lemma precedente $ U_\alpha $ sono
-  de Rham. Ora basta mostrare che $ X $ ammette una base di aperti costruiti
-  a partire da questi $ U_\alpha $ in questo modo per il punto quattro $ X $ è de
-  Rham. Per definizione di atlante le carte forniscono un ricoprimento di $ X $,
-  bisogna mostrare che l'intersezione di due carte è de Rham.
+  cinque $ V_\alpha $ sono de Rham, quindi per il lemma precedente $ U_\alpha $ sono de
+  Rham. Ora basta mostrare che $ X $ ammette una base di aperti costruiti a
+  partire da questi $ U_\alpha $ in questo modo per il punto quattro $ X $ è de Rham.
+  Per definizione di atlante le carte forniscono un ricoprimento de Rham $ X $,
+  infatti l'intersezione finita di $ U_\alpha $ è un aperto de Rham in quanto è
+  mappato in un aperto di $ \RN{n} $ dalla restrizione delle carte
+  sull'intersezione.
 \end{proof}
 
 \subsection{Duale di Poincaré}
