@@ -425,9 +425,10 @@ in quanto tensorizzando si perde l'esattezza solo a sinistra.
      \vec{v} \otimes \vec{w} \; \mapsto \; \sum_k \mu_k g_k \\
      \alpha{\vec{v}} \otimes \vec{w} \; \mapsto \; \sum_l \nu_l h_l
    \end{gather*}
-   Considerando $ \vec{u} \otimes \vec{w} $ con $ \vec{u} \not = \vec{w} $ questo
-   elemento ha una espansione su $ \set{g_k} $ ma $ \alpha $ è iniettiva quindi
-   necessariamente anche $ \alpha({\vec{u}}) \otimes \vec{w} $ ha un'espansione diversa su
+   Considerando $ \vec{u} \otimes \vec{w} $ al posto di
+   $ \vec{u} \otimes \vec{w} $ con $ \vec{u} \not = \vec{v} $ questo elemento ha una
+   espansione su $ \set{g_k} $ ma $ \alpha $ è iniettiva quindi necessariamente anche
+   $ \alpha({\vec{u}}) \otimes \vec{w} $ ha un'espansione diversa su
    $ \set{h_l} $ e quindi corrisponde ad un elemento diverso in quanto
    $ \set{h_l} $ è una base, questo significa che $ \phi $ è iniettiva e quindi per
    l'esattezza della successione deve essere $ \tor{A, F_1} \cong 0 $.
@@ -436,7 +437,7 @@ in quanto tensorizzando si perde l'esattezza solo a sinistra.
 \begin{proposition}
   Se $ A $ e $ B $ sono $ \Z $-moduli allora $ \tor{A,B} \cong \tor{B,A} $.
 \end{proposition}
-\begin{proof}\emph{Sketch of proof. La dimostrazione completa è lunga e articolata}
+\begin{proof} \emph{Sketch of proof. La dimostrazione completa è lunga e articolata}
   La dimostrazione è un diagram chase.
   Considero una risoluzione di $ B $ e di $ A $:
   \[
@@ -573,11 +574,11 @@ in quanto tensorizzando si perde l'esattezza solo a sinistra.
     moltiplicazione per la somma dei gradi della mappe ottenuta attaccando
     $ \Disk{2} $, facendo collassare il complesso in un bouquet di sfere e
     selezionando una a una queste sfere. In questo caso l'operazione di collasso
-    non fa nulla, e siccome c'è una sola cella la seleziona della sfera è unica:
+    non fa nulla, e siccome c'è una sola cella la selezione della sfera è unica:
     \[
       \begin{tikzcd}
         \partial \Disk{2} = \Sph{1} \rar{f_n} \arrow{rd}{\phi} & X^{(1)} \dar{\pi}  & {} \\
-        {} & \quot{X^{(1)}}{X^{(0)}} = X^{(1)} \rar{\eta} & {}
+        {} & \quot{X^{(1)}}{X^{(0)}} = X^{(1)} \rar{\eta} & \Sph{1}
       \end{tikzcd}
     \]
     $ d_2 $ è la moltiplicazione per $ \deg{(\phi)} $, ma $ \pi $ e $ \eta $ sono
@@ -597,7 +598,6 @@ in quanto tensorizzando si perde l'esattezza solo a sinistra.
   Siccome non sono soddisfatto dalla estetica di questa soluzione vorrei cambiare
   coefficienti.
 \end{example}
-\eproof
 Sia $ G $ un gruppo abeliano e $ X $ uno spazio topologico, considero il complesso
 $ (S_\bullet(X) \otimes G, \partial \otimes \Id{G}) $:
 \[
@@ -731,18 +731,18 @@ che relazione c'è tra $ H_k(X) \oplus G $ e $ H_k(X;G) $? Vale che $ H_k(X) \op
   \end{gather*}
   Usando la bilinearità del prodotto tensore:
   \[
-    H_n(X) \otimes (\Z^n \oplus T) \cong H_n(X) \otimes \Z^r \oplus H_n(X) \otimes T
+    H_n(X) \otimes (\Z^{r_n} \oplus T) \cong H_n(X) \otimes \Z^{r_n} \oplus H_n(X) \otimes T
   \]
   Questo in generale dipende da $ X $, ma se in particolare $ X $ è un CW
   complesso finito, allora anche $ H_n(X) $ è finitamente generato, quindi
   $ H_n(X) \cong \Z^{s_n} \oplus T' $ per cui vale che:
   \begin{gather*}
-    H_n(X) \otimes \Z^{r_n} \cong (\Z^{s_n} \oplus T') \otimes \Z^r \cong \Z^{s_n r_n} \oplus \Z^{r_n} \otimes T' \cong \Z^{sr} \\
+    H_n(X) \otimes \Z^{r_n} \cong (\Z^{s_n} \oplus T') \otimes \Z^r \cong \Z^{s_n r_n} \oplus \Z^{r_n} \otimes T' \cong \Z^{s_nr_n} \\
     H_n(X) \otimes T = (\Z^{s_n} \oplus T') \otimes T \cong T' \otimes T
   \end{gather*}
   infatti
-  $ \Z^k \otimes T' = (\Z \otimes \Z \dots ) \otimes T' = (\Z \otimes T')^k = 0 $ in quanto
-  $ T' $ è di torsione. [PERCHÉ'????].
+  $ \Z^k \otimes T' = (\Z \oplus \Z \dots ) \otimes T' = (\Z \otimes T')^k = T'^k $ in quanto
+  $ \Z $ è libero.
 
   Poi ho
   $ \tor{H_{n-1}(X), \Z^{r_n} \oplus T} = \tor{H_{n-1}(X), \Z^n} \oplus \tor{H_{n-1}(X), T} $
@@ -793,6 +793,9 @@ di omomorfismi:
     \dots \rar & \hom{S_{p-1}(X),G} \rar{\delta} & \hom{S_p(X),G} \rar{\delta} & \hom{S_{p+1}(X),G} \rar & \dots
   \end{tikzcd}
 \]
+\newmathsymb{cobord}{\delta}{Cobordo}
+\newmathsymb{cohom}{H^p(X;G)}{Coomologia di $ X $ a valori in $ G $}
+\newmathsymb{cohom}{S^p(X;G)}{Omomorfismi tra $ S_p(X) $ e $ G $}
 Come notazione si pone $ \hom{S_p(X),G} = S^p(X;G) $. $ \delta $ è il \textbf{cobordo}\index{Cobordo},
 che non è nient'altro che la composizione per il bordo:
 \begin{align*}
@@ -838,6 +841,7 @@ Quindi per definizione la coomologia singolare è $ H^p(X;G) = H_p(\hom{S_\bulle
   Esistono anche altre presentazioni, ma si dimostra che tutti i conuclei sono isomorfi,
   questo gruppo è proprio il \textbf{modulo di estensione di $ A $ e $ B $}\index{Modulo di estensione}.
 \end{definition}
+\newmathsymb{ext}{\ext{}}{Modulo di estensione}
 \begin{lemma}
   Se $ F $ è libero allora $ \ext{F, G} \cong 0 $ con $ G $ gruppo abeliano generico.
 \end{lemma}
@@ -1094,7 +1098,7 @@ due costruzioni sono differenti, cioè:
   \[
     \alpha_2 \circ \delta(h) = 0 \quad \Rightarrow \quad \tau_1(v) = 0
   \]
-  Ma quindi $ v = 0 $ in quando $ \tau_1 $ è iniettiva. Ma questo significa
+  Ma quindi $ v = 0 $ in quanto $ \tau_1 $ è iniettiva. Ma questo significa
   che $ \beta_2 $ è ben definita:
   \begin{align*}
     \beta_2 \colon H^p(X;G) & \to \hom{H_p,G} \\
@@ -1173,7 +1177,7 @@ due costruzioni sono differenti, cioè:
     (\alpha_2 \circ \Phi)(\omega) = \alpha_2(\omega \circ \phi) = \omega \circ \phi \circ \psi = \omega
   \]
   Quindi $ \alpha_2 \circ \Phi = \Id{\hom{Z_p,G}} $ e quindi
-  $ \sigma \circ \tau_2 \circ \tau_2 (v) = 0 $ in quanto
+  $ \sigma \circ \tau_2 \circ \tau_1 (v) = 0 $ in quanto
   $ \tau_2 \circ \tau_1 = 0 $, dato che la colonna è esatta, quindi
   $ \delta(\Phi(\tau_1(v))) = 0 $, cioè $ \Phi(\tau_1(v) $ è un cociclo in
   $ S_p $ ed è tale che $ \beta_2(\llbracket\Phi(\tau_1(v))\rrbracket) = v $. Faccio
@@ -1226,7 +1230,7 @@ due costruzioni sono differenti, cioè:
 \end{proof}
 
 \begin{example}[Coomologia dello spazio proiettivo reale]
-  Soche l'omologia dello spazio proiettivo reale con $ n = 3 $ è:
+  So che l'omologia dello spazio proiettivo reale con $ n = 3 $ è:
   \[
     H_p(\Pjr{3}) \cong
     \begin{cases}
@@ -1278,14 +1282,19 @@ due costruzioni sono differenti, cioè:
       0 \rar & 2 \Z \rar{i} & \Z \rar{\pi} & \Z_2 \rar & 0
     \end{tikzcd}
   \]
-  Passando agli omomorfismi:
+  Passando agli omomorfismi e considerando che $ \hom{2\Z, \Z_2} \cong \Z_2 $ :
   \[
     \begin{tikzcd}
-      0 \rar & \Z_2 \rar & \Z_2 \rar & \hom{2\Z, \Z_2} \rar & \ext{\Z_2, \Z_2} \rar & 0
+      0 \rar & \Z_2 \rar & \Z_2 \rar & \Z_2 \rar & \ext{\Z_2, \Z_2} \rar & 0
     \end{tikzcd}
   \]
-  Tra $ \Z_2 $ e $ \Z_2 $ l'unica possibile mappa iniettiva è l'isomorfismo, quindi
-  la successione spezza e $ \ext{\Z_2, \Z_2} \cong \hom{\Z, \Z_2} \cong \Z_2 $.
+  La prima mappa è un omomorfismo iniettivo, ma tra $ \Z_2 $ e $ \Z_2 $ l'unico
+  possibile è l'isomorfismo. La seconda mappa è la mappa nulla in quanto il suo
+  nucleo è tutto $ \Z_2 $. La terza mappa è quindi iniettiva in quanto ha nucleo
+  nullo, ma è anche suriettiva, quindi è un isomorfismo tra $ \ext{\Z_2, \Z_2} $
+  e $ \Z_2 $.
+  % Tra $ \Z_2 $ e $ \Z_2 $ l'unica possibile mappa iniettiva è l'isomorfismo, quindi
+  % la successione spezza e $ \ext{\Z_2, \Z_2} \cong \hom{\Z, \Z_2} \cong \Z_2 $.
   Nel complesso quindi:
   \[
     H^k(\Pjr{3}, \Z_2) \cong \Z_2
@@ -1381,7 +1390,7 @@ due costruzioni sono differenti, cioè:
   $ I = (i) = \set{a i | a \in A} $. Con la scrittura $ (i) $ si indica l'ideale
   generato.
 \end{definition}
-
+\vspace*{-10pt}
 \newmathsymb{pid}{PID}{Dominio a ideali principali}
 \begin{example}
   Esempi di PID sono $ \Z, \RN{}, \mathbb{F}, \mathbb{K}[x] $.
@@ -1390,10 +1399,10 @@ due costruzioni sono differenti, cioè:
 \subsection{Prodotto cup}
 
 \newmathsymb{cuppr}{\cup}{Prodotto cup}
-Sia $ H^\star (X,\R) := \bigoplus_k H^k(X,\R) $, definisco il prodotto
+Sia $ H^\star (X;\R) := \bigoplus_k H^k(X;\R) $, definisco il prodotto
 cup $ \cup $ tale che renda $ (H^\star (X,\R), +, \cup) $ un anello.
 Gli elementi di $ H^\star (X,\R) $ sono somme formali finite
-del tipo $ \sum_i \alpha^i $ con $ \alpha^i \in H^i(X, \R) $.
+del tipo $ \sum_i \alpha^i $ con $ \alpha^i \in H^i(X; \R) $.
 
 Sia $ X $ uno spazio spazio topologico, e $ \R $ un PID,
 $ S^k(X; \R) $ e $ S^l(X; \R) $ sono gli insiemi delle cocatene,
@@ -1426,7 +1435,7 @@ Questa definizione è ben posta, il prodotto tra i due termini è infatti il pro
 Per passare a livello di coomologia (indicando con abuso di notazione $ \cup^\star = \cup $):
 \begin{align*}
   \cup \colon H^k(X; \R) \times H^l(X; \R) & \to H^{k+l}(X; \R) \\
-  (\llbracket \phi \rrbracket, \llbracket \psi \rrbracket) & \mapsto \llbracket \phi \circ \psi \rrbracket
+  (\llbracket \phi \rrbracket, \llbracket \psi \rrbracket) & \mapsto \llbracket \phi \cup \psi \rrbracket
 \end{align*}
 Verifico che questa applicazione è ben definita. Si ha che $ \phi $ e $ \psi $ sono
 cocicli, cioè $ \delta \phi = \delta \psi = 0 $, e tutti gii altri elementi della classe differiscono
@@ -1488,7 +1497,7 @@ Quindi $ H^\star(X, \R) $ è un anello unitario, ma in generale non commutativo.
   gruppi di coomologia sono isomorfi come $ \Z $-moduli, infatti tale teorema
   afferma che:
   \[
-    H^k(X; \R) \cong \tor{H_k(X), \R} \oplus \hom{H_{k-1}(X), \R}
+    H^k(X; \R) \cong \ext{H_k(X), \R} \oplus \hom{H_{k-1}(X), \R}
   \]
   E siccome i gruppi di omologia sono isomorfi anche $ H^k(X; \R) $ lo sono,
   cioè $ H^\star(X) \cong H^\star(Y) $ come gruppi, devo mostrare che l'isomorfismo è anche
@@ -1517,7 +1526,7 @@ Quindi $ H^\star(X, \R) $ è un anello unitario, ma in generale non commutativo.
   \end{gather*}
   Infatti, il comportamento rispetto alla somma è vero perché è vero anche come $ \Z $-moduli,
   mentre per il prodotto:
-  Considero $ \sigma \colon \Delta_{k+l} \to X $ simplesso singolare:
+  considero $ \sigma \colon \Delta_{k+l} \to X $ simplesso singolare:
   \begin{gather*}
     (f^\sharp(\phi) \cup f^\sharp(\psi))(\sigma) = (f^\sharp(\phi)(\sigma\lvert_{[v_0, \dots, v_k]})) (f^\sharp(\psi)(\sigma\lvert_{[v_{k+1}, \dots, v_{k+l}]})) = \\
     = \phi(f_\sharp(\sigma\lvert_{[v_o, \dots, v_k]}))\psi(f_\sharp(\sigma\lvert_{[v_{k+1}, \dots, v_{k+l}]})) = \phi \cup \psi (f_\sharp (\sigma)) = (f^\sharp(\phi \cup \psi))(\sigma)
@@ -1572,7 +1581,7 @@ Quindi $ H^\star(X, \R) $ è un anello unitario, ma in generale non commutativo.
   \]
   Successivamente dimostrerò che:
   \[
-    H^\star(\Pjc{n}) \cong \quot{Z[x]}{(x^{n+1})}
+    H^\star(\Pjc{n}) \cong \quot{\Z[x]}{(x^{n+1})}
   \]
   Dove $ x $ è un generatore di $ H^{2}(\Pjc{2}) $.
   Ora mostro quindi che $ \Sph{2} \vee \Sph{4} \not \sim_H \Pjc{2} $.
@@ -1764,9 +1773,9 @@ Quindi $ H^\star(X, \R) $ è un anello unitario, ma in generale non commutativo.
   \]
   Dove $ \mathcal{T}_x\M $ è lo \textbf{spazio tangente} a $ \M $ in $ x $, cioè lo spazio
   dei vettori in $ x $.
-  In generale una $ k $-forma si scrive, usando la convenzione di Einstein, come:
+  In generale una $ k $-forma si scrive:
   \[
-    \omega_x = a_{i_1\dots i_k}(x) \d x^{i_1} \wedge \dots \wedge \d x^{i_k}
+    \omega_x = a_{1\dots k}(x) \d x^{1} \wedge \dots \wedge \d x^{k}
   \]
   dove $ \wedge $ indica il prodotto wedge, definito a breve. Lo spazio delle
   $ k $-forme su $ \M $ si denota con $ \Omega^k(\M) $ ed è uno spazio vettoriale
@@ -1806,7 +1815,7 @@ Con il quale si ritrova giustamente che $ \d x^i \wedge \d x^j = - \d x^j \wedge
   \end{align*}
   Con:
   \[
-    \d \omega = \frac{\partial a_{i_1\dots i_k}(x )}{\partial x^j} \d x^j \wedge \d x^{i_1} \wedge \dots \wedge \d x^{i_k}
+    \d \omega = \sum_j \frac{\partial a_{1\dots k}(x )}{\partial x^j} \d x^j \wedge \d x^{1} \wedge \dots \wedge \d x^{k}
   \]
 \end{definition}
 \begin{osservation}
@@ -1877,6 +1886,7 @@ Per le forme differenziali vale inoltre il teorema di Stokes:
   Dove con $ \nabla \cdot $ si intende la divergenza. Ma è noto che la divergenza di un rotore è nulla,
   cioè $ \nabla \cdot \nabla \times f = 0 $, cioè $ d^2 = 0 $ per $ k = 1 $ e $ k = 2 $.
 \end{example}
+\newmathsymb{cohomderham}{H^p_{dR}(\M)}{Coomologia di de Rham di $ \M $}
 \begin{definition}
   Si chiama \textbf{coomologia di de Rham}\index{Coomologia di de Rham}
   l'omologia del complesso di de Rham $ (\Omega^\bullet, \d{}) $:
@@ -1895,6 +1905,7 @@ Il generico elemento di $ H^p_{dR}(\M) $ è $ [\omega] $ con $ \omega $ chiusa. 
 $ H^p_{dR}(\M) $ è banale significa che tutte le forme sono esatte, in quanto
 non ci sono forme chiuse che non siano anche esatte (cioè elementi di
 $ B^p(\M) $ che non sono in $ Z^p(\M) $).
+\newmathsymb{cohomsupcomp}{H^p_{c}(\M)}{Coomologia a supporto compatto di $ \M $}
 \begin{osservation}
   La coomologia di de Rham può essere strutturata in modo naturale a spazio
   vettoriale sui reali, e se $ \M $ è anche compatto lo spazio è sui reali. Se
@@ -1907,7 +1918,7 @@ $ B^p(\M) $ che non sono in $ Z^p(\M) $).
 \end{osservation}
 \begin{lemma}
   Si dimostra che, a differenza della coomologia di de Rham, la coomologia a supporto
-  compatto è covariante e non controvariante.
+  compatto è covariante per aperti e non controvariante.
 \end{lemma}
 
 \subsection{Dualità di Poincaré}
@@ -1962,7 +1973,7 @@ essendoci termini di bordo, quindi la mappa è ben definita in quanto:
   \int_\M (\alpha + \d \alpha') \wedge (\beta + \d \beta') = \int_\M \alpha \wedge \beta
 \]
 \begin{theorem}[Teorema di isomorfismo di Poincaré\index{Teorema di isomorfismo di Poincaré}]
-  Se $ \M $ è una varietà  differenziabile senza bordo e orientata di dimensione
+  Se $ \M $ è una varietà differenziabile senza bordo e orientata di dimensione
   $ n $, allora la mappa:
   \begin{align*}
     D \colon H^k_{dR}(\M) & \to (H_c^{n-k}(\M))^* \\
@@ -2088,9 +2099,9 @@ essendoci termini di bordo, quindi la mappa è ben definita in quanto:
     \begin{tikzcd}[nodes = {column sep = 6 pt, inner sep = 1.5pt}]
       H_{dR}^{k-1}(V_1) \oplus H_{dR}^{k-1}(V_2) \rar{\alpha_1} \dar{D_{V_1} \oplus D_{V_2}} & H^{k-1}_{dR}(V_{12}) \dar{D_{V_{12}}} \rar{\alpha_2} &
       H^k_{dR}(\M) \rar{\alpha_3} \dar{D_{V_{12}}} & H_{dR}^{k}(V_1) \oplus H_{dR}^{k}(V_2) \rar{\alpha_4}  \dar{D_{V_1} \oplus D_{V_2}} & H^k_{dR}(V_{12}) \dar{D_{V_{12}}}  \\
-      (H_{dR}^{k-1}(V_1))^* \oplus (H_{dR}^{k-1}(V_2))^* \rar{\beta_1} &
-      (H^{k-1}_{dR}(V_{12}))^* \rar{\beta_2} &(H^k_{dR}(\M))^* \rar{\beta_3} &
-      (H_{dR}^{k}(V_1))^* \oplus (H_{dR}^{k}(V_2))^* \rar{\beta_4} & (h^k_{dR}(V_{12}))^*
+      (H_{dR}^{n-k+1}(V_1))^* \oplus (H_{dR}^{n-k+1}(V_2))^* \rar{\beta_1} &
+      (H^{n-k+1}_{dR}(V_{12}))^* \rar{\beta_2} &(H^{n-k}_{dR}(\M))^* \rar{\beta_3} &
+      (H_{dR}^{n-k}(V_1))^* \oplus (H_{dR}^{k}(V_2))^* \rar{\beta_4} & (H^{n-k}_{dR}(V_{12}))^*
     \end{tikzcd}
   \]
   Nella seconda riga si è usato il fatto che il duale di una somma diretta di spazi finitamente
@@ -2098,7 +2109,7 @@ essendoci termini di bordo, quindi la mappa è ben definita in quanto:
   Per i punti dimostrati in precedenza tutte le mappe $ D $ sono isomorfismi, a parte
   quella centrale, se dimostro che i quadrati sono commutativi per il lemma dei cinque
   $ D $ deve essere un isomorfismo. Per comodità chiamo $ \phi_1 = D_{V_1} \oplus D_{V_2} $,
-  $ \phi_2 = D_{V_{12}} $, $ \phi_3 = D $, $ \phi_5 = D_{V_1} \oplus D_{V_2} $ t $ \phi_5 = D_{V_{12}} $.
+  $ \phi_2 = D_{V_{12}} $, $ \phi_3 = D $, $ \phi_5 = D_{V_1} \oplus D_{V_2} $ e $ \phi_5 = D_{V_{12}} $.
   \begin{osservation}
     L'esistenza di queste successioni è dovuta al fatto che ci sono delle mappe
     di inclusione $ \tau \colon V_i \to \M $, Nel caso della successione in coomologia di
@@ -2106,16 +2117,16 @@ essendoci termini di bordo, quindi la mappa è ben definita in quanto:
     della coomologia a supporto compatto l'associazione è covariante, ma si scambia il verso
     in quanto si prende il duale.
   \end{osservation}
-  Bisogna dimostrare che i quadrati sono commutativi. Quello in mezzo è semplice,
+  Bisogna dimostrare che i quadrati sono commutativi. Il penultimo
   considero $ [\alpha] \in H^k_{dR}(\M) $:
   \begin{gather*}
     [\alpha_1] = [\tau_1^\star(\alpha)] \in H^k_{dR}(V_1) \\
     [\alpha_2] = [\tau_2^\star(\alpha)] \in H^k_{dR}(V_2)
   \end{gather*}
-  Cioè $ \alpha = \alpha_1 + \alpha_2 $, ma:
+  Cioè $ \alpha = \alpha_1 + \alpha_2 $, con $ \alpha_1 \in V_1 $ e $ \alpha_2 \in V_2 $ ma:
   \begin{gather*}
-    D(\alpha) \colon \beta \to \int_\M \alpha \wedge \beta =  \int_\M (\alpha_1 + \alpha_2) \wedge \beta =  \int_{V_1} \alpha_1 \wedge \beta + \int_{V_2} \alpha_2 \wedge \beta \\
-    (D(\alpha_1) + D(\alpha_2)) \colon \beta \to  \int_{V_1} \alpha_1 \wedge \beta +  \int_{V_2} \alpha_2 \wedge \beta
+    D([\alpha]) \colon \beta \to \int_\M \alpha \wedge \beta =  \int_\M (\alpha_1 + \alpha_2) \wedge \beta =  \int_{V_1} \alpha_1 \wedge \beta + \int_{V_2} \alpha_2 \wedge \beta \\
+    (D([\alpha_1]) + D([\alpha_2])) \colon [\beta] \to  \int_{V_1} \alpha_1 \wedge \beta +  \int_{V_2} \alpha_2 \wedge \beta
   \end{gather*}
   Quindi giustamente è commutativo.
   Poi ho:
@@ -2138,7 +2149,7 @@ essendoci termini di bordo, quindi la mappa è ben definita in quanto:
     \end{tikzcd}
   \]
   Devo mostrare che $ \Phi(D[\rho]) = D([\rho']) $, in questo modo il diagramma è commutativo.
-  Ma $ \Phi = F^* $ con $ F \colon H^{n-k}_c(\M) \to H^{n-k=1}(V_{12}) $. Sia $ \tau \in \Omega_c^{n-k}(\M) $
+  Ma $ \Phi = F^* $ con $ F \colon H^{n-k}_c(\M) \to H^{n-k+1}(V_{12}) $. Sia $ \tau \in \Omega_c^{n-k}(\M) $
   con $ \d \tau = 0 $ allora $ \tau = \tau_1 + \tau_2 $ con $ \tau_1 = \tau \lvert_{V_1} $ e $ \tau_2 = \tau_{V_2} $
   quindi:
   \[
@@ -2199,9 +2210,7 @@ set di tecniche.
 Per dimostrare il teorema di de Rham bisogna prima costruire un omomorfismo di
 gruppi abeliani $ \rho \colon H^p_{dR}(X) \to H^p(X;\RN{}) $ e dopodiché dimostrare che è
 anche isomorfismo di gruppi abeliani. Per costruire $ \rho $ definisco un omomorfismo
-$ \rho \colon \Omega^p(X) \to \hom{S_p(X), \RN{}} $ e poi passo a livello di omologia, infatti
-per il teorema dei coefficienti universali l'omologia del complesso degli
-omomorfismi è isomorfa alla coomologia. Quindi definirò $ \rho $ tramite:
+$ \rho \colon \Omega^p(X) \to \hom{S_p(X), \RN{}} $. Quindi definirò $ \rho $ tramite:
 \[
   \begin{tikzcd}
     Z^p(X) \rar{r} \dar{\pi_1} & \hom{S_p(X), \RN{}} \dar{\pi_2} \\
@@ -2369,7 +2378,7 @@ e quindi esiste ben definita:
   \rho \colon H^p_{dR}(X) & \to H^p_\infty (X, \RN{}) \\
   \llbracket \omega \rrbracket & \mapsto \llbracket r(\omega) \rrbracket
 \end{align*}
-Sostanzialmente qui si sta utilizzando il teorema dell'omomorfismo di connessione.
+Questa mappa è ben definita.
 \begin{lemma}
   Se $ F \colon X \to Y $ è un'applicazione liscia tra varietà differenziali allora
   il seguente diagramma commuta:
@@ -2469,8 +2478,9 @@ A questo punto il teorema di de Rham si può esprimere come:
   \item Se $ \set{X_j} $ è una famiglia numerabile di varietà de Rham
     allora la loro unione disgiunta è una varietà de Rham.
   \item Ogni aperto convesso di $ \RN{n} $ è de Rham.
-  \item Se $ X $ è una varietà differenziale che ammette un ricoprimento
-    finito di aperti de Rham allora è de Rham.
+  \item Se $ X $ è una varietà differenziale che ammette un ricoprimento finito
+    di aperti de Rham tali che l'intersezione di suoi elementi sia de Rham
+    allora è de Rham.
     \begin{definition}
       Si dice che $ X $ varietà differenziabile ha un \textbf{ricoprimento de
         Rham}\index{Ricoprimento de Rham} se ammette un ricoprimento $ \set{U_j} $
@@ -2487,7 +2497,7 @@ A questo punto il teorema di de Rham si può esprimere come:
       de Rham per $ X $ e $ \mathcal{B} $ è una base per la topologia di $ X $.
     \end{definition}
     Con questa definizione il punto diventa equivalente a mostrare che ogni
-      insieme con una base de Rham è de Rham.
+      varietà con una base de Rham è de Rham.
   \item Ogni aperto di $ \RN{n} $ è de Rham.
   \item Ogni varietà differenziale è de Rham.
   \item Ogni varietà soddisfa $  H^p(X, \RN{}) \cong H^p_{dR}(X) \; \forall p $.
@@ -2518,7 +2528,7 @@ A questo punto il teorema di de Rham si può esprimere come:
   in questo caso è automaticamente un isomorfismo.
   Ma:
   \begin{align*}
-    \rho \colon H^o_{dR}(X) & \to H^p_\infty(X, \RN{}) \\
+    \rho \colon H^0_{dR}(X) & \to H^p_\infty(X, \RN{}) \\
     f & \mapsto \int_\bullet f
   \end{align*}
   Scegliendo $ f = 1 $ si ottiene che $ \rho(f) $ non è nulla e quindi è
@@ -2574,10 +2584,10 @@ A questo punto il teorema di de Rham si può esprimere come:
   Gli $ A_m $ sono chiusi in $ \tilde{A}_{m+1} $ che sono compatti quindi sono compatti.
   Definendo:
   \[
-    A'_m = \set{x \in X \ m - \frac{1}{2} < f(x) < m + \frac{3}{2} }
+    A'_m = \set{x \in X | m - \frac{1}{2} < f(x) < m + \frac{3}{2} }
   \]
   Questi sono aperti. Siccome esiste una base de Rham $ \forall x \in A'_m $ esiste un elemento
-  della basa $ U^x_m $ che contiene $ x $ e sta in $ A'_m $ (per la definizione di base).
+  della base $ U^x_m $ che contiene $ x $ e sta in $ A'_m $ (per la definizione di base).
 
   L'insieme $ \set{U_m^x}_{x \in A_m} $ è quindi ben definito e si ha che
   $ A_m \subseteq \bigcup_{x\in A_m} U^x_m $, ma $ A_m $ è compatto quindi per definizione il
@@ -2586,7 +2596,7 @@ A questo punto il teorema di de Rham si può esprimere come:
   Rham. Ho quindi un'infinità numerabile di $ B_m $ de Rham.
   Siano:
   \[
-    \mathcal{U} = \bigcup_{m = 1 \mathrm{mod} 2} B_m \quad  \mathcal{V} = \bigcup_{m = 0 \mathrm{mod} 2} B_m
+    \mathcal{U} = \bigcup_{m = 1\;\mathrm{mod} 2} B_m \quad  \mathcal{V} = \bigcup_{m = 0\; \mathrm{mod} 2} B_m
   \]
   Questi insiemi sono tali che $ \mathcal{U} \cup \mathcal{V} = X $ in quanto per
   ipotesi prendo tutti gli $ A_n $ che coprono $ X $. Verificando che

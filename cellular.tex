@@ -279,6 +279,7 @@ Per i primi spazi proiettivi reali:
     \phi \colon \partial \Disk{2} = \Sph{1} & \to \Pjr{1} = \Sph{1} \\
     (x,y) & \mapsto (-x,-y)
   \end{align*}
+  \vspace*{-18pt}
   \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
@@ -494,14 +495,17 @@ Quindi ho una $ 0 $-cella, una $ 2 $-cella, \dots, una $ 2n $-cella.
   lo stesso punto). Quindi:
   \[
     \begin{tikzcd}
-      \Disk{2n} \rar{h} \dar{P} & \Pjc{n} \\
+      \Pjc{k-1} \sqcup \Disk{2n} \rar{h} \dar{P} & \Pjc{n} \\
       \Pjc{n-1} \cup_\tau \Disk{2n} \arrow{ur}{F} & {}
     \end{tikzcd}
   \]
-  Dove $ \tau = h \big \lvert_{\partial \Disk{2n}} $, con $ P((z_0, \dots, z_{n-1})) = ([z_0, \dots, z_{n-1}]) $.
-  $ F $ manda $ \Pjc{n-1} $ in $ \Pjc{n} $ banalmente e raccorda bene i dischi.
-  $ F $ è iniettiva e suriettiva da uno spazio compatto a uno spazio di Hausdorff,
-  quindi è un omeomorfismo.
+  Dove $ \tau $ realizza la proiezione al quoziente
+  $ \tau \colon \Sph{2k-1} \to \Pjc{k-1} = \Sph{2k-1} \slash \Sph{1} $, mentre
+  $ P $ è tale che $ P((z_0, \dots, z_{n-1})) = ([z_0, \dots, z_{n-1}]) $. $ F $ manda
+  $ \Pjc{n-1} $ in $ \Pjc{n} $ banalmente e raccorda bene i dischi in quanto i
+  punti che sono al quoziente finiscono tutti nel medesimo punto, giacché sono i
+  punti tali che $ \sum | z_i |^2 = 1 $. $ F $ è iniettiva e suriettiva da uno
+  spazio compatto a uno spazio di Hausdorff, quindi è un omeomorfismo.
 \end{proof}
 \eproof
 Ho che $ \pi_1(\Pjc{n}) = \set{1} $ $ \forall n \geq 1 $
@@ -778,7 +782,7 @@ vale la seguente proposizione:
     \rho \colon \Sph{3} = \mathrm{SU(2)} \to \mathrm{GL}(V)
   \]
   Con GL gruppo generale lineare e $ V $ è uno spazio vettoriale di dimensione
-  3 (quindi $ V \simeq \RN{3} $) scelgo lo spazio delle matrici antihermitiane a
+  3 (quindi $ V \simeq \RN{3} $) che scelgo essere lo spazio delle matrici antihermitiane a
   traccia nulla:
   \[
     V = \set{H \in M_2(\mathbb{C}) | H + H^\dagger = 0, \; \tr H  = 0}
@@ -979,7 +983,7 @@ dei gruppi di omologia.
 
 \begin{definition}
   Sia $ (Y,A) $ CW complessi con $ A \subseteq Y $
-  la coppia $ (Y,A) $ si dice \textbf{buona}\index{Coppia Buona} se
+  la coppia $ (Y,A) $ si dice \textbf{buona}\index{Coppia buona} se
   allora esiste un intorno aperto $ V $ di $ A $ in $ Y $ tale che $ A $
   sia un retratto di deformazione di $ A $.
 \end{definition}
@@ -1389,13 +1393,13 @@ $ d^{CW} $ è un operatore di bordo.
   \[
     d^{CW}_k (e_j) = \sum_m A_{jm}f_m
   \]
-  Coma si calcolano gli $ A_{jm} $?
-  Prendo $ e_j $ un generatore di $ H_k(X^{(k)}, X^{(k-1)}) \cong \bigoplus_j H_k(\Sph{k}_j) $.
+  Come si calcolano gli $ A_{jm} $?
+  Considero $ e_j $ un generatore di $ H_k(X^{(k)}, X^{(k-1)}) \cong \bigoplus_j H_k(\Sph{k}_j) $.
   $ e_j $ genera il bordo di una cella.
 
   Posso rileggere gli $ H_k $:
   \[
-    H_k(\Sph{k}_k) \cong H_k(\quot{\Disk{k}}{\partial \Disk{k}}) \cong H_k(\Disk{k}, \partial \Disk{k}) =
+    H_k(\Sph{k}) \cong H_k(\quot{\Disk{k}}{\partial \Disk{k}}) \cong H_k(\Disk{k}, \partial \Disk{k}) =
     H_k(\Disk{k}, \Sph{k-1}) \cong H_{k-1}(\Sph{k-1})
   \]
   Sono partito da $ \Sph{k} $ e sono arrivato in $ \Sph{k-1} $.
@@ -1410,7 +1414,7 @@ $ d^{CW} $ è un operatore di bordo.
   I coefficienti si trovano calcolando il grado della mappa:
   \[
     \begin{tikzcd}
-      \Sph{n-1}_\alpha \rar{\phi_\alpha} & X^{n-1} \rar{q} & \quot{X^{n-1}}{X^{n-2}} = \bigvee_\alpha \Sph{n-1}_\alpha  \rar{q_\beta} & \Sph{n-1}_\beta
+      \Sph{n-1}_\alpha \rar{\phi_\alpha} & X^{n-1} \rar{q} & \quot{X^{(n-1)}}{X^{(n-2)}} = \bigvee_\alpha \Sph{n-1}_\alpha  \rar{q_\beta} & \Sph{n-1}_\beta
     \end{tikzcd}
   \]
   Prima si attacca una cella al $ (n-1) $-scheletro, poi si fa collassare tutto
@@ -1709,7 +1713,7 @@ al quoziente e $ \sim $ la relazione che identifica punti antipodali.
   Ho il diagramma:
   \[
     \begin{tikzcd}
-      \Sph{1} = \partial \Disk{2} \rar{\mathcal{A}} \dar{\mathcal{A}} & \Pjr{1} \dar{\Id{}} \\
+      \Sph{1} = \partial \Disk{2} \rar{\mathcal{A}} \arrow{dr}{\mathcal{A}} & \Pjr{1} \dar{\Id{}} \\
       {} & \Pjr{1}
     \end{tikzcd}
   \]
@@ -1790,7 +1794,7 @@ al quoziente e $ \sim $ la relazione che identifica punti antipodali.
 Sia $ \Pjr{n} $ ho il complesso:
 \[
   \begin{tikzcd}
-    0 \rar & \Z \rar & \Z \rar & \dots & \Z \rar & 0
+    0 \rar & \Z \rar & \Z \rar & \dots  \rar & \Z \rar & 0
   \end{tikzcd}
 \]
 Ad esempio per $ n = 3 $ ho:
@@ -1848,11 +1852,11 @@ $ \tau_2 \colon \Disk{2} \to \Sph{2} $ mappa proiezione sul bordo.
     \end{tikzpicture}
     \subcaption{$ \tau' $}
   \end{subfigure}
-  \caption{Mappe $ \tau_2 $ e $ \tau $}
+  \caption{Mappe $ \tau_2 $ e $ \tau' $}
 \end{figure}
     Poi ho $ \tau' \colon \Disk{2} \to \Sph{2} $ identificazione.
 \[
-  [\tau'] \in H_2(\Sph{2}) \Rightarrow [\tau'] = m[\tau_2] = \deg{\Delta_\star}[\tau-2]
+  [\tau'] \in H_2(\Sph{2}) \Rightarrow [\tau'] = \deg{\Delta_\star}[\tau-2]
 \]
 Cioè
 $ \tau_2 \big \lvert_{\partial \Disk{2}} = \tau' \big \lvert_{\partial \Disk{2}} $ sul bordo si
@@ -1872,13 +1876,13 @@ Questo si generalizza immediatamente a $ n $ generico.
 Per $ n $ pari:
 \[
   \begin{tikzcd}
-    0 \rar & \Z \rar{2} & \dots & \rar & \Z \rar & \Z \rar{0} & \Z \rar & 0
+    0 \rar & \Z \rar{2} & \dots  \rar & \Z \rar & \Z \rar{0} & \Z \rar & 0
   \end{tikzcd}
 \]
 Per $ n $ dispari:
 \[
   \begin{tikzcd}
-    0 \rar & \Z \rar{0} & \dots & \rar & \Z \rar & \Z \rar{2} & \Z \rar & 0
+    0 \rar & \Z \rar{0} & \dots  \rar & \Z \rar & \Z \rar{2} & \Z \rar & 0
   \end{tikzcd}
 \]
 Si ha l'alternanza di applicazione costante e moltiplicazione per 2.

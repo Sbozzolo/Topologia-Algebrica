@@ -2168,7 +2168,7 @@ che mi mancano che sono l'escissione e l'omotopia.
     \]
     In questo caso ponendo $ R = S_k(X \setminus B) $ e $ T = S_k(A) $:
     \[
-      \quot{S_k(X \setminus B)}{S_k(X \setminus B) \cap S_k(A} \cong \quot{S_k(X \setminus B) + S_k(A}{S_k(A)}
+      \quot{S_k(X \setminus B)}{S_k(X \setminus B) \cap S_k(A)} \cong \quot{S_k(X \setminus B) + S_k(A)}{S_k(A)}
     \]
     Cioè usando i risultati precedenti:
     \[
@@ -2176,7 +2176,8 @@ che mi mancano che sono l'escissione e l'omotopia.
     \]
   \end{osservation}
 
-  Con le inclusioni e le proiezioni al quoziente si costruisce il diagramma:
+  Con le inclusioni e le proiezioni al quoziente si costruisce la
+  mappa $ S_k(X \setminus B) \slash S_k(A \setminus A) \to S_k(X) \to S_k(A) $:
   \[
     \begin{tikzcd}
       S_k(X \setminus B) \rar \dar & S_k(X) \dar \\
@@ -2186,7 +2187,7 @@ che mi mancano che sono l'escissione e l'omotopia.
   Quindi usando le osservazioni precedenti è ben definito il diagramma:
   \[
     \begin{tikzcd}
-      \quot{S_k(X \setminus B)}{S_k(A \setminus B)} \arrow{rd}{} \arrow{rr}{\cong} & {} & \quot{S_k^\mathcal{U}(X)}{S_K(A)} \arrow{ld}{}\\
+      \quot{S_k(X \setminus B)}{S_k(A \setminus B)} \arrow{rd}{} \arrow{rr}{\cong} & {} & \quot{S_k^\mathcal{U}(X)}{S_k(A)} \arrow{ld}{}\\
       {} & \quot{S_k(X)}{S_k(A)} & {}
     \end{tikzcd}
   \]
@@ -2212,7 +2213,8 @@ che mi mancano che sono l'escissione e l'omotopia.
   \[
     S_k^\mathcal{U}(X,A) = \quot{S_k^\mathcal{U}(X)}{S_k^{\mathcal{U} \cap A}(A)}
   \]
-  Ho quindi la successione esatta corta:
+  Ho quindi la successione esatta corta dovuta alla naturale inclusione
+  di $ S_k^{\mathcal{U} \cap A}(X) $ in $ S_k^{\mathcal{U}} $:
   \[
     \begin{tikzcd}
       0 \rar & S_k^{\mathcal{U} \cap A}(A) \rar & S_k^{\mathcal{U}}(X) \rar & S_k^{\mathcal{U}}(X,A) \rar & 0
@@ -2333,13 +2335,13 @@ che mi mancano che sono l'escissione e l'omotopia.
     Cioè esiste un elemento di $ \tilde{a}_3 = a_3 - \alpha_2(a_2) \in A_3 $ tale che
     venga mandato in $ b_3 $ da $ \phi_3 $.
   \end{proof}
-  In questo caso si è potuto applicare il lemma in quanto i quadrati sono commutativi
-  perché derivanti da una successione esatta corta con il teorema dell'omomorfismo
-  di connessione.
+  Questo conclude la dimostrazione.
+  % In questo caso si è potuto applicare il lemma in quanto i quadrati sono commutativi
+  % perché derivanti da una successione esatta corta con il teorema dell'omomorfismo
+  % di connessione.
 \end{proof}
-\eproof
+%\eproof
 % lezione 14 parte 2
-
 \begin{theorem}
   Siano $ X, Y $ spazi topologici e $ A, B $ sottospazi topologici
   rispettivamente di $ X $ e $ Y $, e $ f_0, f_1 \colon (X, A) \to (Y, B) $ funzioni
@@ -2504,6 +2506,7 @@ La mappa $ G $ è un esempio di omotopia di catena:
     \end{tikzpicture}
   \end{figure}
 \end{definition}
+\vspace*{-10pt}
 Mappe tra complessi omotope danno origine alla medesima applicazione a livello
 di omologia.
 
@@ -2573,8 +2576,7 @@ Cosa sono invece gli $ \tilde{H}_k(X) $? Vorrei che fossero proprio $ H_k(X) $,
 così come nel caso dell'omologia singolare.
 
 \begin{proposition}
-  In qualsiasi teoria omologica di Eilenberg e Steenrod in cui si definiscono i
-  gruppi di omologia ridotta come $ \tilde{H}_k(X) = \ker{\epsilon_X} $ dove
+  In qualsiasi teoria omologica di Eilenberg e Steenrod in cui si definiscono i gruppi di omologia ridotta come $ \tilde{H}_k(X) = \ker{(\epsilon_X)_\star} $ dove
   $ \epsilon_X \colon X \to P $ con $ X $ spazio topologico e $ P = \set{p \in X} $ si ha che:
   \[
     H_k(X) \cong
@@ -2610,7 +2612,7 @@ così come nel caso dell'omologia singolare.
   Considero la successione esatta corta:
   \[
     \begin{tikzcd}
-      0 \rar & \tilde{H}_k(X) := \ker{\epsilon_X} \rar & H_k(X) \rar & H_k(P) \rar & 0
+      0 \rar & \tilde{H}_k(X) := \ker{(\epsilon_X)_\star} \rar & H_k(X) \rar & H_k(P) \rar & 0
     \end{tikzcd}
   \]
   Questa spezza in quanto $ \epsilon_X \colon X \to P $ ammette un'inversa
@@ -2651,7 +2653,7 @@ Questo lo posso fare anche nel caso di una coppia se $ A $ è sottospazio
   Si ha la successione esatta corta:
   \[
     \begin{tikzcd}
-      0 \arrow{r}{}        & \ker{F_\star} \arrow{r}{} & H_k(X, A) \arrow{r}{} & H_k(P, P) \arrow{r}{} & 0
+      0 \arrow{r}{}        & \ker{FS_\star} \arrow{r}{} & H_k(X, A) \arrow{r}{} & H_k(P, P) \arrow{r}{} & 0
     \end{tikzcd}
   \]
   E si definisce $ \tilde{H}_k(X,A) = \ker{F_\star} $.
@@ -2698,7 +2700,7 @@ Questo lo posso fare anche nel caso di una coppia se $ A $ è sottospazio
   \]
   Da cui $ H_1(P,P) = 0 $. Similmente $ \ker{k} = \im{j} = H_0(P) $ quindi $ H_0(P,P) = 0 $ perché
   $ H_0(P,P) \cong {H_0(P)} \slash {\ker{k}} \cong {H_0(P)} \slash {H_0(P)} = 0 $.
-  Avendo trovato che $ \forall k $ $ H_k(P,P) = 0 $ allora si ha che $ \ker{F_\star} \cong H_k(X,A) $.
+  Avendo trovato che $ \forall k $ $ H_k(P,P) = 0 $ allora si ha che $ \ker{F_\star} = \tilde{H}_k(X,A) \cong H_k(X,A) $.
 
 \begin{corollary}
   Se $ X $ è uno spazio topologico contraibile allora $ \tilde{H}_k(X) = 0 $.
