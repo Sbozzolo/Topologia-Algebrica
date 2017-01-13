@@ -2030,15 +2030,40 @@ essendoci termini di bordo, quindi la mappa è ben definita in quanto:
   \[
     \omega = \phi(x_1, \dots, x_n) \d x^1 \wedge \dots \wedge \d x^n
   \]
-  con $ \phi \in \mathcal{C}^\infty $ a supporto compatto. Queste forma è esatta, infatti
-  nel caso $ n = 1 $ ho $ \omega = \phi(t) \d t $, ponendo:
+  con $ \phi \in \mathcal{C}^\infty $ a supporto compatto. Per verificarlo nel caso di
+  $ \RN{} $ devo mostrare che in $ H^1_c(\RN{}) $ c'è una sola forma chiusa ma
+  non esatta. In $ \RN{} $ tutte le $ 1 $-forme sono necessariamente chiuse in quanto
+  non ci sono $ 2 $-forme. Considero la mappa lineare suriettiva:
+  \begin{align*}
+    \int_{\RN{n}} \colon \Omega^1(\RN{}) & \to \RN{} \\
+    \omega & \mapsto \int_{\RN{n}} \omega
+  \end{align*}
+  Vale che:
+  \[
+    \ker{\int_{\RN{}}} = B^0(\RN{})
+  \]
+  Dove $ B^0(\RN{}) $ sono le forme esatte, infatti se
+  $ \omega = \phi(t) \d t \in \ker{\int} $, è ben definito:
   \[
     \psi(x) = \int_{-\infty}^x \phi(t) \d t
   \]
   Ho che $ \psi $ è una $ 0 $-forma tale che
-  $ \d \psi (x) = \psi'(x) \d x = \phi(x) \d x $, quindi $ \omega $ è esatta ed è perciò il
-  generatore del gruppo di coomologia. Per $ n $ generico integro una alla volta
-  tutte le variabili e ottengo il medesimo risultato.
+  $ \d \psi (x) = \psi'(x) \d x = \phi(x) \d x $, quindi $ \omega $ è esatta.
+  Per il teorema fondamentale degli omomorfismi:
+  \[
+    \quot{\Omega^1(\RN{})}{\ker{\int_{\RN{}}}} \cong \RN{}
+  \]
+  Ma:
+  \[
+    \Omega^1(\RN{}) = Z^0(\RN{}) \text{ e } \ker{\int_{\RN{}}} = B^0(\RN{})
+  \]
+  Quindi:
+  \[
+    \quot{Z^0(\RN{})}{B^0{\RN{}}} \cong \RN{}
+  \]
+  Ma il membro di sinistra è proprio la definizione del gruppo di coomologia.
+  Per $ n $ generico integro una alla volta tutte le variabili e ottengo il
+  medesimo risultato.
 
   Per mostrare che $ D $ è isomorfismo è sufficiente mostrarlo per
   $ D \colon H^0_{dR}(\RN{n}) \to (H^n_c(\RN{n}))^* $, ma:
