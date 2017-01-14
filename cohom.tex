@@ -723,42 +723,38 @@ che relazione c'è tra $ H_k(X) \oplus G $ e $ H_k(X;G) $? Vale che $ H_k(X) \op
 \end{osservation}
 
 \begin{osservation}
-  In generale se $ G $ è un gruppo abeliano finitamente generato c'è il teorema di struttura
-  per cui $ G \cong \Z^n \oplus T $, per cui dal teorema dei coefficienti universali:
-  \begin{gather*}
-    H_k(X;G) \cong H_k(X) \otimes G \oplus \tor{H_{n-1}(X), G} \cong \\
-    \cong H_n(X) \otimes (\Z^n \oplus T) \oplus \tor{H_{n-1}(X), \Z^n \oplus T}
-  \end{gather*}
-  Usando la bilinearità del prodotto tensore:
+  Assumendo $ G $ e $ H_k(X) $ finitamente generati per il teorema di struttura:
   \[
-    H_n(X) \otimes (\Z^{r_n} \oplus T) \cong H_n(X) \otimes \Z^{r_n} \oplus H_n(X) \otimes T
+    G \cong \Z^{s_n} \oplus T \quad H_n(X) \cong \Z^{r_n} \oplus T' \quad H_{n-1}(X) \cong \Z^{t_n} \oplus T''
   \]
-  Questo in generale dipende da $ X $, ma se in particolare $ X $ è un CW
-  complesso finito, allora anche $ H_n(X) $ è finitamente generato, quindi
-  $ H_n(X) \cong \Z^{s_n} \oplus T' $ per cui vale che:
+  % In generale se $ G $ è un gruppo abeliano finitamente generato c'è il teorema
+  % di struttura per cui $ G \cong \Z^n \oplus T $,
+  Per teorema dei coefficienti   universali:
   \begin{gather*}
-    H_n(X) \otimes \Z^{r_n} \cong (\Z^{s_n} \oplus T') \otimes \Z^r \cong \Z^{s_n r_n} \oplus \Z^{r_n} \otimes T' \cong \Z^{s_nr_n} \\
-    H_n(X) \otimes T = (\Z^{s_n} \oplus T') \otimes T \cong T' \otimes T
+    H_k(X;G) \cong H_k(X) \otimes G \oplus \tor{H_{n-1}(X), G}  \cong H_n(X) \otimes (\Z^n \oplus T) \oplus \tor{H_{n-1}(X), \Z^n \oplus T} \\
+    \cong (\Z^{r_n} \oplus T') \otimes (\Z^{s_n} \oplus T) \oplus \tor{\Z^{t_n} \oplus T'', \Z^{s_n} \oplus T }
   \end{gather*}
-  infatti
-  $ \Z^k \otimes T' = (\Z \oplus \Z \dots ) \otimes T' = (\Z \otimes T')^k = T'^k $ in quanto
-  $ \Z $ è libero.
-
-  Poi ho
-  $ \tor{H_{n-1}(X), \Z^{r_n} \oplus T} = \tor{H_{n-1}(X), \Z^n} \oplus \tor{H_{n-1}(X), T} $
-  per un lemma precedente, quindi in questo caso, siccome $ \Z $ è libero quindi
-  $ \tor{H_{n-1}(X), \Z^{r_n}} = (\tor{H_{n-1}(X), \Z})^{r_n} = 0 $, allora:
-   \begin{gather*}
-     \tor{H_{n-1}(X), \Z^{r_n} \oplus T} \cong \tor{H_{n-1}(X), \Z^{r_n}} \oplus \tor{H_{n-1}(X), T} = \\
-     = \tor{H_{n-1}(X), T} = \tor{\Z^{s_{n-1}} \oplus T'_{n-1}, T}
-   \end{gather*}
+  Ma essendo $ \Z^k $ libero per $ \Z^{t_n} \oplus T'' \cong T'' $ e $ \Z^{s_n} \oplus T \cong T $
+  quindi:
+  \[
+    \tor{\Z^{t_n} \oplus T'', \Z^{s_n} \oplus T } = \tor{ T'', T }
+  \]
+  Inoltre per la bilinearità del prodotto tensore:
+  \[
+    \Z^{r_n} \otimes (\Z^{s_n} \oplus T) \cong \Z^{s_n} \otimes \Z^{r_n} \oplus \Z^{r_n} \otimes T
+  \]
+  Ma $ \Z^{r_n} \otimes \Z^{s_n} \cong \Z^{r_n s_n} $ e
+  \[
+    \Z^{r_n} \otimes T \cong (\Z \oplus \Z \dots ) \otimes T \cong (\Z \otimes T) \oplus (\Z \otimes T) \dots \cong (\Z \otimes T)^{r_n} \cong T^{r_n}
+  \]
+  Infine per lo stesso ragionamento: $ T' \otimes (\Z^{s_n} \oplus T) \cong T' \otimes T $
    Quindi:
    \[
-     H_n(X; G) \cong \Z^{s_n r_n} \oplus T_n' \oplus T \oplus \tor{T_{n-1}', T}
+     H_n(X; G) \cong \Z^{s_n r_n} \oplus T^{r_n} \oplus T' \oplus T \oplus \tor{T'', T}
    \]
-   Dove $ H_k(X) \cong \Z^{s_k} \oplus T_k' $ e $ G \cong \Z^r \oplus T $.
-   $ H_n(X;G) $ ha quindi una parte libera e delle parti di torsione che si calcolano
-   sapendo fare $ \Z_h \otimes \Z_k $ (infatti $ T $ e $ T' $ sono fatte così).
+   $ H_n(X;G) $ ha quindi una parte libera e delle parti di torsione che si
+   calcolano sapendo fare $ \Z_h \otimes \Z_k $ (infatti $ T $ e $ T' $ sono fatte
+   così).
  \end{osservation}
 
  \begin{exercise}
@@ -1586,8 +1582,8 @@ Quindi $ H^\star(X, \R) $ è un anello unitario, ma in generale non commutativo.
   Dove $ x $ è un generatore di $ H^{2}(\Pjc{2}) $.
   Ora mostro quindi che $ \Sph{2} \vee \Sph{4} \not \sim_H \Pjc{2} $.
   \begin{gather*}
-    H^\star(\Pjc{2}) = \set{a_0 + a_1 x + a_2 x^2 | x^3 = 0} \\
-    H^\star(\Pjc{2}) = \set{(b_0 + b_1 \alpha, a_0 + a_1 \beta) | \alpha^2 = 0, \; \beta^2 = 0}
+    H^\star(\Pjc{2}) = \set{\tilde{a}_0 + \tilde{a}1 x + \tilde{a}2 x^2 | x^3 = 0} \\
+    H^\star(\Pjc{2}) = \set{(\tilde{b}_0 + \tilde{b}_1 \alpha, \tilde{a}_0 + \tilde{a}_1 \beta) | \alpha^2 = 0, \; \beta^2 = 0}
   \end{gather*}
   Se questi gruppi fossero isomorfi ci sarebbe una corrispondenza:
   \[
@@ -1631,37 +1627,37 @@ Quindi $ H^\star(X, \R) $ è un anello unitario, ma in generale non commutativo.
   La dimostrazione per i due risultati è la stessa, lo dimostro per il caso
   reale. La dimostrazione è per induzione, e in ciò che segue è sottinteso che
   il gruppo di coefficienti è $ \Z_2 $.
-  Per $ n = 1 $ è noto che $ \Pjr{1} \simeq \Sph{1} $, e quindi ho già calcolato
-  l'anello di coomologia:
-  \[
-    H^\star(\Pjr{1}) \cong \quot{\Z[x]}{(x^2)}
-  \]
-  Per $ n > 1 $ considero due indici $ i, j $. Mostro che posso restringermi al
-  caso in cui $ i + j = n $. Se $ i + j < n $ considero
-  $ u \colon \Pjr{k} \to \Pjr{n} $, ho che $ u^\star \colon H^l(\Pjr{n}) \homoto H^l(\Pjr{l}) $
-  con $ l \leq j $, ma quindi:
-  \begin{gather*}
-    0 + \alpha_i \in H^i(\Pjr{n}) \mapsto u^\star(\alpha_i) \not = 0 \\
-    0 + \alpha_j \in H^j(\Pjr{n}) \mapsto u^\star(\alpha_j) \not = 0
-  \end{gather*}
-  Ma $ u^\star(\alpha_i \cup \alpha+j) \not = 0 $ e $ \alpha_i \cup \alpha_j \in H^{i+j}(\Pjr{k}) $. Se $
-  u^\star(\alpha_i \cup \alpha_j) = 0 $ quindi $ u^\star(\alpha_i) \cup u^\star(\alpha_j) = 0 $, ma $ u^\star(\alpha_i) = 0 $
-  e $ u^\star(\alpha_j) \not = 0 $ e ili prodotto cup non manda in zero. In altri termini
-  se $ i + j < n $ allora $ \alpha_i \cup \alpha_j $ è generatore di $ H^{i+j}(\Pjr{n}) $ e
-  mi riconduco al caso precedente. Posso quindi fissare $ i, j $ tali che $ i +
-  j = n $, e prendo $ \alpha_i, \alpha_j $ generatori tali che $ \langle\alpha_i\rangle = H^i(\Pjr{n}) $ e
-  $ \langle\alpha_j\rangle = H^j(\Pjr{n}) $.
+  % Per $ n = 1 $ è noto che $ \Pjr{1} \simeq \Sph{1} $, e quindi ho già calcolato
+  % l'anello di coomologia:
+  % \[
+  %   H^\star(\Pjr{1}) \cong \quot{\Z[x]}{(x^2)}
+  % \]
+  % Per $ n > 1 $ considero due indici $ i, j $. Mostro che posso restringermi al
+  % caso in cui $ i + j = n $. Se $ i + j < n $ considero
+  % $ u \colon \Pjr{k} \to \Pjr{n} $, ho che $ u^\star \colon H^l(\Pjr{n}) \homoto H^l(\Pjr{l}) $
+  % con $ l \leq j $, ma quindi:
+  % \begin{gather*}
+  %   0 + \alpha_i \in H^i(\Pjr{n}) \mapsto u^\star(\alpha_i) \not = 0 \\
+  %   0 + \alpha_j \in H^j(\Pjr{n}) \mapsto u^\star(\alpha_j) \not = 0
+  % \end{gather*}
+  % Ma $ u^\star(\alpha_i \cup \alpha+j) \not = 0 $ e $ \alpha_i \cup \alpha_j \in H^{i+j}(\Pjr{k}) $. Se $
+  % u^\star(\alpha_i \cup \alpha_j) = 0 $ quindi $ u^\star(\alpha_i) \cup u^\star(\alpha_j) = 0 $, ma $ u^\star(\alpha_i) = 0 $
+  % e $ u^\star(\alpha_j) \not = 0 $ e ili prodotto cup non manda in zero. In altri termini
+  % se $ i + j < n $ allora $ \alpha_i \cup \alpha_j $ è generatore di $ H^{i+j}(\Pjr{n}) $ e
+  % mi riconduco al caso precedente. Posso quindi fissare $ i, j $ tali che $ i +
+  % j = n $, e prendo $ \alpha_i, \alpha_j $ generatori tali che $ \langle\alpha_i\rangle = H^i(\Pjr{n}) $ e
+  % $ \langle\alpha_j\rangle = H^j(\Pjr{n}) $.
 
-  Per definizione $ \Sph{n} = \set{(x_0, \dots, x_n) \in \RN{n+1} | \sum x_i^2 = 1} $,
-  considero:
-  \begin{gather*}
-    \Sph{i} = \set{(x_0, \dots, x_{i}, 0, 0, \dots, 0) \in \Sph{n}} \\
-    \Sph{j} = \set{(0, 0, \dots, x_{n-j}, \dots, x_n) \in \Sph{n}}
-  \end{gather*}
-  Se $ i + j = n $ queste due sottosfere si intersecano in due punti:
-  \[
-    \Sph{i} \cap \Sph{j} = \set{(0,\dots,\pm1,\dots,0)}
-  \]
+  % Per definizione $ \Sph{n} = \set{(x_0, \dots, x_n) \in \RN{n+1} | \sum x_i^2 = 1} $,
+  % considero:
+  % \begin{gather*}
+  %   \Sph{i} = \set{(x_0, \dots, x_{i}, 0, 0, \dots, 0) \in \Sph{n}} \\
+  %   \Sph{j} = \set{(0, 0, \dots, x_{n-j}, \dots, x_n) \in \Sph{n}}
+  % \end{gather*}
+  % Se $ i + j = n $ queste due sottosfere si intersecano in due punti:
+  % \[
+  %   \Sph{i} \cap \Sph{j} = \set{(0,\dots,\pm1,\dots,0)}
+  % \]
   \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
@@ -1682,62 +1678,62 @@ Quindi $ H^\star(X, \R) $ è un anello unitario, ma in generale non commutativo.
     \caption{Intersezione tra $ \Sph{i} $ e $ \Sph{j} $}
     \label{fig:lez18:intersection}
   \end{figure}
-  So che $ \Pjr{n} = \Sph{n} \slash \sim \; = \Pjr{n-1} \cup_\pi \Disk{n} $, dove $ \sim $ è la
-  relazione antipodale. Quindi $ \Pjr{n} - \set{p} $ è retratto di deformazione
-  di $ \Pjr{n-1} $.
-  Costruisco il seguente diagramma commutativo:
-  \[
-    \begin{tikzcd}[nodes = {column sep = 10pt, outer sep = 0pt, inner sep = 1.5pt}]
-      H^i(\Pjr{n}) \times H^j(\Pjr{n}) \rar{\cup} & H^n(\Pjr{n}) \\
-      H^i(\Pjr{n}, \Pjr{n} \setminus \Pjr{j}) \times H^j(\Pjr{n}, \Pjr{n} \setminus \Pjr{i}) \uar{\cong} \rar{\cup} \dar{\cong} & H^n(\Pjr{n}, \Pjr{n} \setminus \set{p}) \dar{\cong} \uar{\cong} \\
-      H^i(\RN{n}, \RN{n} \setminus \RN{j}) \times H^j(\RN{n}, \RN{n} \setminus \RN{i})  \rar{\cup} & H^n(\RN{n}, \RN{n} \setminus \set{\vec{0}})
-    \end{tikzcd}
-  \]
-  Infatti ho $ \cup \colon H^i(\Pjr{n}) \times H^j(\Pjr{n}) \to H^n(\Pjr{n}) $. Poi ho la successione
-  esatta lunga in omologia:
-  \[
-    \begin{tikzcd}[nodes = {column sep = 5pt, inner sep = 1.5pt}]
-      H^{n-1}(\Pjr{n}) \rar & H^{n-1}(\Pjr{n} \setminus \set{p}) \rar & H^{n-1}(\Pjr{n}, \Pjr{n} \setminus \set{p}) \rar & H^n(\Pjr{n}) \rar & H^n(\Pjr{n} \setminus \set{p})
-    \end{tikzcd}
-  \]
-  Ma $ H^{n-1}(\Pjr{n}) \cong H^{n-1}(\Pjr{n-1}) $ quindi $ H^{n-1}(\Pjr{n} \setminus \set{p}) \cong H^{n-1}(\Pjr{n}) $
-  quindi $ H^n(\Pjr{n}, \Pjr{n} \setminus \set{p}) \cong H^n(\Pjr{n}) $.
-  Poi ho $ \Pjr{i} \cong \Sph{i} \setminus \sim $ e $ \Pjr{j} \cong \Sph{j} \setminus \sim $, quindi
-  $ H^i(\Pjr{n}, \Pjr{n} \setminus \Pjr{j}) \times H^j(\Pjr{n}, \Pjr{n} \setminus \Pjr{i}) $ vanno
-  in $ H^i(\Pjr{n}) \times H^i(\Pjr{n}) $.
+  % So che $ \Pjr{n} = \Sph{n} \slash \sim \; = \Pjr{n-1} \cup_\pi \Disk{n} $, dove $ \sim $ è la
+  % relazione antipodale. Quindi $ \Pjr{n} - \set{p} $ è retratto di deformazione
+  % di $ \Pjr{n-1} $.
+  % Costruisco il seguente diagramma commutativo:
+  % \[
+  %   \begin{tikzcd}[nodes = {column sep = 10pt, outer sep = 0pt, inner sep = 1.5pt}]
+  %     H^i(\Pjr{n}) \times H^j(\Pjr{n}) \rar{\cup} & H^n(\Pjr{n}) \\
+  %     H^i(\Pjr{n}, \Pjr{n} \setminus \Pjr{j}) \times H^j(\Pjr{n}, \Pjr{n} \setminus \Pjr{i}) \uar{\cong} \rar{\cup} \dar{\cong} & H^n(\Pjr{n}, \Pjr{n} \setminus \set{p}) \dar{\cong} \uar{\cong} \\
+  %     H^i(\RN{n}, \RN{n} \setminus \RN{j}) \times H^j(\RN{n}, \RN{n} \setminus \RN{i})  \rar{\cup} & H^n(\RN{n}, \RN{n} \setminus \set{\vec{0}})
+  %   \end{tikzcd}
+  % \]
+  % Infatti ho $ \cup \colon H^i(\Pjr{n}) \times H^j(\Pjr{n}) \to H^n(\Pjr{n}) $. Poi ho la successione
+  % esatta lunga in omologia:
+  % \[
+  %   \begin{tikzcd}[nodes = {column sep = 5pt, inner sep = 1.5pt}]
+  %     H^{n-1}(\Pjr{n}) \rar & H^{n-1}(\Pjr{n} \setminus \set{p}) \rar & H^{n-1}(\Pjr{n}, \Pjr{n} \setminus \set{p}) \rar & H^n(\Pjr{n}) \rar & H^n(\Pjr{n} \setminus \set{p})
+  %   \end{tikzcd}
+  % \]
+  % Ma $ H^{n-1}(\Pjr{n}) \cong H^{n-1}(\Pjr{n-1}) $ quindi $ H^{n-1}(\Pjr{n} \setminus \set{p}) \cong H^{n-1}(\Pjr{n}) $
+  % quindi $ H^n(\Pjr{n}, \Pjr{n} \setminus \set{p}) \cong H^n(\Pjr{n}) $.
+  % Poi ho $ \Pjr{i} \cong \Sph{i} \setminus \sim $ e $ \Pjr{j} \cong \Sph{j} \setminus \sim $, quindi
+  % $ H^i(\Pjr{n}, \Pjr{n} \setminus \Pjr{j}) \times H^j(\Pjr{n}, \Pjr{n} \setminus \Pjr{i}) $ vanno
+  % in $ H^i(\Pjr{n}) \times H^i(\Pjr{n}) $.
 
-  Poi $ \Pjr{n} \setminus (\Pjr{n} \setminus \Pjr{j} \cup \Pjr{n} \setminus \Pjr{i}) = \Pjr{n} \setminus (\Pjr{n} \setminus (\Pjr{j}) \cap \Pjr{i}) = \Pjr{n} \setminus \set{p} $
-  con $ p = [0,\dots,1,0,\dots,0] $.
+  % Poi $ \Pjr{n} \setminus (\Pjr{n} \setminus \Pjr{j} \cup \Pjr{n} \setminus \Pjr{i}) = \Pjr{n} \setminus (\Pjr{n} \setminus (\Pjr{j}) \cap \Pjr{i}) = \Pjr{n} \setminus \set{p} $
+  % con $ p = [0,\dots,1,0,\dots,0] $.
 
-  Faccio escissione con $ U_i = \set{[x_0, \dots, x_n] | x_i \not = 0} \cong \RN{n} $,
-  ma $ U_i = \left(\frac{x_0}{x_i}, \dots, \frac{x_n}{x_i} \right) $ è contraibile.
+  % Faccio escissione con $ U_i = \set{[x_0, \dots, x_n] | x_i \not = 0} \cong \RN{n} $,
+  % ma $ U_i = \left(\frac{x_0}{x_i}, \dots, \frac{x_n}{x_i} \right) $ è contraibile.
 
-  Prendo $ \Pjr{n} \setminus U_i $ e faccio l'escissione in omologia e poi prendo il duale, così
-  ottengo:
-  \begin{gather*}
-    H^n(\Pjr{n}, \Pjr{n} \setminus \set{p}) \cong H^n(\Pjr{n} \setminus (\Pjr{n} \setminus U_i)), (\Pjr{n} \setminus \set{p}) \setminus (\Pjr{n} \setminus U_i) \cong \\
-    \cong H^n(U_i, U_i \setminus \set{p}) = H^n(\RN{n}, \RN{n} \setminus \set{\vec{0}})
-  \end{gather*}
+  % Prendo $ \Pjr{n} \setminus U_i $ e faccio l'escissione in omologia e poi prendo il duale, così
+  % ottengo:
+  % \begin{gather*}
+  %   H^n(\Pjr{n}, \Pjr{n} \setminus \set{p}) \cong H^n(\Pjr{n} \setminus (\Pjr{n} \setminus U_i)), (\Pjr{n} \setminus \set{p}) \setminus (\Pjr{n} \setminus U_i) \cong \\
+  %   \cong H^n(U_i, U_i \setminus \set{p}) = H^n(\RN{n}, \RN{n} \setminus \set{\vec{0}})
+  % \end{gather*}
 
-  Poi c'è il prodotto cup in basso in quanto ho la successione esatta:
-  \[
-    \begin{tikzcd}
-      H^{n-1}(\RN{n}) \rar & H^{n-1}(\RN{i} \setminus \RN{j}) \rar & H^n(\RN{n}, \RN{n} \setminus \RN{j}) \rar & H^n(\RN{n})
-    \end{tikzcd}
-  \]
-  Ma $ H^n(\RN{n}) \cong 0 $, quindi la successione è:
-  \[
-    \begin{tikzcd}
-      0 \rar & H^{n-1}(\RN{i} \setminus \RN{j}) \rar & H^n(\RN{n}, \RN{n} \setminus \RN{j}) \rar & 0
-    \end{tikzcd}
-  \]
-  E quindi:
-  \[
-     H^{n-1}(\RN{i} \setminus \RN{j}) \cong  H^n(\RN{n}, \RN{n} \setminus \RN{j}) \cong H^{n-1}(\Sph{n-j-1}) \cong H^{i-1}(\Sph{i-1})
-  \]
+  % Poi c'è il prodotto cup in basso in quanto ho la successione esatta:
+  % \[
+  %   \begin{tikzcd}
+  %     H^{n-1}(\RN{n}) \rar & H^{n-1}(\RN{i} \setminus \RN{j}) \rar & H^n(\RN{n}, \RN{n} \setminus \RN{j}) \rar & H^n(\RN{n})
+  %   \end{tikzcd}
+  % \]
+  % Ma $ H^n(\RN{n}) \cong 0 $, quindi la successione è:
+  % \[
+  %   \begin{tikzcd}
+  %     0 \rar & H^{n-1}(\RN{i} \setminus \RN{j}) \rar & H^n(\RN{n}, \RN{n} \setminus \RN{j}) \rar & 0
+  %   \end{tikzcd}
+  % \]
+  % E quindi:
+  % \[
+  %    H^{n-1}(\RN{i} \setminus \RN{j}) \cong  H^n(\RN{n}, \RN{n} \setminus \RN{j}) \cong H^{n-1}(\Sph{n-j-1}) \cong H^{i-1}(\Sph{i-1})
+  % \]
 
-  Con l'ipotesi induttiva costruisco gli isomorfismi in alto a sinistra.
-  Mancano da dimostrare delle cose.
+  % Con l'ipotesi induttiva costruisco gli isomorfismi in alto a sinistra.
+  % Mancano da dimostrare delle cose.
 
 \end{proof}
 
@@ -2106,7 +2102,7 @@ essendoci termini di bordo, quindi la mappa è ben definita in quanto:
   Siccome ogni aperto è unione, al più infinita di elementi di $ \mathcal{B} $ essendo $ \mathcal{B} $
   una base il punto è dimostrato.
 
-  \subparagraph{Dimostrazione del punto quattro}
+  \subparagraph{Dimostrazione del punto quattro} Assumiamolo per vero.
 
   \subparagraph{Dimostrazione del punto cinque} Siano $ V_1, V_2 $ aperti propri
   in $ \M $ tali che $ \M = V_1 \cup V_2 $, introducendo l'abbreviazione
@@ -2515,7 +2511,8 @@ A questo punto il teorema di de Rham si può esprimere come:
     Con questa definizione questo punto diventa equivalente a mostrare che ogni
     varietà differenziabile che ammette un ricoprimento finito de Rham è de
     Rham.
-  \item Se $ X $ ha una base di aperti de Rham allora è de Rham.
+  \item Se la topologia di $ X $ ammette una base di aperti de Rham allora è de
+    Rham.
     \begin{definition}
       Si dice che $ X $ varietà differenziabile ammette una \textbf{base} $ \mathcal{B} $
       \textbf{de Rham}\index{Base de Rham} se $ \mathcal{B} $ è un ricoprimento
@@ -2599,10 +2596,9 @@ A questo punto il teorema di de Rham si può esprimere come:
   \end{definition}
 
   Si dimostra che ogni varietà differenziabile ammette un'esaustione in compatti
-  positiva e liscia.
-
-  Considero questa esaustione $ f $ per $ X $ varietà differenziabile, si definiscono
-  gli insiemi compatti $ \tilde{A}_n = f^{-1}((-\infty, n])  $ e gli insiemi
+  positiva e liscia. Considero questa esaustione $ f $ per $ X $ varietà
+  differenziabile, si definiscono gli insiemi compatti
+  $ \tilde{A}_n = f^{-1}((-\infty, n]) $ e gli insiemi
   \[
     A_m = \set{ x \in X | m \leq f(x) \leq m + 1}
   \]
@@ -2621,7 +2617,7 @@ A questo punto il teorema di de Rham si può esprimere come:
   Rham. Ho quindi un'infinità numerabile di $ B_m $ de Rham.
   Siano:
   \[
-    \mathcal{U} = \bigcup_{m = 1\;\mathrm{mod} 2} B_m \quad  \mathcal{V} = \bigcup_{m = 0\; \mathrm{mod} 2} B_m
+    \mathcal{U} = \bigcup_{m = 1\;\mathrm{mod} (2)} B_m \quad  \mathcal{V} = \bigcup_{m = 0\; \mathrm{mod} (2)} B_m
   \]
   Questi insiemi sono tali che $ \mathcal{U} \cup \mathcal{V} = X $ in quanto per
   ipotesi prendo tutti gli $ A_n $ che coprono $ X $. Verificando che
